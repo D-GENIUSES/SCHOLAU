@@ -1,0 +1,80 @@
+[
+  {
+    "file": "scholau-logo-full.svg",
+    "format": "svg",
+    "transparent": true,
+    "wordmark_outlined": true,
+    "bytes": 6830
+  },
+  {
+    "file": "scholau-logo-mark.svg",
+    "format": "svg",
+    "transparent": true,
+    "wordmark_outlined": true,
+    "bytes": 1501
+  },
+  {
+    "file": "scholau-logo-white.svg",
+    "format": "svg",
+    "transparent": true,
+    "wordmark_outlined": true,
+    "bytes": 6675
+  },
+  {
+    "file": "favicon.svg",
+    "format": "svg",
+    "transparent": true,
+    "wordmark_outlined": true,
+    "bytes": 1365
+  },
+  {
+    "file": "favicon-32.png",
+    "format": "png",
+    "width": 32,
+    "height": 32,
+    "transparent": true,
+    "bytes": 864
+  },
+  {
+    "file": "pwa-icon-192.png",
+    "format": "png",
+    "width": 192,
+    "height": 192,
+    "transparent": false,
+    "bytes": 6414
+  },
+  {
+    "file": "pwa-icon-512.png",
+    "format": "png",
+    "width": 512,
+    "height": 512,
+    "transparent": false,
+    "bytes": 18354
+  },
+  {
+    "file": "pwa-maskable-512.png",
+    "format": "png",
+    "width": 512,
+    "height": 512,
+    "transparent": false,
+    "bytes": 16106,
+    "maximum_logo_radius_px": 161.38928093278065,
+    "safe_circle_radius_px": 204.8
+  },
+  {
+    "file": "apple-touch-icon-180.png",
+    "format": "png",
+    "width": 180,
+    "height": 180,
+    "transparent": false,
+    "bytes": 5997
+  },
+  {
+    "file": "social-share-1200x630.png",
+    "format": "png",
+    "width": 1200,
+    "height": 630,
+    "transparent": false,
+    "bytes": 1007544
+  }
+]

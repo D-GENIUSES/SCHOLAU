@@ -1,0 +1,104 @@
+import { z } from "zod";
+
+/** Input schemas for forms. They mirror server validation for UX only; the server re-validates. */
+
+export const emailSchema = z.string().trim().min(1, "Enter your email address.").email("Enter a valid email address.");
+
+export const passwordSchema = z
+  .string()
+  .min(8, "Use at least 8 characters.")
+  .max(72, "Use 72 characters or fewer.");
+
+export const displayNameSchema = z
+  .string()
+  .trim()
+  .min(2, "Use at least 2 characters.")
+  .max(60, "Use 60 characters or fewer.")
+  .refine((v) => !/[<>]/.test(v), "Remove the < and > characters.");
+
+export const signInSchema = z.object({
+  email: emailSchema,
+  password: z.string().min(1, "Enter your password."),
+});
+export type SignInInput = z.infer<typeof signInSchema>;
+
+export const signUpSchema = z.object({
+  displayName: displayNameSchema,
+  email: emailSchema,
+  password: passwordSchema,
+  adultConfirmed: z.boolean().refine((v) => v, "Confirm that you are a university student aged 18 or over."),
+});
+export type SignUpInput = z.infer<typeof signUpSchema>;
+
+export const recoverSchema = z.object({ email: emailSchema });
+export type RecoverInput = z.infer<typeof recoverSchema>;
+
+export const resetPasswordSchema = z
+  .object({ password: passwordSchema, confirm: z.string() })
+  .refine((v) => v.password === v.confirm, { message: "Passwords don't match.", path: ["confirm"] });
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+
+const requiredId = (label: string) => z.string().uuid(`Choose your ${label}.`);
+
+export const academicProfileSchema = z.object({
+  universityId: requiredId("university"),
+  facultyId: requiredId("faculty"),
+  departmentId: requiredId("department"),
+  levelId: requiredId("level"),
+  academicPeriodId: requiredId("academic period"),
+  semesterId: requiredId("semester"),
+});
+export type AcademicProfileInput = z.infer<typeof academicProfileSchema>;
+
+/** Order matters: changing a field resets every descendant. */
+export const ACADEMIC_FIELD_ORDER = [
+  "universityId",
+  "facultyId",
+  "departmentId",
+  "levelId",
+  "academicPeriodId",
+  "semesterId",
+] as const satisfies readonly (keyof AcademicProfileInput)[];
+
+export function academicDescendants(field: keyof AcademicProfileInput): (keyof AcademicProfileInput)[] {
+  // Level and period depend on university only; department depends on faculty; semester on period.
+  switch (field) {
+    case "universityId":
+      return ["facultyId", "departmentId", "levelId", "academicPeriodId", "semesterId"];
+    case "facultyId":
+      return ["departmentId"];
+    case "academicPeriodId":
+      return ["semesterId"];
+    default:
+      return [];
+  }
+}
+
+export const updateProfileSchema = z.object({
+  displayName: displayNameSchema,
+  leaderboardVisible: z.boolean(),
+});
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
+
+export const reportSchema = z.object({
+  category: z.enum(["incorrect", "unclear", "typo", "offensive", "broken", "other"], {
+    message: "Choose what's wrong.",
+  }),
+  note: z.string().trim().min(1, "Tell us what you noticed.").max(2000, "Use 2000 characters or fewer."),
+});
+export type ReportInput = z.infer<typeof reportSchema>;
+
+export const reasonSchema = z.string().trim().min(3, "Give a reason (at least 3 characters).").max(1000);
+
+export const grantPremiumSchema = z.object({
+  userId: z.string().uuid("Enter a valid user ID."),
+  endsAt: z.string().min(1, "Choose an end date."),
+  reason: reasonSchema,
+});
+export type GrantPremiumInput = z.infer<typeof grantPremiumSchema>;
+
+export const triageReportSchema = z.object({
+  state: z.enum(["triaged", "resolved", "dismissed"]),
+  resolution: z.string().trim().max(2000).optional(),
+});
+export type TriageReportInput = z.infer<typeof triageReportSchema>;

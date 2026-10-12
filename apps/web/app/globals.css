@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "@scholau/tokens/theme.css";
+
+@source "../components";
+@source "../app";
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-page text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-surface-tint);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility mb-bottom-nav {
+  /* Keeps content and focused controls clear of the fixed mobile bottom nav. */
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@scholau/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./react": "./src/react.tsx"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@scholau/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@supabase/supabase-js": "^2.100.0",
+    "@tanstack/react-query": "^5.90.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.117.3",
+    "@tanstack/react-query": "^5.104.2",
+    "@types/react": "^19.3.0",
+    "react": "^19.3.0",
+    "typescript": "~6.0.3"
+  }
+}
