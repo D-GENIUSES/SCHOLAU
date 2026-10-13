@@ -2,6 +2,7 @@
 
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useHomeSummary, useMyLiveBattle } from "@scholau/api/react";
@@ -17,7 +18,16 @@ import { EmptyState, ErrorState, LoadingState } from "@/components/ui/states";
 export default function BattlesPage() {
   return (
     <div className="flex flex-col gap-6">
-      <PageHeader eyebrow="Battles" title="1v1 quiz battles" description={COPY.battle.unlimited} />
+      <PageHeader eyebrow="Battles" title="Compete. Learn. Grow." description={COPY.battle.unlimited} />
+      <section className="battle-intro" aria-labelledby="battle-welcome-title">
+        <div>
+          <p className="eyebrow">YOUR NEXT CHALLENGE</p>
+          <h2 id="battle-welcome-title">A little friendly competition.</h2>
+          <p>Choose a course below, find an opponent, and test what you know. Every completed match earns XP.</p>
+          <span className="text-sm font-semibold text-brand-primary">{COPY.battle.rewards}</span>
+        </div>
+        <Image unoptimized src="/illustrations/battle-trophy.webp" alt="" width={512} height={512} sizes="(max-width: 639px) 170px, 300px" />
+      </section>
       <Suspense fallback={<LoadingState label="Loading battles…" />}>
         <Lobby />
       </Suspense>

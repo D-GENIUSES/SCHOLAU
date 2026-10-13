@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BookOpen } from "lucide-react";
 import type { ReactNode } from "react";
 import type { CatalogOffering, Profile } from "@scholau/api";
 import { pluralize } from "@scholau/core";
@@ -22,7 +23,11 @@ export function CourseCard({
   const { course, lesson_count, lessons_completed, enrolled } = offering;
   const percent = lesson_count > 0 ? (lessons_completed / lesson_count) * 100 : 0;
   return (
-    <Card className="flex h-full flex-col">
+    <Card className="course-study-card flex h-full flex-col">
+      <div className="course-study-banner" aria-hidden>
+        <BookOpen className="size-8" />
+        <span>{course.code}</span>
+      </div>
       <CardHeader>
         <span className="text-sm font-semibold text-brand-primary">{course.code}</span>
         <CardTitle as="h3">
@@ -43,7 +48,7 @@ export function CourseCard({
             <p className="text-sm text-ink-muted">
               {lessons_completed} of {pluralize(lesson_count, "lesson")} completed
             </p>
-            <Progress value={percent} label={`${course.code} lesson progress`} tone={percent >= 100 ? "success" : "brand"} />
+            <Progress value={percent} label={`${course.code} lesson progress`} tone={percent >= 100 ? "success" : "brand"} className="h-1.5" />
           </div>
         ) : (
           <p className="mt-auto text-sm text-ink-muted">{pluralize(lesson_count, "lesson")}</p>

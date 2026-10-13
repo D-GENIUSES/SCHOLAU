@@ -3,10 +3,11 @@
 import { BookOpen, ListChecks, Plus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { useCatalog, useEnrollCourse, useProfile } from "@scholau/api/react";
+import { useCatalog, useEnrollCourse, useHomeSummary, useProfile } from "@scholau/api/react";
 import { COPY } from "@scholau/core";
 import { academicSummary, CourseCard } from "@/components/lesson/course-card";
 import { ReportDialog } from "@/components/report-dialog";
+import { ContinueLearningCard } from "@/components/home/learning-panels";
 import { Button } from "@/components/ui/button";
 import { LiveRegion, PageHeader } from "@/components/ui/misc";
 import { Segmented } from "@/components/ui/segmented";
@@ -17,6 +18,7 @@ type Tab = "enrolled" | "available";
 export default function StudyPage() {
   const catalog = useCatalog();
   const profile = useProfile();
+  const home = useHomeSummary();
   const enroll = useEnrollCourse();
   const [tabChoice, setTab] = useState<Tab | null>(null);
   const academic = academicSummary(profile.data?.academic);
@@ -24,7 +26,7 @@ export default function StudyPage() {
   const header = (
     <PageHeader
       title="Study"
-      description="Your courses for this semester."
+      description="A little progress today. More confidence tomorrow."
       actions={
         <Button asChild variant="outline">
           <Link href="/onboarding/courses">
@@ -106,6 +108,15 @@ export default function StudyPage() {
   return (
     <>
       {header}
+      {tab === "enrolled" && home.data?.continue_learning ? (
+        <div className="mb-7">
+          <ContinueLearningCard
+            item={home.data.continue_learning}
+            firstLesson={home.data.enrolled_courses.every((c) => c.lessons_completed === 0)}
+            course={home.data.enrolled_courses.find((c) => c.offering_id === home.data?.continue_learning?.offering_id)}
+          />
+        </div>
+      ) : null}
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <Segmented<Tab>
           name="study-tab"
