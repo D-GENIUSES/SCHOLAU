@@ -11,6 +11,9 @@ function isPublic(pathname: string) {
 
 /** Refreshes the Supabase session cookie and gates protected routes on authentication. */
 export async function updateSession(request: NextRequest) {
+  if (process.env.NODE_ENV === "development" && request.nextUrl.pathname === "/design-preview") {
+    return NextResponse.next({ request });
+  }
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY || "missing-anon-key", {
@@ -33,6 +36,20 @@ export async function updateSession(request: NextRequest) {
   }
 
   const { pathname, search } = request.nextUrl;
+
+  // Guests enter the public dashboard. Other student routes keep their auth gates.
+  if (!userId && pathname === "/home") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    return NextResponse.rewrite(url, { headers: response.headers });
+  }
+
+  if (userId && pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/home";
+    url.search = "";
+    return NextResponse.redirect(url, { headers: response.headers });
+  }
 
   if (!userId && !isPublic(pathname)) {
     const url = request.nextUrl.clone();

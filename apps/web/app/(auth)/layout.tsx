@@ -1,21 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/logo";
-
 export default function AuthLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex min-h-dvh flex-col items-center px-4 py-8 sm:py-12">
-      <Link href="/" aria-label="ScholAu home" className="mb-6 rounded-control">
-        <Logo />
-      </Link>
-      <main id="main" tabIndex={-1} className="w-full max-w-md">
-        <div className="rounded-card border border-line bg-surface-card p-5 shadow-card sm:p-8">{children}</div>
-      </main>
-      <footer className="mt-6 text-sm text-ink-muted">
-        <Link href="/privacy" className="underline-offset-4 hover:text-ink hover:underline">
-          Privacy
-        </Link>
-      </footer>
-    </div>
-  );
+  return <div className="auth-layout"><aside className="auth-story"><Logo /><div><p className="eyebrow">A LITTLE BETTER, EVERY DAY</p><h2>Study.<br />Compete.<br /><span>Rise.</span></h2><p>Your courses, your challenges,<br />your next big step.</p></div><Image src="/illustrations/learning-shield.webp" alt="" width={512} height={512} sizes="320px" className="auth-art" /><p>Made for your university journey.</p></aside>
+    <div className="auth-content"><Link href="/home" className="auth-back">← Explore ScholAu</Link><Link href="/home" aria-label="ScholAu home" className="mb-6 lg:hidden"><Logo /></Link><main id="main" tabIndex={-1} className="auth-card">{children}</main><footer><Link href="/privacy">Privacy</Link><span aria-hidden>·</span><Link href="/home">Continue as guest</Link></footer></div>
+  </div>;
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { OfflineIndicator } from "@/components/offline-indicator";
+import { ViewportLock } from "@/components/viewport-lock";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to main content
         </a>
         <Providers>
+          <ViewportLock />
           <OfflineIndicator />
           {children}
         </Providers>

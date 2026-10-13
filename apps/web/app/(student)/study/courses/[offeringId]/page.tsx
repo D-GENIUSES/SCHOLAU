@@ -145,7 +145,7 @@ function Overview({ data }: { data: CourseOverview }) {
             const items = data.assessments.filter((a) => a.kind === g.kind);
             if (items.length === 0) return null;
             return (
-              <div key={g.kind} className="flex flex-col gap-3">
+              <div key={g.kind} id={g.kind} className="flex scroll-mt-24 flex-col gap-3">
                 <div>
                   <h3 className="text-lg font-bold">{g.title}</h3>
                   <p className="text-sm text-ink-muted">{g.description}</p>
