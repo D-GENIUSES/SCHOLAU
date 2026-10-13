@@ -9,14 +9,14 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   const { state = "returning" } = await searchParams;
   const now = new Date();
   const summary: HomeSummary = {
-    server_time: now.toISOString(), display_name: "David", needs_onboarding: false, xp_total: 1040,
+    server_time: now.toISOString(), display_name: "Learner", needs_onboarding: false, xp_total: 1040,
     learning_xp_today: 28, learning_xp_daily_cap: 100, premium: false,
     streak: { current: 7, longest: 7, active_today: true, local_date: now.toISOString().slice(0, 10) },
-    continue_learning: { kind: "resume", lesson_id: "preview-lesson", lesson_version_id: "preview-version", title: "Recognizing threats in the digital world", estimated_minutes: 5, course_id: "preview-course", course_title: "Cybersecurity Fundamentals", offering_id: "preview-offering" },
+    continue_learning: { kind: "resume", lesson_id: "preview-lesson", lesson_version_id: "preview-version", title: "Discovering the world around us", estimated_minutes: 5, course_id: "preview-course", course_title: "General Knowledge", offering_id: "preview-offering" },
     enrolled_courses: [
-      { offering_id: "preview-offering", course_id: "preview-course", code: "CSC 101", title: "Cybersecurity Fundamentals", lessons_total: 12, lessons_completed: 8 },
-      { offering_id: "preview-offering-2", course_id: "preview-course-2", code: "CSC 202", title: "Data Structures and Algorithms", lessons_total: 12, lessons_completed: 4 },
-      { offering_id: "preview-offering-3", course_id: "preview-course-3", code: "CSC 301", title: "Operating Systems", lessons_total: 10, lessons_completed: 0 },
+      { offering_id: "preview-offering", course_id: "preview-course", code: "GENERAL", title: "General Knowledge", lessons_total: 12, lessons_completed: 8 },
+      { offering_id: "preview-offering-2", course_id: "preview-course-2", code: "NUMBERS", title: "Everyday Numbers", lessons_total: 12, lessons_completed: 4 },
+      { offering_id: "preview-offering-3", course_id: "preview-course-3", code: "WORLD", title: "Our World", lessons_total: 10, lessons_completed: 0 },
     ],
     recent_activity: [{ kind: "lesson_completed", source_id: "sample-1", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 7200000).toISOString(), xp: 20 }, { kind: "battle_completed", source_id: "sample-2", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 18000000).toISOString(), xp: 25 }],
     live_battle: null, unread_notifications: 2,
@@ -25,5 +25,5 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "empty") { summary.enrolled_courses = []; summary.continue_learning = null; summary.recent_activity = []; }
   if (state === "complete") summary.continue_learning = null;
   if (state === "live") summary.live_battle = { battle_id: "preview-battle", queue_id: null, expires_at: new Date(now.getTime() + 120000).toISOString() };
-  return <ShellFrame displayName="David" unread={2}><div className="mb-6 rounded-card border border-line bg-white p-4 text-xs text-ink-muted"><p className="mb-2">Development design preview · sample data · account actions require sign-in.</p><nav aria-label="Preview state" className="flex flex-wrap gap-4">{["returning", "new", "empty", "complete", "live"].map((s) => <Link key={s} href={`/design-preview?state=${s}`} aria-current={s === state ? "page" : undefined} className="text-brand-primary underline">{s}</Link>)}</nav></div><HomeDashboard summary={summary} /></ShellFrame>;
+  return <ShellFrame displayName="Learner" unread={2}><div className="mb-6 rounded-card border border-line bg-white p-4 text-xs text-ink-muted"><p className="mb-2">Development design preview · sample data · account actions require sign-in.</p><nav aria-label="Preview state" className="flex flex-wrap gap-4">{["returning", "new", "empty", "complete", "live"].map((s) => <Link key={s} href={`/design-preview?state=${s}`} aria-current={s === state ? "page" : undefined} className="text-brand-primary underline">{s}</Link>)}</nav></div><HomeDashboard summary={summary} /></ShellFrame>;
 }

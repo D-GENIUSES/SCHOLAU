@@ -6,16 +6,17 @@ import { type ActivityKind, formatRelative, formatXpDelta, pluralize } from "@sc
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/misc";
 import { EmptyState } from "@/components/ui/states";
+import { DiscoveryArt } from "./discovery-art";
 type Continue = NonNullable<HomeSummary["continue_learning"]>;
 type Course = HomeSummary["enrolled_courses"][number];
 export function ContinueLearningCard({ item, firstLesson, course, href, preview = false }: { item: Continue | null; firstLesson: boolean; course?: Course; href?: string; preview?: boolean }) {
   const percent = course && course.lessons_total > 0 ? Math.round(100 * course.lessons_completed / course.lessons_total) : null;
   return <section className="learning-spotlight" aria-labelledby="continue-title"><div className="spotlight-content">
     <p className="eyebrow spotlight-label">{preview ? "TRY A FREE LESSON" : firstLesson ? "YOUR FIRST LESSON" : item ? "CONTINUE LEARNING" : "NICE WORK"}</p>
-    <h2 id="continue-title">{item?.course_title ?? "You’re all caught up"}</h2><p className="spotlight-description">{preview ? "Recognize threats. Protect your digital world." : item?.title ?? "Explore your courses or test what you’ve learned."}</p>
+    <h2 id="continue-title">{item?.course_title ?? "You’re all caught up"}</h2><p className="spotlight-description">{item?.title ?? "Explore your courses or test what you’ve learned."}</p>
     {percent !== null && course ? <div className="spotlight-progress"><div className="flex items-center gap-3"><Progress value={percent} label={`${course.title} progress`} className="bg-white/65" /><span className="text-sm font-bold">{percent}%</span></div><p>{course.lessons_completed} of {pluralize(course.lessons_total, "lesson")} completed</p></div> : item ? <p className="spotlight-time"><Clock className="size-4" aria-hidden />{pluralize(item.estimated_minutes, "minute")}<span aria-hidden>·</span>{preview ? "No account needed" : item.kind === "resume" ? "In progress" : "At your own pace"}</p> : null}
     <Button asChild className="rounded-pill self-start shadow-[0_5px_14px_#0066d620]" size="sm"><Link href={href ?? (item ? `/study/lessons/${item.lesson_id}` : "/study")}>{preview ? "Start learning" : !item ? "Go to Study" : firstLesson ? "Start lesson" : item.kind === "resume" ? "Continue lesson" : "Start next lesson"}<ArrowRight className="size-4" aria-hidden /></Link></Button>
-  </div><Image unoptimized src="/illustrations/learning-shield.webp" alt="" width={512} height={512} sizes="(max-width: 639px) 160px, 260px" className="spotlight-art" preload /></section>;
+  </div>{preview ? <DiscoveryArt className="spotlight-art" /> : <Image unoptimized src="/illustrations/learning-shield.webp" alt="" width={512} height={512} sizes="(max-width: 639px) 160px, 260px" className="spotlight-art" preload />}</section>;
 }
 export function QuickActions({ offeringId, guest = false }: { offeringId?: string; guest?: boolean }) {
   const base = offeringId ? `/study/courses/${offeringId}` : "/study";
@@ -25,8 +26,8 @@ export function QuickActions({ offeringId, guest = false }: { offeringId?: strin
   ];
   return <section aria-labelledby="quick-title"><h2 id="quick-title" className="section-title">Quick actions</h2><div className="quick-actions">{actions.map(({ icon: Icon, label, description, href }) => <Link key={label} href={href} className="quick-action"><span className="icon-tile"><Icon className="size-5" aria-hidden /></span><span><strong>{label}</strong><small>{description}</small></span><ChevronRight className="size-4 action-chevron" aria-hidden /></Link>)}</div></section>;
 }
-export function HowItWorks() {
-  const items = [{ icon: BookOpen, title: "Study", body: "Short lessons. Clear explanations. Your university courses." }, { icon: ClipboardCheck, title: "Practice", body: "Test your understanding and prepare with mock exams." }, { icon: Swords, title: "Compete", body: "Unlimited 1v1 battles. XP for every completed match." }];
+export function HowItWorks({ guest = false }: { guest?: boolean }) {
+  const items = [{ icon: BookOpen, title: "Study", body: guest ? "Short lessons. General knowledge. Something new to discover." : "Short lessons. Clear explanations. Your university courses." }, { icon: ClipboardCheck, title: "Practice", body: "Test your understanding and prepare with mock exams." }, { icon: Swords, title: "Compete", body: "Unlimited 1v1 battles. XP for every completed match." }];
   return <section aria-labelledby="how-title"><h2 id="how-title" className="section-title">Your path to progress</h2><ul className="grid gap-3 sm:grid-cols-3">{items.map(({ icon: Icon, title, body }) => <li key={title} className="how-card"><Icon className="size-5 text-brand-primary" aria-hidden /><h3>{title}</h3><p>{body}</p></li>)}</ul></section>;
 }
 export function CourseProgressList({ courses }: { courses: HomeSummary["enrolled_courses"] }) {
