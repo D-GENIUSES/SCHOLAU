@@ -285,12 +285,12 @@
   .learning-spotlight { padding: 22px 20px; border-radius: 19px; }
   .spotlight-content { width: 70%; gap: 13px; }
   .spotlight-content h2 { font-size: 22px; }
-  .spotlight-description { font-size: 12px; max-width: 205px; }
+  .spotlight-description { font-size: 12px; max-width: 180px; }
   .spotlight-art { width: 160px; right: -24px; top: 43%; }
   .spotlight-progress { width: 95%; }
   .spotlight-time { max-width: 170px; font-size: 10px; }
   .quick-actions { gap: 10px; }
-  .quick-action { flex-wrap: wrap; gap: 10px; padding: 16px 13px; }
+  .quick-action { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; padding: 16px 13px; min-height: 95px; }
   .quick-action strong { font-size: 12px; }
   .quick-action small { font-size: 10px; }
   .quick-action .icon-tile { width: 30px; height: 30px; border-radius: 9px; }

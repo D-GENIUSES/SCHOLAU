@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "@/lib/env";
 
-const PUBLIC_PATHS = ["/", "/sign-in", "/sign-up", "/verify", "/recover", "/reset-password", "/privacy", "/auth", "/offline"];
+const PUBLIC_PATHS = ["/", "/home", "/sign-in", "/sign-up", "/verify", "/recover", "/reset-password", "/privacy", "/auth", "/offline"];
 const AUTH_PAGES = ["/sign-in", "/sign-up"];
 
 function isPublic(pathname: string) {
@@ -36,20 +36,6 @@ export async function updateSession(request: NextRequest) {
   }
 
   const { pathname, search } = request.nextUrl;
-
-  // Guests enter the public dashboard. Other student routes keep their auth gates.
-  if (!userId && pathname === "/home") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.rewrite(url, { headers: response.headers });
-  }
-
-  if (userId && pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/home";
-    url.search = "";
-    return NextResponse.redirect(url, { headers: response.headers });
-  }
 
   if (!userId && !isPublic(pathname)) {
     const url = request.nextUrl.clone();
