@@ -5,15 +5,19 @@
 @source "../app";
 
 @layer base {
+  /* Native-app feel: reduce double-tap zoom (iOS) and keep text sizing stable. */
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    touch-action: manipulation;
   }
 
   body {
     @apply bg-surface-page text-ink font-sans antialiased;
     font-size: 16px;
     line-height: 1.55;
+    touch-action: manipulation;
+    overscroll-behavior: none;
   }
 
   h1,
