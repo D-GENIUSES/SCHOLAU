@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { NIGERIAN_UNIVERSITIES } from "./nigerian-universities";
 
 /** Input schemas for forms. They mirror server validation for UX only; the server re-validates. */
 
@@ -22,12 +23,24 @@ export const signInSchema = z.object({
 });
 export type SignInInput = z.infer<typeof signInSchema>;
 
+const universitySlugs = new Set<string>(NIGERIAN_UNIVERSITIES.map((university) => university.value));
+const academicName = (label: string) => z.string().trim().min(2, `Enter your ${label}.`).max(200, "Use 200 characters or fewer.")
+  .refine((value) => !/[<>]/.test(value), "Remove the < and > characters.");
+
+/** Self-reported signup details. Course enrollment still uses validated catalog IDs. */
+export const registrationAcademicSchema = z.object({
+  universitySlug: z.string().refine((value) => universitySlugs.has(value), "Choose a university from the list."),
+  faculty: academicName("faculty"),
+  department: academicName("department"),
+  currentSemester: z.enum(["first", "second", "third"], { message: "Choose your current semester." }),
+});
+export type RegistrationAcademicInput = z.infer<typeof registrationAcademicSchema>;
+
 export const signUpSchema = z.object({
   displayName: displayNameSchema,
   email: emailSchema,
   password: passwordSchema,
-  adultConfirmed: z.boolean().refine((v) => v, "Confirm that you are a university student aged 18 or over."),
-});
+}).extend(registrationAcademicSchema.shape);
 export type SignUpInput = z.infer<typeof signUpSchema>;
 
 export const recoverSchema = z.object({ email: emailSchema });

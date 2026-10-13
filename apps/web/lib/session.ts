@@ -1,6 +1,7 @@
 import "server-only";
 import { redirect } from "next/navigation";
 import { isApiError, type Profile } from "@scholau/api";
+import { readRegistrationAcademic } from "@scholau/core";
 import { getServerApi, getServerSupabase } from "@/lib/supabase/server";
 
 export type SessionResult =
@@ -32,9 +33,13 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
   }
 }
 
-/** Requires an academic profile; sends new users to onboarding. */
+/** Allows saved signup details before course matching. Roles/enrollment stay backend-authorized. */
 export async function requireOnboardedSession(nextPath: string): Promise<SessionResult> {
   const s = await requireSession(nextPath);
-  if (s.kind === "ok" && s.profile.needs_onboarding) redirect("/onboarding");
+  if (s.kind === "ok" && s.profile.needs_onboarding) {
+    const supabase = await getServerSupabase();
+    const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
+    if (!readRegistrationAcademic(data?.claims?.user_metadata)) redirect("/onboarding");
+  }
   return s;
 }

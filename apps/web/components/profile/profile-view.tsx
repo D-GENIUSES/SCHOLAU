@@ -3,7 +3,7 @@
 import { BookOpen, ClipboardCheck, Flame, Shield, Star, Swords, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useProfile } from "@scholau/api/react";
-import { formatNumber, formatStreak, formatXp, initials } from "@scholau/core";
+import { formatNumber, formatStreak, formatXp, initials, type RegistrationAcademicInput } from "@scholau/core";
 import { SignOutButton } from "@/components/auth/sign-out-button";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import { AccountDeletionDialog } from "./account-deletion-dialog";
 import { AcademicDetailsCard } from "./academic-details-card";
 import { ProfileEditForm } from "./profile-edit-form";
 
-export function ProfileView() {
+export function ProfileView({ registration = null }: { registration?: RegistrationAcademicInput | null }) {
   const profile = useProfile();
 
   if (profile.isPending) return <LoadingState label="Loading your profile…" lines={4} />;
@@ -45,7 +45,7 @@ export function ProfileView() {
             </div>
           </section>
 
-          <AcademicDetailsCard academic={p.academic} />
+          <AcademicDetailsCard academic={p.academic} registration={registration} />
           <ProfileEditForm profile={p} />
 
           <Card>

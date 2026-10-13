@@ -36,7 +36,7 @@ export function VerifyPanel({ email: initialEmail }: { email?: string }) {
     const { error } = await getBrowserSupabase().auth.resend({
       type: "signup",
       email: parsed.data,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/onboarding` },
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/home` },
     });
     setSending(false);
     if (error) {

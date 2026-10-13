@@ -36,7 +36,8 @@ export default function PrivacyPage() {
           <ul className="list-disc space-y-1 pl-5">
             <li>Your email address, used to sign in and to send account emails such as confirmation and password reset links.</li>
             <li>Your display name.</li>
-            <li>Your academic profile: university, faculty, department, level, academic period and semester.</li>
+            <li>Your signup study details: university, faculty, department and current semester.</li>
+            <li>If you set up university courses, your course profile also includes level and academic period to match the published curriculum.</li>
             <li>Your learning and battle activity, such as lessons completed, assessment attempts and battle results.</li>
             <li>Your XP (experience points) and streak.</li>
           </ul>

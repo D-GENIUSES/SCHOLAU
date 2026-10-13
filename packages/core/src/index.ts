@@ -5,3 +5,5 @@ export * from "./format";
 export * from "./clock";
 export * from "./copy";
 export * from "./analytics";
+export * from "./nigerian-universities";
+export * from "./registration";

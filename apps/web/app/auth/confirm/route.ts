@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type");
 
   if (tokenHash && isOtpType(type)) {
-    const next = safeNext(searchParams.get("next"), type === "recovery" ? "/reset-password" : "/onboarding");
+    const next = safeNext(searchParams.get("next"), type === "recovery" ? "/reset-password" : "/home");
     const supabase = await getServerSupabase();
     const { error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash }).catch((err: unknown) => ({ error: err }));
     if (!error) return NextResponse.redirect(new URL(next, request.url));
