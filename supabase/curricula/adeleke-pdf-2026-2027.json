@@ -1,0 +1,1741 @@
+{
+  "source": {
+    "filename": "courses .pdf",
+    "sha256": "e67b4be126c0839be5a601ac01330de695df60a17de392801d6c3746156211b3",
+    "pages": 10
+  },
+  "session": "2026/2027",
+  "groups": [
+    {
+      "programme": "Computer Science",
+      "level": 100,
+      "semester": 1,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "GST 111",
+          "code": "GST 111",
+          "title": "Communication in English",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-GST 100",
+          "code": "AUE-GST 100",
+          "title": "Students Life Seminar",
+          "units": 0,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 101",
+          "code": "AUE-GST 101",
+          "title": "Use of Library",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 101",
+          "code": "MTH 101",
+          "title": "Elementary Mathematics I",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "PHY 101",
+          "code": "PHY 101",
+          "title": "General Physics I",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "PHY 107",
+          "code": "PHY 107",
+          "title": "General Practical Physics I",
+          "units": 1,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "STA 111",
+          "code": "STA 111",
+          "title": "Descriptive Statistics",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 101",
+          "code": "COS 101",
+          "title": "Introduction to Computing Sciences",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CHM 101",
+          "code": "CHM 101",
+          "title": "General Chemistry I",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "BIO 101",
+          "code": "BIO 101",
+          "title": "General Biology I",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 1,
+      "printed_handbook_page": 19,
+      "calculated_listed_units": 19,
+      "required_units": 15,
+      "required_courses": 8
+    },
+    {
+      "programme": "Computer Science",
+      "level": 100,
+      "semester": 2,
+      "printed_total_units": 17,
+      "courses": [
+        {
+          "source_code": "GST 112",
+          "code": "GST 112",
+          "title": "Nigerian Peoples and Culture",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 102",
+          "code": "AUE-GST 102",
+          "title": "God in Modern Society",
+          "units": 1,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 104",
+          "code": "AUE-CSC 104",
+          "title": "Computer Hardware",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "MTH 102",
+          "code": "MTH 102",
+          "title": "Elementary Mathematics II",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "PHY 102",
+          "code": "PHY 102",
+          "title": "General Physics II",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "PHY 108",
+          "code": "PHY 108",
+          "title": "General Practical Physics II",
+          "units": 1,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 102",
+          "code": "COS 102",
+          "title": "Problem Solving",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "STA 112",
+          "code": "STA 112",
+          "title": "Probability I",
+          "units": 3,
+          "status": "E",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 1,
+      "printed_handbook_page": 19,
+      "calculated_listed_units": 17,
+      "required_units": 14,
+      "required_courses": 7
+    },
+    {
+      "programme": "Computer Science",
+      "level": 200,
+      "semester": 1,
+      "printed_total_units": 21,
+      "courses": [
+        {
+          "source_code": "ENT 211",
+          "code": "ENT 211",
+          "title": "Entrepreneurship and Innovation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 201",
+          "code": "AUE-GST 201",
+          "title": "Philosophy of Education",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 221",
+          "code": "AUE-GST 221",
+          "title": "Communication in French",
+          "units": 2,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 201",
+          "code": "COS 201",
+          "title": "Computer Programming I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 203",
+          "code": "CSC 203",
+          "title": "Discrete Structures",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "IFT 211",
+          "code": "IFT 211",
+          "title": "Digital Logic Design",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 201",
+          "code": "SEN 201",
+          "title": "Introduction to Software Engineering",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 201",
+          "code": "CYB 201",
+          "title": "Introduction to Cybersecurity and Strategy",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "STA 121",
+          "code": "STA 121",
+          "title": "Statistical Inference I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 201",
+          "code": "MTH 201",
+          "title": "Mathematical Methods I",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 2,
+      "printed_handbook_page": 20,
+      "calculated_listed_units": 21,
+      "required_units": 21,
+      "required_courses": 10
+    },
+    {
+      "programme": "Computer Science",
+      "level": 200,
+      "semester": 2,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "GST 212",
+          "code": "GST 212",
+          "title": "Philosophy, Logic and Human Existence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 200",
+          "code": "AUE-GST 200",
+          "title": "Student Life Seminar",
+          "units": 0,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 202",
+          "code": "AUE-GST 202",
+          "title": "Life and Teachings of Christ",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 202",
+          "code": "MTH 202",
+          "title": "Mathematical Methods II",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 202",
+          "code": "COS 202",
+          "title": "Computer Programming II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "IFT 212",
+          "code": "IFT 212",
+          "title": "Computer Architecture and Organization",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 202",
+          "code": "AUE-CSC 202",
+          "title": "System Analysis and Design",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 204",
+          "code": "AUE-CSC 204",
+          "title": "Web Technologies",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 299",
+          "code": "CSC 299",
+          "title": "SIWES I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 2,
+      "printed_handbook_page": 20,
+      "calculated_listed_units": 19,
+      "required_units": 19,
+      "required_courses": 9
+    },
+    {
+      "programme": "Computer Science",
+      "level": 300,
+      "semester": 1,
+      "printed_total_units": 18,
+      "courses": [
+        {
+          "source_code": "CSC 301",
+          "code": "CSC 301",
+          "title": "Data Structures",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 309",
+          "code": "CSC 309",
+          "title": "Artificial Intelligence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "ICT 305",
+          "code": "ICT 305",
+          "title": "Data Communication System & Network",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 301",
+          "code": "AUE-CSC 301",
+          "title": "Formal Theory of Computation and Automata",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 303",
+          "code": "AUE-CSC 303",
+          "title": "E-Commerce",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 203",
+          "code": "MTH 203",
+          "title": "Sets, Logic and Algebra I",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 305",
+          "code": "CYB 305",
+          "title": "Digital Forensics and Investigation Methods",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": null,
+          "practical_hours": 45,
+          "elective_group": "cs-300-first-select-one"
+        },
+        {
+          "source_code": "INS 311",
+          "code": "INS 311",
+          "title": "Business Process Management",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": 15,
+          "practical_hours": 45,
+          "elective_group": "cs-300-first-select-one"
+        }
+      ],
+      "notes": [
+        "Select one of CYB 305 and INS 311. All listed options sum to 20 units; choosing one yields the printed 18 units.",
+        "CYB 305 lecture hours are obscured in this photograph and remain unset."
+      ],
+      "pdf_page": 3,
+      "printed_handbook_page": 21,
+      "calculated_listed_units": 20,
+      "required_units": 14,
+      "required_courses": 5
+    },
+    {
+      "programme": "Computer Science",
+      "level": 300,
+      "semester": 2,
+      "printed_total_units": 18,
+      "courses": [
+        {
+          "source_code": "GST 312",
+          "code": "GST 312",
+          "title": "Peace and Conflict Resolution",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "ENT 312",
+          "code": "ENT 312",
+          "title": "Venture Creation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 308",
+          "code": "CSC 308",
+          "title": "Operating Systems",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 322",
+          "code": "CSC 322",
+          "title": "Computer Science Innovation and New Technologies",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "DTS 304",
+          "code": "DTS 304",
+          "title": "Data Management I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 302",
+          "code": "AUE-CSC 302",
+          "title": "Information System Concept",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CSC 399",
+          "code": "CSC 399",
+          "title": "SIWES II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 3,
+      "printed_handbook_page": 21,
+      "calculated_listed_units": 18,
+      "required_units": 18,
+      "required_courses": 7
+    },
+    {
+      "programme": "Computer Science",
+      "level": 400,
+      "semester": 1,
+      "printed_total_units": 18,
+      "courses": [
+        {
+          "source_code": "CSC 401",
+          "code": "CSC 401",
+          "title": "Algorithms and Complexity Analysis",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 409",
+          "code": "COS 409",
+          "title": "Research Methodology and Technical Report Writing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "INS 401",
+          "code": "INS 401",
+          "title": "Project Management",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CSC 497",
+          "code": "CSC 497",
+          "title": "Final Year Project I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        },
+        {
+          "source_code": "AUE-CSC 401",
+          "code": "AUE-CSC 401",
+          "title": "Compiler Construction",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 403",
+          "code": "AUE-CSC 403",
+          "title": "Modelling and Simulation",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 401",
+          "code": "SEN 401",
+          "title": "Software Configuration Management and Maintenance",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45,
+          "elective_group": "cs-400-first-select-one"
+        },
+        {
+          "source_code": "IFT 403",
+          "code": "IFT 403",
+          "title": "Mobile and Pervasive Computing",
+          "units": 2,
+          "status": "E",
+          "lecture_hours": 30,
+          "practical_hours": 0,
+          "elective_group": "cs-400-first-select-one"
+        }
+      ],
+      "notes": [
+        "Select one elective heading covers SEN 401 and IFT 403; retain printed C/E statuses, exclude both from automatic assignment."
+      ],
+      "pdf_page": 4,
+      "printed_handbook_page": 22,
+      "calculated_listed_units": 20,
+      "required_units": 16,
+      "required_courses": 6
+    },
+    {
+      "programme": "Computer Science",
+      "level": 400,
+      "semester": 2,
+      "printed_total_units": 17,
+      "courses": [
+        {
+          "source_code": "CSC 402",
+          "code": "CSC 402",
+          "title": "Ethics and Legal Issues in Computer Science",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CSC 498",
+          "code": "CSC 498",
+          "title": "Final Year Project II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        },
+        {
+          "source_code": "AUE-CSC 402",
+          "code": "AUE-CSC 402",
+          "title": "Collaborative Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 404",
+          "code": "AUE-CSC 404",
+          "title": "Information Theory System",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 406",
+          "code": "AUE-CSC 406",
+          "title": "Analogue Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 408",
+          "code": "AUE-CSC 408",
+          "title": "Assembly Language",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        }
+      ],
+      "pdf_page": 4,
+      "printed_handbook_page": 22,
+      "calculated_listed_units": 17,
+      "required_units": 17,
+      "required_courses": 6
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 200,
+      "semester": 1,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "ENT 211",
+          "code": "ENT 211",
+          "title": "Entrepreneurship and Innovation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 201",
+          "code": "AUE-GST 201",
+          "title": "Philosophy of Education",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 221",
+          "code": "AUE-GST 221",
+          "title": "Communication in French",
+          "units": 2,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 201",
+          "code": "CYB 201",
+          "title": "Introduction to Cybersecurity and Strategy",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 203",
+          "code": "CYB 203",
+          "title": "Cybercrime, Law and Countermeasures",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 201",
+          "code": "COS 201",
+          "title": "Computer Programming I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 201",
+          "code": "SEN 201",
+          "title": "Introduction to Software Engineering",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 201",
+          "code": "MTH 201",
+          "title": "Mathematical Methods I",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "STA 121",
+          "code": "STA 121",
+          "title": "Statistical Inference I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 5,
+      "printed_handbook_page": 23,
+      "calculated_listed_units": 19,
+      "required_units": 19,
+      "required_courses": 9
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 200,
+      "semester": 2,
+      "printed_total_units": 17,
+      "courses": [
+        {
+          "source_code": "GST 212",
+          "code": "GST 212",
+          "title": "Philosophy, Logic and Human Existence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 200",
+          "code": "AUE-GST 200",
+          "title": "Student Life Seminar",
+          "units": 0,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 202",
+          "code": "AUE-GST 202",
+          "title": "Life and Teachings of Christ",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CYB 202",
+          "code": "AUE-CYB 202",
+          "title": "System and Network Administration",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 202",
+          "code": "COS 202",
+          "title": "Computer Programming II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "INS 204",
+          "code": "INS 204",
+          "title": "Systems Analysis and Design",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 204",
+          "code": "AUE-CSC 204",
+          "title": "Web Technologies",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 299",
+          "code": "CYB 299",
+          "title": "SIWES I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 5,
+      "printed_handbook_page": 23,
+      "calculated_listed_units": 17,
+      "required_units": 17,
+      "required_courses": 8
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 300,
+      "semester": 1,
+      "printed_total_units": 16,
+      "courses": [
+        {
+          "source_code": "CYB 301",
+          "code": "CYB 301",
+          "title": "Cryptography Techniques, Algorithms and Applications",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 303",
+          "code": "CYB 303",
+          "title": "Cybersecurity Risks Analysis, Challenges and Mitigation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 305",
+          "code": "CYB 305",
+          "title": "Digital Forensics and Investigation Methods",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 309",
+          "code": "CSC 309",
+          "title": "Artificial Intelligence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 301",
+          "code": "AUE-CSC 301",
+          "title": "Formal Theory of Computation and Automata",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CYB 303",
+          "code": "AUE-CYB 303",
+          "title": "Linux Fundamentals",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CYB 307",
+          "code": "AUE-CYB 307",
+          "title": "Software Defined Networks",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 6,
+      "printed_handbook_page": 24,
+      "calculated_listed_units": 16,
+      "required_units": 16,
+      "required_courses": 7
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 300,
+      "semester": 2,
+      "printed_total_units": 16,
+      "courses": [
+        {
+          "source_code": "GST 312",
+          "code": "GST 312",
+          "title": "Peace and Conflict Resolution",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "ENT 312",
+          "code": "ENT 312",
+          "title": "Venture Creation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 302",
+          "code": "CYB 302",
+          "title": "Biometrics Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 304",
+          "code": "CYB 304",
+          "title": "Information and Big Data Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 322",
+          "code": "CYB 322",
+          "title": "Cybersecurity Innovation and Entrepreneurship",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 302",
+          "code": "AUE-CSC 302",
+          "title": "Information System Concept",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 399",
+          "code": "CYB 399",
+          "title": "SIWES II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        }
+      ],
+      "pdf_page": 6,
+      "printed_handbook_page": 24,
+      "calculated_listed_units": 16,
+      "required_units": 16,
+      "required_courses": 7
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 400,
+      "semester": 1,
+      "printed_total_units": 16,
+      "courses": [
+        {
+          "source_code": "CYB 401",
+          "code": "CYB 401",
+          "title": "Systems Vulnerability Assessment and Testing",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 403",
+          "code": "CYB 403",
+          "title": "Cyber Threat Intelligence and Cyber Conflict",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 405",
+          "code": "CYB 405",
+          "title": "Ethical Hacking and Reverse Engineering",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 409",
+          "code": "COS 409",
+          "title": "Research Methodology and Technical Report Writing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 401",
+          "code": "AUE-CSC 401",
+          "title": "Compiler Construction",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 403",
+          "code": "AUE-CSC 403",
+          "title": "Modelling and Simulation",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 497",
+          "code": "CYB 497",
+          "title": "Final Year Project I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 7,
+      "printed_handbook_page": 25,
+      "calculated_listed_units": 18,
+      "required_units": 18,
+      "required_courses": 7
+    },
+    {
+      "programme": "Cybersecurity",
+      "level": 400,
+      "semester": 2,
+      "printed_total_units": 16,
+      "courses": [
+        {
+          "source_code": "CYB 402",
+          "code": "CYB 402",
+          "title": "Steganography: Access Methods and Data Hiding",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 404",
+          "code": "CYB 404",
+          "title": "Cloud Computing Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 406",
+          "code": "CYB 406",
+          "title": "Deep and Dark Web Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 402",
+          "code": "AUE-CSC 402",
+          "title": "Collaborative Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 404",
+          "code": "AUE-CSC 404",
+          "title": "Information Theory System",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 406",
+          "code": "AUE-CSC 406",
+          "title": "Analogue Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 408",
+          "code": "AUE-CSC 408",
+          "title": "Assembly Language",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 498",
+          "code": "CYB 498",
+          "title": "Final Year Project II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 7,
+      "printed_handbook_page": 25,
+      "calculated_listed_units": 21,
+      "required_units": 21,
+      "required_courses": 8
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 200,
+      "semester": 1,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "ENT 211",
+          "code": "ENT 211",
+          "title": "Entrepreneurship and Innovation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 201",
+          "code": "AUE-GST 201",
+          "title": "Philosophy of Education",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 221",
+          "code": "AUE-GST 221",
+          "title": "Communication in French",
+          "units": 2,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "SEN 201",
+          "code": "SEN 201",
+          "title": "Introduction to Software Engineering",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 201",
+          "code": "COS 201",
+          "title": "Computer Programming I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 203",
+          "code": "CSC 203",
+          "title": "Discrete Structures",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "MTH 201",
+          "code": "MTH 201",
+          "title": "Mathematical Methods I",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "STA 121",
+          "code": "STA 121",
+          "title": "Statistical Inference I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "IFT 211",
+          "code": "IFT 211",
+          "title": "Digital Logic Design",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        }
+      ],
+      "pdf_page": 8,
+      "printed_handbook_page": 26,
+      "calculated_listed_units": 19,
+      "required_units": 19,
+      "required_courses": 9
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 200,
+      "semester": 2,
+      "printed_total_units": 22,
+      "courses": [
+        {
+          "source_code": "GST 212",
+          "code": "GST 212",
+          "title": "Philosophy, Logic and Human Existence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 200",
+          "code": "AUE-GST 200",
+          "title": "Student Life Seminar",
+          "units": 0,
+          "status": "R",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-GST 202",
+          "code": "AUE-GST 202",
+          "title": "Life and Teachings of Christ",
+          "units": 1,
+          "status": "R",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "COS 202",
+          "code": "COS 202",
+          "title": "Computer Programming II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "MTH 202",
+          "code": "MTH 202",
+          "title": "Mathematical Methods II",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "INS 204",
+          "code": "INS 204",
+          "title": "Systems Analysis and Design",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "IFT 212",
+          "code": "IFT 212",
+          "title": "Computer Architecture and Organisation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 202",
+          "code": "AUE-CSC 202",
+          "title": "System Analysis and Design",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 204",
+          "code": "AUE-CSC 204",
+          "title": "Web Technologies",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 299",
+          "code": "SEN 299",
+          "title": "SIWES I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 8,
+      "printed_handbook_page": 26,
+      "calculated_listed_units": 22,
+      "required_units": 22,
+      "required_courses": 10
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 300,
+      "semester": 1,
+      "printed_total_units": 18,
+      "courses": [
+        {
+          "source_code": "SEN 301",
+          "code": "SEN 301",
+          "title": "Object-Oriented Analysis and Design",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 301",
+          "code": "CSC 301",
+          "title": "Data Structures",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 309",
+          "code": "CSC 309",
+          "title": "Artificial Intelligence",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 301",
+          "code": "AUE-CSC 301",
+          "title": "Formal Theory of Computation and Automata",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 303",
+          "code": "AUE-CSC 303",
+          "title": "E-Commerce",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CYB 305",
+          "code": "AUE-CYB 305",
+          "title": "Threat, Exploits and Counter measures",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CYB 307",
+          "code": "AUE-CYB 307",
+          "title": "Software Defined Networks",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 0
+        }
+      ],
+      "pdf_page": 9,
+      "printed_handbook_page": 27,
+      "calculated_listed_units": 18,
+      "required_units": 18,
+      "required_courses": 7
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 300,
+      "semester": 2,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "GST 312",
+          "code": "GST 312",
+          "title": "Peace and Conflict Resolution",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "ENT 312",
+          "code": "ENT 312",
+          "title": "Venture Creation",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 304",
+          "code": "SEN 304",
+          "title": "Software Testing and Quality Assurance",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 306",
+          "code": "SEN 306",
+          "title": "Software Construction",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 322",
+          "code": "SEN 322",
+          "title": "Software Engineering Innovation and New Technology",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CSC 308",
+          "code": "CSC 308",
+          "title": "Operating Systems",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 302",
+          "code": "AUE-CSC 302",
+          "title": "Information System Concept",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "SEN 399",
+          "code": "SEN 399",
+          "title": "SIWES II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 9,
+      "printed_handbook_page": 27,
+      "calculated_listed_units": 19,
+      "required_units": 19,
+      "required_courses": 8
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 400,
+      "semester": 1,
+      "printed_total_units": 19,
+      "courses": [
+        {
+          "source_code": "SEN 401",
+          "code": "SEN 401",
+          "title": "Software Configuration Management and Maintenance",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "COS 409",
+          "code": "COS 409",
+          "title": "Research Methodology and Technical Report Writing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 45,
+          "practical_hours": null,
+          "source_variants": [
+            {
+              "source_row": 2,
+              "practical_hours": 0
+            },
+            {
+              "source_row": 4,
+              "practical_hours": 45
+            }
+          ],
+          "notes": [
+            "Duplicate printed row consolidated; conflicting practical hours remain unknown."
+          ]
+        },
+        {
+          "source_code": "INS 401",
+          "code": "INS 401",
+          "title": "Project Management",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "AUE-CSC 401",
+          "code": "AUE-CSC 401",
+          "title": "Compiler Construction",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 403",
+          "code": "AUE-CSC 403",
+          "title": "Modelling and Simulation",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 497",
+          "code": "SEN 497",
+          "title": "Final Year Project I",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 10,
+      "printed_handbook_page": 28,
+      "calculated_listed_units": 16,
+      "required_units": 16,
+      "required_courses": 6
+    },
+    {
+      "programme": "Software Engineering",
+      "level": 400,
+      "semester": 2,
+      "printed_total_units": 17,
+      "courses": [
+        {
+          "source_code": "SEN 410",
+          "code": "SEN 410",
+          "title": "Software Architecture and Design",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "CYB 404",
+          "code": "CYB 404",
+          "title": "Cloud Computing Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 0
+        },
+        {
+          "source_code": "CYB 406",
+          "code": "CYB 406",
+          "title": "Deep and Dark Web Security",
+          "units": 2,
+          "status": "C",
+          "lecture_hours": 15,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 402",
+          "code": "AUE-CSC 402",
+          "title": "Collaborative Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 404",
+          "code": "AUE-CSC 404",
+          "title": "Information Theory System",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 406",
+          "code": "AUE-CSC 406",
+          "title": "Analogue Computing",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "AUE-CSC 408",
+          "code": "AUE-CSC 408",
+          "title": "Assembly Language",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 30,
+          "practical_hours": 45
+        },
+        {
+          "source_code": "SEN 498",
+          "code": "SEN 498",
+          "title": "Final Year Project II",
+          "units": 3,
+          "status": "C",
+          "lecture_hours": 0,
+          "practical_hours": 135
+        }
+      ],
+      "pdf_page": 10,
+      "printed_handbook_page": 28,
+      "calculated_listed_units": 21,
+      "required_units": 21,
+      "required_courses": 8
+    }
+  ],
+  "pending": [
+    "100 Level Cybersecurity and Software Engineering not supplied",
+    "COS 203 source code retains canonical CSC 203 pending confirmation",
+    "Computer Science 300 CYB 305 lecture hours remain unknown",
+    "Software Engineering 400 COS 409 practical hours conflict: 0 and 45",
+    "Direct-entry GES additions unspecified"
+  ]
+}

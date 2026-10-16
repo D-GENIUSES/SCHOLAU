@@ -10,7 +10,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   const now = new Date();
   const summary: HomeSummary = {
     server_time: now.toISOString(), display_name: "Learner", needs_onboarding: false, xp_total: 1040,
-    learning_xp_today: 28, learning_xp_daily_cap: 100, premium: false,
+    learning_xp_today: 28, learning_xp_daily_cap: null, premium: false,
     streak: { current: 7, longest: 7, active_today: true, local_date: now.toISOString().slice(0, 10) },
     continue_learning: { kind: "resume", lesson_id: "preview-lesson", lesson_version_id: "preview-version", title: "Discovering the world around us", estimated_minutes: 5, course_id: "preview-course", course_title: "General Knowledge", offering_id: "preview-offering" },
     enrolled_courses: [
@@ -18,10 +18,10 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
       { offering_id: "preview-offering-2", course_id: "preview-course-2", code: "NUMBERS", title: "Everyday Numbers", lessons_total: 12, lessons_completed: 4 },
       { offering_id: "preview-offering-3", course_id: "preview-course-3", code: "WORLD", title: "Our World", lessons_total: 10, lessons_completed: 0 },
     ],
-    recent_activity: [{ kind: "lesson_completed", source_id: "sample-1", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 7200000).toISOString(), xp: 20 }, { kind: "battle_completed", source_id: "sample-2", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 18000000).toISOString(), xp: 25 }],
+    recent_activity: [{ kind: "lesson_completed", source_id: "sample-1", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 7200000).toISOString(), xp: 20 }, { kind: "battle_completed", source_id: "sample-2", local_date: now.toISOString().slice(0, 10), created_at: new Date(now.getTime() - 18000000).toISOString(), xp: 15 }],
     live_battle: null, unread_notifications: 2,
   };
-  if (state === "new") { summary.xp_total = 0; summary.streak.current = 0; summary.recent_activity = []; summary.enrolled_courses = summary.enrolled_courses.map((c) => ({ ...c, lessons_completed: 0 })); }
+  if (state === "new") { summary.xp_total = 10; summary.welcome_xp_awarded = true; summary.streak.current = 0; summary.recent_activity = []; summary.enrolled_courses = summary.enrolled_courses.map((c) => ({ ...c, lessons_completed: 0 })); }
   if (state === "empty") { summary.enrolled_courses = []; summary.continue_learning = null; summary.recent_activity = []; }
   if (state === "complete") summary.continue_learning = null;
   if (state === "live") summary.live_battle = { battle_id: "preview-battle", queue_id: null, expires_at: new Date(now.getTime() + 120000).toISOString() };

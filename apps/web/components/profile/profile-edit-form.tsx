@@ -42,12 +42,9 @@ export function ProfileEditForm({ profile }: { profile: Profile }) {
           <Field id="profile-name" label="Display name" hint="Shown on leaderboards and to battle opponents." error={errors.displayName?.message}>
             <Input autoComplete="nickname" maxLength={60} {...form.register("displayName", { onChange: () => update.reset() })} />
           </Field>
-          <CheckboxField
-            id="profile-leaderboard"
-            label="Show me on leaderboards"
-            hint="When off, your display name and XP are hidden from leaderboards."
-            {...form.register("leaderboardVisible", { onChange: () => update.reset() })}
-          />
+          <CheckboxField id="profile-leaderboard" label="Show me on leaderboards"
+            hint="Turn this off to hide your display name and XP from rankings."
+            {...form.register("leaderboardVisible", { onChange: () => update.reset() })} />
           {update.error && !nameFieldError ? <InlineError error={update.error} /> : null}
           <div className="flex flex-wrap items-center gap-3">
             <Button type="submit" loading={update.isPending} disabled={!isDirty}>

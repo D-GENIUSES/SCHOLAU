@@ -4,7 +4,7 @@ export type Uuid = string;
 export type IsoDateTime = string;
 export type IsoDate = string;
 
-export type Role = "student" | "admin";
+export type Role = "student" | "admin" | "lecturer";
 
 export type AssessmentKind = "review" | "practice" | "mock";
 export type FeedbackMode = "immediate" | "after_submit";

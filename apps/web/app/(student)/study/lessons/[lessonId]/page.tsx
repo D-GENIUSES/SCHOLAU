@@ -228,7 +228,7 @@ function CompletionFeedback({ result }: { result: CompleteLessonResult }) {
   return (
     <>
       <Alert tone="success" title="Lesson complete">
-        {result.xp_awarded > 0 ? `You earned ${formatXpDelta(result.xp_awarded)}.` : "No XP was awarded for this lesson."}
+        {result.xp_awarded > 0 ? `You earned ${formatXpDelta(result.xp_awarded)}.` : "Complete the lesson knowledge check to earn up to 20 XP."}
       </Alert>
       {result.xp_capped ? <XpCapNotice /> : null}
     </>

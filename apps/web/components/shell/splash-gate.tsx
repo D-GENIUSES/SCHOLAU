@@ -15,5 +15,5 @@ export function SplashGate({ children }: { children: ReactNode }) {
     }, seen ? 0 : 3000);
     return () => window.clearTimeout(timer);
   }, []);
-  return <>{showing ? <div className="splash-screen" role="status" aria-label="Welcome to ScholAu. Opening your dashboard."><div className="splash-glow" aria-hidden /><div className="splash-brand"><LogoMark className="!size-28 sm:!size-36" /><span className="splash-wordmark">ScholAu</span><p>Study. Compete. Rise.</p></div><span className="splash-loader" aria-hidden /><p className="splash-footer">A little learning. A brighter future.</p></div> : null}<div hidden={showing}>{children}</div></>;
+  return <>{showing ? <div className="splash-screen" role="status" aria-label="Welcome to ScholAu. Opening your dashboard."><div className="splash-brand"><LogoMark className="!size-28 sm:!size-36" /><span className="splash-wordmark">ScholAu</span><p>Study. Compete. Rise.</p></div><span className="splash-loader" aria-hidden /></div> : null}<div hidden={showing}>{children}</div></>;
 }

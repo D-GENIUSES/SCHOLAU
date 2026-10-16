@@ -1,0 +1,26 @@
+{
+  "environment": "local PGlite PostgreSQL compatibility checks",
+  "passed": 508,
+  "failed": 0,
+  "replay_preservation": "passed",
+  "live_deployment": {
+    "status": "passed",
+    "project_ref": "gbcegscbkzfxldvdiqdf",
+    "date": "2026-10-16",
+    "method": "Supabase CLI db query --linked via existing login",
+    "applied_migrations": [
+      "20261015000400",
+      "20261016000100"
+    ],
+    "requirements_before": 117,
+    "requirements_after": 160,
+    "canonical_courses": 96,
+    "first_semester_offerings": 81,
+    "second_semester_offerings": 79,
+    "profile_flows_passed": 20,
+    "source_rows_verified": 160,
+    "preservation_guards": "passed",
+    "temporary_users_remaining": 0,
+    "independent_post_deployment_verification": "passed"
+  }
+}

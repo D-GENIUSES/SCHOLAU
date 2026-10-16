@@ -13,7 +13,7 @@ import { AuthHeading } from "./auth-heading";
 
 const COOLDOWN_SECONDS = 60;
 
-export function VerifyPanel({ email: initialEmail }: { email?: string }) {
+export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?: string; lecturer?: boolean }) {
   const [email, setEmail] = useState(initialEmail ?? "");
   const [cooldown, setCooldown] = useState(0);
   const [sending, setSending] = useState(false);
@@ -36,7 +36,7 @@ export function VerifyPanel({ email: initialEmail }: { email?: string }) {
     const { error } = await getBrowserSupabase().auth.resend({
       type: "signup",
       email: parsed.data,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/home` },
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/continue` },
     });
     setSending(false);
     if (error) {
@@ -66,8 +66,7 @@ export function VerifyPanel({ email: initialEmail }: { email?: string }) {
       />
       <div className="flex flex-col gap-4">
         <p className="text-ink-muted">
-          Open the link on this device to confirm your address and continue to set up your academic profile. The link expires
-          after a while, so use it soon.
+          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the link on this device to confirm your address and continue to set up your academic profile."} The link expires after a while, so use it soon.
         </p>
         {initialEmail ? null : (
           <Field id="verify-email" label="Email">

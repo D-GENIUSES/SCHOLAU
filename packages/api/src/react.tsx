@@ -114,7 +114,7 @@ export function useUpdateProfile() {
   return usePlainMutation(api.updateProfile, {
     onSuccess: (data) => {
       qc.setQueryData(qk.profile(), data);
-      void invalidate(qc, qk.home());
+      void invalidate(qc, qk.home(), ["scholau", "leaderboard"]);
     },
   });
 }
@@ -224,7 +224,7 @@ export function useSubmitAttempt() {
   return useKeyedMutation(api.submitAttempt, {
     onSuccess: (data) => {
       qc.setQueryData(qk.attempt(data.attempt_id), data);
-      void invalidate(qc, ["scholau", "course"], qk.home(), qk.profile());
+      void invalidate(qc, ["scholau", "course"], qk.home(), qk.profile(), ["scholau", "xp"], ["scholau", "leaderboard"]);
     },
   });
 }
@@ -313,6 +313,7 @@ export function useUserSignals(userId: string | undefined): ChannelStatus {
       onSignal: (event) => {
         if (event === "battle_matched" || event === "resync") void qc.invalidateQueries({ queryKey: qk.liveBattle() });
         if (event === "attempt_finalized" || event === "resync") void qc.invalidateQueries({ queryKey: ["scholau", "attempt"] });
+        if (event === "attempt_finalized" || event === "resync") void invalidate(qc, ["scholau", "xp"], qk.profile(), qk.home(), ["scholau", "leaderboard"]);
       },
       onStatus: setStatus,
     });
@@ -534,3 +535,16 @@ export function useAdminUpsertAssessmentDraft() {
 }
 
 export type { ChannelStatus };
+
+export function useXpProgress() {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "xp"], queryFn: api.getXpProgress, retry: shouldRetry, staleTime: 0 });
+}
+
+export function useStartTopicReview() {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return useKeyedMutation(api.startTopicReview, {
+    onSuccess: (data) => { qc.setQueryData(qk.attempt(data.attempt_id), data); },
+  });
+}

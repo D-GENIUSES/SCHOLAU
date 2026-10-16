@@ -1,9 +1,24 @@
-import { DiscoveryArt } from "@/components/home/discovery-art";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/logo";
+
 export default function AuthLayout({ children }: { children: ReactNode }) {
-  return <div className="auth-layout"><aside className="auth-story"><Logo /><div><p className="eyebrow">A LITTLE BETTER, EVERY DAY</p><h2>Study.<br />Compete.<br /><span>Rise.</span></h2><p>Your interests, your challenges,<br />your next big step.</p></div><DiscoveryArt className="auth-art" /><p>Made for curious minds.</p></aside>
-    <div className="auth-content"><Link href="/home" className="auth-back">← Explore ScholAu</Link><Link href="/home" aria-label="ScholAu home" className="mb-6 lg:hidden"><Logo /></Link><main id="main" tabIndex={-1} className="auth-card">{children}</main><footer><Link href="/privacy">Privacy</Link><span aria-hidden>·</span><Link href="/home">Continue as guest</Link></footer></div>
-  </div>;
+  return (
+    <div className="auth-layout">
+      <aside className="auth-story">
+        <Link href="/home" aria-label="ScholAu home"><Logo /></Link>
+        <div className="auth-overview"><p className="auth-kicker">ScholAu accounts</p><h2>Your courses and learning progress.</h2><p>Sign in or create an account to use your ScholAu workspace.</p>
+          <dl className="auth-features"><div><dt>For students</dt><dd>Read assigned lessons, take practice tests, and track your results.</dd></div><div><dt>For lecturers</dt><dd>Apply for access to manage teaching materials and course activities.</dd></div></dl>
+        </div>
+        <Link href="/home">Explore ScholAu</Link>
+      </aside>
+      <div className="auth-content">
+        <Link href="/home" className="auth-back"><ArrowLeft className="size-4" aria-hidden />Back to ScholAu</Link>
+        <Link href="/home" aria-label="ScholAu home" className="mb-6 lg:hidden"><Logo /></Link>
+        <main id="main" tabIndex={-1} className="auth-card">{children}</main>
+        <footer><Link href="/privacy">Privacy</Link><Link href="/home">Continue as guest</Link></footer>
+      </div>
+    </div>
+  );
 }

@@ -8,5 +8,5 @@ export const metadata: Metadata = { title: "Profile" };
 export default async function ProfilePage() {
   const supabase = await getServerSupabase();
   const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
-  return <ProfileView registration={readRegistrationAcademic(data?.claims?.user_metadata)} />;
+  return <ProfileView registration={readRegistrationAcademic(data?.claims?.user_metadata)} email={typeof data?.claims?.email === "string" ? data.claims.email : null} />;
 }

@@ -20,7 +20,7 @@ const SCOPES = [
 ] as const satisfies readonly { value: LeaderboardScope; label: string }[];
 
 export default function LeaderboardPage() {
-  const [scope, setScope] = useState<LeaderboardScope>("faculty");
+  const [scope, setScope] = useState<LeaderboardScope>("global");
   const scopeLabel = scope === "faculty" ? "Faculty" : "Global";
 
   return (

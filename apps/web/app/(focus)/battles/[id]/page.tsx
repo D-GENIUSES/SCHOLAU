@@ -9,6 +9,7 @@ import { useBattleSignals, useBattleState, useForfeitBattle } from "@scholau/api
 import { isLiveBattleState } from "@scholau/core";
 import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/battle/battle-chrome";
 import { useAfter } from "@/components/battle/hooks";
+import { IntegrityGuard } from "@/components/battle/integrity-guard";
 import { PlayPhase } from "@/components/battle/play-phase";
 import { ReadyPanel } from "@/components/battle/ready-panel";
 import { CancelledPanel, ResultPanel } from "@/components/battle/result-panel";
@@ -108,7 +109,7 @@ export default function BattlePage() {
         break;
       case "countdown":
       case "active":
-        body = <PlayPhase battle={battle} refetch={refetch} />;
+        body = <IntegrityGuard key={id} battleId={id} onForfeit={refetch}><PlayPhase battle={battle} refetch={refetch} /></IntegrityGuard>;
         break;
       case "finished":
       case "voided":

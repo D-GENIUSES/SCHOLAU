@@ -210,7 +210,7 @@ export default function AdminPremiumPage() {
     <>
       <PageHeader eyebrow="Admin" title="Premium" description="Grant and revoke premium entitlements." />
       <Alert tone="info" title="Premium never gates battles or battle XP." className="mb-6">
-        Battles stay unlimited for everyone, and every completed battle earns XP regardless of premium.
+        Battles stay unlimited for everyone, and battle XP follows the same accuracy rewards and daily limits regardless of premium.
       </Alert>
       <div className="flex flex-col gap-8">
         <GrantForm />

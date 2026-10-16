@@ -1,4 +1,5 @@
 "use client";
+import { XpProgressCard } from "@/components/xp/xp-progress";
 
 import { Ban, CheckCircle2, Equal, MinusCircle, ShieldOff, Trophy, XCircle } from "lucide-react";
 import Link from "next/link";
@@ -67,6 +68,8 @@ export function ResultPanel({ battle }: { battle: Battle }) {
         </CardFooter>
       </Card>
 
+      <XpProgressCard compact />
+      {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify.</p> : null}
       {battle.rounds && battle.rounds.length > 0 ? (
         <section aria-labelledby="rounds-heading" className="flex flex-col gap-3">
           <h2 id="rounds-heading" className="text-xl font-bold">

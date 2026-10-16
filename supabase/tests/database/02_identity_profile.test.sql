@@ -29,7 +29,7 @@ insert into public.levels (id, university_id, label, sort_order) values ('100000
 select is((select display_name from public.profiles where id = current_setting('t.a')::uuid), 'Alice Test', 'profile created from raw_user_meta_data.display_name');
 select ok((select length(display_name) >= 2 from public.profiles where id = current_setting('t.b')::uuid), 'display name falls back when metadata missing');
 select is((select array_agg(role) from public.user_roles where user_id = current_setting('t.a')::uuid), array['student'], 'student role granted on signup');
-select is((select total from public.user_points where user_id = current_setting('t.a')::uuid), 0::bigint, 'user_points row created at zero');
+select is((select total from public.user_points where user_id = current_setting('t.a')::uuid), 10::bigint, 'new account receives welcome XP');
 
 -- Own-row RLS
 select pg_temp.login(current_setting('t.a')::uuid);
@@ -80,7 +80,7 @@ select is((public.set_academic_profile_v1('10000000-0000-4000-8000-000000000001'
   '10000000-0000-4000-8000-000000000013', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
   '10000000-0000-4000-8000-000000000006', gen_random_uuid())) -> 'academic' -> 'department' ->> 'name',
   'Computer Science (fixture)', 'first self change in period allowed');
-select is((select count(*)::integer from public.enrollments where ended_at is null), 0, 'profile change ends out-of-scope enrollment');
+select is((select count(*)::integer from public.enrollments where ended_at is null and offering_id='20000000-0000-4000-8000-000000000002'), 0, 'profile change ends out-of-scope enrollment');
 select throws_ok($$select public.set_academic_profile_v1('10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
   '10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
   '10000000-0000-4000-8000-000000000006', gen_random_uuid())$$, 'PT403', 'FORBIDDEN', 'second self change in same period denied');

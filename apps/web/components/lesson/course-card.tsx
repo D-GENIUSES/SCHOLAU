@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import type { ReactNode } from "react";
 import type { CatalogOffering, Profile } from "@scholau/api";
 import { pluralize } from "@scholau/core";
@@ -24,10 +23,6 @@ export function CourseCard({
   const percent = lesson_count > 0 ? (lessons_completed / lesson_count) * 100 : 0;
   return (
     <Card className="course-study-card flex h-full flex-col">
-      <div className="course-study-banner" aria-hidden>
-        <BookOpen className="size-8" />
-        <span>{course.code}</span>
-      </div>
       <CardHeader>
         <span className="text-sm font-semibold text-brand-primary">{course.code}</span>
         <CardTitle as="h3">
@@ -42,6 +37,9 @@ export function CourseCard({
         {academic ? <CardDescription>{academic}</CardDescription> : null}
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-2">
+        {offering.unit_count != null ? <p className="text-sm text-ink-muted">{pluralize(offering.unit_count, "unit")} · Status {offering.requirement_status}</p> : null}
+        {offering.elective_group ? <p className="text-sm font-semibold text-ink-muted">Choose one elective from this group</p> : null}
+        {lesson_count === 0 ? <p className="text-sm text-ink-muted">Content coming soon</p> : null}
         {course.description ? <p className="line-clamp-3 text-sm text-ink-muted">{course.description}</p> : null}
         {enrolled ? (
           <div className="mt-auto flex flex-col gap-1">

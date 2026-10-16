@@ -113,6 +113,10 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     completeLesson: (a: Keyed<{ lessonVersionId: string }>) =>
       rpc<T.CompleteLessonResult>("complete_lesson_v1", { p_lesson_version_id: a.lessonVersionId, p_request_key: a.requestKey }),
     getHomeSummary: () => rpc<T.HomeSummary>("get_home_summary_v1"),
+    getXpProgress: () => rpc<T.XpProgress>("get_xp_progress_v1"),
+    startTopicReview: (a: Keyed<{ lessonId: string; stage: number }>) => rpc<T.Attempt>("start_topic_review_v1", {
+      p_lesson_id: a.lessonId, p_stage: a.stage, p_request_key: a.requestKey,
+    }),
 
     /* -------------------------------------- Assessments --------------------------------------- */
     startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean }>) =>

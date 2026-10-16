@@ -33,9 +33,11 @@ select set_config('t.qv', (select qv.id::text from public.question_versions qv j
 select set_config('t.qv2', (select qv.id::text from public.question_versions qv join public.questions q on q.id = qv.question_id
                             where q.logical_key = 'L1-Q2' and qv.status = 'published'), true) is not null as setup;
 
+-- Simulate an ended enrollment to retain the access-denial security checks.
+update public.enrollments set ended_at=now() where user_id=current_setting('t.s')::uuid;
 -- Before enrollment
 select pg_temp.login(current_setting('t.s')::uuid);
-select is((select count(*)::integer from public.course_offerings), 2, 'published offerings are visible in the catalog');
+select is((select count(*)::integer from public.course_offerings where university_id='10000000-0000-4000-8000-000000000001'), 2, 'published fixture offerings remain visible');
 select is(jsonb_array_length((public.get_catalog_v1()) -> 'offerings'), 1, 'catalog lists offerings for my academic profile only');
 select is((select count(*)::integer from public.lesson_versions), 0, 'lesson content hidden before enrollment');
 select throws_ok($$select public.get_lesson_v1('22000000-0000-4000-8000-000000000001')$$, 'PT403', 'NOT_ENROLLED', 'lesson RPC requires enrollment');

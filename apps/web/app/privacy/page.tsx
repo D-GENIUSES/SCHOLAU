@@ -53,7 +53,7 @@ export default function PrivacyPage() {
 
         <Section id="leaderboards" title="Leaderboards">
           <p>
-            Leaderboards show only your display name and XP. You can hide yourself from leaderboards at any time in your Profile.
+            Leaderboards show your display name and lifetime XP. You can hide yourself using the leaderboard visibility setting in your Profile. Your detailed XP history remains private.
           </p>
         </Section>
 

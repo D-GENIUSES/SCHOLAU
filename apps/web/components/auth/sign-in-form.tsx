@@ -35,13 +35,13 @@ export function SignInForm({ next, deactivated, linkError }: { next?: string; de
       return;
     }
     setRedirecting(true);
-    router.replace(safeNext(next));
+    router.replace(safeNext(next, "/auth/continue"));
     router.refresh();
   });
 
   return (
     <>
-      <AuthHeading title="Sign in" description="Welcome back. Pick up where you left off." />
+      <AuthHeading title="Sign in" description="Use the email address linked to your student or lecturer account." />
       <div className="flex flex-col gap-4">
         {deactivated ? (
           <Alert tone="error" role="alert" title="This account is deactivated.">
@@ -67,7 +67,7 @@ export function SignInForm({ next, deactivated, linkError }: { next?: string; de
           </Alert>
         ) : null}
 
-        <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+        <form onSubmit={onSubmit} noValidate className="auth-form">
           <Field id="sign-in-email" label="Email" error={errors.email?.message}>
             <Input type="email" autoComplete="email" inputMode="email" {...form.register("email")} />
           </Field>

@@ -14,6 +14,7 @@ import { useAnalytics } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { authErrorMessage } from "./auth-errors";
 import { AuthHeading } from "./auth-heading";
+import { AuthSteps } from "./auth-steps";
 import { UniversitySelect } from "./university-select";
 
 export function SignUpForm() {
@@ -50,16 +51,16 @@ export function SignUpForm() {
   });
 
   return <>
-    <p className="mb-3 text-xs font-semibold tracking-wide text-ink-muted">{step === "account" ? "1 OF 2 · YOUR ACCOUNT" : "2 OF 2 · YOUR STUDIES"}</p>
+    <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
-      description={step === "account" ? "Save your progress. Learn and compete at your pace." : "Tell us where and what you study."} />
-    <form noValidate className="flex flex-col gap-4" onSubmit={(event) => {
+      description={step === "account" ? "Enter your name, email, and a password." : "We use these details to find your course assignments."} />
+    <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);
     }}>
       {error ? <Alert tone="error" role="alert">{error}</Alert> : null}
       {step === "account" ? <>
-        <Field id="sign-up-name" label="Display name" hint="Public in battles and leaderboards." error={errors.displayName?.message}>
+        <Field id="sign-up-name" label="Display name" hint="Shown on leaderboards and to battle opponents." error={errors.displayName?.message}>
           <Input autoComplete="nickname" maxLength={60} {...form.register("displayName")} />
         </Field>
         <Field id="sign-up-email" label="Email" error={errors.email?.message}>
@@ -68,6 +69,7 @@ export function SignUpForm() {
         <Field id="sign-up-password" label="Password" hint="At least 8 characters." error={errors.password?.message}>
           <PasswordInput autoComplete="new-password" {...form.register("password")} />
         </Field>
+        
         <Button type="submit" block>Continue</Button>
       </> : <>
         <Controller control={form.control} name="universitySlug" render={({ field }) =>

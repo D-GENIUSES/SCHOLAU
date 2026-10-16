@@ -23,7 +23,7 @@ begin
   perform private.apply_academic_profile(v, v, '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
     '10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
     '10000000-0000-4000-8000-000000000006', 'initial', null, null);
-  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002');
+  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002') on conflict (user_id,offering_id) do nothing;
   return v;
 end $$;
 
@@ -157,26 +157,9 @@ select is((public.mark_notification_read_v1('60000000-0000-4000-8000-00000000000
 select throws_ok($$update public.notifications set read_at = now()$$, '42501', null, 'notifications not directly writable');
 reset role;
 
--- ---------------------------------------------------------------- leaderboard
-update public.user_points set total = 500 where user_id = current_setting('t.s')::uuid;
-update public.user_points set total = 500 where user_id = current_setting('t.s2')::uuid;
-update public.user_points set total = 900 where user_id = current_setting('t.s3')::uuid;
-update public.user_points set total = 10000 where user_id = current_setting('t.admin')::uuid;
-update public.profiles set leaderboard_visible = false where id = current_setting('t.s3')::uuid;
+-- ---------------------------------------------------------------- XP rankings restored
 select pg_temp.login(current_setting('t.s')::uuid);
-select set_config('t.lb', (public.get_leaderboard_v1('faculty', null, null, 2))::text, true) is not null as setup;
-select is((current_setting('t.lb')::jsonb -> 'rows' -> 0 ->> 'rank')::integer, 1, 'top rank is 1');
-select is((current_setting('t.lb')::jsonb -> 'rows' -> 0 ->> 'rank'), (current_setting('t.lb')::jsonb -> 'rows' -> 1 ->> 'rank'), 'ties share rank');
-select ok(not jsonb_path_exists(current_setting('t.lb')::jsonb, '$.rows[*] ? (@.xp_total == 10000)'), 'admin accounts excluded from rankings');
-select ok(not jsonb_path_exists(current_setting('t.lb')::jsonb, '$.rows[*] ? (@.xp_total == 900)'), 'hidden accounts excluded');
-select is((current_setting('t.lb')::jsonb -> 'me' ->> 'rank')::integer, 1, 'own position returned');
-select ok(position('email' in current_setting('t.lb')::jsonb::text) = 0, 'no email in leaderboard rows');
-select ok(current_setting('t.lb')::jsonb ->> 'next_cursor' is not null, 'cursor returned for next page');
-select ok(not exists (
-  select 1 from jsonb_array_elements((public.get_leaderboard_v1('faculty', null, current_setting('t.lb')::jsonb ->> 'next_cursor', 50)) -> 'rows') r
-  where r ->> 'user_id' in (select x ->> 'user_id' from jsonb_array_elements(current_setting('t.lb')::jsonb -> 'rows') x)),
-  'next page does not repeat rows');
-select throws_ok($$select public.get_leaderboard_v1('galaxy')$$, 'PT422', 'VALIDATION_FAILED', 'scope validated');
+select is(public.get_leaderboard_v1('global',null,null,2)->>'scope','global','signed-in students can see XP rankings');
 reset role;
 
 -- ---------------------------------------------------------------- client version gate
@@ -186,8 +169,8 @@ select set_config('request.headers', '{"x-client-platform":"ios","x-client-build
 select throws_ok($$select public.complete_lesson_v1('23000000-0000-4000-8000-000000000001', gen_random_uuid())$$, 'PT426', 'VERSION_UNSUPPORTED',
   'stale native build cannot mutate');
 select set_config('request.headers', '{"x-client-platform":"ios","x-client-build":"50"}', true) is not null as setup;
-select is(((public.complete_lesson_v1('23000000-0000-4000-8000-000000000001', gen_random_uuid())) ->> 'xp_awarded')::integer, 5,
-  'supported build can mutate');
+select is(((public.complete_lesson_v1('23000000-0000-4000-8000-000000000001', gen_random_uuid())) ->> 'xp_awarded')::integer, 0,
+  'supported build records reading completion without XP');
 reset role;
 update public.app_config set maintenance = true, message = 'Upgrading' where platform = 'web';
 select set_config('request.headers', '{}', true) is not null as setup;

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { SignOutButton } from "@/components/auth/sign-out-button";
 import { Logo } from "@/components/logo";
 import { ServiceUnavailable } from "@/components/service-unavailable";
@@ -13,7 +14,7 @@ export default async function OnboardingLayout({ children }: { children: ReactNo
       <header className="border-b border-line bg-surface-card">
         <div className="mx-auto flex h-16 max-w-2xl items-center justify-between gap-3 px-4">
           <Logo />
-          <SignOutButton />
+          <div className="flex items-center gap-4 text-sm font-semibold"><Link href="/change-password">Change password</Link><SignOutButton /></div>
         </div>
       </header>
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-10">

@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Attempt } from "@scholau/api";
-import { useAttempt, useStartAttempt } from "@scholau/api/react";
+import { useAttempt, useStartAttempt, useStartTopicReview } from "@scholau/api/react";
 import { ASSESSMENT_KIND_LABEL, COPY, formatPercent, formatXpDelta } from "@scholau/core";
+import { XpProgressCard } from "@/components/xp/xp-progress";
 import { ResultQuestion } from "@/components/attempt/result-question";
 import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
@@ -101,6 +102,7 @@ function Results({ attempt }: { attempt: Attempt }) {
   const router = useRouter();
   const analytics = useAnalytics();
   const start = useStartAttempt();
+  const scheduled = useStartTopicReview();
   const result = attempt.result;
   const total = result?.total_count ?? attempt.total_count;
   const correct = result?.correct_count ?? 0;
@@ -113,7 +115,13 @@ function Results({ attempt }: { attempt: Attempt }) {
     el?.focus({ preventScroll: true });
   };
 
-  const tryAgain = () =>
+  const tryAgain = () => {
+    if (attempt.xp_review_stage && attempt.lesson_id) {
+      scheduled.mutate({ lessonId: attempt.lesson_id, stage: attempt.xp_review_stage }, {
+        onSuccess: (a) => router.push(`/attempts/${a.attempt_id}`),
+      });
+      return;
+    }
     start.mutate(
       { assessmentVersionId: attempt.assessment_version_id },
       {
@@ -123,6 +131,7 @@ function Results({ attempt }: { attempt: Attempt }) {
         },
       },
     );
+  };
 
   return (
     <>
@@ -150,6 +159,8 @@ function Results({ attempt }: { attempt: Attempt }) {
         </Card>
 
         {result?.xp_capped ? <XpCapNotice /> : null}
+        {result?.xp_awarded === 0 && attempt.status !== "voided" ? <p className="text-sm text-ink-muted">{attempt.status === "expired" ? "Expired attempts do not earn XP. Submit a completed attempt to earn XP." : "Match your best score to practise; improve it to earn more XP. Scheduled reviews require at least 80% and award XP once per stage."}</p> : null}
+        <XpProgressCard compact />
 
         <div className="flex flex-wrap gap-2">
           {firstIncorrect ? (
@@ -157,7 +168,7 @@ function Results({ attempt }: { attempt: Attempt }) {
               <SearchCheck className="size-4" aria-hidden /> Review mistakes
             </Button>
           ) : null}
-          <Button onClick={tryAgain} loading={start.isPending}>
+          <Button onClick={tryAgain} loading={start.isPending || scheduled.isPending} disabled={Boolean(attempt.xp_review_stage && correct * 5 >= total * 4)}>
             <RotateCcw className="size-4" aria-hidden /> Try again
           </Button>
           <Button asChild variant="outline">
@@ -166,7 +177,7 @@ function Results({ attempt }: { attempt: Attempt }) {
             </Link>
           </Button>
         </div>
-        <InlineError error={start.error} />
+        <InlineError error={start.error ?? scheduled.error} />
 
         <section aria-labelledby="results-questions" className="flex flex-col gap-3">
           <h2 id="results-questions" className="text-xl font-bold">

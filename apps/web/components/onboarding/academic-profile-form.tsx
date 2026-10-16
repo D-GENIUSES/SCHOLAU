@@ -53,15 +53,17 @@ export function AcademicProfileForm({
   profile,
   changeMode,
   onCompleted,
+  defaults,
 }: {
   profile: Profile;
+  defaults?: Partial<AcademicProfileInput>;
   changeMode: boolean;
   onCompleted: () => void;
 }) {
   const analytics = useAnalytics();
   const setAcademic = useSetAcademicProfile();
   const [pending, setPending] = useState<AcademicProfileInput | null>(null);
-  const form = useForm<AcademicProfileInput>({ resolver: zodResolver(academicProfileSchema), defaultValues: initialValues(profile) });
+  const form = useForm<AcademicProfileInput>({ resolver: zodResolver(academicProfileSchema), defaultValues: { ...initialValues(profile), ...defaults } });
   const { control, formState } = form;
   const errors = formState.errors;
   const [universityId, facultyId, academicPeriodId] = useWatch({ control, name: ["universityId", "facultyId", "academicPeriodId"] });

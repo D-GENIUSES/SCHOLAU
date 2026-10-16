@@ -1,0 +1,18 @@
+{
+  "environment": "local PGlite PostgreSQL compatibility checks",
+  "passed": 556,
+  "failed": 0,
+  "replay_preservation": "passed",
+  "live_deployment": {
+    "status": "passed",
+    "project_ref": "gbcegscbkzfxldvdiqdf",
+    "migration": "20261016000300",
+    "requirements": 196,
+    "canonical_courses": 96,
+    "first_year_flows_passed": 4,
+    "total_supported_semester_lists": 24,
+    "new_first_year_requirements": 36,
+    "preservation_guards": "passed",
+    "temporary_users_remaining": 0
+  }
+}

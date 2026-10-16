@@ -25,7 +25,7 @@ begin
   perform private.apply_academic_profile(v, v, '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
     '10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
     '10000000-0000-4000-8000-000000000006', 'initial', null, null);
-  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002');
+  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002') on conflict (user_id,offering_id) do nothing;
   return v;
 end $$;
 -- Moves a battle's whole schedule into the past by p_by (simulates elapsed time; run as postgres).
@@ -34,6 +34,7 @@ create function pg_temp.shift_battle(p_battle uuid, p_by interval) returns void 
          invitation_expires_at = invitation_expires_at - p_by, created_at = created_at - p_by
    where id = p_battle;
   update public.battle_questions set opened_at = opened_at - p_by, deadline = deadline - p_by where battle_id = p_battle;
+  update public.battle_answers set received_at=received_at-p_by where battle_id=p_battle;
 $$;
 
 select set_config('t.a', pg_temp.enrolled_student('Battler A')::text, true) is not null as setup;
@@ -109,7 +110,8 @@ select set_config('t.s1', (public.get_battle_state_v1(current_setting('t.b1')::u
 select is(current_setting('t.s1')::jsonb ->> 'state', 'active', 'countdown elapsed -> active (catch-up on read)');
 select is((current_setting('t.s1')::jsonb -> 'current_question' ->> 'position')::integer, 1, 'only the current prompt is returned');
 select is(jsonb_array_length(current_setting('t.s1')::jsonb -> 'current_question' -> 'options'), 4, 'current prompt includes options');
-select ok(position('correct' in current_setting('t.s1')::jsonb::text) = 0, 'state payload never contains correctness/keys during play');
+select ok(not jsonb_path_exists(current_setting('t.s1')::jsonb, '$.participants[*] ? (@.correct_count != null)')
+  and position('correct_option_id' in current_setting('t.s1'))=0, 'state payload hides correctness and keys during play');
 
 select is((public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, '00000000-0000-4000-8000-00000000d101')) ->> 'accepted',
   'true', 'answer acknowledged');
@@ -148,14 +150,14 @@ select pg_temp.login(current_setting('t.b')::uuid);
 select set_config('t.fb', (public.get_battle_state_v1(current_setting('t.b1')::uuid))::text, true) is not null as setup;
 select is(current_setting('t.fb')::jsonb ->> 'state', 'finished', 'battle reaching scheduled end is finalized');
 select is(current_setting('t.fb')::jsonb -> 'outcome' ->> 'result', 'loss', 'B lost (accuracy only)');
-select is((current_setting('t.fb')::jsonb -> 'outcome' ->> 'xp_awarded')::integer, 5, 'disconnected loser still gets loss XP');
+select is((current_setting('t.fb')::jsonb -> 'outcome' ->> 'xp_awarded')::integer, 0, 'zero correct answers and a loss earns no XP');
 select is(jsonb_array_length(current_setting('t.fb')::jsonb -> 'rounds'), 5, 'results list every round');
 select ok(position('correct_option' in current_setting('t.fb')::jsonb::text) = 0, 'results never reveal battle answer keys');
 reset role;
 select pg_temp.login(current_setting('t.a')::uuid);
 select is((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'result', 'win', 'A won');
-select is(((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'xp_awarded')::integer, 25,
-  'battle XP granted despite the learning cap being reached');
+select is(((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'xp_awarded')::integer, 7,
+  'accuracy plus win bonus applies independently of legacy learning counters');
 select is(jsonb_array_length((public.get_my_battles_v1()) -> 'items'), 1, 'battle history lists the battle');
 reset role;
 select is(private.finalize_battle(current_setting('t.b1')::uuid), 'finished', 'finalizer is idempotent');
@@ -247,7 +249,7 @@ select pg_temp.shift_battle(current_setting('t.b4')::uuid, interval '300 seconds
 select ok((private.run_sweep() ->> 'battles_advanced')::integer >= 1, 'sweep advances overdue battles');
 select is((select state from public.battles where id = current_setting('t.b4')::uuid), 'finished', 'worker finalized battle with both clients closed');
 select is((select result_kind from public.battles where id = current_setting('t.b4')::uuid), 'draw', 'equal accuracy is a draw (D05)');
-select is((select sum(amount)::integer from public.points_ledger where source_id = current_setting('t.b4')::uuid), 20, 'draw awards +10 to each');
+select is((select sum(amount)::integer from public.points_ledger where source_id = current_setting('t.b4')::uuid), 4, 'zero-correct draw awards 2 XP to each');
 select ok((select count(*) from private.outbox where topic = 'battle:' || current_setting('t.b4')) >= 1, 'state changes enqueued to the outbox');
 select ok(not exists (select 1 from private.outbox where position('correct' in safe_payload::text) > 0), 'outbox payloads are redacted');
 

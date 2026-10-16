@@ -1,6 +1,6 @@
 "use client";
 
-import { Inbox, Loader2, RefreshCw, WifiOff } from "lucide-react";
+import { Loader2, RefreshCw, WifiOff } from "lucide-react";
 import type * as React from "react";
 import { isApiError } from "@scholau/api";
 import { errorMessage } from "@scholau/core";
@@ -42,10 +42,8 @@ export function EmptyState({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col items-center gap-3 rounded-card border border-dashed border-line bg-surface-card px-6 py-10 text-center", className)}>
-      <span className="inline-flex size-12 items-center justify-center rounded-pill bg-surface-tint text-brand-primary" aria-hidden>
-        {icon ?? <Inbox className="size-6" />}
-      </span>
+    <div className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-6 py-10 text-center", className)}>
+      {icon ? <span className="text-brand-primary" aria-hidden>{icon}</span> : null}
       <h2 className="text-lg font-bold">{title}</h2>
       {description ? <div className="max-w-md text-ink-muted">{description}</div> : null}
       {action ? <div className="mt-2 flex flex-wrap justify-center gap-2">{action}</div> : null}

@@ -7,5 +7,5 @@ export const metadata: Metadata = { title: "Check your email" };
 export default async function VerifyPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const email = param(sp.email)?.trim();
-  return <VerifyPanel email={email || undefined} />;
+  return <VerifyPanel email={email || undefined} lecturer={param(sp.kind) === "lecturer"} />;
 }

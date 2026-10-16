@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/misc";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { AcademicProfileForm } from "./academic-profile-form";
+import { RegistrationAcademicForm } from "./registration-academic-form";
 import { ChangeLimitNotice } from "./change-limit-notice";
 
 export function AcademicProfileStep({ changeRequested }: { changeRequested: boolean }) {
@@ -29,9 +30,9 @@ export function AcademicProfileStep({ changeRequested }: { changeRequested: bool
     <PageHeader eyebrow="Profile" title="Change academic details" description="Update the university details your courses are based on." />
   ) : (
     <PageHeader
-      eyebrow={<span>Step 1 of 2 · Academic profile</span>}
+      eyebrow={<span>Academic profile</span>}
       title="Tell us what you study"
-      description="We use this to show the courses offered for your department, level and semester."
+      description="Your saved signup details are filled in where they match our catalogue. Complete any missing details to assign your required courses automatically."
     />
   );
 
@@ -50,14 +51,17 @@ export function AcademicProfileStep({ changeRequested }: { changeRequested: bool
   return (
     <>
       {header}
-      <AcademicProfileForm
+      {changeMode ? <AcademicProfileForm
         profile={profile.data}
         changeMode={changeMode}
         onCompleted={() => {
           setCompleted(true);
           router.push(changeMode ? "/profile" : "/onboarding/courses");
         }}
-      />
+      /> : <RegistrationAcademicForm profile={profile.data} onCompleted={() => {
+        setCompleted(true);
+        router.push("/onboarding/courses");
+      }} />}
     </>
   );
 }

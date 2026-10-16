@@ -2,9 +2,9 @@
 export const COPY = {
   tagline: "Study. Compete. Rise.",
   battle: {
-    unlimited: "Unlimited battles | Earn XP for every completed match.",
-    rewards: "Win +25 XP · Draw +10 XP · Loss +5 XP",
-    rewardsNote: "Both players earn XP for every completed match. Battle XP has no daily limit.",
+    unlimited: "Unlimited battles | Earn XP for accuracy and results.",
+    rewards: "2 XP per correct answer · Win bonus +5 · Draw bonus +2",
+    rewardsNote: "XP applies to your first 10 completed matches daily, at most 2 against the same opponent. Resets at midnight Africa/Lagos.",
     format: "5 questions · 20 seconds each · accuracy only — equal scores draw.",
     noOpponent: "No opponent found yet.",
     reconnecting: "Reconnecting. The round timer continues.",
@@ -14,8 +14,8 @@ export const COPY = {
     timerRule: "Answers received after this timer ends will not count.",
   },
   learning: {
-    capReached: "You have reached today's learning XP limit. You can keep studying and earn XP in battles.",
-    capReset: "The learning XP limit resets at midnight (Africa/Lagos time). Battle XP is never capped.",
+    capReached: "Match your best score to practise; improve it to earn more XP.",
+    capReset: "Learning XP rewards your best scores and scheduled reviews. There is no daily learning XP cap.",
     timerRule: "Answers received after this timer ends will not count.",
     expired: "Time ended. We're grading your saved answers.",
     unsaved: "Answer not saved yet.",
@@ -31,5 +31,5 @@ export const COPY = {
     serviceUnavailable: "The service is unavailable right now. Please retry.",
   },
   academicChange:
-    "You can change your academic profile once per academic period. Your lifetime XP stays the same and your history is kept, but your faculty ranking moves to your new faculty. Courses outside your new department, level or semester will be unenrolled. After this change, further corrections need an administrator.",
+    "You can change your academic profile once per academic period. Your lifetime XP stays the same and your history is kept, and your academic details update to your new faculty. Courses outside your new department, level or semester will be unenrolled. After this change, further corrections need an administrator.",
 } as const;

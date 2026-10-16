@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, ListChecks, Plus } from "lucide-react";
+import { ListChecks, Plus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useCatalog, useEnrollCourse, useHomeSummary, useProfile } from "@scholau/api/react";
@@ -26,11 +26,11 @@ export default function StudyPage() {
   const header = (
     <PageHeader
       title="Study"
-      description="A little progress today. More confidence tomorrow."
+      description="Your courses, lessons, and practice tests."
       actions={
         <Button asChild variant="outline">
           <Link href="/onboarding/courses">
-            <ListChecks className="size-4" aria-hidden /> Choose courses
+            <ListChecks className="size-4" aria-hidden /> View assignments
           </Link>
         </Button>
       }
@@ -56,7 +56,7 @@ export default function StudyPage() {
 
   const offerings = catalog.data.offerings;
   const enrolled = offerings.filter((o) => o.enrolled);
-  const available = offerings.filter((o) => !o.enrolled);
+  const available = offerings.filter((o) => !o.enrolled && (o.requirement_status === "E" || o.elective_group));
   const tab: Tab = tabChoice ?? (enrolled.length > 0 || available.length === 0 ? "enrolled" : "available");
 
   if (catalog.data.needs_onboarding) {
@@ -124,8 +124,8 @@ export default function StudyPage() {
           value={tab}
           onChange={setTab}
           options={[
-            { value: "enrolled", label: `Enrolled (${enrolled.length})` },
-            { value: "available", label: `Available (${available.length})` },
+            { value: "enrolled", label: `My courses (${enrolled.length})` },
+            { value: "available", label: `Electives (${available.length})` },
           ]}
         />
         {academic ? <p className="text-sm text-ink-muted">{academic}</p> : null}
@@ -135,13 +135,12 @@ export default function StudyPage() {
       {list.length === 0 ? (
         tab === "enrolled" ? (
           <EmptyState
-            icon={<BookOpen className="size-6" />}
-            title="You haven't enrolled in a course yet"
-            description="Pick from the courses available for your department, level and semester."
-            action={<Button onClick={() => setTab("available")}>See available courses</Button>}
+            title="No courses assigned yet"
+            description="Required courses appear automatically for your saved academic profile. You can also add available electives."
+            action={<Button onClick={() => setTab("available")}>See electives</Button>}
           />
         ) : (
-          <EmptyState title="You're enrolled in every available course" description="New courses appear here when they're published." />
+          <EmptyState title="No additional electives available" description="New required courses appear automatically in My courses when they are published." />
         )
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -169,7 +168,7 @@ export default function StudyPage() {
                           loading={enrolling}
                           onClick={() => (failed ? enroll.retryLast() : enroll.mutate({ offeringId: o.offering_id }))}
                         >
-                          <Plus className="size-4" aria-hidden /> {failed ? "Try again" : "Enroll"}
+                          <Plus className="size-4" aria-hidden /> {failed ? "Try again" : "Add elective"}
                           <span className="sr-only"> in {o.course.code}</span>
                         </Button>
                         {failed ? <InlineError error={enroll.error} /> : null}

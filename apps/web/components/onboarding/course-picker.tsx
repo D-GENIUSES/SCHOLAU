@@ -90,7 +90,7 @@ function CourseOption({
           type="checkbox"
           className="mt-1 size-5 shrink-0 accent-brand-primary"
           checked={offering.enrolled || checked}
-          disabled={offering.enrolled || disabled}
+          disabled={offering.enrolled || disabled || (offering.requirement_status !== "E" && !offering.elective_group)}
           aria-describedby={errorId}
           onChange={(e) => onToggle(e.target.checked)}
         />
@@ -100,12 +100,14 @@ function CourseOption({
             {offering.enrolled ? (
               <Badge tone="success">
                 <CheckCircle2 className="size-4" aria-hidden />
-                Enrolled
+                Assigned
               </Badge>
             ) : null}
           </span>
           <span className="text-ink">{offering.course.title}</span>
-          <span className="text-sm text-ink-muted">{pluralize(offering.lesson_count, "lesson")}</span>
+          {offering.elective_group ? <span className="text-sm font-semibold text-ink-muted">Choose one elective from this group</span> : null}
+          {offering.unit_count != null ? <span className="text-sm text-ink-muted">{pluralize(offering.unit_count, "unit")} · Status {offering.requirement_status}</span> : null}
+          <span className="text-sm text-ink-muted">{offering.lesson_count === 0 ? "Content coming soon" : pluralize(offering.lesson_count, "lesson")}</span>
         </label>
       </div>
       {error ? (
@@ -140,7 +142,11 @@ export function CoursePicker() {
   const toggle = (offeringId: string, checked: boolean) => {
     setSelected((prev) => {
       const next = new Set(prev);
-      if (checked) next.add(offeringId);
+      if (checked) {
+        const group = offerings.find((o) => o.offering_id === offeringId)?.elective_group;
+        if (group) offerings.filter((o) => o.elective_group === group).forEach((o) => next.delete(o.offering_id));
+        next.add(offeringId);
+      }
       else next.delete(offeringId);
       return next;
     });
@@ -172,30 +178,30 @@ export function CoursePicker() {
     setProgress(null);
   };
 
-  const selectable = offerings.filter((o) => !o.enrolled);
+  const selectable = offerings.filter((o) => !o.enrolled && (o.requirement_status === "E" || o.elective_group));
   const selectedCount = selectable.filter((o) => selected.has(o.offering_id)).length;
   const failedCount = Object.keys(failures).length;
 
   return (
     <>
       <PageHeader
-        eyebrow="Step 2 of 2 · Choose your courses"
-        title="Choose your courses"
-        description="These are the published courses for your department, level and semester."
+        eyebrow="Your course assignments"
+        title="Your courses"
+        description="Required courses are assigned automatically from your saved academic profile. Select any electives you want to add."
       />
       {offerings.length === 0 ? (
         <NoCourses />
       ) : (
         <div className="flex flex-col gap-5">
           <fieldset className="flex flex-col gap-3">
-            <legend className="mb-3 text-lg font-bold">Available courses</legend>
+            <legend className="mb-3 text-lg font-bold">Courses for your semester</legend>
             <ul className="flex flex-col gap-3">
               {offerings.map((o) => (
                 <CourseOption
                   key={o.offering_id}
                   offering={o}
                   checked={selected.has(o.offering_id)}
-                  disabled={running}
+                  disabled={running || Boolean(o.elective_group && offerings.some((other) => other.enrolled && other.elective_group === o.elective_group && other.offering_id !== o.offering_id))}
                   error={failures[o.offering_id]}
                   onToggle={(checked) => toggle(o.offering_id, checked)}
                 />
@@ -208,16 +214,16 @@ export function CoursePicker() {
               ? `Enrolling ${Math.min(progress.done + 1, progress.total)} of ${progress.total}…`
               : failedCount > 0
                 ? `${pluralize(failedCount, "course")} couldn't be enrolled. Try again or skip for now.`
-                : `${selectedCount} selected${enrolledCount > 0 ? ` · ${enrolledCount} already enrolled` : ""}`}
+                : `${enrolledCount} assigned${selectable.length > 0 ? ` · ${selectedCount} electives selected` : ""}`}
           </p>
 
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Button asChild variant="ghost">
-              <Link href="/home">{enrolledCount > 0 ? "Continue to home" : "Skip for now"}</Link>
+              <Link href="/home">Continue to home</Link>
             </Button>
-            <Button onClick={() => void enrollSelected()} loading={running} disabled={selectedCount === 0}>
-              Enroll and continue
-            </Button>
+            {selectable.length > 0 ? <Button onClick={() => void enrollSelected()} loading={running} disabled={selectedCount === 0}>
+              Add electives and continue
+            </Button> : null}
           </div>
         </div>
       )}

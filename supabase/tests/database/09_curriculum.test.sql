@@ -1,0 +1,95 @@
+-- Real AU curriculum: source fidelity, correct routing, and future-semester provisioning.
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
+declare v uuid:=gen_random_uuid(); begin
+  insert into auth.users(id,email,raw_user_meta_data) values(v,v::text||'@curriculum.test',jsonb_build_object('display_name',p_name)); return v;
+end $$;
+create function pg_temp.login(p_user uuid) returns void language plpgsql as $$ begin
+  perform set_config('request.jwt.claims',json_build_object('sub',p_user,'role','authenticated')::text,true);
+  perform set_config('request.jwt.claim.sub',p_user::text,true); perform set_config('role','authenticated',true);
+end $$;
+select set_config('t.uni',(select id::text from public.universities where slug='adeleke-university-ede-osun-state'),true) is not null as setup;
+select set_config('t.faculty',(select id::text from public.faculties where university_id=current_setting('t.uni')::uuid and name='Computing Sciences'),true) is not null as setup;
+select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
+select set_config('t.semester',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;
+select set_config('t.level',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='200 Level'),true) is not null as setup;
+select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computer Science'),true) is not null as setup;
+select set_config('t.cyber',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Cybersecurity'),true) is not null as setup;
+select set_config('t.se',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Software Engineering'),true) is not null as setup;
+select is((select count(*)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),28,'28 programme course entries imported');
+select is((select count(distinct course_id)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),11,'11 distinct courses shared across programmes');
+select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),10,'Computer Science has 10 courses');
+select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),21,'Computer Science totals 21 units');
+select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cyber')::uuid),9,'Cybersecurity has 9 courses');
+select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cyber')::uuid),19,'Cybersecurity totals 19 units');
+select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.se')::uuid),9,'Software Engineering has 9 courses');
+select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.se')::uuid),19,'Software Engineering totals 19 units');
+select is((select count(*)::integer from public.curriculum_courses where requirement_status='R' and semester_number=1 and level_id=current_setting('t.level')::uuid),6,'both R-status courses preserved in all three programmes');
+select is((select title from public.courses where code='STA 121'),'Statistical Inference I','STA 121 is retained despite being in the 200-level curriculum');
+select is((select title from public.courses where code='CYB 203'),'Cybercrime, Law and Countermeasures','CYB 203 title copied exactly');
+select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.semester')::uuid and level_id=current_setting('t.level')::uuid),28,'28 original 200-level first-semester offerings retained');
+select ok((select starts_on is null and ends_on is null from public.academic_periods where id=current_setting('t.period')::uuid),'unsupplied calendar dates remain unset');
+select lives_ok($$select private.materialize_curriculum(current_setting('t.semester')::uuid)$$,'resync can be repeated');
+select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.semester')::uuid and level_id=current_setting('t.level')::uuid),28,'resync does not duplicate original offerings');
+select set_config('t.common',(select o.id::text from public.course_offerings o join public.courses c on c.id=o.course_id where o.department_id=current_setting('t.cs')::uuid and c.code='COS 201' and o.semester_id=current_setting('t.semester')::uuid),true) is not null as setup;
+select set_config('t.cyber_only',(select o.id::text from public.course_offerings o join public.courses c on c.id=o.course_id where o.department_id=current_setting('t.cyber')::uuid and c.code='CYB 203' and o.semester_id=current_setting('t.semester')::uuid),true) is not null as setup;
+update public.course_offerings set status='retired' where id=current_setting('t.common')::uuid;
+select lives_ok($$select private.materialize_curriculum(current_setting('t.semester')::uuid)$$,'resync handles retired offerings');
+select is((select status from public.course_offerings where id=current_setting('t.common')::uuid),'retired','resync does not republish retired courses');
+update public.course_offerings set status='published' where id=current_setting('t.common')::uuid;
+
+select set_config('t.student',pg_temp.new_user('AU CS student')::text,true) is not null as setup;
+select set_config('t.cyberstudent',pg_temp.new_user('AU Cyber student')::text,true) is not null as setup;
+select set_config('t.sestudent',pg_temp.new_user('AU Software student')::text,true) is not null as setup;
+select private.apply_academic_profile(current_setting('t.student')::uuid,current_setting('t.student')::uuid,current_setting('t.uni')::uuid,current_setting('t.faculty')::uuid,current_setting('t.cs')::uuid,current_setting('t.level')::uuid,current_setting('t.period')::uuid,current_setting('t.semester')::uuid,'initial',null,null);
+select private.apply_academic_profile(current_setting('t.cyberstudent')::uuid,current_setting('t.cyberstudent')::uuid,current_setting('t.uni')::uuid,current_setting('t.faculty')::uuid,current_setting('t.cyber')::uuid,current_setting('t.level')::uuid,current_setting('t.period')::uuid,current_setting('t.semester')::uuid,'initial',null,null);
+select private.apply_academic_profile(current_setting('t.sestudent')::uuid,current_setting('t.sestudent')::uuid,current_setting('t.uni')::uuid,current_setting('t.faculty')::uuid,current_setting('t.se')::uuid,current_setting('t.level')::uuid,current_setting('t.period')::uuid,current_setting('t.semester')::uuid,'initial',null,null);
+select pg_temp.login(current_setting('t.student')::uuid);
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'CS student sees only 10 matching courses');
+select is((select sum((x->>'unit_count')::integer)::integer from jsonb_array_elements(public.get_catalog_v1()->'offerings') x),21,'catalog exposes correct CS unit total');
+select is(public.get_catalog_v1()->'offerings'->0->'course'->>'code','ENT 211','catalog preserves PDF source order');
+select ok(not jsonb_path_exists(public.get_catalog_v1(),'$.offerings[*].course ? (@.code == "CYB 203")'),'CS does not see Cybersecurity-only course');
+select is((select count(*)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),10,'curriculum RLS exposes only own programme');
+select is((public.enroll_course_v1(current_setting('t.common')::uuid,gen_random_uuid())->>'active')::boolean,true,'matching student may enroll before lesson content is ready');
+select throws_ok($$select public.enroll_course_v1(current_setting('t.cyber_only')::uuid,gen_random_uuid())$$,'PT403','FORBIDDEN','cross-programme enrollment denied');
+select is((public.get_course_overview_v1(current_setting('t.common')::uuid)->>'unit_count')::integer,3,'course overview exposes COS 201 units');
+select is((public.get_course_overview_v1(current_setting('t.common')::uuid)->'progress'->>'lessons_total')::integer,0,'no lesson content was fabricated');
+select is((public.get_course_overview_v1(current_setting('t.common')::uuid)->>'battle_ready')::boolean,false,'course without questions is not battle-ready');
+select throws_ok($$insert into public.curriculum_courses(university_id,department_id,level_id,semester_number,course_id,unit_count,requirement_status,position,source_reference)
+ values(gen_random_uuid(),gen_random_uuid(),gen_random_uuid(),1,gen_random_uuid(),2,'C',1,'tampered')$$,'42501',null,'students cannot alter curriculum requirements');
+reset role;
+select pg_temp.login(current_setting('t.cyberstudent')::uuid);
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),9,'Cybersecurity student sees 9 courses');
+select ok(jsonb_path_exists(public.get_catalog_v1(),'$.offerings[*].course ? (@.code == "CYB 203")'),'Cybersecurity sees CYB 203');
+select ok(not jsonb_path_exists(public.get_catalog_v1(),'$.offerings[*].course ? (@.code == "IFT 211")'),'Cybersecurity does not see Digital Logic Design');
+reset role;
+select pg_temp.login(current_setting('t.sestudent')::uuid);
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),9,'Software Engineering student sees 9 courses');
+select ok(not jsonb_path_exists(public.get_catalog_v1(),'$.offerings[*].course ? (@.code == "CYB 201")'),'Software Engineering does not see CYB 201');
+reset role;
+
+-- Future semesters inherit only the matching level/programme/semester requirements.
+insert into public.academic_periods(university_id,label,active) values(current_setting('t.uni')::uuid,'2027/2028',true);
+select set_config('t.futureperiod',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2027/2028'),true) is not null as setup;
+insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.futureperiod')::uuid,'First semester',1);
+select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.futureperiod')::uuid),101,'future first semester provisions all matching levels automatically');
+insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.futureperiod')::uuid,'Second semester',2);
+select set_config('t.second',(select id::text from public.semesters where academic_period_id=current_setting('t.futureperiod')::uuid and sort_order=2),true) is not null as setup;
+select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.second')::uuid),95,'second semester provisions its own curriculum');
+insert into public.academic_periods(university_id,label,active) values(current_setting('t.uni')::uuid,'2028/2029',false);
+select set_config('t.inactiveperiod',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2028/2029'),true) is not null as setup;
+insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.inactiveperiod')::uuid,'First semester',1);
+select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.inactiveperiod')::uuid),0,'inactive academic session does not provision courses');
+update public.academic_periods set active=true where id=current_setting('t.inactiveperiod')::uuid;
+select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.inactiveperiod')::uuid),101,'activating a session provisions its matching courses');
+select pg_temp.login(current_setting('t.student')::uuid);
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'future offerings do not leak into current session catalog');
+reset role;
+set local role anon;
+select throws_ok($$select * from public.curriculum_courses$$,'42501',null,'guests cannot read programme curriculum directly');
+reset role;
+select throws_ok($$insert into public.academic_periods(university_id,label,starts_on) values(current_setting('t.uni')::uuid,'Partial calendar','2026-09-01')$$,'23514',null,'calendar dates must be supplied together');
+select * from finish();
+rollback;

@@ -110,6 +110,9 @@ function Overview({ data }: { data: CourseOverview }) {
         }
       />
 
+      {data.unit_count != null ? <p className="mb-4 text-sm text-ink-muted">{pluralize(data.unit_count, "unit")} · Status {data.requirement_status}</p> : null}
+      {progress.lessons_total === 0 ? <p className="mb-4 text-ink-muted">Content coming soon. Published lessons and assessments will appear here when ready.</p> : null}
+      {data.lecture_hours != null || data.practical_hours != null ? <p className="mb-4 text-sm text-ink-muted">Lecture hours: {data.lecture_hours ?? "Not provided"} · Practical hours: {data.practical_hours ?? "Not provided"}</p> : null}
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Lesson progress</CardTitle>
@@ -199,9 +202,8 @@ function ModuleSection({ module }: { module: CourseModule }) {
 }
 
 function xpNote(a: CourseAssessment): string {
-  if (a.kind === "review") return "+2 XP per question answered correctly the first time.";
-  if (a.first_completion_rewarded) return "First-completion XP earned.";
-  return a.kind === "practice" ? "+10 XP on first completion." : "+20 XP on first completion.";
+  const max = a.kind === "review" ? 20 : a.kind === "practice" ? 50 : 100;
+  return `Up to ${max} XP for your best score. Improve your best to earn the difference.`;
 }
 
 function AssessmentCard({ assessment: a, offeringId }: { assessment: CourseAssessment; offeringId: string }) {

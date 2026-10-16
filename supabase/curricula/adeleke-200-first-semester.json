@@ -1,0 +1,125 @@
+{
+  "university": "Adeleke University",
+  "faculty_group": "Computing Sciences",
+  "session": "2026/2027",
+  "level": "200 Level",
+  "semester": 1,
+  "calendar_dates": null,
+  "source": "User-provided curriculum screenshots",
+  "courses": [
+    {
+      "code": "AUE-GST 201",
+      "title": "Philosophy of Education",
+      "units": 1,
+      "status": "R"
+    },
+    {
+      "code": "AUE-GST 221",
+      "title": "Communication in French",
+      "units": 2,
+      "status": "R"
+    },
+    {
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "COS 201",
+      "title": "Computer Programming I",
+      "units": 3,
+      "status": "C"
+    },
+    {
+      "code": "CSC 203",
+      "title": "Discrete Structures",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "CYB 201",
+      "title": "Introduction to Cybersecurity and Strategy",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "CYB 203",
+      "title": "Cybercrime, Law and Countermeasures",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "IFT 211",
+      "title": "Digital Logic Design",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "SEN 201",
+      "title": "Introduction to Software Engineering",
+      "units": 2,
+      "status": "C"
+    },
+    {
+      "code": "STA 121",
+      "title": "Statistical Inference I",
+      "units": 3,
+      "status": "C"
+    },
+    {
+      "code": "MTH 201",
+      "title": "Mathematical Methods I",
+      "units": 2,
+      "status": "C"
+    }
+  ],
+  "programmes": [
+    {
+      "name": "Computer Science",
+      "courses": [
+        "AUE-GST 201",
+        "AUE-GST 221",
+        "ENT 211",
+        "COS 201",
+        "CSC 203",
+        "CYB 201",
+        "IFT 211",
+        "SEN 201",
+        "STA 121",
+        "MTH 201"
+      ],
+      "total_units": 21
+    },
+    {
+      "name": "Cybersecurity",
+      "courses": [
+        "AUE-GST 201",
+        "AUE-GST 221",
+        "ENT 211",
+        "COS 201",
+        "CYB 201",
+        "CYB 203",
+        "SEN 201",
+        "STA 121",
+        "MTH 201"
+      ],
+      "total_units": 19
+    },
+    {
+      "name": "Software Engineering",
+      "courses": [
+        "AUE-GST 201",
+        "AUE-GST 221",
+        "ENT 211",
+        "COS 201",
+        "CSC 203",
+        "IFT 211",
+        "SEN 201",
+        "STA 121",
+        "MTH 201"
+      ],
+      "total_units": 19
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Clock, ListOrdered, Play, Save, Sparkles, Timer, MessageSquareText } from "lucide-react";
+import { ArrowLeft, Play } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, Suspense, useState } from "react";
@@ -106,12 +106,9 @@ function AssessmentIntro() {
   );
 }
 
-function Rule({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) {
+function Rule({ title, children }: { title: string; children: ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-pill bg-surface-tint text-brand-primary" aria-hidden>
-        {icon}
-      </span>
       <div className="flex min-w-0 flex-col gap-0.5">
         <p className="font-semibold">{title}</p>
         <div className="text-ink-muted">{children}</div>
@@ -121,11 +118,8 @@ function Rule({ icon, title, children }: { icon: ReactNode; title: string; child
 }
 
 function xpRule(a: CourseAssessment): string {
-  if (a.kind === "review") return "+2 XP for each question you answer correctly for the first time.";
-  const amount = a.kind === "practice" ? "+10 XP" : "+20 XP";
-  return a.first_completion_rewarded
-    ? `You've already earned the first-completion XP (${amount}) for this ${a.kind === "practice" ? "practice set" : "mock exam"}.`
-    : `${amount} the first time you complete this ${a.kind === "practice" ? "practice set" : "mock exam"}.`;
+  const max = a.kind === "review" ? 20 : a.kind === "practice" ? 50 : 100;
+  return `Up to ${max} XP based on your best score. Improve your best to earn the difference.`;
 }
 
 function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; courseTitle: string }) {
@@ -155,22 +149,22 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
       <Card>
         <CardContent className="pt-4 sm:pt-6">
           <ul className="flex flex-col gap-4">
-            <Rule icon={<ListOrdered className="size-4" />} title={pluralize(a.question_count, "question")}>
+            <Rule title={pluralize(a.question_count, "question")}>
               Single-choice questions.
             </Rule>
-            <Rule icon={timed ? <Timer className="size-4" /> : <Clock className="size-4" />} title={timed ? formatDuration(a.duration_seconds) : "Untimed"}>
+            <Rule title={timed ? formatDuration(a.duration_seconds) : "Untimed"}>
               {timed ? COPY.learning.timerRule : "Take as long as you need."}
             </Rule>
-            <Rule icon={<MessageSquareText className="size-4" />} title="Feedback">
+            <Rule title="Feedback">
               {a.feedback_mode === "immediate"
                 ? "Immediate feedback after each answer. Your first checked answer is locked."
                 : "Results and explanations appear after you submit."}
             </Rule>
-            <Rule icon={<Sparkles className="size-4" />} title="XP">
+            <Rule title="XP">
               <p>{xpRule(a)}</p>
-              <p>Learning XP has a daily limit of 100 XP. {COPY.learning.capReset}</p>
+              <p>{COPY.learning.capReset}</p>
             </Rule>
-            <Rule icon={<Save className="size-4" />} title="Saving">
+            <Rule title="Saving">
               Your answers are saved to the server as you go. Answers that haven&apos;t reached the server are marked “
               {COPY.learning.unsaved}”.
             </Rule>

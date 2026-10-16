@@ -18,10 +18,10 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
   const userId = data?.claims?.sub as string | undefined;
   if (!userId) redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
 
+  let profile: Profile;
   try {
     const api = await getServerApi();
-    const profile = await api.getMyProfile();
-    return { kind: "ok", userId, profile };
+    profile = await api.getMyProfile();
   } catch (err) {
     if (isApiError(err, "UNAUTHENTICATED")) redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
     if (isApiError(err, "FORBIDDEN")) redirect("/sign-in?deactivated=1");
@@ -31,6 +31,13 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
       message: isApiError(err) ? err.message : "The service is unavailable right now.",
     };
   }
+  // Applicants and approved lecturers never enter the student onboarding pipeline.
+  // Admins retain their existing access; account roles are read fresh from the database.
+  if (!profile.roles.includes("admin") && !nextPath.startsWith("/lecturer")) {
+    if (profile.roles.includes("lecturer")) redirect("/lecturer");
+    if (!profile.roles.includes("student")) redirect("/lecturer/application");
+  }
+  return { kind: "ok", userId, profile };
 }
 
 /** Allows saved signup details before course matching. Roles/enrollment stay backend-authorized. */

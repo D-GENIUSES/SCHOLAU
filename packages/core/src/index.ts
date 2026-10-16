@@ -1,4 +1,5 @@
 export * from "./domain";
+export * from "./xp";
 export * from "./errors";
 export * from "./schemas";
 export * from "./format";
@@ -7,3 +8,4 @@ export * from "./copy";
 export * from "./analytics";
 export * from "./nigerian-universities";
 export * from "./registration";
+export * from "./lecturer-registration";

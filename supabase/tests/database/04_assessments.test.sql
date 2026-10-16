@@ -24,7 +24,7 @@ begin
   perform private.apply_academic_profile(v, v, '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
     '10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
     '10000000-0000-4000-8000-000000000006', 'initial', null, null);
-  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002');
+  insert into public.enrollments (user_id, offering_id) values (v, '20000000-0000-4000-8000-000000000002') on conflict (user_id,offering_id) do nothing;
   return v;
 end $$;
 -- Correct option for a question version (test oracle; runs as postgres before role switch).
@@ -86,8 +86,8 @@ select is((public.check_review_answer_v1(current_setting('t.r')::uuid, current_s
   current_setting('t.rq2_ok')::uuid, gen_random_uuid())) ->> 'is_correct', 'true', 'second review answer correct');
 select is((public.check_review_answer_v1(current_setting('t.r')::uuid, current_setting('t.rq3')::uuid,
   current_setting('t.rq3_bad')::uuid, gen_random_uuid())) ->> 'is_correct', 'false', 'third review answer wrong');
-select is(((public.submit_attempt_v1(current_setting('t.r')::uuid, null, gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer, 4,
-  'review awards +2 per first-time correct question');
+select is(((public.submit_attempt_v1(current_setting('t.r')::uuid, null, gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer, 13,
+  'topic check awards floor(20 times 2/3)');
 
 -- second review attempt: same questions correct again earn nothing
 select set_config('t.r2', (public.start_attempt_v1(current_setting('t.review')::uuid, gen_random_uuid())) ->> 'attempt_id', true) is not null as setup;
@@ -95,14 +95,12 @@ reset role;
 select set_config('t.r2_answers', (select jsonb_agg(jsonb_build_object('question_version_id', aq.question_version_id,
   'option_id', pg_temp.key_of(aq.question_version_id), 'answer_revision', 1))::text
   from public.attempt_questions aq where aq.attempt_id = current_setting('t.r2')::uuid), true) is not null as setup;
-select set_config('t.r2_expected', (2 * (select count(*) from public.attempt_questions aq
-  where aq.attempt_id = current_setting('t.r2')::uuid
-    and aq.question_version_id not in (current_setting('t.rq1')::uuid, current_setting('t.rq2')::uuid)))::text, true) is not null as setup;
+select set_config('t.r2_expected', '7', true) is not null as setup;
 select pg_temp.login(current_setting('t.s')::uuid);
 select is((public.save_attempt_answers_v1(current_setting('t.r2')::uuid, current_setting('t.r2_answers')::jsonb, gen_random_uuid())) -> 'saved' ->> 0 is not null,
   true, 'answers saved on second review attempt');
 select is(((public.submit_attempt_v1(current_setting('t.r2')::uuid, null, gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer,
-  current_setting('t.r2_expected')::integer, 'previously-correct questions earn no review XP on retry');
+  current_setting('t.r2_expected')::integer, 'improving to perfect earns only the remaining topic XP');
 
 -- ---------------------------------------------------------------- practice (after_submit feedback)
 select set_config('t.p', (public.start_attempt_v1(current_setting('t.practice')::uuid, gen_random_uuid())) ->> 'attempt_id', true) is not null as setup;
@@ -142,7 +140,7 @@ select pg_temp.login(current_setting('t.s')::uuid);
 
 select set_config('t.psubmit', (public.submit_attempt_v1(current_setting('t.p')::uuid, null, '00000000-0000-4000-8000-00000000b002'))::text, true) is not null as setup;
 select is(current_setting('t.psubmit')::jsonb ->> 'status', 'submitted', 'practice submitted');
-select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 10, 'first practice completion awards +10');
+select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 8, 'practice earns floor(50 times 1/6)');
 select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'correct_count')::integer, 1, 'graded against private key');
 select ok(jsonb_path_exists(current_setting('t.psubmit')::jsonb, '$.questions[*].feedback.explanation'), 'explanations shown after submission');
 select is((public.submit_attempt_v1(current_setting('t.p')::uuid, null, gen_random_uuid())) -> 'result', current_setting('t.psubmit')::jsonb -> 'result',
@@ -160,7 +158,7 @@ select pg_temp.login(current_setting('t.s')::uuid);
 select is(((public.submit_attempt_v1(current_setting('t.p2')::uuid, jsonb_build_array(jsonb_build_object('question_version_id',
   current_setting('t.p2q1'), 'option_id', current_setting('t.p2q1_ok'), 'answer_revision', 1)), gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer, 0,
   'repeat practice earns no second first-completion XP');
-select is((select count(*)::integer from public.points_ledger where event_key like 'practice_first:%'), 1, 'one practice_first ledger entry');
+select is((select count(*)::integer from public.points_ledger where source_type='practice'), 2, 'each attempt has one idempotent ledger entry including zero awards');
 
 -- ---------------------------------------------------------------- mock: deadline enforcement
 select set_config('t.m', (public.start_attempt_v1(current_setting('t.mock')::uuid, gen_random_uuid())) ->> 'attempt_id', true) is not null as setup;
@@ -187,7 +185,7 @@ select set_config('t.msubmit', (public.submit_attempt_v1(current_setting('t.m'):
 select is(current_setting('t.msubmit')::jsonb ->> 'status', 'expired', 'late submit finalizes as expired');
 select is((current_setting('t.msubmit')::jsonb -> 'result' ->> 'answered_count')::integer, 1, 'late submit cannot add answers');
 select is((current_setting('t.msubmit')::jsonb -> 'result' ->> 'correct_count')::integer, 1, 'expired attempt grades saved answers');
-select is((current_setting('t.msubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 20, 'first mock completion awards +20');
+select is((current_setting('t.msubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 0, 'expired mock grades saved answers without awarding XP');
 
 -- worker path: overdue attempt finalized by the sweep without the client
 select set_config('t.r3', (public.start_attempt_v1('31000000-0000-4000-8000-000000000002', gen_random_uuid())) ->> 'attempt_id', true) is not null as setup;

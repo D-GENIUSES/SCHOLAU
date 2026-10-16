@@ -89,6 +89,11 @@ export interface CourseRef {
 }
 
 export interface CatalogOffering {
+  unit_count?: number | null;
+  requirement_status?: "C" | "R" | "E" | null;
+  lecture_hours?: number | null;
+  practical_hours?: number | null;
+  elective_group?: string | null;
   offering_id: Uuid;
   course: CourseRef;
   enrolled: boolean;
@@ -141,6 +146,11 @@ export interface CourseAssessment {
 }
 
 export interface CourseOverview extends Envelope {
+  unit_count?: number | null;
+  requirement_status?: "C" | "R" | "E" | null;
+  lecture_hours?: number | null;
+  practical_hours?: number | null;
+  elective_group?: string | null;
   offering_id: Uuid;
   course: CourseRef;
   progress: { lessons_total: number; lessons_completed: number; percent: number };
@@ -208,6 +218,8 @@ export interface AttemptResultSummary {
 }
 
 export interface Attempt extends Envelope {
+  lesson_id?: Uuid | null;
+  xp_review_stage?: number | null;
   attempt_id: Uuid;
   assessment_id: Uuid;
   assessment_version_id: Uuid;
@@ -262,6 +274,7 @@ export interface ContinueLearning {
 }
 
 export interface HomeSummary extends Envelope {
+  welcome_xp_awarded?: boolean;
   display_name: string;
   needs_onboarding: boolean;
   xp_total: number;
@@ -623,4 +636,12 @@ export interface AppConfigRow {
   maintenance: boolean;
   message: string | null;
   feature_flags: Record<string, unknown>;
+}
+
+export interface XpProgress extends Envelope {
+  xp_total: number;
+  progress: { level: number; current_level_xp: number; next_level_xp: number; xp_into_level: number; xp_to_advance: number };
+  badges: { code: string; awarded_at: string }[];
+  history: { id: string; activity: string; amount: number; reason: string; date: string }[];
+  reviews: { lesson_id: string; title: string; stage: number; due_at: string; completed: boolean; available: boolean }[];
 }

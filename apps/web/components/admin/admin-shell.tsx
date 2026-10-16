@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Swords,
   Upload,
+  UserPlus,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -21,6 +22,8 @@ import { cn } from "@/lib/utils";
 
 export const adminNav = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
+  { href: "/admin/users", label: "Add users", icon: UserPlus },
+  { href: "/admin/lecturer-applications", label: "Lecturer applications", icon: GraduationCap },
   { href: "/admin/import", label: "Import", icon: Upload },
   { href: "/admin/review", label: "Review", icon: ClipboardCheck },
   { href: "/admin/offerings", label: "Offerings", icon: GraduationCap },
@@ -87,6 +90,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <ArrowLeft className="size-5" aria-hidden />
             Back to app
           </Link>
+          <Link href="/change-password" className="px-3 py-2 text-sm font-semibold">Change password</Link>
           <p className="px-3 text-sm text-ink-muted">{serverCheckNote}</p>
         </div>
       </aside>
@@ -94,6 +98,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-line bg-surface-card/95 backdrop-blur lg:hidden">
         <div className="mx-auto flex h-16 max-w-content items-center justify-between gap-2 px-4">
           <Brand />
+          <Link href="/change-password" className="text-sm font-semibold">Change password</Link>
           <Link
             href="/home"
             className="inline-flex min-h-11 items-center gap-1.5 rounded-control px-2 text-sm font-semibold text-ink-muted hover:bg-surface-tint hover:text-ink"
