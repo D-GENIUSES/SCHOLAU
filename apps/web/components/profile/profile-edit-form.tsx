@@ -1,5 +1,6 @@
 "use client";
 
+import { ProfilePhotoEditor } from "@/components/profile/profile-photo-editor";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { Profile } from "@scholau/api";
@@ -38,6 +39,7 @@ export function ProfileEditForm({ profile }: { profile: Profile }) {
         <CardTitle>Edit profile</CardTitle>
       </CardHeader>
       <CardContent>
+        <div className="mb-6 border-b border-line pb-6"><ProfilePhotoEditor profile={profile} /></div>
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
           <Field id="profile-name" label="Display name" hint="Shown on leaderboards and to battle opponents." error={errors.displayName?.message}>
             <Input autoComplete="nickname" maxLength={60} {...form.register("displayName", { onChange: () => update.reset() })} />

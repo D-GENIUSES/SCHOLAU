@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, ImageOff, Info, Lightbulb, NotebookPen } from "lucide-react";
 import { useState } from "react";
 import type { LessonBlock } from "@scholau/core";
-import { useScholauApi } from "@scholau/api/react";
 import { Skeleton } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
 
@@ -81,13 +80,14 @@ function Block({ block }: { block: LessonBlock }) {
 }
 
 function LessonImage({ path, alt, caption }: { path: string; alt: string; caption?: string }) {
-  const api = useScholauApi();
   const [broken, setBroken] = useState(false);
   const signed = useQuery({
     queryKey: ["scholau", "lesson-asset", path],
     queryFn: async () => {
-      const { data, error } = await api.supabase.storage.from("lesson-assets").createSignedUrl(path, 3600);
-      if (error || !data?.signedUrl) throw error ?? new Error("No signed URL");
+      const response = await fetch(`/api/lesson-assets?path=${encodeURIComponent(path)}`, { cache: "no-store", credentials: "same-origin" });
+      if (!response.ok) throw new Error("Image unavailable");
+      const data: { signedUrl?: string } = await response.json();
+      if (!data.signedUrl) throw new Error("Image unavailable");
       return data.signedUrl;
     },
     staleTime: 50 * 60_000,

@@ -1,5 +1,6 @@
 import type { LeaderboardRow } from "@scholau/api";
-import { formatNumber, formatXp, initials } from "@scholau/core";
+import { formatNumber, formatXp } from "@scholau/core";
+import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
 
@@ -29,12 +30,7 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
         <span className="sr-only">Rank </span>
         {formatNumber(row.rank)}
       </span>
-      <span
-        className="inline-flex size-10 shrink-0 items-center justify-center rounded-pill bg-surface-tint font-bold text-brand-primary"
-        aria-hidden
-      >
-        {initials(row.display_name)}
-      </span>
+      <Avatar name={row.display_name} path={row.avatar_path} size={32} />
       <span className="flex min-w-0 flex-1 items-center gap-2">
         <span className="truncate font-semibold">{row.display_name}</span>
         {row.is_me ? <Badge tone="brand">You</Badge> : null}

@@ -1,10 +1,11 @@
 "use client";
 
+import { Avatar } from "@/components/ui/avatar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useProfile, useXpProgress } from "@scholau/api/react";
 import type { XpProgress } from "@scholau/api";
-import { formatDate, formatNumber, formatStreak, formatXpDelta, initials, NIGERIAN_UNIVERSITIES, SEMESTER_LABELS, type RegistrationAcademicInput } from "@scholau/core";
+import { formatDate, formatNumber, formatStreak, formatXpDelta, NIGERIAN_UNIVERSITIES, SEMESTER_LABELS, type RegistrationAcademicInput } from "@scholau/core";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 import { SignOutButton } from "@/components/auth/sign-out-button";
 import { ReportDialog } from "@/components/report-dialog";
@@ -30,7 +31,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
   });
   const max = Math.max(1, ...days.map((day) => day.xp));
   return <Card>
-    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days Â· XP earned</p></CardHeader>
+    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days Ã‚Â· XP earned</p></CardHeader>
     <CardContent>
       <div className="mt-5 flex h-36 items-end gap-3" role="img" aria-label={days.map((day) => `${formatDate(day.date.toISOString())}: ${day.xp} XP`).join("; ")}>
         {days.map((day) => <div key={day.key} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2" aria-hidden>
@@ -46,7 +47,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
 
 function ActivityCards() {
   const query = useXpProgress();
-  if (query.isPending) return <LoadingState label="Loading learning activityâ€¦" lines={3} />;
+  if (query.isPending) return <LoadingState label="Loading learning activityÃ¢â‚¬Â¦" lines={3} />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   return <>
     <div className="lg:col-start-2 lg:row-start-1"><LearningActivity data={query.data} /></div>
@@ -67,7 +68,7 @@ function ActivityCards() {
 
 export function ProfileView({ registration = null, email = null }: { registration?: RegistrationAcademicInput | null; email?: string | null }) {
   const profile = useProfile();
-  if (profile.isPending) return <LoadingState label="Loading your profileâ€¦" lines={4} />;
+  if (profile.isPending) return <LoadingState label="Loading your profileÃ¢â‚¬Â¦" lines={4} />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
   const university = p.academic?.university.name ?? NIGERIAN_UNIVERSITIES.find((item) => item.value === registration?.universitySlug)?.label;
@@ -88,8 +89,8 @@ export function ProfileView({ registration = null, email = null }: { registratio
     <PageHeader eyebrow={<span className="text-[10px] uppercase tracking-[0.16em]">Your profile</span>} title="Your profile" description="Your learning journey, all in one place." />
     <Dialog>
       <Card tint className="mb-4 flex flex-col gap-5 bg-gradient-to-br from-surface-tint to-[#deedff] p-5 sm:flex-row sm:items-center sm:p-7">
-        <span className="flex size-20 shrink-0 items-center justify-center rounded-full border-4 border-white bg-brand-primary text-2xl font-bold text-white shadow-card" aria-hidden>{initials(p.display_name)}</span>
-        <div className="min-w-0 flex-1"><h2 className="break-words text-2xl font-bold">{p.display_name}</h2><p className="mt-1 text-ink-muted">{department ? `${department} student` : "ScholAu learner"}</p><p className="mt-2 text-sm text-ink-muted">{university ? `${university} Â· ` : ""}Joined {new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.created_at))}</p></div>
+        <Avatar name={p.display_name} path={p.avatar_path} size={96} />
+        <div className="min-w-0 flex-1"><h2 className="break-words text-xl font-bold">{p.display_name}</h2><p className="mt-1 text-ink-muted">{department ? `${department} student` : "ScholAu learner"}</p><p className="mt-2 text-sm text-ink-muted">{university ? `${university} Ã‚Â· ` : ""}Joined {new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.created_at))}</p></div>
         <DialogTrigger asChild><Button className="rounded-pill">Edit profile</Button></DialogTrigger>
       </Card>
       <section aria-label="Learning statistics" className="mb-5 grid grid-cols-2 gap-3 xl:grid-cols-4">

@@ -171,8 +171,16 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       ),
 
     /* ---------------------------------------- Battles ----------------------------------------- */
-    createDirectBattle: (a: Keyed<{ offeringId: string }>) =>
-      rpc<T.BattleState_>("create_direct_battle_v1", { p_offering_id: a.offeringId, p_request_key: a.requestKey }),
+    createDirectBattle: (a: Keyed<{ offeringId: string; offeringIds?: string[]; questionCount?: number; friendId?: string | null }>) =>
+      rpc<T.BattleState_>("create_scoped_battle_v1", { p_offering_ids: a.offeringIds ?? [a.offeringId], p_question_count: a.questionCount ?? 10, p_friend_id: a.friendId ?? null, p_request_key: a.requestKey }),
+    getFriends: () => rpc<T.FriendsState>("get_friends_v1"),
+    searchFriends: (query: string) => rpc<T.Envelope & { people: T.FriendPerson[] }>("search_friends_v1", { p_query: query }),
+    friendAction: (a: { userId: string; action: T.FriendAction }) => rpc<T.FriendsState>("friend_action_v1", { p_user_id: a.userId, p_action: a.action }),
+    setFriendUsername: (username: string) => rpc<T.FriendsState>("set_friend_username_v1", { p_username: username }),
+    getBattleSetup: (friendId?: string | null) => rpc<T.BattleSetup>("get_battle_setup_v1", { p_friend_id: friendId ?? null }),
+    getBattleInvitations: () => rpc<T.BattleInvitations>("get_battle_invitations_v1"),
+    getBattleInvitePreview: (token: string) => rpc<T.Envelope & { round_count: number; courses: string[] }>("get_battle_invite_preview_v1", { p_invite_token: token }),
+    declineBattleInvitation: (battleId: string) => rpc<T.Envelope>("decline_battle_invitation_v1", { p_battle_id: battleId }),
     acceptBattle: (a: Keyed<{ inviteToken: string }>) =>
       rpc<T.BattleState_>("accept_battle_v1", { p_invite_token: a.inviteToken, p_request_key: a.requestKey }),
     joinQueue: (a: Keyed<{ offeringId: string }>) =>
@@ -337,16 +345,19 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
         if (state) q = q.eq("state", state);
         return select<T.AdminReportRow[]>(q);
       },
-      listOfferings: () =>
-        select<T.AdminOfferingRow[]>(
-          supabase
-            .from("course_offerings")
-            .select(
-              "id, status, created_at, course:courses(id, code, title), department:departments(name), level:levels(label), semester:semesters(label)",
-            )
-            .order("created_at", { ascending: false })
-            .limit(200),
-        ),
+      listOfferings: async () => {
+        const rows: T.AdminOfferingRow[] = [];
+        const pageSize = 200;
+        for (let offset = 0; ; offset += pageSize) {
+          const page = await select<T.AdminOfferingRow[]>(
+            supabase.from("course_offerings").select(
+              "id, status, created_at, course:courses(id, code, title), department:departments(id, name, faculty:faculties(id, name, university:universities(id, name))), level:levels(id, label), semester:semesters(id, label, period:academic_periods(id, label))",
+            ).order("created_at", { ascending: false }).order("id", { ascending: true }).range(offset, offset + pageSize - 1),
+          );
+          rows.push(...page);
+          if (page.length < pageSize) return rows;
+        }
+      },
       listLessonVersions: (status?: string | null) => {
         let q = supabase
           .from("lesson_versions")

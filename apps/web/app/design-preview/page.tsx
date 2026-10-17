@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { HomeSummary } from "@scholau/api";
+import { FirstLessonPreview } from "@/components/lesson/first-lesson-preview";
 import { HomeDashboard } from "@/components/home/home-dashboard";
 import { ShellFrame } from "@/components/shell/shell-frame";
 
 export default async function DesignPreview({ searchParams }: { searchParams: Promise<{ state?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
+  if (state === "streak") return <FirstLessonPreview />;
   const now = new Date();
   const summary: HomeSummary = {
     server_time: now.toISOString(), display_name: "Learner", needs_onboarding: false, xp_total: 1040,

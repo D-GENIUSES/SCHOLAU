@@ -172,11 +172,27 @@ export function useStartLesson() {
   return usePlainMutation(api.startLesson);
 }
 
-export function useCompleteLesson() {
+export function useCompleteLesson({ firstLessonCelebrationMs = 0 }: { firstLessonCelebrationMs?: number } = {}) {
   const api = useScholauApi();
   const qc = useQueryClient();
   return useKeyedMutation(api.completeLesson, {
-    onSuccess: () => void invalidate(qc, ["scholau", "lesson"], ["scholau", "course"], qk.home(), qk.profile(), qk.catalog()),
+    onSuccess: (result) => {
+      const refreshProgress = () => {
+        // Use the confirmed server value; never increment a streak on the client.
+        qc.setQueryData<T.HomeSummary>(qk.home(), (previous) => previous ? {
+          ...previous, streak: result.streak, xp_total: result.xp_total ?? previous.xp_total,
+        } : previous);
+        qc.setQueryData<T.Profile>(qk.profile(), (previous) => previous ? {
+          ...previous, streak: result.streak, xp_total: result.xp_total ?? previous.xp_total,
+        } : previous);
+        void invalidate(qc, qk.home(), qk.profile());
+      };
+      void invalidate(qc, ["scholau", "lesson"], ["scholau", "course"], qk.catalog());
+      if (result.first_lesson_completed && !result.already_completed && firstLessonCelebrationMs > 0) {
+        // Cache refresh must still run if the learner navigates away during the animation.
+        setTimeout(refreshProgress, firstLessonCelebrationMs);
+      } else refreshProgress();
+    },
   });
 }
 
@@ -311,6 +327,11 @@ export function useUserSignals(userId: string | undefined): ChannelStatus {
     if (!userId) return;
     const sub = subscribeToSignals(api.supabase, topics.user(userId), {
       onSignal: (event) => {
+        if (event === "friends_changed" || event === "resync") void qc.invalidateQueries({ queryKey: ["scholau", "social"] });
+        if (event === "battle_invitation" || event === "resync") {
+          void qc.invalidateQueries({ queryKey: ["scholau", "social", "invitations"] });
+          void qc.invalidateQueries({ queryKey: qk.home() });
+        }
         if (event === "battle_matched" || event === "resync") void qc.invalidateQueries({ queryKey: qk.liveBattle() });
         if (event === "attempt_finalized" || event === "resync") void qc.invalidateQueries({ queryKey: ["scholau", "attempt"] });
         if (event === "attempt_finalized" || event === "resync") void invalidate(qc, ["scholau", "xp"], qk.profile(), qk.home(), ["scholau", "leaderboard"]);
@@ -547,4 +568,37 @@ export function useStartTopicReview() {
   return useKeyedMutation(api.startTopicReview, {
     onSuccess: (data) => { qc.setQueryData(qk.attempt(data.attempt_id), data); },
   });
+}
+
+export function useFriends() {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "friends"], queryFn: api.getFriends, retry: shouldRetry, refetchInterval: 15000 });
+}
+export function useSearchFriends(query: string) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "search", query], queryFn: () => api.searchFriends(query), enabled: query.length >= 3, retry: shouldRetry });
+}
+export function useFriendAction() {
+  const api = useScholauApi(); const qc = useQueryClient();
+  return usePlainMutation(api.friendAction, { onSuccess: () => { void qc.invalidateQueries({ queryKey: ["scholau", "social"] }); } });
+}
+export function useSetFriendUsername() {
+  const api = useScholauApi(); const qc = useQueryClient();
+  return usePlainMutation(api.setFriendUsername, { onSuccess: () => { void qc.invalidateQueries({ queryKey: ["scholau", "social"] }); } });
+}
+export function useBattleSetup(friendId?: string | null) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "setup", friendId ?? null], queryFn: () => api.getBattleSetup(friendId), retry: shouldRetry });
+}
+export function useBattleInvitations() {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "invitations"], queryFn: api.getBattleInvitations, refetchInterval: 10000, retry: shouldRetry });
+}
+export function useDeclineBattleInvitation() {
+  const api = useScholauApi(); const qc = useQueryClient();
+  return usePlainMutation(api.declineBattleInvitation, { onSuccess: () => { void qc.invalidateQueries({ queryKey: ["scholau", "social", "invitations"] }); } });
+}
+export function useBattleInvitePreview(token: string) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "preview", token], queryFn: () => api.getBattleInvitePreview(token), retry: shouldRetry });
 }

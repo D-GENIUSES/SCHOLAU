@@ -5,7 +5,7 @@ export const COPY = {
     unlimited: "Unlimited battles | Earn XP for accuracy and results.",
     rewards: "2 XP per correct answer · Win bonus +5 · Draw bonus +2",
     rewardsNote: "XP applies to your first 10 completed matches daily, at most 2 against the same opponent. Resets at midnight Africa/Lagos.",
-    format: "5 questions · 20 seconds each · accuracy only — equal scores draw.",
+    format: "5–30 questions · 10–15 seconds per question · accuracy only — equal scores draw.",
     noOpponent: "No opponent found yet.",
     reconnecting: "Reconnecting. The round timer continues.",
     finalizing: "Your battle has ended. Results are being finalized.",

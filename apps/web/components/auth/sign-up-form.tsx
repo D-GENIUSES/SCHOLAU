@@ -60,7 +60,7 @@ export function SignUpForm() {
     }}>
       {error ? <Alert tone="error" role="alert">{error}</Alert> : null}
       {step === "account" ? <>
-        <Field id="sign-up-name" label="Display name" hint="Shown on leaderboards and to battle opponents." error={errors.displayName?.message}>
+        <Field id="sign-up-name" label="Display name" hint="Use your name or a nickname, not your email. Shown on leaderboards and to battle opponents." error={errors.displayName?.message}>
           <Input autoComplete="nickname" maxLength={60} {...form.register("displayName")} />
         </Field>
         <Field id="sign-up-email" label="Email" error={errors.email?.message}>

@@ -14,7 +14,7 @@ export function QuestionNavigator({
 }) {
   return (
     <nav aria-label="Questions" className="flex flex-col gap-3">
-      <ol className="grid grid-cols-[repeat(auto-fill,minmax(3rem,1fr))] gap-2">
+      <ol className="grid grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))] gap-2">
         {statuses.map((status, i) => {
           const s = ANSWER_STATUS[status];
           const Icon = s.icon;
@@ -28,7 +28,7 @@ export function QuestionNavigator({
                 aria-label={`Question ${i + 1}: ${s.label}`}
                 title={s.label}
                 className={cn(
-                  "flex min-h-12 w-full flex-col items-center justify-center rounded-control border-2 bg-surface-card text-sm font-bold",
+                  "flex min-h-11 w-full flex-col items-center justify-center rounded-control border bg-surface-card text-sm font-semibold",
                   isCurrent ? "border-brand-primary text-brand-primary" : "border-line text-ink hover:border-line-strong",
                 )}
               >

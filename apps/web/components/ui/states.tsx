@@ -42,10 +42,10 @@ export function EmptyState({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-6 py-10 text-center", className)}>
+    <div className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-5 py-8 text-center", className)}>
       {icon ? <span className="text-brand-primary" aria-hidden>{icon}</span> : null}
-      <h2 className="text-lg font-bold">{title}</h2>
-      {description ? <div className="max-w-md text-ink-muted">{description}</div> : null}
+      <h2 className="text-base font-semibold">{title}</h2>
+      {description ? <div className="max-w-md text-sm leading-relaxed text-ink-muted">{description}</div> : null}
       {action ? <div className="mt-2 flex flex-wrap justify-center gap-2">{action}</div> : null}
     </div>
   );
@@ -69,12 +69,12 @@ export function ErrorState({
   const offline = apiErr?.code === "NETWORK";
   const message = apiErr ? errorMessage(apiErr) : "Something went wrong. Please try again.";
   return (
-    <div role="alert" className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-6 py-10 text-center", className)}>
+    <div role="alert" className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-5 py-8 text-center", className)}>
       <span className="inline-flex size-12 items-center justify-center rounded-pill bg-danger-bg text-danger" aria-hidden>
         {offline ? <WifiOff className="size-6" /> : <RefreshCw className="size-6" />}
       </span>
-      <h2 className="text-lg font-bold">{offline ? "You're offline" : title}</h2>
-      <p className="max-w-md text-ink-muted">{message}</p>
+      <h2 className="text-base font-semibold">{offline ? "You're offline" : title}</h2>
+      <p className="max-w-md text-sm leading-relaxed text-ink-muted">{message}</p>
       {apiErr ? <p className="text-sm text-ink-muted">Reference: {apiErr.reference}</p> : null}
       <div className="mt-2 flex flex-wrap justify-center gap-2">
         {onRetry ? (

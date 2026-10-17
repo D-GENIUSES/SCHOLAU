@@ -17,7 +17,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-pill border px-2.5 py-0.5 text-sm font-semibold whitespace-nowrap",
+        "inline-flex items-center gap-1 rounded-pill border px-2.5 py-1 text-xs font-medium whitespace-nowrap",
         badgeTones[tone],
         className,
       )}
@@ -45,7 +45,7 @@ export function Progress({
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={v}
-      className={cn("h-2.5 w-full overflow-hidden rounded-pill bg-surface-tint", className)}
+      className={cn("h-1.5 min-w-0 w-full overflow-hidden rounded-pill bg-surface-tint", className)}
     >
       <div
         className={cn(
@@ -79,8 +79,8 @@ export function PageHeader({
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div className="flex min-w-0 flex-col gap-1">
         {eyebrow ? <div className="text-sm font-semibold text-brand-primary">{eyebrow}</div> : null}
-        <h1 className="text-2xl font-bold lg:text-[32px]">{title}</h1>
-        {description ? <p className="text-ink-muted">{description}</p> : null}
+        <h1 className="text-2xl font-bold tracking-[-0.035em] lg:text-[28px]">{title}</h1>
+        {description ? <p className="text-sm leading-relaxed text-ink-muted">{description}</p> : null}
       </div>
       {actions ? <div className="flex flex-wrap gap-2">{actions}</div> : null}
     </div>

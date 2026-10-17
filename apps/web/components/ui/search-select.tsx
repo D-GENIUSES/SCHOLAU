@@ -51,8 +51,8 @@ export const SearchSelect = forwardRef<HTMLInputElement, Props>(function SearchS
           event.preventDefault(); move(event.key === "Home" ? 0 : visible.length - 1);
         }
       }} />
-    <ChevronDown className="pointer-events-none absolute right-3 top-4 size-4 text-ink-muted" aria-hidden />
-    {open ? <div className="absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded-control border border-line bg-surface-card shadow-lg">
+    <ChevronDown className="pointer-events-none absolute right-3 top-3.5 size-4 text-ink-muted" aria-hidden />
+    {open ? <div className="absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded-control border border-line bg-surface-card shadow-raised">
       <ul ref={listRef} id={`${id}-options`} role="listbox" aria-label="Matching options" className="max-h-52 overflow-y-auto overscroll-contain py-1">
         {visible.map((option, position) => <li key={option.value} id={`${id}-option-${position}`} role="option"
           aria-selected={option.value === value}

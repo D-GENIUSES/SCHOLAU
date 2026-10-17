@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson } from "@scholau/api";
 import { useCompleteLesson, useCourseOverview, useLesson, useStartLesson } from "@scholau/api/react";
 import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
+import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonBlocks } from "@/components/lesson/blocks";
 import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
@@ -62,7 +63,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const analytics = useAnalytics();
   const course = useCourseOverview(lesson.offering_id);
   const start = useStartLesson();
-  const complete = useCompleteLesson();
+  const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
 
   const { mutate: startMutate } = start;
   const startedFor = useRef<string | null>(null);
@@ -94,6 +95,9 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
 
   return (
     <article className="mx-auto flex max-w-reading flex-col">
+      {complete.data?.first_lesson_completed && !complete.data.already_completed ? (
+        <FirstLessonCelebration days={complete.data.streak.current} />
+      ) : null}
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
           <li>

@@ -48,7 +48,7 @@ export function QuestionOptions({
             <label
               htmlFor={id}
               className={cn(
-                "flex min-h-12 cursor-pointer items-start gap-3 rounded-control border-2 bg-surface-card p-3 transition-colors",
+                "flex min-h-11 cursor-pointer items-start gap-3 rounded-control border bg-surface-card p-3 transition-colors",
                 "peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-primary",
                 "peer-disabled:cursor-default",
                 checked ? "border-brand-primary bg-surface-tint" : "border-line hover:border-line-strong",

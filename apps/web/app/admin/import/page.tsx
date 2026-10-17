@@ -317,6 +317,12 @@ export default function AdminImportPage() {
 
   return (
     <>
+      <Alert tone="info" title="Battle question formats">
+        Battle questions need exactly four options. In JSON, set answer_format to standard or worked_solution.
+        For worked solutions, give each option a steps array and put its final answer in body.
+        Optional battle_seconds accepts 10, 12 or 15; otherwise time is estimated from the full question and options.
+        Review reading time and plausible distractors before publishing.
+      </Alert>
       <PageHeader eyebrow="Admin" title="Import content" description="Bulk-create draft questions or lessons from a file." />
 
       <Alert tone="info" title="Imports create drafts only" className="mb-6">

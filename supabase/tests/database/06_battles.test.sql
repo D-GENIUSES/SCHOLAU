@@ -89,7 +89,7 @@ select is(current_setting('t.cd')::jsonb ->> 'state', 'countdown', 'both ready -
 select ok(current_setting('t.cd')::jsonb -> 'current_question' = 'null'::jsonb or current_setting('t.cd')::jsonb -> 'current_question' is null,
   'no prompt is revealed during countdown');
 select is(((current_setting('t.cd')::jsonb ->> 'ends_at')::timestamptz - (current_setting('t.cd')::jsonb ->> 'starts_at')::timestamptz),
-  interval '100 seconds', 'schedule = 5 rounds x 20 seconds');
+  interval '50 seconds', 'schedule uses question-specific durations');
 reset role;
 select is((select count(*)::integer from public.battle_questions where battle_id = current_setting('t.b1')::uuid), 5, 'five questions scheduled up front');
 select is((select count(*)::integer from public.battle_questions bq join public.question_versions qv on qv.id = bq.question_version_id
@@ -134,7 +134,7 @@ select throws_ok($$insert into public.battle_answers (battle_id, user_id, positi
 reset role;
 
 -- B "disconnects" (never answers); round 1 closes
-select pg_temp.shift_battle(current_setting('t.b1')::uuid, interval '20 seconds');
+select pg_temp.shift_battle(current_setting('t.b1')::uuid, interval '10 seconds');
 select pg_temp.login(current_setting('t.b')::uuid);
 select throws_ok($$select public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, gen_random_uuid())$$,
   'PT409', 'DEADLINE_PASSED', 'answer after the question deadline rejected');

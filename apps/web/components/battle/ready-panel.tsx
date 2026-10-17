@@ -3,7 +3,7 @@
 import { CheckCircle2, CircleDashed } from "lucide-react";
 import type { Battle, BattleParticipant } from "@scholau/api";
 import { useReadyBattle } from "@scholau/api/react";
-import { initials } from "@scholau/core";
+import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { LiveRegion } from "@/components/ui/misc";
@@ -23,7 +23,7 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
     <Card>
       <CardHeader>
         <CardTitle as="h2">{opponent ? `You vs ${opponent.display_name}` : "Opponent found"}</CardTitle>
-        <CardDescription>{battle.course ? `${battle.course.code} — ${battle.course.title}` : null}</CardDescription>
+        <CardDescription>{battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code} · {battle.round_count} questions · 10–15 seconds each</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         <ul className="flex flex-col gap-2" aria-label="Ready status">
@@ -63,9 +63,7 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
 function ReadyRow({ participant: p }: { participant: BattleParticipant }) {
   return (
     <li className="flex items-center gap-3 rounded-control border border-line p-3">
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-pill bg-surface-tint font-bold text-brand-primary" aria-hidden>
-        {initials(p.display_name)}
-      </span>
+      <Avatar name={p.display_name} path={p.avatar_path} size={32} />
       <span className="min-w-0 flex-1 truncate font-semibold">
         {p.display_name}
         {p.is_me ? <span className="font-normal text-ink-muted"> (you)</span> : null}

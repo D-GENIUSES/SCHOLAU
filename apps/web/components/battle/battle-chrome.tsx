@@ -31,7 +31,7 @@ export function BattleTopBar({
   return (
     <div className="flex items-center justify-between gap-3 border-b border-line pb-4">
       <div className="min-w-0">
-        <p className="truncate font-bold">{battle?.course ? `${battle.course.code} battle` : "Battle"}</p>
+        <p className="truncate font-bold">{battle?.courses?.length ? `${battle.courses.map((c) => c.code).join(" + ")} battle` : battle?.course ? `${battle.course.code} battle` : "Battle"}</p>
         {battle ? <p className="text-sm text-ink-muted">{STATE_LABEL[battle.state]}</p> : null}
       </div>
       {live ? (

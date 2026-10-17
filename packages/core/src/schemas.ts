@@ -15,6 +15,7 @@ export const displayNameSchema = z
   .trim()
   .min(2, "Use at least 2 characters.")
   .max(60, "Use 60 characters or fewer.")
+  .refine((v) => !v.includes("@"), "Use your name or a nickname, not your email address.")
   .refine((v) => !/[<>]/.test(v), "Remove the < and > characters.");
 
 export const signInSchema = z.object({

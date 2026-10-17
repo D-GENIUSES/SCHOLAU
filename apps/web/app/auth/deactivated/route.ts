@@ -8,5 +8,8 @@ import { getServerSupabase } from "@/lib/supabase/server";
 export async function GET(request: NextRequest) {
   const supabase = await getServerSupabase();
   await supabase.auth.signOut().catch(() => undefined);
-  return NextResponse.redirect(new URL("/sign-in?deactivated=1", request.url));
+  const destination = request.nextUrl.searchParams.get("reason") === "unavailable" ? "/sign-in" : "/sign-in?deactivated=1";
+  const response = NextResponse.redirect(new URL(destination, request.url));
+  response.headers.set("Cache-Control", "no-store");
+  return response;
 }

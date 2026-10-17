@@ -23,8 +23,8 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
     const api = await getServerApi();
     profile = await api.getMyProfile();
   } catch (err) {
-    if (isApiError(err, "UNAUTHENTICATED")) redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
-    if (isApiError(err, "FORBIDDEN")) redirect("/sign-in?deactivated=1");
+    if (isApiError(err, "UNAUTHENTICATED")) redirect("/auth/deactivated?reason=unavailable");
+    if (isApiError(err, "FORBIDDEN")) redirect("/auth/deactivated");
     return {
       kind: "unavailable",
       reference: isApiError(err) ? err.reference : "SA-UNKNOWN",

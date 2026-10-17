@@ -29,7 +29,7 @@ export function ContinueLearningCard({ item, firstLesson, course, href, preview 
           <div className="spotlight-progress">
             <div className="flex items-center gap-3">
               <Progress value={percent} label={`${course.title} progress`} />
-              <span className="text-sm font-semibold">{percent}%</span>
+              <span className="shrink-0 whitespace-nowrap text-xs font-semibold tabular-nums">{percent}%</span>
             </div>
             <p>{course.lessons_completed} of {pluralize(course.lessons_total, "lesson")} completed</p>
           </div>
@@ -98,7 +98,7 @@ export function CourseProgressList({ courses }: { courses: HomeSummary["enrolled
                   <small>{course.code} · {course.lessons_completed} of {pluralize(course.lessons_total, "lesson")}</small>
                   <span className="flex items-center gap-3">
                     <Progress value={percent} label={`${course.code} progress`} tone={percent >= 100 ? "success" : "brand"} className="h-1.5" />
-                    <span className="text-xs text-ink-muted">{percent}%</span>
+                    <span className="shrink-0 whitespace-nowrap text-xs tabular-nums text-ink-muted">{percent}%</span>
                   </span>
                 </span>
                 <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden />

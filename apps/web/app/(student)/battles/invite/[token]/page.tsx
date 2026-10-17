@@ -4,7 +4,7 @@ import { Swords } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { isApiError } from "@scholau/api";
-import { useAcceptBattle } from "@scholau/api/react";
+import { useAcceptBattle, useBattleInvitePreview } from "@scholau/api/react";
 import { slotBusyHref } from "@/components/battle/action-error";
 import { BattleRulesList } from "@/components/battle/rules-card";
 import { Alert } from "@/components/ui/alert";
@@ -17,6 +17,7 @@ export default function InvitePage() {
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const accept = useAcceptBattle();
+  const preview = useBattleInvitePreview(token);
 
   const onAccept = () => {
     accept.mutate({ inviteToken: token }, { onSuccess: (battle) => router.push(`/battles/${battle.battle_id}`) });
@@ -36,12 +37,14 @@ export default function InvitePage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
+          {preview.data ? <p className="font-semibold">{preview.data.courses.join(" + ")} · {preview.data.round_count} questions · 10–15 seconds each</p> : null}
+          <InlineError error={preview.error} />
           <BattleRulesList />
           <p className="text-sm text-ink-muted">Invitations last 5 minutes. Battles are unlimited — there&apos;s no daily quota.</p>
           <InviteError error={accept.error} onRetry={accept.retryLast} />
         </CardContent>
         <CardFooter>
-          <Button onClick={onAccept} loading={accept.isPending} disabled={accept.isSuccess}>
+          <Button onClick={onAccept} loading={accept.isPending} disabled={accept.isSuccess || !preview.data}>
             Accept challenge
           </Button>
           <Button asChild variant="outline">
@@ -81,7 +84,7 @@ function InviteError({ error, onRetry }: { error: unknown; onRetry: () => void }
           </Button>
         }
       >
-        You need to be enrolled in this battle&apos;s course to accept.
+        You need to be enrolled in all the selected courses to accept.
       </Alert>
     );
   }
@@ -90,14 +93,14 @@ function InviteError({ error, onRetry }: { error: unknown; onRetry: () => void }
       <Alert
         tone="info"
         role="alert"
-        title="This is your own invitation"
+        title="Invitation unavailable"
         action={
           <Button asChild size="sm" variant="secondary">
             <Link href="/battles">Go to battles</Link>
           </Button>
         }
       >
-        Share the link with a classmate — you can&apos;t accept your own challenge.
+        This invitation may be reserved for someone else. You also cannot accept your own challenge.
       </Alert>
     );
   }

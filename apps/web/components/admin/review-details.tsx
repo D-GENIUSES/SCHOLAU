@@ -170,6 +170,7 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
       </div>
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">Options</h3>
+        <p className="text-sm text-ink-muted">{d.answer_format === "worked_solution" ? "Worked solutions" : "Standard options"} · {d.battle_seconds ? `${d.battle_seconds} seconds` : "Automatic battle timing (10–15 seconds)"}</p>
         {d.correct_option_id === null ? (
           <Alert tone="error" title="No answer key" className="mt-2">
             This version has no correct option recorded. It can&apos;t be published.
@@ -189,7 +190,10 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
                 <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-pill border border-line bg-surface-card font-bold">
                   {o.label}
                 </span>
-                <span className="min-w-0 flex-1 whitespace-pre-line">{o.body}</span>
+                <span className="min-w-0 flex-1 whitespace-pre-line">
+                  {o.steps?.map((step, index) => <span key={index} className="mb-2 block font-mono text-sm">{step}</span>)}
+                  <strong>{o.body}</strong>
+                </span>
                 {correct ? (
                   <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-success">
                     <CheckCircle2 className="size-4" aria-hidden /> Correct answer

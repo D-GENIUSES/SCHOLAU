@@ -186,6 +186,8 @@ export interface LessonProgressResult extends Envelope {
 
 export interface CompleteLessonResult extends LessonProgressResult {
   already_completed: boolean;
+  /** True only for the first successful lesson completion, determined on the server. */
+  first_lesson_completed?: boolean;
   xp_awarded: number;
   xp_capped: boolean;
   xp_total: number | null;
@@ -331,9 +333,13 @@ export interface BattleParticipant {
 }
 
 export interface BattleCurrentQuestion {
+  answer_format?: "standard" | "worked_solution";
+  duration_seconds?: number;
+  course_code?: string;
+
   position: number;
   prompt: string;
-  options: AttemptOption[];
+  options: (AttemptOption & { steps?: string[] })[];
   opened_at: IsoDateTime;
   deadline: IsoDateTime;
   my_option_id: Uuid | null;
@@ -348,6 +354,8 @@ export interface BattleRound {
 }
 
 export interface Battle {
+  courses?: { id: string; code: string; title: string }[];
+  invited_user_id?: string | null;
   battle_id: Uuid;
   mode: BattleMode;
   state: BattleState;
@@ -496,7 +504,7 @@ export interface AdminQuestion extends Envelope {
   source_reference: string | null;
   reviewed_by: Uuid | null;
   published_at: IsoDateTime | null;
-  options: { id: Uuid; label: string; body: string; position: number }[];
+  options: { id: Uuid; label: string; body: string; position: number; steps?: string[] }[];
   correct_option_id: Uuid | null;
   explanation: string | null;
 }
@@ -562,9 +570,13 @@ export interface AdminOfferingRow {
   status: ContentStatus;
   created_at: IsoDateTime;
   course: { id: Uuid; code: string; title: string } | null;
-  department: { name: string } | null;
-  level: { label: string } | null;
-  semester: { label: string } | null;
+  department: {
+    id: Uuid;
+    name: string;
+    faculty: { id: Uuid; name: string; university: { id: Uuid; name: string } | null } | null;
+  } | null;
+  level: { id: Uuid; label: string } | null;
+  semester: { id: Uuid; label: string; period: { id: Uuid; label: string } | null } | null;
 }
 
 export interface AdminLessonVersionRow {
@@ -644,4 +656,17 @@ export interface XpProgress extends Envelope {
   badges: { code: string; awarded_at: string }[];
   history: { id: string; activity: string; amount: number; reason: string; date: string }[];
   reviews: { lesson_id: string; title: string; stage: number; due_at: string; completed: boolean; available: boolean }[];
+}
+
+export type FriendAction = "request" | "accept" | "decline" | "cancel" | "remove" | "block" | "unblock";
+export interface FriendPerson {
+  user_id: string; display_name: string; username: string | null;
+  state: "pending" | "accepted" | "blocked" | null; incoming: boolean;
+}
+export interface FriendsState extends Envelope { username: string; people: FriendPerson[] }
+export interface BattleSetup extends Envelope {
+  courses: { offering_id: string; course_id: string; code: string; title: string; available_questions: number }[];
+}
+export interface BattleInvitations extends Envelope {
+  invitations: { battle_id: string; invite_token: string; display_name: string; round_count: number; expires_at: string; courses: string[] }[];
 }

@@ -55,14 +55,15 @@ export function WaitingPanel({
       <CardHeader>
         <CardTitle as="h2">Waiting for your opponent</CardTitle>
         <CardDescription>
-          Send this link to a classmate enrolled in {battle.course?.code ?? "this course"}. The battle starts once they accept and you&apos;re
+          {battle.invited_user_id ? "Your friend has received an invitation for" : "Share this link with a classmate enrolled in"} {battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code ?? "the selected courses"}. The battle starts once they accept and you&apos;re
           both ready.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
+        <p className="font-semibold">{battle.round_count} questions · 10–15 seconds per question</p>
         {battle.invite_token ? (
           <>
-            <Field id="invite-link" label="Invitation link" hint="Anyone with this link can accept. It works once.">
+            <Field id="invite-link" label="Invitation link" hint={battle.invited_user_id ? "Only your invited friend can accept this link." : "An enrolled classmate with this link can accept. It works once."}>
               <Input readOnly value={link} onFocus={(e) => e.currentTarget.select()} />
             </Field>
             <div className="flex flex-col gap-2 sm:flex-row">

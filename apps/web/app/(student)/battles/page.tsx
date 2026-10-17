@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useHomeSummary, useMyLiveBattle } from "@scholau/api/react";
 import { COPY } from "@scholau/core";
+import { FriendsPanel } from "@/components/battle/friends-panel";
+import { InvitationsPanel } from "@/components/battle/invitations-panel";
 import { BattleHistory } from "@/components/battle/battle-history";
 import { LiveResumeCard } from "@/components/battle/live-resume-card";
 import { BattleRulesCard } from "@/components/battle/rules-card";
@@ -20,7 +22,7 @@ export default function BattlesPage() {
       <section className="battle-intro" aria-labelledby="battle-welcome-title">
         <div>
           <h2 id="battle-welcome-title">Start a quiz battle</h2>
-          <p>Choose a course below, find an opponent, and test what you know. Every completed match earns XP.</p>
+          <p>Challenge a friend across up to three shared courses, or find an opponent for a quick match. Every completed match earns XP.</p>
           <span className="text-sm font-semibold text-brand-primary">{COPY.battle.rewards}</span>
         </div>
       </section>
@@ -38,6 +40,7 @@ function Lobby() {
 
   return (
     <div className="flex flex-col gap-6">
+      <InvitationsPanel />
       {live.data ? <LiveResumeCard live={live.data} /> : null}
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
         <div className="flex flex-col gap-6">
@@ -61,6 +64,7 @@ function Lobby() {
         </div>
         <BattleRulesCard />
       </div>
+      <FriendsPanel />
       <BattleHistory />
     </div>
   );

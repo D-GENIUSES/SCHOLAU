@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { LiveRegion } from "@/components/ui/misc";
 import { InlineError } from "@/components/ui/states";
-import { cn } from "@/lib/utils";
+import { BattleAnswerOptions } from "./answer-options";
 import { CountdownBar, totalWindowMs } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
 
@@ -47,7 +47,7 @@ export function QuestionPanel({
   else if (submit.error) status = "error";
   else if (selected) status = "selected";
 
-  const optionsLocked = status === "received" || status === "sending" || status === "unsent" || status === "time_up";
+  const optionsLocked = remaining <= 0 || status === "received" || status === "sending" || status === "unsent" || status === "time_up";
   const keptEarlier = Boolean(ack?.already_answered && selected && ack.option_id !== selected);
 
   const send = () => {
@@ -70,33 +70,8 @@ export function QuestionPanel({
           <p className="text-sm text-ink-muted">{COPY.battle.timerRule}</p>
         </div>
 
-        <fieldset disabled={optionsLocked} className="flex flex-col gap-3">
-          <legend className="mb-3 text-lg font-bold text-ink">{question.prompt}</legend>
-          {question.options.map((o) => {
-            const checked = shown === o.id;
-            return (
-              <label
-                key={o.id}
-                className={cn(
-                  "flex min-h-12 cursor-pointer items-start gap-3 rounded-control border bg-surface-card p-3 transition-colors",
-                  checked ? "border-brand-primary bg-surface-tint" : "border-line hover:border-line-strong",
-                  optionsLocked && "cursor-default",
-                )}
-              >
-                <input
-                  type="radio"
-                  name={`battle-q-${question.position}`}
-                  value={o.id}
-                  checked={checked}
-                  onChange={() => setSelected(o.id)}
-                  className="mt-1 size-5 shrink-0 accent-brand-primary"
-                />
-                <span className="flex-1">{o.body}</span>
-                {checked && status === "received" ? <span className="text-sm font-semibold text-success">Your answer</span> : null}
-              </label>
-            );
-          })}
-        </fieldset>
+        {question.course_code ? <p className="text-xs font-bold uppercase tracking-wide text-brand-primary">{question.course_code}</p> : null}
+        <BattleAnswerOptions question={question} selected={shown} disabled={optionsLocked} received={status === "received"} onSelect={setSelected} />
 
         <StatusLine status={status} />
         {keptEarlier ? <p className="text-sm text-ink-muted">Your first answer for this question was kept.</p> : null}
@@ -110,7 +85,7 @@ export function QuestionPanel({
               Retry sending answer
             </Button>
           ) : (
-            <Button size="lg" block onClick={send} disabled={!selected} loading={status === "sending"}>
+            <Button size="lg" block onClick={send} disabled={!selected || remaining <= 0} loading={status === "sending"}>
               Submit answer
             </Button>
           )}

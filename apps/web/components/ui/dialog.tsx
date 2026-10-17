@@ -3,6 +3,7 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import * as React from "react";
+import { Button } from "./button";
 import { cn } from "@/lib/utils";
 
 export const Dialog = DialogPrimitive.Root;
@@ -17,10 +18,10 @@ export function DialogContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content> & { hideClose?: boolean }) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[#11243c]/45" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[#11243c]/35 backdrop-blur-[3px]" />
       <DialogPrimitive.Content
         className={cn(
-          "fixed left-1/2 top-1/2 z-50 flex max-h-[90dvh] w-[calc(100vw-32px)] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-card border border-line bg-surface-card p-6 shadow-raised",
+          "fixed left-1/2 top-1/2 z-50 flex max-h-[90dvh] w-[calc(100vw-32px)] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-card border border-line bg-surface-card p-5 shadow-raised sm:p-6",
           className,
         )}
         {...props}
@@ -40,11 +41,11 @@ export function DialogContent({
 }
 
 export function DialogTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
-  return <DialogPrimitive.Title className={cn("pr-10 text-xl font-bold text-ink", className)} {...props} />;
+  return <DialogPrimitive.Title className={cn("pr-10 text-lg font-semibold tracking-[-0.02em] text-ink", className)} {...props} />;
 }
 
 export function DialogDescription({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Description>) {
-  return <DialogPrimitive.Description className={cn("text-ink-muted", className)} {...props} />;
+  return <DialogPrimitive.Description className={cn("text-sm leading-relaxed text-ink-muted", className)} {...props} />;
 }
 
 export function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -83,25 +84,13 @@ export function ConfirmDialog({
         {children}
         <DialogFooter>
           <DialogClose asChild>
-            <button
-              type="button"
-              className="inline-flex min-h-12 items-center justify-center rounded-control border border-line bg-surface-card px-5 font-semibold text-ink hover:bg-surface-page"
-            >
+            <Button variant="outline">
               {cancelLabel}
-            </button>
+            </Button>
           </DialogClose>
-          <button
-            type="button"
-            onClick={onConfirm}
-            disabled={loading}
-            aria-busy={loading || undefined}
-            className={cn(
-              "inline-flex min-h-12 items-center justify-center rounded-control px-5 font-semibold text-ink-inverse disabled:opacity-55",
-              destructive ? "bg-danger hover:bg-[#9a1d14]" : "bg-brand-primary hover:bg-brand-primary-hover",
-            )}
-          >
+          <Button onClick={onConfirm} loading={loading} variant={destructive ? "danger" : "primary"}>
             {confirmLabel}
-          </button>
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

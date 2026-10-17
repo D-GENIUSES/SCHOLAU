@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input, NativeSelect, PasswordInput } from "@/components/ui/input";
 
-export function AdminCreateUser({ enabled }: { enabled: boolean }) {
+export function AdminCreateUser({ enabled, onCreated }: { enabled: boolean; onCreated?: () => void }) {
   const busy = useRef(false);
   const [message, setMessage] = useState<{ error: boolean; text: string } | null>(null);
   const form = useForm<AdminUserInput>({ resolver: zodResolver(adminUserSchema), defaultValues: { displayName: "", email: "", password: "", role: "student", requestKey: "" } });
@@ -29,6 +29,7 @@ export function AdminCreateUser({ enabled }: { enabled: boolean }) {
           return;
         }
         setMessage({ error: false, text: `${values.displayName} (${values.email}) has been added as a ${values.role === "lecturer" ? "lecturer" : "student"}. Share the initial password privately. They can change it after signing in.` });
+        onCreated?.();
         form.reset({ displayName: "", email: "", password: "", role: values.role, requestKey: "" });
       } catch {
         setMessage({ error: true, text: "Account creation could not be confirmed. Check whether the account exists before retrying." });
@@ -44,7 +45,7 @@ export function AdminCreateUser({ enabled }: { enabled: boolean }) {
         <Field id="new-user-role" label="Account type" error={errors.role?.message}><NativeSelect {...form.register("role")}><option value="student">Student</option><option value="lecturer">Lecturer</option></NativeSelect></Field>
         <Field id="new-user-name" label="Name" error={errors.displayName?.message}><Input autoComplete="off" maxLength={60} {...form.register("displayName")} /></Field>
         <Field id="new-user-email" label="Email" error={errors.email?.message}><Input type="email" autoComplete="off" {...form.register("email")} /></Field>
-        <Field id="new-user-password" label="Initial password" hint="Use 8–72 characters. Share this password privately with the account owner." error={errors.password?.message}><PasswordInput autoComplete="new-password" maxLength={72} {...form.register("password")} /></Field>
+        <Field id="new-user-password" label="Initial password" hint="Use 8â€“72 characters. Share this password privately with the account owner." error={errors.password?.message}><PasswordInput autoComplete="new-password" maxLength={72} {...form.register("password")} /></Field>
         <p className="text-sm text-ink-muted">This account can sign in immediately. Confirm the email belongs to the intended person before creating it. Students complete their academic details after signing in; lecturers receive direct access to their workspace.</p>
         <Button type="submit" loading={isSubmitting}>Add user</Button>
       </fieldset>
