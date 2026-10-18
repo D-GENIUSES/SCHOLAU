@@ -499,6 +499,8 @@ export interface AdminQuestion extends Envelope {
   version: number;
   status: ContentStatus;
   prompt: string;
+  answer_format: "standard" | "worked_solution";
+  battle_seconds: 10 | 12 | 15 | null;
   difficulty: Difficulty;
   usage: string[];
   source_reference: string | null;

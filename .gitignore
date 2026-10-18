@@ -14,9 +14,9 @@ next-env.d.ts
 .turbo/
 
 # env
-.env
-.env*.local
+.env*
 !.env.example
+!.env.*.example
 
 # supabase local state
 supabase/.temp/
@@ -32,3 +32,10 @@ Thumbs.db
 !.vscode/extensions.json
 .idea/
 coverage/
+
+# local tooling
+__pycache__/
+*.py[cod]
+.venv/
+playwright-report/
+test-results/
