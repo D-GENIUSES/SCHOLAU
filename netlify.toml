@@ -15,3 +15,9 @@
 
 [context.branch-deploy]
   ignore = "exit 0"
+
+[[headers]]
+  for = "/push-sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Service-Worker-Allowed = "/"

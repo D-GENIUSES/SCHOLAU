@@ -24,6 +24,13 @@ Add values through Netlify's environment settings for the production
 deploy context. Never place credentials in `netlify.toml`, GitHub source,
 build commands, or logs. Do not copy local `.env` files into the deploy.
 
+On the free plan, use standard environment variables in the production
+context with all scopes. Netlify requires an upgraded plan for specific
+scopes, and protected secret values cannot use all scopes. The application
+still restricts private credentials to server code. On a plan that supports
+scopes, restrict the variables below to Builds and Functions and mark the
+Supabase server key and R2 credential pair as secret values.
+
 | Variable | Scope | Value/source |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Builds and Functions | Existing hosted Supabase URL |
