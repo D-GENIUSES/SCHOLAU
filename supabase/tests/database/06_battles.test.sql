@@ -33,7 +33,7 @@ create function pg_temp.shift_battle(p_battle uuid, p_by interval) returns void 
   update public.battles set starts_at = starts_at - p_by, ends_at = ends_at - p_by, ready_deadline = ready_deadline - p_by,
          invitation_expires_at = invitation_expires_at - p_by, created_at = created_at - p_by
    where id = p_battle;
-  update public.battle_questions set opened_at = opened_at - p_by, deadline = deadline - p_by where battle_id = p_battle;
+  update public.battle_questions set reading_at = reading_at - p_by, opened_at = opened_at - p_by, deadline = deadline - p_by where battle_id = p_battle;
   update public.battle_answers set received_at=received_at-p_by where battle_id=p_battle;
 $$;
 
@@ -88,8 +88,7 @@ select set_config('t.cd', (public.ready_battle_v1(current_setting('t.b1')::uuid,
 select is(current_setting('t.cd')::jsonb ->> 'state', 'countdown', 'both ready -> countdown');
 select ok(current_setting('t.cd')::jsonb -> 'current_question' = 'null'::jsonb or current_setting('t.cd')::jsonb -> 'current_question' is null,
   'no prompt is revealed during countdown');
-select is(((current_setting('t.cd')::jsonb ->> 'ends_at')::timestamptz - (current_setting('t.cd')::jsonb ->> 'starts_at')::timestamptz),
-  interval '50 seconds', 'schedule uses question-specific durations');
+select ok(((current_setting('t.cd')::jsonb ->> 'ends_at')::timestamptz - (current_setting('t.cd')::jsonb ->> 'starts_at')::timestamptz) >= interval '35 seconds', 'schedule includes reading and answer intervals');
 reset role;
 select is((select count(*)::integer from public.battle_questions where battle_id = current_setting('t.b1')::uuid), 5, 'five questions scheduled up front');
 select is((select count(*)::integer from public.battle_questions bq join public.question_versions qv on qv.id = bq.question_version_id
@@ -99,7 +98,7 @@ select is((select count(distinct qv.question_id)::integer from public.battle_que
            where bq.battle_id = current_setting('t.b1')::uuid), 5, 'no duplicate questions sampled');
 
 -- enter round 1
-select pg_temp.shift_battle(current_setting('t.b1')::uuid, interval '6 seconds');
+select pg_temp.shift_battle(current_setting('t.b1')::uuid, (select opened_at-now()+interval '1 second' from public.battle_questions where battle_id=current_setting('t.b1')::uuid and position=1));
 select set_config('t.q1', (select question_version_id::text from public.battle_questions where battle_id = current_setting('t.b1')::uuid and position = 1), true) is not null as setup;
 select set_config('t.q1_ok', (select correct_option_id::text from private.question_answer_keys where question_version_id = current_setting('t.q1')::uuid), true) is not null as setup;
 select set_config('t.q2opt', (select o.id::text from public.battle_questions bq join public.question_options o on o.question_version_id = bq.question_version_id
@@ -134,7 +133,7 @@ select throws_ok($$insert into public.battle_answers (battle_id, user_id, positi
 reset role;
 
 -- B "disconnects" (never answers); round 1 closes
-select pg_temp.shift_battle(current_setting('t.b1')::uuid, interval '10 seconds');
+select pg_temp.shift_battle(current_setting('t.b1')::uuid, (select deadline-now()+interval '1 second' from public.battle_questions where battle_id=current_setting('t.b1')::uuid and position=1));
 select pg_temp.login(current_setting('t.b')::uuid);
 select throws_ok($$select public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, gen_random_uuid())$$,
   'PT409', 'DEADLINE_PASSED', 'answer after the question deadline rejected');

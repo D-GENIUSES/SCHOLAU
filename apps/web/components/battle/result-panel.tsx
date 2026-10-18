@@ -37,7 +37,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
           <CardTitle as="h2" className="text-2xl">
             {headline?.text ?? "Battle complete"}
           </CardTitle>
-          {battle.course ? <p className="text-ink-muted">{battle.course.code} — {battle.course.title}</p> : null}
+          {battle.courses?.length ? <p className="text-ink-muted">{battle.courses.map((c) => c.code).join(" + ")}</p> : battle.course ? <p className="text-ink-muted">{battle.course.code} — {battle.course.title}</p> : null}
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {voided ? (
@@ -68,6 +68,18 @@ export function ResultPanel({ battle }: { battle: Battle }) {
         </CardFooter>
       </Card>
 
+      {battle.courses && battle.courses.length > 1 && battle.rounds ? (
+        <section aria-label="Results by course" className="grid gap-3 sm:grid-cols-3">
+          {battle.courses.map((course) => {
+            const rounds = battle.rounds!.filter((r) => r.course_code === course.code);
+            return <div key={course.id} className="rounded-xl border border-line bg-surface-card p-4">
+              <p className="font-bold">{course.code}</p>
+              <p className="text-sm">You: {rounds.filter((r) => r.my_is_correct).length}/{rounds.length}</p>
+              <p className="text-sm text-ink-muted">Opponent: {rounds.filter((r) => r.opponent_is_correct).length}/{rounds.length}</p>
+            </div>;
+          })}
+        </section>
+      ) : null}
       <XpProgressCard compact />
       {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify.</p> : null}
       {battle.rounds && battle.rounds.length > 0 ? (
@@ -103,7 +115,7 @@ function RoundRow({ round }: { round: BattleRound }) {
   const mine = round.my_option_id === null ? "none" : round.my_is_correct ? "correct" : "incorrect";
   return (
     <li className="flex flex-col gap-2 rounded-card border border-line bg-surface-card p-4">
-      <p className="text-sm font-semibold text-ink-muted">Question {round.position}</p>
+      <p className="text-sm font-semibold text-ink-muted">Question {round.position}{round.course_code ? ` · ${round.course_code}` : ""}</p>
       <p>{round.prompt}</p>
       <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
         <span>

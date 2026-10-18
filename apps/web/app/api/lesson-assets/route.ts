@@ -1,21 +1,21 @@
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
-import { getServerSupabase } from "@/lib/supabase/server";
+import { getRequestSupabase, allowRequestWrite } from "@/lib/supabase/request";
 import { readPhotoBody } from "@/lib/profile-photo-server";
 import { UUID_PATTERN, validLessonAssetPath } from "@/lib/lesson-asset-path";
 import { ASSET_URL_SECONDS, putLessonAsset, signLessonAsset } from "@/lib/r2-storage";
 
 export const runtime = "nodejs";
 const MAX_BYTES = 5 * 1024 * 1024;
-const headers = { "Cache-Control": "private, no-store", Vary: "Cookie" };
+const headers = { "Cache-Control": "private, no-store", Vary: "Cookie, Authorization" };
 const reply = (message: string, status: number) => NextResponse.json({ message }, { status, headers });
 
 export async function GET(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path") ?? "";
   if (!validLessonAssetPath(path)) return reply("Invalid image path.", 400);
   try {
-    const client = await getServerSupabase();
+    const client = await getRequestSupabase(request);
     const { data: auth, error: authError } = await client.auth.getUser();
     if (authError || !auth.user) return reply("Sign in to view this image.", 401);
     const allowed = await client.rpc("can_read_lesson_asset_v1", { p_path: path });
@@ -30,16 +30,16 @@ export async function GET(request: NextRequest) {
       signedUrl = result.data.signedUrl;
     } else return reply("Image storage is not configured.", 503);
     return NextResponse.json({ signedUrl, expiresIn: ASSET_URL_SECONDS }, { headers });
-  } catch { return reply("Image access is temporarily unavailable.", 503); }
+  } catch (error) { if (error instanceof Error && error.message === "INVALID_BEARER_TOKEN") return reply("Sign in to continue.", 401); return reply("Image access is temporarily unavailable.", 503); }
 }
 
 /** Admin uploads are proxied to enforce the size limit and decode images before storing them. */
 export async function POST(request: NextRequest) {
-  if (request.headers.get("origin") !== request.nextUrl.origin) return reply("Request origin is not allowed.", 403);
+  if (!allowRequestWrite(request)) return reply("Request origin is not allowed.", 403);
   const lessonId = request.nextUrl.searchParams.get("lessonId") ?? "";
   if (!UUID_PATTERN.test(lessonId)) return reply("Choose a valid lesson.", 400);
   try {
-    const client = await getServerSupabase();
+    const client = await getRequestSupabase(request);
     const { data: auth, error: authError } = await client.auth.getUser();
     if (authError || !auth.user) return reply("Sign in to upload an image.", 401);
     const permission = await client.rpc("lesson_asset_upload_course_v1", { p_lesson_id: lessonId });

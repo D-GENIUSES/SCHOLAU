@@ -1,4 +1,3 @@
--- Local fixtures only; never execute against production.
 create extension if not exists pgtap with schema extensions;
 begin;
 select no_plan();
@@ -88,11 +87,19 @@ select ok(current_setting('t.scheduled')::jsonb->'current_question'='null'::json
 reset role;
 select is((select count(*)::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),9,'Requested total is scheduled');
 select is((select count(*)::integer from (select q.course_id,count(*) from public.battle_questions bq join public.question_versions v on v.id=bq.question_version_id join public.questions q on q.id=v.question_id where bq.battle_id=current_setting('t.battle')::uuid group by q.course_id having count(*)=3)x),3,'Question split is balanced across courses');
-select ok((select bool_and(extract(epoch from(deadline-opened_at)) in(10,12,15)) from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Each question has approved duration');
-select ok((select bool_and(opened_at=prior_deadline) from (select opened_at,lag(deadline) over(order by position) prior_deadline from public.battle_questions where battle_id=current_setting('t.battle')::uuid)x where prior_deadline is not null),'Variable-duration rounds are contiguous');
-select is((select extract(epoch from(b.ends_at-b.starts_at))::integer from public.battles b where id=current_setting('t.battle')::uuid),(select sum(extract(epoch from(deadline-opened_at)))::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Battle end is the sum of actual question durations');
+select ok((select bool_and(extract(epoch from(deadline-opened_at)) in(5,8,10,12,15)) from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Each question has approved duration');
+select ok((select bool_and(reading_at=prior_deadline) from (select reading_at,lag(deadline) over(order by position) prior_deadline from public.battle_questions where battle_id=current_setting('t.battle')::uuid)x where prior_deadline is not null),'Variable-duration rounds are contiguous');
+select is((select extract(epoch from(b.ends_at-b.starts_at))::integer from public.battles b where id=current_setting('t.battle')::uuid),(select sum(extract(epoch from(deadline-reading_at)))::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Battle end is the sum of actual question durations');
+select set_config('t.read_shift',(select (reading_at-now()+interval '1 second')::text from public.battle_questions where battle_id=current_setting('t.battle')::uuid and position=1),true);
+update public.battles set starts_at=starts_at-current_setting('t.read_shift')::interval,ends_at=ends_at-current_setting('t.read_shift')::interval where id=current_setting('t.battle')::uuid;
+update public.battle_questions set reading_at=reading_at-current_setting('t.read_shift')::interval,opened_at=opened_at-current_setting('t.read_shift')::interval,deadline=deadline-current_setting('t.read_shift')::interval where battle_id=current_setting('t.battle')::uuid;
+select set_config('t.first_option',(select option_order[1]::text from public.battle_questions where battle_id=current_setting('t.battle')::uuid and position=1),true);
+select pg_temp.social_login(current_setting('t.a')::uuid);
+select ok((public.get_battle_state_v1(current_setting('t.battle')::uuid)->'current_question'->>'prompt') is not null,'Question and options are visible during reading time');
+select throws_ok($$select public.submit_battle_answer_v1(current_setting('t.battle')::uuid,1,current_setting('t.first_option')::uuid,gen_random_uuid())$$,'PT409','INVALID_STATE','Server rejects answers during the reading phase');
+reset role;
 update public.battles set starts_at=starts_at-interval '6 seconds',ends_at=ends_at-interval '6 seconds' where id=current_setting('t.battle')::uuid;
-update public.battle_questions set opened_at=opened_at-interval '6 seconds',deadline=deadline-interval '6 seconds' where battle_id=current_setting('t.battle')::uuid;
+update public.battle_questions set reading_at=reading_at-interval '6 seconds',opened_at=opened_at-interval '6 seconds',deadline=deadline-interval '6 seconds' where battle_id=current_setting('t.battle')::uuid;
 select pg_temp.social_login(current_setting('t.a')::uuid);
 select set_config('t.state_a',public.get_battle_state_v1(current_setting('t.battle')::uuid)::text,true);
 reset role;
@@ -111,6 +118,31 @@ select pg_temp.social_login(current_setting('t.b')::uuid);
 select throws_ok($$select public.friend_action_v1(current_setting('t.a')::uuid,'request')$$,'PT403',null,'Block prevents new requests');
 select throws_ok($$select public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid],5,gen_random_uuid(),current_setting('t.a')::uuid)$$,'PT403',null,'Block prevents directed invitations');
 reset role;
+-- Import validation keeps worked solutions usable in the authoring workflow.
+select pg_temp.social_login(current_setting('t.b')::uuid);
+select set_config('t.import',jsonb_build_array(jsonb_build_object(
+  'course_code','SOCIAL_MATH','logical_question_key','import-worked-001','pool','battle','usage',jsonb_build_array('battle'),
+  'difficulty','beginner','prompt','Solve 2x + 6 = 18.','answer_format','worked_solution','battle_seconds',15,
+  'options',jsonb_build_array(
+    jsonb_build_object('label','A','body','x = 6','steps',jsonb_build_array('2x = 12','x = 12 / 2')),
+    jsonb_build_object('label','B','body','x = 3','steps',jsonb_build_array('x = 18 / 2 - 6')),
+    jsonb_build_object('label','C','body','x = 12','steps',jsonb_build_array('2x = 18 + 6')),
+    jsonb_build_object('label','D','body','x = 15','steps',jsonb_build_array('x = 18 - 6 / 2'))),
+  'correct_option','A','explanation','Subtract 6 and divide by 2.','source_reference','Local test source'))::text,true);
+select is(public.admin_import_questions_v1(current_setting('t.import')::jsonb,true)->>'valid','true','Worked-solution import validates');
+select is(public.admin_import_questions_v1(jsonb_set(current_setting('t.import')::jsonb,'{0,battle_seconds}','9'),true)->>'valid','false','Unsupported times rejected in dry run');
+select is(public.admin_import_questions_v1(jsonb_set(current_setting('t.import')::jsonb,'{0,options,0,steps}','[]'),true)->>'valid','false','Worked option requires calculation steps');
+select is(public.admin_import_questions_v1(jsonb_set(current_setting('t.import')::jsonb,'{0,options,0,steps}','"invalid"'),true)->>'valid','false','Non-array steps rejected without crashing');
+select set_config('t.imported',public.admin_import_questions_v1(current_setting('t.import')::jsonb,false,gen_random_uuid())::text,true);
+select set_config('t.version',current_setting('t.imported')::jsonb#>>'{created,0,question_version_id}',true);
+select is(public.admin_get_question_v1(current_setting('t.version')::uuid)->>'answer_format','worked_solution','Review reads the imported format');
+select is((public.admin_get_question_v1(current_setting('t.version')::uuid)->>'battle_seconds')::integer,15,'Review reads the author timing');
+select is(jsonb_array_length(public.admin_get_question_v1(current_setting('t.version')::uuid)#>'{options,0,steps}'),2,'Review reads imported calculation steps');
+reset role;
+select private.publish_question_version(current_setting('t.version')::uuid,current_setting('t.b')::uuid);
+select is(private.battle_question_seconds(current_setting('t.version')::uuid),15,'Scheduling respects reviewer time override');
+select ok(exists(select 1 from private.outbox where event='friends_changed' and topic='user:'||current_setting('t.a')),'Friend changes enqueue a private user signal');
+select ok(exists(select 1 from private.outbox where event='battle_invitation' and topic='user:'||current_setting('t.b')),'Invitation enqueues a private user signal');
 select finish();
 rollback;
 

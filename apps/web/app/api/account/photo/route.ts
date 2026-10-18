@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isApiError } from "@scholau/api";
-import { getServerApi, getServerSupabase } from "@/lib/supabase/server";
+import { createScholauApi } from "@scholau/api";
+import { getRequestSupabase, allowRequestWrite } from "@/lib/supabase/request";
 import { cropSchema, MAX_PHOTO_BYTES, normalizeProfilePhoto, PhotoInputError } from "@/lib/profile-photo-image";
 import { getPhotoWriter, readPhotoBody } from "@/lib/profile-photo-server";
 
@@ -8,12 +9,12 @@ export const runtime = "nodejs";
 const reply = (message: string, status: number) => NextResponse.json({ message }, { status, headers: { "Cache-Control": "no-store" } });
 
 async function change(request: NextRequest, remove: boolean) {
-  if (request.headers.get("origin") !== request.nextUrl.origin) return reply("Request origin is not allowed.", 403);
+  if (!allowRequestWrite(request)) return reply("Request origin is not allowed.", 403);
   try {
-    const client = await getServerSupabase();
+    const client = await getRequestSupabase(request);
     const { data, error } = await client.auth.getUser();
     if (error || !data.user) return reply("Sign in to change your photo.", 401);
-    const profile = await (await getServerApi()).getMyProfile();
+    const profile = await createScholauApi(client).getMyProfile();
     if (profile.id !== data.user.id) return reply("Account access required.", 403);
     const writer = getPhotoWriter();
     if (!writer) return reply("Photo uploads are not configured on this server yet.", 503);
@@ -49,6 +50,7 @@ async function change(request: NextRequest, remove: boolean) {
     }
     return NextResponse.json({ avatarPath: result.data.avatar_path }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_BEARER_TOKEN") return reply("Sign in to continue.", 401);
     if (error instanceof PhotoInputError) return reply(error.message, 400);
     if (error instanceof Error && error.message === "BODY_TOO_LARGE") return reply("Choose a photo up to 5 MB.", 413);
     if (error instanceof SyntaxError) return reply("The request is invalid. Try selecting your photo again.", 400);

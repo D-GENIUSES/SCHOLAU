@@ -11,7 +11,7 @@ create function pg_temp.login(p_user uuid) returns void language plpgsql as $$ b
   perform set_config('request.jwt.claim.sub',p_user::text,true); perform set_config('role','authenticated',true);
 end $$;
 select set_config('t.uni',(select id::text from public.universities where slug='adeleke-university-ede-osun-state'),true) is not null as setup;
-select set_config('t.faculty',(select id::text from public.faculties where university_id=current_setting('t.uni')::uuid and name='Computing Sciences'),true) is not null as setup;
+select set_config('t.faculty',(select id::text from public.faculties where university_id=current_setting('t.uni')::uuid and name='Faculty of Science'),true) is not null as setup;
 select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computer Science'),true) is not null as setup;
 select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
 select set_config('t.first',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;

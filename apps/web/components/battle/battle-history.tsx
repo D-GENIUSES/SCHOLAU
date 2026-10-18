@@ -65,7 +65,7 @@ function HistoryRow({ item }: { item: BattleHistoryItem }) {
       <div className="flex min-w-0 flex-1 flex-col gap-1.5">
         <div className="flex flex-wrap items-center gap-2">
           <OutcomeBadge outcome={item.outcome} />
-          <span className="font-semibold">{item.course.code}</span>
+          <span className="font-semibold">{item.courses?.map((c) => c.code).join(" + ") ?? item.course.code}</span>
           <span className="text-sm text-ink-muted">{formatDate(item.created_at)}</span>
         </div>
         <p className="truncate text-sm text-ink-muted">

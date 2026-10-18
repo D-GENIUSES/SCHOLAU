@@ -37,7 +37,7 @@ export default function InvitePage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          {preview.data ? <p className="font-semibold">{preview.data.courses.join(" + ")} · {preview.data.round_count} questions · 10–15 seconds each</p> : null}
+          {preview.data ? <p className="font-semibold">{preview.data.courses.join(" + ")} · {preview.data.round_count} questions · Reading time, then 5–15 seconds each</p> : null}
           <InlineError error={preview.error} />
           <BattleRulesList />
           <p className="text-sm text-ink-muted">Invitations last 5 minutes. Battles are unlimited — there&apos;s no daily quota.</p>

@@ -85,3 +85,6 @@ enabled = false
 
 [analytics]
 enabled = false
+
+[functions.push-delivery]
+verify_jwt = false # Dedicated x-push-worker-secret verified inside the handler.

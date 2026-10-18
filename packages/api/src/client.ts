@@ -161,6 +161,16 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
         p_notification_id: a.notificationId ?? null,
         p_all: a.all ?? false,
       }),
+    getNotificationSettings: () => rpc<T.NotificationSettingsResult>("get_notification_preferences_v1"),
+    updateNotificationPreferences: (preferences: T.NotificationPreferences) =>
+      rpc<T.NotificationSettingsResult>("update_notification_preferences_v1", { p_preferences: preferences }),
+    getAnnouncementAudiences: () => rpc<T.AnnouncementAudienceResult>("get_announcement_audiences_v1"),
+    previewAnnouncement: (a: { audience: T.AnnouncementInput["audience"]; audienceId: string | null }) =>
+      rpc<T.Envelope & { recipient_count: number }>("preview_announcement_v1", { p_audience: a.audience, p_audience_id: a.audienceId }),
+    sendAnnouncement: (a: T.AnnouncementInput) => rpc<T.AnnouncementReceipt>("send_announcement_v1", {
+      p_title: a.title, p_body: a.body, p_target: a.target, p_audience: a.audience, p_audience_id: a.audienceId, p_request_key: a.requestKey,
+    }),
+    getPushHealth: () => rpc<T.PushHealth>("admin_push_health_v1"),
     listNotifications: (limit = 30) =>
       select<T.Notification[]>(
         supabase

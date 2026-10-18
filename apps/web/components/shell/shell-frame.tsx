@@ -17,7 +17,7 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
       <Flame className="size-4" fill={streak.active_today ? "currentColor" : "none"} aria-hidden />
       <span key={streak.current} className="streak-count">{streak.current}</span>
     </span> : null}
-    <Link href="/notifications" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}><Bell className="size-5" aria-hidden />{unread > 0 ? <span aria-hidden className="notification-dot" /> : null}</Link>
+    <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}><Bell className="size-5" aria-hidden />{unread > 0 ? <span aria-hidden className="notification-dot" /> : null}</Link>
     <Link href="/profile" className="inline-flex shrink-0 rounded-full" aria-label={`${displayName || "Your"} profile`}><Avatar name={displayName} path={avatarPath} size={40} /></Link>
   </>;
   return <div className="student-shell">

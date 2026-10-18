@@ -8,7 +8,7 @@ catalog jsonb; overview jsonb; actual integer; option1 uuid; option2 uuid;
 results jsonb := '[]'::jsonb;
 begin
 select id into strict u from public.universities where slug='adeleke-university-ede-osun-state';
-select id into strict f from public.faculties where university_id=u and name='Computing Sciences';
+select id into strict f from public.faculties where university_id=u and name='Faculty of Science';
 select id into strict p from public.academic_periods where university_id=u and label='2026/2027';
 
 if exists(

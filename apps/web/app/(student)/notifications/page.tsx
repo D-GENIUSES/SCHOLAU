@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { NotificationsView } from "./notifications-view";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "Notifications" };
-
+/** The bell and old inbox links share the same inbox and device activation screen. */
 export default function NotificationsPage() {
-  return <NotificationsView />;
+  redirect("/notification-settings");
 }

@@ -15,13 +15,13 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
     <fieldset disabled={disabled}>
       <legend className="mb-4 whitespace-pre-wrap text-lg font-bold text-ink">{question.prompt}</legend>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
-      <div className={worked ? "grid grid-cols-1 gap-3 sm:grid-cols-2" : "grid grid-cols-1 gap-3"}>
+      <div className={worked ? "grid grid-cols-2 gap-2 sm:gap-3" : "grid grid-cols-1 gap-3"}>
         {question.options.map((option, index) => {
           const checked = selected === option.id;
           return (
             <label key={option.id} className={cn(
-              "relative flex min-w-0 cursor-pointer gap-3 border-2 p-4 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
-              worked ? "min-h-44 flex-col rounded-2xl" : "min-h-16 items-center rounded-xl sm:rounded-full sm:px-6",
+              "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
+              worked ? "min-h-40 flex-col rounded-2xl p-3 sm:min-h-44 sm:p-4" : "min-h-16 items-center rounded-xl p-4 sm:rounded-full sm:px-6",
               checked ? "border-brand-primary bg-surface-tint" : "border-line bg-surface-card hover:border-brand-primary",
               disabled && "cursor-default",
             )}>
@@ -32,7 +32,7 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-3 break-words">
                 {worked && option.steps?.length ? (
-                  <span className="flex flex-col gap-2 font-mono text-sm leading-relaxed">
+                  <span className="flex flex-col gap-2 font-mono text-xs leading-relaxed sm:text-sm">
                     {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap">{step}</span>)}
                   </span>
                 ) : null}

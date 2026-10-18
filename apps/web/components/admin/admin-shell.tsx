@@ -3,6 +3,7 @@
 import {
   ArrowLeft,
   BadgeCheck,
+  Bell,
   ClipboardCheck,
   Flag,
   GraduationCap,
@@ -22,6 +23,8 @@ import { Badge } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
 
 export const adminNav = [
+  { href: "/notification-settings", label: "Notifications", icon: Bell },
+  { href: "/admin/announcements", label: "Announcements", icon: Flag },
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/users", label: "Users", icon: UserPlus },
   { href: "/admin/lecturer-applications", label: "Lecturer applications", icon: GraduationCap },

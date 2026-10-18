@@ -33,7 +33,7 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
   }
   // Applicants and approved lecturers never enter the student onboarding pipeline.
   // Admins retain their existing access; account roles are read fresh from the database.
-  if (!profile.roles.includes("admin") && !nextPath.startsWith("/lecturer")) {
+  if (!profile.roles.includes("admin") && !nextPath.startsWith("/lecturer") && !nextPath.startsWith("/notification-settings") && !nextPath.startsWith("/notification-open/")) {
     if (profile.roles.includes("lecturer")) redirect("/lecturer");
     if (!profile.roles.includes("student")) redirect("/lecturer/application");
   }
