@@ -1,5 +1,6 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { newRequestKey } from "@scholau/api";
 import type { LecturerApplication, LecturerApplicationStatus, LecturerOffering } from "@scholau/core";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -15,19 +16,28 @@ import { DataTable } from "@/components/admin/data-table";
 
 const labels = { pending: "Pending review", changes_requested: "Changes requested", approved: "Approved", rejected: "Rejected" };
 export function AdminLecturerApplications() {
-  const [items,setItems]=useState<LecturerApplication[]>([]),[total,setTotal]=useState(0),[pending,setPending]=useState(0);
   const [status,setStatus]=useState<LecturerApplicationStatus|"">("pending"),[search,setSearch]=useState(""),[query,setQuery]=useState(""),[page,setPage]=useState(0);
   const [selected,setSelected]=useState<LecturerApplication|null>(null),[offerings,setOfferings]=useState<LecturerOffering[]>([]),[offeringIds,setOfferingIds]=useState<string[]>([]),[offeringSearch,setOfferingSearch]=useState("");
-  const [loading,setLoading]=useState(true),[busy,setBusy]=useState(false),[detailLoading,setDetailLoading]=useState(false),[error,setError]=useState<string|null>(null),[notice,setNotice]=useState<string|null>(null);
+  const [busy,setBusy]=useState(false),[detailLoading,setDetailLoading]=useState(false),[error,setError]=useState<string|null>(null),[notice,setNotice]=useState<string|null>(null);
   const [decision,setDecision]=useState<Exclude<LecturerApplicationStatus,'pending'>>('approved'),[message,setMessage]=useState(''),[note,setNote]=useState('');
-  const requestKey=useRef<string|null>(null), generation=useRef(0), detailGeneration=useRef(0);
-  const load=useCallback(async()=>{const gen=++generation.current;setLoading(true);setError(null);try{const r=await lecturerApi(getBrowserSupabase()).list(status||null,query,page*20);if(gen!==generation.current)return;setItems(r.items);setTotal(r.total);setPending(r.pending_count)}catch(e){if(gen===generation.current)setError(registrationError(e))}finally{if(gen===generation.current)setLoading(false)}},[status,query,page]);
-  useEffect(()=>{void load();return()=>{generation.current++}},[load]);
+  const requestKey=useRef<string|null>(null), detailGeneration=useRef(0);
+  const applications = useQuery({
+    queryKey: ["admin", "lecturer-applications", status, query, page],
+    queryFn: () => lecturerApi(getBrowserSupabase()).list(status || null, query, page * 20),
+    retry: false,
+    staleTime: 0,
+  });
+  const items = applications.data?.items ?? [];
+  const total = applications.data?.total ?? 0;
+  const pending = applications.data?.pending_count ?? 0;
+  const loading = applications.isFetching;
+  const displayError = error ?? (applications.isError ? registrationError(applications.error) : null);
+  const load = () => applications.refetch();
   const open=async(id:string)=>{const gen=++detailGeneration.current;setDetailLoading(true);setSelected(null);setError(null);setNotice(null);try{const api=lecturerApi(getBrowserSupabase());const [r,o]=await Promise.all([api.detail(id),api.offerings()]);if(gen!==detailGeneration.current)return;setSelected(r.application);setOfferings(o.items);setOfferingIds(r.application.assigned_offering_ids);setDecision('approved');setMessage('');setNote('');requestKey.current=null}catch(e){if(gen===detailGeneration.current)setError(registrationError(e))}finally{if(gen===detailGeneration.current)setDetailLoading(false)}};
   const submit=async(e:React.FormEvent)=>{e.preventDefault();if(!selected||busy)return;if(selected.status==='pending'&&decision==='approved'&&!selected.email_verified){setError('The applicant must verify their email before approval.');return}if(!window.confirm(selected.status==='approved'?'Save these course assignments?':decision==='approved'?'Approve this application and activate lecturer access?':`Send this ${decision==='rejected'?'rejection':'request for changes'} to the applicant?`))return;setBusy(true);setError(null);requestKey.current??=newRequestKey();try{const api=lecturerApi(getBrowserSupabase());const r=selected.status==='approved'?await api.assign(selected.id,offeringIds,selected.revision,requestKey.current):await api.review({id:selected.id,decision,message,internalNote:note,offeringIds,revision:selected.revision,requestKey:requestKey.current});setSelected(r.application);setNotice('Application saved. The applicant sees the updated status when they sign in or refresh.');requestKey.current=null;await load()}catch(e){setError(registrationError(e))}finally{setBusy(false)}};
   return <>
     <PageHeader eyebrow="People & access" title="Lecturer applications" description={`${pending} pending · Review teaching affiliations before activating lecturer access.`} />
-    {error?<Alert tone="error" role="alert" action={<Button variant="outline" onClick={()=>{void load();if(selected)void open(selected.id)}}>Refresh</Button>}>{error}</Alert>:null}
+    {displayError?<Alert tone="error" role="alert" action={<Button variant="outline" onClick={()=>{void load();if(selected)void open(selected.id)}}>Refresh</Button>}>{displayError}</Alert>:null}
     {notice?<Alert tone="success" role="status">{notice}</Alert>:null}
     <form className="my-5 flex flex-wrap items-end gap-3" onSubmit={e=>{e.preventDefault();setQuery(search.trim());setPage(0);setSelected(null)}}>
       <Field id="application-search" label="Search applicants"><Input value={search} maxLength={200} onChange={e=>setSearch(e.target.value)} placeholder="Name, email or university" /></Field>
