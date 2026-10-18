@@ -5,10 +5,10 @@ import { allowRequestWrite, isSameOriginRequest } from "./request-auth.ts";
 test("cookie writes use the configured HTTPS origin behind a hosting adapter", () => {
   const previous = process.env.NEXT_PUBLIC_SITE_URL;
   try {
-    process.env.NEXT_PUBLIC_SITE_URL = "https://scholau-staging.netlify.app";
+    process.env.NEXT_PUBLIC_SITE_URL = "https://scholau.vercel.app";
     const internal = "http://internal-function:3000/api/admin/users";
-    assert.equal(isSameOriginRequest(new Request(internal, { headers: { origin: "https://scholau-staging.netlify.app" } })), true);
-    for (const origin of ["https://attacker.example", "https://scholau-staging.netlify.app.attacker.example", "http://scholau-staging.netlify.app", "null"]) {
+    assert.equal(isSameOriginRequest(new Request(internal, { headers: { origin: "https://scholau.vercel.app" } })), true);
+    for (const origin of ["https://attacker.example", "https://scholau.vercel.app.attacker.example", "http://scholau.vercel.app", "null"]) {
       assert.equal(allowRequestWrite(new Request(internal, { headers: { origin } })), false);
     }
     assert.equal(isSameOriginRequest(new Request(internal)), false);

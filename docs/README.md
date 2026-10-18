@@ -10,7 +10,7 @@ The [main README](../README.md) covers installation and development commands. Th
 | [Social battles](features/social-battles.md) | Battle rules and access. |
 | [XP](features/xp.md) | Progress and rewards. |
 | [R2 storage](operations/r2-storage.md) | Configuration, asset copy, and rollback. |
-| [Netlify hosting](operations/netlify.md) | Staging deployment, environment, release gates, and domain cutover. |
+| [Vercel hosting](operations/vercel.md) | GitHub import, automatic deployments, environment, and release checks. |
 
 [Academic catalogues and sources](../supabase/curricula/README.md) remain alongside their data. [Contributing](../CONTRIBUTING.md) and [security](../SECURITY.md) documents live at the root for GitHub discovery.
 
