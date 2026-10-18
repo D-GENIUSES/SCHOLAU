@@ -602,3 +602,15 @@ export function useBattleInvitePreview(token: string) {
   const api = useScholauApi();
   return useQuery({ queryKey: ["scholau", "social", "preview", token], queryFn: () => api.getBattleInvitePreview(token), retry: shouldRetry });
 }
+
+
+export function useNotificationSettings() {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "notification-settings"], queryFn: () => api.getNotificationSettings(), retry: shouldRetry });
+}
+export function useUpdateNotificationPreferences() {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (preferences: T.NotificationPreferences) => api.updateNotificationPreferences(preferences),
+    onSuccess: (result) => qc.setQueryData(["scholau", "notification-settings"], result) });
+}

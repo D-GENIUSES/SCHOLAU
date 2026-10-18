@@ -12,12 +12,12 @@ select is(
 select is(
   (select count(*)::integer from pg_class c join pg_namespace n on n.oid = c.relnamespace
    where c.relkind in ('r', 'p') and n.nspname = 'public'),
-  43, 'public schema includes lecturer applications and course assignments');
+  46, 'public schema includes lecturer applications, course assignments and social battles');
 
 select is(
   (select count(*)::integer from pg_class c join pg_namespace n on n.oid = c.relnamespace
    where c.relkind in ('r', 'p') and n.nspname = 'private'),
-  18, 'private schema includes confidential reviews, managed accounts and profile photos');
+  25, 'private schema includes confidential reviews, managed accounts, profile photos and push delivery');
 
 select ok(not has_schema_privilege('anon', 'private', 'usage'), 'anon has no usage on private');
 select ok(not has_schema_privilege('authenticated', 'private', 'usage'), 'authenticated has no usage on private');

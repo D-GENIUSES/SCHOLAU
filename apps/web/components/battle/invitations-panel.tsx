@@ -19,7 +19,7 @@ export function InvitationsPanel() {
         {invitations.data.invitations.map((invite) => <div key={invite.battle_id} className="flex flex-wrap items-center gap-3 rounded-xl border border-line p-4">
           <div className="min-w-0 flex-1"><p className="font-bold">{invite.display_name} challenges you</p>
             <p className="text-sm">{invite.courses.join(" + ")} · {invite.round_count} questions</p>
-            <p className="text-xs text-ink-muted">10–15 seconds per question · up to {Math.ceil(invite.round_count * 15 / 60)} minutes</p>
+            <p className="text-xs text-ink-muted">Reading time, then 5–15 seconds per question · up to {Math.ceil(invite.round_count * 27 / 60)} minutes</p>
           </div>
           <Button disabled={accept.isPending || decline.isPending} onClick={() => accept.mutate({ inviteToken: invite.invite_token }, { onSuccess: (battle) => router.push(`/battles/${battle.battle_id}`) })}>Accept</Button>
           <Button variant="outline" disabled={accept.isPending || decline.isPending} onClick={() => decline.mutate(invite.battle_id)}>Decline</Button>

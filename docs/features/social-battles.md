@@ -26,11 +26,11 @@ explanation and admin review requirements still apply.
 Additional fields:
 
 - `answer_format`: `standard` (default) or `worked_solution`.
+- `battle_reading_seconds`: optional 2–12 seconds to read before answering. By default, word count estimates this interval at four words per second, bounded to 2–12 seconds. The question and options are visible, but answers are disabled and rejected server-side until `opened_at`.
 - `options[].steps`: up to six short calculation steps (240 characters each).
   Required on every worked-solution option; put the final answer in `body`.
-- `battle_seconds`: optional 10, 12 or 15. Without an override, total prompt,
-  option and step length determines a suggested duration. Worked solutions
-  receive at least 12 seconds automatically. A reviewer should explicitly
+- `battle_seconds`: optional 5, 8, 10, 12 or 15 seconds to answer. Without an override, difficulty, format, total prompt, option and step length determine a suggested duration.
+  Short beginner recognition questions receive 5 seconds. Worked solutions receive at least 10 seconds automatically. A reviewer should explicitly
   choose 15 seconds for questions needing extra reasoning.
 
 Example structure (illustrative only; no production question is created):
@@ -64,7 +64,7 @@ or reserved for practice if they cannot be read comfortably in 15 seconds.
 
 ## Timing and redaction
 
-All rounds are scheduled by the server with each question's duration. Both
+All rounds are scheduled by the server with separate reading and response intervals for each question. Both
 players share the same prompts, shuffled options and deadlines. Published
 versions are immutable; the battle's selected versions and deadlines persist
 through reconnection. Payloads expose only the current question and its steps;

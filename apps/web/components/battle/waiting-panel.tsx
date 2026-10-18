@@ -60,7 +60,7 @@ export function WaitingPanel({
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <p className="font-semibold">{battle.round_count} questions · 10–15 seconds per question</p>
+        <p className="font-semibold">{battle.round_count} questions · Reading time, then 5–15 seconds per question</p>
         {battle.invite_token ? (
           <>
             <Field id="invite-link" label="Invitation link" hint={battle.invited_user_id ? "Only your invited friend can accept this link." : "An enrolled classmate with this link can accept. It works once."}>

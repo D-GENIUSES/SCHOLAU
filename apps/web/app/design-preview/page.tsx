@@ -1,3 +1,4 @@
+import { AnswerOptionsPreview } from "@/components/battle/answer-options-preview";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { HomeSummary } from "@scholau/api";
@@ -9,6 +10,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
   if (state === "streak") return <FirstLessonPreview />;
+  if (state === "battle-options") return <AnswerOptionsPreview />;
   const now = new Date();
   const summary: HomeSummary = {
     server_time: now.toISOString(), display_name: "Learner", needs_onboarding: false, xp_total: 1040,

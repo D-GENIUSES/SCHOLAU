@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { ArrowLeft, ArrowRight, Building2, ChevronRight, GraduationCap } from "lucide-react";
 import type { AdminOfferingRow } from "@scholau/api";
-import { useAdminOfferings } from "@scholau/api/react";
+import { useAdminOfferings, useScholauApi } from "@scholau/api/react";
 import { formatDate } from "@scholau/core";
 import { type Column, DataTable } from "@/components/admin/data-table";
 import { PublishActions } from "@/components/admin/publish-actions";
@@ -27,6 +28,16 @@ const defaults = (scope: string): Filters => ({ scope, search: "", level: "", se
 
 function OfferingsBrowser() {
   const query = useAdminOfferings();
+  const api = useScholauApi();
+  const catalogue = useQuery({
+    queryKey: ["admin", "faculty-catalogue"],
+    queryFn: async () => {
+      const { data, error } = await api.supabase.from("faculties")
+        .select("id,name,university:universities(name),departments(id,name)").order("name");
+      if (error) throw error;
+      return data as unknown as { id: string; name: string; university: { name: string } | null; departments: { id: string; name: string }[] }[];
+    },
+  });
   const pathname = usePathname();
   const params = useSearchParams();
   const faculty = params.get("faculty");
@@ -47,6 +58,9 @@ function OfferingsBrowser() {
 
   const rows = query.data ?? [];
   const facultyMap = new Map<string, { id: string; name: string; university: string; rows: AdminOfferingRow[] }>();
+  for (const item of catalogue.data ?? []) {
+    facultyMap.set(item.id, { id: item.id, name: item.name, university: item.university?.name ?? "Institution unavailable", rows: [] });
+  }
   for (const row of rows) {
     const id = facultyId(row);
     const item = facultyMap.get(id) ?? { id, name: row.department?.faculty?.name ?? "Faculty unavailable", university: row.department?.faculty?.university?.name ?? "Institution unavailable", rows: [] };
@@ -55,6 +69,9 @@ function OfferingsBrowser() {
   const faculties = [...facultyMap.values()].sort((a, b) => compare(a.university, b.university) || compare(a.name, b.name));
   const selectedFaculty = faculty ? facultyMap.get(faculty) : undefined;
   const departmentMap = new Map<string, { id: string; name: string; rows: AdminOfferingRow[] }>();
+  for (const item of catalogue.data?.find(item => item.id === faculty)?.departments ?? []) {
+    departmentMap.set(item.id, { ...item, rows: [] });
+  }
   for (const row of selectedFaculty?.rows ?? []) {
     const id = departmentId(row);
     const item = departmentMap.get(id) ?? { id, name: row.department?.name ?? "Department unavailable", rows: [] };
@@ -87,14 +104,15 @@ function OfferingsBrowser() {
       {department && <><li aria-hidden><ChevronRight className="size-4 text-ink-muted" /></li><li><span aria-current="page">{selectedDepartment?.name ?? "Department"}</span></li></>}
     </ol></nav>
     {notice && <Alert tone="success" role="status" className="mb-6" action={<Button variant="link" onClick={() => setNotice(null)}>Dismiss</Button>}>{notice}</Alert>}
-    {query.isPending ? <LoadingState label="Loading offerings..." /> : query.isError ? <AdminErrorState error={query.error} onRetry={() => void query.refetch()} /> : !rows.length ? <EmptyState title="No offerings yet" description="Course offerings are created by the content seed or database migrations." /> : (faculty && !selectedFaculty) || (department && (!faculty || !selectedDepartment)) ? <EmptyState title="This location is unavailable" description="The faculty or department could not be found in the current offerings." action={<Button asChild><Link href={destination()}>Browse faculties</Link></Button>} /> : !faculty ? <section aria-labelledby="faculties-title">
+    {query.isPending || catalogue.isPending ? <LoadingState label="Loading offerings..." /> : query.isError ? <AdminErrorState error={query.error} onRetry={() => void query.refetch()} /> : catalogue.isError ? <AdminErrorState error={catalogue.error} onRetry={() => void catalogue.refetch()} /> : !faculties.length ? <EmptyState title="No faculties yet" description="Course offerings are created by the content seed or database migrations." /> : (faculty && !selectedFaculty) || (department && (!faculty || !selectedDepartment)) ? <EmptyState title="This location is unavailable" description="The faculty or department could not be found in the current offerings." action={<Button asChild><Link href={destination()}>Browse faculties</Link></Button>} /> : !faculty ? <section aria-labelledby="faculties-title">
       <div className="mb-5"><h2 id="faculties-title" className="text-xl font-bold">Choose a faculty</h2><p className="mt-1 text-sm text-ink-muted">{faculties.length} faculties · {rows.length} offerings. Open a faculty to see its departments.</p></div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{faculties.map(item => <Link key={item.id} href={destination(item.id)} className="group flex min-w-0 flex-col gap-4 rounded-card border border-line bg-surface-card p-5 shadow-card transition-colors hover:border-brand-primary">
-        <div className="flex items-start justify-between gap-3"><Building2 className="size-6 shrink-0 text-brand-primary" aria-hidden /><ArrowRight className="size-5 shrink-0 text-ink-muted group-hover:text-brand-primary" aria-hidden /></div><div><h3 className="text-lg font-bold">{item.name}</h3><p className="mt-1 text-sm text-ink-muted">{item.university}</p></div><p className="mt-auto text-sm font-semibold">{new Set(item.rows.map(departmentId)).size} departments · {item.rows.length} offerings</p>
+        <div className="flex items-start justify-between gap-3"><Building2 className="size-6 shrink-0 text-brand-primary" aria-hidden /><ArrowRight className="size-5 shrink-0 text-ink-muted group-hover:text-brand-primary" aria-hidden /></div><div><h3 className="text-lg font-bold">{item.name}</h3><p className="mt-1 text-sm text-ink-muted">{item.university}</p></div><p className="mt-auto text-sm font-semibold">{new Set([...(catalogue.data?.find(entry => entry.id === item.id)?.departments.map(entry => entry.id) ?? []), ...item.rows.map(departmentId)]).size} departments · {item.rows.length} offerings</p>
       </Link>)}</div>
     </section> : !department ? <section aria-labelledby="departments-title">
       <Link href={destination()} className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />All faculties</Link>
       <div className="mb-5"><p className="text-sm text-ink-muted">{selectedFaculty?.university}</p><h2 id="departments-title" className="text-xl font-bold">{selectedFaculty?.name}</h2><p className="mt-1 text-sm text-ink-muted">Choose one of {departments.length} departments to view its courses.</p></div>
+      {!departments.length && <EmptyState title="No departments yet" description="Departments and course offerings have not been added to this faculty yet." />}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{departments.map(item => <Link key={item.id} href={destination(faculty, item.id)} className="group flex min-w-0 items-start gap-4 rounded-card border border-line bg-surface-card p-5 shadow-card transition-colors hover:border-brand-primary"><GraduationCap className="mt-1 size-6 shrink-0 text-brand-primary" aria-hidden /><div className="min-w-0 flex-1"><h3 className="text-lg font-bold">{item.name}</h3><p className="mt-2 text-sm text-ink-muted">{item.rows.length} offerings · {new Set(item.rows.map(row => row.level?.id).filter(Boolean)).size} levels</p><p className="mt-2 text-sm font-semibold text-brand-primary">View course offerings</p></div><ArrowRight className="mt-1 size-5 shrink-0 text-ink-muted" aria-hidden /></Link>)}</div>
     </section> : <section aria-labelledby="department-offerings-title">
       <Link href={destination(faculty ?? undefined)} className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Back to departments</Link>

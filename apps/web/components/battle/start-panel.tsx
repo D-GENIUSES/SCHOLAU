@@ -59,7 +59,7 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
             {[5, 10, 15, 20, 25, 30].map((count) => <option key={count} value={count}>{count} questions</option>)}
           </NativeSelect>
         </label>
-        <p className="text-sm text-ink-muted">About {Math.ceil(questionCount * 10 / 60)}–{Math.ceil(questionCount * 15 / 60)} minutes. Questions are balanced across the selected courses; both players get the same set.</p>
+        <p className="text-sm text-ink-muted">About {Math.ceil(questionCount * 7 / 60)}–{Math.ceil(questionCount * 27 / 60)} minutes, including reading time. Questions are balanced across the selected courses; both players get the same set.</p>
         {setup.isSuccess && scope.length > 0 && !available ? <Alert tone="info" title="Questions are on their way">This selection needs more published battle questions. It becomes available as soon as enough questions are published.</Alert> : null}
         <Button disabled={busy || !available} loading={direct.isPending} onClick={() => direct.mutate({ offeringId: selected[0]!, offeringIds: selected, questionCount, friendId: friendId || null }, { onSuccess: (battle) => router.push(`/battles/${battle.battle_id}`) })}>{friendId ? "Send battle invitation" : "Create invitation link"}</Button>
         {!friendId ? <Button variant="outline" disabled={busy || scope.length !== 1 || scope[0]!.available_questions < 5} loading={queue.isPending}

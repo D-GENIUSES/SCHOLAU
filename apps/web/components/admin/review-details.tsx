@@ -170,7 +170,7 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
       </div>
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">Options</h3>
-        <p className="text-sm text-ink-muted">{d.answer_format === "worked_solution" ? "Worked solutions" : "Standard options"} · {d.battle_seconds ? `${d.battle_seconds} seconds` : "Automatic battle timing (10–15 seconds)"}</p>
+        <p className="text-sm text-ink-muted">{d.answer_format === "worked_solution" ? "Worked solutions" : "Standard options"} · {d.battle_reading_seconds ?? d.suggested_reading_seconds ?? "Auto"} seconds to read · {d.battle_seconds ?? d.suggested_answer_seconds ?? "Auto"} seconds to answer</p>
         {d.correct_option_id === null ? (
           <Alert tone="error" title="No answer key" className="mt-2">
             This version has no correct option recorded. It can&apos;t be published.

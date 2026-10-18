@@ -126,7 +126,10 @@ $$;
 create trigger profile_friend_handle after insert on public.profiles for each row execute function private.create_friend_handle();
 
 alter table public.question_versions add column answer_format text not null default 'standard' check(answer_format in('standard','worked_solution'));
-alter table public.question_versions add column battle_seconds smallint check(battle_seconds in(10,12,15));
+alter table public.question_versions add column battle_seconds smallint check(battle_seconds in(5,8,10,12,15));
+alter table public.question_versions add column battle_reading_seconds smallint check(battle_reading_seconds between 2 and 12);
+alter table public.battle_questions add column reading_at timestamptz;
+alter table public.battle_questions add constraint battle_reading_precedes_answer check(reading_at is null or reading_at<=opened_at);
 alter table public.question_options add column steps text[] not null default '{}';
 alter table public.battles add column invited_user_id uuid references public.profiles(id) on delete set null;
 create index battle_invitations_recipient on public.battles(invited_user_id,invitation_expires_at) where state='waiting';
@@ -149,14 +152,28 @@ begin insert into public.battle_courses values(new.id,new.offering_id,1); return
 $$;
 create trigger battle_default_course after insert on public.battles for each row execute function private.default_battle_course();
 
-create function private.battle_question_seconds(p_version_id uuid) returns integer
+create or replace function private.battle_question_seconds(p_version_id uuid) returns integer
 language sql stable set search_path='' as $$
-  select coalesce(qv.battle_seconds,case
-    when length(qv.prompt)+coalesce((select sum(length(o.body)+length(array_to_string(o.steps,' '))) from public.question_options o where o.question_version_id=qv.id),0)>360 then 15
-    when qv.answer_format='worked_solution' or length(qv.prompt)+coalesce((select sum(length(o.body)) from public.question_options o where o.question_version_id=qv.id),0)>180 then 12
-    else 10 end)::integer
-  from public.question_versions qv where qv.id=p_version_id
+  with content as (
+    select v.*,length(v.prompt)+coalesce((select sum(length(o.body)+length(array_to_string(o.steps,' ')))
+      from public.question_options o where o.question_version_id=v.id),0) as chars
+    from public.question_versions v where v.id=p_version_id
+  )
+  select coalesce(battle_seconds,case
+    when difficulty='advanced' or chars>360 then 15
+    when answer_format='worked_solution' and (difficulty='intermediate' or chars>180) then 12
+    when answer_format='worked_solution' or difficulty='intermediate' then 10
+    when chars>160 then 8
+    else 5 end)::integer from content
 $$;
+
+create function private.battle_reading_seconds(p_version_id uuid) returns integer
+language sql stable set search_path='' as $$
+  select coalesce(v.battle_reading_seconds,least(12,greatest(2,ceil(cardinality(regexp_split_to_array(btrim(v.prompt||' '||coalesce((
+    select string_agg(o.body||' '||array_to_string(o.steps,' '),' ') from public.question_options o where o.question_version_id=v.id
+  ),'')),'\s+'))/4.0)::integer))) from public.question_versions v where v.id=p_version_id
+$$;
+revoke all on function private.battle_reading_seconds(uuid) from public,anon,authenticated;
 
 create function public.get_battle_setup_v1(p_friend_id uuid default null) returns jsonb
 language plpgsql security definer set search_path='' as $$
@@ -283,7 +300,7 @@ begin
       case when bc.position<=b.round_count%count(*) over()::integer then 1 else 0 end as needed
     from public.battle_courses bc join public.course_offerings o on o.id=bc.offering_id where bc.battle_id=b.id
   ), picked as (
-    select qv.id,private.battle_question_seconds(qv.id) as seconds
+    select qv.id,private.battle_question_seconds(qv.id) as seconds,private.battle_reading_seconds(qv.id) as reading_seconds
     from scope s cross join lateral (
       select v.id from public.questions q join public.question_versions v on v.question_id=q.id
       where q.course_id=s.course_id and q.pool='battle' and v.status='published' and 'battle'=any(v.usage)
@@ -293,10 +310,10 @@ begin
   ), shuffled as (
     select *,row_number() over(order by random())::integer as position from picked
   ), timed as (
-    select *,coalesce(sum(seconds) over(order by position rows between unbounded preceding and 1 preceding),0)::integer as offset_seconds from shuffled
+    select *,coalesce(sum(seconds+reading_seconds) over(order by position rows between unbounded preceding and 1 preceding),0)::integer as offset_seconds from shuffled
   )
-  insert into public.battle_questions(battle_id,position,question_version_id,opened_at,deadline,option_order)
-  select b.id,t.position,t.id,v_start+make_interval(secs=>t.offset_seconds),v_start+make_interval(secs=>t.offset_seconds+t.seconds),
+  insert into public.battle_questions(battle_id,position,question_version_id,reading_at,opened_at,deadline,option_order)
+  select b.id,t.position,t.id,v_start+make_interval(secs=>t.offset_seconds),v_start+make_interval(secs=>t.offset_seconds+t.reading_seconds),v_start+make_interval(secs=>t.offset_seconds+t.reading_seconds+t.seconds),
     (select array_agg(opt.id order by random()) from public.question_options opt where opt.question_version_id=t.id)
   from timed t;
   get diagnostics v_count=row_count;
@@ -333,7 +350,7 @@ as $$
   cur as (
     select bq.* from public.battle_questions bq, b
     where bq.battle_id = p_battle_id and b.state in ('countdown', 'active')
-      and bq.opened_at <= now() and now() < bq.deadline
+      and coalesce(bq.reading_at,bq.opened_at) <= now() and now() < bq.deadline
   )
   select jsonb_build_object(
     'battle_id', b.id,
@@ -377,6 +394,7 @@ as $$
         'prompt', qv.prompt,
         'answer_format',qv.answer_format,
         'course_code',(select c.code from public.questions q join public.courses c on c.id=q.course_id where q.id=qv.question_id),
+        'reading_at',coalesce(cur.reading_at,cur.opened_at),
         'duration_seconds',extract(epoch from(cur.deadline-cur.opened_at))::integer,
         'options', (select jsonb_agg(jsonb_build_object('id', o.id, 'body', o.body,'steps',to_jsonb(o.steps)) order by ord.n)
                     from unnest(cur.option_order) with ordinality as ord(option_id, n)
@@ -386,13 +404,14 @@ as $$
         'my_option_id', (select ba.option_id from public.battle_answers ba
                          where ba.battle_id = b.id and ba.user_id = p_user_id and ba.position = cur.position))
       from cur join public.question_versions qv on qv.id = cur.question_version_id),
-    'next_question_at', (select min(bq.opened_at) from public.battle_questions bq
-                         where bq.battle_id = b.id and b.state in ('countdown', 'active') and bq.opened_at > now()),
+    'next_question_at', (select min(coalesce(bq.reading_at,bq.opened_at)) from public.battle_questions bq
+                         where bq.battle_id = b.id and b.state in ('countdown', 'active') and coalesce(bq.reading_at,bq.opened_at) > now()),
     'my_answered_positions', coalesce((select jsonb_agg(ba.position order by ba.position) from public.battle_answers ba
                                        where ba.battle_id = b.id and ba.user_id = p_user_id), '[]'::jsonb),
     'rounds', case when b.state in ('finished', 'voided') then coalesce((
       select jsonb_agg(jsonb_build_object(
         'position', bq.position,
+        'course_code',(select c.code from public.questions q join public.courses c on c.id=q.course_id where q.id=qv.question_id),
         'prompt', qv.prompt,
         'my_option_id', mine.option_id,
         'my_is_correct', coalesce(mine.is_correct, false),
@@ -559,7 +578,7 @@ begin
     'question_id', q.id, 'course_id', q.course_id, 'lesson_id', q.lesson_id, 'pool', q.pool, 'logical_key', q.logical_key,
     'question_version_id', qv.id, 'version', qv.version, 'status', qv.status, 'prompt', qv.prompt,
     'difficulty', qv.difficulty, 'usage', to_jsonb(qv.usage), 'source_reference', qv.source_reference,
-    'answer_format',qv.answer_format,'battle_seconds',qv.battle_seconds,'reviewed_by', qv.reviewed_by, 'published_at', qv.published_at,
+    'answer_format',qv.answer_format,'battle_seconds',qv.battle_seconds,'battle_reading_seconds',qv.battle_reading_seconds,'suggested_answer_seconds',private.battle_question_seconds(qv.id),'suggested_reading_seconds',private.battle_reading_seconds(qv.id),'reviewed_by', qv.reviewed_by, 'published_at', qv.published_at,
     'options', (select coalesce(jsonb_agg(jsonb_build_object('id', o.id, 'label', o.label, 'body', o.body, 'position', o.position,'steps',to_jsonb(o.steps))
                                           order by o.position), '[]'::jsonb)
                 from public.question_options o where o.question_version_id = qv.id),
@@ -660,11 +679,14 @@ begin
         if coalesce(nullif(v_row->>'answer_format',''),'standard') not in ('standard','worked_solution') then
           v_errors:=v_errors||jsonb_build_object('row',v_i,'field','answer_format','message','Use standard or worked_solution');
         end if;
-        if coalesce(v_row->>'battle_seconds','') not in ('','10','12','15') then
-          v_errors:=v_errors||jsonb_build_object('row',v_i,'field','battle_seconds','message','Use 10, 12 or 15 seconds');
+        if coalesce(v_row->>'battle_seconds','') not in ('','5','8','10','12','15') then
+          v_errors:=v_errors||jsonb_build_object('row',v_i,'field','battle_seconds','message','Use 5, 8, 10, 12 or 15 seconds');
         end if;
         if v_pool='battle' and jsonb_array_length(v_options)<>4 then
           v_errors:=v_errors||jsonb_build_object('row',v_i,'field','options','message','Battles require exactly four options');
+        end if;
+        if coalesce(v_row->>'battle_reading_seconds','')<>'' and (v_row->>'battle_reading_seconds') !~ '^(2|3|4|5|6|7|8|9|10|11|12)$' then
+          v_errors:=v_errors||jsonb_build_object('row',v_i,'field','battle_reading_seconds','message','Use 2–12 seconds for reading');
         end if;
         for v_opt in select value from jsonb_array_elements(v_options) loop
           if jsonb_typeof(coalesce(v_opt->'steps','[]'::jsonb))<>'array' then
@@ -755,7 +777,8 @@ begin
         end if;
 
         update public.question_versions set answer_format=coalesce(nullif(v_row->>'answer_format',''),'standard'),
-          battle_seconds=nullif(v_row->>'battle_seconds','')::smallint where id=v_version_id;
+          battle_seconds=nullif(v_row->>'battle_seconds','')::smallint,
+          battle_reading_seconds=nullif(v_row->>'battle_reading_seconds','')::smallint where id=v_version_id;
         v_n := 0;
         v_correct_id := null;
         for v_opt in select value from jsonb_array_elements(v_options) loop
@@ -795,5 +818,61 @@ begin
     end if;
     return private.envelope(v_result, p_request_key);
   end;
+end;
+$$;
+
+create or replace function public.get_my_battles_v1(p_before timestamptz default null, p_limit integer default 20)
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = ''
+as $$
+declare
+  v_uid uuid := private.require_user();
+  v_limit integer := least(greatest(coalesce(p_limit, 20), 1), 50);
+  v_items jsonb;
+begin
+  select coalesce(jsonb_agg(x.item order by x.joined_at desc), '[]'::jsonb) into v_items
+  from (
+    select bp.joined_at, jsonb_build_object(
+      'battle_id', b.id,
+      'mode', b.mode,
+      'state', b.state,
+      'result_kind', b.result_kind,
+      'cancel_reason', b.cancel_reason,
+      'course', jsonb_build_object('code', c.code, 'title', c.title),
+      'courses',(select jsonb_agg(jsonb_build_object('code',sc.code,'title',sc.title) order by bc.position)
+        from public.battle_courses bc join public.course_offerings so on so.id=bc.offering_id join public.courses sc on sc.id=so.course_id where bc.battle_id=b.id),
+      'opponent', coalesce((select jsonb_build_object('display_name', p.display_name, 'avatar_path', p.avatar_path)
+                   from public.battle_participants op join public.profiles p on p.id = op.user_id
+                   where op.battle_id = b.id and op.user_id <> v_uid),
+                   case when b.created_by is null or b.state in ('finished','voided') then jsonb_build_object('display_name','Deleted user','avatar_path',null) end),
+      'my_correct', case when b.state in ('finished', 'voided') then bp.correct_count end,
+      'opponent_correct', case when b.state in ('finished', 'voided') then
+                            (select op.correct_count from public.battle_participants op where op.battle_id = b.id and op.user_id <> v_uid) end,
+      'outcome', case when b.state = 'finished' then
+                        case when b.result_kind = 'draw' then 'draw' when b.winner_user_id = v_uid then 'win' else 'loss' end
+                      when b.state = 'voided' then 'voided'
+                      when b.state = 'cancelled' then 'cancelled'
+                      else 'in_progress' end,
+      'xp_awarded', coalesce((select sum(l.amount) from public.points_ledger l where l.user_id = v_uid and l.source_id = b.id), 0),
+      'round_count', b.round_count,
+      'created_at', b.created_at,
+      'finalized_at', b.finalized_at,
+      'joined_at', bp.joined_at) as item
+    from public.battle_participants bp
+    join public.battles b on b.id = bp.battle_id
+    join public.course_offerings o on o.id = b.offering_id
+    join public.courses c on c.id = o.course_id
+    where bp.user_id = v_uid and (p_before is null or bp.joined_at < p_before)
+    order by bp.joined_at desc
+    limit v_limit
+  ) x;
+
+  return private.envelope(jsonb_build_object(
+    'items', v_items,
+    'next_before', case when jsonb_array_length(v_items) = v_limit
+                        then v_items -> (v_limit - 1) ->> 'joined_at' end));
 end;
 $$;

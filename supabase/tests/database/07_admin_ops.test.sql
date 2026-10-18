@@ -38,7 +38,7 @@ select set_config('t.rows', $json$[
    "prompt":"Imported question one?","option_a":"Yes","option_b":"No","option_c":"Maybe","correct_option":"A",
    "explanation":"Because.","source_reference":"Fixture import"},
   {"course_code":"CYB101-FIXTURE","logical_question_key":"IMP-2","pool":"battle","usage":["battle"],"difficulty":"advanced",
-   "prompt":"Imported battle question?","options":[{"body":"One"},{"body":"Two"},{"body":"Three"}],"correct_option":"C",
+   "prompt":"Imported battle question?","options":[{"body":"One"},{"body":"Two"},{"body":"Three"},{"body":"Four"}],"correct_option":"C",
    "explanation":"Three it is.","source_reference":"Fixture import"}
 ]$json$, true) is not null as setup;
 select set_config('t.badrows', $json$[

@@ -12,6 +12,7 @@ next-env.d.ts
 
 # turbo
 .turbo/
+.netlify/
 
 # env
 .env*

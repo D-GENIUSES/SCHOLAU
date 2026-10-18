@@ -23,7 +23,7 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
     <Card>
       <CardHeader>
         <CardTitle as="h2">{opponent ? `You vs ${opponent.display_name}` : "Opponent found"}</CardTitle>
-        <CardDescription>{battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code} · {battle.round_count} questions · 10–15 seconds each</CardDescription>
+        <CardDescription>{battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code} · {battle.round_count} questions · Reading time, then 5–15 seconds each</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         <ul className="flex flex-col gap-2" aria-label="Ready status">

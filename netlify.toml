@@ -1,0 +1,17 @@
+[build]
+  command = "pnpm --filter @scholau/web build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  PNPM_VERSION = "12.11.2"
+  PNPM_FLAGS = "--frozen-lockfile"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Also disable Deploy Previews and branch deploys in the site's settings.
+# These guards prevent preview builds from using the shared production backend.
+[context.deploy-preview]
+  ignore = "exit 0"
+
+[context.branch-deploy]
+  ignore = "exit 0"

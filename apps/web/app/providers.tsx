@@ -1,10 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
-import { useRouter } from "next/navigation";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
+import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
@@ -32,7 +33,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <AnalyticsProvider>{children}</AnalyticsProvider>
+        <AnalyticsProvider><PushLifecycle />{children}</AnalyticsProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

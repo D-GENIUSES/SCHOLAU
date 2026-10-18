@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { Fragment, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { lecturerSignUpSchema, type LecturerSignUpInput } from "@scholau/core";
@@ -12,15 +11,15 @@ import { Input, PasswordInput } from "@/components/ui/input";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { AuthSteps } from "./auth-steps";
+import { SignupNotifications } from "@/components/notifications/signup-notifications";
 import { AuthHeading } from "./auth-heading";
 import { authErrorMessage } from "./auth-errors";
 import { LecturerApplicationFields } from "./lecturer-application-fields";
 
 export function LecturerSignUpForm() {
-  const router = useRouter();
   const [step, setStep] = useState<0 | 1>(0);
   const [error, setError] = useState<string | null>(null);
-  const [redirecting, setRedirecting] = useState(false);
+  const [completion, setCompletion] = useState<{ owner: string | null; destination: string; hasSession: boolean } | null>(null);
   const form = useForm<LecturerSignUpInput>({ resolver: zodResolver(lecturerSignUpSchema), defaultValues: { full_name: "", email: "", password: "", university: "", faculty: "", department: "", position: "", requested_courses: "", institutional_profile_url: "", verification_note: "" } });
   const submit = form.handleSubmit(async values => {
     setError(null);
@@ -32,11 +31,11 @@ export function LecturerSignUpForm() {
       const { email, password, ...application } = values;
       const { data, error: authError } = await client.auth.signUp({ email, password, options: { data: { display_name: values.full_name.slice(0, 60), signup_kind: "lecturer", lecturer_application: application }, emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/continue` } });
       if (authError) { setError(authErrorMessage(authError)); return; }
-      setRedirecting(true);
-      router.replace(data.session ? "/lecturer/application" : `/verify?kind=lecturer&email=${encodeURIComponent(email)}`);
-      router.refresh();
+      setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/lecturer/application" : `/verify?kind=lecturer&email=${encodeURIComponent(email)}` });
     } catch { setError("Lecturer applications are temporarily unavailable. Please try again later. You have not been registered as a student."); }
   });
+  if (completion) return <SignupNotifications {...completion} />;
+
   return <>
     <Link href="/sign-up" className="auth-options-back">← Account options</Link>
     <AuthSteps current={step} labels={["Account", "Teaching details"]} />
@@ -55,8 +54,8 @@ export function LecturerSignUpForm() {
       </Fragment> : <Fragment key="teaching">
       <LecturerApplicationFields register={form.register} errors={form.formState.errors} />
       <p className="text-sm text-ink-muted">By applying, you acknowledge our <Link href="/privacy" className="font-semibold text-brand-primary underline">privacy summary</Link>. Your details are shared with administrators for review.</p>
-      <Button block type="submit" loading={form.formState.isSubmitting || redirecting}>Submit lecturer application</Button>
-      <Button type="button" variant="ghost" disabled={form.formState.isSubmitting || redirecting} onClick={() => { setError(null); setStep(0); }}>Back to account details</Button>
+      <Button block type="submit" loading={form.formState.isSubmitting}>Submit lecturer application</Button>
+      <Button type="button" variant="ghost" disabled={form.formState.isSubmitting} onClick={() => { setError(null); setStep(0); }}>Back to account details</Button>
       </Fragment>}
       <p className="text-center text-sm">Already applied? <Link href="/sign-in" className="text-brand-primary underline">Sign in to check your application</Link></p>
     </form>

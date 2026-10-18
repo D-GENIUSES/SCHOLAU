@@ -5,6 +5,7 @@ import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
+import { disableBrowserPush } from "@/lib/push-browser";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
 export function SignOutButton({ variant = "ghost", size = "sm", className }: Pick<ButtonProps, "variant" | "size" | "className">) {
@@ -14,6 +15,7 @@ export function SignOutButton({ variant = "ghost", size = "sm", className }: Pic
 
   const signOut = async () => {
     setPending(true);
+    await disableBrowserPush().catch(() => undefined);
     await getBrowserSupabase()
       .auth.signOut()
       .catch(() => undefined);

@@ -3,7 +3,7 @@ create extension if not exists pgtap with schema extensions;
 select no_plan();
 do $$ declare u uuid; f uuid; l uuid; p uuid; s uuid; d uuid; student uuid; r record; cat jsonb; n integer; results jsonb:='[]'; begin
 select id into strict u from public.universities where slug='adeleke-university-ede-osun-state';
-select id into strict f from public.faculties where university_id=u and name='Computing Sciences';
+select id into strict f from public.faculties where university_id=u and name='Faculty of Science';
 select id into strict l from public.levels where university_id=u and label='100 Level';
 select id into strict p from public.academic_periods where university_id=u and label='2026/2027';
 for r in select * from (values('Cybersecurity',1,10,8,19),('Cybersecurity',2,8,7,17),('Software Engineering',1,10,8,19),('Software Engineering',2,8,7,17)) x(programme,semester,courses,required,units) loop
