@@ -1,15 +1,15 @@
 "use client";
-import { ArrowLeft, CheckCircle2, ChevronRight, XCircle } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { ContinueLearningCard, HowItWorks, QuickActions } from "@/components/home/learning-panels";
 import { BattleCard } from "@/components/home/side-panels";
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { SplashGate } from "@/components/shell/splash-gate";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/misc";
-import { practiceQuestions, sampleCourses, starterLesson } from "./guest-content";
+import { sampleCourses, starterLesson } from "./guest-content";
+import { MaterialQuiz } from "./material-quiz";
 
 const VIEWS = ["home", "study", "battles", "leaderboard", "profile", "lesson", "practice", "mock"] as const;
 type View = typeof VIEWS[number];
@@ -27,7 +27,7 @@ export function GuestExperience() {
       content = <><GuestHeader title="Study" description="Read a sample lesson or take a general knowledge test." /><SampleCourses /><div className="mt-6"><HowItWorks guest /></div></>;
       break;
     case "lesson": content = <GuestLesson />; break;
-    case "practice": content = <GuestPractice />; break;
+    case "practice": content = <MaterialQuiz />; break;
     case "battles": content = <GuestBattles />; break;
     case "mock": content = <AccountPrompt title="Mock exams" description="Sign in to try timed assessments and track your results." next="/study" />; break;
     case "leaderboard": content = <AccountPrompt title="Leaderboard" description="Join ScholAu to earn 10 welcome XP and see where you rank on the leaderboard." next="/leaderboard" />; break;
@@ -103,20 +103,6 @@ function GuestLesson() {
     
     {visibleLessons.map((lesson) => <section key={lesson.title} className="flex flex-col gap-3"><h2>{lesson.heading}</h2><p className="text-ink-muted leading-8">{lesson.body}</p></section>)}
     <div className="lesson-finish"><div><h2>Practice questions</h2><p>Try three general knowledge questions with instant feedback. No account needed.</p></div></div><Button asChild ><Link href="/home?view=practice">Try the practice test </Link></Button><p className="text-sm text-ink-muted">Sign in to save progress and earn XP from account activities.</p>
-  </div>;
-}
-function GuestPractice() {
-  const [index, setIndex] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [checked, setChecked] = useState(false);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const q = practiceQuestions[index] ?? practiceQuestions[0];
-  function check() { if (selected === null || checked) return; if (selected === q.correct) setScore((n) => n + 1); setChecked(true); }
-  function next() { if (index === practiceQuestions.length - 1) setFinished(true); else { setIndex((n) => n + 1); setSelected(null); setChecked(false); } }
-  return <div className="guest-reading"><Link href="/home" className="back-link"><ArrowLeft className="size-4" aria-hidden />Back to Home</Link><p className="content-label">General knowledge practice</p><h1>{finished ? "Practice results" : "Practice test"}</h1><p className="reading-lead">Answer three questions and review the explanations.</p>
-    {finished ? <div className="practice-result"><h2>{score} of {practiceQuestions.length} correct</h2><p>{score === practiceQuestions.length ? "You answered every question correctly." : "Review the explanations or try the test again."}</p><div className="flex flex-wrap gap-3"><Button onClick={() => { setIndex(0); setSelected(null); setChecked(false); setScore(0); setFinished(false); }} variant="outline" >Try again</Button><Button asChild ><Link href="/sign-up">Create account </Link></Button></div></div> : <div className="practice-card"><div className="flex items-center justify-between gap-4 text-sm text-ink-muted"><span>Question {index + 1} of {practiceQuestions.length}</span><span>Untimed</span></div><Progress value={100 * (index + (checked ? 1 : 0)) / practiceQuestions.length} label="Sample practice progress" className="h-1.5" /><fieldset disabled={checked}><legend className="practice-question">{q.prompt}</legend><div className="practice-options">{q.options.map((option, i) => <label key={option} className={`practice-option${selected === i ? " selected" : ""}${checked && i === q.correct ? " correct" : checked && selected === i ? " incorrect" : ""}`}><input type="radio" name={`question-${index}`} checked={selected === i} onChange={() => setSelected(i)} /><span>{option}</span>{checked && i === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : null}</label>)}</div></fieldset>{checked ? <div className={`practice-feedback ${selected === q.correct ? "correct" : "incorrect"}`} role="status">{selected === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : <XCircle className="size-5 shrink-0" aria-hidden />}<div><strong>{selected === q.correct ? "Correct" : "Incorrect"}</strong><p>{q.explanation}</p></div></div> : null}<Button onClick={checked ? next : check} disabled={!checked && selected === null} className="self-start">{checked ? index === practiceQuestions.length - 1 ? "See results" : "Next question" : "Check answer"}</Button></div>}
-    <p className="text-sm text-ink-muted">Guest practice is not saved and does not award account XP. You can replay it freely.</p>
   </div>;
 }
 function GuestBattles() {

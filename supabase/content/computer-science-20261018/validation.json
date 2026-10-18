@@ -1,0 +1,171 @@
+{
+  "sourceArchives": 5,
+  "uniqueSourceFiles": 111,
+  "questions": 310,
+  "courses": 31,
+  "learningQuestions": 155,
+  "battleQuestions": 155,
+  "assessmentsPlanned": 93,
+  "bankSha256": "2bdeda2fb1431e04317eeede55d80149664a028847384c98d464a289c95f55bc",
+  "usedSourceFiles": 45,
+  "coverage": [
+    {
+      "course": "AUE-CSC 104",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 202",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 204",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 301",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 303",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 403",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-CSC 408",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "AUE-GST 102",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "COS 101",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "COS 102",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "COS 202",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "COS 409",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CSC 203",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CSC 301",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CSC 308",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CSC 309",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CSC 322",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "CYB 305",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "DTS 304",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "ENT 211",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "GST 111",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "GST 112",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "GST 212",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "ICT 305",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "IFT 211",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "IFT 212",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "MTH 102",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "PHY 102",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "SEN 201",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "STA 111",
+      "learning": 5,
+      "battle": 5
+    },
+    {
+      "course": "STA 112",
+      "learning": 5,
+      "battle": 5
+    }
+  ],
+  "excluded": "Student identifiers, roster, marking guide, unreadable sources, and unconfirmed course equivalences",
+  "studentOriginalDownloads": false,
+  "published": false
+}
