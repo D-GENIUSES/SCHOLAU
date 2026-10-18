@@ -3,13 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { adminUserSchema } from "@/lib/admin-users-schema";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { SUPABASE_URL } from "@/lib/env";
+import { isSameOriginRequest } from "@/lib/supabase/request-auth";
 
 export const runtime = "nodejs";
 const reply = (message: string, status: number) => NextResponse.json({ message }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(request: NextRequest) {
   // Cookie-authenticated mutations must come from this application's origin.
-  if (request.headers.get("origin") !== request.nextUrl.origin) return reply("Request origin is not allowed.", 403);
+  if (!isSameOriginRequest(request)) return reply("Request origin is not allowed.", 403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Use JSON for this request.", 415);
   if (Number(request.headers.get("content-length")) > 8192) return reply("Request is too large.", 413);
   try {

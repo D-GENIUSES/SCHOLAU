@@ -40,6 +40,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Lint
         run: pnpm lint
+      - name: Verify request origin guards
+        run: node --test apps/web/lib/supabase/request-auth.test.mjs
       - name: Check types
         run: pnpm typecheck
       - name: Build
