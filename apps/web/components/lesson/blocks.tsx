@@ -2,7 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, ImageOff, Info, Lightbulb, NotebookPen } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
+import { Button } from "@/components/ui/button";
 import type { LessonBlock } from "@scholau/core";
 import { Skeleton } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
@@ -30,6 +31,8 @@ function Block({ block }: { block: LessonBlock }) {
   switch (block.type) {
     case "paragraph":
       return <p className="whitespace-pre-line">{block.text}</p>;
+    case "checkpoint":
+      return <LessonCheckpoint key={JSON.stringify(block)} block={block} />;
     case "heading": {
       const level = block.level ?? 2;
       if (level === 4) return <h4 className="mt-2 text-lg font-bold">{block.text}</h4>;
@@ -77,6 +80,32 @@ function Block({ block }: { block: LessonBlock }) {
     default:
       return null;
   }
+}
+
+function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "checkpoint" }> }) {
+  const id = useId();
+  const [selected, setSelected] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const correct = selected === block.correct_index;
+  return <div className="rounded-control border border-line bg-surface-page p-5">
+    <fieldset disabled={checked} aria-describedby={`${id}-note`}>
+      <legend className="mb-3 font-bold">Check your understanding: {block.question}</legend>
+      <div className="flex flex-col gap-2">
+        {block.options.map((option, index) => <label key={index} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-control border border-line bg-surface-card p-3">
+          <input type="radio" name={id} checked={selected === index} onChange={() => setSelected(index)} />
+          <span>{option}</span>
+        </label>)}
+      </div>
+    </fieldset>
+    <p id={`${id}-note`} className="mt-3 text-sm text-ink-muted">Practice check. This does not award XP or affect your assessment score.</p>
+    {!checked ? <Button className="mt-3" disabled={selected === null} onClick={() => setChecked(true)}>Check answer</Button> : null}
+    <div aria-live="polite" role="status" className="mt-3">
+      {checked ? <><p className="font-bold">{correct ? "That's right." : "Let's work through it."}</p>
+        <p className="mt-2">{block.explanation}</p>
+        {!correct ? <><p className="mt-2">Correct answer: {block.options[block.correct_index]}</p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
+      </> : null}
+    </div>
+  </div>;
 }
 
 function LessonImage({ path, alt, caption }: { path: string; alt: string; caption?: string }) {

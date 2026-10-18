@@ -31,5 +31,5 @@ export function allowRequestWrite(request: Request) {
 }
 /** These handlers authenticate bearer requests themselves; page routes still use cookie redirects. */
 export function isBearerApiRequest(request: Request) {
-  return request.headers.has('authorization') && ['/api/profile-photo', '/api/lesson-assets', '/api/account/photo'].includes(new URL(request.url).pathname);
+  return request.headers.has('authorization') && ['/api/profile-photo', '/api/lesson-assets', '/api/account/photo', '/api/course-materials', '/api/admin/content-sync'].includes(new URL(request.url).pathname);
 }

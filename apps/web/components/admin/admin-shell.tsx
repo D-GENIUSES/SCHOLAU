@@ -28,6 +28,7 @@ export const adminNav = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/users", label: "Users", icon: UserPlus },
   { href: "/admin/lecturer-applications", label: "Lecturer applications", icon: GraduationCap },
+  { href: "/admin/content-sync", label: "Course materials", icon: Upload },
   { href: "/admin/import", label: "Import", icon: Upload },
   { href: "/admin/review", label: "Review", icon: ClipboardCheck },
   { href: "/admin/offerings", label: "Offerings", icon: GraduationCap },

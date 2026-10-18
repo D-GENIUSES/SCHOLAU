@@ -40,3 +40,9 @@ __pycache__/
 .venv/
 playwright-report/
 test-results/
+
+# Private course source binaries are provisioned locally or uploaded to the private R2 bucket.
+apps/web/private/course-materials/
+
+# Private generated course synchronization bundles and results
+.content-sync/
