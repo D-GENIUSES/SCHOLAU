@@ -69,8 +69,9 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
 
     /* ---------------------------------- Profile & onboarding ---------------------------------- */
     getMyProfile: () => rpc<T.Profile>("get_my_profile_v1"),
-    updateProfile: (a: { displayName?: string; avatarPath?: string; clearAvatar?: boolean; leaderboardVisible?: boolean }) =>
-      rpc<T.Profile>("update_profile_v1", {
+    updateProfile: (a: { username?: string; displayName?: string; avatarPath?: string; clearAvatar?: boolean; leaderboardVisible?: boolean }) =>
+      rpc<T.Profile>("update_profile_v2", {
+        p_username: a.username ?? null,
         p_display_name: a.displayName ?? null,
         p_avatar_path: a.avatarPath ?? null,
         p_clear_avatar: a.clearAvatar ?? false,

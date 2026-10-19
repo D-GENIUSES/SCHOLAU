@@ -19,5 +19,5 @@ export default async function HomePage() {
   }
   const session = await requireOnboardedSession("/home");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
-  return <AppShell userId={session.userId} isAdmin={session.profile.roles.includes("admin")}><HomeView /></AppShell>;
+  return <AppShell isAdmin={session.profile.roles.includes("admin")}><HomeView /></AppShell>;
 }

@@ -1,7 +1,10 @@
 "use client";
 
 import { Avatar } from "@/components/ui/avatar";
-import { ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Segmented } from "@/components/ui/segmented";
+import { NotificationSettings } from "@/components/notifications/notification-settings";
+import { ChevronRight, Star, Flame, BookOpen, Swords, Settings } from "lucide-react";
 import Link from "next/link";
 import { useProfile, useXpProgress } from "@scholau/api/react";
 import type { XpProgress } from "@scholau/api";
@@ -12,7 +15,7 @@ import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { PageHeader } from "@/components/ui/misc";
+import { ProfileSkeleton } from "@/components/ui/skeletons";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { AccountDeletionDialog } from "./account-deletion-dialog";
 import { AcademicDetailsCard } from "./academic-details-card";
@@ -31,7 +34,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
   });
   const max = Math.max(1, ...days.map((day) => day.xp));
   return <Card>
-    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days Ã‚Â· XP earned</p></CardHeader>
+    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days · XP earned</p></CardHeader>
     <CardContent>
       <div className="mt-5 flex h-36 items-end gap-3" role="img" aria-label={days.map((day) => `${formatDate(day.date.toISOString())}: ${day.xp} XP`).join("; ")}>
         {days.map((day) => <div key={day.key} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2" aria-hidden>
@@ -47,11 +50,11 @@ function LearningActivity({ data }: { data: XpProgress }) {
 
 function ActivityCards() {
   const query = useXpProgress();
-  if (query.isPending) return <LoadingState label="Loading learning activityÃ¢â‚¬Â¦" lines={3} />;
+  if (query.isPending) return <LoadingState label="Loading learning activity…" lines={3} />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   return <>
-    <div className="lg:col-start-2 lg:row-start-1"><LearningActivity data={query.data} /></div>
-    <Card className="lg:col-start-1 lg:row-start-2">
+    <div className="min-w-0"><LearningActivity data={query.data} /></div>
+    <Card className="min-w-0">
       <CardHeader><CardTitle>Recent activity</CardTitle><p className="text-sm text-ink-muted">Your latest XP awards</p></CardHeader>
       <CardContent>
         {query.data.history.length ? <ul className="divide-y divide-line">{query.data.history.slice(0, 4).map((item) => {
@@ -67,54 +70,59 @@ function ActivityCards() {
 }
 
 export function ProfileView({ registration = null, email = null }: { registration?: RegistrationAcademicInput | null; email?: string | null }) {
+  const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "settings">("progress");
+  const [section, setSection] = useState("account");
   const profile = useProfile();
-  if (profile.isPending) return <LoadingState label="Loading your profileÃ¢â‚¬Â¦" lines={4} />;
+  if (profile.isPending) return <ProfileSkeleton />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
+  const username = "username" in p && typeof p.username === "string" ? p.username : null;
   const university = p.academic?.university.name ?? NIGERIAN_UNIVERSITIES.find((item) => item.value === registration?.universitySlug)?.label;
   const department = p.academic?.department.name ?? registration?.department;
   const rows = [
-    ["Display name", p.display_name], ["Email", email ?? "Not available"],
+    [username ? "Username" : "Display name", username ?? p.display_name], ["Email", email ?? "Not available"],
     ["University", university ?? "Not added yet"], ["Department", department ?? "Not added yet"],
     ["Level", p.academic?.level.label ?? "Not added yet"],
     ["Semester", p.academic?.semester.label ?? (registration ? SEMESTER_LABELS[registration.currentSemester] : "Not added yet")],
   ];
   const stats = [
-    { label: "Total XP", value: formatNumber(p.xp_total) },
-    { label: "Current streak", value: formatStreak(p.streak.current) },
-    { label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed) },
-    { label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed) },
+    { icon: Star, label: "Total XP", value: formatNumber(p.xp_total) },
+    { icon: Flame, label: "Current streak", value: formatStreak(p.streak.current) },
+    { icon: BookOpen, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed) },
+    { icon: Swords, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed) },
   ];
-  return <>
-    <PageHeader eyebrow={<span className="text-[10px] uppercase tracking-[0.16em]">Your profile</span>} title="Your profile" description="Your learning journey, all in one place." />
+  return <div className="compact-profile">
     <Dialog>
-      <Card tint className="mb-4 flex flex-col gap-5 bg-gradient-to-br from-surface-tint to-[#deedff] p-5 sm:flex-row sm:items-center sm:p-7">
-        <Avatar name={p.display_name} path={p.avatar_path} size={96} />
-        <div className="min-w-0 flex-1"><h2 className="break-words text-xl font-bold">{p.display_name}</h2><p className="mt-1 text-ink-muted">{department ? `${department} student` : "ScholAu learner"}</p><p className="mt-2 text-sm text-ink-muted">{university ? `${university} Ã‚Â· ` : ""}Joined {new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.created_at))}</p></div>
-        <DialogTrigger asChild><Button className="rounded-pill">Edit profile</Button></DialogTrigger>
-      </Card>
-      <section aria-label="Learning statistics" className="mb-5 grid grid-cols-2 gap-3 xl:grid-cols-4">
-        {stats.map(({ label, value }) => <Card key={label} className="flex min-w-0 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:p-5"><div className="min-w-0"><p className="break-words text-xl font-bold">{value}</p><p className="text-xs text-ink-muted sm:text-sm">{label}</p></div></Card>)}
+      <header className="profile-identity">
+        <Avatar name={p.display_name} path={p.avatar_path} size={72} />
+        <div className="min-w-0 flex-1"><h1>{p.display_name}</h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
+        <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
+      </header>
+      <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "settings", label: "Settings" }]} />
+      <section className="profile-panel" aria-label={tab === "settings" ? "Settings" : tab === "activity" ? "Activity" : tab === "achievements" ? "Badges and reviews" : "Progress"}>
+      {tab === "progress" ? <>
+        <section aria-label="Learning statistics" className="profile-stat-grid">
+          {stats.map(({ label, value, icon: Icon }) => <Card key={label} className="profile-stat"><Icon size={23} aria-hidden /><div><strong>{value}</strong><p>{label}</p></div></Card>)}
+        </section>
+        <XpProgressCard compact />
+      </> : tab === "achievements" ? <XpProgressCard /> : tab === "activity" ? <div className="profile-activity-grid"><ActivityCards /></div> : <Card className="settings-card">
+        <CardHeader><CardTitle><span className="flex items-center gap-2"><Settings size={21} aria-hidden /> Settings</span></CardTitle></CardHeader>
+        <CardContent>
+          <label htmlFor="settings-section" className="sr-only">Settings section</label>
+          <select id="settings-section" value={section} onChange={(event) => setSection(event.target.value)} className="settings-select">
+            <option value="account">Account</option><option value="academic">Academic details</option><option value="security">Security</option><option value="notifications">Notifications</option><option value="support">Support & privacy</option>
+          </select>
+          {section === "account" || section === "academic" ? <section className="settings-body"><div className="section-heading"><h2>{section === "account" ? "Account information" : "Academic details"}</h2>{section === "account" ? <DialogTrigger asChild><Button variant="link" size="sm">Edit</Button></DialogTrigger> : null}</div>
+            <dl className="settings-details">{(section === "account" ? rows.slice(0, 2) : rows.slice(2)).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+            {section === "academic" ? <Dialog><DialogTrigger asChild><Button variant="outline" size="sm">Manage academic details</Button></DialogTrigger><DialogContent><DialogTitle>Academic details</DialogTitle><DialogDescription>Your academic profile determines the courses available to you.</DialogDescription><AcademicDetailsCard academic={p.academic} registration={registration} /></DialogContent></Dialog> : null}
+            {section === "account" ? <div className="mt-4"><SignOutButton variant="outline" size="md" /></div> : null}
+          </section> : section === "security" ? <section className="settings-body"><h2>Security</h2><Link href="/change-password" className="settings-link">Change password <ChevronRight size={18} aria-hidden /></Link><div className="mt-6 border-t border-line pt-4"><AccountDeletionDialog /></div></section>
+          : section === "notifications" ? <div className="settings-body"><NotificationSettings owner={p.id} /></div>
+          : <section className="settings-body"><h2>Support & privacy</h2><div className="mt-4 flex flex-wrap gap-3"><ReportDialog targetType="technical" triggerLabel="Contact support" title="Contact support" /><Button asChild variant="outline"><Link href="/privacy">Privacy summary</Link></Button>{p.roles.includes("admin") ? <Button asChild variant="outline"><Link href="/admin">Admin</Link></Button> : null}</div></section>}
+        </CardContent>
+      </Card>}
       </section>
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        <Card className="lg:col-start-1 lg:row-start-1">
-          <CardHeader className="flex-row items-center justify-between"><CardTitle>Personal information</CardTitle><DialogTrigger asChild><Button variant="link" size="sm" aria-label="Edit personal information">Edit</Button></DialogTrigger></CardHeader>
-          <CardContent><dl className="divide-y divide-line">{rows.map(([label, value]) => <div key={label} className="grid gap-1 py-3 text-sm sm:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] sm:gap-5"><dt className="text-ink-muted">{label}</dt><dd className="min-w-0 break-words font-medium">{value}</dd></div>)}</dl>
-            <Dialog><DialogTrigger asChild><Button variant="link" size="sm" className="mt-3">Manage academic details <ChevronRight className="size-4" aria-hidden /></Button></DialogTrigger><DialogContent><DialogTitle>Academic details</DialogTitle><DialogDescription>Your academic profile determines the courses available to you.</DialogDescription><AcademicDetailsCard academic={p.academic} registration={registration} /></DialogContent></Dialog>
-          </CardContent>
-        </Card>
-        <ActivityCards />
-        <Card className="lg:col-start-2 lg:row-start-2"><CardHeader><CardTitle>Account</CardTitle></CardHeader><CardContent className="flex flex-col gap-3">
-          <Link href="/change-password" className="flex items-center gap-3 rounded-xl border border-line p-4 hover:bg-surface-tint"><span className="min-w-0 flex-1"><span className="block text-sm font-semibold">Password</span><span className="block text-xs text-ink-muted">Change your account password</span></span><ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden /></Link>
-          <SignOutButton variant="outline" size="md" className="justify-start rounded-xl" />
-          <div className="mt-1 border-t border-line pt-3"><AccountDeletionDialog /></div>
-        </CardContent></Card>
-      </div>
       <DialogContent><DialogTitle>Edit profile</DialogTitle><DialogDescription>Update how you appear to other learners.</DialogDescription><ProfileEditForm key={p.id} profile={p} /></DialogContent>
     </Dialog>
-    <div className="mt-5 grid items-start gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-      <details className="rounded-card border border-line bg-surface-card p-5"><summary className="cursor-pointer font-semibold text-brand-primary">Learning progress, badges and reviews</summary><div className="mt-4"><XpProgressCard /></div></details>
-      <Card><CardHeader><CardTitle>Support and privacy</CardTitle></CardHeader><CardContent className="flex flex-wrap items-center gap-2"><ReportDialog targetType="technical" triggerLabel="Contact support" title="Contact support" /><Button asChild variant="ghost" size="sm"><Link href="/privacy">Privacy summary</Link></Button>{p.roles.includes("admin") ? <Button asChild variant="ghost" size="sm"><Link href="/admin">Admin</Link></Button> : null}</CardContent></Card>
-    </div>
-  </>;
+  </div>;
 }

@@ -1,27 +1,33 @@
 import Link from "next/link";
+import { BookOpen, ClipboardCheck, Swords, Trophy } from "lucide-react";
 import type { HomeSummary } from "@scholau/api";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/states";
-import { ContinueLearningCard, CourseProgressList, HowItWorks, QuickActions, RecentActivity } from "./learning-panels";
-import { BattleCard, LearningXpCard, StatsPanel } from "./side-panels";
+import { ContinueLearningCard, CourseProgressList } from "./learning-panels";
+import { StatsPanel, LearningXpCard } from "./side-panels";
 export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
   const isNew = s.recent_activity.length === 0 && s.enrolled_courses.every((c) => c.lessons_completed === 0);
   const course = s.enrolled_courses.find((c) => c.offering_id === s.continue_learning?.offering_id);
   const offering = course?.offering_id ?? s.enrolled_courses[0]?.offering_id;
-  return <div className="home-dashboard">
-    <div className="home-welcome"><div><h1>{isNew ? "Welcome, " : "Welcome back, "}<span>{s.display_name}</span></h1><p>Your lessons, tests, and quiz battles.</p></div><StatsPanel summary={s} /></div>
-    {isNew && s.welcome_xp_awarded ? <section aria-label="Welcome XP" className="rounded-card border border-line bg-surface-tint p-4">
-      <h2 className="font-bold">10 welcome XP added</h2>
-      <p className="mt-1 text-sm text-ink-muted">Complete knowledge checks and assessments to earn more XP.</p>
-      <Button asChild size="sm" className="mt-3"><Link href="/leaderboard">See your rank</Link></Button>
-    </section> : null}
-    <div className="home-columns"><div className="home-primary">
-      {s.enrolled_courses.length ? <ContinueLearningCard item={s.continue_learning} firstLesson={isNew} course={course} /> : <EmptyState title="No courses assigned yet" description="Courses are assigned from your saved academic profile when they become available. Check your assignments or complete your setup." action={<Button asChild><Link href="/onboarding/courses">View course assignments</Link></Button>} />}
-      <QuickActions offeringId={offering} /><div className="lg:hidden"><BattleCard live={s.live_battle} /></div>
-      {s.enrolled_courses.length ? <CourseProgressList courses={s.enrolled_courses} /> : null}
-      {isNew && s.enrolled_courses.length > 0 ? <HowItWorks /> : null}<RecentActivity items={s.recent_activity} />
-    </div><aside aria-label="Battles and daily progress" className="home-secondary"><div className="hidden lg:block"><BattleCard live={s.live_battle} /></div><LearningXpCard today={s.learning_xp_today} cap={s.learning_xp_daily_cap} />
-
-    </aside></div>
+  const live = s.live_battle;
+  const actions = [
+    { label: "My courses", detail: `${s.enrolled_courses.length} courses`, href: "/study", icon: BookOpen },
+    { label: "Practice", detail: "Tests & mock exams", href: offering ? `/study/courses/${offering}#practice` : "/study", icon: ClipboardCheck },
+    { label: live ? "Resume battle" : "Quiz battles", detail: "Challenge a learner", href: live?.battle_id ? `/battles/${live.battle_id}` : live?.queue_id ? "/battles/queue" : "/battles", icon: Swords },
+    { label: "Leaderboard", detail: "See your rank", href: "/leaderboard", icon: Trophy },
+  ];
+  return <div className="home-dashboard compact-home">
+    <div className="home-welcome"><div><h1>{isNew ? "Welcome, " : "Welcome back, "}<span>{s.display_name}</span></h1></div><StatsPanel summary={s} /></div>
+    {isNew && s.welcome_xp_awarded ? <p className="welcome-note">10 welcome XP added · Your learning journey starts here.</p> : null}
+    <div className="compact-home-grid">
+      <div className="compact-home-main">
+        {s.enrolled_courses.length ? <ContinueLearningCard item={s.continue_learning} firstLesson={isNew} course={course} /> : <EmptyState title="Your courses" description="Complete your academic profile to find your courses." action={<Button asChild><Link href="/onboarding/courses">View assignments</Link></Button>} />}
+        <nav className="home-action-grid" aria-label="Learning shortcuts">{actions.map(({ label, detail, href, icon: Icon }) => <Link key={label} href={href} className="home-action-tile"><span className="tile-icon"><Icon aria-hidden size={23} strokeWidth={2} /></span><span><strong>{label}</strong><small>{detail}</small></span></Link>)}</nav>
+      </div>
+      <aside className="compact-home-aside" aria-label="Courses and daily progress">
+        {s.enrolled_courses.length ? <CourseProgressList courses={s.enrolled_courses} /> : null}
+        <LearningXpCard today={s.learning_xp_today} cap={s.learning_xp_daily_cap} />
+      </aside>
+    </div>
   </div>;
 }

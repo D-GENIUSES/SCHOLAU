@@ -5,6 +5,7 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { type ReactNode, useState } from "react";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
+import { NotificationLive } from "@/components/notifications/notification-live";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -25,7 +26,7 @@ export function Providers({ children }: { children: ReactNode }) {
           },
         }),
         defaultOptions: {
-          queries: { staleTime: 15_000, refetchOnWindowFocus: true },
+          queries: { staleTime: 60_000, gcTime: 10 * 60_000 },
         },
       }),
   );
@@ -33,7 +34,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <AnalyticsProvider><PushLifecycle />{children}</AnalyticsProvider>
+        <AnalyticsProvider><PushLifecycle /><NotificationLive />{children}</AnalyticsProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

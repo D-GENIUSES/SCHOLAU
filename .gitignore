@@ -32,3 +32,6 @@ Thumbs.db
 !.vscode/extensions.json
 .idea/
 coverage/
+
+# local course-import working files (source zips and prepared drafts)
+imports/

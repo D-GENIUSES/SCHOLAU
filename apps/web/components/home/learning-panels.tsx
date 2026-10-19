@@ -88,7 +88,7 @@ export function CourseProgressList({ courses }: { courses: HomeSummary["enrolled
     <section aria-labelledby="courses-title">
       <div className="section-heading"><h2 id="courses-title">Your courses</h2><Link href="/study">View all <ChevronRight className="size-4" aria-hidden /></Link></div>
       <ul className="course-list enrolled-course-grid">
-        {courses.slice(0, 4).map((course) => {
+        {courses.slice(0, 2).map((course) => {
           const percent = course.lessons_total > 0 ? Math.round(100 * course.lessons_completed / course.lessons_total) : 0;
           return (
             <li key={course.offering_id}>

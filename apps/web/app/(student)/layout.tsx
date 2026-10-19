@@ -7,7 +7,7 @@ export default async function StudentLayout({ children }: { children: ReactNode 
   const session = await requireOnboardedSession("/home");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
   return (
-    <AppShell userId={session.userId} isAdmin={session.profile.roles.includes("admin")}>
+    <AppShell isAdmin={session.profile.roles.includes("admin")}>
       {children}
     </AppShell>
   );

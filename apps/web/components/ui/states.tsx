@@ -10,10 +10,16 @@ import { Skeleton } from "./misc";
 
 export function LoadingState({ label = "Loading…", className, lines = 3 }: { label?: string; className?: string; lines?: number }) {
   return (
-    <div className={cn("flex flex-col gap-3", className)} role="status" aria-live="polite">
+    <div className={cn("flex flex-col gap-3", className)} role="status" aria-live="polite" aria-busy="true">
       <span className="sr-only">{label}</span>
       {Array.from({ length: lines }, (_, i) => (
-        <Skeleton key={i} className={cn("h-20 w-full", i === 0 && "h-10 w-2/3")} />
+        <div key={i} className="flex items-center gap-3 rounded-[14px] border border-[#e2eaf4] bg-white p-4">
+          <Skeleton className="size-10 shrink-0 rounded-full" />
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
+            <Skeleton className={cn("h-3.5", i === 0 ? "w-2/5" : "w-1/2")} />
+            <Skeleton className="h-3 w-4/5" />
+          </div>
+        </div>
       ))}
     </div>
   );

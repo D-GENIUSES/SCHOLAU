@@ -1,10 +1,9 @@
 "use client";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, BookOpen, ClipboardCheck, Swords, Trophy, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode } from "react";
-import { ContinueLearningCard, HowItWorks, QuickActions } from "@/components/home/learning-panels";
-import { BattleCard } from "@/components/home/side-panels";
+import { ContinueLearningCard, HowItWorks } from "@/components/home/learning-panels";
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { SplashGate } from "@/components/shell/splash-gate";
 import { Button } from "@/components/ui/button";
@@ -42,30 +41,19 @@ function GuestHeader({ title, description }: { title: string; description: strin
 }
 
 function GuestHome() {
-  return (
-    <div className="home-dashboard">
-      <div className="home-welcome">
-        <div><h1>Try ScholAu</h1><p>Read a sample lesson or answer practice questions. No account needed.</p></div>
-      </div>
-      <div className="home-columns">
-        <div className="home-primary">
-          <ContinueLearningCard item={starterLesson} firstLesson preview href="/home?view=lesson" />
-          <QuickActions guest />
-          <div className="lg:hidden"><BattleCard live={null} guest /></div>
-          <SampleCourses compact />
-        </div>
-        <aside aria-label="More ways to learn" className="home-secondary">
-          <div className="hidden lg:block"><BattleCard live={null} guest /></div>
-          <section className="study-note" aria-labelledby="guest-account-title">
-            <h2 id="guest-account-title">With an account</h2>
-            <ul className="account-benefits"><li>Access your assigned courses</li><li>Save lessons and test results</li><li>Track XP and join quiz battles</li></ul>
-            <Button asChild variant="outline" size="sm" className="mt-5"><Link href="/sign-up">Create account</Link></Button>
-          </section>
-          <div className="guest-note"><p>Sign in to save progress and join battles.</p></div>
-        </aside>
-      </div>
-    </div>
-  );
+  const actions = [
+    { label: "Sample courses", href: "/home?view=study", icon: BookOpen },
+    { label: "Practice", href: "/home?view=practice", icon: ClipboardCheck },
+    { label: "Quiz battles", href: "/home?view=battles", icon: Swords },
+    { label: "Leaderboard", href: "/home?view=leaderboard", icon: Trophy },
+  ];
+  return <div className="home-dashboard compact-home">
+    <div className="home-welcome"><div><h1>Try ScholAu</h1><p>Start with a free sample lesson.</p></div></div>
+    <div className="compact-home-grid"><div className="compact-home-main">
+      <ContinueLearningCard item={starterLesson} firstLesson preview href="/home?view=lesson" />
+      <nav className="home-action-grid" aria-label="Learning shortcuts">{actions.map(({ label, href, icon: Icon }) => <Link key={label} href={href} className="home-action-tile"><span className="tile-icon"><Icon size={23} aria-hidden /></span><strong>{label}</strong></Link>)}</nav>
+    </div><aside className="compact-home-aside" aria-label="Sample courses"><SampleCourses compact /><section className="study-note"><h2>Save your progress</h2><p className="mt-2 text-sm text-ink-muted">Create an account to access your courses, earn XP and join battles.</p><Button asChild size="sm" className="mt-3"><Link href="/sign-up">Create account</Link></Button></section></aside></div>
+  </div>;
 }
 
 function SampleCourses({ compact = false }: { compact?: boolean }) {
@@ -76,7 +64,7 @@ function SampleCourses({ compact = false }: { compact?: boolean }) {
         {compact ? <Link href="/home?view=study">View all <ChevronRight className="size-4" aria-hidden /></Link> : <span className="text-xs text-ink-muted">Free samples</span>}
       </div>
       <ul className="course-list sample-course-grid">
-        {sampleCourses.map((course, index) => (
+        {(compact ? sampleCourses.slice(0, 2) : sampleCourses).map((course, index) => (
           <li key={course.title}>
             <Link href={`/home?view=lesson&topic=${index}`} className="course-row">
               <span className="course-info"><strong>{course.title}</strong><small>{course.description}</small><span className="course-preview-label">Free sample lesson</span></span>

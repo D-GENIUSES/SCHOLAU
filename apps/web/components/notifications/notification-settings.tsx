@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useNotificationSettings } from "@scholau/api/react";
-import { Bell, BellOff, LoaderCircle } from "lucide-react";
+import { Bell, BellOff, LoaderCircle, Volume2, VolumeX } from "lucide-react";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { disableBrowserPush, enableBrowserPush, readPushDevice } from "@/lib/push-browser";
+import { notificationSoundEnabled, setNotificationSoundEnabled } from "@/lib/notification-sound";
 
 export function NotificationSettings({ owner }: { owner: string }) {
   const settings = useNotificationSettings();
@@ -24,8 +25,8 @@ export function NotificationSettings({ owner }: { owner: string }) {
     void check().catch(() => undefined);
     return () => { cancelled = true; };
   }, [owner]);
-  if (settings.isPending) return <LoadingState label="Loading notifications…" />;
-  if (settings.isError) return <ErrorState error={settings.error} onRetry={() => void settings.refetch()} />;
+  if (settings.isPending) return <div className="grid gap-4"><LoadingState label="Loading notifications…" /><SoundPreference /></div>;
+  if (settings.isError) return <div className="grid gap-4"><ErrorState error={settings.error} onRetry={() => void settings.refetch()} /><SoundPreference /></div>;
   const savedDevice = readPushDevice();
   const serverActive = settings.data.devices.some((device) => device.device_key === savedDevice?.key && device.active);
   const enabled = active && serverActive;
@@ -42,7 +43,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
       setMessage(error instanceof Error ? error.message : "Could not update notifications. Please try again.");
     } finally { setBusy(false); }
   }
-  return <section className="overflow-hidden rounded-3xl border border-line bg-surface-card shadow-sm" aria-labelledby="device-title" aria-busy={busy}>
+  return <div className="grid gap-4"><section className="overflow-hidden rounded-3xl border border-line bg-surface-card shadow-sm" aria-labelledby="device-title" aria-busy={busy}>
     <div className="p-5 sm:p-6">
       <div className="mb-5 flex items-center gap-3">
         <span className={`flex size-11 shrink-0 items-center justify-center rounded-2xl ${enabled ? "bg-brand-primary/10 text-brand-primary" : "bg-surface-page text-ink-muted"}`}>
@@ -78,5 +79,42 @@ export function NotificationSettings({ owner }: { owner: string }) {
     {!settings.data.push_available ? <p className="px-5 pb-4 pt-3 text-sm text-ink-muted">Notifications are temporarily unavailable. Your inbox is still available.</p> : null}
     {message ? <p role="status" aria-live="polite" className="px-5 pb-4 pt-3 text-sm">{message}</p> : null}
     {!enabled ? <p className="px-5 pb-4 pt-3 text-xs leading-relaxed text-ink-muted">Previously blocked? Set Notifications to Allow in your browser’s site settings, then switch them on here.</p> : null}
+  </section><SoundPreference /></div>;
+}
+
+function SoundPreference() {
+  const [enabled, setEnabled] = useState(true);
+  useEffect(() => { setEnabled(notificationSoundEnabled()); }, []);
+  return <section className="overflow-hidden rounded-3xl border border-line bg-surface-card shadow-sm" aria-labelledby="sound-title">
+    <div className="flex items-center justify-between gap-5 p-5 sm:p-6">
+      <div className="flex min-w-0 items-center gap-3">
+        <span className={`flex size-11 shrink-0 items-center justify-center rounded-2xl ${enabled ? "bg-brand-primary/10 text-brand-primary" : "bg-surface-page text-ink-muted"}`}>
+          {enabled ? <Volume2 className="size-5" aria-hidden /> : <VolumeX className="size-5" aria-hidden />}
+        </span>
+        <span className="min-w-0">
+          <h2 id="sound-title" className="text-lg font-bold text-ink">Sound</h2>
+          <p id="sound-description" className="mt-1 max-w-sm text-sm leading-relaxed text-ink-muted">Play a short chime in this browser when a new notification arrives.</p>
+        </span>
+      </div>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={enabled}
+        aria-label="Notification sound"
+        aria-describedby="sound-description"
+        onClick={() => {
+          const next = !enabled;
+          setEnabled(next);
+          setNotificationSoundEnabled(next);
+        }}
+        className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full border border-transparent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary motion-reduce:transition-none ${enabled ? "bg-brand-primary" : "bg-slate-300"}`}
+      >
+        <span className={`size-6 rounded-full bg-white shadow-sm transition-transform duration-200 motion-reduce:transition-none ${enabled ? "translate-x-6" : "translate-x-1"}`} />
+      </button>
+    </div>
+    <div className="flex items-center gap-2 border-t border-line bg-surface-page/50 px-5 py-3 text-xs text-ink-muted sm:px-6">
+      <span className={`size-1.5 rounded-full ${enabled ? "bg-brand-primary" : "bg-slate-400"}`} aria-hidden />
+      {enabled ? "On · This browser only" : "Off · New notifications stay quiet"}
+    </div>
   </section>;
 }

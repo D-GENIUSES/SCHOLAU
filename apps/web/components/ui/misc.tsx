@@ -61,7 +61,7 @@ export function Progress({
 }
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden className={cn("animate-pulse rounded-control bg-[#e3ecf6]", className)} />;
+  return <div aria-hidden className={cn("skeleton-wave rounded-control", className)} />;
 }
 
 export function PageHeader({
