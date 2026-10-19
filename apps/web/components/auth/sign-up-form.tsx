@@ -13,6 +13,7 @@ import { useAnalytics } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { authErrorMessage } from "./auth-errors";
 import { AuthHeading } from "./auth-heading";
+import { GoogleSignIn } from "./google-sign-in";
 import { AuthSteps } from "./auth-steps";
 import { SignupNotifications } from "@/components/notifications/signup-notifications";
 import { UniversitySelect } from "./university-select";
@@ -71,6 +72,7 @@ export function SignUpForm() {
     <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
       description={step === "account" ? "Choose a username, then enter your email and a password." : "We use these details to find your course assignments."} />
+    {step === "account" ? <div className="mb-4"><GoogleSignIn disabled={isSubmitting} /></div> : null}
     <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);
