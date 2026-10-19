@@ -1,18 +1,17 @@
 "use client";
 
-import { Clock, Loader2, WifiOff } from "lucide-react";
+import { Clock, Loader2, Lock, WifiOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { type Battle, type BattleCurrentQuestion, isApiError } from "@scholau/api";
 import { useSubmitBattleAnswer } from "@scholau/api/react";
-import { COPY } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { LiveRegion } from "@/components/ui/misc";
 import { InlineError } from "@/components/ui/states";
 import { useServerCountdown } from "@/lib/hooks";
 import { BattleAnswerOptions } from "./answer-options";
-import { CountdownBar, totalWindowMs } from "./countdown";
+import { battleCourseLine, LiveBattleBoard } from "./battle-chrome";
+import { totalWindowMs } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
 
 type AnswerStatus = "idle" | "selected" | "sending" | "received" | "unsent" | "time_up" | "error";
@@ -52,6 +51,11 @@ export function QuestionPanel({
 
   const optionsLocked = reading || remaining <= 0 || status === "received" || status === "sending" || status === "unsent" || status === "time_up";
   const keptEarlier = Boolean(ack?.already_answered && selected && ack.option_id !== selected);
+  const course = battleCourseLine(battle, question.course_code);
+  const promptId = `battle-prompt-${question.position}`;
+  const answerTotal = totalWindowMs(question.opened_at, question.deadline, (question.duration_seconds ?? 5) * 1000);
+  const readingTotal = totalWindowMs(question.reading_at, question.opened_at, 3000);
+  const showSubmit = status !== "received" && status !== "time_up";
 
   const send = () => {
     if (!selected) return;
@@ -59,43 +63,62 @@ export function QuestionPanel({
   };
 
   return (
-    <Card>
-      <CardContent className="flex flex-col gap-5 pt-4 sm:pt-6">
-        <div className="flex flex-col gap-3">
-          <h2 ref={headingRef} tabIndex={-1} className="text-base font-semibold text-ink-muted focus:outline-none">
-            Question {question.position} of {battle.round_count}
-          </h2>
-          <CountdownBar
-            remainingMs={reading ? readingRemaining : remaining}
-            totalMs={reading ? totalWindowMs(question.reading_at, question.opened_at, 3000) : totalWindowMs(question.opened_at, question.deadline, 5000)}
-            label={reading ? "Read first — answering starts shortly" : "Time to answer"}
-            warnBelowMs={reading ? 0 : 2000}
-          />
-          <p className="text-sm text-ink-muted" role="status">{reading ? `Read the question and all four options. You will then have ${question.duration_seconds ?? 5} seconds to answer.` : COPY.battle.timerRule}</p>
-        </div>
-
-        {question.course_code ? <p className="text-xs font-bold uppercase tracking-wide text-brand-primary">{question.course_code}</p> : null}
-        <BattleAnswerOptions question={question} selected={shown} disabled={optionsLocked} received={status === "received"} onSelect={setSelected} />
-
+    <div className="flex flex-col">
+      <LiveBattleBoard
+        participants={battle.participants}
+        roundCount={battle.round_count}
+        position={question.position}
+        answered={battle.my_answered_positions}
+        courseCode={course?.code ?? null}
+        courseTitle={course?.title ?? null}
+        prompt={question.prompt}
+        promptId={promptId}
+        headingRef={headingRef}
+        remainingMs={reading ? readingRemaining : remaining}
+        totalMs={reading ? readingTotal : answerTotal}
+        footer={showSubmit ? (
+          <div className="flex flex-col gap-3">
+            {status === "unsent" ? (
+              <Button size="lg" block className="min-h-[52px] bg-[#0875e4] text-[15px] hover:bg-[#0066d6]" onClick={submit.retryLast}>
+                Retry sending answer
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                block
+                className="min-h-[52px] bg-[#0875e4] text-[15px] hover:bg-[#0066d6]"
+                onClick={send}
+                disabled={reading || !selected || remaining <= 0}
+                loading={status === "sending"}
+              >
+                <Lock className="size-4" aria-hidden />
+                Lock in answer
+              </Button>
+            )}
+            {status === "unsent" ? null : (
+              <p className="text-center text-[13px] text-[#8093a7]">
+                {reading
+                  ? `Read the question and all four options. You will then have ${question.duration_seconds ?? 5} seconds to answer.`
+                  : "Choose one answer before time runs out."}
+              </p>
+            )}
+          </div>
+        ) : null}
+      >
+        <BattleAnswerOptions
+          question={question}
+          selected={shown}
+          disabled={optionsLocked}
+          received={status === "received"}
+          onSelect={setSelected}
+          labelledBy={promptId}
+        />
         <StatusLine status={status} />
         {keptEarlier ? <p className="text-sm text-ink-muted">Your first answer for this question was kept.</p> : null}
         {status === "error" ? <InlineError error={submit.error} /> : null}
-        <LiveRegion>{STATUS_ANNOUNCEMENT[status]}</LiveRegion>
-      </CardContent>
-      {status === "received" || status === "time_up" ? null : (
-        <CardFooter>
-          {status === "unsent" ? (
-            <Button size="lg" block onClick={submit.retryLast}>
-              Retry sending answer
-            </Button>
-          ) : (
-            <Button size="lg" block onClick={send} disabled={reading || !selected || remaining <= 0} loading={status === "sending"}>
-              Submit answer
-            </Button>
-          )}
-        </CardFooter>
-      )}
-    </Card>
+      </LiveBattleBoard>
+      <LiveRegion>{STATUS_ANNOUNCEMENT[status]}</LiveRegion>
+    </div>
   );
 }
 
@@ -111,8 +134,6 @@ const STATUS_ANNOUNCEMENT: Record<AnswerStatus, string> = {
 
 function StatusLine({ status }: { status: AnswerStatus }) {
   switch (status) {
-    case "selected":
-      return <p className="text-sm font-semibold text-ink-muted">Selected — submit to send your answer.</p>;
     case "sending":
       return (
         <p className="inline-flex items-center gap-2 text-sm font-semibold text-ink-muted">

@@ -7,7 +7,7 @@ import { Logo } from "@/components/logo";
  */
 export function FocusShell({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="focus-shell flex min-h-dvh flex-col">
       <header className="border-b border-line bg-surface-card">
         <div className="mx-auto flex h-14 max-w-3xl items-center gap-2 px-4">
           <Logo className="h-8" />

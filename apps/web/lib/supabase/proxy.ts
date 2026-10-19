@@ -13,7 +13,7 @@ function isPublic(pathname: string) {
 /** Refreshes the Supabase session cookie and gates protected routes on authentication. */
 export async function updateSession(request: NextRequest) {
   if (isBearerApiRequest(request)) return NextResponse.next({ request });
-  if (process.env.NODE_ENV === "development" && request.nextUrl.pathname === "/design-preview") {
+  if (process.env.NODE_ENV === "development" && (request.nextUrl.pathname === "/design-preview" || request.nextUrl.pathname.startsWith("/design-preview/"))) {
     return NextResponse.next({ request });
   }
   let response = NextResponse.next({ request });

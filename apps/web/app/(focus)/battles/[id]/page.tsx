@@ -122,8 +122,8 @@ export default function BattlePage() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
+    <div className="live-battle-screen mx-auto flex w-full max-w-[480px] flex-col gap-5">
+      {live ? null : <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>}
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
       {live && disconnected ? <ReconnectBanner onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
       {body}
