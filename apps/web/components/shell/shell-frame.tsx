@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/logo";
+import { LegalLinks } from "@/components/legal-links";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { isActive, studentNav } from "./nav-items";
@@ -30,7 +31,7 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
     <div className="shell-body"><header className="app-header"><Link href={destination("/home")} aria-label="ScholAu home" className="lg:hidden"><Logo /></Link><div className="hidden lg:flex items-center gap-2 text-sm text-ink-muted"><span>ScholAu</span><ChevronRight className="size-3" aria-hidden /><span className="font-semibold text-ink">{activeLabel}</span></div>
       <nav aria-label="Main" className="tablet-nav">{studentNav.map(({ href, label }) => <Link key={href} href={destination(href)} aria-current={isActive(pathname, href) ? "page" : undefined}>{label}</Link>)}</nav>
       <div className="header-account">{guest ? <span className="guest-label hidden sm:inline">Guest mode</span> : null}{account}{isAdmin ? <Link href="/admin" className="notification-button lg:hidden" aria-label="Admin"><Shield className="size-5" aria-hidden /></Link> : null}</div>
-    </header><main id="main" tabIndex={-1} className="app-main">{children}</main></div>
+    </header><main id="main" tabIndex={-1} className="app-main">{children}{guest ? <footer className="mt-8 border-t border-line pt-5"><LegalLinks /></footer> : null}</main></div>
     <nav aria-label="Main" className="mobile-navigation"><ul>{studentNav.map(({ href, label, icon: Icon }) => <li key={href}><Link href={destination(href)} aria-current={isActive(pathname, href) ? "page" : undefined}><span className="nav-icon"><Icon className="size-5" aria-hidden /></span><span>{label}</span></Link></li>)}</ul></nav>
   </div>;
 }
