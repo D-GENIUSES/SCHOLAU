@@ -1,0 +1,22 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+-- Seeded admin is also a student. Their public visibility must be respected.
+update public.profiles set leaderboard_visible=true where id='90000000-0000-4000-8000-000000000002';
+select set_config('request.jwt.claim.sub','90000000-0000-4000-8000-000000000002',true);
+set local role authenticated;
+select ok(public.get_leaderboard_v1()->'me' <> 'null'::jsonb,'Visible admin receives their global rank');
+select ok(exists(select 1 from jsonb_array_elements(public.get_leaderboard_v1()->'rows') r where (r->>'is_me')::boolean),'Visible admin appears in global rows');
+select ok(public.get_leaderboard_v1('faculty')->'me' <> 'null'::jsonb,'Visible admin receives faculty rank');
+select public.update_profile_v2(p_leaderboard_visible=>false);
+select is(public.get_leaderboard_v1()->'me','null'::jsonb,'Opting out hides own rank');
+select ok(not exists(select 1 from jsonb_array_elements(public.get_leaderboard_v1()->'rows') r where (r->>'is_me')::boolean),'Opting out hides own row');
+select public.update_profile_v2(p_leaderboard_visible=>true);
+select ok(public.get_leaderboard_v1()->'me' <> 'null'::jsonb,'Opting in restores rank immediately');
+reset role;
+update public.profiles set deactivated_at=now() where id='90000000-0000-4000-8000-000000000002';
+select set_config('request.jwt.claim.sub','90000000-0000-4000-8000-000000000001',true);
+set local role authenticated;
+select ok(not exists(select 1 from jsonb_array_elements(public.get_leaderboard_v1()->'rows') r where r->>'user_id'='90000000-0000-4000-8000-000000000002'),'Deactivated accounts stay hidden even when opted in');
+select * from finish();
+rollback;

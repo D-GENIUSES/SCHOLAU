@@ -1,0 +1,2482 @@
+[
+  {
+    "id": "au-materials-20261018-cos-101-l-001",
+    "courseCode": "COS 101",
+    "courseTitle": "Introduction to Computing Sciences",
+    "level": 100,
+    "prompt": "What controls how a computer processes input data?",
+    "options": [
+      "A printer tray",
+      "A mouse mat",
+      "The case colour",
+      "A program"
+    ],
+    "correct": 3,
+    "explanation": "A program supplies the instructions used to process data.",
+    "sourceReference": "COS 101 Introduction to Computing-1.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-cos-101-l-002",
+    "courseCode": "COS 101",
+    "courseTitle": "Introduction to Computing Sciences",
+    "level": 100,
+    "prompt": "What distinguishes information from raw data?",
+    "options": [
+      "It cannot be stored",
+      "It contains only numbers",
+      "It is processed and meaningful",
+      "It must be handwritten"
+    ],
+    "correct": 2,
+    "explanation": "Processing and organisation give raw facts meaning.",
+    "sourceReference": "COS 101 Introduction to Computing-1.pdf, page 11"
+  },
+  {
+    "id": "au-materials-20261018-cos-101-l-003",
+    "courseCode": "COS 101",
+    "courseTitle": "Introduction to Computing Sciences",
+    "level": 100,
+    "prompt": "Which CPU component performs arithmetic and comparisons?",
+    "options": [
+      "Keyboard",
+      "Monitor",
+      "Power supply",
+      "Arithmetic logic unit"
+    ],
+    "correct": 3,
+    "explanation": "The ALU performs calculations and logical comparisons.",
+    "sourceReference": "COS 101 Introduction to Computing-1.pdf, page 14"
+  },
+  {
+    "id": "au-materials-20261018-cos-101-l-004",
+    "courseCode": "COS 101",
+    "courseTitle": "Introduction to Computing Sciences",
+    "level": 100,
+    "prompt": "Which device is used primarily to enter text into a computer?",
+    "options": [
+      "Speaker",
+      "Monitor",
+      "Projector",
+      "Keyboard"
+    ],
+    "correct": 3,
+    "explanation": "A keyboard supplies input; the other devices present output.",
+    "sourceReference": "COS 101 Introduction to Computing-1.pdf, page 12"
+  },
+  {
+    "id": "au-materials-20261018-cos-101-l-005",
+    "courseCode": "COS 101",
+    "courseTitle": "Introduction to Computing Sciences",
+    "level": 100,
+    "prompt": "What is the control unit responsible for?",
+    "options": [
+      "Printing documents",
+      "Manufacturing chips",
+      "Cooling the room",
+      "Directing CPU operations"
+    ],
+    "correct": 3,
+    "explanation": "The control unit coordinates instruction execution and data flow.",
+    "sourceReference": "COS 101 Introduction to Computing-1.pdf, page 14"
+  },
+  {
+    "id": "au-materials-20261018-cos-102-l-001",
+    "courseCode": "COS 102",
+    "courseTitle": "Problem Solving",
+    "level": 100,
+    "prompt": "What should a programmer clarify before designing a solution?",
+    "options": [
+      "The printer location",
+      "The final screen colour only",
+      "The problem and its requirements",
+      "The keyboard brand"
+    ],
+    "correct": 2,
+    "explanation": "A precise problem definition guides the solution design.",
+    "sourceReference": "CSC 102(1).pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-cos-102-l-002",
+    "courseCode": "COS 102",
+    "courseTitle": "Problem Solving",
+    "level": 100,
+    "prompt": "What is an algorithm intended to describe?",
+    "options": [
+      "Only the computer's appearance",
+      "Only a file's colour",
+      "Steps for solving a problem",
+      "A user's surname"
+    ],
+    "correct": 2,
+    "explanation": "An algorithm specifies the procedure that produces a solution.",
+    "sourceReference": "CSC 102(1).pdf, page 20"
+  },
+  {
+    "id": "au-materials-20261018-cos-102-l-003",
+    "courseCode": "COS 102",
+    "courseTitle": "Problem Solving",
+    "level": 100,
+    "prompt": "Which description best matches a program?",
+    "options": [
+      "A printed circuit board",
+      "A physical memory chip",
+      "Instructions executable by a computer",
+      "A network cable"
+    ],
+    "correct": 2,
+    "explanation": "A program contains instructions that perform a specified task.",
+    "sourceReference": "CSC 102(1).pdf, page 6"
+  },
+  {
+    "id": "au-materials-20261018-cos-102-l-004",
+    "courseCode": "COS 102",
+    "courseTitle": "Problem Solving",
+    "level": 100,
+    "prompt": "Which utility translates assembly language into machine code?",
+    "options": [
+      "Image editor",
+      "Web browser",
+      "Spreadsheet",
+      "Assembler"
+    ],
+    "correct": 3,
+    "explanation": "An assembler converts assembly instructions to executable machine code.",
+    "sourceReference": "CSC 102(1).pdf, page 11"
+  },
+  {
+    "id": "au-materials-20261018-cos-102-l-005",
+    "courseCode": "COS 102",
+    "courseTitle": "Problem Solving",
+    "level": 100,
+    "prompt": "Why are high-level languages useful?",
+    "options": [
+      "They prevent the use of variables",
+      "They abstract many hardware details",
+      "They require direct binary entry for every instruction",
+      "They eliminate algorithms"
+    ],
+    "correct": 1,
+    "explanation": "Higher-level notation lets programmers focus on program logic.",
+    "sourceReference": "CSC 102(1).pdf, page 12"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-104-l-001",
+    "courseCode": "AUE-CSC 104",
+    "courseTitle": "Computer Hardware",
+    "level": 100,
+    "prompt": "Which item is computer hardware?",
+    "options": [
+      "A saved algorithm",
+      "Operating-system code",
+      "Motherboard",
+      "A software licence"
+    ],
+    "correct": 2,
+    "explanation": "Hardware consists of tangible physical components.",
+    "sourceReference": "CH-LectureNote1(1).pdf, page 7"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-104-l-002",
+    "courseCode": "AUE-CSC 104",
+    "courseTitle": "Computer Hardware",
+    "level": 100,
+    "prompt": "What does software provide to hardware?",
+    "options": [
+      "Instructions for operation",
+      "Electrical sockets",
+      "The metal enclosure",
+      "Physical cooling fans"
+    ],
+    "correct": 0,
+    "explanation": "Software consists of programs and data that direct hardware.",
+    "sourceReference": "CH-LectureNote1(1).pdf, page 8"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-104-l-003",
+    "courseCode": "AUE-CSC 104",
+    "courseTitle": "Computer Hardware",
+    "level": 100,
+    "prompt": "What does a scanner do?",
+    "options": [
+      "Supplies sound output",
+      "Prints digital documents",
+      "Executes CPU instructions",
+      "Converts physical documents into digital input"
+    ],
+    "correct": 3,
+    "explanation": "A scanner digitises physical material as input.",
+    "sourceReference": "CH-LectureNote1(1).pdf, page 10"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-104-l-004",
+    "courseCode": "AUE-CSC 104",
+    "courseTitle": "Computer Hardware",
+    "level": 100,
+    "prompt": "Which processor is specialised for rendering visual data?",
+    "options": [
+      "Keyboard controller",
+      "GPU",
+      "Audio speaker",
+      "Power supply"
+    ],
+    "correct": 1,
+    "explanation": "A GPU is designed for graphics and visual processing.",
+    "sourceReference": "CH-LectureNote1(1).pdf, page 12"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-104-l-005",
+    "courseCode": "AUE-CSC 104",
+    "courseTitle": "Computer Hardware",
+    "level": 100,
+    "prompt": "Which device presents audio output?",
+    "options": [
+      "Speaker",
+      "Scanner",
+      "Keyboard",
+      "Microphone"
+    ],
+    "correct": 0,
+    "explanation": "Speakers reproduce sound, whereas microphones capture sound as input.",
+    "sourceReference": "CH-LectureNote1(1).pdf, page 11"
+  },
+  {
+    "id": "au-materials-20261018-gst-111-l-001",
+    "courseCode": "GST 111",
+    "courseTitle": "Communication in English",
+    "level": 100,
+    "prompt": "Two people cannot understand each other's language. What can help?",
+    "options": [
+      "Ignoring the listener",
+      "Increasing background noise",
+      "Using a translator",
+      "Avoiding all feedback"
+    ],
+    "correct": 2,
+    "explanation": "A translator can reduce a language barrier between participants.",
+    "sourceReference": "GST 111 QUESTIONS.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-111-l-002",
+    "courseCode": "GST 111",
+    "courseTitle": "Communication in English",
+    "level": 100,
+    "prompt": "What does feedback tell a sender?",
+    "options": [
+      "The cost of the paper",
+      "The brand of the receiver's phone",
+      "How the message was received",
+      "Only the sender's age"
+    ],
+    "correct": 2,
+    "explanation": "Feedback provides a response to the communicated message.",
+    "sourceReference": "GST 111 QUESTIONS.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-111-l-003",
+    "courseCode": "GST 111",
+    "courseTitle": "Communication in English",
+    "level": 100,
+    "prompt": "Which activity is essential for understanding a spoken message?",
+    "options": [
+      "Reading an unrelated message",
+      "Ignoring the speaker",
+      "Listening attentively",
+      "Interrupting every sentence"
+    ],
+    "correct": 2,
+    "explanation": "Attentive listening helps the receiver understand the speaker.",
+    "sourceReference": "GST 111 QUESTIONS.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-111-l-004",
+    "courseCode": "GST 111",
+    "courseTitle": "Communication in English",
+    "level": 100,
+    "prompt": "Which is an example of non-verbal communication?",
+    "options": [
+      "Facial expression",
+      "A spoken announcement",
+      "A telephone conversation",
+      "An oral presentation"
+    ],
+    "correct": 0,
+    "explanation": "Facial expressions convey meaning without spoken words.",
+    "sourceReference": "GST 111 QUESTIONS.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-111-l-005",
+    "courseCode": "GST 111",
+    "courseTitle": "Communication in English",
+    "level": 100,
+    "prompt": "What is a communication barrier?",
+    "options": [
+      "A type of punctuation",
+      "A guarantee of shared meaning",
+      "A required message heading",
+      "An obstacle to effective understanding"
+    ],
+    "correct": 3,
+    "explanation": "Barriers interfere with the exchange or understanding of messages.",
+    "sourceReference": "GST 111 QUESTIONS.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-112-l-001",
+    "courseCode": "GST 112",
+    "courseTitle": "Nigerian Peoples and Culture",
+    "level": 100,
+    "prompt": "What are social norms?",
+    "options": [
+      "Private computer passwords",
+      "Measurements of rainfall",
+      "Only inherited physical traits",
+      "Rules and expectations for behaviour"
+    ],
+    "correct": 3,
+    "explanation": "Norms describe expected or acceptable conduct within a group.",
+    "sourceReference": "WEEK 2 GST112_070834.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-112-l-002",
+    "courseCode": "GST 112",
+    "courseTitle": "Nigerian Peoples and Culture",
+    "level": 100,
+    "prompt": "What do social values express?",
+    "options": [
+      "Only legal punishments",
+      "Beliefs about what is important and desirable",
+      "The weight of an object",
+      "The number of buildings"
+    ],
+    "correct": 1,
+    "explanation": "Values guide judgements about desirable behaviour and goals.",
+    "sourceReference": "WEEK 2 GST112_070834.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-112-l-003",
+    "courseCode": "GST 112",
+    "courseTitle": "Nigerian Peoples and Culture",
+    "level": 100,
+    "prompt": "How do norms differ from values?",
+    "options": [
+      "Norms are always genes; values are always laws",
+      "Norms measure temperature; values measure distance",
+      "Norms guide conduct; values express ideals",
+      "They have no connection with social life"
+    ],
+    "correct": 2,
+    "explanation": "Norms concern expected behaviour, while values concern what a community considers desirable.",
+    "sourceReference": "WEEK 2 GST112_070834.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-112-l-004",
+    "courseCode": "GST 112",
+    "courseTitle": "Nigerian Peoples and Culture",
+    "level": 100,
+    "prompt": "Which is an informal way of regulating behaviour?",
+    "options": [
+      "Social approval or disapproval",
+      "A voltage regulator",
+      "A rainfall gauge",
+      "A database index"
+    ],
+    "correct": 0,
+    "explanation": "Informal social control operates through everyday social responses.",
+    "sourceReference": "WEEK 2 GST112_070834.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-112-l-005",
+    "courseCode": "GST 112",
+    "courseTitle": "Nigerian Peoples and Culture",
+    "level": 100,
+    "prompt": "Why are shared norms useful in a society?",
+    "options": [
+      "They make learning unnecessary",
+      "They help people anticipate behaviour",
+      "They prevent all social change",
+      "They eliminate every disagreement"
+    ],
+    "correct": 1,
+    "explanation": "Shared expectations support coordination and social order.",
+    "sourceReference": "WEEK 2 GST112_070834.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-gst-102-l-001",
+    "courseCode": "AUE-GST 102",
+    "courseTitle": "God in Modern Society",
+    "level": 100,
+    "prompt": "What is a central aim of religious dialogue?",
+    "options": [
+      "Mutual understanding and respectful cooperation",
+      "Erasing every religious tradition",
+      "Preventing all conversations",
+      "Compulsory agreement on every belief"
+    ],
+    "correct": 0,
+    "explanation": "Dialogue seeks understanding and common ground while acknowledging differences.",
+    "sourceReference": "AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-gst-102-l-002",
+    "courseCode": "AUE-GST 102",
+    "courseTitle": "God in Modern Society",
+    "level": 100,
+    "prompt": "What attitude supports constructive interreligious dialogue?",
+    "options": [
+      "Threatening disagreement",
+      "Respectful listening",
+      "Mocking participants",
+      "Refusing to hear differences"
+    ],
+    "correct": 1,
+    "explanation": "Respect makes open and productive discussion possible.",
+    "sourceReference": "AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-gst-102-l-003",
+    "courseCode": "AUE-GST 102",
+    "courseTitle": "God in Modern Society",
+    "level": 100,
+    "prompt": "Finding common ground in religious dialogue means what?",
+    "options": [
+      "Avoiding every social issue",
+      "Pretending no differences exist",
+      "Identifying shared concerns or values",
+      "Requiring identical rituals"
+    ],
+    "correct": 2,
+    "explanation": "Participants can cooperate around shared values despite differing beliefs.",
+    "sourceReference": "AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-gst-102-l-004",
+    "courseCode": "AUE-GST 102",
+    "courseTitle": "God in Modern Society",
+    "level": 100,
+    "prompt": "Which topic is explicitly addressed alongside religion in these supplementary notes?",
+    "options": [
+      "Mental health",
+      "Optical disk formatting",
+      "Circuit fabrication",
+      "Compiler register allocation"
+    ],
+    "correct": 0,
+    "explanation": "The supplementary material connects religious life with mental health discussions.",
+    "sourceReference": "AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-gst-102-l-005",
+    "courseCode": "AUE-GST 102",
+    "courseTitle": "God in Modern Society",
+    "level": 100,
+    "prompt": "Which topic concerns the relationship between religion and modern digital life?",
+    "options": [
+      "Digital technology",
+      "Magnetic resonance only",
+      "Metal casting",
+      "Plate tectonics"
+    ],
+    "correct": 0,
+    "explanation": "The notes include the influence of digital technology on religious life.",
+    "sourceReference": "AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-sta-111-l-001",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which is a measure of central tendency?",
+    "options": [
+      "Median",
+      "Standard deviation",
+      "Range",
+      "Variance"
+    ],
+    "correct": 0,
+    "explanation": "The median describes the central position of ordered data.",
+    "sourceReference": "526001962-Statistics-Mcq-Questions_251127_184758(1).pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sta-111-l-002",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which measure describes spread rather than central location?",
+    "options": [
+      "Mode",
+      "Range",
+      "Median",
+      "Mean"
+    ],
+    "correct": 1,
+    "explanation": "The range measures the difference between the largest and smallest observations.",
+    "sourceReference": "526001962-Statistics-Mcq-Questions_251127_184758(1).pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sta-111-l-003",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which branch summarises observed data?",
+    "options": [
+      "Only cryptography",
+      "Only number theory",
+      "Only formal logic",
+      "Descriptive statistics"
+    ],
+    "correct": 3,
+    "explanation": "Descriptive statistics organises and summarises collected observations.",
+    "sourceReference": "526001962-Statistics-Mcq-Questions_251127_184758(1).pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-sta-111-l-004",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which variable is qualitative?",
+    "options": [
+      "Eye colour",
+      "Mass in kilograms",
+      "Age in years",
+      "Height in centimetres"
+    ],
+    "correct": 0,
+    "explanation": "Eye colour is categorical rather than a numerical measurement.",
+    "sourceReference": "526001962-Statistics-Mcq-Questions_251127_184758(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-sta-111-l-005",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which variable is quantitative?",
+    "options": [
+      "Blood group category",
+      "Favourite colour",
+      "Marital-status category",
+      "Body mass"
+    ],
+    "correct": 3,
+    "explanation": "Body mass is measured numerically.",
+    "sourceReference": "526001962-Statistics-Mcq-Questions_251127_184758(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-sta-112-l-001",
+    "courseCode": "STA 112",
+    "courseTitle": "Probability I",
+    "level": 100,
+    "prompt": "Which probability approach applies when all elementary outcomes are equally likely?",
+    "options": [
+      "Subjective opinion only",
+      "Classical probability",
+      "An impossible-event rule",
+      "A guaranteed outcome rule"
+    ],
+    "correct": 1,
+    "explanation": "Classical probability counts favourable outcomes relative to equally likely outcomes.",
+    "sourceReference": "mcq-probability-wiht-correct-answers.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sta-112-l-002",
+    "courseCode": "STA 112",
+    "courseTitle": "Probability I",
+    "level": 100,
+    "prompt": "What is the valid range of a probability?",
+    "options": [
+      "0 to 1 inclusive",
+      "1 to 100 only",
+      "Any negative number",
+      "-1 to 1 inclusive"
+    ],
+    "correct": 0,
+    "explanation": "Probabilities range from impossibility at 0 to certainty at 1.",
+    "sourceReference": "mcq-probability-wiht-correct-answers.pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-sta-112-l-003",
+    "courseCode": "STA 112",
+    "courseTitle": "Probability I",
+    "level": 100,
+    "prompt": "What is a sample space?",
+    "options": [
+      "A single observed frequency",
+      "Only impossible outcomes",
+      "The set of all possible outcomes",
+      "Only the most likely outcome"
+    ],
+    "correct": 2,
+    "explanation": "The sample space contains every possible outcome of the experiment.",
+    "sourceReference": "mcq-probability-wiht-correct-answers.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sta-112-l-004",
+    "courseCode": "STA 112",
+    "courseTitle": "Probability I",
+    "level": 100,
+    "prompt": "If P(A) = 0.3, what is P(not A)?",
+    "options": [
+      "0.7",
+      "-0.3",
+      "0.3",
+      "1.3"
+    ],
+    "correct": 0,
+    "explanation": "A and its complement have probabilities that sum to 1.",
+    "sourceReference": "mcq-probability-wiht-correct-answers.pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-sta-112-l-005",
+    "courseCode": "STA 112",
+    "courseTitle": "Probability I",
+    "level": 100,
+    "prompt": "For independent events A and B, how is P(A and B) calculated?",
+    "options": [
+      "P(A) minus P(B)",
+      "P(A) plus 1",
+      "Always zero",
+      "P(A) multiplied by P(B)"
+    ],
+    "correct": 3,
+    "explanation": "Independence makes the joint probability the product of the two probabilities.",
+    "sourceReference": "mcq-probability-wiht-correct-answers.pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-mth-102-l-001",
+    "courseCode": "MTH 102",
+    "courseTitle": "Elementary Mathematics II",
+    "level": 100,
+    "prompt": "Which relation defines an even function?",
+    "options": [
+      "f(x) is never defined at zero",
+      "f(x) = x for all x",
+      "f(-x) = -f(x) always",
+      "f(-x) = f(x)"
+    ],
+    "correct": 3,
+    "explanation": "An even function is unchanged when the sign of its input is reversed.",
+    "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-mth-102-l-002",
+    "courseCode": "MTH 102",
+    "courseTitle": "Elementary Mathematics II",
+    "level": 100,
+    "prompt": "Which relation defines an odd function?",
+    "options": [
+      "f(-x) = f(x) always",
+      "f(x) must be constant and nonzero",
+      "f(-x) = -f(x)",
+      "f(x) is always positive"
+    ],
+    "correct": 2,
+    "explanation": "Odd functions change sign when their input changes sign.",
+    "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-mth-102-l-003",
+    "courseCode": "MTH 102",
+    "courseTitle": "Elementary Mathematics II",
+    "level": 100,
+    "prompt": "What is the limit of 2x + 1 as x approaches 3?",
+    "options": [
+      "1",
+      "7",
+      "3",
+      "6"
+    ],
+    "correct": 1,
+    "explanation": "A polynomial is continuous; substituting x = 3 gives 7.",
+    "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 11"
+  },
+  {
+    "id": "au-materials-20261018-mth-102-l-004",
+    "courseCode": "MTH 102",
+    "courseTitle": "Elementary Mathematics II",
+    "level": 100,
+    "prompt": "What is the derivative of x squared?",
+    "options": [
+      "x cubed",
+      "x",
+      "2x",
+      "2"
+    ],
+    "correct": 2,
+    "explanation": "The power rule gives d(x^2)/dx = 2x.",
+    "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-mth-102-l-005",
+    "courseCode": "MTH 102",
+    "courseTitle": "Elementary Mathematics II",
+    "level": 100,
+    "prompt": "What is the derivative of the constant 7?",
+    "options": [
+      "1",
+      "7",
+      "0",
+      "7x"
+    ],
+    "correct": 2,
+    "explanation": "A constant does not change with x, so its derivative is zero.",
+    "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 23"
+  },
+  {
+    "id": "au-materials-20261018-phy-102-l-001",
+    "courseCode": "PHY 102",
+    "courseTitle": "General Physics II",
+    "level": 100,
+    "prompt": "An electrically neutral object has what relationship between positive and negative charge?",
+    "options": [
+      "Only negative charge",
+      "No electrons at all",
+      "Only protons",
+      "Equal total amounts"
+    ],
+    "correct": 3,
+    "explanation": "Equal positive and negative charge gives zero net charge.",
+    "sourceReference": "Phy102 Multichoice question.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-phy-102-l-002",
+    "courseCode": "PHY 102",
+    "courseTitle": "General Physics II",
+    "level": 100,
+    "prompt": "For fixed charges, doubling their separation changes the Coulomb-force magnitude by what factor?",
+    "options": [
+      "One half",
+      "One quarter",
+      "Four",
+      "Two"
+    ],
+    "correct": 1,
+    "explanation": "The inverse-square relation gives 1/(2^2) = 1/4.",
+    "sourceReference": "Phy102 Multichoice question.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-phy-102-l-003",
+    "courseCode": "PHY 102",
+    "courseTitle": "General Physics II",
+    "level": 100,
+    "prompt": "What is electric field strength defined as?",
+    "options": [
+      "Mass per unit time",
+      "Force per unit positive test charge",
+      "Charge per unit temperature",
+      "Current multiplied by length"
+    ],
+    "correct": 1,
+    "explanation": "Electric field strength is E = F/q for a positive test charge.",
+    "sourceReference": "Phy102 Multichoice question.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-phy-102-l-004",
+    "courseCode": "PHY 102",
+    "courseTitle": "General Physics II",
+    "level": 100,
+    "prompt": "What is capacitance defined as?",
+    "options": [
+      "Potential difference divided by mass",
+      "Stored charge divided by potential difference",
+      "Current divided by length",
+      "Force divided by time"
+    ],
+    "correct": 1,
+    "explanation": "Capacitance is C = Q/V.",
+    "sourceReference": "Phy102 Multichoice question.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-phy-102-l-005",
+    "courseCode": "PHY 102",
+    "courseTitle": "General Physics II",
+    "level": 100,
+    "prompt": "Which unit is used for electric potential difference?",
+    "options": [
+      "Kilogram",
+      "Volt",
+      "Newton",
+      "Second"
+    ],
+    "correct": 1,
+    "explanation": "Potential difference is measured in volts.",
+    "sourceReference": "Phy102 Multichoice question.pdf, page 16"
+  },
+  {
+    "id": "au-materials-20261018-sen-201-l-001",
+    "courseCode": "SEN 201",
+    "courseTitle": "Introduction to Software Engineering",
+    "level": 200,
+    "prompt": "What is modularity in software design?",
+    "options": [
+      "Dividing software into manageable components",
+      "Combining every responsibility into one operation",
+      "Removing all interfaces",
+      "Avoiding decomposition"
+    ],
+    "correct": 0,
+    "explanation": "Modules separate responsibilities and make a system easier to manage.",
+    "sourceReference": "Lecture1 Software Engineering Concepts and Principles.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sen-201-l-002",
+    "courseCode": "SEN 201",
+    "courseTitle": "Introduction to Software Engineering",
+    "level": 200,
+    "prompt": "Which principle gives different responsibilities distinct parts of a system?",
+    "options": [
+      "Separation of concerns",
+      "Unstructured expansion",
+      "Uncontrolled duplication",
+      "Random coupling"
+    ],
+    "correct": 0,
+    "explanation": "Separating concerns keeps unrelated responsibilities from becoming entangled.",
+    "sourceReference": "Lecture1 Software Engineering Concepts and Principles.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sen-201-l-003",
+    "courseCode": "SEN 201",
+    "courseTitle": "Introduction to Software Engineering",
+    "level": 200,
+    "prompt": "What does verification primarily check?",
+    "options": [
+      "Whether source files are large",
+      "Whether its logo is attractive",
+      "Whether all requirements can be omitted",
+      "Whether a product meets its specifications"
+    ],
+    "correct": 3,
+    "explanation": "Verification checks the product against its specified requirements or design.",
+    "sourceReference": "Lecture1 Software Engineering Concepts and Principles.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sen-201-l-004",
+    "courseCode": "SEN 201",
+    "courseTitle": "Introduction to Software Engineering",
+    "level": 200,
+    "prompt": "Why is software documentation useful?",
+    "options": [
+      "It prevents all future changes",
+      "It guarantees the absence of bugs",
+      "It replaces every test",
+      "It supports understanding and maintenance"
+    ],
+    "correct": 3,
+    "explanation": "Documentation records information needed to understand and maintain software.",
+    "sourceReference": "Lecture1 Software Engineering Concepts and Principles.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-sen-201-l-005",
+    "courseCode": "SEN 201",
+    "courseTitle": "Introduction to Software Engineering",
+    "level": 200,
+    "prompt": "Why do software engineering principles matter?",
+    "options": [
+      "They require every project to use one language",
+      "They guide disciplined development of quality software",
+      "They guarantee zero cost",
+      "They eliminate the need for requirements"
+    ],
+    "correct": 1,
+    "explanation": "Principles provide systematic guidance for engineering reliable software.",
+    "sourceReference": "Lecture1 Software Engineering Concepts and Principles.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ift-211-l-001",
+    "courseCode": "IFT 211",
+    "courseTitle": "Digital Logic Design",
+    "level": 200,
+    "prompt": "Which digits are used in the binary number system?",
+    "options": [
+      "0 through 7",
+      "0 and 1",
+      "0 through 9",
+      "1 and 2"
+    ],
+    "correct": 1,
+    "explanation": "Binary is a base-2 system with two digit values.",
+    "sourceReference": "Digital Logic Design.pptx, slide 20"
+  },
+  {
+    "id": "au-materials-20261018-ift-211-l-002",
+    "courseCode": "IFT 211",
+    "courseTitle": "Digital Logic Design",
+    "level": 200,
+    "prompt": "What does a digital logic gate do?",
+    "options": [
+      "Stores paper documents",
+      "Draws every screen image",
+      "Implements a Boolean operation on input signals",
+      "Measures only temperature"
+    ],
+    "correct": 2,
+    "explanation": "Logic gates operate on binary signals according to Boolean rules.",
+    "sourceReference": "Digital Logic Design.pptx, slide 24"
+  },
+  {
+    "id": "au-materials-20261018-ift-211-l-003",
+    "courseCode": "IFT 211",
+    "courseTitle": "Digital Logic Design",
+    "level": 200,
+    "prompt": "When does a two-input AND gate output 1?",
+    "options": [
+      "When both inputs are 0",
+      "Whenever either input is 0",
+      "When both inputs are 1",
+      "For every possible input"
+    ],
+    "correct": 2,
+    "explanation": "AND is true only when both input conditions are true.",
+    "sourceReference": "Digital Logic Design.pptx, slide 20"
+  },
+  {
+    "id": "au-materials-20261018-ift-211-l-004",
+    "courseCode": "IFT 211",
+    "courseTitle": "Digital Logic Design",
+    "level": 200,
+    "prompt": "When does a two-input OR gate output 0?",
+    "options": [
+      "When both inputs are 0",
+      "For every possible input",
+      "When both inputs are 1",
+      "When either input is 1"
+    ],
+    "correct": 0,
+    "explanation": "OR is false only if neither input is true.",
+    "sourceReference": "Digital Logic Design.pptx, slide 20"
+  },
+  {
+    "id": "au-materials-20261018-ift-211-l-005",
+    "courseCode": "IFT 211",
+    "courseTitle": "Digital Logic Design",
+    "level": 200,
+    "prompt": "What does a NOT gate do?",
+    "options": [
+      "Always outputs 0",
+      "Always outputs 1",
+      "Inverts its input",
+      "Adds two binary numbers"
+    ],
+    "correct": 2,
+    "explanation": "NOT changes 0 to 1 and 1 to 0.",
+    "sourceReference": "Digital Logic Design.pptx, slide 27"
+  },
+  {
+    "id": "au-materials-20261018-ift-212-l-001",
+    "courseCode": "IFT 212",
+    "courseTitle": "Computer Architecture and Organization",
+    "level": 200,
+    "prompt": "What is central to the stored-program concept?",
+    "options": [
+      "Instructions are stored in memory",
+      "Data cannot be stored",
+      "Instructions exist only on paper",
+      "Every instruction needs new hardware"
+    ],
+    "correct": 0,
+    "explanation": "Stored-program computers keep executable instructions in memory.",
+    "sourceReference": "IFT 212 Chapter One - Lecture 1.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ift-212-l-002",
+    "courseCode": "IFT 212",
+    "courseTitle": "Computer Architecture and Organization",
+    "level": 200,
+    "prompt": "An instruction set specifies what?",
+    "options": [
+      "Only the processor's colour",
+      "Operations a processor can execute",
+      "Only the keyboard arrangement",
+      "The room's electrical wiring"
+    ],
+    "correct": 1,
+    "explanation": "The instruction set defines the processor's machine-level operations.",
+    "sourceReference": "IFT 212 Chapter One - Lecture 1.pdf, page 6"
+  },
+  {
+    "id": "au-materials-20261018-ift-212-l-003",
+    "courseCode": "IFT 212",
+    "courseTitle": "Computer Architecture and Organization",
+    "level": 200,
+    "prompt": "Why must computer design consider performance?",
+    "options": [
+      "To avoid measuring execution",
+      "To remove all design constraints",
+      "To satisfy workload and application needs",
+      "To make every program identical"
+    ],
+    "correct": 2,
+    "explanation": "Design decisions should support the intended computational workload.",
+    "sourceReference": "IFT 212 Chapter One - Lecture 1.pdf, page 10"
+  },
+  {
+    "id": "au-materials-20261018-ift-212-l-004",
+    "courseCode": "IFT 212",
+    "courseTitle": "Computer Architecture and Organization",
+    "level": 200,
+    "prompt": "What trade-off commonly influences computer design?",
+    "options": [
+      "Font colour versus spelling",
+      "Paper size versus handwriting",
+      "Performance versus cost",
+      "Rainfall versus pressure"
+    ],
+    "correct": 2,
+    "explanation": "Computer design balances performance goals against resource costs.",
+    "sourceReference": "IFT 212 Chapter One - Lecture 1.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ift-212-l-005",
+    "courseCode": "IFT 212",
+    "courseTitle": "Computer Architecture and Organization",
+    "level": 200,
+    "prompt": "What is a principal role of memory in a computer?",
+    "options": [
+      "Generating mains power",
+      "Printing results on paper",
+      "Replacing every input device",
+      "Holding instructions and data"
+    ],
+    "correct": 3,
+    "explanation": "Memory holds information needed during computation.",
+    "sourceReference": "IFT 212 Chapter One - Lecture 1.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-203-l-001",
+    "courseCode": "CSC 203",
+    "courseTitle": "Discrete Structures",
+    "level": 200,
+    "prompt": "What is a proposition in classical propositional logic?",
+    "options": [
+      "Any unfinished sentence",
+      "A statement that is true or false",
+      "A question without a truth value",
+      "A command to a user"
+    ],
+    "correct": 1,
+    "explanation": "A proposition has a definite truth value.",
+    "sourceReference": "CSC 203 Discrete Structures NEW.pdf, page 11"
+  },
+  {
+    "id": "au-materials-20261018-csc-203-l-002",
+    "courseCode": "CSC 203",
+    "courseTitle": "Discrete Structures",
+    "level": 200,
+    "prompt": "When is P AND Q true?",
+    "options": [
+      "Whenever P is false",
+      "Only when both are false",
+      "Whenever Q is false",
+      "When both P and Q are true"
+    ],
+    "correct": 3,
+    "explanation": "A conjunction requires both component propositions to be true.",
+    "sourceReference": "CSC 203 Discrete Structures NEW.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-csc-203-l-003",
+    "courseCode": "CSC 203",
+    "courseTitle": "Discrete Structures",
+    "level": 200,
+    "prompt": "When is P OR Q false?",
+    "options": [
+      "Whenever either is true",
+      "Whenever P is true",
+      "Whenever Q is true",
+      "When both P and Q are false"
+    ],
+    "correct": 3,
+    "explanation": "An inclusive disjunction is false only when both operands are false.",
+    "sourceReference": "CSC 203 Discrete Structures NEW.pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-csc-203-l-004",
+    "courseCode": "CSC 203",
+    "courseTitle": "Discrete Structures",
+    "level": 200,
+    "prompt": "What does logical negation do?",
+    "options": [
+      "Counts the words in a statement",
+      "Reverses a proposition's truth value",
+      "Always makes a proposition true",
+      "Always makes a proposition false"
+    ],
+    "correct": 1,
+    "explanation": "Negation maps true to false and false to true.",
+    "sourceReference": "CSC 203 Discrete Structures NEW.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-csc-203-l-005",
+    "courseCode": "CSC 203",
+    "courseTitle": "Discrete Structures",
+    "level": 200,
+    "prompt": "What is a tautology?",
+    "options": [
+      "A formula false under every assignment",
+      "A formula true under every truth assignment",
+      "An unordered data collection",
+      "A statement without logical operators"
+    ],
+    "correct": 1,
+    "explanation": "A tautology remains true for all possible input truth values.",
+    "sourceReference": "CSC 203 Discrete Structures NEW.pdf, page 6"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-202-l-001",
+    "courseCode": "AUE-CSC 202",
+    "courseTitle": "System Analysis and Design",
+    "level": 200,
+    "prompt": "What is a main aim of structured analysis?",
+    "options": [
+      "Writing code without analysis",
+      "Choosing only a screen background",
+      "Representing processes and data flows systematically",
+      "Replacing requirements with guesses"
+    ],
+    "correct": 2,
+    "explanation": "Structured analysis models how a system transforms and moves data.",
+    "sourceReference": "data flow diagram.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-202-l-002",
+    "courseCode": "AUE-CSC 202",
+    "courseTitle": "System Analysis and Design",
+    "level": 200,
+    "prompt": "What does an arrow in a data flow diagram usually represent?",
+    "options": [
+      "A software licence",
+      "A processor's temperature",
+      "A page margin",
+      "Movement of data"
+    ],
+    "correct": 3,
+    "explanation": "Arrows show data moving between system elements.",
+    "sourceReference": "data flow diagram.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-202-l-003",
+    "courseCode": "AUE-CSC 202",
+    "courseTitle": "System Analysis and Design",
+    "level": 200,
+    "prompt": "What does a process in a data flow diagram do?",
+    "options": [
+      "Always stores data forever",
+      "Transforms input data into output data",
+      "Represents only a physical cable",
+      "Represents only a person outside the system"
+    ],
+    "correct": 1,
+    "explanation": "A process performs a transformation on data.",
+    "sourceReference": "data flow diagram.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-202-l-004",
+    "courseCode": "AUE-CSC 202",
+    "courseTitle": "System Analysis and Design",
+    "level": 200,
+    "prompt": "What does a data store represent?",
+    "options": [
+      "Data held for later use",
+      "A computer's power switch",
+      "A screen colour",
+      "Only a transient spoken message"
+    ],
+    "correct": 0,
+    "explanation": "A data store holds information within the model.",
+    "sourceReference": "data flow diagram.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-202-l-005",
+    "courseCode": "AUE-CSC 202",
+    "courseTitle": "System Analysis and Design",
+    "level": 200,
+    "prompt": "What is an external entity in a system model?",
+    "options": [
+      "A source or destination outside the system boundary",
+      "Only a CPU register",
+      "Always a calculation inside the system",
+      "Always a database table"
+    ],
+    "correct": 0,
+    "explanation": "External entities interact with the system across its boundary.",
+    "sourceReference": "data flow diagram.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-204-l-001",
+    "courseCode": "AUE-CSC 204",
+    "courseTitle": "Web Technologies",
+    "level": 200,
+    "prompt": "What is HTML primarily used for?",
+    "options": [
+      "Managing physical memory",
+      "Encrypting every network packet",
+      "Structuring web-page content",
+      "Compiling Java bytecode"
+    ],
+    "correct": 2,
+    "explanation": "HTML describes the structure and meaning of web content.",
+    "sourceReference": "html css.pdf, page 87"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-204-l-002",
+    "courseCode": "AUE-CSC 204",
+    "courseTitle": "Web Technologies",
+    "level": 200,
+    "prompt": "What is CSS primarily used for?",
+    "options": [
+      "Storing database transactions",
+      "Defining a CPU instruction set",
+      "Routing all internet traffic",
+      "Controlling web-page presentation"
+    ],
+    "correct": 3,
+    "explanation": "CSS controls the styling and visual presentation of HTML content.",
+    "sourceReference": "html css.pdf, page 152"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-204-l-003",
+    "courseCode": "AUE-CSC 204",
+    "courseTitle": "Web Technologies",
+    "level": 200,
+    "prompt": "Which role does a web browser normally perform?",
+    "options": [
+      "Only a physical router",
+      "Only an electrical power source",
+      "Client requesting and displaying web content",
+      "Only a printer controller"
+    ],
+    "correct": 2,
+    "explanation": "A browser requests web resources and presents them to the user.",
+    "sourceReference": "html css.pdf, page 15"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-204-l-004",
+    "courseCode": "AUE-CSC 204",
+    "courseTitle": "Web Technologies",
+    "level": 200,
+    "prompt": "What does a web server do?",
+    "options": [
+      "Only edits local screenshots",
+      "Only measures keyboard speed",
+      "Only provides monitor lighting",
+      "Responds to requests for web resources"
+    ],
+    "correct": 3,
+    "explanation": "A web server handles requests and sends responses containing resources or data.",
+    "sourceReference": "html css.pdf, page 21"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-204-l-005",
+    "courseCode": "AUE-CSC 204",
+    "courseTitle": "Web Technologies",
+    "level": 200,
+    "prompt": "What does a URL identify?",
+    "options": [
+      "A processor's temperature",
+      "A display's brightness",
+      "A document's word count",
+      "The location of a resource"
+    ],
+    "correct": 3,
+    "explanation": "A URL identifies how and where a resource can be accessed.",
+    "sourceReference": "html css.pdf, page 219"
+  },
+  {
+    "id": "au-materials-20261018-cos-202-l-001",
+    "courseCode": "COS 202",
+    "courseTitle": "Computer Programming II",
+    "level": 200,
+    "prompt": "What is a class in object-oriented programming?",
+    "options": [
+      "An instance's current numeric value only",
+      "A type of printer",
+      "A physical memory chip",
+      "A blueprint for objects"
+    ],
+    "correct": 3,
+    "explanation": "A class defines the structure and behaviour of its instances.",
+    "sourceReference": "COS 202- COMP PROGRAMMING 1 - Copy.pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-cos-202-l-002",
+    "courseCode": "COS 202",
+    "courseTitle": "Computer Programming II",
+    "level": 200,
+    "prompt": "What is an object in Java?",
+    "options": [
+      "A network port only",
+      "An instance of a class",
+      "A compiler warning only",
+      "A synonym for source filename"
+    ],
+    "correct": 1,
+    "explanation": "Objects are instances with state and behaviour.",
+    "sourceReference": "COS 202- COMP PROGRAMMING 1 - Copy.pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-cos-202-l-003",
+    "courseCode": "COS 202",
+    "courseTitle": "Computer Programming II",
+    "level": 200,
+    "prompt": "How is an object's state commonly represented?",
+    "options": [
+      "Only by the compiler version",
+      "By its fields and their values",
+      "Only by the file extension",
+      "Only by the screen colour"
+    ],
+    "correct": 1,
+    "explanation": "Fields hold the data that describes an object's current state.",
+    "sourceReference": "COS 202- COMP PROGRAMMING 1 - Copy.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-cos-202-l-004",
+    "courseCode": "COS 202",
+    "courseTitle": "Computer Programming II",
+    "level": 200,
+    "prompt": "What represents an object's behaviour?",
+    "options": [
+      "Its author's initials only",
+      "Its methods",
+      "Its folder colour",
+      "Its file size only"
+    ],
+    "correct": 1,
+    "explanation": "Methods define the actions an object can perform.",
+    "sourceReference": "COS 202- COMP PROGRAMMING 1 - Copy.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-cos-202-l-005",
+    "courseCode": "COS 202",
+    "courseTitle": "Computer Programming II",
+    "level": 200,
+    "prompt": "What does encapsulation combine?",
+    "options": [
+      "Every network into one cable",
+      "Data and related methods in one unit",
+      "All programs into one processor instruction",
+      "Only comments and filenames"
+    ],
+    "correct": 1,
+    "explanation": "Encapsulation groups state with the operations that act on it.",
+    "sourceReference": "COS 202- COMP PROGRAMMING 1 - Copy.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-gst-212-l-001",
+    "courseCode": "GST 212",
+    "courseTitle": "Philosophy, Logic and Human Existence",
+    "level": 200,
+    "prompt": "What does the traditional Greek origin of philosophy mean?",
+    "options": [
+      "Love of wisdom",
+      "Study of machines only",
+      "Fear of language",
+      "Ownership of knowledge"
+    ],
+    "correct": 0,
+    "explanation": "The terms philo and sophia express love and wisdom.",
+    "sourceReference": "Philosophy, Logic and Human Existence Note 1-3_043619.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-212-l-002",
+    "courseCode": "GST 212",
+    "courseTitle": "Philosophy, Logic and Human Existence",
+    "level": 200,
+    "prompt": "Which branch of philosophy studies fundamental reality and existence?",
+    "options": [
+      "Metaphysics",
+      "Bookkeeping",
+      "Typography",
+      "Meteorology"
+    ],
+    "correct": 0,
+    "explanation": "Metaphysics examines the nature of reality and being.",
+    "sourceReference": "Philosophy, Logic and Human Existence Note 1-3_043619.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-212-l-003",
+    "courseCode": "GST 212",
+    "courseTitle": "Philosophy, Logic and Human Existence",
+    "level": 200,
+    "prompt": "Which branch studies knowledge and its justification?",
+    "options": [
+      "Agronomy",
+      "Mechanics",
+      "Epistemology",
+      "Cartography"
+    ],
+    "correct": 2,
+    "explanation": "Epistemology asks what knowledge is and how it can be justified.",
+    "sourceReference": "Philosophy, Logic and Human Existence Note 1-3_043619.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-212-l-004",
+    "courseCode": "GST 212",
+    "courseTitle": "Philosophy, Logic and Human Existence",
+    "level": 200,
+    "prompt": "Which branch examines moral right and wrong?",
+    "options": [
+      "Phonetics",
+      "Geology",
+      "Ethics",
+      "Optics"
+    ],
+    "correct": 2,
+    "explanation": "Ethics studies moral principles, values and conduct.",
+    "sourceReference": "Philosophy, Logic and Human Existence Note 1-3_043619.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-gst-212-l-005",
+    "courseCode": "GST 212",
+    "courseTitle": "Philosophy, Logic and Human Existence",
+    "level": 200,
+    "prompt": "What does logic primarily study?",
+    "options": [
+      "Only musical notation",
+      "Principles of valid reasoning",
+      "Only weather patterns",
+      "Only the history of buildings"
+    ],
+    "correct": 1,
+    "explanation": "Logic examines the structure and validity of arguments.",
+    "sourceReference": "Philosophy, Logic and Human Existence Note 1-3_043619.pdf, page 16"
+  },
+  {
+    "id": "au-materials-20261018-ent-211-l-001",
+    "courseCode": "ENT 211",
+    "courseTitle": "Entrepreneurship and Innovation",
+    "level": 200,
+    "prompt": "What makes a business idea an opportunity rather than merely a thought?",
+    "options": [
+      "Having no potential customer",
+      "Being impossible to implement",
+      "A realistic possibility of meeting a need and creating value",
+      "Having an attractive name alone"
+    ],
+    "correct": 2,
+    "explanation": "An opportunity combines an idea with feasible value creation.",
+    "sourceReference": "BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ent-211-l-002",
+    "courseCode": "ENT 211",
+    "courseTitle": "Entrepreneurship and Innovation",
+    "level": 200,
+    "prompt": "Why examine customer needs when evaluating an idea?",
+    "options": [
+      "To identify a problem worth solving",
+      "To remove all competitors automatically",
+      "To guarantee immediate profit",
+      "To avoid understanding demand"
+    ],
+    "correct": 0,
+    "explanation": "Customer needs help establish whether an idea offers useful value.",
+    "sourceReference": "BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf, page 6"
+  },
+  {
+    "id": "au-materials-20261018-ent-211-l-003",
+    "courseCode": "ENT 211",
+    "courseTitle": "Entrepreneurship and Innovation",
+    "level": 200,
+    "prompt": "Why may people recognise different entrepreneurial opportunities?",
+    "options": [
+      "Experience cannot influence observation",
+      "All opportunities are equally obvious to everyone",
+      "Only chance can affect recognition",
+      "Their knowledge and experience differ"
+    ],
+    "correct": 3,
+    "explanation": "Knowledge and experience influence which opportunities people notice.",
+    "sourceReference": "BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ent-211-l-004",
+    "courseCode": "ENT 211",
+    "courseTitle": "Entrepreneurship and Innovation",
+    "level": 200,
+    "prompt": "Why assess the market for a business idea?",
+    "options": [
+      "To guarantee zero risk",
+      "To avoid researching competitors",
+      "To choose only an office colour",
+      "To understand demand and potential customers"
+    ],
+    "correct": 3,
+    "explanation": "Market assessment examines whether people need and may buy the offering.",
+    "sourceReference": "BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ent-211-l-005",
+    "courseCode": "ENT 211",
+    "courseTitle": "Entrepreneurship and Innovation",
+    "level": 200,
+    "prompt": "Why consider available resources before pursuing an opportunity?",
+    "options": [
+      "To judge whether it can be implemented",
+      "To prove every idea is profitable",
+      "To ensure nobody else can compete",
+      "To avoid planning"
+    ],
+    "correct": 0,
+    "explanation": "Resource requirements affect practical feasibility.",
+    "sourceReference": "BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-301-l-001",
+    "courseCode": "CSC 301",
+    "courseTitle": "Data Structures",
+    "level": 300,
+    "prompt": "What does a data structure's interface describe?",
+    "options": [
+      "Only its internal memory layout",
+      "Only its source filename",
+      "Supported operations and their inputs and outputs",
+      "Only its author"
+    ],
+    "correct": 2,
+    "explanation": "An interface specifies how the structure can be used without exposing its implementation.",
+    "sourceReference": "DATA STRUCTURE AU LECTURE NOTE.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-301-l-002",
+    "courseCode": "CSC 301",
+    "courseTitle": "Data Structures",
+    "level": 300,
+    "prompt": "What does a data structure's implementation provide?",
+    "options": [
+      "Only an external operations list",
+      "Only a network address",
+      "Only a user manual title",
+      "Its internal representation and operation algorithms"
+    ],
+    "correct": 3,
+    "explanation": "Implementation supplies the concrete representation and algorithms behind the interface.",
+    "sourceReference": "DATA STRUCTURE AU LECTURE NOTE.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-301-l-003",
+    "courseCode": "CSC 301",
+    "courseTitle": "Data Structures",
+    "level": 300,
+    "prompt": "What does time complexity describe?",
+    "options": [
+      "Only the size of a monitor",
+      "How an operation's running time scales",
+      "Only a variable's name",
+      "Only the date of execution"
+    ],
+    "correct": 1,
+    "explanation": "Time complexity characterises computational work relative to input size.",
+    "sourceReference": "DATA STRUCTURE AU LECTURE NOTE.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-301-l-004",
+    "courseCode": "CSC 301",
+    "courseTitle": "Data Structures",
+    "level": 300,
+    "prompt": "What does space complexity describe?",
+    "options": [
+      "The room's floor area",
+      "The length of a cable",
+      "The distance between computers",
+      "Memory required by an algorithm or operation"
+    ],
+    "correct": 3,
+    "explanation": "Space complexity concerns memory usage as input size changes.",
+    "sourceReference": "DATA STRUCTURE AU LECTURE NOTE.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-301-l-005",
+    "courseCode": "CSC 301",
+    "courseTitle": "Data Structures",
+    "level": 300,
+    "prompt": "What does worst-case running time describe?",
+    "options": [
+      "Only the fastest input",
+      "The maximum time for inputs of a given size",
+      "A guaranteed minimum time",
+      "Only the average screen refresh"
+    ],
+    "correct": 1,
+    "explanation": "Worst-case analysis bounds the slowest behaviour for a specified input size.",
+    "sourceReference": "DATA STRUCTURE AU LECTURE NOTE.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-308-l-001",
+    "courseCode": "CSC 308",
+    "courseTitle": "Operating Systems",
+    "level": 300,
+    "prompt": "What is a central responsibility of an operating system?",
+    "options": [
+      "Only manufacturing processors",
+      "Only producing printed certificates",
+      "Managing hardware and software resources",
+      "Only drawing application logos"
+    ],
+    "correct": 2,
+    "explanation": "The OS coordinates resource use and supports program execution.",
+    "sourceReference": "OPERATING SYSTEMMM.pptx, slide 2"
+  },
+  {
+    "id": "au-materials-20261018-csc-308-l-002",
+    "courseCode": "CSC 308",
+    "courseTitle": "Operating Systems",
+    "level": 300,
+    "prompt": "What does process scheduling decide?",
+    "options": [
+      "Which process receives CPU time",
+      "Only keyboard language",
+      "Only filenames",
+      "Only the screen resolution"
+    ],
+    "correct": 0,
+    "explanation": "Scheduling allocates processor time among processes.",
+    "sourceReference": "OPERATING SYSTEMMM.pptx, slide 16"
+  },
+  {
+    "id": "au-materials-20261018-csc-308-l-003",
+    "courseCode": "CSC 308",
+    "courseTitle": "Operating Systems",
+    "level": 300,
+    "prompt": "Which OS function organises and protects stored files?",
+    "options": [
+      "File management",
+      "Pixel shading",
+      "Circuit fabrication",
+      "Optical focusing"
+    ],
+    "correct": 0,
+    "explanation": "File management handles naming, storage, retrieval and protection of files.",
+    "sourceReference": "OPERATING SYSTEMMM.pptx, slide 4"
+  },
+  {
+    "id": "au-materials-20261018-csc-308-l-004",
+    "courseCode": "CSC 308",
+    "courseTitle": "Operating Systems",
+    "level": 300,
+    "prompt": "Which OS function tracks and allocates main memory?",
+    "options": [
+      "Window colouring",
+      "Document proofreading",
+      "Font rendering",
+      "Memory management"
+    ],
+    "correct": 3,
+    "explanation": "Memory management records use and allocates or releases memory.",
+    "sourceReference": "OPERATING SYSTEMMM.pptx, slide 5"
+  },
+  {
+    "id": "au-materials-20261018-csc-308-l-005",
+    "courseCode": "CSC 308",
+    "courseTitle": "Operating Systems",
+    "level": 300,
+    "prompt": "How does an OS communicate with specific hardware devices?",
+    "options": [
+      "Only through spreadsheet formulas",
+      "Only through handwritten instructions",
+      "Through device drivers",
+      "Only through text documents"
+    ],
+    "correct": 2,
+    "explanation": "Device drivers implement communication with particular hardware.",
+    "sourceReference": "OPERATING SYSTEMMM.pptx, slide 4"
+  },
+  {
+    "id": "au-materials-20261018-csc-309-l-001",
+    "courseCode": "CSC 309",
+    "courseTitle": "Artificial Intelligence",
+    "level": 300,
+    "prompt": "In AI, what is perception?",
+    "options": [
+      "Only replacing a processor",
+      "Only storing a program's filename",
+      "Only displaying a logo",
+      "Obtaining information about the environment"
+    ],
+    "correct": 3,
+    "explanation": "Perception uses sensors or input data to observe the environment.",
+    "sourceReference": "CSC 309 – ARTIFICIAL INTELLIGENCE - LECTURE 1.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-csc-309-l-002",
+    "courseCode": "CSC 309",
+    "courseTitle": "Artificial Intelligence",
+    "level": 300,
+    "prompt": "What does reasoning involve?",
+    "options": [
+      "Drawing conclusions from data or rules",
+      "Only changing a screen colour",
+      "Only measuring a file's length",
+      "Only moving data without interpretation"
+    ],
+    "correct": 0,
+    "explanation": "Reasoning uses available information to infer conclusions.",
+    "sourceReference": "CSC 309 – ARTIFICIAL INTELLIGENCE - LECTURE 1.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-csc-309-l-003",
+    "courseCode": "CSC 309",
+    "courseTitle": "Artificial Intelligence",
+    "level": 300,
+    "prompt": "What is a central aim of machine learning?",
+    "options": [
+      "Guaranteeing every prediction is correct",
+      "Writing every rule manually without data",
+      "Improving performance using data or experience",
+      "Removing all input information"
+    ],
+    "correct": 2,
+    "explanation": "Learning methods use experience or data to improve task performance.",
+    "sourceReference": "CSC 309 – ARTIFICIAL INTELLIGENCE - LECTURE 1.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-csc-309-l-004",
+    "courseCode": "CSC 309",
+    "courseTitle": "Artificial Intelligence",
+    "level": 300,
+    "prompt": "What characterises narrow AI?",
+    "options": [
+      "It has no task objective",
+      "It necessarily solves every possible problem",
+      "It needs no inputs",
+      "It is designed for a particular task"
+    ],
+    "correct": 3,
+    "explanation": "Narrow AI targets a specific capability rather than unrestricted intelligence.",
+    "sourceReference": "CSC 309 – ARTIFICIAL INTELLIGENCE - LECTURE 1.pdf, page 7"
+  },
+  {
+    "id": "au-materials-20261018-csc-309-l-005",
+    "courseCode": "CSC 309",
+    "courseTitle": "Artificial Intelligence",
+    "level": 300,
+    "prompt": "Which AI area focuses on human language?",
+    "options": [
+      "Circuit etching",
+      "Natural language processing",
+      "Disk partitioning",
+      "Voltage regulation"
+    ],
+    "correct": 1,
+    "explanation": "NLP concerns computational processing of human language.",
+    "sourceReference": "CSC 309 – ARTIFICIAL INTELLIGENCE - LECTURE 1.pdf, page 8"
+  },
+  {
+    "id": "au-materials-20261018-csc-322-l-001",
+    "courseCode": "CSC 322",
+    "courseTitle": "Computer Science Innovation and New Technologies",
+    "level": 300,
+    "prompt": "What is the purpose of a feasibility study?",
+    "options": [
+      "Replacing all product testing",
+      "Guaranteeing profit without investigation",
+      "Assessing whether an idea is practical and viable",
+      "Choosing a logo only"
+    ],
+    "correct": 2,
+    "explanation": "Feasibility examines whether a proposed idea can work in practice.",
+    "sourceReference": "Solution to the Test CSC 322.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-322-l-002",
+    "courseCode": "CSC 322",
+    "courseTitle": "Computer Science Innovation and New Technologies",
+    "level": 300,
+    "prompt": "Which practice should an ethical technical presentation avoid?",
+    "options": [
+      "Clear explanations",
+      "Accurate data",
+      "Acknowledging sources",
+      "Plagiarism"
+    ],
+    "correct": 3,
+    "explanation": "Using others' work without proper acknowledgement undermines academic and professional integrity.",
+    "sourceReference": "Solution to the Test CSC 322.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-322-l-003",
+    "courseCode": "CSC 322",
+    "courseTitle": "Computer Science Innovation and New Technologies",
+    "level": 300,
+    "prompt": "What can product innovation involve?",
+    "options": [
+      "Avoiding all customer needs",
+      "Only changing a filename",
+      "Prohibiting new ideas",
+      "Improving the quality of an existing product"
+    ],
+    "correct": 3,
+    "explanation": "Innovation can improve existing products as well as introduce new ones.",
+    "sourceReference": "Solution to the Test CSC 322.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-csc-322-l-004",
+    "courseCode": "CSC 322",
+    "courseTitle": "Computer Science Innovation and New Technologies",
+    "level": 300,
+    "prompt": "Why gather customer feedback during development?",
+    "options": [
+      "To improve market relevance and usefulness",
+      "To guarantee that every suggestion is correct",
+      "To avoid understanding customers",
+      "To remove all quality checks"
+    ],
+    "correct": 0,
+    "explanation": "Feedback helps identify whether the product meets customer needs.",
+    "sourceReference": "Solution to the Test CSC 322.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-csc-322-l-005",
+    "courseCode": "CSC 322",
+    "courseTitle": "Computer Science Innovation and New Technologies",
+    "level": 300,
+    "prompt": "Which practice supports ethical digital marketing?",
+    "options": [
+      "Hidden misuse of customer data",
+      "Truthful advertising",
+      "False testimonials",
+      "Fabricated product claims"
+    ],
+    "correct": 1,
+    "explanation": "Truthful communication supports trust and responsible marketing.",
+    "sourceReference": "Solution to the Test CSC 322.pdf, page 1"
+  },
+  {
+    "id": "au-materials-20261018-ict-305-l-001",
+    "courseCode": "ICT 305",
+    "courseTitle": "Data Communication System & Network",
+    "level": 300,
+    "prompt": "Which transmission mode allows communication in one direction only?",
+    "options": [
+      "Simplex",
+      "Half duplex",
+      "Full duplex",
+      "Multiplex duplex"
+    ],
+    "correct": 0,
+    "explanation": "Simplex communication has a single direction of data flow.",
+    "sourceReference": "ICT 305 MATERIAL-1-Converted.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-ict-305-l-002",
+    "courseCode": "ICT 305",
+    "courseTitle": "Data Communication System & Network",
+    "level": 300,
+    "prompt": "Which mode allows both directions, but not simultaneously?",
+    "options": [
+      "Half duplex",
+      "Full duplex",
+      "No transmission",
+      "Simplex"
+    ],
+    "correct": 0,
+    "explanation": "Half-duplex communication alternates the direction of transmission.",
+    "sourceReference": "ICT 305 MATERIAL-1-Converted.pdf, page 6"
+  },
+  {
+    "id": "au-materials-20261018-ict-305-l-003",
+    "courseCode": "ICT 305",
+    "courseTitle": "Data Communication System & Network",
+    "level": 300,
+    "prompt": "Which mode allows simultaneous transmission in both directions?",
+    "options": [
+      "Unidirectional only",
+      "Simplex",
+      "Full duplex",
+      "Half duplex"
+    ],
+    "correct": 2,
+    "explanation": "Full-duplex links support sending and receiving at the same time.",
+    "sourceReference": "ICT 305 MATERIAL-1-Converted.pdf, page 7"
+  },
+  {
+    "id": "au-materials-20261018-ict-305-l-004",
+    "courseCode": "ICT 305",
+    "courseTitle": "Data Communication System & Network",
+    "level": 300,
+    "prompt": "How does serial transmission send bits?",
+    "options": [
+      "Only as printed symbols",
+      "Sequentially over a channel",
+      "All bits on separate channels at exactly the same time",
+      "Only after converting them to words"
+    ],
+    "correct": 1,
+    "explanation": "Serial transmission sends bits one after another.",
+    "sourceReference": "ICT 305 MATERIAL-1-Converted.pdf, page 9"
+  },
+  {
+    "id": "au-materials-20261018-ict-305-l-005",
+    "courseCode": "ICT 305",
+    "courseTitle": "Data Communication System & Network",
+    "level": 300,
+    "prompt": "How does parallel transmission differ from serial transmission?",
+    "options": [
+      "It prevents synchronisation",
+      "It sends multiple bits simultaneously on separate paths",
+      "It requires all data to be text",
+      "It sends no bits"
+    ],
+    "correct": 1,
+    "explanation": "Parallel transmission uses multiple data paths at the same time.",
+    "sourceReference": "ICT 305 MATERIAL-1-Converted.pdf, page 10"
+  },
+  {
+    "id": "au-materials-20261018-cyb-305-l-001",
+    "courseCode": "CYB 305",
+    "courseTitle": "Digital Forensics and Investigation Methods",
+    "level": 300,
+    "prompt": "What is digital forensics concerned with?",
+    "options": [
+      "Examining digital evidence using systematic methods",
+      "Only increasing processor speed",
+      "Only repairing broken monitors",
+      "Only designing a logo"
+    ],
+    "correct": 0,
+    "explanation": "Digital forensics investigates information from digital devices and systems.",
+    "sourceReference": "Week1 Introduction to Digital Forensics.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-cyb-305-l-002",
+    "courseCode": "CYB 305",
+    "courseTitle": "Digital Forensics and Investigation Methods",
+    "level": 300,
+    "prompt": "Why preserve digital evidence before analysis?",
+    "options": [
+      "To guarantee a particular suspect is guilty",
+      "To change the original record",
+      "To remove inconvenient information",
+      "To protect its integrity"
+    ],
+    "correct": 3,
+    "explanation": "Preservation aims to keep evidence reliable and unaltered.",
+    "sourceReference": "Week1 Introduction to Digital Forensics.pdf, page 9"
+  },
+  {
+    "id": "au-materials-20261018-cyb-305-l-003",
+    "courseCode": "CYB 305",
+    "courseTitle": "Digital Forensics and Investigation Methods",
+    "level": 300,
+    "prompt": "What does a chain of custody document?",
+    "options": [
+      "Only the screen resolution",
+      "Who handled evidence and how it was transferred",
+      "Only a device's retail price",
+      "Only the investigator's favourite tool"
+    ],
+    "correct": 1,
+    "explanation": "A custody record traces evidence handling and transfers.",
+    "sourceReference": "Notes on Digital Forensics(1).pdf, page 67"
+  },
+  {
+    "id": "au-materials-20261018-cyb-305-l-004",
+    "courseCode": "CYB 305",
+    "courseTitle": "Digital Forensics and Investigation Methods",
+    "level": 300,
+    "prompt": "Why is repeatability important in forensic analysis?",
+    "options": [
+      "It removes the need for documentation",
+      "It allows evidence to be altered freely",
+      "Others should be able to verify the process and findings",
+      "It guarantees all conclusions are correct"
+    ],
+    "correct": 2,
+    "explanation": "Repeatable methods support independent checking of findings.",
+    "sourceReference": "Week1 Introduction to Digital Forensics.pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-cyb-305-l-005",
+    "courseCode": "CYB 305",
+    "courseTitle": "Digital Forensics and Investigation Methods",
+    "level": 300,
+    "prompt": "Which approach best supports a sound digital investigation?",
+    "options": [
+      "Deleting original evidence immediately",
+      "Avoiding every record of actions",
+      "Choosing a conclusion before analysis",
+      "Documenting procedures and findings"
+    ],
+    "correct": 3,
+    "explanation": "Documentation makes investigative actions and conclusions traceable.",
+    "sourceReference": "Week1 Introduction to Digital Forensics.pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-301-l-001",
+    "courseCode": "AUE-CSC 301",
+    "courseTitle": "Formal Theory of Computation and Automata",
+    "level": 300,
+    "prompt": "What is an alphabet in formal language theory?",
+    "options": [
+      "Only English letters",
+      "An infinite list of all programs",
+      "Only complete sentences",
+      "A finite non-empty set of symbols"
+    ],
+    "correct": 3,
+    "explanation": "An alphabet supplies the symbols used to form strings.",
+    "sourceReference": "AUE-CSC 301 - FORMAL THEORY OF COMPUTATION AND AUTOMATA(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-301-l-002",
+    "courseCode": "AUE-CSC 301",
+    "courseTitle": "Formal Theory of Computation and Automata",
+    "level": 300,
+    "prompt": "What is a string over an alphabet?",
+    "options": [
+      "A finite sequence of symbols from that alphabet",
+      "Any unordered set of machines",
+      "Only a processor instruction",
+      "Only a grammar rule"
+    ],
+    "correct": 0,
+    "explanation": "Strings are finite symbol sequences.",
+    "sourceReference": "AUE-CSC 301 - FORMAL THEORY OF COMPUTATION AND AUTOMATA(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-301-l-003",
+    "courseCode": "AUE-CSC 301",
+    "courseTitle": "Formal Theory of Computation and Automata",
+    "level": 300,
+    "prompt": "What is a formal language?",
+    "options": [
+      "Only a sound recording",
+      "Only a list of CPU manufacturers",
+      "Only a single physical computer",
+      "A set of strings over an alphabet"
+    ],
+    "correct": 3,
+    "explanation": "A formal language consists of strings satisfying specified rules.",
+    "sourceReference": "AUE-CSC 301 - FORMAL THEORY OF COMPUTATION AND AUTOMATA(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-301-l-004",
+    "courseCode": "AUE-CSC 301",
+    "courseTitle": "Formal Theory of Computation and Automata",
+    "level": 300,
+    "prompt": "What does a grammar provide?",
+    "options": [
+      "Only a processor voltage",
+      "Production rules for generating strings",
+      "Only an alphabet's font",
+      "Only a network address"
+    ],
+    "correct": 1,
+    "explanation": "A grammar defines how language strings can be generated.",
+    "sourceReference": "AUE-CSC 301 - FORMAL THEORY OF COMPUTATION AND AUTOMATA(1).pdf, page 2"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-301-l-005",
+    "courseCode": "AUE-CSC 301",
+    "courseTitle": "Formal Theory of Computation and Automata",
+    "level": 300,
+    "prompt": "What question does computability theory investigate?",
+    "options": [
+      "Only how data are printed",
+      "Only whether a screen is bright",
+      "Only how much a computer costs",
+      "Whether a problem can be solved algorithmically"
+    ],
+    "correct": 3,
+    "explanation": "Computability distinguishes algorithmically solvable problems from unsolvable ones.",
+    "sourceReference": "AUE-CSC 301 - FORMAL THEORY OF COMPUTATION AND AUTOMATA(1).pdf, page 3"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-303-l-001",
+    "courseCode": "AUE-CSC 303",
+    "courseTitle": "E-Commerce",
+    "level": 300,
+    "prompt": "What does e-commerce principally involve?",
+    "options": [
+      "Conducting business transactions electronically",
+      "Only exchanging handwritten notes in person",
+      "Only manufacturing computer cases",
+      "Only repairing monitors"
+    ],
+    "correct": 0,
+    "explanation": "E-commerce uses electronic networks for commercial activity.",
+    "sourceReference": "E-COMMERCE CLASS ONE.pdf, page 4"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-303-l-002",
+    "courseCode": "AUE-CSC 303",
+    "courseTitle": "E-Commerce",
+    "level": 300,
+    "prompt": "What does B2B describe?",
+    "options": [
+      "Transactions only between consumers",
+      "Only internal CPU communication",
+      "Only government elections",
+      "Transactions between businesses"
+    ],
+    "correct": 3,
+    "explanation": "B2B means business-to-business commerce.",
+    "sourceReference": "E-COMMERCE CLASS ONE.pdf, page 14"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-303-l-003",
+    "courseCode": "AUE-CSC 303",
+    "courseTitle": "E-Commerce",
+    "level": 300,
+    "prompt": "What does B2C describe?",
+    "options": [
+      "Only government procurement",
+      "Only file backup",
+      "Only consumer-to-consumer exchange",
+      "A business selling to a consumer"
+    ],
+    "correct": 3,
+    "explanation": "B2C connects a business with an individual customer.",
+    "sourceReference": "E-COMMERCE CLASS ONE.pdf, page 23"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-303-l-004",
+    "courseCode": "AUE-CSC 303",
+    "courseTitle": "E-Commerce",
+    "level": 300,
+    "prompt": "Which is an example of electronic payment?",
+    "options": [
+      "Only an in-person cash exchange",
+      "Only barter of physical goods",
+      "An electronic funds transfer",
+      "Only a handwritten promise"
+    ],
+    "correct": 2,
+    "explanation": "Electronic funds transfer moves money through electronic systems.",
+    "sourceReference": "E-COMMERCE CLASS ONE.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-303-l-005",
+    "courseCode": "AUE-CSC 303",
+    "courseTitle": "E-Commerce",
+    "level": 300,
+    "prompt": "What is an availability advantage of an online store?",
+    "options": [
+      "Customers can place orders outside physical-shop hours",
+      "It removes all customer-service needs",
+      "It eliminates every outage",
+      "It guarantees every order is delivered instantly"
+    ],
+    "correct": 0,
+    "explanation": "Online ordering can be available beyond the opening hours of a physical shop.",
+    "sourceReference": "E-COMMERCE CLASS ONE.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-dts-304-l-001",
+    "courseCode": "DTS 304",
+    "courseTitle": "Data Management I",
+    "level": 300,
+    "prompt": "What does a DBMS primarily do?",
+    "options": [
+      "Only draw icons",
+      "Only cool a processor",
+      "Only print documents",
+      "Manage and organise stored data"
+    ],
+    "correct": 3,
+    "explanation": "A DBMS supports defining, storing, retrieving and controlling data.",
+    "sourceReference": "dbms class one.pptx, slide 4"
+  },
+  {
+    "id": "au-materials-20261018-dts-304-l-002",
+    "courseCode": "DTS 304",
+    "courseTitle": "Data Management I",
+    "level": 300,
+    "prompt": "What is data redundancy?",
+    "options": [
+      "A form of screen resolution",
+      "A type of processor instruction",
+      "Unnecessary duplication of data",
+      "A guarantee that data are correct"
+    ],
+    "correct": 2,
+    "explanation": "Repeated copies of the same data can waste storage and cause inconsistency.",
+    "sourceReference": "dbms class one.pptx, slide 3"
+  },
+  {
+    "id": "au-materials-20261018-dts-304-l-003",
+    "courseCode": "DTS 304",
+    "courseTitle": "Data Management I",
+    "level": 300,
+    "prompt": "What does data integrity concern?",
+    "options": [
+      "Only the colour of a database interface",
+      "Accuracy and consistency of data",
+      "Only the price of a server",
+      "Only the length of a table name"
+    ],
+    "correct": 1,
+    "explanation": "Integrity constraints help maintain valid and consistent data.",
+    "sourceReference": "dbms class one.pptx, slide 6"
+  },
+  {
+    "id": "au-materials-20261018-dts-304-l-004",
+    "courseCode": "DTS 304",
+    "courseTitle": "Data Management I",
+    "level": 300,
+    "prompt": "Why is database recovery important?",
+    "options": [
+      "Preventing every possible hardware failure",
+      "Eliminating all backups",
+      "Restoring usable data after failures",
+      "Making every query run instantly"
+    ],
+    "correct": 2,
+    "explanation": "Recovery helps return the database to a usable consistent state after disruption.",
+    "sourceReference": "dbms class one.pptx, slide 5"
+  },
+  {
+    "id": "au-materials-20261018-dts-304-l-005",
+    "courseCode": "DTS 304",
+    "courseTitle": "Data Management I",
+    "level": 300,
+    "prompt": "How does a relational DBMS primarily organise data?",
+    "options": [
+      "Only processor registers",
+      "Only unrelated handwritten pages",
+      "Only sound waves",
+      "Tables with rows and columns"
+    ],
+    "correct": 3,
+    "explanation": "Relational systems represent data using relations commonly displayed as tables.",
+    "sourceReference": "dbms class one.pptx, slide 9"
+  },
+  {
+    "id": "au-materials-20261018-cos-409-l-001",
+    "courseCode": "COS 409",
+    "courseTitle": "Research Methodology and Technical Report Writing",
+    "level": 400,
+    "prompt": "What best describes research?",
+    "options": [
+      "Selecting a result before collecting data",
+      "Copying conclusions without evidence",
+      "Collecting opinions without examining them",
+      "Systematic investigation to develop or verify knowledge"
+    ],
+    "correct": 3,
+    "explanation": "Research follows a systematic inquiry into a question or problem.",
+    "sourceReference": "LectureNote1.pdf, page 5"
+  },
+  {
+    "id": "au-materials-20261018-cos-409-l-002",
+    "courseCode": "COS 409",
+    "courseTitle": "Research Methodology and Technical Report Writing",
+    "level": 400,
+    "prompt": "What commonly provides the starting point for research?",
+    "options": [
+      "An arbitrary page count",
+      "A question or problem",
+      "A compulsory software brand",
+      "A guaranteed conclusion"
+    ],
+    "correct": 1,
+    "explanation": "A research question or problem gives the investigation its focus.",
+    "sourceReference": "LectureNote1.pdf, page 7"
+  },
+  {
+    "id": "au-materials-20261018-cos-409-l-003",
+    "courseCode": "COS 409",
+    "courseTitle": "Research Methodology and Technical Report Writing",
+    "level": 400,
+    "prompt": "Which is an example of a research method?",
+    "options": [
+      "The overall philosophical rationale alone",
+      "A questionnaire",
+      "A library building",
+      "A journal's cover design"
+    ],
+    "correct": 1,
+    "explanation": "A questionnaire is a specific tool for collecting data.",
+    "sourceReference": "LectureNote1.pdf, page 8"
+  },
+  {
+    "id": "au-materials-20261018-cos-409-l-004",
+    "courseCode": "COS 409",
+    "courseTitle": "Research Methodology and Technical Report Writing",
+    "level": 400,
+    "prompt": "What does research methodology address?",
+    "options": [
+      "Only the brand of a laptop",
+      "Only the final report's font size",
+      "The rationale and overall approach to an investigation",
+      "Only the researcher's signature"
+    ],
+    "correct": 2,
+    "explanation": "Methodology explains and organises the approach, including why particular methods are chosen.",
+    "sourceReference": "LectureNote1.pdf, page 8"
+  },
+  {
+    "id": "au-materials-20261018-cos-409-l-005",
+    "courseCode": "COS 409",
+    "courseTitle": "Research Methodology and Technical Report Writing",
+    "level": 400,
+    "prompt": "Why must collected data be interpreted?",
+    "options": [
+      "To relate observations to the research question",
+      "To eliminate inconvenient observations",
+      "To force the preferred conclusion",
+      "To avoid evaluating findings"
+    ],
+    "correct": 0,
+    "explanation": "Interpretation connects collected evidence with the investigation's aims.",
+    "sourceReference": "LectureNote1.pdf, page 7"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-408-l-001",
+    "courseCode": "AUE-CSC 408",
+    "courseTitle": "Assembly Language",
+    "level": 400,
+    "prompt": "What is a mnemonic in assembly language?",
+    "options": [
+      "Only a file extension",
+      "Only a processor's retail name",
+      "Only a memory capacity",
+      "A symbolic abbreviation for an instruction"
+    ],
+    "correct": 3,
+    "explanation": "Mnemonics such as ADD and MOV represent machine-level operations symbolically.",
+    "sourceReference": "CSC461_A.pptx, slide 6"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-408-l-002",
+    "courseCode": "AUE-CSC 408",
+    "courseTitle": "Assembly Language",
+    "level": 400,
+    "prompt": "What does an assembler translate?",
+    "options": [
+      "Images into audio",
+      "Database rows into paper",
+      "Assembly statements into machine code",
+      "HTML into CSS"
+    ],
+    "correct": 2,
+    "explanation": "An assembler converts symbolic assembly instructions to machine instructions.",
+    "sourceReference": "CSC461_A.pptx, slide 8"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-408-l-003",
+    "courseCode": "AUE-CSC 408",
+    "courseTitle": "Assembly Language",
+    "level": 400,
+    "prompt": "Why is assembly language architecture-specific?",
+    "options": [
+      "It has no relationship to hardware",
+      "It reflects the target processor's instruction set",
+      "It uses only English words",
+      "It never uses registers"
+    ],
+    "correct": 1,
+    "explanation": "Assembly notation corresponds closely to a particular machine architecture.",
+    "sourceReference": "CSC461_A.pptx, slide 12"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-408-l-004",
+    "courseCode": "AUE-CSC 408",
+    "courseTitle": "Assembly Language",
+    "level": 400,
+    "prompt": "Which representation can the target CPU execute directly?",
+    "options": [
+      "Its machine code",
+      "An ordinary English paragraph",
+      "Untranslated pseudocode",
+      "A flowchart image"
+    ],
+    "correct": 0,
+    "explanation": "The processor directly executes its own machine instructions.",
+    "sourceReference": "CSC461_A.pptx, slide 4"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-408-l-005",
+    "courseCode": "AUE-CSC 408",
+    "courseTitle": "Assembly Language",
+    "level": 400,
+    "prompt": "What is a typical advantage of high-level languages over assembly?",
+    "options": [
+      "They cannot use variables",
+      "They express larger operations with greater abstraction",
+      "They require every instruction to be handwritten in binary",
+      "They eliminate all translation"
+    ],
+    "correct": 1,
+    "explanation": "High-level statements abstract many machine-level details.",
+    "sourceReference": "CSC461_A.pptx, slide 8"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-403-l-001",
+    "courseCode": "AUE-CSC 403",
+    "courseTitle": "Modelling and Simulation",
+    "level": 400,
+    "prompt": "What should the first stage of a simulation study clarify?",
+    "options": [
+      "Goals, boundaries and performance measures",
+      "Only the program's filename",
+      "Only the screen dimensions",
+      "Only the presentation font"
+    ],
+    "correct": 0,
+    "explanation": "Problem definition establishes what the model is intended to investigate.",
+    "sourceReference": "Simulation Methodology_075430.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-403-l-002",
+    "courseCode": "AUE-CSC 403",
+    "courseTitle": "Modelling and Simulation",
+    "level": 400,
+    "prompt": "What does simulation verification check?",
+    "options": [
+      "Whether every real-world assumption is automatically true",
+      "Whether the model is implemented as intended",
+      "Whether results favour a preferred policy",
+      "Whether the report has enough pages"
+    ],
+    "correct": 1,
+    "explanation": "Verification asks whether the model has been built correctly.",
+    "sourceReference": "Simulation Methodology_075430.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-403-l-003",
+    "courseCode": "AUE-CSC 403",
+    "courseTitle": "Modelling and Simulation",
+    "level": 400,
+    "prompt": "What does simulation validation examine?",
+    "options": [
+      "Whether every software statement is indented",
+      "Whether the model adequately represents the real system",
+      "Whether the program name is short",
+      "Whether the case colour is correct"
+    ],
+    "correct": 1,
+    "explanation": "Validation concerns the model's fitness as a representation of the target system.",
+    "sourceReference": "Simulation Methodology_075430.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-403-l-004",
+    "courseCode": "AUE-CSC 403",
+    "courseTitle": "Modelling and Simulation",
+    "level": 400,
+    "prompt": "What is characteristic of Monte Carlo simulation?",
+    "options": [
+      "Only deterministic alphabetical sorting",
+      "Repeated random sampling",
+      "Only drawing a flowchart",
+      "Only executing a model once without variation"
+    ],
+    "correct": 1,
+    "explanation": "Monte Carlo methods use repeated random sampling to estimate outcomes.",
+    "sourceReference": "Simulation Methodology_075430.docx, section 1"
+  },
+  {
+    "id": "au-materials-20261018-aue-csc-403-l-005",
+    "courseCode": "AUE-CSC 403",
+    "courseTitle": "Modelling and Simulation",
+    "level": 400,
+    "prompt": "When does state change in a discrete-event model?",
+    "options": [
+      "Only at physical midnight",
+      "Only when the computer is restarted",
+      "At distinct events in simulated time",
+      "Continuously at every possible real number by definition"
+    ],
+    "correct": 2,
+    "explanation": "Discrete-event simulation advances through scheduled events that change system state.",
+    "sourceReference": "Simulation Methodology_075430.docx, section 1"
+  }
+]

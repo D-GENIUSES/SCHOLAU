@@ -49,6 +49,7 @@ export interface Streak {
 }
 
 export interface Profile extends Envelope {
+  username: string;
   id: Uuid;
   display_name: string;
   avatar_path: string | null;
@@ -493,6 +494,8 @@ export interface RetireResult extends Envelope {
 }
 
 export interface AdminQuestion extends Envelope {
+  answer_format: "standard" | "worked_solution";
+  battle_seconds: number | null;
   battle_reading_seconds?: number | null;
   suggested_answer_seconds?: number;
   suggested_reading_seconds?: number;
@@ -505,8 +508,6 @@ export interface AdminQuestion extends Envelope {
   version: number;
   status: ContentStatus;
   prompt: string;
-  answer_format: "standard" | "worked_solution";
-  battle_seconds: number | null;
   difficulty: Difficulty;
   usage: string[];
   source_reference: string | null;

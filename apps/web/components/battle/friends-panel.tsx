@@ -7,12 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { InlineError, LoadingState } from "@/components/ui/states";
+import { suggestUsernames, UsernameSuggestions } from "@/components/auth/username-suggestions";
 
 export function FriendsPanel() {
   const friends = useFriends();
   const action = useFriendAction();
   const username = useSetFriendUsername();
   const [name, setName] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const results = useSearchFriends(query);
@@ -31,7 +33,10 @@ export function FriendsPanel() {
         <InlineError error={friends.error} />
         {friends.data ? <p className="break-all text-sm">Your username: <strong>@{friends.data.username}</strong></p> : null}
         <form className="flex flex-wrap items-end gap-2" onSubmit={(event) => {
-          event.preventDefault(); username.mutate(name.trim(), { onSuccess: () => setName("") });
+          event.preventDefault(); username.mutate(name.trim(), {
+            onSuccess: () => { setName(""); setSuggestions([]); },
+            onError: (error) => { if (error.field_errors?.username) void suggestUsernames(name).then(setSuggestions); },
+          });
         }}>
           <label className="min-w-0 flex-1 text-sm font-semibold">Choose your username
             <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="your_username" minLength={3} maxLength={24} pattern="[a-zA-Z][a-zA-Z0-9_]{2,23}" required autoCapitalize="none" autoCorrect="off" />
@@ -40,9 +45,10 @@ export function FriendsPanel() {
         </form>
         {username.isSuccess ? <p role="status" className="text-sm text-success">Username saved.</p> : null}
         <InlineError error={username.error} />
+        <UsernameSuggestions names={suggestions} onChoose={(value) => { setName(value); username.reset(); setSuggestions([]); }} />
         <form className="flex items-end gap-2" onSubmit={(event) => { event.preventDefault(); setQuery(search.trim()); }}>
           <label className="min-w-0 flex-1 text-sm font-semibold">Find friends
-            <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Name or username" minLength={3} maxLength={60} required />
+            <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Username" minLength={3} maxLength={24} required />
           </label>
           <Button type="submit" variant="outline" loading={results.isFetching}>Search</Button>
         </form>

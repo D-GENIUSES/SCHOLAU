@@ -114,7 +114,7 @@ export function useUpdateProfile() {
   return usePlainMutation(api.updateProfile, {
     onSuccess: (data) => {
       qc.setQueryData(qk.profile(), data);
-      void invalidate(qc, qk.home(), ["scholau", "leaderboard"]);
+      void invalidate(qc, qk.home(), ["scholau", "leaderboard"], ["scholau", "social"]);
     },
   });
 }
@@ -584,7 +584,7 @@ export function useFriendAction() {
 }
 export function useSetFriendUsername() {
   const api = useScholauApi(); const qc = useQueryClient();
-  return usePlainMutation(api.setFriendUsername, { onSuccess: () => { void qc.invalidateQueries({ queryKey: ["scholau", "social"] }); } });
+  return usePlainMutation(api.setFriendUsername, { onSuccess: () => { void invalidate(qc, qk.profile(), qk.home(), ["scholau", "social"], ["scholau", "leaderboard"]); } });
 }
 export function useBattleSetup(friendId?: string | null) {
   const api = useScholauApi();

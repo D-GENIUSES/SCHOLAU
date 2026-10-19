@@ -18,6 +18,9 @@ export const displayNameSchema = z
   .refine((v) => !v.includes("@"), "Use your name or a nickname, not your email address.")
   .refine((v) => !/[<>]/.test(v), "Remove the < and > characters.");
 
+export const usernameSchema = z.string().trim().toLowerCase()
+  .regex(/^[a-z][a-z0-9_]{2,23}$/, "Use 3–24 characters: letters, numbers and underscores, starting with a letter.");
+
 export const signInSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, "Enter your password."),
@@ -38,7 +41,7 @@ export const registrationAcademicSchema = z.object({
 export type RegistrationAcademicInput = z.infer<typeof registrationAcademicSchema>;
 
 export const signUpSchema = z.object({
-  displayName: displayNameSchema,
+  username: usernameSchema,
   email: emailSchema,
   password: passwordSchema,
 }).extend(registrationAcademicSchema.shape);
@@ -89,7 +92,7 @@ export function academicDescendants(field: keyof AcademicProfileInput): (keyof A
 }
 
 export const updateProfileSchema = z.object({
-  displayName: displayNameSchema,
+  username: usernameSchema,
   leaderboardVisible: z.boolean(),
 });
 export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
