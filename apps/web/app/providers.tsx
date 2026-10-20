@@ -5,12 +5,13 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
+import { AppUpdates } from "@/components/shell/app-updates";
 import { NotificationSound } from "@/components/notifications/notification-sound";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Providers({ children, appVersion }: { children: ReactNode; appVersion: string }) {
   const router = useRouter();
   const [api] = useState(() => createScholauApi(getBrowserSupabase()));
   const [queryClient] = useState(
@@ -49,7 +50,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <AnalyticsProvider><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider>
+        <AnalyticsProvider><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

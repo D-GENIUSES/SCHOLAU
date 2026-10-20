@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { OfflineIndicator } from "@/components/offline-indicator";
 import { ViewportLock } from "@/components/viewport-lock";
 import { SplashGate } from "@/components/shell/splash-gate";
+import { getAppVersion } from "@/lib/app-version";
+import { startupImages } from "@/lib/startup-images";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -14,7 +16,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu — Study. Compete. Rise." },
   twitter: { card: "summary_large_image" },
-  appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default", startupImage: startupImages },
+  icons: { apple: [{ url: "/icons/launch-blue-v4-180.png", sizes: "180x180", type: "image/png" }] },
 };
 
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
@@ -31,7 +34,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // Browser extensions may add attributes to <html> before React hydrates.
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#0866e8" }}>
       <body>
         <a
           href="#main"
@@ -39,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
-        <Providers>
+        <Providers appVersion={getAppVersion()}>
           <ViewportLock />
           <OfflineIndicator />
           <SplashGate>{children}</SplashGate>
