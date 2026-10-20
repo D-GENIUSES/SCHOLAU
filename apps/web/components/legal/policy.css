@@ -1,0 +1,31 @@
+.legal-page { min-height:100dvh; background:var(--color-surface-page, #f8fafc); font-size:1rem; line-height:1.75; overflow-wrap:anywhere; touch-action:auto; }
+.legal-header, .legal-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem max(1rem, calc((100% - 52rem) / 2)); border-bottom:1px solid var(--color-line, #ddd); }
+.legal-header nav { display:flex; flex-wrap:wrap; gap:1.25rem; }
+.legal-page a { text-decoration:underline; text-underline-offset:.2em; }
+.legal-page a:focus-visible, .registration-legal input:focus-visible { outline:3px solid #0066d6; outline-offset:4px; }
+.legal-main { max-width:52rem; margin:auto; padding:2rem 1rem 4rem; }
+.legal-page h1 { font-size:clamp(2rem, 6vw, 3rem); line-height:1.15; margin:.5rem 0 1rem; }
+.legal-eyebrow { font-weight:700; letter-spacing:.08em; font-size:.8rem; }
+.legal-intro { font-size:1.15rem; }
+.legal-draft { margin:1.75rem 0; padding:1.25rem; border:1px solid #bb810f; border-radius:.75rem; background:#fff8e6; color:#493612; }
+.legal-draft p { margin-top:.5rem; }
+.legal-contents { border-block:1px solid var(--color-line, #ddd); padding:1.25rem 0; }
+.legal-contents ol { columns:2; padding-left:1.5rem; list-style:decimal; }
+.legal-contents li { break-inside:avoid; padding:.25rem 0; }
+.legal-section { margin-top:2.25rem; scroll-margin-top:1rem; }
+.legal-page h2 { font-size:1.35rem; margin-bottom:.75rem; }
+.legal-section p + p { margin-top:.85rem; }
+.legal-footer { border-top:1px solid var(--color-line, #ddd); border-bottom:0; justify-content:center; }
+@media(max-width:540px) { .legal-contents ol { columns:1; } }
+@media print {
+  @page { margin:18mm; }
+  body, .legal-page { background:white !important; color:black !important; }
+  body { overflow:visible !important; height:auto !important; }
+  .legal-header, .legal-footer, .legal-contents, body > a, [role="status"] { display:none !important; }
+  .legal-main { max-width:none; padding:0; }
+  .legal-page { font-size:11pt; }
+  .legal-page h1 { font-size:24pt; }
+  .legal-page h2 { break-after:avoid; font-size:14pt; }
+  .legal-page p { orphans:3; widows:3; }
+  .legal-draft { background:transparent; border:1px solid black; break-inside:avoid; }
+}

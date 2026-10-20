@@ -10,6 +10,7 @@ import { isLiveBattleState } from "@scholau/core";
 import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/battle/battle-chrome";
 import { useAfter } from "@/components/battle/hooks";
 import { IntegrityGuard } from "@/components/battle/integrity-guard";
+import { BattleScoreboard } from "@/components/battle/arena";
 import { PlayPhase } from "@/components/battle/play-phase";
 import { ReadyPanel } from "@/components/battle/ready-panel";
 import { CancelledPanel, ResultPanel } from "@/components/battle/result-panel";
@@ -122,10 +123,11 @@ export default function BattlePage() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
       {live && disconnected ? <ReconnectBanner onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
+      {battle && (battle.state === "active" || battle.state === "countdown") ? <BattleScoreboard battle={battle} /> : null}
       {body}
       <LeaveBattleDialog
         open={leaveOpen}

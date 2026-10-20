@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 
 create function pg_temp.r2_user() returns uuid language plpgsql as $$ declare id uuid:=gen_random_uuid(); begin
   insert into auth.users(id,email,raw_user_meta_data,created_at) values(id,id::text||'@r2.test','{"display_name":"R2 Test"}',now()); return id;

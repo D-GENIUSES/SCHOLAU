@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 do $$ declare u uuid; f uuid; l uuid; p uuid; s uuid; d uuid; student uuid; r record; cat jsonb; n integer; results jsonb:='[]'; begin
 select id into strict u from public.universities where slug='adeleke-university-ede-osun-state';
 select id into strict f from public.faculties where university_id=u and name='Faculty of Science';

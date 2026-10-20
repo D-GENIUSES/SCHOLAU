@@ -95,7 +95,7 @@ function GuestLesson() {
   return <div className="guest-reading"><Link href="/home" className="back-link"><ArrowLeft className="size-4" aria-hidden />Back to Home</Link><p className="content-label">Sample lesson</p><h1>{selected?.title ?? "General knowledge"}</h1><p className="reading-lead">Three short lessons on science, mathematics, and geography.</p>
     
     {visibleLessons.map((lesson) => <section key={lesson.title} className="flex flex-col gap-3"><h2>{lesson.heading}</h2><p className="text-ink-muted leading-8">{lesson.body}</p></section>)}
-    <div className="lesson-finish"><div><h2>Practice questions</h2><p>Try three general knowledge questions with instant feedback. No account needed.</p></div></div><Button asChild ><Link href="/home?view=practice">Try the practice test </Link></Button><p className="text-sm text-ink-muted">Sign in to save progress and earn XP from account activities.</p>
+    <div className="lesson-finish"><div><h2>Practice questions</h2><p>Try five simple general knowledge questions with instant feedback. No account needed.</p></div></div><Button asChild ><Link href="/home?view=practice">Try the practice test </Link></Button><p className="text-sm text-ink-muted">Sign in to save progress and earn XP from account activities.</p>
   </div>;
 }
 function GuestBattles() {

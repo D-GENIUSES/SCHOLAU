@@ -17,7 +17,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         <Link href="/home" className="auth-back"><ArrowLeft className="size-4" aria-hidden />Back to ScholAu</Link>
         <Link href="/home" aria-label="ScholAu home" className="mb-6 lg:hidden"><Logo /></Link>
         <main id="main" tabIndex={-1} className="auth-card">{children}</main>
-        <footer><Link href="/privacy">Privacy</Link><Link href="/home">Continue as guest</Link></footer>
+        <footer><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms of Use</Link><Link href="/home">Continue as guest</Link></footer>
       </div>
     </div>
   );

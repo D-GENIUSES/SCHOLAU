@@ -7,6 +7,7 @@ import { adminUsersApi, userManagementError, type ManagedUser } from "@/lib/admi
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { AdminCreateUser } from "./admin-create-user";
+import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
 import { Avatar } from "@/components/ui/avatar";
 import { Alert } from "@/components/ui/alert";
@@ -149,6 +150,7 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
           <dl className="grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-ink-muted">Registered</dt><dd>{date(selected.registered_at)}</dd></div><div><dt className="text-ink-muted">Last sign-in</dt><dd>{date(selected.last_sign_in_at)}</dd></div><div><dt className="text-ink-muted">Account type</dt><dd>{roleLabel(selected)}</dd></div><div><dt className="text-ink-muted">Email</dt><dd>{selected.email_verified ? "Verified" : "Unverified"}</dd></div><div><dt className="text-ink-muted">Access</dt><dd>{selected.deactivated_at ? `Frozen since ${date(selected.deactivated_at)}` : "Active"}</dd></div></dl>
           {!selected.has_profile && <Alert tone="warning">This account has no application profile. Account actions are unavailable.</Alert>}
           {protectedAccount && <Alert>Administrator accounts are protected from suspension and deletion.</Alert>}
+          <AdminAwardXp key={selected.id} user={selected} disabled={busy} onBusyChange={value => { busyRef.current = value; setBusy(value); }} />
           {action ? <form className="flex flex-col gap-4 rounded-control border border-line p-4" onSubmit={event => { event.preventDefault(); void save(action); }} onChange={() => { requestKey.current = null; }}>
             <h3 className="font-bold">{action === "delete" ? "Permanently delete this account" : action === "freeze" ? "Freeze this account" : "Reactivate this account"}</h3>
             <p className="text-sm text-ink-muted">{action === "delete" ? "This permanently removes the sign-in account, personal progress, enrollments and teaching assignments. This cannot be undone." : action === "freeze" ? "The user loses application access. Their data and teaching assignments are kept for reactivation." : "The user will regain access to their account and existing assignments."}</p>

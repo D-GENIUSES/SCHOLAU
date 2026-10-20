@@ -1,0 +1,21 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- Node regression harness. */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const ts = require('typescript');
+const legal = {};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('lib/legal.ts','utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, { exports: legal });
+const status = { terms_version:legal.LEGAL_VERSION, privacy_version:legal.LEGAL_VERSION, guardian_enabled:false, support_email:null };
+assert.match(legal.registrationLegalError('',true,'',status), /age group/);
+assert.match(legal.registrationLegalError('adult',false,'',status), /accept/);
+assert.equal(legal.registrationLegalError('adult',true,'',status),null);
+assert.match(legal.registrationLegalError('adult',true,'',null), /unavailable/);
+assert.match(legal.registrationLegalError('adult',true,'',{...status,terms_version:'old'}), /unavailable/);
+assert.match(legal.registrationLegalError('adult',true,'',{...status,privacy_version:'old'}), /unavailable/);
+assert.match(legal.registrationLegalError('under18',true,'',status), /not open/);
+assert.match(legal.registrationLegalError('under18',true,'',{...status,guardian_enabled:true}), /approval code/);
+assert.equal(legal.registrationLegalError('under18',true,'12345678-1234-1234-1234-123456789abc',{...status,guardian_enabled:true}),null);
+assert.equal(legal.registrationLegalMetadata('adult','').terms_accepted,true);
+assert.equal(legal.registrationLegalMetadata('adult','secret').guardian_approval,undefined);
+assert.equal(legal.registrationLegalMetadata('under18',' code ').guardian_approval,'code');
+console.log('Passed 12 legal eligibility, acceptance, unavailable/version mismatch and approval-input checks.');

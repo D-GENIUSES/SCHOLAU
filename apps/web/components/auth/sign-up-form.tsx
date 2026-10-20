@@ -17,8 +17,10 @@ import { AuthSteps } from "./auth-steps";
 import { SignupNotifications } from "@/components/notifications/signup-notifications";
 import { UniversitySelect } from "./university-select";
 import { suggestUsernames, UsernameSuggestions } from "./username-suggestions";
+import { RegistrationLegal, useRegistrationLegal } from "./registration-legal";
 
 export function SignUpForm() {
+  const legal = useRegistrationLegal();
   const analytics = useAnalytics();
   const [step, setStep] = useState<"account" | "studies">("account");
   const [error, setError] = useState<string | null>(null);
@@ -31,11 +33,16 @@ export function SignUpForm() {
   const { errors, isSubmitting } = form.formState;
 
   const nextStep = async () => {
+    const legalError = legal.validate();
+    if (legalError) { setError(legalError); return; }
+    setError(null);
     if (await form.trigger(["username", "email", "password"], { shouldFocus: true })) setStep("studies");
   };
 
   const createAccount = form.handleSubmit(async (values) => {
     setError(null);
+    const legalError = legal.validate();
+    if (legalError) { setError(legalError); setStep("account"); return; }
     const { data: available, error: availabilityError } = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
     if (availabilityError) { setError("Could not check your username. Please try again."); return; }
     if (!available) {
@@ -48,7 +55,7 @@ export function SignUpForm() {
       email: values.email,
       password: values.password,
       options: {
-        data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values) },
+        data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values), ...legal.metadata() },
         emailRedirectTo: `${window.location.origin}/auth/callback?next=/home`,
       },
     });
@@ -92,7 +99,8 @@ export function SignUpForm() {
           <PasswordInput autoComplete="new-password" {...form.register("password")} />
         </Field>
         
-        <Button type="submit" block>Continue</Button>
+        <RegistrationLegal legal={legal} />
+        <Button type="submit" block disabled={legal.loading}>Continue</Button>
       </> : <>
         <Controller control={form.control} name="universitySlug" render={({ field }) =>
           <UniversitySelect value={field.value} onChange={field.onChange} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
@@ -109,7 +117,7 @@ export function SignUpForm() {
             {Object.entries(SEMESTER_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
           </NativeSelect>
         </Field>
-        <p className="text-xs leading-relaxed text-ink-muted">By creating an account, you acknowledge our <Link href="/privacy" className="font-semibold text-brand-primary underline">privacy summary</Link>.</p>
+        <p className="text-xs leading-relaxed text-ink-muted">Your selected age declaration and acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> apply to this registration. <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>
         <Button type="submit" block loading={isSubmitting}>Create account</Button>
         <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => { setError(null); setStep("account"); }}>Back</Button>
       </>}

@@ -1,5 +1,6 @@
 import { ProfileView } from "@/components/profile/profile-view";
 import { AnswerOptionsPreview } from "@/components/battle/answer-options-preview";
+import { ArenaPreview } from "@/components/battle/arena-preview";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { HomeSummary } from "@scholau/api";
@@ -13,6 +14,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "profile") return <ShellFrame pathname="/profile" displayName="John Nwaokolo"><ProfileView email="learner@example.com" /></ShellFrame>;
   if (state === "streak") return <FirstLessonPreview />;
   if (state === "battle-options") return <AnswerOptionsPreview />;
+  if (state === "battle-arena") return <ArenaPreview />;
   const now = new Date();
   const summary: HomeSummary = {
     server_time: now.toISOString(), display_name: "Learner", needs_onboarding: false, xp_total: 1040,
