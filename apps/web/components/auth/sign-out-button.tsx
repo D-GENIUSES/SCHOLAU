@@ -18,7 +18,7 @@ export function SignOutButton({ variant = "ghost", size = "sm", className }: Pic
     setError(false);
     await disableBrowserPush().catch(() => undefined);
     try {
-      const result = await getBrowserSupabase().auth.signOut();
+      const result = await getBrowserSupabase().auth.signOut({ scope: "local" });
       if (result.error) throw result.error;
       queryClient.clear();
       window.location.replace("/home");
