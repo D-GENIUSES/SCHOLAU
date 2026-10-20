@@ -1,15 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useNotificationSettings } from "@scholau/api/react";
 import { Bell, BellOff, LoaderCircle } from "lucide-react";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { disableBrowserPush, enableBrowserPush, readPushDevice } from "@/lib/push-browser";
 
+function subscribeSound(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener("scholau-sound", callback);
+  return () => { window.removeEventListener("storage", callback); window.removeEventListener("scholau-sound", callback); };
+}
+function soundEnabled() {
+  try { return localStorage.getItem("scholau.notification-sound") !== "off"; } catch { return true; }
+}
 export function NotificationSettings({ owner }: { owner: string }) {
   const settings = useNotificationSettings();
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const sound = useSyncExternalStore(subscribeSound, soundEnabled, () => true);
   const [active, setActive] = useState(false);
   useEffect(() => {
     // Local state alone is insufficient after browser permission is revoked.
@@ -53,7 +62,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
       <div className="flex items-center justify-between gap-5">
         <div className="min-w-0">
           <h2 id="device-title" className="text-lg font-bold text-ink">Push notifications</h2>
-          <p id="device-description" className="mt-1 max-w-sm text-sm leading-relaxed text-ink-muted">Stay in the loop with updates from ScholAu.</p>
+          <p id="device-description" className="mt-1 max-w-sm text-sm leading-relaxed text-ink-muted">Course uploads are grouped. Alerts are at least 30 minutes apart, with quiet hours from 10 p.m. to 8 a.m. in your saved timezone.</p>
         </div>
         <button
           type="button"
@@ -74,6 +83,17 @@ export function NotificationSettings({ owner }: { owner: string }) {
     <div className="flex items-center gap-2 border-t border-line bg-surface-page/50 px-5 py-3 text-xs text-ink-muted sm:px-6">
       <span className={`size-1.5 rounded-full ${enabled ? "bg-brand-primary" : "bg-slate-400"}`} aria-hidden />
       {busy ? "Updating…" : enabled ? "On · You’re all set" : "Off · Turn on whenever you’re ready"}
+    </div>
+    <div className="flex flex-wrap items-center gap-3 border-t border-blue-100 bg-blue-50 px-5 py-4 text-sm text-blue-900">
+      <label className="flex items-center gap-2"><input type="checkbox" checked={sound} onChange={(event) => {
+        try { localStorage.setItem("scholau.notification-sound", event.target.checked ? "on" : "off"); window.dispatchEvent(new Event("scholau-sound")); }
+        catch { setMessage("Your browser could not save sound preferences. Check site storage permissions."); }
+      }} />In-app notification sound</label>
+      <button type="button" className="rounded-lg border border-blue-200 bg-white px-3 py-2 font-semibold" onClick={() => {
+        const audio = new Audio("/sounds/scholau-notification.wav"); audio.volume = 0.35;
+        void audio.play().catch(() => setMessage("Your browser could not play the preview. Check your device sound settings."));
+      }}>Preview sound</button>
+      <p className="w-full text-xs">A gentle ScholAu chime while the app is open. Background alerts follow your device’s notification sound and Do Not Disturb settings.</p>
     </div>
     {!settings.data.push_available ? <p className="px-5 pb-4 pt-3 text-sm text-ink-muted">Notifications are temporarily unavailable. Your inbox is still available.</p> : null}
     {message ? <p role="status" aria-live="polite" className="px-5 pb-4 pt-3 text-sm">{message}</p> : null}

@@ -18,6 +18,30 @@ async function deviceEnabled(deviceKey) {
   } finally { db.close(); }
 }
 
+async function reserveAlert(deviceKey, id) {
+  const db = await new Promise((resolve, reject) => {
+    const request = indexedDB.open("scholau-push", 1);
+    request.onupgradeneeded = () => request.result.createObjectStore("settings");
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  try {
+    return await new Promise((resolve, reject) => {
+      const transaction = db.transaction("settings", "readwrite");
+      const store = transaction.objectStore("settings");
+      const request = store.get("alert:" + deviceKey);
+      let allowed = false;
+      request.onsuccess = () => {
+        const prior = request.result;
+        allowed = prior?.id !== id && (!prior || Date.now() - prior.at >= 30 * 60 * 1000);
+        if (allowed) store.put({ id, at: Date.now() }, "alert:" + deviceKey);
+      };
+      transaction.oncomplete = () => resolve(allowed);
+      transaction.onerror = () => reject(transaction.error);
+    });
+  } finally { db.close(); }
+}
+
 self.addEventListener("push", (event) => {
   event.waitUntil((async () => {
     let message;
@@ -25,10 +49,15 @@ self.addEventListener("push", (event) => {
     if (!message || typeof message.id !== "string" || !message.device_key || !Number.isFinite(Date.parse(message.expires_at)) || Date.parse(message.expires_at) <= Date.now()) return;
     // Disabling this device also suppresses messages already accepted by the push provider.
     if (!(await deviceEnabled(message.device_key))) return;
+    const audible = await reserveAlert(message.device_key, message.id);
+    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+    const foreground = windows.find((client) => client.visibilityState === "visible");
+    if (audible && foreground) foreground.postMessage({ type: "scholau-notification", deviceKey: message.device_key });
     await self.registration.showNotification(String(message.title || "ScholAu").slice(0, 100), {
       body: String(message.body || "You have an update in ScholAu.").slice(0, 500),
-      icon: "/icons/pwa-icon-192.png", badge: "/icons/pwa-icon-192.png",
-      tag: "scholau:" + message.id, renotify: false,
+      icon: "/icons/notification-blue-192.png", badge: "/icons/notification-badge.png",
+      tag: "scholau:" + (message.kind === "course_content" ? "course-updates" : message.id), renotify: false,
+      silent: !audible || Boolean(foreground),
       data: { id: message.id, target: message.target },
     });
   })());

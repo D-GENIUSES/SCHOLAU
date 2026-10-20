@@ -19,6 +19,7 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
   const target = internalTarget(item.safe_target);
   const content = (
     <>
+      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white"><Bell className="size-5" aria-hidden /></span>
       <span className="min-w-0 flex-1">
         <span className={cn("block text-ink", unread && "font-semibold")}>{item.body}</span>
         <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-sm text-ink-muted">
@@ -29,7 +30,7 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
       {target ? <ChevronRight className="size-5 shrink-0 text-ink-muted" aria-hidden /> : null}
     </>
   );
-  const className = cn("flex w-full items-center gap-3 px-4 py-3 text-left", unread && "bg-surface-tint/60");
+  const className = cn("flex w-full items-center gap-3 px-4 py-3 text-left", unread && "border-l-4 border-blue-600 bg-blue-50");
 
   if (!target && !unread) return <div className={className}>{content}</div>;
   return (
