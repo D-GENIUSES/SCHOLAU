@@ -96,7 +96,19 @@ creation, the owner completion form, rejection of pending API access, explicit
 synthetic fixture acceptance, one-time prompting and subsequent onboarding.
 All disposable accounts were removed. CI passed on both the PR and merged commit.
 
+The hosted catalog inspection confirmed RLS on every application table, no direct
+client mutation grants, no client execution of private functions and no unexpected
+anonymous RPC access. Application definer functions pin an empty search path. The
+platform's `rls_auto_enable()` function pins only `pg_catalog` and is not client
+executable; it was left unchanged. Supabase Security Advisor reported zero errors.
+Its warnings consist of intentionally callable, internally authorized definer RPCs
+and disabled leaked-password protection. The latter is a provider feature requiring
+Supabase Pro or above; the project is on Free. No plan or billing changes were made.
+Two additional hosted checks confirmed that local logout revokes the current
+refresh token and preserves an independent session on another device.
+
 References: [Supabase email templates](https://supabase.com/docs/guides/auth/auth-email-templates),
 [SSR client and cookie handling](https://supabase.com/docs/guides/auth/server-side/creating-a-client),
 [development advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm).
 Logout scope follows the [Supabase signOut reference](https://supabase.com/docs/reference/javascript/auth-signout).
+Provider plan constraints are documented in [Supabase password security](https://supabase.com/docs/guides/auth/password-security).
