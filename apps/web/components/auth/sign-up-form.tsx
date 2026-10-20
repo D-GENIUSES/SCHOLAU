@@ -4,11 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { type SignUpInput, signUpSchema, registrationAcademicMetadata, SEMESTER_LABELS } from "@scholau/core";
+import { type SignUpInput, signUpSchema, registrationAcademicMetadata } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
-import { Input, NativeSelect, PasswordInput } from "@/components/ui/input";
+import { Input, PasswordInput } from "@/components/ui/input";
 import { useAnalytics } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { authErrorMessage } from "./auth-errors";
@@ -16,6 +16,7 @@ import { AuthHeading } from "./auth-heading";
 import { AuthSteps } from "./auth-steps";
 import { SignupNotifications } from "@/components/notifications/signup-notifications";
 import { UniversitySelect } from "./university-select";
+import { RegistrationStudyFields } from "./registration-study-fields";
 import { suggestUsernames, UsernameSuggestions } from "./username-suggestions";
 import { RegistrationLegal, useRegistrationLegal } from "./registration-legal";
 
@@ -104,20 +105,11 @@ export function SignUpForm() {
         <Button type="submit" block disabled={legal.loading}>Continue</Button>
       </> : <>
         <Controller control={form.control} name="universitySlug" render={({ field }) =>
-          <UniversitySelect value={field.value} onChange={field.onChange} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
+          <UniversitySelect value={field.value} onChange={value => {
+            field.onChange(value); form.setValue("faculty", ""); form.setValue("department", ""); form.setValue("catalogProfile", undefined);
+          }} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
         } />
-        <Field id="sign-up-faculty" label="Faculty" error={errors.faculty?.message}>
-          <Input autoComplete="off" placeholder="Enter your faculty" maxLength={200} {...form.register("faculty")} />
-        </Field>
-        <Field id="sign-up-department" label="Department" error={errors.department?.message}>
-          <Input autoComplete="off" placeholder="Enter your department" maxLength={200} {...form.register("department")} />
-        </Field>
-        <Field id="sign-up-semester" label="Current semester" error={errors.currentSemester?.message}>
-          <NativeSelect defaultValue="" {...form.register("currentSemester")}>
-            <option value="" disabled>Select your semester</option>
-            {Object.entries(SEMESTER_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </NativeSelect>
-        </Field>
+        <RegistrationStudyFields form={form} />
         <p className="text-xs leading-relaxed text-ink-muted">Your selected age declaration and acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> apply to this registration. <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>
         <Button type="submit" block loading={isSubmitting}>Create account</Button>
         <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => { setError(null); setStep("account"); }}>Back</Button>
