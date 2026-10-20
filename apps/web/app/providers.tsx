@@ -5,6 +5,7 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
+import { NotificationSound } from "@/components/notifications/notification-sound";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -48,7 +49,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <AnalyticsProvider><PushLifecycle />{children}</AnalyticsProvider>
+        <AnalyticsProvider><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

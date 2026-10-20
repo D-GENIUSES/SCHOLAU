@@ -74,7 +74,7 @@
 .sidebar-footer a { display: block; font-size: 11px; color: #0066d6; margin-top: 3px; }
 .app-header { position: sticky; top: 0; z-index: 25; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; background: #ffffffdf; backdrop-filter: blur(16px); border-bottom: 1px solid #e6edf580; }
 .header-account { display: flex; align-items: center; gap: 8px; }
-.notification-button { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #50647b; }
+.notification-button { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #0866e8; background: #eff6ff; }
 .notification-button:hover { background: #eaf4ff; }
 .notification-dot { position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: #168cff; border: 2px solid white; }
 .account-avatar { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #d3e6fc; background: #eaf4ff; color: #0066d6; font-weight: 700; font-size: 13px; }

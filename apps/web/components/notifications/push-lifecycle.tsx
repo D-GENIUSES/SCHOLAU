@@ -12,6 +12,7 @@ export function PushLifecycle() {
     let owner: string | null = null;
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let updatedOwner: string | null = null;
     const client = getBrowserSupabase();
     const retry = () => {
       if (timer) clearTimeout(timer);
@@ -22,6 +23,10 @@ export function PushLifecycle() {
           if (device && device.owner !== currentOwner) await disableBrowserPush(false);
           if (cancelled || !currentOwner || currentOwner !== owner) return;
           await enrollPendingNotifications(currentOwner).catch(() => undefined);
+          if ("serviceWorker" in navigator && updatedOwner !== currentOwner) {
+            updatedOwner = currentOwner;
+            void navigator.serviceWorker.getRegistration("/").then((registration) => registration?.update()).catch(() => undefined);
+          }
           if (cancelled || currentOwner !== owner) return;
           if (readPushDevice()?.owner === currentOwner && "Notification" in window && Notification.permission === "granted") {
             setReminderOwner(null); return;
@@ -81,7 +86,7 @@ function PermissionReminder({ owner, onClose }: { owner: string; onClose: () => 
   }
   return <aside role="region" aria-label="Notification permission reminder" className="fixed inset-x-4 bottom-24 z-50 mx-auto max-w-md rounded-card border border-line bg-surface-card p-5 shadow-lg sm:inset-x-auto sm:right-6 sm:bottom-6">
     <h2 className="text-lg font-bold">Allow notifications?</h2>
-    <p className="my-3 text-sm text-ink-muted">Stay up to date with ScholAu. You can enable notifications now or we will remind you tomorrow.</p>
+    <p className="my-3 text-sm text-ink-muted">Get grouped course updates with blue ScholAu branding. Alerts are spaced out and respect your quiet hours.</p>
     <div className="flex flex-wrap gap-3">
       <Button loading={busy} onClick={() => void enable()}>Enable notifications</Button>
       <Button variant="ghost" disabled={busy} onClick={() => { postponePushPermission(owner); onClose(); }}>Later</Button>
