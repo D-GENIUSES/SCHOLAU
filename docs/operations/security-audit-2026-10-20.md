@@ -17,6 +17,7 @@ authorization, RLS, assessments, battles, rewards, administration and erasure.
 | Recovery destinations could override the password form. | Always send token-hash recovery to `/reset-password`. |
 | Shared client query keys could retain the previous account's data. | Clear the query cache when the authenticated user changes; clear it and perform a full navigation after logout. |
 | Logout errors were silently ignored. | Keep the user informed when logout fails; allow retry. |
+| The ordinary sign-out button used Supabase's default global scope. | Sign out the current session so other devices remain signed in. |
 | Network failures could strand authentication forms or the resend button. | Handle failures and release pending states. |
 | Admin JSON bodies without Content-Length were read fully before checking their size. | Bound the incoming stream to 8 KiB. |
 | The legal signup trigger rejected new Google identities and admin-provisioned accounts. | Add a pending registration state and one-time in-app consent. Email registration retains its existing atomic eligibility check. |
@@ -84,6 +85,18 @@ to the hosted service, default delivered links retain their existing provider
 hop and PKCE/device limitations. Generated-link tests do not establish real inbox
 delivery, spam placement, or mail-scanner behavior.
 
+## Published verification
+
+PR #8 was merged and deployed to `https://scholau.vercel.app` at production commit
+`1922193afddba84a9d85fc1089771c538ed37c6c`. The additive pending-registration
+migration was applied and recorded in hosted migration history after the web
+deployment was ready. The same 26 authentication HTTP checks passed against
+production. Seven additional production checks verified administrator account
+creation, the owner completion form, rejection of pending API access, explicit
+synthetic fixture acceptance, one-time prompting and subsequent onboarding.
+All disposable accounts were removed. CI passed on both the PR and merged commit.
+
 References: [Supabase email templates](https://supabase.com/docs/guides/auth/auth-email-templates),
 [SSR client and cookie handling](https://supabase.com/docs/guides/auth/server-side/creating-a-client),
 [development advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm).
+Logout scope follows the [Supabase signOut reference](https://supabase.com/docs/reference/javascript/auth-signout).
