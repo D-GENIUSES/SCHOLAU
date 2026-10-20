@@ -582,6 +582,11 @@ export function useStartTopicReview() {
   });
 }
 
+export function usePublicProfile(userId: string) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "social", "public-profile", userId], queryFn: () => api.getPublicProfile(userId), retry: shouldRetry });
+}
+
 export function useFriends() {
   const api = useScholauApi();
   return useQuery({ queryKey: ["scholau", "social", "friends"], queryFn: api.getFriends, retry: shouldRetry, refetchInterval: 15000 });

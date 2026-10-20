@@ -1,4 +1,4 @@
-import { Bell, ChevronRight, Flame, Shield } from "lucide-react";
+import { Bell, ChevronRight, Flame, Shield, Search } from "lucide-react";
 import { NavLink } from "./nav-link";
 import type { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
@@ -13,6 +13,7 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Your learning space";
   const account = guest ? <Button asChild size="sm" ><NavLink href="/sign-in">Sign in</NavLink></Button> : <>
+    <NavLink href="/people" className="notification-button" aria-label="Find people"><Search className="size-5" aria-hidden /></NavLink>
     {streak ? <span className="header-streak" data-active={streak.active_today} role="status" aria-label={`${streak.current}-day streak${streak.active_today ? ", active today" : ""}`}>
       <Flame className="size-4" fill={streak.active_today ? "currentColor" : "none"} aria-hidden />
       <span key={streak.current} className="streak-count">{streak.current}</span>

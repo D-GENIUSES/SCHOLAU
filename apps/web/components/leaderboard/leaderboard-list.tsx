@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { LeaderboardRow } from "@scholau/api";
 import { formatNumber, formatXp } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
@@ -30,11 +31,13 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
         <span className="sr-only">Rank </span>
         {formatNumber(row.rank)}
       </span>
-      <Avatar name={row.display_name} path={row.avatar_path} size={32} />
+      <Link href={`/people/${row.user_id}`} aria-label={`View ${row.display_name}'s public profile`} className="flex min-w-0 flex-1 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-brand-primary">
+      <Avatar name={row.display_name} path={row.avatar_path} size={32} publicProfile />
       <span className="flex min-w-0 flex-1 items-center gap-2">
         <span className="truncate font-semibold">{row.display_name}</span>
         {row.is_me ? <Badge tone="brand">You</Badge> : null}
       </span>
+      </Link>
       <span className="shrink-0 font-bold tabular-nums">{formatXp(row.xp_total)}</span>
     </div>
   );

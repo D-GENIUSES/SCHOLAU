@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { Avatar } from "@/components/ui/avatar";
 import { useState } from "react";
 import type { FriendAction, FriendPerson } from "@scholau/api";
 import { useFriendAction, useFriends, useSearchFriends, useSetFriendUsername } from "@scholau/api/react";
@@ -29,7 +31,7 @@ export function FriendsPanel() {
         <CardDescription>Add classmates and invite them to your next battle.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
-        {friends.isPending ? <LoadingState label="Loading friends…" /> : null}
+        {friends.isPending ? <LoadingState label="Loading friendsÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦" /> : null}
         <InlineError error={friends.error} />
         {friends.data ? <p className="break-all text-sm">Your username: <strong>@{friends.data.username}</strong></p> : null}
         <form className="flex flex-wrap items-end gap-2" onSubmit={(event) => {
@@ -48,7 +50,7 @@ export function FriendsPanel() {
         <UsernameSuggestions names={suggestions} onChoose={(value) => { setName(value); username.reset(); setSuggestions([]); }} />
         <form className="flex items-end gap-2" onSubmit={(event) => { event.preventDefault(); setQuery(search.trim()); }}>
           <label className="min-w-0 flex-1 text-sm font-semibold">Find friends
-            <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Username" minLength={3} maxLength={24} required />
+            <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Name or username" minLength={3} maxLength={60} required />
           </label>
           <Button type="submit" variant="outline" loading={results.isFetching}>Search</Button>
         </form>
@@ -72,10 +74,11 @@ export function FriendsPanel() {
 function PersonRow({ person, busy, onAction }: { person: FriendPerson; busy: boolean; onAction: (value: FriendAction) => void }) {
   return (
     <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line p-3">
-      <div className="min-w-0 flex-1">
-        <p className="font-semibold">{person.display_name}</p>
-        <p className="break-all text-xs text-ink-muted">@{person.username} · {person.state === "accepted" ? "Friend" : person.state === "pending" ? person.incoming ? "Wants to add you" : "Request sent" : person.state === "blocked" ? "Blocked" : "Add a friend"}</p>
-      </div>
+      <Link href={`/people/${person.user_id}`} aria-label={`View ${person.display_name}'s public profile`} className="flex min-w-0 flex-1 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-brand-primary">
+        <Avatar name={person.display_name} path={person.avatar_path} publicProfile />
+        <div className="min-w-0"><p className="truncate font-semibold hover:underline">{person.display_name}</p>
+        <p className="break-all text-xs text-ink-muted">@{person.username} ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· {person.state === "accepted" ? "Friend" : person.state === "pending" ? person.incoming ? "Wants to add you" : "Request sent" : person.state === "blocked" ? "Blocked" : "Add a friend"}</p></div>
+      </Link>
       <div className="flex flex-wrap gap-2">
         {!person.state ? <Button size="sm" disabled={busy} onClick={() => onAction("request")}>Add friend</Button> : null}
         {person.state === "pending" && person.incoming ? <Button size="sm" disabled={busy} onClick={() => onAction("accept")}>Accept</Button> : null}

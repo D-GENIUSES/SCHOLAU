@@ -68,6 +68,7 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     clock,
 
     /* ---------------------------------- Profile & onboarding ---------------------------------- */
+    getPublicProfile: (userId: string) => rpc<T.PublicProfile>("get_public_profile_v1", { p_user_id: userId }),
     getMyProfile: () => rpc<T.Profile>("get_my_profile_v1"),
     updateProfile: (a: { username?: string; displayName?: string; avatarPath?: string; clearAvatar?: boolean; leaderboardVisible?: boolean }) =>
       rpc<T.Profile>("update_profile_v2", {
