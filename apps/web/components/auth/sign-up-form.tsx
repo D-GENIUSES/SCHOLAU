@@ -19,6 +19,7 @@ import { UniversitySelect } from "./university-select";
 import { RegistrationStudyFields } from "./registration-study-fields";
 import { suggestUsernames, UsernameSuggestions } from "./username-suggestions";
 import { RegistrationLegal, useRegistrationLegal } from "./registration-legal";
+import { GoogleSignIn } from "./google-sign-in";
 
 export function SignUpForm() {
   const legal = useRegistrationLegal();
@@ -44,6 +45,7 @@ export function SignUpForm() {
     setError(null);
     const legalError = legal.validate();
     if (legalError) { setError(legalError); setStep("account"); return; }
+    try {
     const { data: available, error: availabilityError } = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
     if (availabilityError) { setError("Could not check your username. Please try again."); return; }
     if (!available) {
@@ -71,6 +73,9 @@ export function SignUpForm() {
     }
     analytics.track({ name: "signup_completed" });
     setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/home" : `/verify?email=${encodeURIComponent(values.email)}` });
+    } catch {
+      setError("Registration could not be confirmed. Check your email or try signing in before retrying.");
+    }
   });
 
   if (completion) return <SignupNotifications {...completion} />;
@@ -79,7 +84,7 @@ export function SignUpForm() {
     <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
       description={step === "account" ? "Choose a username, then enter your email and a password." : "We use these details to find your course assignments."} />
-    {step === "account" ? <p className="mb-4 text-sm text-ink-muted">Register with email to complete account eligibility and terms acceptance. Already registered? <Link href="/sign-in" className="font-semibold text-brand-primary underline">Sign in with Google or email</Link>.</p> : null}
+    {step === "account" ? <div className="mb-4"><GoogleSignIn disabled={isSubmitting} /></div> : null}
     <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);
