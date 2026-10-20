@@ -77,6 +77,14 @@ enable_confirmations = true
 secure_password_change = true
 max_frequency = "1m0s"
 
+[auth.email.template.confirmation]
+subject = "Confirm your ScholAu email"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset your ScholAu password"
+content_path = "./supabase/templates/recovery.html"
+
 [auth.sms]
 enable_signup = false
 

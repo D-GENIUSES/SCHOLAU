@@ -13,6 +13,7 @@ function callback(exchange) {
     "next/server": { NextResponse: { redirect: (url) => new Response(null, { status: 307, headers: { Location: url.toString() } }) } },
     "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { exchangeCodeForSession: exchange } }) },
     "@/lib/utils": { safeNext },
+    "@/lib/auth-destination": { accountDestination: async () => "/admin" },
   };
   new Function("require", "exports", compiled)((id) => {
     assert.ok(id in mocks, `Unexpected dependency: ${id}`);
@@ -24,10 +25,10 @@ function callback(exchange) {
   };
 }
 
-test("Google callback exchanges the code and enters role-based continuation", async () => {
+test("Google callback exchanges the code and enters the account directly", async () => {
   const get = callback(async (code) => { assert.equal(code, "test-code"); return { error: null }; });
   const response = await get("provider=google&code=test-code&next=%2Fauth%2Fcontinue");
-  assert.equal(response.headers.get("location"), "https://scholau.vercel.app/auth/continue");
+  assert.equal(response.headers.get("location"), "https://scholau.vercel.app/admin");
   assert.equal(response.headers.get("cache-control"), "private, no-store");
 });
 
