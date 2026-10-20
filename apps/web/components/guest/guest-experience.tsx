@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { type ReactNode } from "react";
 import { ContinueLearningCard, HowItWorks } from "@/components/home/learning-panels";
 import { ShellFrame } from "@/components/shell/shell-frame";
-import { SplashGate } from "@/components/shell/splash-gate";
 import { Button } from "@/components/ui/button";
 import { sampleCourses, starterLesson } from "./guest-content";
 
@@ -38,7 +37,7 @@ export function GuestExperience() {
     case "profile": content = <AccountPrompt title="Your profile" description="Sign in to view your progress and account details." next="/profile" />; break;
   }
 
-  return <SplashGate><ShellFrame guest pathname={pathname}>{content}</ShellFrame></SplashGate>;
+  return <ShellFrame guest pathname={pathname}>{content}</ShellFrame>;
 }
 
 function GuestHeader({ title, description }: { title: string; description: string }) {

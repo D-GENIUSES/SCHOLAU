@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { OfflineIndicator } from "@/components/offline-indicator";
 import { ViewportLock } from "@/components/viewport-lock";
+import { SplashGate } from "@/components/shell/splash-gate";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
 // Users who rely on system zoom may prefer the browser; this targets installed / standalone use.
 export const viewport: Viewport = {
-  themeColor: "#0066D6",
+  themeColor: "#0866e8",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <ViewportLock />
           <OfflineIndicator />
-          {children}
+          <SplashGate>{children}</SplashGate>
         </Providers>
       </body>
     </html>
