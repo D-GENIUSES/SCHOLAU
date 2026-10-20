@@ -448,6 +448,8 @@ export interface LeaderboardRow {
   avatar_path: string | null;
   xp_total: number;
   is_me: boolean;
+  faculty_name?: string | null;
+  level_label?: string | null;
 }
 
 export interface LeaderboardPage extends Envelope {
