@@ -120,8 +120,14 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     }),
 
     /* -------------------------------------- Assessments --------------------------------------- */
-    startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean }>) =>
-      rpc<T.Attempt>("start_attempt_v1", {
+    startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean; questionCount?: number; durationSeconds?: number | null }>) =>
+      a.questionCount !== undefined ? rpc<T.Attempt>("start_configured_attempt_v1", {
+        p_assessment_version_id: a.assessmentVersionId,
+        p_request_key: a.requestKey,
+        p_question_count: a.questionCount,
+        p_duration_seconds: a.durationSeconds ?? null,
+        p_resume: a.resume ?? true,
+      }) : rpc<T.Attempt>("start_attempt_v1", {
         p_assessment_version_id: a.assessmentVersionId,
         p_request_key: a.requestKey,
         p_resume: a.resume ?? true,
