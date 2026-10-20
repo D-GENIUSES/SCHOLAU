@@ -8,6 +8,7 @@ import { Field } from "@/components/ui/field";
 import { NativeSelect } from "@/components/ui/input";
 import { Progress } from "@/components/ui/misc";
 import questions from "./material-questions.json";
+import starterQuestions from "./starter-questions.json";
 
 export type GuestMaterialQuestion = typeof questions[number];
 export const guestQuizCourses = [...new Map(questions.map(q => [q.courseCode, {
@@ -16,7 +17,7 @@ export const guestQuizCourses = [...new Map(questions.map(q => [q.courseCode, {
 
 /** Public learning questions only. The private battle pool is never imported here. */
 export function chooseGuestQuestions(course: string, random = Math.random): GuestMaterialQuestion[] {
-  const pool = questions.filter(q => course === "mixed" || q.courseCode === course);
+  const pool = course === "starter" ? starterQuestions : questions.filter(q => course === "mixed" || q.courseCode === course);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
@@ -33,7 +34,7 @@ export function chooseGuestQuestions(course: string, random = Math.random): Gues
 }
 
 export function MaterialQuiz() {
-  const [course, setCourse] = useState("mixed");
+  const [course, setCourse] = useState("starter");
   const [quiz, setQuiz] = useState<GuestMaterialQuestion[] | null>(null);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -57,13 +58,14 @@ export function MaterialQuiz() {
   }
   return <div className="guest-reading">
     <Link href="/home" className="back-link"><ArrowLeft className="size-4" aria-hidden />Back to Home</Link>
-    <p className="content-label">Course practice · Guest mode</p>
-    <h1>{finished ? "Quiz results" : "Course quiz"}</h1>
-    <p className="reading-lead">Practice with questions based on the Computer Science course materials. No account needed.</p>
+    <p className="content-label">Practice · Guest mode</p>
+    <h1>{finished ? "Quiz results" : "Quick practice"}</h1>
+    <p className="reading-lead">Start with five simple general knowledge questions, or choose a course quiz. No account needed.</p>
     {!quiz ? <div className="practice-card">
       <h2>Choose your quiz</h2>
-      <p className="text-ink-muted">{questions.length} questions across {guestQuizCourses.length} courses, from 100 to 400 level. Each quiz has five questions with explanations.</p>
-      <Field id="guest-quiz-course" label="Course"><NativeSelect value={course} onChange={e => setCourse(e.target.value)}>
+      <p className="text-ink-muted">Try science, maths and geography at your own pace. Course practice also includes {questions.length} questions across {guestQuizCourses.length} courses. Every answer has an explanation.</p>
+      <Field id="guest-quiz-course" label="Quiz"><NativeSelect value={course} onChange={e => setCourse(e.target.value)}>
+        <option value="starter">Simple general knowledge · 5 questions</option>
         <option value="mixed">Mixed course quiz</option>
         {[100, 200, 300, 400].map(level => <optgroup key={level} label={`${level} level`}>{guestQuizCourses.filter(c => c.level === level).map(c => <option key={c.code} value={c.code}>{c.code} — {c.title}</option>)}</optgroup>)}
       </NativeSelect></Field>

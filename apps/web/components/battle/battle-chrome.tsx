@@ -29,10 +29,10 @@ export function BattleTopBar({
   onLeave: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between gap-3 border-b border-line pb-4">
+    <div className="flex items-center justify-between gap-3">
       <div className="min-w-0">
-        <p className="truncate font-bold">{battle?.courses?.length ? `${battle.courses.map((c) => c.code).join(" + ")} battle` : battle?.course ? `${battle.course.code} battle` : "Battle"}</p>
-        {battle ? <p className="text-sm text-ink-muted">{STATE_LABEL[battle.state]}</p> : null}
+        <p className="text-xl font-bold tracking-tight sm:text-2xl">{battle?.state === "active" ? "Live battle" : "Battle"}</p>
+        {battle ? <p className="flex items-center gap-1.5 text-xs font-medium text-ink-muted">{battle.state === "active" ? <span className="size-1.5 rounded-full bg-success" aria-hidden /> : null}{STATE_LABEL[battle.state]}</p> : null}
       </div>
       {live ? (
         <Button variant="outline" size="sm" onClick={onLeave}>

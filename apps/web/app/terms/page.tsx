@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { LegalPage, LegalSection } from "@/components/legal-page";
-
-export const metadata: Metadata = { title: "Terms of Use" };
-
-export default function TermsPage() {
-  return <LegalPage title="Terms of Use" description="The conditions for using ScholAu’s learning platform.">
-    <LegalSection id="using-scholau" title="Using ScholAu"><p>These terms apply when you use ScholAu, including guest lessons and quizzes. Review them before creating an account. ScholAu provides study materials, practice assessments and quiz battles to support learning.</p><p>Course materials and practice results supplement your studies. They do not replace official university teaching, assessment rules or academic advice, and do not guarantee grades or examination outcomes.</p></LegalSection>
-    <LegalSection id="your-account" title="Your account"><p>Provide accurate account and academic details, keep your sign-in credentials secure, and use only accounts you are authorized to access. You are responsible for the activity you carry out through your account.</p><p>Student content depends on your academic profile and published course availability. Lecturer and administrator access require authorization; creating an account does not grant those roles.</p></LegalSection>
-    <LegalSection id="acceptable-use" title="Acceptable use"><p>Use ScholAu respectfully and for legitimate learning or teaching. Do not impersonate others, harass users, manipulate scores or battles, share unauthorized examination content, upload harmful files, or attempt to bypass access controls or disrupt the service.</p></LegalSection>
-    <LegalSection id="course-content" title="Course content and uploads"><p>Only upload materials that you own or have permission to share. Keep confidential information and other people’s personal data out of uploads unless you have appropriate authorization.</p><p>Uploading teaching content allows ScholAu to store and display it to the intended course audience through its review and publication process. Respect the ownership and permitted use of materials you access; availability on ScholAu does not grant permission to redistribute them.</p></LegalSection>
-    <LegalSection id="availability" title="Availability and account access"><p>Features and published content may change, and maintenance or connection problems may interrupt access. Report incorrect content or technical problems through the app’s support tools.</p><p>Accounts or content that violate these terms or compromise the platform may be restricted or removed. Contact support if you believe an access decision is incorrect.</p></LegalSection>
-    <LegalSection id="privacy" title="Privacy and leaving ScholAu"><p>Our <Link href="/privacy" className="font-semibold text-brand-primary underline">Privacy Policy</Link> explains account data, Google sign-in and notification permissions. You can stop using ScholAu at any time and request account deletion from Profile → Settings → Security.</p></LegalSection>
-    <LegalSection id="contact" title="Questions and updates"><p>For questions about these terms, use Contact support in Profile → Settings → Support &amp; privacy, or email <a href="mailto:johnnwaokolo01@gmail.com" className="font-semibold text-brand-primary underline">johnnwaokolo01@gmail.com</a>.</p><p>Updates will be published on this page with a revised date. Review the current terms when you return to the service.</p></LegalSection>
-  </LegalPage>;
-}
+import type { Metadata, Viewport } from "next";
+import { PolicyLayout } from "@/components/legal/policy-layout";
+import { termsSections } from "@/lib/policy-content";
+export const metadata: Metadata = { title: "Terms of Use — Draft", description: "SCHOLAU account eligibility, learning and competition rules, content rights and user responsibilities.", robots: { index: false, follow: false } };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, maximumScale: 5, userScalable: true };
+export default function TermsPage() { return <PolicyLayout title="Terms of Use" intro="The conditions for accounts, learning, teaching and fair competition on SCHOLAU." sections={termsSections} />; }

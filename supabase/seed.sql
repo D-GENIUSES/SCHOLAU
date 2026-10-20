@@ -44,10 +44,10 @@ insert into auth.users (instance_id, id, aud, role, email, encrypted_password, e
 values
   ('00000000-0000-0000-0000-000000000000', '90000000-0000-4000-8000-000000000001', 'authenticated', 'authenticated',
    'student@scholau.local', extensions.crypt('ScholauStudent#2026', extensions.gen_salt('bf')), now(),
-   '{"provider":"email","providers":["email"]}', '{"display_name":"Fixture Student"}', now(), now(), '', '', '', ''),
+   '{"provider":"email","providers":["email"]}', '{"display_name":"Fixture Student","terms_accepted":true,"terms_version":"2026-10-19-draft-1","privacy_version":"2026-10-19-draft-1","age_declaration":"adult"}', now(), now(), '', '', '', ''),
   ('00000000-0000-0000-0000-000000000000', '90000000-0000-4000-8000-000000000002', 'authenticated', 'authenticated',
    'admin@scholau.local', extensions.crypt('ScholauAdmin#2026', extensions.gen_salt('bf')), now(),
-   '{"provider":"email","providers":["email"]}', '{"display_name":"Fixture Admin"}', now(), now(), '', '', '', '')
+   '{"provider":"email","providers":["email"]}', '{"display_name":"Fixture Admin","terms_accepted":true,"terms_version":"2026-10-19-draft-1","privacy_version":"2026-10-19-draft-1","age_declaration":"adult"}', now(), now(), '', '', '', '')
 on conflict (id) do nothing;
 
 do $$

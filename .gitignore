@@ -47,3 +47,4 @@ apps/web/private/course-materials/
 
 # Private generated course synchronization bundles and results
 .content-sync/
+.legal-verification/

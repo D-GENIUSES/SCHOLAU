@@ -1,9 +1,12 @@
 "use client";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /** Keep the installed-web-app scale stable, as requested by the product owner. */
 export function ViewportLock() {
+  const pathname = usePathname();
   useEffect(() => {
+    if (pathname === "/privacy" || pathname === "/terms") return;
     const preventGesture = (event: Event) => event.preventDefault();
     const preventPinch = (event: TouchEvent) => { if (event.touches.length > 1) event.preventDefault(); };
     const preventWheelZoom = (event: WheelEvent) => { if (event.ctrlKey) event.preventDefault(); };
@@ -24,6 +27,6 @@ export function ViewportLock() {
       document.removeEventListener("wheel", preventWheelZoom);
       document.removeEventListener("keydown", preventKeyZoom);
     };
-  }, []);
+  }, [pathname]);
   return null;
 }

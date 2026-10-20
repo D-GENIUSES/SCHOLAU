@@ -54,15 +54,18 @@ export function AcademicProfileForm({
   changeMode,
   onCompleted,
   defaults,
+  savedDetails,
 }: {
   profile: Profile;
   defaults?: Partial<AcademicProfileInput>;
+  savedDetails?: Partial<Record<FieldName, string>>;
   changeMode: boolean;
   onCompleted: () => void;
 }) {
   const analytics = useAnalytics();
   const setAcademic = useSetAcademicProfile();
   const [pending, setPending] = useState<AcademicProfileInput | null>(null);
+  const [editSaved, setEditSaved] = useState(false);
   const form = useForm<AcademicProfileInput>({ resolver: zodResolver(academicProfileSchema), defaultValues: { ...initialValues(profile), ...defaults } });
   const { control, formState } = form;
   const errors = formState.errors;
@@ -99,7 +102,7 @@ export function AcademicProfileForm({
   const select = (
     name: FieldName,
     props: { id: string; label: string; noun: string; hint?: string; options: AcademicOption[]; loading: boolean },
-  ) => (
+  ) => !changeMode && !editSaved && savedDetails?.[name] && defaults?.[name] ? null : (
     <Controller
       control={control}
       name={name}
@@ -125,6 +128,14 @@ export function AcademicProfileForm({
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
+      {!changeMode && savedDetails && Object.keys(savedDetails).length > 0 && !editSaved ? <div className="rounded-card border border-line bg-surface-tint p-4">
+        <h2 className="mb-3 text-sm font-semibold">Saved from registration</h2>
+        <dl className="grid gap-3 sm:grid-cols-2">{Object.entries(savedDetails).map(([key, value]) => <div key={key}>
+          <dt className="text-xs text-ink-muted">{{ universityId: "University", facultyId: "Faculty", departmentId: "Department", levelId: "Level", academicPeriodId: "Academic period", semesterId: "Semester" }[key as FieldName]}</dt>
+          <dd className="text-sm font-semibold">{value}</dd>
+        </div>)}</dl>
+        <Button type="button" variant="link" className="mt-2" onClick={() => setEditSaved(true)}>Edit saved details</Button>
+      </div> : null}
       {changeMode ? (
         <Alert tone="info" title="Before you change your details">
           {COPY.academicChange}

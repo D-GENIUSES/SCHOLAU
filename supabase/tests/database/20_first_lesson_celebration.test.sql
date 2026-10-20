@@ -2,6 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select plan(6);
+\ir ../helpers/legal-fixtures.inc
 insert into auth.users(id,email,raw_user_meta_data)
 values ('ae000000-0000-4000-8000-000000000020','first-lesson-regression@test.local','{"display_name":"First lesson regression"}');
 insert into public.enrollments(user_id,offering_id)

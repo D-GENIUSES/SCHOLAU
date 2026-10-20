@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.photo_user() returns uuid language plpgsql as $$ declare id uuid:=gen_random_uuid();begin
  insert into auth.users(id,email,created_at,raw_user_meta_data) values(id,id::text||'@photos.test',now(),'{"display_name":"Photo test"}');return id;end $$;
 create function pg_temp.photo_login(id uuid) returns void language plpgsql as $$ begin

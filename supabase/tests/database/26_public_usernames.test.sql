@@ -1,6 +1,7 @@
 create extension if not exists pgtap with schema extensions;
 begin;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.username_user(p_handle text) returns uuid language plpgsql as $$
 declare v_id uuid:=gen_random_uuid();
 begin

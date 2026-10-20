@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 -- All temporary identities and enrollments are rolled back, including on success.
 do $$
 declare r record; u uuid; f uuid; d uuid; l uuid; p uuid; s uuid; student uuid;

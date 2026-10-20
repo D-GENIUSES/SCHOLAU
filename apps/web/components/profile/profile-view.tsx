@@ -118,7 +118,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
             {section === "account" ? <div className="mt-4"><SignOutButton variant="outline" size="md" /></div> : null}
           </section> : section === "security" ? <section className="settings-body"><h2>Security</h2><Link href="/change-password" className="settings-link">Change password <ChevronRight size={18} aria-hidden /></Link><div className="mt-6 border-t border-line pt-4"><AccountDeletionDialog /></div></section>
           : section === "notifications" ? <div className="settings-body"><NotificationSettings owner={p.id} /></div>
-          : <section className="settings-body"><h2>Support & privacy</h2><div className="mt-4 flex flex-wrap gap-3"><ReportDialog targetType="technical" triggerLabel="Contact support" title="Contact support" /><Button asChild variant="outline"><Link href="/privacy">Privacy summary</Link></Button>{p.roles.includes("admin") ? <Button asChild variant="outline"><Link href="/admin">Admin</Link></Button> : null}</div></section>}
+          : <section className="settings-body"><h2>Support & privacy</h2><div className="mt-4 flex flex-wrap gap-3"><ReportDialog targetType="technical" triggerLabel="Contact support" title="Contact support" /><Button asChild variant="outline"><Link href="/privacy">Privacy Policy</Link></Button><Button asChild variant="outline"><Link href="/terms">Terms of Use</Link></Button>{p.roles.includes("admin") ? <Button asChild variant="outline"><Link href="/admin">Admin</Link></Button> : null}</div></section>}
           <footer className="mt-6 border-t border-line pt-4"><LegalLinks /></footer>
         </CardContent>
       </Card>}
