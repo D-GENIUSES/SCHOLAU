@@ -1,19 +1,22 @@
 import type { LeaderboardRow } from "@scholau/api";
 import { formatNumber, formatXp } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/misc";
+import { GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** Ranked rows exactly as returned by the server (ties share a rank; never recomputed). */
+/** Server positions include registration-time tie breaking; never sort a single page locally. */
 export function LeaderboardList({ rows, label }: { rows: LeaderboardRow[]; label: string }) {
   return (
-    <ol aria-label={label} className="flex flex-col gap-2">
+    <div className="leaderboard-panel">
+    <div className="leaderboard-columns" aria-hidden><span>Rank</span><span>Student · faculty & level</span><span>XP</span></div>
+    <ol aria-label={label} className="leaderboard-list">
       {rows.map((row) => (
         <li key={row.user_id}>
           <LeaderboardRowItem row={row} />
         </li>
       ))}
     </ol>
+    </div>
   );
 }
 
@@ -21,21 +24,25 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 rounded-card border bg-surface-card p-3 sm:p-4",
-        row.is_me ? "border-brand-primary bg-surface-tint" : "border-line",
+        "leaderboard-entry",
+        row.is_me && "leaderboard-entry-me",
       )}
+      data-podium={row.rank <= 3 ? row.rank : undefined}
       aria-current={row.is_me ? "true" : undefined}
     >
-      <span className="w-12 shrink-0 text-center text-lg font-extrabold tabular-nums text-ink">
+      <span className="leaderboard-rank">
         <span className="sr-only">Rank </span>
         {formatNumber(row.rank)}
       </span>
       <Avatar name={row.display_name} path={row.avatar_path} size={32} />
-      <span className="flex min-w-0 flex-1 items-center gap-2">
-        <span className="truncate font-semibold">{row.display_name}</span>
-        {row.is_me ? <Badge tone="brand">You</Badge> : null}
-      </span>
-      <span className="shrink-0 font-bold tabular-nums">{formatXp(row.xp_total)}</span>
+      <div className="leaderboard-identity">
+        <div className="leaderboard-name"><span>{row.display_name}</span>{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
+        <div className="leaderboard-academic">
+          <span><GraduationCap className="size-3" aria-hidden />{row.faculty_name ?? "Faculty not set"}</span>
+          <span className="leaderboard-level">{row.level_label ?? "Level not set"}</span>
+        </div>
+      </div>
+      <span className="leaderboard-xp">{formatXp(row.xp_total)}</span>
     </div>
   );
 }
