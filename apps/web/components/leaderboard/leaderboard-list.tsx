@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { LeaderboardRow } from "@scholau/api";
 import { formatNumber, formatXp } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
@@ -34,9 +35,9 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
         <span className="sr-only">Rank </span>
         {formatNumber(row.rank)}
       </span>
-      <Avatar name={row.display_name} path={row.avatar_path} size={32} />
+      <Link href={`/people/${row.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile`}><Avatar name={row.display_name} path={row.avatar_path} size={32} publicProfile /></Link>
       <div className="leaderboard-identity">
-        <div className="leaderboard-name"><span>{row.display_name}</span>{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
+        <div className="leaderboard-name"><Link href={`/people/${row.user_id}`} className="hover:underline">{row.display_name}</Link>{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
         <div className="leaderboard-academic">
           <span><GraduationCap className="size-3" aria-hidden />{row.faculty_name ?? "Faculty not set"}</span>
           <span className="leaderboard-level">{row.level_label ?? "Level not set"}</span>

@@ -96,6 +96,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
       <header className="profile-identity">
         <Avatar name={p.display_name} path={p.avatar_path} size={72} />
         <div className="min-w-0 flex-1"><h1>{p.display_name}</h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
+        <Button asChild variant="outline" size="sm"><Link href={`/people/${p.id}`}>Public profile</Link></Button>
         <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
       </header>
       <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "settings", label: "Settings" }]} />

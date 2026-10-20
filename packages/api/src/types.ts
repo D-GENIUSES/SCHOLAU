@@ -324,6 +324,7 @@ export interface Notification {
 /* ----------------------------------------------------------------------------------------------- */
 
 export interface BattleParticipant {
+  user_id?: string;
   seat: 1 | 2;
   display_name: string;
   avatar_path: string | null;
@@ -670,7 +671,14 @@ export interface XpProgress extends Envelope {
 }
 
 export type FriendAction = "request" | "accept" | "decline" | "cancel" | "remove" | "block" | "unblock";
+export interface PublicProfile extends Envelope {
+  id: string; display_name: string; username: string | null; avatar_path: string | null;
+  joined_at: string; university: string | null; faculty: string | null;
+  department: string | null; level: string | null; xp_total: number | null; badges: string[];
+}
+
 export interface FriendPerson {
+  avatar_path?: string | null;
   user_id: string; display_name: string; username: string | null;
   state: "pending" | "accepted" | "blocked" | null; incoming: boolean;
 }

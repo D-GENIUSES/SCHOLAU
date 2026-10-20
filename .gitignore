@@ -49,3 +49,4 @@ apps/web/private/course-materials/
 .content-sync/
 .security-verification/
 .legal-verification/
+.vercel

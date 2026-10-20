@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { CheckCircle2, CircleDashed } from "lucide-react";
 import type { Battle, BattleParticipant } from "@scholau/api";
 import { useReadyBattle } from "@scholau/api/react";
@@ -11,14 +11,12 @@ import { InlineError } from "@/components/ui/states";
 import { CountdownBar } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
 import { BattleRulesList } from "./rules-card";
-
 export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () => unknown }) {
   const ready = useReadyBattle();
   const remaining = useRefetchWhenDue(battle.ready_deadline, refetch);
   const opponent = battle.participants.find((p) => !p.is_me);
   const iAmReady = Boolean(battle.me?.ready);
   const opponentReady = Boolean(opponent?.ready);
-
   return (
     <Card>
       <CardHeader>
@@ -59,15 +57,14 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
     </Card>
   );
 }
-
 function ReadyRow({ participant: p }: { participant: BattleParticipant }) {
   return (
     <li className="flex items-center gap-3 rounded-control border border-line p-3">
-      <Avatar name={p.display_name} path={p.avatar_path} size={32} />
+      <Link href={p.user_id ? `/people/${p.user_id}` : "/people"} className="flex min-w-0 flex-1 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${p.display_name}'s public profile`}><Avatar name={p.display_name} path={p.avatar_path} size={32} />
       <span className="min-w-0 flex-1 truncate font-semibold">
         {p.display_name}
         {p.is_me ? <span className="font-normal text-ink-muted"> (you)</span> : null}
-      </span>
+      </span></Link>
       {p.ready ? (
         <span className="inline-flex items-center gap-1 text-sm font-semibold text-success">
           <CheckCircle2 className="size-4" aria-hidden /> Ready
