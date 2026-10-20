@@ -23,6 +23,7 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
     const api = await getServerApi();
     profile = await api.getMyProfile();
   } catch (err) {
+    if (isApiError(err, "INVALID_STATE") && err.field_errors?.registration_required === true) redirect("/complete-registration");
     if (isApiError(err, "UNAUTHENTICATED")) redirect("/auth/deactivated?reason=unavailable");
     if (isApiError(err, "FORBIDDEN")) redirect("/auth/deactivated");
     return {

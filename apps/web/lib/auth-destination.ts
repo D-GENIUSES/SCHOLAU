@@ -20,6 +20,7 @@ export async function accountDestination(): Promise<string> {
     const { application } = await lecturerApi(await getServerSupabase()).mine();
     return application ? "/lecturer/application" : "/home";
   } catch (error) {
+    if (isApiError(error, "INVALID_STATE") && error.field_errors?.registration_required === true) return "/complete-registration";
     if (isApiError(error, "FORBIDDEN")) return "/auth/deactivated";
     if (isApiError(error, "UNAUTHENTICATED")) return "/auth/deactivated?reason=unavailable";
     return "/home";

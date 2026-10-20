@@ -91,11 +91,12 @@ test("invalid bearer credentials cannot inherit authenticated cookies", async ()
 test("account destination uses database roles and honors blocked accounts", async () => {
   let roles = ["student"];
   let failure;
+  let onboarding = false;
   const { accountDestination } = load("./auth-destination.ts", {
     "server-only": {},
     "@scholau/api": { isApiError: (error, code) => error.code === code },
     "@scholau/core": { readRegistrationAcademic: () => null },
-    "@/lib/supabase/server": { getServerApi: async () => ({ getMyProfile: async () => { if (failure) throw { code: failure }; return { roles }; } }), getServerSupabase: async () => ({}) },
+    "@/lib/supabase/server": { getServerApi: async () => ({ getMyProfile: async () => { if (failure) throw { code: failure, field_errors: { registration_required: true } }; return { roles, needs_onboarding: onboarding }; } }), getServerSupabase: async () => ({ auth: { getClaims: async () => ({ data: { claims: {} } }) } }) },
     "@/lib/lecturer-api": { lecturerApi: () => ({ mine: async () => ({ application: { status: "pending" } }) }) },
   });
   for (const [value, destination] of [[["admin", "student"], "/admin"], [["lecturer"], "/lecturer"], [["student"], "/home"], [[], "/lecturer/application"]]) {
@@ -106,4 +107,10 @@ test("account destination uses database roles and honors blocked accounts", asyn
   assert.equal(await accountDestination(), "/auth/deactivated");
   failure = "UNAUTHENTICATED";
   assert.equal(await accountDestination(), "/auth/deactivated?reason=unavailable");
+  failure = "INVALID_STATE";
+  assert.equal(await accountDestination(), "/complete-registration");
+  failure = undefined;
+  roles = ["student"];
+  onboarding = true;
+  assert.equal(await accountDestination(), "/onboarding");
 });

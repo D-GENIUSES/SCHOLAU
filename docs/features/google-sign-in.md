@@ -1,10 +1,13 @@
 # Google sign-in
 
 Sign-in and student registration offer **Continue with Google** alongside email/password.
-Supabase handles the Google OAuth exchange using PKCE. The callback sends users through
-`/auth/continue` by default, which resolves roles from the database. New students complete
-the existing academic onboarding. Google metadata never assigns admin or lecturer roles.
+Supabase handles the Google OAuth exchange using PKCE. The callback resolves the account
+destination directly using database roles. New Google identities complete the one-time
+age and terms form inside `/complete-registration`, then academic onboarding. The backend
+blocks pending identities from application RPCs, protected content and realtime until
+acceptance is recorded. Google metadata never assigns admin or lecturer roles.
 Existing lecturer accounts can use Google; new lecturer applications retain their existing flow.
+Apply `20261020001000_pending_provider_registration.sql` after the completion page is deployed.
 
 ## Hosted configuration
 

@@ -17,7 +17,7 @@ select is(
 select is(
   (select count(*)::integer from pg_class c join pg_namespace n on n.oid = c.relnamespace
    where c.relkind in ('r', 'p') and n.nspname = 'private'),
-  28, 'private schema includes confidential reviews, managed accounts, profile photos, push delivery and course materials');
+  32, 'private schema includes confidential reviews, managed accounts, photos, push delivery, materials and registration records');
 
 select ok(not has_schema_privilege('anon', 'private', 'usage'), 'anon has no usage on private');
 select ok(not has_schema_privilege('authenticated', 'private', 'usage'), 'authenticated has no usage on private');
@@ -64,8 +64,8 @@ select is(
   (select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and has_function_privilege('anon', p.oid, 'EXECUTE')
      and p.proname like '%\_v1'
-     and p.proname not in ('is_username_available_v1', 'suggest_usernames_v1')),
-  0, 'anon can execute only the two public registration username RPCs');
+     and p.proname not in ('is_username_available_v1', 'suggest_usernames_v1', 'get_registration_legal_status_v1', 'get_registration_options_v1')),
+  0, 'anon can execute only the explicitly public registration RPCs');
 
 select is(
   (select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace

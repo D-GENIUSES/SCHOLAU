@@ -16,7 +16,7 @@ Apply `20261020000300_legal_registration.sql` to a development/staging Supabase 
 
 New Auth accounts must supply `terms_accepted: true`, matching `terms_version` and `privacy_version`, and `age_declaration: adult | under18` in user metadata. The Auth insert trigger checks these inside the signup transaction; acceptance is recorded with a server timestamp in a private table. Mutable Auth metadata cannot rewrite the recorded acceptance. An age declaration is self-reported, not identity-based age verification.
 
-This also applies to administrative/import/API account creation. Existing managed-account creation without the applicant’s legal acceptance will be rejected intentionally. Administrators must direct the applicant through registration or a future invitation/acceptance workflow; do not fabricate acceptance in provisioning metadata. Existing accounts and existing sessions are unaffected. Coordinate the migration and web release: old clients cannot create new accounts after the migration without the required metadata.
+Migration `20261020001000_pending_provider_registration.sql` adds a pending registration flow for new Google identities and administrator-provisioned accounts. These identities complete the age and acceptance form once inside the application. Application RPCs, protected content and realtime channels are blocked until completion; pending identities are hidden from the leaderboard. Consent is recorded only when the account owner submits the form. Existing accounts do not acquire a new acceptance requirement. Email registration retains its original atomic validation. Coordinate the migration and web release so the completion page is available before enabling the pending flow.
 
 ## Manual guardian process
 

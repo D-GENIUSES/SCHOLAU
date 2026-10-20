@@ -17,6 +17,10 @@ export function Providers({ children }: { children: ReactNode }) {
       new QueryClient({
         queryCache: new QueryCache({
           onError: (error) => {
+            if (isApiError(error, "INVALID_STATE") && error.field_errors?.registration_required === true) {
+              router.replace("/complete-registration");
+              return;
+            }
             // Session expired mid-use: send the user back to sign in, preserving where they were.
             if (isApiError(error, "UNAUTHENTICATED") && typeof window !== "undefined") {
               const next = encodeURIComponent(window.location.pathname + window.location.search);
