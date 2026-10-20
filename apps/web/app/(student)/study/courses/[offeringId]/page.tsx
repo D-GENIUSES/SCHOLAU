@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowLeft, Clock, Swords } from "lucide-react";
+import { ArrowLeft, Swords } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { type CourseAssessment, type CourseModule, type CourseOverview, isApiError } from "@scholau/api";
+import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
 import { useCourseOverview, useEnrollCourse } from "@scholau/api/react";
 import { type AssessmentKind, COPY, formatDuration, pluralize } from "@scholau/core";
-import { LessonStateBadge } from "@/components/lesson/lesson-state-badge";
+import { ModuleSection } from "@/components/lesson/lesson-module";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, PageHeader, Progress } from "@/components/ui/misc";
@@ -113,27 +113,24 @@ function Overview({ data }: { data: CourseOverview }) {
       {data.unit_count != null ? <p className="mb-4 text-sm text-ink-muted">{pluralize(data.unit_count, "unit")} · Status {data.requirement_status}</p> : null}
       {progress.lessons_total === 0 ? <p className="mb-4 text-ink-muted">Content coming soon. Published lessons and assessments will appear here when ready.</p> : null}
       {data.lecture_hours != null || data.practical_hours != null ? <p className="mb-4 text-sm text-ink-muted">Lecture hours: {data.lecture_hours ?? "Not provided"} · Practical hours: {data.practical_hours ?? "Not provided"}</p> : null}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Lesson progress</CardTitle>
-          <CardDescription>Counts completed lessons only. Assessment scores are shown with each assessment below.</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <p className="font-semibold">
-            {progress.lessons_completed} of {pluralize(progress.lessons_total, "lesson")} completed ({progress.percent}%)
-          </p>
+      <Card className="mb-5 border-[#d5e4f5] bg-surface-tint shadow-none">
+        <CardContent className="flex flex-col gap-2 p-3 sm:p-4">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-sm">
+            <h2 className="font-semibold">Lesson progress</h2>
+            <p className="text-ink-muted">{progress.lessons_completed}/{progress.lessons_total} completed <strong className="ml-2 text-brand-primary">{progress.percent}%</strong></p>
+          </div>
           <Progress value={progress.percent} label="Lessons completed" tone={progress.percent >= 100 ? "success" : "brand"} />
         </CardContent>
       </Card>
 
-      <section aria-labelledby="lessons-heading" className="mb-8 flex flex-col gap-4">
+      <section aria-labelledby="lessons-heading" className="mb-6 flex flex-col gap-3">
         <h2 id="lessons-heading" className="text-xl font-bold">
           Lessons
         </h2>
         {data.modules.length === 0 ? (
           <EmptyState title="No lessons published yet" description="Lessons for this course will appear here." />
         ) : (
-          data.modules.map((m) => <ModuleSection key={m.id} module={m} />)
+          data.modules.map((m, index) => <ModuleSection key={m.id} module={m} startAt={data.modules.slice(0, index).reduce((total, item) => total + item.lessons.length, 0)} />)
         )}
       </section>
 
@@ -169,37 +166,6 @@ function Overview({ data }: { data: CourseOverview }) {
   );
 }
 
-function ModuleSection({ module }: { module: CourseModule }) {
-  const done = module.lessons.filter((l) => l.state === "completed").length;
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle as="h3">{module.title}</CardTitle>
-        <CardDescription>
-          {done} of {pluralize(module.lessons.length, "lesson")} completed
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ol className="flex flex-col divide-y divide-line">
-          {module.lessons.map((l) => (
-            <li key={l.lesson_id} className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex min-w-0 flex-col gap-0.5">
-                <Link href={`/study/lessons/${l.lesson_id}`} className="font-semibold text-brand-primary hover:underline">
-                  {l.title}
-                </Link>
-                {l.objective ? <p className="text-sm text-ink-muted">{l.objective}</p> : null}
-                <p className="inline-flex items-center gap-1 text-sm text-ink-muted">
-                  <Clock className="size-3.5" aria-hidden /> {pluralize(l.estimated_minutes, "minute")}
-                </p>
-              </div>
-              <LessonStateBadge state={l.state} />
-            </li>
-          ))}
-        </ol>
-      </CardContent>
-    </Card>
-  );
-}
 
 function xpNote(a: CourseAssessment): string {
   const max = a.kind === "review" ? 20 : a.kind === "practice" ? 50 : 100;
