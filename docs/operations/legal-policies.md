@@ -12,7 +12,7 @@ Current analytics evidence: `Providers` supplies no adapter to `AnalyticsProvide
 
 ## Installation and compatibility
 
-Apply `20261019000100_legal_registration.sql` to a development/staging Supabase instance before releasing the matching forms. Missing or mismatched registration status causes the forms to fail closed. The migration is additive and does not change existing accounts or invent historical acceptance.
+Apply `20261020000300_legal_registration.sql` to a development/staging Supabase instance before releasing the matching forms. Missing or mismatched registration status causes the forms to fail closed. The migration is additive and does not change existing accounts or invent historical acceptance.
 
 New Auth accounts must supply `terms_accepted: true`, matching `terms_version` and `privacy_version`, and `age_declaration: adult | under18` in user metadata. The Auth insert trigger checks these inside the signup transaction; acceptance is recorded with a server timestamp in a private table. Mutable Auth metadata cannot rewrite the recorded acceptance. An age declaration is self-reported, not identity-based age verification.
 

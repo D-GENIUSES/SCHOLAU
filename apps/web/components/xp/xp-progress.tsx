@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Award, BookOpenCheck, Check, CheckCheck, GraduationCap, LockKeyhole, Sparkles, Target, Trophy } from "lucide-react";
+import { useId } from "react";
+import { Award, BookOpen, Check, GraduationCap, Layers, Star, Target } from "lucide-react";
 import { useStartTopicReview, useXpProgress } from "@scholau/api/react";
 import { formatDateTime, formatXpDelta, XP_BADGES, xpProgress } from "@scholau/core";
 import { Button } from "@/components/ui/button";
@@ -10,41 +11,59 @@ import { Progress } from "@/components/ui/misc";
 import { ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 
 const badgeArtwork = {
-  first_steps: { icon: BookOpenCheck, color: "text-blue-700", background: "from-blue-50 to-sky-100", ring: "ring-blue-200/70" },
-  topic_mastered: { icon: Target, color: "text-emerald-700", background: "from-emerald-50 to-teal-100", ring: "ring-emerald-200/70" },
-  perfect_practice: { icon: Sparkles, color: "text-amber-700", background: "from-amber-50 to-yellow-100", ring: "ring-amber-200/70" },
-  exam_ready: { icon: GraduationCap, color: "text-violet-700", background: "from-violet-50 to-indigo-100", ring: "ring-violet-200/70" },
-  long_term_recall: { icon: CheckCheck, color: "text-rose-700", background: "from-rose-50 to-pink-100", ring: "ring-rose-200/70" },
+  first_steps: { icon: BookOpen, ribbon: "#344e68" },
+  topic_mastered: { icon: Target, ribbon: "#3e6255" },
+  perfect_practice: { icon: Star, ribbon: "#854439" },
+  exam_ready: { icon: GraduationCap, ribbon: "#344e68" },
+  long_term_recall: { icon: Layers, ribbon: "#62536e" },
 };
+
+function AchievementMedal({ code, earned }: { code: string; earned: boolean }) {
+  const id = useId();
+  const artwork = badgeArtwork[code as keyof typeof badgeArtwork] ?? { icon: Award, ribbon: "#344e68" };
+  const Icon = artwork.icon;
+  return <svg viewBox="0 0 100 116" className="h-[100px] w-[86px] shrink-0" aria-hidden="true">
+    <defs>
+      <linearGradient id={`${id}-metal`} x1="0" y1="0" x2="1" y2="1"><stop stopColor={earned ? "#f5e8bf" : "#e8e7e3"} /><stop offset=".28" stopColor={earned ? "#d5b46b" : "#c7c7c2"} /><stop offset=".5" stopColor={earned ? "#f6e6af" : "#efeeea"} /><stop offset=".78" stopColor={earned ? "#b48c43" : "#bcbdb9"} /><stop offset="1" stopColor={earned ? "#e5ca89" : "#deded9"} /></linearGradient>
+      <linearGradient id={`${id}-face`} x2="0" y2="1"><stop stopColor={earned ? "#f1dfac" : "#e9e8e3"} /><stop offset="1" stopColor={earned ? "#d4b470" : "#d3d3cd"} /></linearGradient>
+    </defs>
+    <path d="M27 68 20 110 39 102 49 114 53 73M47 73 53 114 63 102 82 110 73 68" fill={earned ? artwork.ribbon : "#a5aaa9"} />
+    <path d="m30 79-5 24 8-4 5-24m27 4 5 24-8-4-5-24" fill="none" stroke="#fff" strokeOpacity=".22" strokeWidth="2" />
+    <ellipse cx="50" cy="51" rx="42" ry="43" fill="#192b3c" opacity=".08" />
+    <circle cx="50" cy="48" r="42" fill={`url(#${id}-metal)`} stroke={earned ? "#ae8947" : "#b5b7b1"} />
+    <circle cx="50" cy="48" r="38" fill="none" stroke={earned ? "#fff5d7" : "#f6f5f1"} strokeWidth="1.2" />
+    <circle cx="50" cy="48" r="34" fill={`url(#${id}-face)`} stroke={earned ? "#b08a45" : "#b8b9b2"} strokeWidth=".8" />
+    <g fill="none" stroke={earned ? "#9a7438" : "#979c96"} strokeWidth="1.2" strokeLinecap="round">
+      <path d="M43 74C23 68 17 49 27 32M57 74C77 68 83 49 73 32" />
+      {[0,1,2,3,4].map(i=><g key={i} transform={`translate(0 ${i*6})`}><path d={`M${25+i*.8} ${36}q-8 -3 -6 -8q7 0 6 8q7 -4 7 -9`} /><path d={`M${75-i*.8} ${36}q8 -3 6 -8q-7 0 -6 8q-7 -4 -7 -9`} /></g>)}
+    </g>
+    <Icon x="35" y="29" width="30" height="30" color={earned ? "#80602e" : "#858d87"} strokeWidth={1.5} />
+    <path d="m50 64 1.1 2.2 2.4.4-1.7 1.7.4 2.4-2.2-1.1-2.2 1.1.4-2.4-1.7-1.7 2.4-.4Z" fill={earned ? "#99733a" : "#969c95"} />
+  </svg>;
+}
 
 export function AchievementBadges({ badges }: { badges: { code: string }[] }) {
   const entries = Object.entries(XP_BADGES);
   const earnedCodes = new Set(badges.map((badge) => badge.code));
   const earnedCount = entries.filter(([code]) => earnedCodes.has(code)).length;
   return <section aria-label="Achievement badges" className="flex min-w-0 flex-col gap-4">
-    <div className="rounded-2xl border border-line bg-gradient-to-br from-surface-tint to-surface-card p-4 sm:p-5">
+    <div className="border-b border-line pb-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-amber-200 bg-amber-50 text-amber-700"><Trophy className="size-5" aria-hidden="true" /></span>
-          <div><h3 className="font-semibold tracking-tight">Your badge collection</h3><p className="mt-0.5 text-xs text-ink-muted">Small steps. Lasting achievements.</p></div>
+          <div><h3 className="font-semibold tracking-tight">Your badge collection</h3><p className="mt-1 text-xs text-ink-muted">Achievements earned through your studies.</p></div>
         </div>
         <span className="rounded-full border border-line bg-surface-card px-3 py-1.5 text-xs font-semibold text-brand-primary">{earnedCount} of {entries.length} earned</span>
       </div>
       <div className="mt-4"><Progress value={entries.length ? earnedCount / entries.length * 100 : 0} label="Badge collection progress" /></div>
-      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{earnedCount === entries.length ? "Collection complete. Keep building on what you know." : earnedCount === 0 ? "Your first achievement starts with a lesson knowledge check." : "Every milestone reflects the effort you put into learning."}</p>
+      {earnedCount === 0 ? <p className="mt-2 text-xs leading-relaxed text-ink-muted">Complete a lesson knowledge check to earn your first badge.</p> : null}
     </div>
     <ul className="grid min-w-0 list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
       {entries.map(([code, badge]) => {
         const earned = earnedCodes.has(code);
-        const artwork = badgeArtwork[code as keyof typeof badgeArtwork] ?? { icon: Award, color: "text-blue-700", background: "from-blue-50 to-sky-100", ring: "ring-blue-200/70" };
-        const Icon = artwork.icon;
-        return <li key={code} className={`group relative flex min-w-0 items-start gap-4 overflow-hidden rounded-2xl border p-4 motion-safe:transition-[box-shadow,transform] motion-safe:duration-200 motion-safe:hover:-translate-y-0.5 ${earned ? "border-[#b8e0cc] bg-gradient-to-br from-white to-emerald-50/50 shadow-sm hover:shadow-md" : "border-line bg-surface-card hover:shadow-sm"}`}>
-          <span className={`relative mt-1 flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ring-1 ring-inset ${artwork.background} ${artwork.color} ${artwork.ring}`}>
-            <Icon className="size-7" strokeWidth={1.6} aria-hidden="true" />
-            <span className={`absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-surface-card ${earned ? "bg-emerald-700 text-white" : "bg-slate-100 text-slate-500"}`}>{earned ? <Check className="size-3" strokeWidth={3} aria-hidden="true" /> : <LockKeyhole className="size-2.5" aria-hidden="true" />}</span>
-          </span>
+        return <li key={code} className={`flex min-w-0 items-center gap-3 rounded-xl border px-3 py-4 ${earned ? "border-[#d8c9a9] bg-[#fcfaf5]" : "border-[#e5e6e2] bg-[#fafaf8]"}`}>
+          <AchievementMedal code={code} earned={earned} />
           <div className="min-w-0">
-            <span className={`inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.1em] ${earned ? "text-emerald-700" : "text-ink-muted"}`}>{earned ? "Earned" : "To unlock"}</span>
+            <span className={`inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.1em] ${earned ? "text-[#52644f]" : "text-ink-muted"}`}>{earned ? <Check className="size-3" aria-hidden="true" /> : null}{earned ? "Earned" : "Not yet earned"}</span>
             <h4 className="mt-1 text-sm font-semibold leading-snug text-ink">{badge.title}</h4>
             <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">{badge.description}</p>
           </div>

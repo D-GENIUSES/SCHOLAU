@@ -78,6 +78,7 @@ export function SignUpForm() {
     <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
       description={step === "account" ? "Choose a username, then enter your email and a password." : "We use these details to find your course assignments."} />
+    {step === "account" ? <p className="mb-4 text-sm text-ink-muted">Register with email to complete account eligibility and terms acceptance. Already registered? <Link href="/sign-in" className="font-semibold text-brand-primary underline">Sign in with Google or email</Link>.</p> : null}
     <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);

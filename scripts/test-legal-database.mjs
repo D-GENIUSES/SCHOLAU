@@ -25,7 +25,7 @@ await db.exec(`create role anon; create role authenticated; create role service_
   create function private.test_profile() returns trigger language plpgsql as $$begin insert into public.profiles values(new.id); return new; end$$;
   create trigger on_auth_user_created after insert on auth.users for each row execute function private.test_profile();
   insert into auth.users values('${admin}','admin@example.test','{}');`);
-await db.exec(await readFile('supabase/migrations/20261019000100_legal_registration.sql','utf8'));
+await db.exec(await readFile('supabase/migrations/20261020000300_legal_registration.sql','utf8'));
 await equal(`select count(*)::int value from private.legal_acceptances`,0);
 await equal(`select (public.get_registration_legal_status_v1()->>'guardian_enabled')::boolean value`,false);
 await fails('insert into auth.users values($1,$2,$3)',[id(),'missing@example.test',{}],/LEGAL_ACCEPTANCE_REQUIRED/);
