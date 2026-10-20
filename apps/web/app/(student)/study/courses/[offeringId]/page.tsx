@@ -178,7 +178,7 @@ function AssessmentCard({ assessment: a, offeringId }: { assessment: CourseAsses
       <CardHeader>
         <CardTitle as="h4">{a.title}</CardTitle>
         <CardDescription>
-          {pluralize(a.question_count, "question")} · {formatDuration(a.duration_seconds)}
+          {a.kind === "review" ? <>{pluralize(a.question_count, "question")} · {formatDuration(a.duration_seconds)}</> : <>{pluralize(a.question_count, "question")} available · Choose your session length</>}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-2 text-sm">
