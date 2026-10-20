@@ -31,8 +31,8 @@ export function AcademicProfileStep({ changeRequested }: { changeRequested: bool
   ) : (
     <PageHeader
       eyebrow={<span>Academic profile</span>}
-      title="Tell us what you study"
-      description="Your saved signup details are filled in where they match our catalogue. Complete any missing details to assign your required courses automatically."
+      title="Complete your study profile"
+      description="Your registration details are already saved. Add only the missing details to find your courses."
     />
   );
 
