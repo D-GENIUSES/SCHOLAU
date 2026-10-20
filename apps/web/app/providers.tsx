@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
@@ -29,6 +29,17 @@ export function Providers({ children }: { children: ReactNode }) {
         },
       }),
   );
+  const owner = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    // Query keys are shared across accounts. Never show the previous account's
+    // cached profile, notifications or assessments after a session changes.
+    const { data } = getBrowserSupabase().auth.onAuthStateChange((_event, session) => {
+      const nextOwner = session?.user.id ?? null;
+      if (owner.current !== undefined && owner.current !== nextOwner) queryClient.clear();
+      owner.current = nextOwner;
+    });
+    return () => data.subscription.unsubscribe();
+  }, [queryClient]);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -27,17 +27,22 @@ export function SignInForm({ next, deactivated, linkError, oauthError }: { next?
 
   const onSubmit = form.handleSubmit(async (values) => {
     setError(null);
-    const { error: authError } = await getBrowserSupabase().auth.signInWithPassword({
-      email: values.email,
-      password: values.password,
-    });
-    if (authError) {
-      setError(isEmailNotConfirmed(authError) ? { kind: "unconfirmed", email: values.email } : { kind: "message", message: authErrorMessage(authError) });
-      return;
+    try {
+      const { error: authError } = await getBrowserSupabase().auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+      });
+      if (authError) {
+        setError(isEmailNotConfirmed(authError) ? { kind: "unconfirmed", email: values.email } : { kind: "message", message: authErrorMessage(authError) });
+        return;
+      }
+      setRedirecting(true);
+      router.replace(safeNext(next, "/auth/continue"));
+      router.refresh();
+    } catch {
+      setRedirecting(false);
+      setError({ kind: "message", message: "Sign-in could not be completed. Check your connection and try again." });
     }
-    setRedirecting(true);
-    router.replace(safeNext(next, "/auth/continue"));
-    router.refresh();
   });
 
   return (

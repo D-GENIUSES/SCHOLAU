@@ -37,33 +37,37 @@ export function SignUpForm() {
 
   const createAccount = form.handleSubmit(async (values) => {
     setError(null);
-    const { data: available, error: availabilityError } = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
-    if (availabilityError) { setError("Could not check your username. Please try again."); return; }
-    if (!available) {
-      form.setError("username", { message: "That username already exists. Choose another." });
-      setSuggestions(await suggestUsernames(values.username));
-      setStep("account");
-      return;
-    }
-    const { data, error: authError } = await getBrowserSupabase().auth.signUp({
-      email: values.email,
-      password: values.password,
-      options: {
-        data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values) },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/home`,
-      },
-    });
-    if (authError) {
-      const check = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
-      if (check.data === false) {
+    try {
+      const { data: available, error: availabilityError } = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
+      if (availabilityError) { setError("Could not check your username. Please try again."); return; }
+      if (!available) {
         form.setError("username", { message: "That username already exists. Choose another." });
         setSuggestions(await suggestUsernames(values.username));
         setStep("account");
-      } else setError(authErrorMessage(authError));
-      return;
+        return;
+      }
+      const { data, error: authError } = await getBrowserSupabase().auth.signUp({
+        email: values.email,
+        password: values.password,
+        options: {
+          data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values) },
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/home`,
+        },
+      });
+      if (authError) {
+        const check = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
+        if (check.data === false) {
+          form.setError("username", { message: "That username already exists. Choose another." });
+          setSuggestions(await suggestUsernames(values.username));
+          setStep("account");
+        } else setError(authErrorMessage(authError));
+        return;
+      }
+      analytics.track({ name: "signup_completed" });
+      setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/home" : `/verify?email=${encodeURIComponent(values.email)}` });
+    } catch {
+      setError("Registration could not be confirmed. Check your email or try signing in before retrying.");
     }
-    analytics.track({ name: "signup_completed" });
-    setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/home" : `/verify?email=${encodeURIComponent(values.email)}` });
   });
 
   if (completion) return <SignupNotifications {...completion} />;
