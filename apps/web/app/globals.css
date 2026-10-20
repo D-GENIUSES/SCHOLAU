@@ -125,6 +125,36 @@
 .battle-benefit { display: flex; align-items: center; gap: 5px; color: #4f6e8a; font-size: 12px; margin-bottom: 7px; }
 .course-list { display: flex; flex-direction: column; gap: 12px; }
 .course-study-card { border-color: var(--color-line); }
+
+.leaderboard-position { color: white; border-color: #245fa4; background: linear-gradient(115deg,#164c8a,#2876bf); box-shadow: 0 4px 14px #1d599315; }
+.leaderboard-panel { overflow: hidden; border: 1px solid #dbe6f2; border-radius: 16px; background: #f8fafd; }
+.leaderboard-columns { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; gap: 12px; padding: 12px 14px; background: #edf3fa; color: #60758c; font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.leaderboard-columns > :last-child { text-align: right; }
+.leaderboard-list { list-style: none; margin: 0; padding: 0 10px; }
+.leaderboard-list > li + li { border-top: 1px solid #e1e9f3; }
+.leaderboard-entry { display: grid; grid-template-columns: 32px 32px minmax(0,1fr) auto; align-items: center; gap: 8px; padding: 13px 4px; border-radius: 10px; min-height: 76px; }
+.leaderboard-entry-me { background: #e7f1ff; box-shadow: inset 3px 0 #2876bf; }
+.leaderboard-rank { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 10px; color: #60758c; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.leaderboard-entry[data-podium="1"] .leaderboard-rank { border: 1px solid #efda9a; background: linear-gradient(135deg,#fff3bd,#f9e4a6); color: #8b5b0b; }
+.leaderboard-entry[data-podium="2"] .leaderboard-rank { border: 1px solid #d4dfe9; background: linear-gradient(135deg,#f3f6fa,#dfe7ee); color: #526779; }
+.leaderboard-entry[data-podium="3"] .leaderboard-rank { border: 1px solid #e6c9b6; background: linear-gradient(135deg,#fcebdd,#efd5c0); color: #945b35; }
+.leaderboard-identity { min-width: 0; }
+.leaderboard-name { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; font-size: 13px; font-weight: 700; color: #233f5c; }
+.leaderboard-name > :first-child { min-width: 0; overflow-wrap: anywhere; }
+.leaderboard-you { padding: 1px 5px; border-radius: 5px; color: #0066d6; background: #d8e9ff; font-size: 9px; font-weight: 600; }
+.leaderboard-academic { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 4px; color: #60758c; font-size: 10px; line-height: 1.4; }
+.leaderboard-academic > :first-child { display: inline-flex; align-items: flex-start; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.leaderboard-academic svg { flex-shrink: 0; margin-top: 1px; }
+.leaderboard-level { padding: 2px 5px; border-radius: 5px; background: #eaf0f7; color: #4e6982; white-space: nowrap; }
+.leaderboard-xp { color: #235e9c; font-size: 12px; font-weight: 750; text-align: right; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; max-width: 80px; }
+@media (min-width:640px) {
+ .leaderboard-entry { grid-template-columns: 38px 32px minmax(0,1fr) 100px; gap: 12px; padding: 14px 6px; }
+ .leaderboard-columns { grid-template-columns: 50px minmax(0,1fr) 100px; padding-inline: 16px; }
+ .leaderboard-identity { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+ .leaderboard-name { max-width: 45%; font-size: 14px; }
+ .leaderboard-academic { justify-content: flex-end; max-width: 55%; margin-top: 0; font-size: 11px; }
+ .leaderboard-xp { max-width: 100px; font-size: 14px; }
+}
 .course-row { overflow-wrap: anywhere; display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 16px; border: 1px solid var(--color-line); border-radius: 14px; background: #fff; transition: border-color .18s; }
 .course-info { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 6px; }
 .course-info strong { font-size: 14px; font-weight: 650; line-height: 1.4; }

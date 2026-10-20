@@ -6,10 +6,12 @@ import type { HomeSummary } from "@scholau/api";
 import { FirstLessonPreview } from "@/components/lesson/first-lesson-preview";
 import { HomeDashboard } from "@/components/home/home-dashboard";
 import { ShellFrame } from "@/components/shell/shell-frame";
+import { LeaderboardPreview } from "@/components/leaderboard/leaderboard-preview";
 
 export default async function DesignPreview({ searchParams }: { searchParams: Promise<{ state?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
+  if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
   if (state === "profile") return <ShellFrame pathname="/profile" displayName="John Nwaokolo"><ProfileView email="learner@example.com" /></ShellFrame>;
   if (state === "streak") return <FirstLessonPreview />;
   if (state === "battle-options") return <AnswerOptionsPreview />;

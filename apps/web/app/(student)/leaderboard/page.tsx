@@ -28,7 +28,7 @@ export default function LeaderboardPage() {
       <PageHeader
         eyebrow="Leaderboard"
         title="Leaderboard"
-        description="Ranked by lifetime XP. Players with the same XP share a rank."
+        description="Ranked by lifetime XP. Equal points? Earlier registrations come first."
       />
       <Segmented name="leaderboard-scope" legend="Leaderboard scope" value={scope} onChange={setScope} options={SCOPES} />
       <ScopeBoard key={scope} scope={scope} scopeLabel={scopeLabel} />
