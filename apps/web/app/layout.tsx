@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu — Study. Compete. Rise." },
   twitter: { card: "summary_large_image" },
   appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default", startupImage: startupImages },
-  icons: { apple: [{ url: "/icons/launch-blue-v4-180.png", sizes: "180x180", type: "image/png" }] },
+  icons: { apple: [{ url: "/icons/app-white-on-blue-v1-180.png", sizes: "180x180", type: "image/png" }] },
 };
 
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
