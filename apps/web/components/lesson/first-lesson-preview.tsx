@@ -36,7 +36,7 @@ function PreviewLesson() {
   const { data } = useHomeSummary();
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
   return <ShellFrame pathname="/study" displayName="New learner" streak={data?.streak}>
-    {complete.data?.first_lesson_completed && !complete.data.already_completed ? <FirstLessonCelebration days={complete.data.streak.current} /> : null}
+    {complete.data?.first_lesson_completed && !complete.data.already_completed ? <FirstLessonCelebration days={complete.data.streak.current} localDate={complete.data.streak.local_date} /> : null}
     <div className="mx-auto flex max-w-reading flex-col gap-6">
       <p className="text-xs text-ink-muted">Development preview · sample data · no account progress is changed.</p>
       <div><h1 className="text-2xl font-bold tracking-tight">Your first lesson</h1><p className="mt-2 text-sm text-ink-muted">Complete this sample to see the fire animation, followed by your updated streak.</p></div>
