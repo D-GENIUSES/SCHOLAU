@@ -8,13 +8,16 @@ import { LAUNCH_BOOTSTRAP } from "@/lib/launch-session.mjs";
 import { startupImages } from "@/lib/startup-images";
 import { Providers } from "./providers";
 import "./globals.css";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { default: "ScholAu — Study. Compete. Rise.", template: "%s · ScholAu" },
   description: "Study your university courses, practise with feedback and compete in 1v1 quiz battles.",
   applicationName: "ScholAu",
   manifest: "/manifest.webmanifest",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(SITE_URL),
+  verification: { google: "-pTEF3WmHVIBlSQ5aZ7fS2rEyPDtTjB1iO8KpiGIYjY" },
+  robots: { index: false, follow: true },
   openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu — Study. Compete. Rise." },
   twitter: { card: "summary_large_image" },
   appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default", startupImage: startupImages },

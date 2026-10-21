@@ -7,8 +7,21 @@ import { AppShell } from "@/components/shell/app-shell";
 import { LoadingState } from "@/components/ui/states";
 import { requireOnboardedSession } from "@/lib/session";
 import { getServerSupabase } from "@/lib/supabase/server";
+import { publicPages, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Home" };
+export async function generateMetadata({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }): Promise<Metadata> {
+  const params = await searchParams;
+  const view = typeof params.view === "string" ? params.view : "home";
+  const page = publicPages.find((entry) => entry.view === view) ?? publicPages[0];
+  return {
+    title: view === "home" ? { absolute: page.title } : page.title,
+    description: page.description,
+    alternates: { canonical: `${SITE_URL}${page.path}` },
+    robots: { index: publicPages.some((entry) => entry.view === view), follow: true },
+    openGraph: { type: "website", siteName: "ScholAu", title: page.title, description: page.description, url: `${SITE_URL}${page.path}`, images: ["/opengraph-image.png"] },
+    twitter: { card: "summary_large_image", title: page.title, description: page.description, images: ["/twitter-image.png"] },
+  };
+}
 
 /** Public app entry. Guests do not call account RPCs or subscribe to user signals. */
 export default async function HomePage() {
