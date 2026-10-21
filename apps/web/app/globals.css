@@ -82,7 +82,7 @@
 .tablet-nav { display: none; align-items: center; gap: 16px; font-size: 12px; font-weight: 600; color: #587088; }
 .tablet-nav a { min-height: 44px; display: flex; align-items: center; }
 .tablet-nav [aria-current=page] { color: #0066d6; }
-.app-main { width: 100%; max-width: 1200px; margin: auto; padding: 30px 24px 100px; }
+.app-main { width: 100%; min-width: 0; margin: 0; padding: 30px 24px 100px; }
 .mobile-navigation { position: fixed; inset: auto 0 0; z-index: 30; border-top: 1px solid var(--color-line); background: #fff; backdrop-filter: blur(18px); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); }
 .mobile-navigation ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .mobile-navigation a { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 54px; gap: 2px; color: #60758c; font-size: 11px; font-weight: 500; }
@@ -357,7 +357,6 @@
 .study-note a.inline-flex { margin-top: 20px; }
 @media (min-width: 1024px) {
   .student-shell { background: #fff; }
-  .app-main { max-width: 1440px; }
   .home-dashboard { gap: 24px; }
   .home-welcome { flex-direction: row; align-items: center; justify-content: space-between; }
   .home-welcome > div > p:not(.eyebrow) { color: #465c72; font-size: 14px; max-width: 560px; }
@@ -591,4 +590,38 @@
  .profile-identity > a, .profile-identity > button { margin-left: auto; }
  .compact-profile fieldset label { padding-inline: 11px; font-size: 13px; }
  .compact-home .spotlight-content > a { min-height: 40px; }
+}
+
+/* The app frame fills the display; spacing belongs inside its content. */
+.student-shell, .shell-body { width: 100%; min-width: 0; min-height: 100dvh; }
+.app-main > * { min-width: 0; }
+.header-brand { flex-shrink: 0; }
+.header-mark { display: none; }
+.desktop-sidebar { padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+.app-header { min-width: 0; height: auto; min-height: calc(64px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
+.header-account { flex-shrink: 0; }
+.app-main { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+@media (min-width: 1024px) {
+  .app-header { padding-right: max(24px, env(safe-area-inset-right)); }
+  .app-main { padding-bottom: max(32px, env(safe-area-inset-bottom)); }
+  .compact-profile { max-width: none; width: 100%; margin: 0; }
+}
+@media (max-width: 1023px) {
+  .app-header { gap: 8px; padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+  .tablet-nav { gap: 10px; }
+  .app-main { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+}
+@media (max-width: 767px) {
+  .app-header { min-height: calc(56px + env(safe-area-inset-top)); }
+  .app-main { padding: 16px max(12px, env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  .mobile-navigation { padding-left: max(4px, env(safe-area-inset-left)); padding-right: max(4px, env(safe-area-inset-right)); }
+}
+@media (max-width: 399px) {
+  .header-wordmark { display: none; }
+  .header-mark { display: inline-flex; }
+  .header-account { gap: 4px; }
+  .header-account .notification-button { width: 40px; }
+  .header-streak { padding-inline: 6px; }
+  .home-action-tile { padding-inline: 10px; gap: 8px; }
+  .home-action-tile strong, .home-action-tile small { overflow-wrap: anywhere; }
 }
