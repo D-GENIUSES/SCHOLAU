@@ -7,6 +7,7 @@ import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
 import { AppUpdates } from "@/components/shell/app-updates";
 import { NotificationSound } from "@/components/notifications/notification-sound";
+import { InstallPromptProvider } from "@/components/shell/install-prompt-provider";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -50,7 +51,7 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <AnalyticsProvider><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider>
+        <InstallPromptProvider><AnalyticsProvider><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

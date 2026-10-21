@@ -6,7 +6,7 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 export function pushSupportMessage(): string | null {
   if (!window.isSecureContext) return "Notifications need a secure HTTPS connection.";
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (ios && !window.matchMedia("(display-mode: standalone)").matches) return "On iPhone or iPad, use Share → Add to Home Screen, open ScholAu from that icon, then enable notifications.";
+  if (ios && !window.matchMedia("(display-mode: standalone)").matches && !(navigator as Navigator & { standalone?: boolean }).standalone) return "On iPhone or iPad, use Share → Add to Home Screen, open ScholAu from that icon, then enable notifications.";
   if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return "This browser does not support push notifications. Your inbox is still available.";
   if (Notification.permission === "denied") return "Open this site’s browser settings, change Notifications from Block to Allow, then return and tap Enable notifications.";
   return null;
