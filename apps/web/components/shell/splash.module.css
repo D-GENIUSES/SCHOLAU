@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: grid;
+  display: none;
   place-items: center;
   overflow: hidden;
   pointer-events: none;
@@ -10,6 +10,7 @@
   background: #0866e8;
   animation: leave 350ms ease-in-out 2650ms forwards;
 }
+:global(html[data-scholau-launch="cold"]) .screen { display: grid; }
 .halo {
   position: absolute;
   width: min(115vw, 720px);

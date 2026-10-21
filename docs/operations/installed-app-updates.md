@@ -12,6 +12,8 @@ Every active visible client checks `/api/app-version` without HTTP/CDN caching e
 
 ## Limits
 
+The animated blue document splash is enabled only for a fresh app/tab session. A synchronous head bootstrap decides before the first paint, marks the session immediately and suppresses the overlay for reloads, history restoration and later full-document navigation. Client navigation keeps the root layout. This avoids a flash during automatic update reloads. The session key is independent of the release version, and previous blue-splash keys count as already launched. Pagehide ends an in-progress overlay so back-forward restoration cannot replay it. Storage failures still suppress reloads using navigation timing. The three-second cold-launch timer runs independently of hydration, so slow application JavaScript cannot prolong it. OS-restored webviews may preserve a session after force-closing; browsers do not expose a universal process-termination event.
+
 Fifteen seconds is the normal check interval while visible and connected, not a guaranteed delivery deadline. Suspended, closed or offline clients cannot be forced to fetch an update. Browser/OS-owned WebAPK metadata, icons and native launch snapshots update on platform-specific schedules. In particular, some existing iOS installations may require reinstalling to replace native metadata. The web app cannot animate or retroactively rewrite an OS-owned startup snapshot. Reopening online retrieves the current document and worker. Existing old JavaScript gains the new updater when it first loads this release; no claim is made that a closed old client can be remotely rewritten.
 
 ## Verification

@@ -4,6 +4,7 @@ import { OfflineIndicator } from "@/components/offline-indicator";
 import { ViewportLock } from "@/components/viewport-lock";
 import { SplashGate } from "@/components/shell/splash-gate";
 import { getAppVersion } from "@/lib/app-version";
+import { LAUNCH_BOOTSTRAP } from "@/lib/launch-session.mjs";
 import { startupImages } from "@/lib/startup-images";
 import { Providers } from "./providers";
 import "./globals.css";
@@ -35,6 +36,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // Browser extensions may add attributes to <html> before React hydrates.
     <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#0866e8" }}>
+      <head>
+        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
+        <script dangerouslySetInnerHTML={{ __html: LAUNCH_BOOTSTRAP }} />
+      </head>
       <body>
         <a
           href="#main"
