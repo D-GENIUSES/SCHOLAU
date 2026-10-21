@@ -44,6 +44,8 @@ jobs:
         run: pnpm lint
       - name: Verify authentication and request origin guards
         run: node --test apps/web/components/auth/google-callback.test.mjs apps/web/lib/utils.test.mjs apps/web/lib/supabase/request-auth.test.mjs apps/web/lib/security-auth.test.mjs
+      - name: Verify streak celebration eligibility
+        run: node apps/web/tests/streak-feedback.mjs
       - name: Check types
         run: pnpm typecheck
       - name: Build

@@ -65,7 +65,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const course = useCourseOverview(lesson.offering_id);
   const start = useStartLesson();
   const home = useHomeSummary();
-  const [streakCelebration, setStreakCelebration] = useState<{ days: number; firstLesson: boolean } | null>(null);
+  const [streakCelebration, setStreakCelebration] = useState<{ days: number; localDate: string; previousDays: number } | null>(null);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
 
   const { mutate: startMutate } = start;
@@ -86,7 +86,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
       {
         onSuccess: (r) => {
           if (shouldCelebrateStreak(r, previousStreak)) {
-            setStreakCelebration({ days: r.streak.current, firstLesson: Boolean(r.first_lesson_completed) });
+            setStreakCelebration({ days: r.streak.current, localDate: r.streak.local_date, previousDays: r.streak.current === 1 ? 0 : previousStreak?.current ?? r.streak.current - 1 });
           }
           if (!r.already_completed) analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });
         },
@@ -104,7 +104,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   return (
     <article className="mx-auto flex max-w-reading flex-col">
       {streakCelebration ? (
-        <FirstLessonCelebration days={streakCelebration.days} firstLesson={streakCelebration.firstLesson} />
+        <FirstLessonCelebration key={streakCelebration.localDate} {...streakCelebration} />
       ) : null}
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
