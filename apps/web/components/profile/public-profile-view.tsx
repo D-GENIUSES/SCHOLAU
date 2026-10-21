@@ -27,14 +27,14 @@ export function PeopleSearch() {
       <form onSubmit={event => { event.preventDefault(); setQuery(input.trim().replace(/^@/, "")); }} className="flex flex-wrap items-end gap-3">
         <label className="min-w-0 flex-1 text-sm font-semibold">Name or username<Input value={input} onChange={event => setInput(event.target.value)} placeholder="Search the community" minLength={3} maxLength={60} required type="search" /></label>
         <Button type="submit" loading={results.isFetching}><Search className="size-4" aria-hidden />Search</Button>
-      </form><p className="mt-3 text-xs text-ink-muted">Enter at least 3 characters. Select a name or photo to view their public profile.</p>
+      </form><p className="mt-3 text-xs text-ink-muted">Enter at least 3 characters.</p>
     </CardContent></Card>
     {results.isFetching ? <LoadingState label="Finding people…" /> : results.isError ? <ErrorState error={results.error} onRetry={() => void results.refetch()} /> : query.length >= 3 && results.isSuccess ? <section aria-label="People" aria-live="polite">
       <p className="mb-3 text-sm text-ink-muted">{results.data.people.length ? `${results.data.people.length} people found` : "No people found. Try a different name or username."}</p>
       <ul className="grid gap-3 sm:grid-cols-2">{results.data.people.map(person => <li key={person.user_id}>
         <Link href={`/people/${person.user_id}`} className="flex h-full items-center gap-4 rounded-2xl border border-line bg-surface-card p-5 transition-colors hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary">
           <Avatar name={person.display_name} path={person.avatar_path} publicProfile size={56} />
-          <div className="min-w-0"><h2 className="break-words font-bold">{person.display_name}</h2>{person.username ? <p className="break-all text-sm text-ink-muted">@{person.username}</p> : null}<p className="mt-2 text-xs font-semibold text-brand-primary">View public profile →</p></div>
+          <div className="min-w-0"><h2 className="break-words font-bold">{person.display_name}</h2>{person.username ? <p className="break-all text-sm text-ink-muted">@{person.username}</p> : null}</div>
         </Link>
       </li>)}</ul>
     </section> : <div className="rounded-2xl border border-dashed border-line p-8 text-center"><Users className="mx-auto mb-3 size-8 text-brand-primary" aria-hidden /><h2 className="font-bold">Your community starts here</h2><p className="mt-2 text-sm text-ink-muted">Search for people you know, or discover fellow learners by name.</p></div>}
@@ -50,7 +50,7 @@ export function PublicProfileView({ userId }: { userId: string }) {
   return <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
     <Link href="/people" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Find people</Link>
     <section className="overflow-hidden rounded-3xl border border-line bg-surface-card">
-      <div aria-hidden className="h-24 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-bright sm:h-32" />
+      <div aria-hidden className="h-24 bg-surface-card sm:h-32" />
       <header className="px-5 pb-6 sm:px-8">
         <div className="-mt-12 inline-flex rounded-full border-4 border-surface-card bg-surface-card"><Avatar name={p.display_name} path={p.avatar_path} size={96} publicProfile /></div>
         <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-brand-primary">Public profile</p>

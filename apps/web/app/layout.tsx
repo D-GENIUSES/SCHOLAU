@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
 // Users who rely on system zoom may prefer the browser; this targets installed / standalone use.
 export const viewport: Viewport = {
-  themeColor: "#0866e8",
+  themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -35,9 +35,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // Browser extensions may add attributes to <html> before React hydrates.
-    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#0866e8" }}>
+    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#ffffff" }}>
       <head>
-        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
+        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#0866e8!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
         <script dangerouslySetInnerHTML={{ __html: LAUNCH_BOOTSTRAP }} />
       </head>
       <body>

@@ -94,9 +94,8 @@ export function ProfileView({ registration = null, email = null }: { registratio
   return <div className="compact-profile">
     <Dialog>
       <header className="profile-identity">
-        <Avatar name={p.display_name} path={p.avatar_path} size={72} />
-        <div className="min-w-0 flex-1"><h1>{p.display_name}</h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
-        <Button asChild variant="outline" size="sm"><Link href={`/people/${p.id}`}>Public profile</Link></Button>
+        <Link href={`/people/${p.id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label="View your public profile"><Avatar name={p.display_name} path={p.avatar_path} size={72} /></Link>
+        <div className="min-w-0 flex-1"><h1><Link href={`/people/${p.id}`} className="hover:underline">{p.display_name}</Link></h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
         <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
       </header>
       <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "settings", label: "Settings" }]} />

@@ -5,6 +5,12 @@ import { Avatar } from "@/components/ui/avatar";
 import { GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const podiumMedals: Record<number, { symbol: string; label: string }> = {
+  1: { symbol: "🥇", label: "Gold medal" },
+  2: { symbol: "🥈", label: "Silver medal" },
+  3: { symbol: "🥉", label: "Bronze medal" },
+};
+
 /** Server positions include registration-time tie breaking; never sort a single page locally. */
 export function LeaderboardList({ rows, label }: { rows: LeaderboardRow[]; label: string }) {
   return (
@@ -22,6 +28,7 @@ export function LeaderboardList({ rows, label }: { rows: LeaderboardRow[]; label
 }
 
 function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
+  const medal = podiumMedals[row.rank];
   return (
     <div
       className={cn(
@@ -31,9 +38,8 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
       data-podium={row.rank <= 3 ? row.rank : undefined}
       aria-current={row.is_me ? "true" : undefined}
     >
-      <span className="leaderboard-rank">
-        <span className="sr-only">Rank </span>
-        {formatNumber(row.rank)}
+      <span className="leaderboard-rank" title={medal?.label}>
+        {medal ? <><span className="sr-only">Rank {formatNumber(row.rank)} · {medal.label}</span><span aria-hidden className="text-[23px] leading-none">{medal.symbol}</span></> : <><span className="sr-only">Rank </span>{formatNumber(row.rank)}</>}
       </span>
       <Link href={`/people/${row.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile`}><Avatar name={row.display_name} path={row.avatar_path} size={32} publicProfile /></Link>
       <div className="leaderboard-identity">

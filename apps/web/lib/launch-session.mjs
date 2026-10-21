@@ -6,7 +6,7 @@ export const LAUNCH_BOOTSTRAP = String.raw`(()=>{
   const returning=navigation?.type==="reload"||navigation?.type==="back_forward";
   let seen=false;
   try {
-    seen=Boolean(sessionStorage.getItem(key)||sessionStorage.getItem("scholau-splash-blue-v4")||sessionStorage.getItem("scholau-splash-orbit-v2"));
+    seen=Boolean(sessionStorage.getItem(key)||sessionStorage.getItem("scholau-splash-blue-v4")||sessionStorage.getItem("scholau-splash-orbit-v2")||sessionStorage.getItem("scholau-splash-white-v5"));
     sessionStorage.setItem(key,"active");
   } catch {
     try { seen=Boolean(document.referrer&&new URL(document.referrer).origin===location.origin); } catch {}
