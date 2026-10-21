@@ -3,9 +3,9 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Clock, RefreshCw, Target } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson } from "@scholau/api";
-import { useCompleteLesson, useCourseOverview, useLesson, useStartLesson } from "@scholau/api/react";
+import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
 import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
 import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonBlocks } from "@/components/lesson/blocks";
@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge, PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
+import { shouldCelebrateStreak } from "@/lib/streak-celebration";
 
 export default function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -63,6 +64,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const analytics = useAnalytics();
   const course = useCourseOverview(lesson.offering_id);
   const start = useStartLesson();
+  const home = useHomeSummary();
+  const [streakCelebration, setStreakCelebration] = useState<{ days: number; firstLesson: boolean } | null>(null);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
 
   const { mutate: startMutate } = start;
@@ -76,15 +79,20 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
     });
   }, [alreadyCompleted, lesson.lesson_version_id, startMutate, analytics]);
 
-  const markComplete = () =>
+  const markComplete = (retry = false) => {
+    const previousStreak = home.data?.streak;
     complete.mutate(
-      { lessonVersionId: lesson.lesson_version_id },
+      retry && complete.variables ? complete.variables : { lessonVersionId: lesson.lesson_version_id },
       {
         onSuccess: (r) => {
+          if (shouldCelebrateStreak(r, previousStreak)) {
+            setStreakCelebration({ days: r.streak.current, firstLesson: Boolean(r.first_lesson_completed) });
+          }
           if (!r.already_completed) analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });
         },
       },
     );
+  };
 
   const courseTitle = course.data?.course.title ?? "Course";
   const completedAt = complete.data?.completed_at ?? lesson.progress?.completed_at ?? null;
@@ -95,8 +103,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
 
   return (
     <article className="mx-auto flex max-w-reading flex-col">
-      {complete.data?.first_lesson_completed && !complete.data.already_completed ? (
-        <FirstLessonCelebration days={complete.data.streak.current} />
+      {streakCelebration ? (
+        <FirstLessonCelebration days={streakCelebration.days} firstLesson={streakCelebration.firstLesson} />
       ) : null}
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
@@ -163,7 +171,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
             <div className="flex flex-col gap-2">
               <InlineError error={complete.error} />
               <div>
-                <Button variant="outline" onClick={complete.retryLast}>
+                <Button variant="outline" onClick={() => markComplete(true)}>
                   <RefreshCw className="size-4" aria-hidden /> Try again
                 </Button>
               </div>
@@ -184,7 +192,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
               ) : null
             ) : (
               <>
-                <Button onClick={markComplete} loading={complete.isPending} disabled={complete.isError}>
+                <Button onClick={() => markComplete()} loading={complete.isPending} disabled={complete.isError}>
                   <CheckCircle2 className="size-4" aria-hidden /> Mark as complete
                 </Button>
                 {reviewHref ? (
