@@ -60,7 +60,7 @@ export function AchievementBadges({ badges }: { badges: { code: string }[] }) {
     <ul className="grid min-w-0 list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
       {entries.map(([code, badge]) => {
         const earned = earnedCodes.has(code);
-        return <li key={code} className={`flex min-w-0 items-center gap-3 rounded-xl border px-3 py-4 ${earned ? "border-[#d8c9a9] bg-surface-card" : "border-[#e5e6e2] bg-surface-card"}`}>
+        return <li key={code} className={`flex min-w-0 items-center gap-3 rounded-xl border px-3 py-4 ${earned ? "border-[#d8c9a9] bg-[#fcfaf5]" : "border-[#e5e6e2] bg-[#fafaf8]"}`}>
           <AchievementMedal code={code} earned={earned} />
           <div className="min-w-0">
             <span className={`inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.1em] ${earned ? "text-[#52644f]" : "text-ink-muted"}`}>{earned ? <Check className="size-3" aria-hidden="true" /> : null}{earned ? "Earned" : "Not yet earned"}</span>
