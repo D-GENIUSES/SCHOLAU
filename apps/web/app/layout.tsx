@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
 // Users who rely on system zoom may prefer the browser; this targets installed / standalone use.
 export const viewport: Viewport = {
-  themeColor: "#0866e8",
+  themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

@@ -50,7 +50,7 @@ export function PublicProfileView({ userId }: { userId: string }) {
   return <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
     <Link href="/people" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Find people</Link>
     <section className="overflow-hidden rounded-3xl border border-line bg-surface-card">
-      <div aria-hidden className="h-24 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-bright sm:h-32" />
+      <div aria-hidden className="h-24 bg-surface-card sm:h-32" />
       <header className="px-5 pb-6 sm:px-8">
         <div className="-mt-12 inline-flex rounded-full border-4 border-surface-card bg-surface-card"><Avatar name={p.display_name} path={p.avatar_path} size={96} publicProfile /></div>
         <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-brand-primary">Public profile</p>

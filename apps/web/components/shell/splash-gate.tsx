@@ -8,7 +8,7 @@ import styles from "./splash.module.css";
 export function SplashGate({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(true);
   useEffect(() => {
-    const key = "scholau-splash-blue-v4";
+    const key = "scholau-splash-white-v5";
     let seen = false;
     try { seen = Boolean(sessionStorage.getItem(key)); } catch { /* Storage may be unavailable. */ }
     const timer = setTimeout(() => {
@@ -17,7 +17,7 @@ export function SplashGate({ children }: { children: ReactNode }) {
     }, seen ? 0 : 3000);
     return () => clearTimeout(timer);
   }, []);
-  return <>{visible ? <div data-scholau-splash="blue-orbit" className={styles.screen} aria-hidden="true" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "grid", placeItems: "center", overflow: "hidden", pointerEvents: "auto", color: "white", background: "#0866e8" }}>
+  return <>{visible ? <div data-scholau-splash="blue-orbit" className={styles.screen} aria-hidden="true" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "grid", placeItems: "center", overflow: "hidden", pointerEvents: "auto", color: "#11243c", background: "#ffffff" }}>
     <div className={styles.halo} />
     <div className={styles.signature}>
       <div className={styles.orbit}><svg viewBox="0 0 320 200" fill="none"><ellipse className={styles.trail} cx="160" cy="100" rx="146" ry="68" transform="rotate(-24 160 100)" pathLength="1" /></svg><span className={styles.spark}>✦</span></div>
