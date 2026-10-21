@@ -34,7 +34,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
   });
   const max = Math.max(1, ...days.map((day) => day.xp));
   return <Card>
-    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days · XP earned</p></CardHeader>
+    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days Â· XP earned</p></CardHeader>
     <CardContent>
       <div className="mt-5 flex h-36 items-end gap-3" role="img" aria-label={days.map((day) => `${formatDate(day.date.toISOString())}: ${day.xp} XP`).join("; ")}>
         {days.map((day) => <div key={day.key} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2" aria-hidden>
@@ -50,7 +50,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
 
 function ActivityCards() {
   const query = useXpProgress();
-  if (query.isPending) return <LoadingState label="Loading learning activity…" lines={3} />;
+  if (query.isPending) return <LoadingState label="Loading learning activityâ€¦" lines={3} />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   return <>
     <div className="min-w-0"><LearningActivity data={query.data} /></div>
@@ -73,7 +73,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
   const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "settings">("progress");
   const [section, setSection] = useState("account");
   const profile = useProfile();
-  if (profile.isPending) return <LoadingState label="Loading your profile…" lines={4} />;
+  if (profile.isPending) return <LoadingState label="Loading your profileâ€¦" lines={4} />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
   const username = "username" in p && typeof p.username === "string" ? p.username : null;
@@ -94,9 +94,8 @@ export function ProfileView({ registration = null, email = null }: { registratio
   return <div className="compact-profile">
     <Dialog>
       <header className="profile-identity">
-        <Avatar name={p.display_name} path={p.avatar_path} size={72} />
-        <div className="min-w-0 flex-1"><h1>{p.display_name}</h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
-        <Button asChild variant="outline" size="sm"><Link href={`/people/${p.id}`}>Public profile</Link></Button>
+        <Link href={`/people/${p.id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label="View your public profile"><Avatar name={p.display_name} path={p.avatar_path} size={72} /></Link>
+        <div className="min-w-0 flex-1"><h1><Link href={`/people/${p.id}`} className="hover:underline">{p.display_name}</Link></h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
         <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
       </header>
       <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "settings", label: "Settings" }]} />

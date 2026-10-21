@@ -27,14 +27,14 @@ export function PeopleSearch() {
       <form onSubmit={event => { event.preventDefault(); setQuery(input.trim().replace(/^@/, "")); }} className="flex flex-wrap items-end gap-3">
         <label className="min-w-0 flex-1 text-sm font-semibold">Name or username<Input value={input} onChange={event => setInput(event.target.value)} placeholder="Search the community" minLength={3} maxLength={60} required type="search" /></label>
         <Button type="submit" loading={results.isFetching}><Search className="size-4" aria-hidden />Search</Button>
-      </form><p className="mt-3 text-xs text-ink-muted">Enter at least 3 characters. Select a name or photo to view their public profile.</p>
+      </form><p className="mt-3 text-xs text-ink-muted">Enter at least 3 characters.</p>
     </CardContent></Card>
-    {results.isFetching ? <LoadingState label="Finding people…" /> : results.isError ? <ErrorState error={results.error} onRetry={() => void results.refetch()} /> : query.length >= 3 && results.isSuccess ? <section aria-label="People" aria-live="polite">
+    {results.isFetching ? <LoadingState label="Finding peopleâ€¦" /> : results.isError ? <ErrorState error={results.error} onRetry={() => void results.refetch()} /> : query.length >= 3 && results.isSuccess ? <section aria-label="People" aria-live="polite">
       <p className="mb-3 text-sm text-ink-muted">{results.data.people.length ? `${results.data.people.length} people found` : "No people found. Try a different name or username."}</p>
       <ul className="grid gap-3 sm:grid-cols-2">{results.data.people.map(person => <li key={person.user_id}>
         <Link href={`/people/${person.user_id}`} className="flex h-full items-center gap-4 rounded-2xl border border-line bg-surface-card p-5 transition-colors hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary">
           <Avatar name={person.display_name} path={person.avatar_path} publicProfile size={56} />
-          <div className="min-w-0"><h2 className="break-words font-bold">{person.display_name}</h2>{person.username ? <p className="break-all text-sm text-ink-muted">@{person.username}</p> : null}<p className="mt-2 text-xs font-semibold text-brand-primary">View public profile →</p></div>
+          <div className="min-w-0"><h2 className="break-words font-bold">{person.display_name}</h2>{person.username ? <p className="break-all text-sm text-ink-muted">@{person.username}</p> : null}</div>
         </Link>
       </li>)}</ul>
     </section> : <div className="rounded-2xl border border-dashed border-line p-8 text-center"><Users className="mx-auto mb-3 size-8 text-brand-primary" aria-hidden /><h2 className="font-bold">Your community starts here</h2><p className="mt-2 text-sm text-ink-muted">Search for people you know, or discover fellow learners by name.</p></div>}
@@ -43,7 +43,7 @@ export function PeopleSearch() {
 
 export function PublicProfileView({ userId }: { userId: string }) {
   const profile = usePublicProfile(userId);
-  if (profile.isPending) return <LoadingState label="Loading public profile…" />;
+  if (profile.isPending) return <LoadingState label="Loading public profileâ€¦" />;
   if (profile.isError) return <div className="mx-auto max-w-3xl"><Link href="/people" className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Find people</Link>{isApiError(profile.error, "NOT_FOUND") ? <Card><CardContent className="py-10 text-center"><h1 className="text-xl font-bold">Profile unavailable</h1><p className="mt-2 text-ink-muted">This profile is no longer available to view.</p></CardContent></Card> : <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />}</div>;
   const p = profile.data;
   const academic = [["University", p.university], ["Faculty", p.faculty], ["Department", p.department], ["Level", p.level]].filter(([, value]) => value);
@@ -56,7 +56,7 @@ export function PublicProfileView({ userId }: { userId: string }) {
         <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-brand-primary">Public profile</p>
         <h1 className="mt-2 break-words text-3xl font-extrabold">{p.display_name}</h1>
         {p.username ? <p className="mt-1 break-all text-ink-muted">@{p.username}</p> : null}
-        <p className="mt-3 text-sm text-ink-muted">{p.department ?? "ScholAu learner"}{p.university ? ` · ${p.university}` : ""}</p>
+        <p className="mt-3 text-sm text-ink-muted">{p.department ?? "ScholAu learner"}{p.university ? ` Â· ${p.university}` : ""}</p>
         <p className="mt-2 text-xs text-ink-muted">Joined {new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.joined_at))}</p>
       </header>
     </section>
@@ -67,6 +67,6 @@ export function PublicProfileView({ userId }: { userId: string }) {
         {p.badges.length ? <ul className="space-y-3">{p.badges.map(code => <li key={code} className="flex items-center gap-3 rounded-xl border border-line p-3"><Award className="size-5 shrink-0 text-brand-primary" aria-hidden /><span className="text-sm font-semibold">{badgeNames[code] ?? "Learning milestone"}</span></li>)}</ul> : <p className="text-sm text-ink-muted">No badges earned yet. Every learning journey starts somewhere.</p>}
       </CardContent></Card>
     </div>
-    <p className="text-center text-xs text-ink-muted">You’re viewing the information this learner shares with the ScholAu community.</p>
+    <p className="text-center text-xs text-ink-muted">Youâ€™re viewing the information this learner shares with the ScholAu community.</p>
   </div>;
 }
