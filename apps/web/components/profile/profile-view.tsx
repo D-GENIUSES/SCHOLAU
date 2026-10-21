@@ -34,7 +34,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
   });
   const max = Math.max(1, ...days.map((day) => day.xp));
   return <Card>
-    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days Â· XP earned</p></CardHeader>
+    <CardHeader><CardTitle>Learning activity</CardTitle><p className="text-sm text-ink-muted">Last 7 days · XP earned</p></CardHeader>
     <CardContent>
       <div className="mt-5 flex h-36 items-end gap-3" role="img" aria-label={days.map((day) => `${formatDate(day.date.toISOString())}: ${day.xp} XP`).join("; ")}>
         {days.map((day) => <div key={day.key} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2" aria-hidden>
@@ -50,7 +50,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
 
 function ActivityCards() {
   const query = useXpProgress();
-  if (query.isPending) return <LoadingState label="Loading learning activityâ€¦" lines={3} />;
+  if (query.isPending) return <LoadingState label="Loading learning activity…" lines={3} />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   return <>
     <div className="min-w-0"><LearningActivity data={query.data} /></div>
@@ -73,7 +73,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
   const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "settings">("progress");
   const [section, setSection] = useState("account");
   const profile = useProfile();
-  if (profile.isPending) return <LoadingState label="Loading your profileâ€¦" lines={4} />;
+  if (profile.isPending) return <LoadingState label="Loading your profile…" lines={4} />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
   const username = "username" in p && typeof p.username === "string" ? p.username : null;
