@@ -46,7 +46,7 @@ export function NotificationsView() {
   const notifications = useNotifications();
   const markRead = useMarkNotificationRead();
 
-  if (notifications.isPending) return <LoadingState label="Loading notifications…" />;
+  if (notifications.isPending) return <LoadingState variant="notifications" label="Loading notifications…" />;
   if (notifications.isError) return <ErrorState error={notifications.error} onRetry={() => void notifications.refetch()} />;
 
   const items = notifications.data;

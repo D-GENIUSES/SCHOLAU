@@ -55,7 +55,7 @@ export default function LessonPage() {
 
   return (
     <div className="mx-auto max-w-reading">
-      <LoadingState label="Loading lesson…" lines={5} />
+      <LoadingState variant="lesson" label="Loading lesson…" lines={5} />
     </div>
   );
 }

@@ -133,7 +133,7 @@ export function CoursePicker() {
   }, [needsOnboarding, router]);
 
   if (catalog.isError) return <ErrorState error={catalog.error} onRetry={() => void catalog.refetch()} />;
-  if (catalog.isPending || needsOnboarding) return <LoadingState label="Loading courses…" />;
+  if (catalog.isPending || needsOnboarding) return <LoadingState variant="courses" label="Loading courses…" />;
 
   const offerings = catalog.data.offerings;
   const enrolledCount = offerings.filter((o) => o.enrolled).length;

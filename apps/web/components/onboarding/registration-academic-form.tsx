@@ -53,7 +53,7 @@ export function RegistrationAcademicForm({ profile, onCompleted }: { profile: Pr
     },
     retry: false,
   });
-  if (defaults.isPending) return <LoadingState label="Loading your saved study detailsâ€¦" />;
+  if (defaults.isPending) return <LoadingState variant="form" label="Loading your saved study detailsâ€¦" />;
   if (defaults.isError) return <ErrorState error={defaults.error} onRetry={() => void defaults.refetch()} />;
   return <AcademicProfileForm profile={profile} changeMode={false} defaults={defaults.data.values} savedDetails={defaults.data.labels} onCompleted={onCompleted} />;
 }

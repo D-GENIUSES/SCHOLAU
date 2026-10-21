@@ -42,7 +42,7 @@ function ScopeBoard({ scope, scopeLabel }: { scope: LeaderboardScope; scopeLabel
   const first = pages[0];
   const rows = pages.flatMap((p) => p.rows);
 
-  if (board.isPending) return <LoadingState label="Loading leaderboard…" />;
+  if (board.isPending) return <LoadingState variant="leaderboard" label="Loading leaderboard…" />;
 
   if (!first) {
     if (isApiError(board.error, "INVALID_PROFILE")) {

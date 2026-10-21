@@ -1,11 +1,5 @@
-/** Stream the app shell and splash while route/session data is still pending. */
-export default function AppLoading() {
-  return (
-    <main id="main" tabIndex={-1} className="grid min-h-dvh place-items-center bg-surface-page p-6">
-      <span role="status" className="inline-flex items-center gap-3 text-sm text-ink-muted">
-        <span aria-hidden className="size-5 animate-spin rounded-full border-2 border-line border-t-brand-primary motion-reduce:animate-none" />
-        Opening ScholAu…
-      </span>
-    </main>
-  );
+import { LoadingState } from "@/components/ui/states";
+
+export default function Loading() {
+  return <main className="mx-auto min-h-dvh max-w-5xl px-4 py-8 sm:px-6"><LoadingState variant="home" /></main>;
 }

@@ -86,7 +86,7 @@ export function XpProgressCard({ compact = false }: { compact?: boolean }) {
   const query = useXpProgress();
   const review = useStartTopicReview();
   const router = useRouter();
-  if (query.isPending) return <LoadingState label="Loading learning progress…" />;
+  if (query.isPending) return <LoadingState variant="progress" label="Loading learning progress…" />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   const data = query.data;
   return <Card><CardHeader><CardTitle>Your learning progress</CardTitle></CardHeader>

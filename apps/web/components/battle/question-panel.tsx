@@ -1,6 +1,7 @@
 "use client";
+import { InlineSkeleton } from "@/components/ui/misc";
 
-import { Clock, Loader2, LockKeyhole, WifiOff } from "lucide-react";
+import { Clock, LockKeyhole, WifiOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { type Battle, type BattleCurrentQuestion, isApiError } from "@scholau/api";
 import { useSubmitBattleAnswer } from "@scholau/api/react";
@@ -116,7 +117,7 @@ function StatusLine({ status }: { status: AnswerStatus }) {
     case "sending":
       return (
         <p className="inline-flex items-center gap-2 text-sm font-semibold text-ink-muted">
-          <Loader2 className="size-4 animate-spin" aria-hidden /> Sending…
+          <InlineSkeleton /> Sending…
         </p>
       );
     case "received":

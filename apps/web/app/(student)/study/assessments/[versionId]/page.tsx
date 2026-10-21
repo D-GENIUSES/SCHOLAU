@@ -19,7 +19,7 @@ import { useAnalytics } from "@/lib/analytics";
 
 export default function AssessmentIntroPage() {
   return (
-    <Suspense fallback={<LoadingState label="Loading assessment…" />}>
+    <Suspense fallback={<LoadingState variant="assessment" label="Loading assessment…" />}>
       <AssessmentIntro />
     </Suspense>
   );
@@ -57,7 +57,7 @@ function AssessmentIntro() {
     return (
       <>
         {backLink}
-        <LoadingState label="Loading assessment…" />
+        <LoadingState variant="assessment" label="Loading assessment…" />
       </>
     );
   }

@@ -1,5 +1,5 @@
 import { LoadingState } from "@/components/ui/states";
 
-export default function StudentLoading() {
-  return <LoadingState lines={4} />;
+export default function Loading() {
+  return <LoadingState variant="list" />;
 }

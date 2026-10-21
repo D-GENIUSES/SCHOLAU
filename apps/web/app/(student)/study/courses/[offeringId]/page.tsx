@@ -85,7 +85,7 @@ export default function CourseOverviewPage() {
   return (
     <>
       <BackToStudy />
-      <LoadingState label="Loading course…" />
+      <LoadingState variant="course" label="Loading course…" />
     </>
   );
 }

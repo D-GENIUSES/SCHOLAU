@@ -629,3 +629,19 @@
 .answer-correct-tick { display: inline-flex; color: #16834a; animation: answer-tick-pop 360ms ease-out both; }
 @keyframes answer-tick-pop { 0% { transform: scale(.65); opacity: .3; } 65% { transform: scale(1.14); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .answer-correct-tick { animation: none; } }
+
+.loading-shape { position: relative; overflow: hidden; }
+.loading-shape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 15%, #ffffff70 48%, transparent 80%);
+  transform: translateX(-100%);
+  animation: skeleton-sheen 1.8s ease-in-out infinite;
+}
+@keyframes skeleton-sheen { to { transform: translateX(100%); } }
+[data-loading-offline="true"] .loading-shape::after { animation: none; opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .loading-shape::after { animation: none; opacity: 0; }
+}
+

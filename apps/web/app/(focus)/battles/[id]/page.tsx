@@ -77,7 +77,7 @@ export default function BattlePage() {
 
   let body: ReactNode;
   if (q.isPending) {
-    body = <LoadingState label="Loading battle…" />;
+    body = <LoadingState variant="battle" label="Loading battle…" />;
   } else if (!battle) {
     const unavailable = isApiError(q.error, "NOT_FOUND") || isApiError(q.error, "FORBIDDEN");
     body = (

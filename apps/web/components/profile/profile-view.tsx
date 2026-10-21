@@ -50,7 +50,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
 
 function ActivityCards() {
   const query = useXpProgress();
-  if (query.isPending) return <LoadingState label="Loading learning activity…" lines={3} />;
+  if (query.isPending) return <LoadingState variant="activity" label="Loading learning activity…" lines={3} />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   return <>
     <div className="min-w-0"><LearningActivity data={query.data} /></div>
@@ -73,7 +73,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
   const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "settings">("progress");
   const [section, setSection] = useState("account");
   const profile = useProfile();
-  if (profile.isPending) return <LoadingState label="Loading your profile…" lines={4} />;
+  if (profile.isPending) return <LoadingState variant="profile" label="Loading your profile…" lines={4} />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
   const username = "username" in p && typeof p.username === "string" ? p.username : null;

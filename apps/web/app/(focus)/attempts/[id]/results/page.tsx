@@ -38,7 +38,7 @@ export default function AttemptResultsPage() {
         />
       );
     }
-    return <LoadingState label="Loading your results…" />;
+    return <LoadingState variant="assessment" label="Loading your results…" />;
   }
 
   const data = attempt.data;

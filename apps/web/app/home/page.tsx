@@ -15,7 +15,7 @@ export default async function HomePage() {
   const supabase = await getServerSupabase();
   const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
   if (!data?.claims?.sub) {
-    return <Suspense fallback={<LoadingState label="Opening ScholAu…" />}><GuestExperience /></Suspense>;
+    return <Suspense fallback={<LoadingState variant="home" label="Opening ScholAu…" />}><GuestExperience /></Suspense>;
   }
   const session = await requireOnboardedSession("/home");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;

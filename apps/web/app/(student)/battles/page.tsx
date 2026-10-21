@@ -26,7 +26,7 @@ export default function BattlesPage() {
           <span className="text-sm font-semibold text-brand-primary">{COPY.battle.rewards}</span>
         </div>
       </section>
-      <Suspense fallback={<LoadingState label="Loading battles…" />}>
+      <Suspense fallback={<LoadingState variant="lobby" label="Loading battles…" />}>
         <Lobby />
       </Suspense>
     </div>
@@ -45,7 +45,7 @@ function Lobby() {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
         <div className="flex flex-col gap-6">
           {home.isPending ? (
-            <LoadingState label="Loading your courses…" lines={2} />
+            <LoadingState variant="lobby" label="Loading your courses…" lines={2} />
           ) : home.isError ? (
             <ErrorState error={home.error} onRetry={() => void home.refetch()} />
           ) : home.data.enrolled_courses.length === 0 ? (

@@ -1,8 +1,9 @@
 "use client";
+import { InlineSkeleton } from "@/components/ui/misc";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useNotificationSettings } from "@scholau/api/react";
-import { Bell, BellOff, LoaderCircle } from "lucide-react";
+import { Bell, BellOff } from "lucide-react";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { disableBrowserPush, enableBrowserPush, readPushDevice } from "@/lib/push-browser";
 
@@ -33,7 +34,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
     void check().catch(() => undefined);
     return () => { cancelled = true; };
   }, [owner]);
-  if (settings.isPending) return <LoadingState label="Loading notifications…" />;
+  if (settings.isPending) return <LoadingState variant="settings" label="Loading notifications…" />;
   if (settings.isError) return <ErrorState error={settings.error} onRetry={() => void settings.refetch()} />;
   const savedDevice = readPushDevice();
   const serverActive = settings.data.devices.some((device) => device.device_key === savedDevice?.key && device.active);
@@ -75,7 +76,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
           className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full border border-transparent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary disabled:cursor-wait disabled:opacity-60 motion-reduce:transition-none ${enabled ? "bg-brand-primary" : "bg-slate-300"}`}
         >
           <span className={`flex size-6 items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-200 motion-reduce:transition-none ${enabled ? "translate-x-6" : "translate-x-1"}`}>
-            {busy ? <LoaderCircle className="size-3.5 animate-spin text-brand-primary motion-reduce:animate-none" aria-hidden /> : null}
+            {busy ? <InlineSkeleton /> : null}
           </span>
         </button>
       </div>

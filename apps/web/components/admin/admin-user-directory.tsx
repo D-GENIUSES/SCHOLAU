@@ -130,7 +130,7 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All statuses</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
       <Button type="submit" variant="outline">Search</Button><Button variant="ghost" onClick={() => void load()}>Refresh</Button>
     </form>
-    {loading ? <LoadingState label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
+    {loading ? <LoadingState variant="table" label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
       { key: "name", header: "User", cell: user => <div className="flex items-center gap-3"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0"><p>{user.display_name || "No profile name"}</p><p className="break-all text-xs font-normal text-ink-muted">{user.email || "No email"}</p></div></div> },
       { key: "type", header: "Account type", cell: user => <>{roleLabel(user)}{user.roles.includes("admin") && <Badge tone="brand">Admin</Badge>}</> },
       { key: "registered", header: "Registered", cell: user => date(user.registered_at) },
@@ -143,7 +143,7 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       <DialogContent className="max-w-2xl" hideClose={busy}>
         <DialogTitle>{selected?.display_name || "Manage account"}</DialogTitle>
         <DialogDescription>{selected?.email || "Account access and teaching assignments."}</DialogDescription>
-        {detailLoading && <LoadingState label="Loading account details..." />}
+        {detailLoading && <LoadingState variant="table" label="Loading account details..." />}
         {detailError && <Alert tone="error" role="alert">{detailError}</Alert>}
         {detailNotice && <Alert tone="success" role="status">{detailNotice}</Alert>}
         {selected && <>

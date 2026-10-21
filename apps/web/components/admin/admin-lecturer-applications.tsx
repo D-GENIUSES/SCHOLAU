@@ -43,7 +43,7 @@ export function AdminLecturerApplications() {
       <Field id="application-search" label="Search applicants"><Input value={search} maxLength={200} onChange={e=>setSearch(e.target.value)} placeholder="Name, email or university" /></Field>
       <Field id="application-status" label="Status"><NativeSelect value={status} onChange={e=>{setStatus(e.target.value as LecturerApplicationStatus|'');setPage(0);setSelected(null)}}><option value="">All statuses</option>{Object.entries(labels).map(([k,v])=><option key={k} value={k}>{v}</option>)}</NativeSelect></Field><Button type="submit" variant="outline">Search</Button>
     </form>
-    {loading?<LoadingState label="Loading applications…"/>:items.length?<DataTable caption="Lecturer applications" rowKey={a=>a.id} rows={items} columns={[
+    {loading?<LoadingState variant="table" label="Loading applications…"/>:items.length?<DataTable caption="Lecturer applications" rowKey={a=>a.id} rows={items} columns={[
       {key:'name',header:'Applicant',cell:a=><><p>{a.full_name}</p><p className="break-all text-xs font-normal text-ink-muted">{a.email}</p></>},
       {key:'university',header:'Institution',cell:a=><>{a.university}<p className="text-xs text-ink-muted">{a.department}</p></>},
       {key:'status',header:'Status',cell:a=><Badge tone={a.status==='approved'?'success':'warning'}>{labels[a.status]}</Badge>},
@@ -51,7 +51,7 @@ export function AdminLecturerApplications() {
       {key:'action',header:'Action',action:true,cell:a=><Button size="sm" variant="outline" disabled={busy} onClick={()=>void open(a.id)}>Review</Button>},
     ]}/>:<EmptyState title="No applications found" description="Try another status or search. New lecturer applications will appear here."/>}
     <div className="my-4 flex items-center justify-between gap-3 text-sm"><p>{total} applications · Page {page+1} of {Math.max(1,Math.ceil(total/20))}</p><div className="flex gap-2"><Button size="sm" variant="outline" disabled={!page||loading} onClick={()=>setPage(p=>p-1)}>Previous</Button><Button size="sm" variant="outline" disabled={(page+1)*20>=total||loading} onClick={()=>setPage(p=>p+1)}>Next</Button></div></div>
-    {detailLoading?<LoadingState label="Loading application details…"/>:null}
+    {detailLoading?<LoadingState variant="table" label="Loading application details…"/>:null}
     {selected?<section aria-label="Application details" className="mt-6 flex flex-col gap-5">
       <Card><CardHeader><CardTitle>{selected.full_name}</CardTitle></CardHeader><CardContent><dl className="grid gap-4 sm:grid-cols-2">{[['Email',selected.email],['University',selected.university],['Faculty',selected.faculty],['Department',selected.department],['Position',selected.position],['Requested courses',selected.requested_courses],['Verification information',selected.verification_note||'Not provided']].map(([k,v])=><div key={k}><dt className="text-sm text-ink-muted">{k}</dt><dd className="break-words whitespace-pre-wrap">{v}</dd></div>)}</dl>{selected.institutional_profile_url?<a className="mt-4 inline-block text-brand-primary underline" href={selected.institutional_profile_url} target="_blank" rel="noopener noreferrer">Open institutional profile</a>:null}</CardContent></Card>
       {!selected.email_verified?<Alert tone="warning">The applicant has not confirmed their email. Approval is blocked; you may request changes or reject.</Alert>:null}
