@@ -28,7 +28,10 @@ export default async function HomePage() {
   const supabase = await getServerSupabase();
   const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
   if (!data?.claims?.sub) {
-    return <Suspense fallback={<LoadingState variant="home" label="Opening ScholAu…" />}><GuestExperience /></Suspense>;
+    return <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "ScholAu", url: `${SITE_URL}/` }).replace(/</g, "\\u003c") }} />
+      <Suspense fallback={<LoadingState variant="home" label="Opening ScholAu…" />}><GuestExperience /></Suspense>
+    </>;
   }
   const session = await requireOnboardedSession("/home");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
