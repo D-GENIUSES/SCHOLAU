@@ -47,11 +47,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
-        <Providers appVersion={getAppVersion()}>
-          <ViewportLock />
-          <OfflineIndicator />
-          <SplashGate>{children}</SplashGate>
-        </Providers>
+        <SplashGate>
+          <Providers appVersion={getAppVersion()}>
+            <ViewportLock />
+            <OfflineIndicator />
+            {children}
+          </Providers>
+        </SplashGate>
       </body>
     </html>
   );
