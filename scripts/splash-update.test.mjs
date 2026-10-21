@@ -69,8 +69,8 @@ test("worker activates immediately and removes only stale launch documents/asset
 test("navigation uses the network with no-store, never cached legacy HTML",async()=>{
  const f=workerFixture();let result;f.listeners.fetch({request:{url:f.origin+"/home",mode:"navigate",method:"GET"},respondWith:p=>result=p});assert.equal(await(await result).text(),"fresh");assert.equal(f.stats().networkOptions.cache,"no-store");
 });
-test("offline navigation is self-contained animated blue branding, never the old splash",async()=>{
- const f=workerFixture();f.setOffline();let result;f.listeners.fetch({request:{url:f.origin+"/home",mode:"navigate",method:"GET"},respondWith:p=>result=p});const response=await result;const html=await response.text();assert.equal(response.status,503);assert.equal(response.headers.get("cache-control"),"no-store");assert(html.includes("#0866e8")&&html.includes("@keyframes orbit")&&html.includes('data-scholau-splash="blue-orbit"'));assert(!html.includes("splash-screen"));
+test("offline navigation is self-contained animated white branding, never the old splash",async()=>{
+ const f=workerFixture();f.setOffline();let result;f.listeners.fetch({request:{url:f.origin+"/home",mode:"navigate",method:"GET"},respondWith:p=>result=p});const response=await result;const html=await response.text();assert.equal(response.status,503);assert.equal(response.headers.get("cache-control"),"no-store");assert(html.includes("#ffffff")&&html.includes("@keyframes orbit")&&html.includes('data-scholau-splash="blue-orbit"'));assert(!html.includes("splash-screen"));
 });
 test("private API responses are not intercepted or cached by the worker",()=>{
  const f=workerFixture();f.listeners.fetch({request:{url:f.origin+"/api/private",mode:"cors",method:"GET"},respondWith:()=>assert.fail("private response intercepted")});

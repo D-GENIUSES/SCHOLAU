@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // Browser extensions may add attributes to <html> before React hydrates.
-    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#0866e8" }}>
+    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#ffffff" }}>
       <body>
         <a
           href="#main"
