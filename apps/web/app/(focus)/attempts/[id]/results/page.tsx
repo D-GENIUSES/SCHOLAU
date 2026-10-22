@@ -159,7 +159,7 @@ function Results({ attempt }: { attempt: Attempt }) {
         </Card>
 
         {result?.xp_capped ? <XpCapNotice /> : null}
-        {result?.xp_awarded === 0 && attempt.status !== "voided" ? <p className="text-sm text-ink-muted">{attempt.status === "expired" ? "Expired attempts do not earn XP. Submit a completed attempt to earn XP." : "Match your best score to practise; improve it to earn more XP. Scheduled reviews require at least 80% and award XP once per stage."}</p> : null}
+        {result?.xp_awarded === 0 && attempt.status !== "voided" ? <p className="text-sm text-ink-muted">{attempt.status === "expired" ? "Expired attempts do not earn XP. Submit a completed attempt to earn XP." : "Practice quizzes and mock exams earn 1 XP per correct answer. Topic checks reward improvements; scheduled reviews require at least 80% and award XP once per stage."}</p> : null}
         <XpProgressCard compact />
 
         <div className="flex flex-wrap gap-2">

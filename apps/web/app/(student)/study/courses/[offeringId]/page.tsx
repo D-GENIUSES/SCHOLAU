@@ -168,7 +168,8 @@ function Overview({ data }: { data: CourseOverview }) {
 
 
 function xpNote(a: CourseAssessment): string {
-  const max = a.kind === "review" ? 20 : a.kind === "practice" ? 50 : 100;
+  if (a.kind === "practice" || a.kind === "mock") return "1 XP per correct answer on each submitted attempt. No completion bonus.";
+  const max = 20;
   return `Up to ${max} XP for your best score. Improve your best to earn the difference.`;
 }
 
