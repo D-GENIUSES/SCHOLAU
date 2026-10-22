@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge, PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { cn } from "@/lib/utils";
+import { InvitationsPanel } from "@/components/battle/invitations-panel";
 
 function internalTarget(target: string | null): string | null {
   return target && target.startsWith("/") && !target.startsWith("//") ? target : null;
@@ -72,6 +73,7 @@ export function NotificationsView() {
         }
       />
       <InlineError error={markRead.error} className="mb-4" />
+      <div className="mb-4"><InvitationsPanel /></div>
       {items.length === 0 ? (
         <EmptyState icon={<Bell className="size-6" />} title="No notifications yet" description="Updates about your account and activity will appear here." />
       ) : (

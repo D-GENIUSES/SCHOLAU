@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export function BattleScoreboard({ battle }: { battle: Battle }) {
   const me = battle.participants.find((p) => p.is_me);
   const opponent = battle.participants.find((p) => !p.is_me);
-  return <section aria-label="Battle players" className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 rounded-2xl border border-line bg-surface-card p-3 sm:p-5">
+  return <section aria-label="Battle players" className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 rounded-2xl border border-brand-primary/25 bg-surface-card p-3 sm:p-4">
     <Player participant={me} />
     <span className="flex size-9 items-center justify-center rounded-full bg-surface-page text-xs font-bold text-ink-muted">VS</span>
     <Player participant={opponent} reverse />

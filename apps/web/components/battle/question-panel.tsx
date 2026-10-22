@@ -63,7 +63,7 @@ export function QuestionPanel({
     <div className="flex flex-col gap-3">
       <BattleRoundProgress count={battle.round_count} position={question.position} answered={battle.my_answered_positions} />
       <BattleCourseStrip code={question.course_code ?? battle.course?.code} title={battle.courses?.find((c) => c.code === question.course_code)?.title ?? battle.course?.title} />
-      <Card className="overflow-hidden rounded-2xl shadow-none">
+      <Card className="overflow-hidden rounded-2xl border-brand-primary/25 shadow-none">
       <CardContent className="flex flex-col gap-4 pt-4 sm:pt-5">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">

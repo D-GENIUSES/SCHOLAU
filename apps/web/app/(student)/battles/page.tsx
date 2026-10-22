@@ -17,15 +17,9 @@ import { EmptyState, ErrorState, LoadingState } from "@/components/ui/states";
 
 export default function BattlesPage() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="battle-lobby flex flex-col gap-4">
       <PageHeader title="Battles" description={COPY.battle.unlimited} />
-      <section className="battle-intro" aria-labelledby="battle-welcome-title">
-        <div>
-          <h2 id="battle-welcome-title">Start a quiz battle</h2>
-          <p>Challenge a friend across up to three shared courses, or find an opponent for a quick match. Every completed match earns XP.</p>
-          <span className="text-sm font-semibold text-brand-primary">{COPY.battle.rewards}</span>
-        </div>
-      </section>
+      <p className="battle-reward-note">{COPY.battle.rewards}</p>
       <Suspense fallback={<LoadingState variant="lobby" label="Loading battles…" />}>
         <Lobby />
       </Suspense>
@@ -39,10 +33,10 @@ function Lobby() {
   const live = useMyLiveBattle();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="battle-lobby-content flex flex-col gap-4">
       <InvitationsPanel />
       {live.data ? <LiveResumeCard live={live.data} /> : null}
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
+      <div className="battle-setup-grid">
         <div className="flex flex-col gap-6">
           {home.isPending ? (
             <LoadingState variant="lobby" label="Loading your courses…" lines={2} />
@@ -64,7 +58,7 @@ function Lobby() {
         </div>
         <BattleRulesCard />
       </div>
-      <FriendsPanel />
+      <details className="rounded-xl border border-brand-primary/25 bg-surface-card p-3"><summary className="cursor-pointer text-sm font-semibold text-brand-primary">Friends and requests</summary><div className="pt-3"><FriendsPanel /></div></details>
       <BattleHistory />
     </div>
   );
