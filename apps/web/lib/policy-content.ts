@@ -2,8 +2,15 @@ import type { PolicySection } from "@/components/legal/policy-layout";
 
 export const privacySections: PolicySection[] = [
   { id: "operator", title: "1. Who is responsible", paragraphs: [
-    "SCHOLAU is a university learning platform operated by [OPERATOR LEGAL NAME], of [OPERATOR POSTAL ADDRESS, NIGERIA], the data controller for the processing described here. Privacy and support email: [PRIVACY/SUPPORT EMAIL].",
+    "SCHOLAU is a university learning platform operated by David Mba, who is responsible for the processing described here. For privacy questions or requests, email johnnwaokolo01@gmail.com.",
     "This notice covers the SCHOLAU website and learning accounts. A university’s own systems and independent third-party websites have their own notices. University or course names identify academic content; they do not by themselves establish a partnership or endorsement."
+  ] },
+  { id: "google-sign-in", title: "Google sign-in and Google user data", paragraphs: [
+    "When you choose Continue with Google, Google shares your Google account identifier, email address and basic profile information, such as your name and profile picture, with SCHOLAU through Supabase Auth. We use this information to authenticate you, create or identify your SCHOLAU account, maintain your sign-in session and display your account profile. SCHOLAU does not receive your Google password.",
+    "Google sign-in requests basic identity, email and profile access only. It does not request access to your Gmail messages, Google Drive files, calendar, contacts or other Google account content. You can use email and password instead of Google sign-in.",
+    "Supabase processes and stores Google authentication and account information on SCHOLAU’s behalf. Authorized administrators may access account information for support and security. Your display name and profile image may be visible to other users through SCHOLAU’s profile, social and competition features as described below; your email address is not a public leaderboard field.",
+    "We do not sell Google user data, use it for advertising, or use it to train artificial intelligence models. We use and share Google user data only to provide and secure the account and profile features described in this policy, with service providers performing those functions, or where required by law.",
+    "We retain Google account and profile information while it is needed to provide your account and address support, security or legal requirements. You can disconnect SCHOLAU in your Google Account’s third-party connections settings. Disconnecting prevents future Google authorization but does not automatically delete information already stored in SCHOLAU; request deletion through your Profile or email johnnwaokolo01@gmail.com. Deletion is handled as described in the retention and deletion section below."
   ] },
   { id: "information", title: "2. Information we handle", paragraphs: [
     "Account information: email, authentication records, username, display name, optional profile photograph, account status, age declaration, and records of terms acceptance. Supabase Auth handles passwords and sign-in credentials.",
@@ -25,7 +32,7 @@ export const privacySections: PolicySection[] = [
   ] },
   { id: "providers", title: "5. Service providers and transfers", paragraphs: [
     "The application uses Supabase for authentication, database and associated storage, Vercel for hosting, and Cloudflare R2 for configured private learning assets. Email and browser push delivery can involve the relevant delivery and browser platform providers. These services process information needed for their functions. We may disclose information where lawfully required, to protect rights and security, or to advisers bound by appropriate confidentiality.",
-    "Provider infrastructure may involve processing outside Nigeria. Before releasing this notice, the operator must verify actual processing locations, sub-processors and transfer arrangements and document the applicable legal transfer safeguards. This draft does not promise that data stays in Nigeria or claim that unverified safeguards are already in place."
+    "Our providers may process data outside Nigeria. We use providers for the functions described here and assess their applicable transfer protections. Contact us if you want information about a particular transfer."
   ] },
   { id: "cookies", title: "6. Cookies, storage and analytics", paragraphs: [
     "SCHOLAU uses authentication cookies to maintain sessions and browser storage or caching for preferences, the installed web application and offline behavior. You can manage cookies and site data through your browser; blocking required session storage may prevent sign-in or other requested functions. Shared-device users should sign out and clear site data when appropriate.",
@@ -36,24 +43,24 @@ export const privacySections: PolicySection[] = [
     "Once available, a parent or guardian must contact support. Support checks their authority, consent to the identified processing and the applicant’s eligibility, records the review, and supplies an email-bound approval code after approval. A pending request is not approval. The applicant must also read the Privacy Policy and accept the Terms as applicable. A guardian can contact support about access, correction, withdrawal or deletion. We will assess and address accounts identified as belonging to children without the required authorization."
   ] },
   { id: "retention", title: "8. Retention, deletion and security", paragraphs: [
-    "We retain information for the service purposes described here and applicable legal needs, considering account status, support cases and security requirements. We do not specify a retention period in this draft because the operator has not approved and verified a retention and backup schedule. That schedule, including inactive accounts, unlinked guardian requests and provider backups, must be completed before publication.",
+    "We keep account and learning information while your account is active and as needed to provide the service. After a deletion request, we remove personal records from active systems through our account-erasure process, except information needed for legal obligations, security, disputes or another lawful purpose. Backup copies may remain temporarily under provider backup cycles before expiry.",
     "Request deletion through Profile → Settings → Security → Request account deletion. This sends a support request; deletion is not immediate. Support handles identity checks and account removal. The account-erasure workflow removes personal learning and competition records and linked legal and guardian records. Shared course content and other players’ records may remain after personal attribution is removed. Support must also handle owned storage objects through the relevant storage service.",
-    "Access controls, private asset delivery and restricted administrative functions help protect information. No internet service guarantees absolute security. Contact support about suspected account misuse. Deletion from active systems does not imply immediate removal from provider backups; verified backup handling must be added before this draft becomes effective."
+    "Access controls, private asset delivery and restricted administrative functions help protect information. No internet service guarantees absolute security. Contact support about suspected account misuse. Deletion from active systems does not imply immediate removal from provider backups."
   ] },
   { id: "rights", title: "9. Your rights and choices", paragraphs: [
     "Subject to applicable law, you may request information about processing, access, correction, erasure, restriction, portability, objection to processing, or withdrawal of consent. You may also raise concerns about decisions made solely through automated processing that significantly affect you and request human review where applicable. Automated quiz scoring and XP do not represent university admission, accreditation or official examination decisions.",
-    "Use Profile to update available settings and notification or leaderboard choices. For other requests, contact [PRIVACY/SUPPORT EMAIL]; existing account holders can also use Profile → Settings → Support & privacy → Contact support. We may verify identity or guardian authority before responding and explain lawful limits.",
-    "You may complain to the Nigeria Data Protection Commission (NDPC), whose website is linked below. This notice is drafted with reference to the Nigeria Data Protection Act 2023 and the 2025 General Application and Implementation Directive."
+    "Use Profile to update available settings and notification or leaderboard choices. For other requests, contact johnnwaokolo01@gmail.com; existing account holders can also use Profile → Settings → Support & privacy → Contact support. We may verify identity or guardian authority before responding and explain lawful limits.",
+    "You may complain to the Nigeria Data Protection Commission (NDPC), whose website is linked below. This notice describes our practices and your options under applicable Nigerian data-protection law."
   ] },
   { id: "updates", title: "10. Updates and contact", paragraphs: [
-    "We will identify policy versions and update dates and provide appropriate notice of material changes. Where new consent is required, publishing an update alone will not replace obtaining it. This draft has no effective date.",
-    "Controller: [OPERATOR LEGAL NAME]. Address: [OPERATOR POSTAL ADDRESS, NIGERIA]. Privacy and support: [PRIVACY/SUPPORT EMAIL]."
+    "We will identify policy versions and update dates and provide appropriate notice of material changes. Where new consent is required, publishing an update alone will not replace obtaining it. The current policy takes effect on 22 October 2026.",
+    "Operator: David Mba. Privacy and support: johnnwaokolo01@gmail.com."
   ] }
 ];
 
 export const termsSections: PolicySection[] = [
   { id: "agreement", title: "1. Operator and agreement", paragraphs: [
-    "SCHOLAU is operated by [OPERATOR LEGAL NAME], of [OPERATOR POSTAL ADDRESS, NIGERIA]. Contact: [PRIVACY/SUPPORT EMAIL]. These draft Terms describe the proposed conditions for using our learning platform. No effective date has been set.",
+    "SCHOLAU is operated by David Mba. Contact: johnnwaokolo01@gmail.com. These draft Terms describe the proposed conditions for using our learning platform. No effective date has been set.",
     "Registration requires affirmative acceptance of the displayed version. We record that version and a server timestamp. Our Privacy Policy explains data handling separately. Accepting these Terms does not authorize unrelated optional processing."
   ] },
   { id: "eligibility", title: "2. Eligibility and guardian consent", paragraphs: [
@@ -81,11 +88,11 @@ export const termsSections: PolicySection[] = [
   { id: "content", title: "7. Intellectual property and submissions", paragraphs: [
     "SCHOLAU software, branding and original materials belong to their respective rights holders. You may use available materials for intended personal learning or authorized teaching, subject to access restrictions. Do not redistribute restricted materials, remove rights notices or claim others’ work. Statutory exceptions remain available.",
     "You retain rights you hold in submitted materials. By submitting content, you grant the operator non-exclusive permission to host, copy, display and process it only as needed to deliver, review, moderate and secure the service. Submit only materials you have authority to provide and avoid unnecessary information about others.",
-    "Authorized shared teaching content may remain after account deletion with personal attribution removed, subject to applicable rights and removal requests. Report alleged infringement to [PRIVACY/SUPPORT EMAIL] with the material location, your rights and contact details."
+    "Authorized shared teaching content may remain after account deletion with personal attribution removed, subject to applicable rights and removal requests. Report alleged infringement to johnnwaokolo01@gmail.com with the material location, your rights and contact details."
   ] },
   { id: "moderation", title: "8. Moderation, suspension and leaving", paragraphs: [
     "We may review reported content, restrict access or suspend or terminate accounts where reasonably necessary to address violations, security issues, unlawful conduct or legal requirements. Where appropriate we will explain the reason and allow a support review; urgent security or legal circumstances may require immediate action.",
-    "You may stop using SCHOLAU and request deletion through Profile → Settings → Security. Support processes deletion rather than deleting the account immediately. Shared content, other users’ records and lawful retention exceptions are explained in the Privacy Policy. Challenge a moderation decision through Contact support or [PRIVACY/SUPPORT EMAIL]."
+    "You may stop using SCHOLAU and request deletion through Profile → Settings → Security. Support processes deletion rather than deleting the account immediately. Shared content, other users’ records and lawful retention exceptions are explained in the Privacy Policy. Challenge a moderation decision through Contact support or johnnwaokolo01@gmail.com."
   ] },
   { id: "availability", title: "9. Availability and third parties", paragraphs: [
     "Features and content may be interrupted, changed or unavailable because of maintenance, connectivity, security or other operational needs. We do not promise continuous availability or published materials for every course. We will provide reasonable notice of material service changes where practicable.",
@@ -100,6 +107,6 @@ export const termsSections: PolicySection[] = [
   ] },
   { id: "updates", title: "12. Updates and contact", paragraphs: [
     "We will identify each version and its update date, notify users appropriately of material changes, and obtain fresh acceptance where required. This draft must be completed before publication; its update date is not an effective date.",
-    "Operator: [OPERATOR LEGAL NAME]. Address: [OPERATOR POSTAL ADDRESS, NIGERIA]. Support and legal requests: [PRIVACY/SUPPORT EMAIL]."
+    "Operator: David Mba. Support and legal requests: johnnwaokolo01@gmail.com."
   ] }
 ];
