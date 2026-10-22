@@ -2,6 +2,7 @@ import { ProfileView } from "@/components/profile/profile-view";
 import { PublicProfilePreview } from "@/components/profile/public-profile-preview";
 import { AnswerOptionsPreview } from "@/components/battle/answer-options-preview";
 import { ArenaPreview } from "@/components/battle/arena-preview";
+import { BattleLobbyPreview } from "@/components/battle/lobby-preview";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { HomeSummary } from "@scholau/api";
@@ -14,6 +15,7 @@ import { LessonListPreview } from "@/components/lesson/lesson-list-preview";
 export default async function DesignPreview({ searchParams }: { searchParams: Promise<{ state?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
+  if (state === "battle-lobby") return <BattleLobbyPreview />;
   if (state === "public-profile") return <PublicProfilePreview />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
   if (state === "lessons") return <ShellFrame pathname="/study" displayName="Learner"><LessonListPreview /></ShellFrame>;

@@ -3,12 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function BattleRulesCard({ title = "How battles work", headingLevel = "h2" }: { title?: string; headingLevel?: "h2" | "h3" }) {
   return (
-    <Card tint>
+    <Card className="battle-rules-card">
       <CardHeader>
         <CardTitle as={headingLevel}>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <BattleRulesList />
+        <p className="mb-3 text-sm text-ink-muted">Same questions. Same time. A fair challenge for both players.</p>
+        <p className="mb-3 text-sm font-semibold">{COPY.battle.rewards}</p>
+        <details className="battle-rules-details"><summary>Format &amp; fair play rules</summary><div className="pt-3"><BattleRulesList /></div></details>
       </CardContent>
     </Card>
   );

@@ -13,7 +13,7 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
   const worked = question.answer_format === "worked_solution";
   return (
     <fieldset disabled={disabled} className="min-w-0">
-      <legend className="mb-5 w-full whitespace-pre-wrap break-words text-center text-xl font-bold leading-snug tracking-tight text-ink sm:text-2xl">{question.prompt}</legend>
+      <legend className="mb-4 w-full whitespace-pre-wrap break-words text-center text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
       <div className={worked ? "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
         {question.options.map((option, index) => {
@@ -21,8 +21,8 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
           return (
             <label key={option.id} className={cn(
               "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
-              worked ? "min-h-40 flex-col rounded-2xl p-3 sm:min-h-44 sm:p-4" : "min-h-[64px] items-center rounded-xl px-3 py-3 sm:min-h-[72px] sm:px-4",
-              checked ? "border-brand-primary bg-surface-tint" : "border-line bg-surface-card hover:border-brand-primary",
+              worked ? "min-h-40 flex-col rounded-2xl p-3 sm:min-h-44 sm:p-4" : "min-h-[56px] items-center rounded-xl px-3 py-2 sm:min-h-[64px]",
+              checked ? "border-brand-primary bg-surface-tint" : "border-brand-primary/20 bg-surface-card hover:border-brand-primary",
               disabled && "cursor-default",
             )}>
               <span className="flex shrink-0 items-center gap-2">
