@@ -1,4 +1,4 @@
-export const SITE_URL = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://scholau.vercel.app").origin;
+export const SITE_URL = "https://scholau.com";
 
 export const publicPages = [
   { path: "/home", view: "home", title: "ScholAu", description: "Study university courses, practise with instant feedback, and compete in quiz battles. Explore free ScholAu sample lessons and practice questions." },
