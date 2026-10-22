@@ -16,3 +16,15 @@ Validation: run workspace typechecks and lint, then database pgTAP tests against
 ## Welcome XP and engagement
 
 Migration `20261015000100_welcome_xp_leaderboards.sql` adds a one-time 10 XP signup award for accounts created after that migration. It grants no retroactive awards. The profile-insert trigger creates the balance and ledger award in the same transaction; `signup:welcome` is unique per account, so retries cannot duplicate it. Welcome XP counts toward lifetime levels and rankings but not daily learning XP or badges. New learners see a welcome message and a direct leaderboard link on their dashboard. Existing mastery XP, reviews, and battle limits are unchanged. Ranking visibility can be turned off in Profile. This supersedes the original zero-start and disabled-leaderboard defaults.
+
+
+## Per-answer XP (22 October 2026)
+
+Migration `20261022000100_per_answer_xp.sql` supersedes practice/mock best-score allowances: every submitted practice quiz or mock exam earns 1 XP per correct answer, with no completion bonus. A new attempt can earn XP again; replaying the same attempt cannot. Active and expired attempts earn no XP.
+
+Completed eligible battles award both players 2 XP per correct answer, plus a fixed 20 XP for the winner. Draws have no bonus. The first 10 completed matches per Lagos day and first 2 per opponent remain eligible; cancelled and forfeited matches award no XP. Lesson knowledge checks, scheduled reviews, badges, welcome XP, and level thresholds are unchanged.
+
+Existing balances, previous awards, and historical best-score rows are preserved. Apply this migration to the hosted database before releasing the updated reward descriptions. No historical recalculation is performed.
+
+
+Validation for this change: `node scripts/test-per-answer-xp.mjs` passed 253 SQL assertions plus a before/after rollout snapshot preserving every historical ledger entry and balance. The harness uses PGlite with auth/realtime stubs, excludes scheduled jobs, and runs assessment, rewards, battle, welcome, and per-answer regression suites. Set `XP_TEST_RUNTIME` to a directory containing `@electric-sql/pglite` (default: `../.xp-test-runtime`). Web TypeScript and ESLint checks for all changed screens passed. Hosted database migration and production deployment have not been performed.
