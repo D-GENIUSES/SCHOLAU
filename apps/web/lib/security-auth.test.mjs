@@ -17,7 +17,7 @@ function load(file, mocks) {
   return exports;
 }
 
-test("confirmation works without a PKCE cookie and goes directly to the account", async () => {
+test("confirmation page does not consume the token until the browser submits it", async () => {
   let received;
   const { GET } = load("../app/auth/confirm/route.ts", {
     "next/server": { NextResponse },
@@ -26,28 +26,33 @@ test("confirmation works without a PKCE cookie and goes directly to the account"
     "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { verifyOtp: async (value) => { received = value; return { error: null }; } } }) },
   });
   const result = await GET(new NextRequest("https://scholau.vercel.app/auth/confirm?type=email&token_hash=one-use-token"));
-  assert.deepEqual(received, { type: "email", token_hash: "one-use-token" });
-  assert.equal(result.headers.get("location"), "https://scholau.vercel.app/lecturer/application");
+  assert.equal(received, undefined);
+  assert.match(await result.text(), /requestSubmit/);
+  assert.equal(result.status, 200);
   assert.equal(result.headers.get("cache-control"), "private, no-store");
   assert.equal(result.headers.get("referrer-policy"), "no-referrer");
 });
 
-test("recovery always reaches the password form; invalid and expired links fail safely", async () => {
+test("confirmation creates the session on POST and sends failures to retry", async () => {
   let fail = false;
   let calls = 0;
-  const { GET } = load("../app/auth/confirm/route.ts", {
+  const { GET, POST } = load("../app/auth/confirm/route.ts", {
     "next/server": { NextResponse }, "@/lib/utils": { safeNext },
     "@/lib/auth-destination": { accountDestination: () => assert.fail("recovery must not resolve an account destination") },
     "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { verifyOtp: async () => { calls++; if (fail) throw Error("private detail"); return { error: null }; } } }) },
   });
   const get = (query) => GET(new NextRequest(`https://scholau.vercel.app/auth/confirm?${query}`));
-  assert.equal((await get("type=recovery&token_hash=token&next=/admin")).headers.get("location"), "https://scholau.vercel.app/reset-password");
-  assert.equal((await get("type=invalid&token_hash=token")).headers.get("location"), "https://scholau.vercel.app/sign-in?error=link");
+  assert.equal((await get("type=recovery&token_hash=token&next=/admin")).status, 200);
+  assert.equal((await get("type=invalid&token_hash=token")).headers.get("location"), "https://scholau.vercel.app/verify?status=retry");
+  assert.equal(calls, 0);
+  const post = (body) => POST(new NextRequest("https://scholau.vercel.app/auth/confirm", { method: "POST", body: new URLSearchParams(body) }));
+  assert.equal((await post({ type: "recovery", token_hash: "token", next: "/admin" })).headers.get("location"), "https://scholau.vercel.app/reset-password");
   assert.equal(calls, 1);
   fail = true;
-  const expired = await get("type=email&token_hash=token");
-  assert.equal(expired.headers.get("location"), "https://scholau.vercel.app/sign-in?error=link");
-  assert.equal(expired.headers.get("cache-control"), "private, no-store");
+  const failed = await post({ type: "email", token_hash: "token" });
+  assert.equal(failed.headers.get("location"), "https://scholau.vercel.app/verify?status=retry");
+  assert.equal(calls, 2);
+  assert.equal(failed.headers.get("cache-control"), "private, no-store");
 });
 
 test("session refresh cookies survive redirects and query/hash destinations stay intact", async () => {

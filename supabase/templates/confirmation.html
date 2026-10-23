@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Confirm your ScholAu email</title></head>
 <body style="font-family:Arial,sans-serif;color:#182230;line-height:1.6;padding:24px">
   <h1>Welcome to ScholAu</h1>
-  <p>Confirm your email address to continue to your account.</p>
-  <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email" style="display:inline-block;padding:12px 20px;background:#176749;color:#ffffff;text-decoration:none;border-radius:8px">Confirm email and open ScholAu</a></p>
+  <p>Confirm your email address to open your ScholAu account.</p>
+  <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/auth/continue" style="display:inline-block;padding:12px 20px;background:#176749;color:#ffffff;text-decoration:none;border-radius:8px">Confirm email address</a></p>
   <p>You can open this link on any device. If you did not create this account, ignore this email.</p>
 </body></html>

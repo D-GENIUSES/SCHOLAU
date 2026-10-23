@@ -57,7 +57,7 @@ export function SignInForm({ next, deactivated, linkError, oauthError }: { next?
         ) : null}
         {linkError && !error ? (
           <Alert tone="warning" role="alert">
-            That link is invalid or has expired.
+            We couldn’t complete that email link. <Link href="/verify" className="font-semibold text-brand-primary underline">Send a fresh confirmation email</Link> to continue.
           </Alert>
         ) : null}
         {error?.kind === "unconfirmed" ? (

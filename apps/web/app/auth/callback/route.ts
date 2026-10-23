@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code).catch((err: unknown) => ({ error: err }));
     if (!error) return redirect(next === "/auth/continue" ? await accountDestination() : next);
   }
-  const failure = new URLSearchParams({ error: google ? "oauth" : "link" });
-  if (google) failure.set("next", next);
-  return redirect(`/sign-in?${failure}`);
+  if (google) return redirect(`/sign-in?${new URLSearchParams({ error: "oauth", next })}`);
+  return redirect(next === "/reset-password" ? "/recover?status=retry" : "/verify?status=retry");
 }

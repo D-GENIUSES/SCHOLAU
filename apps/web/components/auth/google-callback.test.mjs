@@ -45,5 +45,5 @@ test("email callback remains compatible and unsafe destinations are rejected", a
   const get = callback(async () => ({ error: null }));
   assert.equal((await get("code=email-code")).headers.get("location"), "https://scholau.vercel.app/home");
   assert.equal((await get("provider=google&code=test-code&next=%2F%5Cevil.example")).headers.get("location"), "https://scholau.vercel.app/home");
-  assert.equal((await get("")).headers.get("location"), "https://scholau.vercel.app/sign-in?error=link");
+  assert.equal((await get("")).headers.get("location"), "https://scholau.vercel.app/verify?status=retry");
 });

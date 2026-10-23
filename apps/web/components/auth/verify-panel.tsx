@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { emailSchema } from "@scholau/core";
 import { Button } from "@/components/ui/button";
+import { Alert } from "@/components/ui/alert";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -13,7 +14,7 @@ import { AuthHeading } from "./auth-heading";
 
 const COOLDOWN_SECONDS = 60;
 
-export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?: string; lecturer?: boolean }) {
+export function VerifyPanel({ email: initialEmail, lecturer = false, retry = false }: { email?: string; lecturer?: boolean; retry?: boolean }) {
   const [email, setEmail] = useState(initialEmail ?? "");
   const [cooldown, setCooldown] = useState(0);
   const [sending, setSending] = useState(false);
@@ -71,9 +72,10 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
           )
         }
       />
+      {retry ? <Alert tone="warning" role="status">We couldn’t complete email confirmation. Send a fresh confirmation link to continue.</Alert> : null}
       <div className="flex flex-col gap-4">
         <p className="text-ink-muted">
-          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the confirmation link to continue directly to ScholAu."} The link expires after a while, so use it soon.
+          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the confirmation link to continue directly to ScholAu."}
         </p>
         {initialEmail ? null : (
           <Field id="verify-email" label="Email">
