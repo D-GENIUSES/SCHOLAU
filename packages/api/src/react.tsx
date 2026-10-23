@@ -330,6 +330,7 @@ export function useUserSignals(userId: string | undefined): ChannelStatus {
         if (event === "friends_changed" || event === "resync") void qc.invalidateQueries({ queryKey: ["scholau", "social"] });
         if (event === "battle_invitation" || event === "resync") {
           void qc.invalidateQueries({ queryKey: ["scholau", "social", "invitations"] });
+          void qc.invalidateQueries({ queryKey: qk.notifications() });
           void qc.invalidateQueries({ queryKey: qk.home() });
         }
         if (event === "battle_matched" || event === "resync") void qc.invalidateQueries({ queryKey: qk.liveBattle() });
@@ -360,7 +361,7 @@ export function useAcceptBattle() {
   return useKeyedMutation(api.acceptBattle, {
     onSuccess: (data) => {
       qc.setQueryData(qk.battle(data.battle_id), data);
-      void invalidate(qc, qk.liveBattle(), qk.home());
+      void invalidate(qc, qk.liveBattle(), qk.home(), ["scholau", "social", "invitations"]);
     },
   });
 }

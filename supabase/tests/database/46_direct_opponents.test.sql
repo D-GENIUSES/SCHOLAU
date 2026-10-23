@@ -28,11 +28,10 @@ select current_setting('t.alt_off2')::uuid,o.course_id,o.university_id,
   o.level_id,o.semester_id,'published'
 from public.course_offerings o where o.id=current_setting('t.off2')::uuid
   and exists(select 1 from public.departments d where d.university_id=o.university_id and d.id<>o.department_id);
-update public.enrollments set offering_id=current_setting('t.alt_off2')::uuid
-where user_id=current_setting('t.b')::uuid and offering_id=current_setting('t.off2')::uuid
-  and exists(select 1 from public.course_offerings where id=current_setting('t.alt_off2')::uuid);
--- The invited learner has a shared department course, but has not started any lessons.
-delete from public.enrollments where user_id=current_setting('t.b')::uuid and offering_id=current_setting('t.off3')::uuid;
+update public.profiles set department_id='10000000-0000-4000-8000-000000000013' where id=current_setting('t.b')::uuid;
+-- No enrollment or lesson prerequisite for either learner.
+delete from public.enrollments where user_id in(current_setting('t.a')::uuid,current_setting('t.b')::uuid);
+select is((select count(*)::integer from public.enrollments where user_id in(current_setting('t.a')::uuid,current_setting('t.b')::uuid)),0,'Neither player has an enrollment');
 
 select ok(not has_function_privilege('anon','public.get_friends_v1()','execute'),'Guests cannot access friends');
 select ok(not has_function_privilege('anon','public.create_scoped_battle_v1(uuid[],integer,uuid,uuid)','execute'),'Guests cannot create scoped battles');
@@ -52,7 +51,7 @@ select throws_ok($$select public.set_friend_username_v1('battler_a')$$,'PT422',n
 select is((public.get_friends_v1()->'people'->0->>'incoming'),'true','Recipient sees incoming request');
 select public.friend_action_v1(current_setting('t.a')::uuid,'accept');
 select is((public.friend_action_v1(current_setting('t.a')::uuid,'accept')->'people'->0->>'state'),'accepted','Acceptance is retry-safe');
-select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.b')::uuid)->'courses'),3,'Setup shows all shared courses across different departments');
+select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.a')::uuid)->'courses'),2,'Setup shows all shared courses across different departments');
 reset role;
 select pg_temp.social_login(current_setting('t.a')::uuid);
 select throws_ok($$select public.create_scoped_battle_v1(array[current_setting('t.off2')::uuid],5,gen_random_uuid(),current_setting('t.b')::uuid)$$,'PT404',null,'Empty course bank blocks creation');
@@ -83,7 +82,7 @@ select pg_temp.social_seed(current_setting('t.course3')::uuid);
 select pg_temp.social_login(current_setting('t.a')::uuid);
 -- Nonfriends can challenge each other; identity editing is unrelated to battle creation.
 select public.friend_action_v1(current_setting('t.b')::uuid,'remove');
-select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.a')::uuid)->'courses'),3,'Opponent sees common courses across departments');
+select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.b')::uuid)->'courses'),2,'Opponent sees common courses across departments');
 select throws_ok($$select public.get_battle_setup_v1(current_setting('t.a')::uuid)$$,'PT403',null,'Self challenge is rejected');
 select public.friend_action_v1(current_setting('t.b')::uuid,'block');
 select throws_ok($$select public.get_battle_setup_v1(current_setting('t.b')::uuid)$$,'PT403',null,'Blocked opponent setup is rejected');
@@ -95,8 +94,9 @@ select set_config('t.battle',current_setting('t.invite')::jsonb->>'battle_id',tr
 select is(jsonb_array_length(current_setting('t.invite')::jsonb->'courses'),2,'Invitation snapshots two common courses');
 select is(public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid,current_setting('t.off2')::uuid],6,current_setting('t.key')::uuid,current_setting('t.b')::uuid)->>'battle_id',current_setting('t.battle'),'Creation retry returns same invitation');
 reset role;
+select ok((select private.push_relevant(n) from public.notifications n where event_key='battle_invited:'||current_setting('t.battle')),'Nonfriend challenge is eligible for push');
 select pg_temp.social_login(current_setting('t.b')::uuid);
-select is(jsonb_array_length(public.get_battle_invitations_v1()->'invitations'),1,'Friend receives directed invitation');
+select is(jsonb_array_length(public.get_battle_invitations_v1()->'invitations'),1,'Nonfriend receives directed invitation');
 select is((public.get_battle_invite_preview_v1(current_setting('t.invite')::jsonb->>'invite_token')->>'round_count')::integer,6,'Preview shows count before acceptance');
 select public.friend_action_v1(current_setting('t.a')::uuid,'block');
 select is(jsonb_array_length(public.get_battle_invitations_v1()->'invitations'),0,'Blocking creator hides pending invitations');
@@ -105,6 +105,7 @@ select throws_ok($$select public.accept_battle_v1(current_setting('t.invite')::j
 select public.friend_action_v1(current_setting('t.a')::uuid,'unblock');
 select public.accept_battle_v1(current_setting('t.invite')::jsonb->>'invite_token',gen_random_uuid());
 select is((select state from public.battles where id=current_setting('t.battle')::uuid),'ready','Learner accepts shared-course battle using another department offer without starting lessons');
+select is(public.accept_battle_v1(current_setting('t.invite')::jsonb->>'invite_token',gen_random_uuid())->>'battle_id',current_setting('t.battle'),'Repeated acceptance is safe');
 select public.ready_battle_v1(current_setting('t.battle')::uuid,gen_random_uuid());
 reset role;
 select pg_temp.social_login(current_setting('t.a')::uuid);
@@ -112,8 +113,8 @@ select set_config('t.scheduled',public.ready_battle_v1(current_setting('t.battle
 select is(current_setting('t.scheduled')::jsonb->>'state','countdown','Both ready schedules scoped match');
 select ok(current_setting('t.scheduled')::jsonb->'current_question'='null'::jsonb,'Future prompts stay hidden');
 reset role;
-select is((select count(*)::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),9,'Requested total is scheduled');
-select is((select count(*)::integer from (select q.course_id,count(*) from public.battle_questions bq join public.question_versions v on v.id=bq.question_version_id join public.questions q on q.id=v.question_id where bq.battle_id=current_setting('t.battle')::uuid group by q.course_id having count(*)=3)x),3,'Question split is balanced across courses');
+select is((select count(*)::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),6,'Requested total is scheduled');
+select is((select count(*)::integer from (select q.course_id,count(*) from public.battle_questions bq join public.question_versions v on v.id=bq.question_version_id join public.questions q on q.id=v.question_id where bq.battle_id=current_setting('t.battle')::uuid group by q.course_id having count(*)=3)x),2,'Question split is balanced across courses');
 select ok((select bool_and(extract(epoch from(deadline-opened_at)) in(5,8,10,12,15)) from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Each question has approved duration');
 select ok((select bool_and(reading_at=prior_deadline) from (select reading_at,lag(deadline) over(order by position) prior_deadline from public.battle_questions where battle_id=current_setting('t.battle')::uuid)x where prior_deadline is not null),'Variable-duration rounds are contiguous');
 select is((select extract(epoch from(b.ends_at-b.starts_at))::integer from public.battles b where id=current_setting('t.battle')::uuid),(select sum(extract(epoch from(deadline-reading_at)))::integer from public.battle_questions where battle_id=current_setting('t.battle')::uuid),'Battle end is the sum of actual question durations');
