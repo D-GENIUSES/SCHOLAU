@@ -76,7 +76,8 @@
 .header-account { display: flex; align-items: center; gap: 8px; }
 .notification-button { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #0866e8; background: #eff6ff; }
 .notification-button:hover { background: #eaf4ff; }
-.notification-dot { position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: #168cff; border: 2px solid white; }
+.notification-bell { width: 21px; height: 21px; stroke-width: 2; fill: #8492a6; color: #fff; }
+.notification-count { position: absolute; top: 3px; right: 1px; display: inline-flex; min-width: 17px; height: 17px; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid #fff; border-radius: 999px; background: #e53945; color: #fff; font-size: 9px; font-weight: 750; line-height: 1; font-variant-numeric: tabular-nums; }
 .account-avatar { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #d3e6fc; background: #eaf4ff; color: #0066d6; font-weight: 700; font-size: 13px; }
 .guest-label { font-size: 12px; color: #587088; }
 .tablet-nav { display: none; align-items: center; gap: 16px; font-size: 12px; font-weight: 600; color: #587088; }
@@ -669,3 +670,4 @@ html.native-app-interactions [contenteditable]:not([contenteditable="false"]) * 
 html.native-app-interactions img {
   -webkit-user-drag: none;
 }
+
