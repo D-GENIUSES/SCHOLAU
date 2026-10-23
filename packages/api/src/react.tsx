@@ -267,6 +267,14 @@ export function useMarkNotificationRead() {
   });
 }
 
+export function useClearNotifications() {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return usePlainMutation(api.clearNotifications, {
+    onSuccess: () => void invalidate(qc, qk.notifications(), qk.home()),
+  });
+}
+
 /* ------------------------------------------------------------------------------------------------ */
 /* Battles                                                                                          */
 /* ------------------------------------------------------------------------------------------------ */

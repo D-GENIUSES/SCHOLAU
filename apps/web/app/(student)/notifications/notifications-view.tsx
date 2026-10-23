@@ -2,11 +2,12 @@
 
 import { Bell, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import type { Notification } from "@scholau/api";
-import { useMarkNotificationRead, useNotifications } from "@scholau/api/react";
+import { useClearNotifications, useMarkNotificationRead, useNotifications } from "@scholau/api/react";
 import { formatDateTime, formatRelative } from "@scholau/core";
 import { Button } from "@/components/ui/button";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { cn } from "@/lib/utils";
 import { InvitationsPanel } from "@/components/battle/invitations-panel";
@@ -20,22 +21,22 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
   const target = internalTarget(item.safe_target);
   const content = (
     <>
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white"><Bell className="size-5" aria-hidden /></span>
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white"><Bell className="size-4" aria-hidden /></span>
       <span className="min-w-0 flex-1">
-        <span className={cn("block text-ink", unread && "font-semibold")}>{item.body}</span>
-        <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-sm text-ink-muted">
+        <span className={cn("block truncate text-sm text-ink", unread && "font-semibold")}>{item.body}</span>
+        <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-xs text-ink-muted">
           {formatRelative(item.created_at)}
         </time>
       </span>
-      {unread ? <Badge tone="brand">Unread</Badge> : null}
-      {target ? <ChevronRight className="size-5 shrink-0 text-ink-muted" aria-hidden /> : null}
+      {unread ? <span className="size-2 shrink-0 rounded-full bg-brand-primary" aria-label="Unread" /> : null}
+      {target ? <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden /> : null}
     </>
   );
-  const className = cn("flex w-full items-center gap-3 px-4 py-3 text-left", unread && "border-l-4 border-blue-600 bg-blue-50");
+  const className = cn("flex w-full items-center gap-2.5 px-3 py-2 text-left", unread && "border-l-2 border-blue-600 bg-blue-50");
 
   if (!target && !unread) return <div className={className}>{content}</div>;
   return (
-    <button type="button" className={cn(className, "min-h-14 hover:bg-surface-page")} onClick={() => onOpen(item)}>
+    <button type="button" className={cn(className, "min-h-0 hover:bg-surface-page")} onClick={() => onOpen(item)}>
       {content}
       {!target ? <span className="sr-only">Mark as read</span> : null}
     </button>
@@ -46,6 +47,17 @@ export function NotificationsView() {
   const router = useRouter();
   const notifications = useNotifications();
   const markRead = useMarkNotificationRead();
+  const clear = useClearNotifications();
+
+  useEffect(() => {
+    const nextExpiry = notifications.data?.reduce((soonest, item) => {
+      const expiry = Date.parse(item.expires_at);
+      return expiry < soonest ? expiry : soonest;
+    }, Number.POSITIVE_INFINITY);
+    if (!nextExpiry || !Number.isFinite(nextExpiry)) return;
+    const timer = window.setTimeout(() => void notifications.refetch(), Math.max(0, nextExpiry - Date.now() + 250));
+    return () => window.clearTimeout(timer);
+  }, [notifications.data, notifications.refetch]);
 
   if (notifications.isPending) return <LoadingState variant="notifications" label="Loading notifications…" />;
   if (notifications.isError) return <ErrorState error={notifications.error} onRetry={() => void notifications.refetch()} />;
@@ -64,15 +76,13 @@ export function NotificationsView() {
       <PageHeader
         title="Notifications"
         description={unreadCount > 0 ? `${unreadCount} unread` : undefined}
-        actions={
-          unreadCount > 0 ? (
-            <Button variant="outline" size="sm" loading={markRead.isPending && markRead.variables?.all === true} onClick={() => markRead.mutate({ all: true })}>
-              Mark all as read
-            </Button>
-          ) : null
-        }
+        actions={items.length > 0 ? <div className="flex flex-wrap gap-2">
+          {unreadCount > 0 ? <Button variant="outline" size="sm" loading={markRead.isPending && markRead.variables?.all === true} onClick={() => markRead.mutate({ all: true })}>Mark all as read</Button> : null}
+          <Button variant="outline" size="sm" loading={clear.isPending} onClick={() => clear.mutate()}>Clear notifications</Button>
+        </div> : null}
       />
       <InlineError error={markRead.error} className="mb-4" />
+      <InlineError error={clear.error} className="mb-4" />
       <div className="mb-4"><InvitationsPanel /></div>
       {items.length === 0 ? (
         <EmptyState icon={<Bell className="size-6" />} title="No notifications yet" description="Updates about your account and activity will appear here." />
