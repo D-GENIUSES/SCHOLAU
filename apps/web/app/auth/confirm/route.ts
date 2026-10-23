@@ -12,7 +12,7 @@ function isOtpType(value: string | null): value is EmailOtpType {
 }
 
 function redirect(request: NextRequest, path: string) {
-  const response = NextResponse.redirect(new URL(path, request.url), 303);
+  const response = NextResponse.redirect(new URL(path, request.url).toString(), 303);
   response.headers.set("Cache-Control", "private, no-store");
   response.headers.set("Referrer-Policy", "no-referrer");
   return response;
