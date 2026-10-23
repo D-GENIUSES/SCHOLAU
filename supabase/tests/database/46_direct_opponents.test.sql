@@ -20,6 +20,17 @@ select x.id,x.course_id,o.university_id,o.department_id,o.level_id,o.semester_id
 from public.course_offerings o cross join (values(current_setting('t.off2')::uuid,current_setting('t.course2')::uuid),(current_setting('t.off3')::uuid,current_setting('t.course3')::uuid))x(id,course_id)
 where o.id='20000000-0000-4000-8000-000000000002';
 insert into public.enrollments(user_id,offering_id) select u,o from unnest(array[current_setting('t.a')::uuid,current_setting('t.b')::uuid])u cross join unnest(array[current_setting('t.off2')::uuid,current_setting('t.off3')::uuid])o on conflict do nothing;
+-- Put the second student in another department's offer for the same course.
+select set_config('t.alt_off2',gen_random_uuid()::text,true);
+insert into public.course_offerings(id,course_id,university_id,department_id,level_id,semester_id,status)
+select current_setting('t.alt_off2')::uuid,o.course_id,o.university_id,
+  (select d.id from public.departments d where d.university_id=o.university_id and d.id<>o.department_id limit 1),
+  o.level_id,o.semester_id,'published'
+from public.course_offerings o where o.id=current_setting('t.off2')::uuid
+  and exists(select 1 from public.departments d where d.university_id=o.university_id and d.id<>o.department_id);
+update public.enrollments set offering_id=current_setting('t.alt_off2')::uuid
+where user_id=current_setting('t.b')::uuid and offering_id=current_setting('t.off2')::uuid
+  and exists(select 1 from public.course_offerings where id=current_setting('t.alt_off2')::uuid);
 
 select ok(not has_function_privilege('anon','public.get_friends_v1()','execute'),'Guests cannot access friends');
 select ok(not has_function_privilege('anon','public.create_scoped_battle_v1(uuid[],integer,uuid,uuid)','execute'),'Guests cannot create scoped battles');
@@ -39,7 +50,7 @@ select throws_ok($$select public.set_friend_username_v1('battler_a')$$,'PT422',n
 select is((public.get_friends_v1()->'people'->0->>'incoming'),'true','Recipient sees incoming request');
 select public.friend_action_v1(current_setting('t.a')::uuid,'accept');
 select is((public.friend_action_v1(current_setting('t.a')::uuid,'accept')->'people'->0->>'state'),'accepted','Acceptance is retry-safe');
-select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.a')::uuid)->'courses'),3,'Setup shows all shared courses');
+select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.b')::uuid)->'courses'),3,'Setup shows all shared courses across different departments');
 reset role;
 select pg_temp.social_login(current_setting('t.a')::uuid);
 select throws_ok($$select public.create_scoped_battle_v1(array[current_setting('t.off2')::uuid],5,gen_random_uuid(),current_setting('t.b')::uuid)$$,'PT404',null,'Empty course bank blocks creation');
@@ -70,7 +81,7 @@ select pg_temp.social_seed(current_setting('t.course3')::uuid);
 select pg_temp.social_login(current_setting('t.a')::uuid);
 -- Nonfriends can challenge each other; identity editing is unrelated to battle creation.
 select public.friend_action_v1(current_setting('t.b')::uuid,'remove');
-select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.b')::uuid)->'courses'),3,'Nonfriend opponent shares enrolled courses');
+select is(jsonb_array_length(public.get_battle_setup_v1(current_setting('t.a')::uuid)->'courses'),3,'Opponent sees common courses across departments');
 select throws_ok($$select public.get_battle_setup_v1(current_setting('t.a')::uuid)$$,'PT403',null,'Self challenge is rejected');
 select public.friend_action_v1(current_setting('t.b')::uuid,'block');
 select throws_ok($$select public.get_battle_setup_v1(current_setting('t.b')::uuid)$$,'PT403',null,'Blocked opponent setup is rejected');
