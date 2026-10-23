@@ -5,12 +5,13 @@ import { COPY, formatStreak, formatXp } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/misc";
+import { StreakShare } from "@/components/home/streak-share";
 
 export function StatsPanel({ summary }: { summary: Pick<HomeSummary, "streak" | "xp_total"> }) {
   return (
     <section aria-label="Your progress" className="home-stats">
       <div className="home-stat"><Star className="stat-star" size={21} aria-hidden /><div><strong>{formatXp(summary.xp_total)}</strong><small>Total XP</small></div></div>
-      <div className="home-stat"><Flame className="stat-flame" size={21} aria-hidden /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div></div>
+      <div className="home-stat"><Flame className="stat-flame" size={21} aria-hidden /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div><StreakShare days={summary.streak.current} /></div>
     </section>
   );
 }
