@@ -310,6 +310,10 @@ export interface NotificationReadResult extends Envelope {
   unread: number;
 }
 
+export interface NotificationClearResult extends Envelope {
+  deleted: number;
+}
+
 export interface Notification {
   id: Uuid;
   kind: string;
@@ -317,6 +321,7 @@ export interface Notification {
   safe_target: string | null;
   read_at: IsoDateTime | null;
   created_at: IsoDateTime;
+  expires_at: IsoDateTime;
 }
 
 /* ----------------------------------------------------------------------------------------------- */
