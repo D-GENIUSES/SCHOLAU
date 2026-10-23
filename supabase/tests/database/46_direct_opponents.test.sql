@@ -31,6 +31,8 @@ from public.course_offerings o where o.id=current_setting('t.off2')::uuid
 update public.enrollments set offering_id=current_setting('t.alt_off2')::uuid
 where user_id=current_setting('t.b')::uuid and offering_id=current_setting('t.off2')::uuid
   and exists(select 1 from public.course_offerings where id=current_setting('t.alt_off2')::uuid);
+-- The invited learner has a shared department course, but has not started any lessons.
+delete from public.enrollments where user_id=current_setting('t.b')::uuid and offering_id=current_setting('t.off3')::uuid;
 
 select ok(not has_function_privilege('anon','public.get_friends_v1()','execute'),'Guests cannot access friends');
 select ok(not has_function_privilege('anon','public.create_scoped_battle_v1(uuid[],integer,uuid,uuid)','execute'),'Guests cannot create scoped battles');
@@ -88,20 +90,21 @@ select throws_ok($$select public.get_battle_setup_v1(current_setting('t.b')::uui
 select throws_ok($$select public.create_scoped_battle_v1(array[current_setting('t.off2')::uuid],5,gen_random_uuid(),current_setting('t.b')::uuid)$$,'PT403',null,'Blocked direct invitation rejected');
 select public.friend_action_v1(current_setting('t.b')::uuid,'unblock');
 select set_config('t.key',gen_random_uuid()::text,true);
-select set_config('t.invite',public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid,current_setting('t.off2')::uuid,current_setting('t.off3')::uuid],9,current_setting('t.key')::uuid,current_setting('t.b')::uuid)::text,true);
+select set_config('t.invite',public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid,current_setting('t.off2')::uuid],6,current_setting('t.key')::uuid,current_setting('t.b')::uuid)::text,true);
 select set_config('t.battle',current_setting('t.invite')::jsonb->>'battle_id',true);
-select is(jsonb_array_length(current_setting('t.invite')::jsonb->'courses'),3,'Invitation snapshots three courses');
-select is(public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid,current_setting('t.off2')::uuid,current_setting('t.off3')::uuid],9,current_setting('t.key')::uuid,current_setting('t.b')::uuid)->>'battle_id',current_setting('t.battle'),'Creation retry returns same invitation');
+select is(jsonb_array_length(current_setting('t.invite')::jsonb->'courses'),2,'Invitation snapshots two common courses');
+select is(public.create_scoped_battle_v1(array['20000000-0000-4000-8000-000000000002'::uuid,current_setting('t.off2')::uuid],6,current_setting('t.key')::uuid,current_setting('t.b')::uuid)->>'battle_id',current_setting('t.battle'),'Creation retry returns same invitation');
 reset role;
 select pg_temp.social_login(current_setting('t.b')::uuid);
 select is(jsonb_array_length(public.get_battle_invitations_v1()->'invitations'),1,'Friend receives directed invitation');
-select is((public.get_battle_invite_preview_v1(current_setting('t.invite')::jsonb->>'invite_token')->>'round_count')::integer,9,'Preview shows count before acceptance');
+select is((public.get_battle_invite_preview_v1(current_setting('t.invite')::jsonb->>'invite_token')->>'round_count')::integer,6,'Preview shows count before acceptance');
 select public.friend_action_v1(current_setting('t.a')::uuid,'block');
 select is(jsonb_array_length(public.get_battle_invitations_v1()->'invitations'),0,'Blocking creator hides pending invitations');
 select throws_ok($$select public.get_battle_invite_preview_v1(current_setting('t.invite')::jsonb->>'invite_token')$$,'PT403',null,'Blocking creator prevents invitation preview');
 select throws_ok($$select public.accept_battle_v1(current_setting('t.invite')::jsonb->>'invite_token',gen_random_uuid())$$,'PT403',null,'Blocking creator prevents acceptance');
 select public.friend_action_v1(current_setting('t.a')::uuid,'unblock');
 select public.accept_battle_v1(current_setting('t.invite')::jsonb->>'invite_token',gen_random_uuid());
+select is((select state from public.battles where id=current_setting('t.battle')::uuid),'ready','Learner accepts shared-course battle using another department offer without starting lessons');
 select public.ready_battle_v1(current_setting('t.battle')::uuid,gen_random_uuid());
 reset role;
 select pg_temp.social_login(current_setting('t.a')::uuid);
