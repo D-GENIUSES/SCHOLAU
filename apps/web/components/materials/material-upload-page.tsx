@@ -110,11 +110,7 @@ export function MaterialUploadPage({
 
   return (
     <div className="mx-auto max-w-2xl">
-      <PageHeader
-        eyebrow={eyebrow}
-        title="Upload course materials"
-        description="Upload PDFs, Word, PowerPoint, text, or images. Files go to Cloudflare R2; Gemini converts them into draft lessons, flashcards, and questions (structured for the app). An administrator publishes after review."
-      />
+      <PageHeader eyebrow={eyebrow} title="Upload course materials" />
       <Card>
         <CardHeader>
           <CardTitle>Source file</CardTitle>
