@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
 import { BlockPreview } from "@/components/admin/block-preview";
 import { courseMaterialBundleSchema, type CourseMaterialBundle } from "@/lib/course-material-schema";
 
@@ -47,7 +47,7 @@ export default function ContentSyncPage() {
   }
 
   return <>
-    <PageHeader title="Synchronize course learning" description="Turn source material into explained lessons, worked examples and practice." />
+    <AdminPageHeader title="Course materials" description="Turn source material into explained lessons, worked examples, and practice." />
     <div className="flex max-w-2xl flex-col gap-5">
       <p>Upload one generated course bundle. Review the explanations, examples and practice checks below. Validate the sources, save drafts, then publish when the teaching content and assessment answers are ready.</p>
       <label className="flex flex-col gap-2 font-semibold">Course bundle (JSON)

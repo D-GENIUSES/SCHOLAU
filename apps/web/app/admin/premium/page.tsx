@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { Input, Textarea } from "@/components/ui/input";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
+import { Badge } from "@/components/ui/misc";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
 type EntitlementStatus = "active" | "expired" | "revoked" | "scheduled";
@@ -208,7 +209,7 @@ function EntitlementList() {
 export default function AdminPremiumPage() {
   return (
     <>
-      <PageHeader eyebrow="Admin" title="Premium" description="Grant and revoke premium entitlements." />
+      <AdminPageHeader title="Premium" description="Grant and revoke premium entitlements." />
       <Alert tone="info" title="Premium never gates battles or battle XP." className="mb-6">
         Battles stay unlimited for everyone, and battle XP follows the same accuracy rewards and daily limits regardless of premium.
       </Alert>

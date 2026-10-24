@@ -9,7 +9,8 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input, NativeSelect } from "@/components/ui/input";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
+import { Badge } from "@/components/ui/misc";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 import { DataTable } from "@/components/admin/data-table";
@@ -36,7 +37,7 @@ export function AdminLecturerApplications() {
   const open=async(id:string)=>{const gen=++detailGeneration.current;setDetailLoading(true);setSelected(null);setError(null);setNotice(null);try{const api=lecturerApi(getBrowserSupabase());const [r,o]=await Promise.all([api.detail(id),api.offerings()]);if(gen!==detailGeneration.current)return;setSelected(r.application);setOfferings(o.items);setOfferingIds(r.application.assigned_offering_ids);setDecision('approved');setMessage('');setNote('');requestKey.current=null}catch(e){if(gen===detailGeneration.current)setError(registrationError(e))}finally{if(gen===detailGeneration.current)setDetailLoading(false)}};
   const submit=async(e:React.FormEvent)=>{e.preventDefault();if(!selected||busy)return;if(selected.status==='pending'&&decision==='approved'&&!selected.email_verified){setError('The applicant must verify their email before approval.');return}if(!window.confirm(selected.status==='approved'?'Save these course assignments?':decision==='approved'?'Approve this application and activate lecturer access?':`Send this ${decision==='rejected'?'rejection':'request for changes'} to the applicant?`))return;setBusy(true);setError(null);requestKey.current??=newRequestKey();try{const api=lecturerApi(getBrowserSupabase());const r=selected.status==='approved'?await api.assign(selected.id,offeringIds,selected.revision,requestKey.current):await api.review({id:selected.id,decision,message,internalNote:note,offeringIds,revision:selected.revision,requestKey:requestKey.current});setSelected(r.application);setNotice('Application saved. The applicant sees the updated status when they sign in or refresh.');requestKey.current=null;await load()}catch(e){setError(registrationError(e))}finally{setBusy(false)}};
   return <>
-    <PageHeader eyebrow="People & access" title="Lecturer applications" description={`${pending} pending · Review teaching affiliations before activating lecturer access.`} />
+    <AdminPageHeader title="Lecturer applications" description={`${pending} pending · Review teaching affiliations before activating lecturer access.`} />
     {displayError?<Alert tone="error" role="alert" action={<Button variant="outline" onClick={()=>{void load();if(selected)void open(selected.id)}}>Refresh</Button>}>{displayError}</Alert>:null}
     {notice?<Alert tone="success" role="status">{notice}</Alert>:null}
     <form className="my-5 flex flex-wrap items-end gap-3" onSubmit={e=>{e.preventDefault();setQuery(search.trim());setPage(0);setSelected(null)}}>

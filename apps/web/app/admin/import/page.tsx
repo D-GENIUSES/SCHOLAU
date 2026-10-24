@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/input";
-import { LiveRegion, PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
+import { LiveRegion } from "@/components/ui/misc";
 import { Segmented } from "@/components/ui/segmented";
 
 type Kind = "questions" | "lessons";
@@ -323,7 +324,7 @@ export default function AdminImportPage() {
         Optional battle_seconds accepts 5, 8, 10, 12 or 15. Optional battle_reading_seconds accepts 2–12. Automatic suggestions consider difficulty, format and the full question, options and steps.
         Review reading time and plausible distractors before publishing.
       </Alert>
-      <PageHeader eyebrow="Admin" title="Import content" description="Bulk-create draft questions or lessons from a file." />
+      <AdminPageHeader title="Import content" description="Bulk-create draft questions or lessons from a file." />
 
       <Alert tone="info" title="Imports create drafts only" className="mb-6">
         Nothing is published until you review and publish it. Re-importing an existing key replaces its current draft, or

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { requireSession } from "@/lib/session";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { AdminUserDirectory } from "@/components/admin/admin-user-directory";
-import { PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
 import { ServiceUnavailable } from "@/components/service-unavailable";
 
 export const metadata: Metadata = { title: "Users" };
@@ -12,5 +12,10 @@ export default async function AdminUsersPage() {
   if (!session.profile.roles.includes("admin")) return null;
   const { error } = await (await getServerSupabase()).rpc("admin_user_creation_access_v1");
   const enabled = !error && Boolean(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY);
-  return <><PageHeader eyebrow="Administration" title="Users" description="Manage users, add XP points, control account access and assign teaching courses." /><AdminUserDirectory creationEnabled={enabled} /></>;
+  return (
+    <>
+      <AdminPageHeader title="Users" description="Manage accounts, award XP, and assign teaching courses." />
+      <AdminUserDirectory creationEnabled={enabled} />
+    </>
+  );
 }

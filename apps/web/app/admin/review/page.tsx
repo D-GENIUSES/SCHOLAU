@@ -8,10 +8,9 @@ import { useAdminAssessmentVersions, useAdminLessonVersions, useAdminQuestionVer
 import { ASSESSMENT_KIND_LABEL, type ContentStatus, formatDateTime, formatDuration } from "@scholau/core";
 import { type Column, DataTable } from "@/components/admin/data-table";
 import { AssessmentDetail, LessonDetail, QuestionDetail } from "@/components/admin/review-details";
-import { AdminErrorState, CONTENT_STATUSES, FilterSelect, humanize, StatusBadge } from "@/components/admin/shared";
+import { AdminErrorState, AdminPageHeader, CONTENT_STATUSES, FilterSelect, humanize, StatusBadge } from "@/components/admin/shared";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/ui/misc";
 import { Segmented } from "@/components/ui/segmented";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
@@ -224,12 +223,8 @@ function ReviewView() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Admin"
-        title="Review"
-        description="Preview drafts, then publish them. Publishing records you as the reviewer and is permanent for that version."
-      />
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <AdminPageHeader title="Review" description="Preview drafts, then publish. Publishing records you as reviewer and is permanent for that version." />
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-full overflow-x-auto">
           <Segmented name="review-tab" legend="Content type" value={tab} onChange={changeTab} options={TABS} />
         </div>

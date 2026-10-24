@@ -34,7 +34,7 @@ export function DataTable<T>({
           <thead className="bg-surface-page">
             <tr>
               {columns.map((c) => (
-                <th key={c.key} scope="col" className="px-4 py-3 font-semibold whitespace-nowrap text-ink-muted">
+                <th key={c.key} scope="col" className="px-3 py-2 text-xs font-semibold whitespace-nowrap text-ink-muted">
                   {c.header}
                 </th>
               ))}
@@ -45,11 +45,11 @@ export function DataTable<T>({
               <tr key={rowKey(row)} className={cn("border-t border-line align-top", isSelected?.(row) && "bg-surface-tint")}>
                 {columns.map((c, idx) =>
                   idx === 0 ? (
-                    <th key={c.key} scope="row" className={cn("px-4 py-3 text-left font-semibold text-ink", c.className)}>
+                    <th key={c.key} scope="row" className={cn("px-3 py-2 text-left text-sm font-semibold text-ink", c.className)}>
                       {c.cell(row)}
                     </th>
                   ) : (
-                    <td key={c.key} className={cn("px-4 py-3 text-ink", c.className)}>
+                    <td key={c.key} className={cn("px-3 py-2 text-sm text-ink", c.className)}>
                       {c.cell(row)}
                     </td>
                   ),

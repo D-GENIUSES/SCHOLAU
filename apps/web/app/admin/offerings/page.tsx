@@ -15,7 +15,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input, NativeSelect } from "@/components/ui/input";
-import { PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
 const facultyId = (row: AdminOfferingRow) => row.department?.faculty?.id ?? "unassigned-faculty";
@@ -97,7 +97,7 @@ function OfferingsBrowser() {
   ];
 
   return <>
-    <PageHeader eyebrow="Admin" title="Offerings" description="Browse faculties, choose a department, then manage its course offerings." />
+    <AdminPageHeader title="Offerings" description="Browse faculties, choose a department, then manage course offerings." />
     <nav aria-label="Offering hierarchy" className="mb-6"><ol className="flex flex-wrap items-center gap-2 text-sm">
       <li>{faculty ? <Link href={destination()} className="font-semibold text-brand-primary underline-offset-4 hover:underline">Faculties</Link> : <span aria-current="page" className="font-semibold">Faculties</span>}</li>
       {faculty && <><li aria-hidden><ChevronRight className="size-4 text-ink-muted" /></li><li>{department ? <Link href={destination(faculty)} className="font-semibold text-brand-primary underline-offset-4 hover:underline">{selectedFaculty?.name ?? "Faculty"}</Link> : <span aria-current="page">{selectedFaculty?.name ?? "Faculty"}</span>}</li></>}

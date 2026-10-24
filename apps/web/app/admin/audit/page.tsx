@@ -7,7 +7,7 @@ import { formatDateTime } from "@scholau/core";
 import { type Column, DataTable } from "@/components/admin/data-table";
 import { AdminErrorState, CopyableId, FilterSelect, humanize } from "@/components/admin/shared";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
 const ENTITY_TYPES = [
@@ -57,7 +57,7 @@ export default function AdminAuditPage() {
 
   return (
     <>
-      <PageHeader eyebrow="Admin" title="Audit log" description="Every admin action and automated entitlement change, newest first." />
+      <AdminPageHeader title="Audit log" description="Every admin action and automated entitlement change, newest first." />
       <div className="mb-6">
         <FilterSelect label="Entity type" value={filter} onChange={setFilter} options={FILTERS} className="w-full sm:w-72" />
       </div>

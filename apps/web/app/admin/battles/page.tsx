@@ -16,7 +16,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ConfirmDialog } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
 import { Input, Textarea } from "@/components/ui/input";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
+import { Badge } from "@/components/ui/misc";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
 type Filter = BattleState | "all";
@@ -174,7 +175,7 @@ export default function AdminBattlesPage() {
 
   return (
     <>
-      <PageHeader eyebrow="Admin" title="Battles" description="Inspect recent battles and correct results." />
+      <AdminPageHeader title="Battles" description="Inspect recent battles and correct results." />
       <Alert tone="info" className="mb-6">
         {VOID_EXPLANATION}
       </Alert>

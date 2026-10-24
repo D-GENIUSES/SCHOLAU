@@ -15,7 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/input";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { AdminPageHeader } from "@/components/admin/shared";
+import { Badge } from "@/components/ui/misc";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 
 type Filter = ReportState | "all";
@@ -176,7 +177,7 @@ export default function AdminReportsPage() {
 
   return (
     <>
-      <PageHeader eyebrow="Admin" title="Reports" description="Content and technical problems reported by students." />
+      <AdminPageHeader title="Reports" description="Content and technical problems reported by students." />
       <div className="mb-6">
         <FilterSelect label="State" value={filter} onChange={setFilter} options={FILTERS} />
       </div>

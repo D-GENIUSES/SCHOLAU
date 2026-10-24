@@ -121,10 +121,22 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
   const filtered = available.filter(o => `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()));
 
   return <>
-    <details className="mb-6 rounded-card border border-line bg-surface-card p-4"><summary className="cursor-pointer font-semibold">Add a student or lecturer</summary><div className="mt-4"><AdminCreateUser enabled={creationEnabled} onCreated={() => { void load(); }} /></div></details>
-    {notice && <Alert tone="success" role="status">{notice}</Alert>}
-    {error && <Alert tone="error" role="alert" action={<Button variant="outline" onClick={() => void load()}>Retry</Button>}>{error}</Alert>}
-    <form className="my-5 flex flex-wrap items-end gap-3" onSubmit={event => { event.preventDefault(); setQuery(search.trim()); setPage(0); }}>
+    <details className="mb-4 rounded-control border border-line bg-surface-card p-3 shadow-card">
+      <summary className="cursor-pointer text-sm font-semibold">Add a student or lecturer</summary>
+      <div className="mt-3 border-t border-line pt-3">
+        <AdminCreateUser enabled={creationEnabled} onCreated={() => { void load(); }} />
+      </div>
+    </details>
+    {notice ? <Alert tone="success" role="status" className="mb-3">{notice}</Alert> : null}
+    {error ? (
+      <Alert tone="error" role="alert" className="mb-3" action={<Button variant="outline" onClick={() => void load()}>Retry</Button>}>
+        {error}
+      </Alert>
+    ) : null}
+    <form
+      className="mb-4 flex flex-wrap items-end gap-2 rounded-control border border-line bg-surface-page/70 p-3"
+      onSubmit={event => { event.preventDefault(); setQuery(search.trim()); setPage(0); }}
+    >
       <Field id="users-search" label="Search users"><Input value={search} maxLength={200} placeholder="Name or email" onChange={e => setSearch(e.target.value)} /></Field>
       <Field id="users-type" label="Account type"><NativeSelect value={category} onChange={e => { setCategory(e.target.value); setPage(0); }}><option value="">All users</option><option value="student">Students</option><option value="lecturer">Lecturers and applicants</option><option value="other">Other accounts</option></NativeSelect></Field>
       <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All statuses</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
@@ -137,7 +149,13 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       { key: "status", header: "Status", cell: user => <><Badge tone={user.deactivated_at ? "warning" : "success"}>{user.deactivated_at ? "Frozen" : "Active"}</Badge>{user.application_status && <p className="mt-1 text-xs text-ink-muted">Application: {user.application_status.replaceAll("_", " ")}</p>}</> },
       { key: "action", header: "Actions", action: true, cell: user => <Button variant="outline" size="sm" onClick={() => void manage(user.id)}>Manage</Button> },
     ]} /> : <EmptyState title="No users found" description="Try a different name, email or filter." />}
-    <div className="my-4 flex flex-wrap items-center justify-between gap-3 text-sm"><p>{total} users · Page {page + 1} of {Math.max(1, Math.ceil(total / 20))}</p><div className="flex gap-2"><Button variant="outline" size="sm" disabled={page === 0 || loading} onClick={() => setPage(p => p - 1)}>Previous</Button><Button variant="outline" size="sm" disabled={(page + 1) * 20 >= total || loading} onClick={() => setPage(p => p + 1)}>Next</Button></div></div>
+    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+      <p className="text-ink-muted">{total} users · Page {page + 1} of {Math.max(1, Math.ceil(total / 20))}</p>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" disabled={page === 0 || loading} onClick={() => setPage(p => p - 1)}>Previous</Button>
+        <Button variant="outline" size="sm" disabled={(page + 1) * 20 >= total || loading} onClick={() => setPage(p => p + 1)}>Next</Button>
+      </div>
+    </div>
 
     <Dialog open={open} onOpenChange={value => { if (busyRef.current) return; setOpen(value); if (!value) detailGeneration.current++; }}>
       <DialogContent className="max-w-2xl" hideClose={busy}>
