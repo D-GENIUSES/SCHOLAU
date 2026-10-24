@@ -32,7 +32,7 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
           },
         }),
         defaultOptions: {
-          queries: { staleTime: 15_000, refetchOnWindowFocus: true },
+          queries: { staleTime: 60_000, gcTime: 10 * 60_000 },
         },
       }),
   );

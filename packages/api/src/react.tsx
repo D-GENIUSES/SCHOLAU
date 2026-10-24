@@ -8,7 +8,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { createContext, type ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { isLiveBattleState, type LeaderboardScope } from "@scholau/core";
 import { newRequestKey, type ScholauApi } from "./client";
 import { ScholauApiError } from "./errors";
@@ -326,11 +326,12 @@ export function useBattleSignals(battleId: string | undefined): ChannelStatus {
   return status;
 }
 
-/** Subscribes to `user:<id>` for match/attempt signals; refetches the affected authoritative state. */
+/** Subscribes to `user:<id>` for match, attempt and inbox signals; refetches authoritative state. */
 export function useUserSignals(userId: string | undefined): ChannelStatus {
   const api = useScholauApi();
   const qc = useQueryClient();
   const [status, setStatus] = useState<ChannelStatus>("connecting");
+  const inboxTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (!userId) return;
     const sub = subscribeToSignals(api.supabase, topics.user(userId), {
@@ -344,10 +345,21 @@ export function useUserSignals(userId: string | undefined): ChannelStatus {
         if (event === "battle_matched" || event === "resync") void qc.invalidateQueries({ queryKey: qk.liveBattle() });
         if (event === "attempt_finalized" || event === "resync") void qc.invalidateQueries({ queryKey: ["scholau", "attempt"] });
         if (event === "attempt_finalized" || event === "resync") void invalidate(qc, ["scholau", "xp"], qk.profile(), qk.home(), ["scholau", "leaderboard"]);
+        if (event === "notification" || event === "resync") {
+          // A fan-out can emit many signals; one refetch updates the bell and the inbox.
+          if (inboxTimer.current) clearTimeout(inboxTimer.current);
+          inboxTimer.current = setTimeout(() => {
+            inboxTimer.current = null;
+            void invalidate(qc, qk.notifications(), qk.home());
+          }, event === "resync" ? 0 : 80);
+        }
       },
       onStatus: setStatus,
     });
-    return () => sub.unsubscribe();
+    return () => {
+      sub.unsubscribe();
+      if (inboxTimer.current) clearTimeout(inboxTimer.current);
+    };
   }, [api, qc, userId]);
   return status;
 }
@@ -568,7 +580,7 @@ export type { ChannelStatus };
 
 export function useXpProgress() {
   const api = useScholauApi();
-  return useQuery({ queryKey: ["scholau", "xp"], queryFn: api.getXpProgress, retry: shouldRetry, staleTime: 0 });
+  return useQuery({ queryKey: ["scholau", "xp"], queryFn: api.getXpProgress, retry: shouldRetry, staleTime: 30_000 });
 }
 
 export function useStartTopicReview() {

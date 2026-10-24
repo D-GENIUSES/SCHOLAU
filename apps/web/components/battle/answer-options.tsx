@@ -3,12 +3,13 @@
 import type { BattleCurrentQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
 
-export function BattleAnswerOptions({ question, selected, disabled, received, onSelect }: {
+export function BattleAnswerOptions({ question, selected, disabled, received, onSelect, labelledBy }: {
   question: BattleCurrentQuestion;
   selected: string | null;
   disabled: boolean;
   received: boolean;
   onSelect: (id: string) => void;
+  labelledBy?: string;
 }) {
   const worked = question.answer_format === "worked_solution";
   return (
@@ -18,6 +19,7 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
       <div className={worked ? "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
         {question.options.map((option, index) => {
           const checked = selected === option.id;
+          const letter = String.fromCharCode(65 + index);
           return (
             <label key={option.id} className={cn(
               "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
@@ -44,5 +46,17 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
         })}
       </div>
     </fieldset>
+  );
+}
+
+function ChoiceRadio({ checked, className }: { checked: boolean; className?: string }) {
+  return (
+    <span className={cn(
+      "flex size-5 shrink-0 items-center justify-center rounded-full border-2",
+      checked ? "border-[#0875e4] bg-[#0875e4]" : "border-[#d3dbe4] bg-white",
+      className,
+    )} aria-hidden>
+      {checked ? <span className="size-2 rounded-full bg-white" /> : null}
+    </span>
   );
 }
