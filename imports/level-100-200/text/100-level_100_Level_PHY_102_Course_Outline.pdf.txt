@@ -1,0 +1,46 @@
+
+
+--- page 1 ---
+PHY 102 Course Outline  
+1. Introduction to Semiconductors 
+- Definition of semiconductors 
+- Intrinsic and extrinsic semiconductors 
+- Doping 
+- p-type and n-type materials 
+- p-n junctions 
+2. Electrostatics 
+- Electric charge 
+- Electric field 
+- Electric field strength/intensity 
+- Coulomb’s Law 
+- Electric field lines 
+3. Capacitors and Dielectrics 
+- Capacitance 
+- Energy stored in a capacitor 
+- Capacitors in series and parallel 
+- Dielectrics 
+- Drift velocity 
+4. Ohm’s Law and Resistance 
+- Ohm’s Law (V = IR) 
+- Resistors in series 
+- Resistors in parallel 
+5. Current Electricity 
+- Electric current 
+- Electromotive force (EMF) 
+- Internal resistance 
+- Cells in series and parallel 
+
+--- page 2 ---
+6. Alternating Current (AC) 
+- AC voltage and current 
+- Frequency and angular frequency 
+- RMS values 
+7. Components in AC Circuits 
+- Resistors (R) 
+- Capacitors (C) 
+- Inductors (L) 
+8. Special AC Circuits 
+- RC Circuit 
+- RL Circuit 
+- RLC Circuit 
+- Resonance 

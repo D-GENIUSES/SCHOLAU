@@ -1,0 +1,1635 @@
+
+#### 100-level_100_Level_COS_101_Introduction_to_Computing-1.pdf.txt lines=365 ####
+--- page 1 ---
+COS 101
+Introduction to Computing
+Instructors: Anozie G. Onyezewe
+Bunmi J. Bambi (Ph.D)
+Charity Oyewole
+Department of Computer Science, Adeleke University, Ede
+--- page 2 ---
+Outline
+● What is a Computer?
+● History of Computers: A Brief Timeline
+● Characteristics of the computer system
+● Data and Information
+● Functions of Computers
+● Components of a Computer System
+● Types of Computers
+● Concept of Hardware and Software
+● Operating System: Functions, Categories, Types
+● Principles of Networking
+● Overview of the Internet
+2
+--- page 3 ---
+What is a Computer?
+Deﬁnition: A computer is an electronic device that:
+● T akes data as input
+● Processes the data under the control of a program (set of instructions)
+● Produces an output
+● The entire system is called a computer system
+3
+--- page 4 ---
+History of Computers: A Brief Timeline
+Computing Evolution:
+● Born out of a need for efﬁcient number-crunching
+● Punch-card based computers started around the late 19th century
+● Modern smartphones possess more computing power than early
+computers
+4
+--- page 5 ---
+Early Milestones in Computing (1801 - 1937)
+● 1801: Joseph Marie Jacquard’s loom uses punch cards for weaving fabric
+designs
+● 1822: Charles Babbage conceives the ﬁrst steam-driven calculating machine
+(though incomplete)
+● 1890: Herman Hollerith develops a punch card system to calculate the U.S.
+Census
+● 1936: Alan Turing presents the concept of a universal computing machine
+(Turing Machine)
+5
+--- page 6 ---
+Mid-20th Century Developments (1939 - 1958)
+● 1941: Atanasoff and Clifford Berry create a computer with memory for
+simultaneous equation solving
+● 1943-1944: ENIAC, the ﬁrst large-scale digital computer, is built by
+Pennsylvania professors, John Mauchly and J. Presper Eckert
+● 1946: UNIVAC by John Mauchly and J. Presper Eckert becomes the ﬁrst
+commercial computer for government/business use
+● 1953-1958: Grace Hopper develops COBOL, and the integrated circuit
+(computer chip) is invented
+6
+--- page 7 ---
+Personal Computers & Major Inventions (1964 - 1981)
+● 1964: Douglas Engelbart invents the computer mouse and GUI
+● 1969: UNIX operating system developed
+● 1971: Alan Shugart invents the ﬂoppy disk
+● 1975: Paul Allen and Bill Gates write software for the Altair, using BASIC.
+Altair 8080 sparks the personal computer revolution and Microsoft is born
+● 1976: Steve Jobs and Steve Wozniak start Apple Computers on April Fool's
+Day and roll out the  Apple I, the ﬁrst computer with a single-circuit board,
+according to Stanford University
+● 1981: IBM introduces its ﬁrst personal computer using MS-DOS
+7
+--- page 8 ---
+The Internet Era & Modern Computing (1990 - Present)
+● 1990: Tim Berners-Lee invents HTML and the World Wide Web is born
+● 1996: Sergey Brin and Larry Page develop the Google search engine
+● 2016: The ﬁrst reprogrammable quantum computer was created, enabling
+the programming of new algorithms into a single system for the ﬁrst time
+● 2017-Present: DARPA develops Molecular Informatics using molecules as
+computers
+8
+--- page 9 ---
+Generations of Computers
+In summary, there are ﬁve Generations of Computers:
+● First Generation (1940–1956): Vacuum tubes
+● Second Generation (1956–1963): Transistors
+● Third Generation (1964–1971): Integrated circuits
+● Fourth Generation (1971–present): Microprocessors
+● Fifth Generation (present & future): Artiﬁcial intelligence
+9
+--- page 10 ---
+
+#### 100-level_100_Level_COS_102_-_Problem_Solving_CCMAS_Course_Outline_.pdf.txt lines=201 ####
+--- page 1 ---
+COS
+102:
+Problem
+Solving
+(3
+Units
+C:
+LH
+30;
+PH
+45)
+Instructor:
+Anozie
+Onyezewe
+Learning
+Outcomes
+At
+the
+end
+of
+this
+course,
+students
+should
+be
+able
+to:
+1.
+explain
+problem
+solving
+processes;
+2.
+demonstrate
+problem
+solving
+skills;
+3.
+describe
+the
+concept
+of
+algorithms
+development
+and
+properties
+of
+algorithms;
+4.
+discuss
+the
+solution
+techniques
+of
+solving
+problem;
+5.
+solve
+computer
+problems
+using
+algorithms,
+flowcharts,
+pseudocode;
+etc.;
+and
+6.
+solve
+problems
+using
+programming
+language
+using
+C,
+PYTHON,
+etc.
+Course
+Contents
+Introduction
+to
+the
+core
+concepts
+of
+computing.
+Problems
+and
+problem-solving.
+The
+
+#### 100-level_100_Level_WEEK_2_GST112_070834.docx.txt lines=57 ####
+[Normal] WEEK 2:
+[Normal] Concept of Norms and Values; the acceptable norms and values of the major ethnic groups in Nigeria
+[Normal] Concept of Norms and Values
+[Normal] Norms and values are essential aspects of social life that guide behavior and interactions among individuals within a society. They form the foundation of culture, shaping what is considered acceptable or unacceptable within different communities.
+[Normal] 1. Norms
+[Normal] Norms are the established rules or expected behaviors in a society. They are informal guidelines that dictate how people should act in specific situations. Norms can be classified into two types:
+[Normal] Folkways: These are everyday habits and customs that are not strictly enforced. For example, greeting elders in Nigeria with respect.
+[Normal] Mores: These are strongly held norms with moral significance. Violating mores may result in serious consequences, such as public disgrace or legal punishment.
+[Normal] 2. Values
+[Normal] Values are the fundamental beliefs that guide a society’s perception of what is good, desirable, or appropriate. They influence norms and shape the collective conscience of a community. Examples of values include honesty, respect, hard work, and hospitality.
+[Normal] In Nigerian society, norms and values are deeply embedded in the traditions of its various ethnic groups. Below are some of the acceptable norms and values of the major ethnic groups in Nigeria.
+[Normal] Acceptable Norms and Values of Major Ethnic Groups in Nigeria
+[Normal] Nigeria is home to over 250 ethnic groups, but the three major ones are the Hausa-Fulani, Yoruba, and Igbo. Each of these groups has unique cultural norms and values that govern their way of life.
+[Normal] 1. Hausa-Fulani Norms and Values
+[Normal] The Hausa-Fulani ethnic group, mainly found in northern Nigeria, has strong Islamic and traditional influences that shape their norms and values.
+[Normal] Norms
+[Normal] Respect for elders: Young people are expected to show deep respect for their elders through greetings and body language.
+[Normal] Modesty in dressing: Both men and women dress conservatively, with women covering their bodies according to Islamic traditions.
+[Normal] Politeness and humility: Individuals are expected to be polite in speech and behavior.
+[Normal] Purdah system: In some parts of the north, married women live in seclusion and are expected to maintain modesty.
+[Normal] Early marriage: It is common for girls to marry at a young age due to cultural and religious beliefs.
+[Normal] Religious devotion: Islam plays a central role in daily life, influencing prayer, fasting, and social interactions.
+[Normal] Values
+[Normal] Faith (Iman): Religious devotion is a key value among the Hausa-Fulani.
+[Normal] Discipline and self-control: Individuals are expected to live a disciplined life, following religious and societal rules.
+[Normal] Hard work (Aikin yi): Farming and trading are highly valued professions.
+[Normal] Hospitality: Visitors are treated with warmth and generosity.
+[Normal] 2. Yoruba Norms and Values
+[Normal] The Yoruba ethnic group, mainly found in southwestern Nigeria, has a rich culture emphasizing respect, community, and education.
+[Normal] Norms
+[Normal] Greeting with prostration or kneeling: Young men prostrate and young women kneel when greeting elders.
+[Normal] Use of honorific titles: Elders and respected individuals are addressed with titles like "Baba," "Iya," or "Kabiyesi" for kings.
+[Normal] Festival celebrations: Traditional festivals such as the Osun-Osogbo Festival are widely observed.
+[Normal] Polygamy: While less common today, polygamous marriages are still culturally accepted.
+[Normal] Respect for traditional rulers: Kings and chiefs, known as Obas, are highly revered.
+[Normal] Values
+[Normal] Education: The Yoruba emphasize formal education and intellectual excellence.
+[Normal] Respect (Owo): Respect for elders and authority is a fundamental value.
+[Normal] Hard work and entrepreneurship: Many Yoruba people engage in business and skilled professions.
+[Normal] Religious tolerance: The Yoruba are known for embracing Islam, Christianity, and traditional religions peacefully.
+[Normal] Extended family system: Family bonds are strong, and relatives play key roles in decision-making.
+[Normal] 3. Igbo Norms and Values
+[Normal] The Igbo ethnic group, primarily in southeastern Nigeria, is known for its emphasis on entrepreneurship, communal living, and respect for elders.
+[Normal] Norms
+[Normal] Age-grade system: Young people form age groups that contribute to community development.
+[Normal] Respect for elders: Elders are highly respected, and younger people greet them with honor.
+[Normal] Traditional marriage rites: Marriage ceremonies involve payment of the bride price and family introductions.
+[Normal] Title-taking (Chieftaincy titles): Acquiring traditional titles such as "Ozo" or "Ichie" signifies wealth and social status.
+[Normal] Respect for ancestors: Traditional practices include honoring ancestors through ceremonies and festivals.
+[Normal] Values
+[Normal] Hard work and self-reliance: The Igbo strongly believe in individual effort and self-determination.
+[Normal] Entrepreneurship: Business and trade are highly valued, with many Igbo people engaging in commerce.
+[Normal] Community service: Helping the community is seen as a responsibility.
+[Normal] Education: Like the Yoruba, the Igbo place high importance on formal education.
+[Normal] Courage and bravery: Igbo people admire individuals who show resilience and courage in facing challenges.
+[Normal] Conclusion
+[Normal] Norms and values play a crucial role in shaping Nigerian society. Despite cultural differences, common values such as respect, hard work, and communal living unite the various ethnic groups. Understanding these norms and values fosters social harmony and strengthens national unity.
+
+#### 100-level_100_Level_WEEK_3_GST_112.docx.txt lines=49 ####
+[Normal] WEEK 3
+[Normal] TOPIC: The Historical Foundation of Nigerian Culture and Arts in Pre-Colonial Times (People of Southern and Northern Nigeria)
+[Normal] The Historical Foundation of Nigerian Culture and Arts in Pre-Colonial Times
+[Normal] Nigerian culture and arts have deep historical roots dating back thousands of years before the colonial era. The cultural and artistic traditions of pre-colonial Nigeria were shaped by various ethnic groups, kingdoms, and empires that flourished in both the northern and southern regions of the country. These cultures produced remarkable artistic works, social structures, and traditions that influenced their way of life.
+[Normal] 1. The People and Their Civilizations
+[Normal] Nigeria is home to over 250 ethnic groups, but in pre-colonial times, two broad regions—northern and southern Nigeria—had distinct yet interconnected cultural and artistic traditions.
+[Normal] A. The Peoples of Southern Nigeria
+[Normal] The southern part of Nigeria was inhabited by groups such as the Yoruba, Igbo, Edo (Bini), Ijaw, Ibibio, and several others. These societies had well-established kingdoms, city-states, and cultural traditions.
+[Normal] Yoruba Civilization (Ife, Oyo, and Ijebu Kingdoms):
+The Yoruba people of southwestern Nigeria developed one of the most sophisticated artistic traditions in pre-colonial Africa. The ancient city of Ife, believed to be the spiritual center of the Yoruba, was renowned for its naturalistic terracotta and bronze sculptures. These artworks, dating back to the 12th-15th centuries, were highly detailed and showcased the advanced metallurgical skills of the Yoruba people. The Oyo Empire was also a dominant force, known for its military strength, political organization, and artistic expressions in textiles, beadwork, and wood carving.
+[Normal] Benin Kingdom (Edo People):
+The Benin Kingdom (modern-day Edo State) was one of the most advanced pre-colonial African states. It was famous for its highly detailed bronze and ivory carvings, which depicted historical events, rulers, and deities. The Benin Bronzes, which adorned the Oba's palace, were a testament to the kingdom’s artistic excellence and were made using the lost-wax casting technique.
+[Normal] Igbo Societies (Nri Kingdom and Arochukwu Confederacy):
+The Igbo people lived in decentralized communities, but some regions had influential centers like the Nri Kingdom, which emphasized peace, ritual kingship, and art. The Igbo-Ukwu civilization (9th-10th century) produced intricate bronze works that showed a mastery of metalwork. The Arochukwu Confederacy was another powerful political and religious center that played a major role in regional trade.
+[Normal] B. The Peoples of Northern Nigeria
+[Normal] Northern Nigeria was dominated by powerful Hausa city-states, the Kanem-Bornu Empire, and the Fulani people. These societies had well-structured political systems, Islamic influences, and distinct artistic traditions.
+[Normal] Hausa City-States (Kano, Zaria, Katsina, Gobir, etc.):
+The Hausa city-states, which emerged between the 10th and 15th centuries, were significant trade centers along the trans-Saharan trade routes. Their artistic expressions were evident in architecture (notably in Kano’s ancient city walls and mosques), leatherwork, metalwork, and textile production (such as the famous indigo-dyed Kano cloth).
+[Normal] Kanem-Bornu Empire:
+The Kanem-Bornu Empire (9th–19th century), ruled by the Sayfawa dynasty, had strong connections with North Africa and the Arab world. Its artistic traditions included Arabic calligraphy, mosque architecture, and military craftsmanship. The empire was known for its horse-mounted warriors, whose leather armor and weaponry demonstrated advanced metalworking skills.
+[Normal] The Fulani and Islamic Influence:
+The Fulani people, especially during the 19th-century Sokoto Caliphate led by Usman dan Fodio, introduced a strong Islamic influence in northern Nigeria. Calligraphy, mosque architecture, and Quranic manuscript illumination flourished in the region. The Fulani also contributed to Nigeria’s artistic heritage through their distinctive clothing, woven mats, and body art.
+[Normal] 2. Artistic and Cultural Traditions
+[Normal] A. Sculpture and Carving
+[Normal] The Ife and Benin bronzes remain some of the most sophisticated artworks from pre-colonial Africa.
+[Normal] The Nok Culture, one of the earliest known civilizations in Nigeria (900 BCE–200 CE), produced terracotta figurines that depicted humans and animals in stylized forms.
+[Normal] Igbo-Ukwu bronze works showed detailed craftsmanship, suggesting that metal casting was an established practice in ancient Igbo societies.
+[Normal] B. Textiles and Weaving
+[Normal] The Hausa and Yoruba were renowned for textile production, using dyed fabrics and woven materials.
+[Normal] The famous adire cloth of the Yoruba people was made using resist-dye techniques, creating intricate patterns on indigo-dyed fabrics.
+[Normal] Hausa weavers produced elaborately embroidered robes, including the famous Babban Riga and Fula garments.
+[Normal] C. Pottery and Ceramics
+[Normal] The Gwari and Nupe people in the north, as well as the Igbo and Yoruba in the south, were known for pottery-making, producing clay pots, decorative vessels, and ritual objects.
+[Normal] D. Music and Dance
+[Normal] Yoruba talking drums (Dundun) were an essential part of social and religious ceremonies.
+[Normal] Igbo and Efik societies used slit drums and gongs in traditional governance and rituals.
+[Normal] The Hausa and Kanuri people had a rich tradition of using stringed instruments like the Goje (a type of lute) and percussion instruments for storytelling and praise-singing.
+[Normal] E. Architecture
+[Normal] In northern Nigeria, Sudanese and Sahelian architectural styles influenced palace and mosque designs, as seen in the Gobarau Minaret of Katsina and the ancient city walls of Kano.
+[Normal] In southern Nigeria, traditional palaces and shrines, such as the Ooni’s Palace in Ife and the Oba’s Palace in Benin, were adorned with elaborate carvings and relief sculptures.
+[Normal] 3. Socio-Political and Religious Influence on Culture and Arts
+[Normal] Traditional Religion and Art:
+Art was deeply connected to spirituality. Many pre-colonial Nigerian societies created masks, sculptures, and ritual objects used in religious ceremonies, such as the Yoruba Orisha worship and the Igbo Mbari houses dedicated to the gods.
+[Normal] Islamic Influence:
+Northern Nigeria’s artistic heritage was shaped by Islamic calligraphy, geometric designs, and mosque architecture. The spread of Islam also influenced clothing styles and literary traditions.
+[Normal] Trade and Cultural Exchange:
+The trans-Saharan trade routes facilitated the exchange of artistic techniques, materials, and styles between northern Nigeria and North Africa, while coastal trade introduced new influences to southern Nigeria.
+[Normal] Conclusion
+[Normal] The historical foundation of Nigerian culture and arts in pre-colonial times reflects the creativity, sophistication, and diversity of the country’s various ethnic groups. The traditions of sculpture, textiles, music, architecture, and religious artistry not only served aesthetic purposes but also played crucial roles in governance, spirituality, and social organization. These artistic legacies continue to influence modern Nigerian culture, preserving the rich heritage of the past.
+
+#### 100-level_100_Level_NPC_PRACTICE_QUETION.pdf.txt lines=163 ####
+--- page 1 ---
+WEEK 1:THE PEOPLE OF NIGERIA
+1. The estimated population of Nigeria is over _______ people. (A) 100 million (B) 200 million (C) 300
+million (D) 400 million
+2. The number of ethnic groups in Nigeria is approximately _______. (A) 200 (B) 300 (C) 400 (D) 500
+3. Culture refers to the _______ way of life. (A) sum total (B) partial total (C) whole total (D) complete
+total
+4. Which of the following is a characteristic of culture? (A) Dynamic (B) Static (C) Relative (D) Absolute
+5. What are the two broad categories of culture? (A) Tangible and intangible (B) Material and non-
+material (C) Physical and metaphysical (D) Real and abstract
+6.What is the main factor that determines the culture of a society? (A) Religion (B) Language (C)
+Environment (D) History
+7. Which of the following is a function of culture? (A) To promote social change (B) To preserve social
+order (C) To promote individualism (D) To preserve tradition
+8. What is the term for the process of learning culture? (A) Socialization (B) Enculturation (C)
+Acculturation (D) Culturalization
+9. Which of the following is a type of culture? (A) Material culture (B) Non-material culture (C) Physical
+culture (D) Metaphysical culture
+10. What is the term for the study of culture? (A) Anthropology (B) Sociology (C) Psychology (D) History
+WEEK 2:THE PEOPLE OF SOUTHERN NIGERIA
+1. The Yoruba people are found mainly in _______. (A) Western Nigeria (B) Eastern Nigeria (C) Northern
+Nigeria (D) Southern Nigeria
+2. The origin of the Yoruba people can be traced to _______. (A) Egypt (B) Mecca (C) Ile-Ife (D) Oke
+Oramfe
+3. The leader who led the Yoruba to Ile-Ife is _______. (A) Oduduwa (B) Obatala (C) Oranmiyan (D) Orisa
+Alase
+--- page 2 ---
+4. The socio-political organization of the Yoruba is headed by the _______. (A) Alaafin (B) Oyomesi (C)
+Ogboni (D) Bashorun
+5. The Yoruba empire that became very powerful and prosperous in the 16th century is _______. (A)
+Oyo (B) Benin (C) Ile-Ife (D) Lagos
+6. Who is the founder of the Yoruba kingdom of Oyo? (A) Oduduwa (B) Oranmiyan (C) Obatala (D) Orisa
+Alase
+7. What is the name of the Yoruba god of thunder? (A) Sango (B) Ogun (C) Olokun (D) Eshu
+8. Which of the following is a Yoruba art form? (A) Wood carving (B) Brass casting (C) Pottery (D) Textile
+weaving
+9. What is the name of the Yoruba festival celebrating the god of fertility? (A) Eyo (B) Osun (C) Ogun (D)
+Sango
+10. Which of the following is a characteristic of Yoruba culture? (A) Patrilineal descent (B) Matrilineal
+descent (C) Bilateral descent (D) Uni lineal
+CHAPTER 3: THE BINI PEOPLE
+1. Who are the Bini people? (A) An ethnic group in Southern Nigeria (B) An ethnic group in Northern
+Nigeria (C) A tribe in Eastern Nigeria (D) A clan in Western Nigeria
+2. What is the name of the Bini kingdom? (A) Benin Kingdom (B) Bini Empire (C) Edo Kingdom (D) Igbo
+Kingdom
+3. Who founded the Bini kingdom? (A) Oranmiyan (B) Oduduwa (C) Oba Ozolua (D) Eweka I
+4. What is the name of the Bini god of thunder? (A) Ogun (B) Sango (C) Olokun (D) Eshu
+5. Which of the following is a Bini art form? (A) Wood carving (B) Brass casting (C) Pottery (D) Textile
+weaving
+6. What is the name of the Bini festival celebrating the god of fertility? (A) Igue (B) Osun (C) Ogun (D)
+Sango
+7. Which of the following is a characteristic of Bini culture? (A) Patrilineal descent (B) Matrilineal descent
+(C) Bilateral descent (D) Unilineal descent
+8. What is the name of the Bini goddess of beauty? (A) Oshun (B) Oya (C) Yemaya (D) Elegba
+--- page 3 ---
+9. Which of the following is a Bini tradition? (A) Ifa divination (B) Vodou rituals (C) Santeria ceremonies
+(D) Juju music
+10. What is the name of the Bini god of wisdom? (A) Orunmila (B) Ogun (C) Olokun (D) Eshu
+CHAPTER 4: THE IGBO PEOPLE
+1. Who are the Igbo people? (A) An ethnic group in Southern Nigeria (B) An ethnic group in Northern
+Nigeria (C) A tribe in Eastern Nigeria (D) A clan in Western Nigeria
+2. What is the name of the Igbo kingdom? (A) Igbo Kingdom (B) Igbo Empire (C) Nri Kingdom (D) Onitsha
+Kingdom
+3. Who founded the Igbo kingdom? (A) Eri (B) Oduduwa (C) Oba Ozolua (D) Nri
+4. What is the name of the Igbo god of thunder? (A) Amadioha (B) Sango (C)
+CHAPTER 5: THE HAUSA PEOPLE
+1. Who are the Hausa people? (A) An ethnic group in Southern Nigeria (B) An ethnic group in Northern
+Nigeria (C) A tribe in Eastern Nigeria (D) A clan in Western Nigeria
+2. What is the name of the Hausa kingdom? (A) Hausa Kingdom (B) Hausa Empire (C) Sokoto Caliphate
+(D) Kano Emirate
+3. Who founded the Hausa kingdom? (A) Bayajidda (B) Oduduwa (C) Oba Ozolua (D) Usman dan Fodio
+4. What is the name of the Hausa god of thunder? (A) Tsumburbura (B) Sango (C) Olokun (D) Eshu
+5. Which of the following is a Hausa art form? (A) Wood carving (B) Brass casting (C) Pottery (D) Textile
+weaving
+6. What is the name of the Hausa festival celebrating the god of fertility? (A) Durbar Festival (B) Osun (C)
+Ogun (D) Sango
+7. Which of the following is a characteristic of Hausa culture? (A) Patrilineal descent (B) Matrilineal
+descent (C) Bilateral descent (D) Unilineal descent
+8. What is the name of the Hausa goddess of beauty? (A) Oshun (B) Oya (C) Yemaya (D) Inna
+--- page 4 ---
+9. Which of the following is a Hausa tradition? (A) Ifa divination (B) Vodou rituals (C) Santeria
+ceremonies (D) Kola nut ceremonies
+10. What is the name of the Hausa god of wisdom? (A) Orunmila (B) Ogun (C) Olokun (D) Kudu
+CHAPTER 6: THE KANEM-BORNU EMPIRE
+1. What was the Kanem-Bornu Empire? (A) A kingdom in Southern Nigeria (B) An empire in Northern
+Nigeria (C) A tribe in Eastern Nigeria (D) A clan in Western Nigeria
+2. Who founded the Kanem-Bornu Empire? (A) Kanem (B) Bornu (C) Mai Idris Alooma (D) Rabih az-
+Zubayr
+3. What was the capital of the Kanem-Bornu Empire? (A) Maiduguri (B) Kano (C) Sokoto (D) Ngazargamu
+4. What was the main religion of the Kanem-Bornu Empire? (A) Islam (B) Christianity (C) Traditional
+
+#### 200-level_200_Level_IFT_212_Chapter_One_-_Lecture_1.pdf.txt lines=492 ####
+--- page 1 ---
+Virgil Bistriceanu                                                                                                                                     Illinois Institute of Technology
+3
+1. Fundamentals of Computer Design
+1.1 Introduction
+The concept of stored program computers appeared in 1945 when John von
+Neumann drafted the ﬁrst version of EDV AC (Electronic Discrete Variable
+Computer). Those ideas have since been the milestones of computers:
+• an input device through which data and instructions can be
+entered
+• storage in which data can be read/written; instructions are like
+data, they reside in the same memory
+• an arithmetic unit to process data
+• a control unit which fetches instructions, decode and execute them
+• output devices for the user to access the results.
+The improvements in computer technology have been tremendous since
+the ﬁrst machines appeared. A personal computer that can be bought today
+with a few thousand dollars, has more performance (in terms of, say,
+ﬂoating point multiplications per second), more main memory and more
+disk capacity than a machine that cost millions in the 50s-60s.
+--- page 2 ---
+1  Fundamentals of Computer Design
+Virgil Bistriceanu                                                                                                                                     Illinois Institute of Technology
+4
+Four lines of evolution have emerged from the ﬁrst computers (deﬁnitions
+are very loose and in many case the borders between different classes are
+blurring):
+1. Mainframes: large computers that can support very many users
+while delivering great computing power. It is mainly in
+mainframes where most of the innovations (both in architecture
+and in organization) have been made.
+2. Minicomputers:   have    adopted     many    of    the   mainframe
+techniques, yet being designed to sell for less, satisfying the
+computing needs for smaller groups of users. It is the
+minicomputer group that improved at the fastest pace (since 1965
+when DEC introduced the ﬁrst minicomputer, PDP-8), mainly due
+to the evolution of integrated circuits technology (the ﬁrst IC
+appeared in 1958).
+3. Supercomputers: designed for scientiﬁc applications, they are
+the most expensive computers (over one million dollars),
+processing is usually done in batch mode, for reasons of
+performance.
+4. Microcomputers : have appeared in the microprocessor era
+(the    ﬁrst microprocessor, Intel 4004, was introduced in 1971).
+The term  micro  refers only to physical dimensions, not to
+computing performance. A typical microcomputer (either a PC or
+a workstation) nicely ﬁts on a desk. Microcomputers are a direct
+product of technological advances: faster CPUs, semiconductor
+memories, etc. Over the time many of the concepts previously
+used in mainframes and minicomputers have become common
+place in microcomputers.
+For many years the evolution of computers was concerned with the
+problem of object code compatibility. A new architecture had to be, at least
+partly, compatible with older ones. Older programs (“the dusty deck”) had
+to run without changes on the new machines. A dramatic example is the
+IBM-PC architecture, launched in 1981, it proved so successful that further
+developments had to conform with the ﬁrst release, despite the ﬂaws which
+became apparent in a couple of years thereafter.
+The assembly language is no longer the language in which new
+applications are written, although the most sensitive parts continue to be
+written in assembly language, and this is due to advances in languages and
+compiler technology.
+--- page 3 ---
+1.2 Performance Deﬁnition
+Virgil Bistriceanu                                                                                                                                     Illinois Institute of Technology
+5
+The obsolescence of assembly language programming, as well as the
+creation of portable operating systems (like UNIX), have reduced the risks
+of introducing new architectures. New families of computers are emerging,
+many of them hybrids of “classical” families: graphical supercomputers,
+multiprocessors, MPP (Massively Parallel Processors), mini-
+supercomputers, etc.
+1.2 Performance Deﬁnition
+What is the meaning of saying that a computer is faster than another one? It
+depends upon the position you have: if you are a simple user (end user)
+then you say a computer is faster when it runs your program in less time,
+and you think at the time it takes from the moment you launch your
+program until you get the results, this the so called wall-clock time. On the
+other hand, if you are system's manager, then you say a computer is faster
+when it completes more jobs per time unit.
+As a user you are interested in reducing the  response time (also called the
+execution time or latency). The computer manager is more interested in
+increasing the  throughput (also called  bandwidth ), the number of jobs
+done in a certain amount of time.
+Response time, execution time and throughput are usually connected to
+tasks and whole computational events. Latency and bandwidth are mostly
+used when discussing about memory performance.
+Example 1.1 EFFECT OF SYSTEM ENHANCEMENTS ON RESPONSE TIME, THROUGHPUT:
+The following system enhancements are considered:
+a) faster CPU
+
+#### 200-level_200_Level_CSC_203_Discrete_Structures_NEW.pdf.txt lines=2069 ####
+--- page 1 ---
+DISCRETE STRUCTURES (CSC 203)
+A
+LECTURE NOTE PREPARED
+BY
+COURSE LECTURER
+FOR
+DEGREE PROGRAMME
+--- page 2 ---
+2
+Propositional Logic
+A field of mathematics known as propositional logic examines the logical connections between
+propositions—also known as statements,  sentences, or assertions—when viewed as a whole and
+joined by logical connectives.
+Example:
+1. The sun rises in the East and sets in the West.
+2. 1 + 1 = 2
+3. 'b' is a vowel.
+Above 3 sentences are propositions, where the first two are Valid (True) and the third o ne is
+Invalid (False).
+All of the above sentences are propositions, where the first two are Valid (True) and the third one
+is Invalid (False). Some sentences that do not have a truth value or may have more than one truth
+value are not propositions.
+Example,
+• What time is it?
+• Go out and Play
+• x + 1 = 2
+Third sentence may or may not be true, and the first two are not propositions since they lack
+truth value. Propositional variables, such as p, q, r, and s, are used to represent propositions.
+Propositional ca lculus, also known as propositional logic, is the area of logic that focusses on
+propositions. It also ad dresses the creation of new hypotheses from preexisting ones. Compound
+propositions are propositions composed of one or more propositions joined by log ical
+connectives (also known as operators).
+Types of Propositions
+Propositions are statements that can be assessed as true or false in propositional logic. They serve
+as the foundation for more intricate logical arguments. The two primary categories of
+propositions are broken down as follows:
+• Atomic Propositions
+• Compound Propositions
+Atomic Propositions in Propositional Logic
+The fundamental unit o f propositional logic is an atomic proposition, sometimes referred to as a
+simple proposition.
+• It is a declar ative sentence that, according to propositional logic, cannot be divided into
+smaller statements but is either true (T) or false (F).
+• Logical c onnectives such as AND ( ∧), OR ( ∨), NOT ( ¬), etc., are absent from atomic
+propositions.
+Examples of Atomic Propositions
+1. P: "It is raining."
+2. Q: "The sun is shining."
+--- page 3 ---
+3
+3. R: "2 + 2 = 4."
+Each of these is a complete, indivisible statement — it’s either true or false.
+Non-Atomic (Compound) Propositions
+When we combine atomic propositions with logical connectives, we get compound
+propositions.
+For example:
+• P ∧ Q → "It is raining AND the sun is shining."
+• ¬P → "It is NOT raining."
+• P → Q → "If it is raining, then the sun is shining."
+Here, P and Q are atomic propositions, while P ∧ Q, ¬P, and P → Q  are compound
+propositions.
+Truth Table of Propositional Logic
+We take into account every possible combination of propositions that are joined together by
+logical connectives to form the given co mpound proposition because we need to  know the truth
+value of a proposition in every scenario. A truth table is a tabular compilation of every scenario
+that could possibly occur. Most Frequently Used Logical Connectives:
+1. Negation
+If p   is a propositio n, then the negation of  p   is denoted by  \neg p, which when translated to
+simple English mean s- "It is not the case that  p" or simply "not  p". The truth value of  -p is the
+opposite of the truth value of p. The truth table of -p is:
+p ¬p
+T F
+F T
+Example, Negation of "It is raining today", is "It is not the case that is raining today" or simply
+"It is not raining today".
+2. Conjunction
+For any two propositions  p   and q, their conjunction is denoted by  p\wedge q, which means
+"p   and q   ". The conju nction p\wedge q    is True when both  p   and q   are True, otherwise
+False. The truth table of p\wedge q   is:
+p q p ∧ q
+T T T
+T F F
+F T F
+F F F
+--- page 4 ---
+4
+Example, Conjunction of the propositions  p   - "Today is Friday" and  q   - "It is raining
+today", p\wedge q   is "Today is Friday and it is raining today". This proposition is true only on
+rainy Fridays and is false on any other rainy day or on Fridays when it does not rain.
+
+#### 200-level_200_Level_Philosophy_Logic_and_Human_Existence_Note_1-3_043619.pdf.txt lines=763 ####
+--- page 1 ---
+Philosophy, Logic and Human Existence
+Introduction to Philosophy
+Definition, Nature, and Scope of Philosophy
+Philosophy is derived from the Greek words philo (love) and sophia (wisdom), meaning "love of
+wisdom." It is a discipline that involves the systematic study of fundamental questions about
+existence, knowledge, values, reason, mind, and language. Philosophy is both a theoretical and
+practical field, engaging in deep reflection on life's most profound questions.
+Nature of Philosophy: Philosophy is characterized by its critical, systematic, and reflective
+nature. It is concerned with asking and answering deep, fundamental questions about the world
+and human existence. The nature of philosophy includes:
+ Critical Thinking: Philosophy challenges established beliefs and promotes logical
+reasoning and inquiry.
+ Systematic Inquiry: It employs structured methods to explore fundamental issues.
+ Universality: Philosophy deals with concepts that are relevant across different cultures
+and times.
+ Reflectiveness: Encourages self-examination and the questioning of assumptions.
+Scope of Philosophy: Philosophy is a broad discipline that influences various aspects of human
+life, including science, politics, ethics, religion, and art. Its scope covers multiple areas of human
+inquiry, and it provides frameworks for analyzing complex problems and developing reasoned
+solutions.
+Branches of Philosophy
+Philosophy is generally divided into five major branches, each dealing with different aspects of
+human thought and existence:
+1. Metaphysics – The study of reality, existence, and the fundamental nature of being. It
+explores questions such as: What is real? What is the nature of existence? What is the
+relationship between mind and matter?
+2. Epistemology – The study of knowledge, its nature, sources, and limits. It investigates
+questions like: What can we know? How do we acquire knowledge? What distinguishes
+justified belief from opinion?
+3. Ethics – The study of moral principles that govern human behavior. It examines concepts
+of right and wrong, justice, virtue, and moral responsibility.
+4. Logic – The study of reasoning, argumentation, and the principles of valid inference.
+Logic helps distinguish between valid and fallacious reasoning.
+5. Aesthetics – The study of beauty, art, and taste. It seeks to understand what makes things
+aesthetically pleasing and how artistic expression impacts human experience.
+--- page 2 ---
+Importance of Philosophy in Human Life
+Philosophy plays a crucial role in shaping human thought, decision-making, and problem-solving.
+1. Enhancing Critical Thinking – Philosophy trains individuals to analyze arguments,
+identify biases, and think logically. This skill is essential in making well-reasoned
+decisions in both personal and professional life.
+2. Moral and Ethical Guidance – Ethical philosophy helps individuals and societies
+establish moral values and frameworks that govern behavior.
+3. Understanding Human Existence – Through existential and metaphysical inquiry,
+philosophy helps people seek meaning, purpose, and a better understanding of their place
+in the world.
+4. Improving Communication Skills – Engaging in philosophical discourse enhances
+clarity in reasoning, persuasion, and articulation of ideas.
+5. Influencing Other Disciplines – Philosophy underpins many other fields, including law,
+politics, science, and technology, by providing foundational principles and methods of
+inquiry.
+6. Promoting Social and Political Awareness – Political philosophy informs discussions
+on justice, rights, governance, and the responsibilities of individuals within a society.
+7. Contributing to Technological and Scientific Advancements – The philosophy of
+science examines the methods, assumptions, and ethical implications of scientific
+discoveries and technological innovations.
+Characteristics of a Philosopher
+1. Critical and Rational Inquiry – Philosophy involves logical reasoning and questioning rather
+than relying on assumptions or dogma.
+2. Systematic and Structured Thinking – Philosophical arguments follow structured methods of
+reasoning and analysis.
+3. Fundamental Questions – Philosophy addresses deep questions about existence, knowledge,
+morality, reality, and human purpose.
+4. Universality and Generality – Unlike specialized sciences, philosophy seeks broad,
+foundational principles that apply universally.
+5. Conceptual Analysis – Philosophers analyze the meanings, implications, and interconnections of
+concepts.
+6. Reflective and Self-Examinatory – Philosophy encourages self-awareness and critical
+examination of one's beliefs and assumptions.
+7. Interdisciplinary Nature – It intersects with other disciplines such as science, religion, politics,
+and ethics.
+8. Search for Wisdom – Philosophy is not just about acquiring knowledge but seeking wisdom in
+understanding life and the universe.
+9. Dialectical Method – Philosophical discussions often involve argumentation, counterarguments,
+and refinement of ideas through dialogue.
+10. Normative and Evaluative – Philosophy not only describes reality but also prescribes values and
+ethical standards.
+--- page 3 ---
+2. The Origins and History of Philosophy
+ Early beginnings: African, Eastern, and Western traditions
+Philosophy originated as a product of man’s gift of rationality which aids him in his interaction
+with nature, the environment and human experiences (Molokwu, 2009). Though traces of the
+origin always start with the western traditions, particularly, the Greeks, its presence in Africa and
+the Eastern part of the world cannot be overlooked. The early philosophical traditions of Africa,
+the East (including China and India), and the West (particularly Greece) reveal diverse
+philosophical thoughts that shaped human intellectual history.
+In Africa, Egyptian civilization which is one of the oldest in human history, played a role in the
+development of early philosophical thought as Egyptian philosophy which was mixed with
+mythology, ethics, and governance, emphasised the concept of Ma'at—order, justice, and balance
+
+#### 200-level_200_Level_COS_201-_COMP_PROGRAMMING_CLASS_II_-_Copy.pdf.txt lines=418 ####
+--- page 1 ---
+COS 201- COMPUTER
+PROGRAMMING II
+MISS OYEWOLE C.B
+--- page 2 ---
+PACKAGE
+A Package can be defined as a grouping of related types(classes, interfaces). Java provides a
+large number of classes grouped into different packages based on their functionality.
+The classes contained in the packages of other programs/applications can be reused. There are
+two types of packages in Java namely;
+1. Pre-defined Packages(built-in): these packages consist of a large number of classes
+which are a part of Java API (Application Program Interface).
+2. User defined packages
+Pre-defined package include: java.lang, java.io, java.util, java.applet, java.awt, java.net,
+javax.swing and java.sql
+▪ Java.lang: Contains language support classes (for e.g classes which defines primitive data
+types, math operations, etc.). This package is automatically imported.
+▪ Java.io: Contains classes for supporting input / output operations.
+▪ Java.util: Contains utility classes which implement data structures like Linked List, Hash
+Table, Dictionary, etc and support for Date / Time operations. This package is also called as
+Collections.
+--- page 3 ---
+PRE-DEFINED PACKAGE- CONT’D
+▪ Java.applet: Contains classes for creating Applets.
+▪ Java.awt: Contains classes for implementing the components of graphical user interface (
+like buttons, menus, etc. ).
+▪ Java.net: Contains classes for supporting networking operations.
+▪ Javax.swing: This package helps to develop GUI Applications. The ‘x’ in javax represents
+that it is an extended package which means it is a package developed from another
+package by adding new features to it. In fact, javax.swing is an extended package of
+java.awt.
+▪ Java.sql: This package helps to connect to databases like Oracle/Sybase/Microsoft Access
+to perform different operations.
+--- page 4 ---
+JAVA FOUNDATION PACKAGES
+--- page 5 ---
+HOW TO ACCESS PACKAGE FROM ANOTHER
+PACKAGE
+To use a class or a package from the Java API, the keyword import should be used. The
+import keyword is used to make the classes and interface of another package accessible to the
+current package.
+There are three ways to access the package from outside the package;
+▪ Using packagename*: To import a whole package, end the sentence with an asterisk sign
+(*). The following example will import all the classes and interfaces in the java.util
+package but not subpackages:
+To import. java.util. *;
+--- page 6 ---
+ACCESSING CLASSES INSIDE A PACKAGE
+▪ Import/calling a specific class by using packagename.classname: which means only declared
+class of this package will be accessible. E.g
+Import java.util.Vector;
+This imports only the vector class from the java.util package
+▪ Using fully qualified name
+If you use fully qualified name, then only declared class of this package will be accessible. Now
+there is no need to import. But you need to use fully qualified name every time when you are
+accessing the class or interface.
+It is generally used when two packages have same class name e.g. java.util and java.sql packages
+contain Date class.
+--- page 7 ---
+USER-DEFINED PACKAGE
+▪ These are packages defined by the user.
+▪ User defined package is achieved by including a package command as the first statement in a
+Java source file. Any classes declared within that file will belong to the specified package.
+▪ The package statement defines a name space in which classes are stored. If you omit the
+package statement, the class names are put into the default /package, which has no name.
+General form of defining a package;
+package pkg;
+package major;
+--- page 8 ---
+HOW TO DEFINE A USER-DEFINED PACKAGE
+package p1;
+class c1
+{
+public void m1()
+{
+System.out.println("m1 of c1");
+}
+public static void main(string
+args[])
+{
+c1 obj = new c1();
+obj.m1();
+}
+}
+--- page 9 ---
+ASSIGNMENT
+▪ Write out 10 classes in pre-defined package
+▪ Write on Recursive algorithm
+--- page 10 ---
+EXCEPTION HANDLING
+
+#### 200-level_200_Level_COS_202-_COMP_PROGRAMMING_1_-_Copy.pdf.txt lines=174 ####
+--- page 1 ---
+COS 202- COMPUTER
+PROGRAMMING II
+MISS OYEWOLE
+--- page 2 ---
+JAVA OBJECT
+ORIENTED
+PROGRAMMING
+CONCEPTS
+Java is an Object-Oriented Programming language which
+has a similar syntax to C/C++ programming languages but
+without its complexities. Java is widely used to develop
+mobile applications, desktop applications, web applications,
+web servers, games, and enterprise-level systems. Originally
+invented by James Gosling, Java is now owned by Oracle,
+with JDK 23 being its latest version. The language features a
+syntax similar to that of C and C++, making it familiar to
+many developers. Renowned platforms such as LinkedIn,
+Amazon, and Netflix utilize Java for their back-end systems,
+highlighting its reliability, scalability, and adaptability across
+various environments.
+--- page 3 ---
+OBJECT-ORIENTED PROGRAMMING CONCEPTS
+Object-oriented programming (OOP) involves programming using objects. Object-
+Oriented Programming is a methodology to design a program using classes and
+objects. An object represents an entity in the real world that can be distinctly identified.
+Object means a real-world entity such as a pen, chair, table, computer, watch, etc. An
+object has a unique identity which include; state and behaviour.
+▪ The state of an object (also known as its properties or attributes) is represented by data
+fields with their current values. A circle object, for example, has a data field radius,
+which is the property that characterizes a circle.
+▪ The behaviour of an object (also known as its actions) is defined by methods. To
+invoke a method on an object is to ask the object to perform an action. For example,
+you may define a method named getArea() for circle objects. A circle object may
+invoke getArea() to return its area.
+--- page 4 ---
+BASIC
+PRINCIPLES OF
+OOP (OBJECT-
+ORIENTED
+PROGRAMMING)
+▪ Class - A class is a template or blueprint from which objects are created.
+It describes a set of objects with the same behaviour. A class can contain
+Fields, methods, constructors, blocks, nested class and interface. To create
+a class, you use the keyword class.
+public class Major {
+Int x = 10;
+}
+▪ Object - An object is an instance of a class. It is an entity that has state
+and behaviour. It can be physical or logical (tangible and intangible).
+public class Main {
+int x = 5;
+public static void main(String[] args) {
+Main myObj = new Main();
+System.out.println(myObj.x);
+}
+}
+▪ Abstraction - The process of hiding the details and exposing only the
+essential features of a particular concept or object without including the
+background details or explanation.
+--- page 5 ---
+BASIC
+PRINCIPLES OF
+OOP (OBJECT-
+ORIENTED
+PROGRAMMING)
+▪ Inheritance - Inherit members from parent class.
+Inheritance is the process of building new classes based
+on parent classes. The new class inherits the properties
+and attributes of the parent class
+▪ Polymorphism- means the ability to take more than
+one form. An operation may exhibit different behaviour
+in different instances. The behaviour depends upon the
+types of data used in the operation. In java, we use
+method overloading and method overriding to
+achieve polymorphism.
+▪ Encapsulation - Hide the internals of a class. This is
+wrapping up of data and functions into a single unit
+(called class).
+--- page 6 ---
+JAVA ENCAPSULATION
+Encapsulation in Java refers to integrating data
+(variables) and code (methods) into a single unit.
+In encapsulation, a class's variables are hidden
+from other classes and can only be accessed by the
+methods of the class in which they are found.
+Difference between encapsulation and data
+hiding is that Encapsulation is a way of bundling
+data whereas Data Hiding prevents external
+unauthorized access to the sensitive data. Access
+
+#### 200-level_200_Level_BUSINESS_OPPORTUNITY_AND_BUSINESS_IDEAS.pdf.txt lines=206 ####
+--- page 1 ---
+1
+BUSINESS OPPORTUNITY AND BUSINESS IDEAS
+Entrepreneurial opportunities are not equally obvious to everyone but are equally available to
+anyone with the experiences and knowledge to discover them. Opportunities are themselves
+unstructured where advantages and disadvantages of opportunities are largely dependent on
+individual differences in terms of personal experience, exposure, and training.
+Business Opportunity: A business opportunity may be described as an attractive proposition
+that provides the possibility of a return for the investor or the person taking the risk.
+Business Ideas: This is a matter of conception  which is a perceived or conscious thought of
+activity that may yield a return if carried out. It represents an investment opportunity that could
+lead to the creation of venture (s)
+Characteristics of a Good Business Opportunity
+To be a good business idea to be considered as a business opportunity, it must fulfil or be
+capable of fulfilling the following criteria;
+a. Real demand
+b. Return on Investment
+c. Competitiveness
+d. Veritable objectives
+e. Availability of resources and skills
+Generating Business Ideas
+Sequel to the above, a good business idea could be generated by sincerely and objectively
+answering these questions
+a. What product or service do you think as a business will sell?
+b. Who are the potential customers?
+c. Where is the intended location of your business?
+d. Which need do you want to fulfil?
+e. When do you intend to launch the product or service?
+f. How do you want to market the product or service?
+It is a general belief that these questions will enable you to sift different ideas and get a viable
+business idea worthy of investing upon.
+Sources of Business Ideas
+There are millions of entrepreneurs throughout the world wherein their testimonies suggest that
+there are many potential and various sources of business ideas. Below are some of the sources
+although the list is inexhaustive;
+a. Hobbies
+b. Personal skills and experience
+c. Mass media
+d. Exhibitions
+e. Surveys
+f. Franchise
+g. Social interaction & engagement
+h. Deliberate research
+i. Brainstorming
+--- page 2 ---
+2
+Indicators of Business Ideas and Opportunities
+The following can serve as good indicators of business ideas for business opportunities;
+a. Poor product quality
+b. Lack of supportive services
+c. Overpriced product
+d. Existence of monopoly
+e. Change in technology
+f. Product failure
+g. Need for a product
+h. Market trends and expansion
+Factor Facilitating Business Ideas and Opportunities
+The presence of the following elements in a business environment could fast -track or act as a
+catalyst for facilitating business ideas;
+a. Population
+b. Infrastructural facilities
+c. Education/exposure
+d. Government policies
+e. Business opportunity
+f. Achievement motive drive
+g. Skills and experience
+h. Endowed talents
+Entrepreneurial Environment
+The environment is considered the surroundings of business and has been described as the place
+where an entrepreneur conducts business. It has a significant effect on the operation and nature
+of business.
+Classification of Entrepreneurial Environment
+This environment will be classified into two i.e., internal (within the organisation) and external
+(outside of the organisation)
+We also have
+a. Stable environment
+b. Turbulent environment
+c. Volatile environment
+d. Dynamic environment and
+e. Slowly evolving environment
+--- page 3 ---
+3
+FINANCIAL ASPECT OF ENTREPRENEURSHIP
+Finance is the management of money resource for a specific purpose by individuals, corporate
+bodies, and government. It is often a critical component to the business's success.
+Classification of Sources of Entrepreneurial Financing
+The sources of entrepreneurial financing can be classified into three ma in groups i.e., short -
+term, medium-term, and long-term financing
+Short-term is usually between 0 – 12 months which can be under any of these friends and
+relatives, cooperatives, trade credits, overdrafts, factoring, acceptance credits etc.,
+
+#### 200-level_200_Level_AUE-CSC_204_-_Web_Technologies_-_Lecture_3.pdf.txt lines=217 ####
+--- page 1 ---
+AUE-CSC 204 – WEB TECHNOLOGIES
+LECTURE 3
+Mr. Jeremiah Ademola BALOGUN
+Department of Computer Science
++2349063062341
+Balogun.Jeremiah@adelekeuniversity.edu.ng
+--- page 2 ---
+The Skeleton & Semantic Web
+Now, we begin building.
+• In web development, HyperText Markup Language (HTML) is the skeleton of
+your application.
+• Without it, there is no structure.
+• However, in 2026, we don't just write "any" HTML.
+• We write Semantic HTML.
+--- page 3 ---
+What is "Semantics"?
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+•In linguistics, semantics is the study of meaning.
+•In HTML, a Semantic Element is a tag that clearly describes its
+content to both the browser and the developer.
+•Non-Semantic Elements: <div> and <span>.
+•They tell us nothing about what is inside them.
+•They are just empty boxes.
+•Semantic Elements: <header>, <article>, and <footer>.
+•They tell the browser exactly what their role is.
+--- page 4 ---
+Why Semantics Matter (The "Why" for Your Major)
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+•For the Computer Scientist (SEO): Search engines like Google use "web
+crawlers" to index your site.
+•If you use a <nav> tag for your menu, the crawler immediately knows where your
+important links are. This helps your site rank higher in search results.
+•For the Cyber Security Student (Accessibility): Visually impaired users use
+"Screen Readers" to browse the web.
+•A screen reader can "jump" directly to the <main> content or skip the <nav> only if
+you use semantic tags.
+•In many countries, accessibility is a legal requirement.
+•For the Software Engineer (Maintainability): Semantic code is easier to read.
+•When you return to a project after 6 months, seeing <section id="results"> is
+much clearer than seeing <div id="div12">
+--- page 5 ---
+The Key HTML5 Structural Elements
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+Tag Purpose
+<header> Introductory content, logos, and the main title.
+<nav> A block of navigation links (menus).
+<main> The unique, central content of the page (only one per page!).
+<section> A thematic grouping of content, usually with its own heading.
+<article> Independent, self-contained content (like a blog post or news story).
+<aside> Tangentially related content (sidebars, ads, or "quick facts").
+<footer> Copyright info, contact details, and site maps.
+--- page 6 ---
+Local Context: Building "Lightweight" and Meaningful
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+• In Nigeria, mobile data is a precious resource.
+• Semantic HTML is often lighter than "div-heavy" code because you
+don't need to add as many class or id attributes to explain what the code
+is doing.
+• By using the "right tag for the right job," you create cleaner code that loads
+faster on poor networks.
+•
+• Semantic and Non-Semantic HTML5 Elements
+• This video provides a quick visual comparison to help you
+distinguish between meaningful tags and generic containers in
+modern web design.
+--- page 7 ---
+Student Interaction: The "Semantic Refactor"
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+• The Scenario: You find this code in an old project for a local
+hospital:
+• The Task:
+• Identify the problem: Why is this "non-semantic"?
+• Refactor it:
+• How would you rewrite this using the new tags we learned
+today?
+• Hint: Think about using <header> and <nav>.
+--- page 8 ---
+CSS3 – The Skin & The Box Model
+Next, we add the "skin."
+Cascading Style Sheets (CSS) is what transforms a plain,
+boring document into a professional, visually engaging
+experience.
+• For Computer Science and Software Engineering students, CSS is about the Separation
+of Concerns.
+• For Cyber Security students, CSS is a vital layer to understand; not just for UI, but
+because malicious styles (like hidden "clickjacking" layers) are a real threat.
+--- page 9 ---
+CSS Syntax: The "Command" Structure
+AUE-CSC 204 – WEB TECHNOLOGIES – BALOGUN JEREMIAH ADEMOLA – DEPARTMENT OF COMPUTER SCIENCE
+
+#### 200-level_200_Level_data_flow_diagram.docx.txt lines=51 ####
+[Normal] What is Structured Analysis?
+[Normal] Structured analysis is a software engineering methodology that utilizes graphical representation to convert real-world cases into data specifications that can be used to create computer programs and hardware configurations. It is an important process-oriented approach because it allows a logical step-wise breakdown of both the source of information and the target of what is to be developed.
+[Normal] A software engineer utilizes a data flow diagram which is a set of bubbles with arrows connected to the direction of flow of data. A top-down approach is used to decompose and solve specific problems. This methodology of structured analysis was developed to document system requirements and designs.
+[Normal] History of Structured Analysis
+[Normal] The 1960s to the 1980s saw a large demand for complex information systems. At that time, there were no standard techniques for documenting requirements, configurations, and processes involved in a software system.
+[Normal] What are structured analysis techniques?
+[Normal] Structured analysis techniques are of three types:
+[Normal] Functional — This technique utilizes data flow diagrams to depict functions and flow of data.
+[Normal] Data — This technique utilizes entity relationship diagrams to depict the dependencies of the software system with the external environment.
+[Normal] Dynamic — This technique utilizes state transition diagrams to depict the conditions and working of the system.
+[Normal] What is the main aim of structured analysis?
+[Normal] The main aim of structured analysis is to break down complex information into smaller simpler parts so as to aid in the efficient development of a software system. The main characteristic of structured analysis is the usage of diagrams to display various functions and the flow of data.
+[Normal] What is a data flow diagram?
+[Normal] A data flow diagram (DFD) maps out the flow of information for any process or system. It uses defined symbols like rectangles, circles and arrows, plus short text labels, to show data inputs, outputs, storage points and the routes between each destination.
+[Normal] They can be used to analyse an existing system or model a new one.
+[Normal] a DFD can often visually “say” things that would be hard to explain in words, and they work for both technical and nontechnical audiences, from developer to CEO.
+[Normal] Data-flow diagrams provide a graphical representation of the system that aims to be accessible to
+[Normal]  computer specialist and non-specialist users alike. The models enable software engineers, customers
+[Normal]  and users to work together effectively during the analysis and specification of requirements.
+[Normal] Symbols and Notations Used in DFDs
+[Normal] Two common systems of symbols are named after their creators:
+[List Paragraph] Yourdon and Coad /Yourdon and DeMarco
+[List Paragraph] Gane and Sarson
+[Normal] One main difference in their symbols is that Yourdon-Coad and Yourdon-DeMarco use circles for processes, while Gane and Sarson use rectangles with rounded corners, sometimes called lozenges. There are other symbol variations in use as well, so the important thing to keep in mind is to be clear and consistent in the shapes and notations you use to communicate and collaborate with others.
+[Normal] Using any convention’s DFD rules or guidelines, the symbols depict the four components of data flow diagrams.
+[Normal] External entity: an outside system that sends or receives data, communicating with the system being diagrammed. They are the sources and destinations of information entering or leaving the system. They might be an outside organization or person, a computer system or a business system. They are also known as terminators, sources and sinks or actors. They are typically drawn on the edges of the diagram.
+[Normal] Process: any process that changes the data, producing an output. It might perform computations, or sort data based on logic, or direct the data flow based on business rules. A short label is used to describe the process, such as “Submit payment.”
+[Normal] Data store: files or repositories that hold information for later use, such as a database table or a membership form. Each data store receives a simple label, such as “Orders.”
+[Normal] Data flow: the route that data takes between the external entities, processes and data stores. It portrays the interface between the other components and is shown with arrows, typically labelled with a short data name, like “Billing details.”
+[Normal] A data flow diagram can dive into progressively more detail by using levels and layers, zeroing in on a particular piece.  DFD levels are numbered 0, 1 or 2, and occasionally go to even Level 3 or beyond. The necessary level of detail depends on the scope of what you are trying to accomplish.
+[Normal] DFD Level 0 is also called a Context Diagram. It’s a basic overview of the whole system or process being analysed or modelled. It’s designed to be an at-a-glance view, showing the system as a single high-level process, with its relationship to external entities. It should be easily understood by a wide audience, including stakeholders, business analysts, data analysts and developers.
+[Normal] DFD Level 1 provides a more detailed breakout of pieces of the Context Level Diagram. You will highlight the main functions carried out by the system, as you break down the high-level process of the Context Diagram into its subprocesses.
+[Normal] DFD Level 2 then goes one step deeper into parts of Level 1. It may require more text to reach the necessary level of detail about the system’s functioning.
+[Normal] Progression to Levels 3, 4 and beyond is possible, but going beyond Level 3 is uncommon. Doing so can create complexity that makes it difficult to communicate, compare or model effectively.
+[Normal] Logical DFD vs. Physical DFD
+[Normal] These are the two categories of a data flow diagram.  A Logical DFD visualizes the data flow that is essential for a business to operate. It focuses on the business and the information needed, not on how the system works or is proposed to work. However, a Physical DFD shows how the system is actually implemented now, or how it will be. For example, in a Logical DFD, the processes would be business activities, while in a Physical DFD, the processes would be programs and manual procedures.
+[Normal] Logical and Physical Data Flow Diagrams (DFDs) are two different ways of representing a system’s data flow, each with its specific focus and purpose.
+[Normal] 1. Logical DFD
+[Normal] Purpose: A logical DFD focuses on what the system does, representing the business functions, processes, and information flow without going into technical details about how they are implemented.
+[Normal] Components: It emphasizes the flow of data, the inputs and outputs of processes, and the overall system's functions.
+[Normal] Details: Logical DFDs are often used during the initial stages of system design to understand the requirements and outline the functional aspects of the system. They help stakeholders and analysts get a clear picture of the system's purpose, requirements, and essential operations.
+[Normal] Example: In a library system, a logical DFD would show processes like "Check Out Book" or "Return Book" and how they interact with data entities such as "Member Records" or "Book Inventory" without detailing the specific hardware or software involved.
+[Normal] 2. Physical DFD
+[Normal] Purpose: A physical DFD describes how the system will be implemented, specifying the actual hardware, software, files, databases, and people involved in the system’s operations.
+[Normal] Components: It includes specific details about data storage locations, actual file formats, hardware requirements, and software applications used.
+[Normal] Details: Physical DFDs are typically used in later stages of system development when focusing on implementation details. They help developers and system architects understand the exact setup and components needed to operate the system.
+[Normal] Example: In a library system, a physical DFD would detail the specific database (e.g., SQL database) where "Member Records" are stored, the exact server or hardware used, and software tools like scanners or kiosks for "Check Out Book" processes.
+[Normal] Key Differences
+[Normal] Abstraction Level: Logical DFDs are more abstract and focus on business processes, while Physical DFDs are detailed and focus on technical aspects.
+[Normal] Audience: Logical DFDs are useful for analysts and stakeholders to understand the system conceptually, whereas Physical DFDs are geared toward developers and IT professionals for implementation.
+[Normal] Timing in Development: Logical DFDs are used in the early stages of system design, while Physical DFDs are used when moving towards implementation.
+
+#### 100-level_100_Level_Physics_practical_Sample_questions_.pdf.txt lines=1421 ####
+--- page 1 ---
+---
+1.
+A
+meter
+rule
+has
+an
+accuracy
+of:
+A.
+±1.0
+cm
+B.
+±0.1
+cm
+C.
+±0.01
+cm
+D.
+±0.001
+cm
+Answer:
+B
+Meter
+rules
+measure
+accurately
+to
+±0.1
+cm
+or
+1
+mm.
+---
+2.
+The
+accuracy
+of
+a
+vernier
+caliper
+is:
+A.
+±1
+mm
+B.
+±0.01
+cm
+C.
+±0.1
+mm
+D.
+±0.001
+cm
+Answer:
+C
+Vernier
+calipers
+have
+an
+accuracy
+of
+0.1
+mm
+(0.01
+cm).
+---
+3.
+A
+micrometer
+screw
+gauge
+is
+best
+used
+to
+measure:
+A.
+Diameter
+of
+a
+wire
+B.
+Length
+of
+a
+book
+C.
+Volume
+
+#### 100-level_100_Level_STAT_7100_4.1_4.2_Bernoulli_and_Binomial_Probability_Distributions.pdf.txt lines=263 ####
+--- page 1 ---
+The Bernoulli Probability Distribution
+A random variable with only two outcomes (1-0, true-false, right-wrong, on-
+o⁄, etc.) is called a Bernoulli random variable , denoted as X~Bernoulli(p):
+For computing purposes we limit the numerical values to 1 for a success and 0
+for a failure.
+Example 1 What is the expected value and standard deviation for a Bernoulli
+random variable with probability of success p?
+X 1 0
+p(x) p 1   p
+E(X) =
+X
+x2X
+x  p(x)
+= 1  p + 0  (1   p)
+= p
+2 = X
+x2X
+(x   E(X))2  p(x)
+= (1   p)2  p + (0   p)2  (1   p)
+= (1   p)(1   p)p + p2(1   p)
+= (1   p)p[(1   p) + p]
+= p(1   p)
+Thus,  =
+p
+p(1   p)
+Example 2 It estimated 35% of students in the MSAS program work during
+the day. What is the standard deviation for this Bernoulli random variable?
+ =
+p
+p(1   p) =
+p
+:35(1   :35) = 0 :476 97:
+Example 3 What percentages of MSAS students with day jobs fall within two
+standard deviations of the mean?
+  2 = :35  2  0:476 97 = (  0:603 94; 1: 303 9)
+Example 4 A fair coin is  ipped 100 times. What percentage of heads falls
+within one standard deviation of the mean?
+This is X~Bernoulli(0:5). So  = p = 0:5 and  =
+p
+p(1   p) =
+p
+:5(1   :5) =
+0:5:
+Remark 5 Note that these intervals cover a lot of ground. That must be the
+case since the only outcomes for a single observation are 0 and 1.
+1
+--- page 2 ---
+0.1 Exercises
+Navidi 4.1: 1, 3, 5
+The Binomial Probability Distribution
+De
+nition 6 An experiment consisting of repeated trials has a Binomial Prob-
+ability Distribution if and only if
+1. there are only two outcomes for each trial (success or failure) and the
+probability p of success is
+xed;
+2. there are a
+xed number of trials n;
+3. the trials are independent.
+Remark 7 Such a random variable is denoted X~Bin(n; p). We use it to count
+a total number of successes.
+Exercise 8 An experiment consists of  ipping a fair coin 10 times and counting
+the number of tails. Does this experiment have a binomial probability distribu-
+tion?
+Exercise 9 A multiple choice test contains 20 questions. Each question has
+four or
+ve choices for the correct answer. Only one of the choices is correct.
+With random guessing, does this test have a binomial probability distribution?
+Exercise 10 A multiple choice test contains 20 questions. Each question has
+ve choices for the correct answer. Only one of the choices is correct. When a
+student trying their best, does this test have a binomial probability distribution?
+Exercise 11 A multiple choice test contains 20 questions. Each question has
+ve choices for the correct answer. Only one of the choices is correct. With
+random guessing, does this test have a binomial probability distribution?
+Exercise 12 It is known that 30% of all students at the University of Knowhere
+live o⁄ campus. An experiment consists of randomly selecting students until a
+commuter student is found. Does this experiment have a binomial probability
+distribution?
+Exercise 13 An experiment consists of asking 20 students what size water they
+prefer: small, medium or large. All choices are equally likely. Does this
+experiment have a binomial probability distribution?
+2
+--- page 3 ---
+Exercise 14 An experiment consists of testing the functionality of
+ve di⁄ erent
+ ash drives from a shipment of 50,000 of which 100 are known to be defective.
+Does this experiment have a binomial probability distribution? Technically, no
+since the selections are made without replacement. However the sample size is
+so small compared to the size of the population that for all practical purposes we
+
+#### 100-level_100_Level_mcq-probability-wiht-correct-answers.pdf.txt lines=346 ####
+--- page 1 ---
+MCQPROBABILITY
+MCQ 6.1
+When the possible outcomes of an experiment are equally likely to occur, this we apply:
+(a) Relative probability     (b) Subjective probability
+(c) Conditional probability     (d) Classical probability
+MCQ 6.2
+A number between 0 and 1 that is use to measure uncertainty is called:
+(a) Random variable  (b) Trial (c) Simple event   (d) Probability
+MCQ 6.3
+Probability lies between:
+(a) -1 and +1   (b) 0 and 1  (c) 0 and n   (d) 0 and ∞
+MCQ 6.4
+Probability can be expressed as:
+(a) Ration   (b) Fraction  (c) Percentage   (d) All of the above
+MCQ 6.5
+The probability based on the concept of relative frequency is called :
+(a) Empirical probability  (b) Statistical probability (c) Both (a) and (b)    (d) Neither (a) nor (b)
+MCQ 6.6
+The probability of an event cannot be :
+(a) Equal to zero   (b) Greater than zero  (c) Equal to one  (d) Less than zero
+MCQ 6.7
+A measure of the chance that an uncertain event will occur :
+(a) An experiment   (b) An event  (c) A probability  (d) A trial
+MCQ 6.8
+A graphical device used to list all possibilities of a sequence of outcomes in systematic way is
+called:
+(a) Probability histogram  (b) Venn diagram (c) Pie diagram  (d) Tree diagram
+MCQ 6.9
+A random experiment contains:
+(a) At least one outcome       (b) At least two outcomes
+(c) At most one outcome         (d)   At most two outcomes
+MCQ 6.10
+The probability of all possible outcomes of a random experiment is always equal to :
+(a) One   (b) Zero  (c) Infinity   (d) All of the above
+MCQ 6.11
+The outcome of tossing a coin is a :
+(a) Mutually exclusive event  (b) Compound event     (c) Certain event     (d) Simple event
+MCQ 6.12
+The result of no interest of an experiment is called :
+(a) Constant   (b) Event  (c) Failure   (d) Success
+MCQ 6.13
+A set of all possible outcomes of an experiment is called:
+(a) Combination  (b) Sample point (c) Sample space   (d) Compound event
+--- page 2 ---
+MCQ 6.14
+The numbers of counting rules that are useful in determining t he number of outcomes in an
+experiment are:
+(a) One   (d) Two  (c) Three    (d) Four
+MCQ 6.15
+The events having no experimental outcomes in common is called:
+(a) Equally likely events     (b) Exhaustive events
+(c) Mutually exclusive events    (d) Independent events
+MCQ 6.16
+A set of outcomes formed after some additional information is called:
+(a) Sample space  (b) Reduced sample space (c) Null set   (d) Random experiment
+MCQ 6.17
+The probability associated with the reduced sample space is called:
+(a) Conditional probability     (b) Statistical probability
+(c) Mathematical probability     (d) Subjective probability
+MCQ 6.18
+An arrangement of objects without regard to order is called:
+(a) Permutation  (b) Combination  (c) Random experiment   (d) Sample point
+MCQ 6.19
+The number of permutations of a set of n things, taken r at a time with n 2 r given by:
+MCQ 6.20
+If three candidates are selected to attend a course from the ten candidates, the number of ways of selecting
+the candidates is an example of:
+(a) Combination  (b) Permutation (c) Reduced sample space   (d) Both (a) and (b)
+MCQ 6.21
+When each outcome of a sample space is as likely to occur as any other, the outcomes are called:
+(a) Exhaustive  (b) Mutually exclusive (c) Equally likely  (d) Not mutually exclusive
+MCQ 6.22
+If A is any event in S and    its complement, then P(  ) is equal to:
+(a) 1    (b) 0   (c) 1- A    (d) 1 - P(A)
+MCQ 6.23
+When certainty is involved in a situation, its  probability is equal to:
+(a) Zero   (b) Between -l and + 1  (c) Between 0 and 1   (d) One
+MCQ 6.24
+Which of the following cannot be taken as probability of an event?
+(a) 0    (b) 0.5   (c) 1    (d) -1
+MCQ 6.25
+If an event contains more than one sample points, it is called a:
+(a) Simple event  (b) Compound event  (c) Impossible event  (d) Certain event
+--- page 3 ---
+MCQ 6.26
+When the occurrence of one event has no effect on the probability of the occurrence of another
+event, the events are called:
+(a) Independent  (b) Dependent  (c) Mutually exclusive  (d)   Equally likely
+MCQ 6.27
+
+#### 100-level_100_Level_God_s_plan_MTH_102_practice_question_1_.pdf.txt lines=2160 ####
+--- page 1 ---
+God’s plan MTH 102 practice question
+GOD’S PLAN TUTORIAL 09151406021
+March 2026
+1 AS YOU READ THROUGH THIS PDF ,THE
+LORD WILL GUIDE YOU, A IS YOURS,
+YOUR SUCCESS IS MY ACHIEVEMENT
+Functions and Limits: MCQs and Shortcut Solutions
+PART I: FUNCTIONS AND LIMITS
+1. A function is said to be an even function ofxwhenf(−x) equals:
+[label=(A)]
+(a)f(−1)
+(b)−f(x)
+(c)f(−x)
+(d)f(x)
+Answer:(D)
+Strategy (Definition):By definition, an even function is symmetrical
+across the y-axis, meaning a negative input gives the exact same output
+as a positive input. Therefore,f(−x) =f(x).
+2. A functionf(x) is said to be an odd function whenf(−x) equals:
+[label=(B)]
+(a)−f(x)
+(b)f(−x)
+(c)f(x)
+(d)f(1)
+Answer:(A)
+Strategy (Definition):An odd function has rotational symmetry around
+the origin. Inputting a negativexpulls the negative sign out to the front:
+f(−x) =−f(x).
+1
+--- page 2 ---
+3. Findf(0) in the equationf(x) = 4x−31+7x
+[label=(C)]
+(a) 3
+(b) -2
+(c) -3
+(d) 0
+Answer:(C)
+Strategy (Direct Substitution):Replace everyxwith 0.
+0−3
+1+0 =−3
+4. Iff(x) = (x+h)2−x2h , evaluate limh→0 f(x).
+[label=(D)]
+(a)x+h
+(b) 2x
+(c)x 2
+(d) 2x+h
+Answer:(B)
+Strategy (The Derivative Shortcut):Youcouldexpand the numera-
+tor, but the ultimate shortcut is recognizing that this limit is the literal
+definition of a derivative! It is asking for the derivative ofx 2. By the
+power rule, the derivative ofx 2 is simply 2x.
+5. Find lim x→5 f(x) forf(x) = 4x−31+7x
+[label=(E)]
+(a) 17/34
+(b) 17/14
+(c) 17/36
+(d) 1/3
+Answer:(C)
+Strategy (Direct Substitution):Always plug the number in first.
+Numerator: 4(5)−3 = 17
+Denominator: 1 + 7(5) = 36
+Result: 17/36. No advanced rules needed.
+6. Findf(1/7) in the equationf(x) = 4x−31+7x
+[label=(F)]
+(a) 17/34
+(b)−17/14
+2
+--- page 3 ---
+(c) 17/36
+(d) 1/3
+Answer:(B)
+Strategy (Direct Substitution):
+Numerator: 4(1/7)−3 = 4/7−21/7 =−17/7
+Denominator: 1 + 7(1/7) = 1 + 1 = 2
+Divide the two: (−17/7)/2 =−17/14.
+7. Evaluate lim x→1 x2 + 6x+ 4
+[label=(G)]
+(a) 17
+(b) 7
+(c) 17
+(d) 11
+Answer:(D)
+Strategy (Direct Substitution):This is a continuous polynomial, so
+just plug inx= 1.
+12 + 6(1) + 4 = 11.
+8. Evaluate lim x→3 x3+41−x
+[label=(H)]
+(a)−31/2
+(b) 31/2
+
+#### 100-level_100_Level_GST_111_QUESTIONS.docx.txt lines=1640 ####
+[Normal] Questions FOR GST 111
+[Normal] SECTION II
+[Normal] 1. which can be used to overcome the communication barrier
+[Normal] A) Using a translator
+[Normal] B) By writing a letter
+[Normal] C) Not communicating at all
+[Normal] D) Using your own language
+[Normal] Answer: A
+[Normal] 2. Which of the following is NOT a communication barrier?
+[Normal] A) Linguistic barrier
+[Normal] B) Interpersonal barrier
+[Normal] C) Financial barrier
+[Normal] D) Organisational barrier
+[Normal] Answer: C
+[Normal] 3. Straight body posture shows what?
+[Normal] A) Pride
+[Normal] B) Professionalism
+[Normal] C) Confidence
+[Normal] D) Humility
+[Normal] Answer: C
+[Normal] 4. Which of the following is a positive facial expression?
+[Normal] A) Staring hard
+[Normal] B) Wrinkled forehead
+[Normal] C) Looking somewhere else
+[Normal] D) Nodding while listening
+[Normal] Answer: D
+[Normal] 5. Which type of words should be used for good communication?
+[Normal] A) Acronyms
+[Normal] B) Technical
+[Normal] C) Jargons
+[Normal] D) Simple
+[Normal] Answer: D
+[Normal] 6. Sending a letter is which type of communication?
+[Normal] A) Listening
+[Normal] B) Writing
+[Normal] C) Speaking
+[Normal] D) Reading
+[Normal] Answer: B
+[Normal] 7. Which of the following is not an element of the communication cycle?
+[Normal] A) Channel
+[Normal] B) Receiver
+[Normal] C) Time
+[Normal] D) Sender
+[Normal] Answer: C
+[Normal] 8. Written communication can be classified in which type of communication?
+[Normal] A) Non-verbal
+[Normal] B) Verbal
+[Normal] C) Visual
+[Normal] D) None of these
+[Normal] Answer: B
+[Normal] 9. ……………………. is the exchange of messages in the communication cycle.
+[Normal] A) Transmitting
+[Normal] B) Listening
+[Normal] C) Message
+[Normal] D) Feedback
+[Normal] Answer: A
+[Normal] 10. The abilities to communicate properly are:
+[Normal] A) read
+[Normal] B) write
+[Normal] C) speak
+[Normal] D) all of these
+[Normal] Answer: D
+[Normal] 11. Which of the following is an example of negative feedback?
+[Normal] A) You can dance better.
+[Normal] B) Your Dance was good but you can do better.
+[Normal] C) Your Dance skill is not really good. You have to practise more.
+[Normal] D) None of the above
+[Normal] Answer: C
+[Normal] 12. …………. is not a communication barrier?
+[Normal] A) Language
+[Normal] B) Culture
+[Normal] C) Habits
+[Normal] D) Physical
+[Normal] Answer: C
+[Normal] 13. The communication cycle does not include…………
+[Normal] A) sender
+[Normal] B) message
+[Normal] C) receiver
+[Normal] D) programming
+[Normal] Answer: D
+[Normal] 14. Which of the following is quick and clear method of communication
+[Normal] A) e-mail
+[Normal] B) notices/posters
+[Normal] C) face-to-face informal communication
+[Normal] D) business meetings
+[Normal] Answer: C
+[Normal] 15. Which method is good for taking leave in the office.
+[Normal] A) Website
+[Normal] B) notices/posters
+[Normal] C) e-mail
+
+#### 100-level_100_Level_Gst_112_obj.docx.txt lines=525 ####
+[normal] Glad you liked it! Here’s the full set of questions with answer choices and the correct answers underneath each one.
+[normal] ---
+[normal] WEEK 1: THE PEOPLE OF NIGERIA
+[normal] 1. The estimated population of Nigeria is over _______ people.
+[normal] (A) 100 million
+[normal] (B) 200 million
+[normal] (C) 300 million
+[normal] (D) 400 million
+[normal] Answer: (B) 200 million
+[normal] 2. The number of ethnic groups in Nigeria is approximately _______.
+[normal] (A) 200
+[normal] (B) 300
+[normal] (C) 400
+[normal] (D) 500
+[normal] Answer: (D) 500
+[normal] 3. Culture refers to the _______ way of life.
+[normal] (A) Sum total
+[normal] (B) Partial total
+[normal] (C) Whole total
+[normal] (D) Complete total
+[normal] Answer: (A) Sum total
+[normal] 4. Which of the following is a characteristic of culture?
+[normal] (A) Dynamic
+[normal] (B) Static
+[normal] (C) Relative
+[normal] (D) Absolute
+[normal] Answer: (A) Dynamic
+[normal] 5. What are the two broad categories of culture?
+[normal] (A) Tangible and intangible
+[normal] (B) Material and non-material
+[normal] (C) Physical and metaphysical
+[normal] (D) Real and abstract
+[normal] Answer: (B) Material and non-material
+[normal] 6. What is the main factor that determines the culture of a society?
+[normal] (A) Religion
+[normal] (B) Language
+[normal] (C) Environment
+[normal] (D) History
+[normal] Answer: (C) Environment
+[normal] 7. Which of the following is a function of culture?
+[normal] (A) To promote social change
+[normal] (B) To preserve social order
+[normal] (C) To promote individualism
+[normal] (D) To preserve tradition
+[normal] Answer: (B) To preserve social order
+[normal] 8. What is the term for the process of learning culture?
+[normal] (A) Socialization
+[normal] (B) Enculturation
+[normal] (C) Acculturation
+[normal] (D) Culturalization
+[normal] Answer: (B) Enculturation
+[normal] 9. Which of the following is a type of culture?
+[normal] (A) Material culture
+[normal] (B) Non-material culture
+[normal] (C) Physical culture
+[normal] (D) Metaphysical culture
+[normal] Answer: (A) Material culture
+[normal] 10. What is the term for the study of culture?
+[normal] (A) Anthropology
+[normal] (B) Sociology
+[normal] (C) Psychology
+[normal] (D) History
+[normal] Answer: (A) Anthropology
+[normal] ---
+[normal] WEEK 2: THE PEOPLE OF SOUTHERN NIGERIA
+[normal] 1. The Yoruba people are found mainly in _______.
+[normal] (A) Western Nigeria
+[normal] (B) Eastern Nigeria
+[normal] (C) Northern Nigeria
+[normal] (D) Southern Nigeria
+[normal] Answer: (A) Western Nigeria
+[normal] 2. The origin of the Yoruba people can be traced to _______.
+[normal] (A) Egypt
+[normal] (B) Mecca
+[normal] (C) Ile-Ife
+[normal] (D) Oke Oramfe
+[normal] Answer: (C) Ile-Ife
+[normal] 3. The leader who led the Yoruba to Ile-Ife is _______.
+[normal] (A) Oduduwa
+[normal] (B) Obatala
+[normal] (C) Oranmiyan
+[normal] (D) Orisa Alase
+[normal] Answer: (A) Oduduwa
+[normal] 4. The socio-political organization of the Yoruba is headed by the _______.
+[normal] (A) Alaafin
+[normal] (B) Oyomesi
+[normal] (C) Ogboni
+[normal] (D) Bashorun
+[normal] Answer: (A) Alaafin
+[normal] 5. The Yoruba empire that became very powerful and prosperous in the 16th century is _______.

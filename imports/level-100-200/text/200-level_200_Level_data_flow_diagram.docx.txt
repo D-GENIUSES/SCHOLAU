@@ -1,0 +1,51 @@
+[Normal] What is Structured Analysis?
+[Normal] Structured analysis is a software engineering methodology that utilizes graphical representation to convert real-world cases into data specifications that can be used to create computer programs and hardware configurations. It is an important process-oriented approach because it allows a logical step-wise breakdown of both the source of information and the target of what is to be developed.
+[Normal] A software engineer utilizes a data flow diagram which is a set of bubbles with arrows connected to the direction of flow of data. A top-down approach is used to decompose and solve specific problems. This methodology of structured analysis was developed to document system requirements and designs.
+[Normal] History of Structured Analysis
+[Normal] The 1960s to the 1980s saw a large demand for complex information systems. At that time, there were no standard techniques for documenting requirements, configurations, and processes involved in a software system.
+[Normal] What are structured analysis techniques?
+[Normal] Structured analysis techniques are of three types:
+[Normal] Functional — This technique utilizes data flow diagrams to depict functions and flow of data.
+[Normal] Data — This technique utilizes entity relationship diagrams to depict the dependencies of the software system with the external environment.
+[Normal] Dynamic — This technique utilizes state transition diagrams to depict the conditions and working of the system.
+[Normal] What is the main aim of structured analysis?
+[Normal] The main aim of structured analysis is to break down complex information into smaller simpler parts so as to aid in the efficient development of a software system. The main characteristic of structured analysis is the usage of diagrams to display various functions and the flow of data.
+[Normal] What is a data flow diagram?
+[Normal] A data flow diagram (DFD) maps out the flow of information for any process or system. It uses defined symbols like rectangles, circles and arrows, plus short text labels, to show data inputs, outputs, storage points and the routes between each destination.
+[Normal] They can be used to analyse an existing system or model a new one.
+[Normal] a DFD can often visually “say” things that would be hard to explain in words, and they work for both technical and nontechnical audiences, from developer to CEO.
+[Normal] Data-flow diagrams provide a graphical representation of the system that aims to be accessible to
+[Normal]  computer specialist and non-specialist users alike. The models enable software engineers, customers
+[Normal]  and users to work together effectively during the analysis and specification of requirements.
+[Normal] Symbols and Notations Used in DFDs
+[Normal] Two common systems of symbols are named after their creators:
+[List Paragraph] Yourdon and Coad /Yourdon and DeMarco
+[List Paragraph] Gane and Sarson
+[Normal] One main difference in their symbols is that Yourdon-Coad and Yourdon-DeMarco use circles for processes, while Gane and Sarson use rectangles with rounded corners, sometimes called lozenges. There are other symbol variations in use as well, so the important thing to keep in mind is to be clear and consistent in the shapes and notations you use to communicate and collaborate with others.
+[Normal] Using any convention’s DFD rules or guidelines, the symbols depict the four components of data flow diagrams.
+[Normal] External entity: an outside system that sends or receives data, communicating with the system being diagrammed. They are the sources and destinations of information entering or leaving the system. They might be an outside organization or person, a computer system or a business system. They are also known as terminators, sources and sinks or actors. They are typically drawn on the edges of the diagram.
+[Normal] Process: any process that changes the data, producing an output. It might perform computations, or sort data based on logic, or direct the data flow based on business rules. A short label is used to describe the process, such as “Submit payment.”
+[Normal] Data store: files or repositories that hold information for later use, such as a database table or a membership form. Each data store receives a simple label, such as “Orders.”
+[Normal] Data flow: the route that data takes between the external entities, processes and data stores. It portrays the interface between the other components and is shown with arrows, typically labelled with a short data name, like “Billing details.”
+[Normal] A data flow diagram can dive into progressively more detail by using levels and layers, zeroing in on a particular piece.  DFD levels are numbered 0, 1 or 2, and occasionally go to even Level 3 or beyond. The necessary level of detail depends on the scope of what you are trying to accomplish.
+[Normal] DFD Level 0 is also called a Context Diagram. It’s a basic overview of the whole system or process being analysed or modelled. It’s designed to be an at-a-glance view, showing the system as a single high-level process, with its relationship to external entities. It should be easily understood by a wide audience, including stakeholders, business analysts, data analysts and developers.
+[Normal] DFD Level 1 provides a more detailed breakout of pieces of the Context Level Diagram. You will highlight the main functions carried out by the system, as you break down the high-level process of the Context Diagram into its subprocesses.
+[Normal] DFD Level 2 then goes one step deeper into parts of Level 1. It may require more text to reach the necessary level of detail about the system’s functioning.
+[Normal] Progression to Levels 3, 4 and beyond is possible, but going beyond Level 3 is uncommon. Doing so can create complexity that makes it difficult to communicate, compare or model effectively.
+[Normal] Logical DFD vs. Physical DFD
+[Normal] These are the two categories of a data flow diagram.  A Logical DFD visualizes the data flow that is essential for a business to operate. It focuses on the business and the information needed, not on how the system works or is proposed to work. However, a Physical DFD shows how the system is actually implemented now, or how it will be. For example, in a Logical DFD, the processes would be business activities, while in a Physical DFD, the processes would be programs and manual procedures.
+[Normal] Logical and Physical Data Flow Diagrams (DFDs) are two different ways of representing a system’s data flow, each with its specific focus and purpose.
+[Normal] 1. Logical DFD
+[Normal] Purpose: A logical DFD focuses on what the system does, representing the business functions, processes, and information flow without going into technical details about how they are implemented.
+[Normal] Components: It emphasizes the flow of data, the inputs and outputs of processes, and the overall system's functions.
+[Normal] Details: Logical DFDs are often used during the initial stages of system design to understand the requirements and outline the functional aspects of the system. They help stakeholders and analysts get a clear picture of the system's purpose, requirements, and essential operations.
+[Normal] Example: In a library system, a logical DFD would show processes like "Check Out Book" or "Return Book" and how they interact with data entities such as "Member Records" or "Book Inventory" without detailing the specific hardware or software involved.
+[Normal] 2. Physical DFD
+[Normal] Purpose: A physical DFD describes how the system will be implemented, specifying the actual hardware, software, files, databases, and people involved in the system’s operations.
+[Normal] Components: It includes specific details about data storage locations, actual file formats, hardware requirements, and software applications used.
+[Normal] Details: Physical DFDs are typically used in later stages of system development when focusing on implementation details. They help developers and system architects understand the exact setup and components needed to operate the system.
+[Normal] Example: In a library system, a physical DFD would detail the specific database (e.g., SQL database) where "Member Records" are stored, the exact server or hardware used, and software tools like scanners or kiosks for "Check Out Book" processes.
+[Normal] Key Differences
+[Normal] Abstraction Level: Logical DFDs are more abstract and focus on business processes, while Physical DFDs are detailed and focus on technical aspects.
+[Normal] Audience: Logical DFDs are useful for analysts and stakeholders to understand the system conceptually, whereas Physical DFDs are geared toward developers and IT professionals for implementation.
+[Normal] Timing in Development: Logical DFDs are used in the early stages of system design, while Physical DFDs are used when moving towards implementation.

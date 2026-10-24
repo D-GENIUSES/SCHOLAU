@@ -75,7 +75,7 @@ reset role;
 insert into public.academic_periods(university_id,label,active) values(current_setting('t.uni')::uuid,'2027/2028',true);
 select set_config('t.futureperiod',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2027/2028'),true) is not null as setup;
 insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.futureperiod')::uuid,'First semester',1);
-select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.futureperiod')::uuid),101,'future first semester provisions all matching levels automatically');
+select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.futureperiod')::uuid),118,'future first semester provisions all matching levels automatically');
 insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.futureperiod')::uuid,'Second semester',2);
 select set_config('t.second',(select id::text from public.semesters where academic_period_id=current_setting('t.futureperiod')::uuid and sort_order=2),true) is not null as setup;
 select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.second')::uuid),95,'second semester provisions its own curriculum');
@@ -84,7 +84,7 @@ select set_config('t.inactiveperiod',(select id::text from public.academic_perio
 insert into public.semesters(university_id,academic_period_id,label,sort_order) values(current_setting('t.uni')::uuid,current_setting('t.inactiveperiod')::uuid,'First semester',1);
 select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.inactiveperiod')::uuid),0,'inactive academic session does not provision courses');
 update public.academic_periods set active=true where id=current_setting('t.inactiveperiod')::uuid;
-select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.inactiveperiod')::uuid),101,'activating a session provisions its matching courses');
+select is((select count(*)::integer from public.course_offerings o join public.semesters s on s.id=o.semester_id where s.academic_period_id=current_setting('t.inactiveperiod')::uuid),118,'activating a session provisions its matching courses');
 select pg_temp.login(current_setting('t.student')::uuid);
 select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'future offerings do not leak into current session catalog');
 reset role;

@@ -2,12 +2,11 @@
 
 import { Bell, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import type { Notification } from "@scholau/api";
 import { useClearNotifications, useMarkNotificationRead, useNotifications } from "@scholau/api/react";
 import { formatDateTime, formatRelative } from "@scholau/core";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { cn } from "@/lib/utils";
 import { InvitationsPanel } from "@/components/battle/invitations-panel";
@@ -21,29 +20,29 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
   const target = internalTarget(item.safe_target);
   const content = (
     <>
-      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white"><Bell className="size-3.5" aria-hidden /></span>
-      <span className="min-w-0 flex-1 md:flex md:items-center md:gap-3">
-        <span className={cn("block truncate text-sm text-ink md:flex-1", unread && "font-semibold")}>{item.body}</span>
-        <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-xs text-ink-muted md:shrink-0">
-          {formatRelative(item.created_at)}
-        </time>
+      <span className="inbox-mark"><Bell className="size-4" aria-hidden /></span>
+      <span className="inbox-copy">
+        <p>{item.body}</p>
+        <time dateTime={item.created_at} title={formatDateTime(item.created_at)}>{formatRelative(item.created_at)}</time>
       </span>
-      {unread ? <span className="size-2 shrink-0 rounded-full bg-brand-primary" aria-label="Unread" /> : null}
-      {target ? <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden /> : null}
+      <span className="inbox-aside">
+        {unread ? <span className="inbox-dot" role="img" aria-label="Unread" /> : null}
+        {target ? <ChevronRight className="size-4 text-ink-muted" aria-hidden /> : null}
+      </span>
     </>
   );
-  const className = cn("flex w-full items-center gap-2 px-3 py-1.5 text-left", unread && "border-l-2 border-blue-600 bg-blue-50");
+  const className = cn("inbox-row", unread && "is-unread");
 
   if (!target && !unread) return <div className={className}>{content}</div>;
   return (
-    <button type="button" className={cn(className, "min-h-0 hover:bg-surface-page")} onClick={() => onOpen(item)}>
+    <button type="button" className={className} onClick={() => onOpen(item)}>
       {content}
       {!target ? <span className="sr-only">Mark as read</span> : null}
     </button>
   );
 }
 
-export function NotificationsView() {
+export function NotificationsView({ settings }: { settings?: ReactNode }) {
   const router = useRouter();
   const notifications = useNotifications();
   const markRead = useMarkNotificationRead();
@@ -59,11 +58,15 @@ export function NotificationsView() {
     return () => window.clearTimeout(timer);
   }, [notifications.data, notifications.refetch]);
 
-  if (notifications.isPending) return <LoadingState variant="notifications" label="Loading notifications…" />;
-  if (notifications.isError) return <ErrorState error={notifications.error} onRetry={() => void notifications.refetch()} />;
-
-  const items = notifications.data;
+  const items = notifications.data ?? [];
   const unreadCount = items.filter((n) => n.read_at === null).length;
+  const summary = notifications.isPending
+    ? "Loading your inbox"
+    : notifications.isError
+      ? "Inbox unavailable"
+      : unreadCount > 0
+        ? `${unreadCount} unread`
+        : "You're up to date";
 
   const open = (item: Notification) => {
     if (item.read_at === null) markRead.mutate({ notificationId: item.id });
@@ -73,28 +76,39 @@ export function NotificationsView() {
 
   return (
     <>
-      <PageHeader
-        title="Notifications"
-        description={unreadCount > 0 ? `${unreadCount} unread` : undefined}
-        actions={items.length > 0 ? <div className="flex flex-wrap gap-2">
-          {unreadCount > 0 ? <Button variant="outline" size="sm" loading={markRead.isPending && markRead.variables?.all === true} onClick={() => markRead.mutate({ all: true })}>Mark all as read</Button> : null}
-          <Button variant="outline" size="sm" loading={clear.isPending} onClick={() => clear.mutate()}>Clear notifications</Button>
-        </div> : null}
-      />
-      <InlineError error={markRead.error} className="mb-4" />
-      <InlineError error={clear.error} className="mb-4" />
-      <div className="mb-4"><InvitationsPanel /></div>
-      {items.length === 0 ? (
+      <header className="inbox-head">
+        <div className="min-w-0">
+          <h1>Notifications</h1>
+          <p>{summary}</p>
+        </div>
+        {items.length > 0 ? (
+          <div className="inbox-toolbar">
+            {unreadCount > 0 ? <Button variant="outline" size="sm" loading={markRead.isPending && markRead.variables?.all === true} onClick={() => markRead.mutate({ all: true })}>Mark all read</Button> : null}
+            <Button variant="outline" size="sm" loading={clear.isPending} onClick={() => clear.mutate()}>Clear</Button>
+          </div>
+        ) : null}
+      </header>
+      {settings}
+      <InlineError error={markRead.error} />
+      <InlineError error={clear.error} />
+      <InvitationsPanel />
+      {notifications.isPending ? <LoadingState variant="notifications" label="Loading notifications…" /> : null}
+      {notifications.isError ? <ErrorState error={notifications.error} onRetry={() => void notifications.refetch()} /> : null}
+      {!notifications.isPending && !notifications.isError && items.length === 0 ? (
         <EmptyState icon={<Bell className="size-6" />} title="No notifications yet" description="Updates about your account and activity will appear here." />
-      ) : (
-        <ul className="divide-y divide-line overflow-hidden rounded-card border border-line bg-surface-card">
-          {items.map((item) => (
-            <li key={item.id}>
-              <NotificationItem item={item} onOpen={open} />
-            </li>
-          ))}
-        </ul>
-      )}
+      ) : null}
+      {items.length > 0 ? (
+        <section aria-label="Notification inbox" className="inbox-block">
+          <h2 className="inbox-label">Inbox</h2>
+          <ul className="inbox-list">
+            {items.map((item) => (
+              <li key={item.id}>
+                <NotificationItem item={item} onOpen={open} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </>
   );
 }

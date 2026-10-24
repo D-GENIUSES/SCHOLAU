@@ -1,0 +1,590 @@
+[
+  {
+    "file": "200-level\\200 Level\\AUE-CSC 204 - Web Technologies - Lecture 3.pdf",
+    "sha256": "efbabf5f900948ecb666c49fee58a421154dc4cd3e1c759ea8e4c4ebadb22dea",
+    "chars": 10249,
+    "text_file": "text\\200-level_200_Level_AUE-CSC_204_-_Web_Technologies_-_Lecture_3.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- AUE-CSC 204 \u2013 WEB TECHNOLOGIES LECTURE 3 Mr. Jeremiah Ademola BALOGUN Department of Computer Science +2349063062341 Balogun.Jeremiah@adelekeuniversity.edu.ng --- page 2 --- The Skeleton & Semantic Web Now, we begin building. \u2022 In web development, HyperText Markup Language (HTML) is the skeleton of your application. \u2022 Without it, there is no structure. \u2022 However, in 2026, we don't j"
+  },
+  {
+    "file": "200-level\\200 Level\\Boolean Algebra lecture 5.pptx",
+    "sha256": "6a97ffb0a0f4c480f3b58be47bc3b5d29f033f027d0e9d5b78bfcd8b6aa50819",
+    "chars": 17727,
+    "text_file": "text\\200-level_200_Level_Boolean_Algebra_lecture_5.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- Boolean Algebra Alamu Femi O PhD --- slide 2 --- Need for Boolean Expressions In the study of digital circuits, we have two methods for representing combinational logic: schematics and truth tables. These two methods are inadequate for a number of reasons: \u2022Both schematics and truth tables take too much space to describe the operation of complex circuits with numerous inputs. \u2022The"
+  },
+  {
+    "file": "200-level\\200 Level\\BUSINESS OPPORTUNITY AND BUSINESS IDEAS.pdf",
+    "sha256": "fc9d0544eb9d3f60e75dc363ba8f14abfb9af8d41ca1da112bb382cd4b6dc83e",
+    "chars": 10636,
+    "text_file": "text\\200-level_200_Level_BUSINESS_OPPORTUNITY_AND_BUSINESS_IDEAS.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- 1 BUSINESS OPPORTUNITY AND BUSINESS IDEAS Entrepreneurial opportunities are not equally obvious to everyone but are equally available to anyone with the experiences and knowledge to discover them. Opportunities are themselves unstructured where advantages and disadvantages of opportunities are largely dependent on individual differences in terms of personal experience, exposure, an"
+  },
+  {
+    "file": "200-level\\200 Level\\COS 201- COMP PROGRAMMING CLASS II - Copy.pdf",
+    "sha256": "9e03116eb25f4ad89d8d895505172c05c805d027dd47c79d0ec38b371470160e",
+    "chars": 17067,
+    "text_file": "text\\200-level_200_Level_COS_201-_COMP_PROGRAMMING_CLASS_II_-_Copy.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- COS 201- COMPUTER PROGRAMMING II MISS OYEWOLE C.B --- page 2 --- PACKAGE A Package can be defined as a grouping of related types(classes, interfaces). Java provides a large number of classes grouped into different packages based on their functionality. The classes contained in the packages of other programs/applications can be reused. There are two types of packages in Java namely;"
+  },
+  {
+    "file": "200-level\\200 Level\\COS 202- COMP PROGRAMMING 1 - Copy.pdf",
+    "sha256": "c0f48723cf3c05c5df3dd481e8663ac3a7276fe3943cd55b367b642151a3bb31",
+    "chars": 7625,
+    "text_file": "text\\200-level_200_Level_COS_202-_COMP_PROGRAMMING_1_-_Copy.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- COS 202- COMPUTER PROGRAMMING II MISS OYEWOLE --- page 2 --- JAVA OBJECT ORIENTED PROGRAMMING CONCEPTS Java is an Object-Oriented Programming language which has a similar syntax to C/C++ programming languages but without its complexities. Java is widely used to develop mobile applications, desktop applications, web applications, web servers, games, and enterprise-level systems. Ori"
+  },
+  {
+    "file": "200-level\\200 Level\\CSC 203 Discrete Structures NEW.pdf",
+    "sha256": "7eeb856f84245be0d2882fafc13a27ef52ce38f65ee0802eec19614d11a987e3",
+    "chars": 102835,
+    "text_file": "text\\200-level_200_Level_CSC_203_Discrete_Structures_NEW.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- DISCRETE STRUCTURES (CSC 203) A LECTURE NOTE PREPARED BY COURSE LECTURER FOR DEGREE PROGRAMME --- page 2 --- 2 Propositional Logic A field of mathematics known as propositional logic examines the logical connections between propositions\u2014also known as statements, sentences, or assertions\u2014when viewed as a whole and joined by logical connectives. Example: 1. The sun rises in the East "
+  },
+  {
+    "file": "200-level\\200 Level\\data flow diagram.docx",
+    "sha256": "0aa125d461bdb47f4fe08644f71f5e41089d614f2787317ee7b358d726b10ef7",
+    "chars": 8873,
+    "text_file": "text\\200-level_200_Level_data_flow_diagram.docx.txt",
+    "error": null,
+    "preview": "[Normal] What is Structured Analysis? [Normal] Structured analysis is a software engineering methodology that utilizes graphical representation to convert real-world cases into data specifications that can be used to create computer programs and hardware configurations. It is an important process-oriented approach because it allows a logical step-wise breakdown of both the source of information an"
+  },
+  {
+    "file": "200-level\\200 Level\\Digital Logic Design.pptx",
+    "sha256": "8b505f95067f0e24e5abbc4cc1d4ccf723377cfef56c6c6e9e453e63a66230e6",
+    "chars": 16419,
+    "text_file": "text\\200-level_200_Level_Digital_Logic_Design.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- # Digital Logic Design IFT 211 Alamu F.O. Ph.D. --- slide 2 --- Administration of the course: The students are expected to attend all classes. An official written document stating why you are absent from any class or test if per chance you are absent from the class. Hence a notice of such absences should be submitted in writing in advance. An excused absence requires a written tes"
+  },
+  {
+    "file": "200-level\\200 Level\\ENT 211 assignment (Autosaved).docx",
+    "sha256": "e06f68b505e95d11067de9f0dfe8e9d31ba3c905717ab6a6ce49abdcde647d52",
+    "chars": 7426,
+    "text_file": "text\\200-level_200_Level_ENT_211_assignment_Autosaved_.docx.txt",
+    "error": null,
+    "preview": "[Normal] NAME: MUOKA JUDE CHUKWUDI. [Normal] MATRIC NO: 24/1164 [Normal] DEPT: COMPUTER SCIENCE [Normal] COURSE TITLE: ENTREPRENEURSHIP AND INNOVATION [Normal] COURSE CODE: ENT 211 [Normal] LECTURER: MR OGINNI [Normal] ASSIGNMENT TITLE [Normal] Various forms of business organization [Normal] .Meaning of Business Organization [Normal] A business organization is an establishment formed by individual"
+  },
+  {
+    "file": "200-level\\200 Level\\html css.pdf",
+    "sha256": "41dfe29b38a8e6e165343935b2455397209ae8656adc1b05cf26539af7cf18f4",
+    "chars": 82087,
+    "text_file": "text\\200-level_200_Level_html_css.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- 1 INTRODUCTION TO WEB TECHNOLOGIES AUE -CSC 204 --- page 2 --- 2 Course Outline 2 \u2022 Departments: Computer Science, Cybersecurity & Software Engineering \u2022 Semester/Session: 2nd Semester 2024/2025 \u2022 Course code/title: AUE-CSC 204; Introduction to web technologies (3 units) \u2022 Course prerequisite: None Course Lecturer: Akintunde Adedamola E. \u2022 Email: akintunde.adedamola@adelekeuniversi"
+  },
+  {
+    "file": "200-level\\200 Level\\IFT 212 Chapter One - Lecture 1.pdf",
+    "sha256": "9827c52c1389a9da8a727545d0b3d2127b483fb3a8c2934b609e1fa9dec3e763",
+    "chars": 27534,
+    "text_file": "text\\200-level_200_Level_IFT_212_Chapter_One_-_Lecture_1.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Virgil Bistriceanu Illinois Institute of Technology 3 1. Fundamentals of Computer Design 1.1 Introduction The concept of stored program computers appeared in 1945 when John von Neumann drafted the \ufb01rst version of EDV AC (Electronic Discrete Variable Computer). Those ideas have since been the milestones of computers: \u2022 an input device through which data and instructions can be enter"
+  },
+  {
+    "file": "200-level\\200 Level\\IFT 212 LECTURE 5.ppt",
+    "sha256": "4ac3f99000fe5e442b2c1bfd5dfbd64df26bdae73e8bafb03908ddd10babef0e",
+    "chars": 2721,
+    "text_file": "text\\200-level_200_Level_IFT_212_LECTURE_5.ppt.txt",
+    "error": null,
+    "preview": "Calibri Arial Black Arial Rounded MT Bold Wingdings ___PPT12 ___PPT10 Group 3 Freeform 4 Freeform 5 Freeform 6 Group 7 Freeform 8 Group 9 Freeform 10 Freeform 11 Freeform 12 Freeform 13 Freeform 14 Freeform 15 Group 16 Freeform 17 Freeform 18 A*G6G<;6/* Freeform 19 `6`<fHlTx` Freeform 20 )$/*565</6#0 Freeform 21 /TYB;$ Freeform 22 Rectangle 23 Rectangle 24 Rectangle 25 ___PPT9 Rectangle 26 ___PPT9"
+  },
+  {
+    "file": "200-level\\200 Level\\lecture 10.pdf",
+    "sha256": "52d0f0c1d6ed4ff4f2856e7afe422778ec109a201877264c68bf1b26659540b2",
+    "chars": 5837,
+    "text_file": "text\\200-level_200_Level_lecture_10.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Software Evolution Software evolution refers to the continuous process of developing, modifying, and adapting software products to meet changing requirements, technologies, and environments throughout their lifecycle. Unlike physical systems, software is not consumed through use, it ages when it fails to adapt to new demands. In real-world terms, after a software product is deliver"
+  },
+  {
+    "file": "200-level\\200 Level\\Lecture 2.pdf",
+    "sha256": "88f45391ca7f4ef26d30edd26b18f60258ea1d7df57bc5c02b04f927ba084d21",
+    "chars": 4748,
+    "text_file": "text\\200-level_200_Level_Lecture_2.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Design, Development, and Testing of Software Systems Software does not exist by accident. It is conceived, designed, built, and evaluated through structured activities. These activities\u2014design, development, and testing\u2014form the backbone of software engineering practice. Understanding these phases is essential for every software engineer because they determine not only how well a sy"
+  },
+  {
+    "file": "200-level\\200 Level\\Lecture 3.pdf",
+    "sha256": "1095a4620d82e9f784c1abdfe31fa04ecae94ef0d17b2e565a34819682480215",
+    "chars": 8871,
+    "text_file": "text\\200-level_200_Level_Lecture_3.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Software Processes: Software Lifecycle and Process Models Software Process: Set of activities required to develop software. Software processes ensure that development is not chaotic but guided, predictable, and efficient. Activities involved are: 1. Requirements analysis 2. Design 3. Implementation 4. Testing 5. Deployment 6. Maintenance Lifecycle Models: 1. Waterfall Model: Sequen"
+  },
+  {
+    "file": "200-level\\200 Level\\lecture 4.pdf",
+    "sha256": "6fbddb95fc9f876c3dbbf494e44c523fa0df0888865365b94528584d8691db35",
+    "chars": 9084,
+    "text_file": "text\\200-level_200_Level_lecture_4.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- PROCESS ASSESSMENT MODELS In software engineering, producing high-quality software consistently depends not only on the technical competence of individuals but also on the maturity and effectiveness of the software process used in development. To measure and improve these processes, organizations use Process Assessment Models (PAMs) \u2014 structured frameworks that evaluate how well so"
+  },
+  {
+    "file": "200-level\\200 Level\\Lecture 5.pdf",
+    "sha256": "e5c66c7292e923dccb6fd463c3079ac2217a942dba19917c05ca36211280fb22",
+    "chars": 6253,
+    "text_file": "text\\200-level_200_Level_Lecture_5.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- SOFTWARE PROCESS METRIC In software engineering, measurement is the foundation for understanding, controlling, and improving the software development process. Without measurement, improvement becomes a matter of guesswork. A software process metric is a quantitative measure that provides insight into how effective and efficient a software process is. It helps us evaluate how well w"
+  },
+  {
+    "file": "200-level\\200 Level\\lecture 6.pdf",
+    "sha256": "63f2fc8b3f704aeb728b2e25c3ec26f8c452bf4089495bd98bf802305da89183",
+    "chars": 6158,
+    "text_file": "text\\200-level_200_Level_lecture_6.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- LIFE CYCLE OF A SOFTWARE SYSTEM Every software system, like any other engineered product, passes through a series of well- defined stages from the time it is conceived until it is retired. This sequence of stages is known as the Software Life Cycle or Software Development Life Cycle (SDLC). The life cycle of a software system provides a structured way to develop, operate, maintain,"
+  },
+  {
+    "file": "200-level\\200 Level\\Lecture 7.pdf",
+    "sha256": "a169acbc5d0e3df99a3c36cd7f591880e20be0a211d53ab384dbe7dd92f01685",
+    "chars": 3789,
+    "text_file": "text\\200-level_200_Level_Lecture_7.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- SOFTWARE REQUIREMENTS AND SPECIFICATIONS In software engineering, every successful software project begins with a clear understanding of what the system should do. This understanding is achieved through two critical concepts software requirements and software specifications. Requirements define the needs and expectations of users, while specifications describe these needs in a stru"
+  },
+  {
+    "file": "200-level\\200 Level\\lecture 8.pdf",
+    "sha256": "f4adc95c209986251be6194483fb9e082fd2f0006504bcc013ae479719c9fc15",
+    "chars": 5627,
+    "text_file": "text\\200-level_200_Level_lecture_8.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- SOFTWARE DESIGN In software engineering, software design is the creative and technical process of defining the structure, behavior, and appearance of a software system before actual coding begins. It bridges the gap between software requirements (what the system should do) and implementation (how it is built). Software design provides a blueprint for construction \u2014 much like an arc"
+  },
+  {
+    "file": "200-level\\200 Level\\lecture 9.pdf",
+    "sha256": "2ad8c833da0bafe330e83615ddacbddcfbc75e63bfbc8178a2faa233d0922cc8",
+    "chars": 4732,
+    "text_file": "text\\200-level_200_Level_lecture_9.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- SOFTWARE ARCHITECTURE Software architecture refers to the high-level structure of a software system, defining how its components interact to fulfil system requirements. It represents the blueprint for both system organization and communication between elements such as modules, components, and data flows. Formally, software architecture is \u201cthe set of structures needed to reason abo"
+  },
+  {
+    "file": "200-level\\200 Level\\Lecture1 Software Engineering Concepts and Principles.pdf",
+    "sha256": "6074c2163c88916f39bad2da5dbdfc307d1306619cac398ceb48ff74fe36d93d",
+    "chars": 7228,
+    "text_file": "text\\200-level_200_Level_Lecture1_Software_Engineering_Concepts_and_Principles.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Software Engineering Concepts and Principles(Concepts describe what software engineering involves, while principles explain how it should be practiced.) for instance, Modularity as a concept is supported by the principle of separation of concerns. Quality as a concept is achieved through verification, validation, and documentation principles. Thus, concepts provide the foundation, "
+  },
+  {
+    "file": "200-level\\200 Level\\lecture11.pdf",
+    "sha256": "f52f0d0e665288b254cb2c6bc35d7ac1d7d258e4942f5a439e5ebe5d93a71623",
+    "chars": 4273,
+    "text_file": "text\\200-level_200_Level_lecture11.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Software Engineering and Law As software systems increasingly influence business, education, government, finance, and personal life, software engineers must understand the legal environment surrounding the creation, deployment, and use of software. \"Software Engineering and Law\" examines how legal principles\u2014intellectual property, contracts, data protection, professional responsibi"
+  },
+  {
+    "file": "200-level\\200 Level\\Logic Functions and Gates lecture 4.pptx",
+    "sha256": "2dfd9fd3f3a79bb61874db246c7d781593d754ba930b4766ae173ad5752d7dc3",
+    "chars": 14492,
+    "text_file": "text\\200-level_200_Level_Logic_Functions_and_Gates_lecture_4.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- Logic Functions and Gates Alamu Femi O PhD --- slide 2 --- Introduction Representing numbers using transistors is one thing, but getting the computer to do something with those numbers is an entirely different matter. Digital circuitry is used to perform operations such as addition or multiplication, manage data, or execute programs. This lecture presents the circuitry that is the"
+  },
+  {
+    "file": "200-level\\200 Level\\Number system lecture 2.pptx",
+    "sha256": "03f03a339111c3240e97a93158be5516f989e99f7c615708352745cf210f90fb",
+    "chars": 18239,
+    "text_file": "text\\200-level_200_Level_Number_system_lecture_2.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- Numbering Systems Alamu Femi O PhD --- slide 2 --- We have discussed how computers remember numbers using transistors, tiny devices that act like switches with only two positions, on or off. A single transistor, therefore, can only remember one of two possible numbers, a \u201cone\u201d or a \u201czero\u201d. This isn't useful for anything more complex than controlling a light bulb, so for larger val"
+  },
+  {
+    "file": "200-level\\200 Level\\Philosophy, Logic and Human Existence Note 1-3_043619.pdf",
+    "sha256": "65c378d4d931f310ac20119727ab6cafe3664968fe296fef91e793db2428596b",
+    "chars": 61749,
+    "text_file": "text\\200-level_200_Level_Philosophy_Logic_and_Human_Existence_Note_1-3_043619.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Philosophy, Logic and Human Existence Introduction to Philosophy Definition, Nature, and Scope of Philosophy Philosophy is derived from the Greek words philo (love) and sophia (wisdom), meaning \"love of wisdom.\" It is a discipline that involves the systematic study of fundamental questions about existence, knowledge, values, reason, mind, and language. Philosophy is both a theoreti"
+  },
+  {
+    "file": "200-level\\200 Level\\Problem Solving in Python.py",
+    "sha256": "b52def392acee3d36c97c74de2daff6896d3a87baa4aa9577815ab16c51885ab",
+    "chars": 4738,
+    "text_file": "text\\200-level_200_Level_Problem_Solving_in_Python.py.txt",
+    "error": null,
+    "preview": "#!/usr/bin/env python # coding: utf-8 # # Welcome to Problem Solving in Python # First, let me introduce you to a built-in function for displaying data/output. The **print()** function can display strings and integer data types. # In[1]: # To display strings, you have to enclose them in single or double quotes. Using double quotes promotes consistency print(\"Hello world\") # In[2]: # Integers on th"
+  },
+  {
+    "file": "200-level\\200 Level\\Standard Boolean Expression Formats lecture 6.pptx",
+    "sha256": "cc2ab3298f120dc5dfa3cf72247d0d6f0ddc48f916b7e97f44fb7a41fdc8da21",
+    "chars": 12165,
+    "text_file": "text\\200-level_200_Level_Standard_Boolean_Expression_Formats_lecture_6.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- Standard Boolean Expression Formats Alamu F.O. Ph.D. --- slide 2 --- The development of standards is important to the computer industry for a number of reasons. It allows independently developed systems and subsystems to be connected, it provides reliability through well tested design methods, and it shortens the design time by providing off the-shelf tools and components for quic"
+  },
+  {
+    "file": "100-level\\100 Level\\100 Level First Semester CSC.docx",
+    "sha256": "1381eaedcd4fccbdc65fc494536f6e1fc1ee0bf4ed6ff925e7e808ae0bc4e50b",
+    "chars": 549,
+    "text_file": "text\\100-level_100_Level_100_Level_First_Semester_CSC.docx.txt",
+    "error": null,
+    "preview": "[Normal] 100 Level First Semester (Computer Science) --- table 1 --- Course Code | Course Title | Unit(s) | Status GST 111 | Communication in English | 2 | C MTH 101 | Elementary Mathematics I | 2 | C PHY 101 | General Physics I | 2 | C PHY 107 | General Practical Physics I | 1 | C STA 111 | Descriptive Statistics | 3 | C COS 101 | Introduction to Computing Sciences | 3 | C AUE-GST 100 | Students "
+  },
+  {
+    "file": "100-level\\100 Level\\526001962-Statistics-Mcq-Questions_251127_184758(1).pdf",
+    "sha256": "8b8e1fdaf7f50d9886439cf1713a44a719897c26e24aa7ce4d72b9d8510bd451",
+    "chars": 6422,
+    "text_file": "text\\100-level_100_Level_526001962-Statistics-Mcq-Questions_251127_184758_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- Statistics Mcq Questions Q1.________is not a common measure of central tendency. a)Mean b)Median c)Mode d)Range Q2. _____ is not a measure of variability a)Median b)Standard Variance c)Variance d)Range Q3.Which of these is a type of statistics? (A) Descriptive statistics (B) Inferential statistics --- page 2 --- (C) Industry statistics (D)Both A and B Q4.Variables which can be meas"
+  },
+  {
+    "file": "100-level\\100 Level\\526001962-Statistics-Mcq-Questions_251127_184758.pdf",
+    "sha256": "8b8e1fdaf7f50d9886439cf1713a44a719897c26e24aa7ce4d72b9d8510bd451",
+    "duplicate_of": "100-level\\100 Level\\526001962-Statistics-Mcq-Questions_251127_184758(1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\AUE-CSC-104 (1).pdf",
+    "sha256": "6b01d3ae9d8dc05a08ef0648152e0ec4b2cf0014a2081897119b88d3a16edd49",
+    "chars": 4429,
+    "text_file": "text\\100-level_100_Level_AUE-CSC-104_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- AUE-CSC 104: COMPUTER HARDWARE Course Units: 3 Units (C: LH 30; PH 45) MODULE 1: COMPUTER CIRCUITS 1.1 Introduction to Computer Circuits Computer circuits form the physical foundation of computer systems. They consist of interconnected electronic components designed to process, store, and transmit electrical signals that represent data and instructions. 1.2 Basic Electronic Compone"
+  },
+  {
+    "file": "100-level\\100 Level\\AUE-CSC-104 .pdf",
+    "sha256": "6b01d3ae9d8dc05a08ef0648152e0ec4b2cf0014a2081897119b88d3a16edd49",
+    "duplicate_of": "100-level\\100 Level\\AUE-CSC-104 (1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\AUE-GST 102 MCQ WITH EXPLANATIONS_101125.docx",
+    "sha256": "5f1697ecf8dd286146e674370bc4d4b3233ee4365f42eec4f8976165f15296f4",
+    "chars": 28914,
+    "text_file": "text\\100-level_100_Level_AUE-GST_102_MCQ_WITH_EXPLANATIONS_101125.docx.txt",
+    "error": null,
+    "preview": "[Normal] \ud83d\udcd8 GES 112 \u2013 FULL BREAKDOWN (1\u201310) [Normal] 1. ______ are narratives and stories told (which are not believed to be true stories) in a particular religion or cultural settings to illustrate values and ethics. [Normal] (a) Mythology [Normal] (b) Folklores [Normal] (c) Mysticism [Normal] (d) Methodology [Normal] \u2705 Answer: (a) Mythology [Normal] \ud83d\udca1 Explanation: [Normal] (a) Mythology \u2714\ufe0f [Norma"
+  },
+  {
+    "file": "100-level\\100 Level\\AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH(1).docx",
+    "sha256": "571f5a027830b7f3ee840ad010cc442dab4fc2f35e4c8128ffda85feb28ecda5",
+    "chars": 28006,
+    "text_file": "text\\100-level_100_Level_AUGST_SUPPLENTARY_NOTES_ON_RELIGIOUS_DIALOGUE_RELIGION_AND_MENTAL_HEALTH_AND_DIGITAL_TECH_1_.docx.txt",
+    "error": null,
+    "preview": "[Normal] AU-GST 102 (GOD IN MODERN SOCIETY) [Normal] Religious dialogue [Normal] This is the attempt to create opportunity and atmosphere of cooperation, positivity and productive relationship among different religious groups such as Christianity, Islam, African Traditional Religion and secular minded people. It involves open and respectful conversations among people or groups of different appreci"
+  },
+  {
+    "file": "100-level\\100 Level\\AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH.docx",
+    "sha256": "571f5a027830b7f3ee840ad010cc442dab4fc2f35e4c8128ffda85feb28ecda5",
+    "duplicate_of": "100-level\\100 Level\\AUGST SUPPLENTARY NOTES ON RELIGIOUS DIALOGUE RELIGION AND MENTAL HEALTH AND DIGITAL TECH(1).docx",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\CH-LectureNote1(1).pdf",
+    "sha256": "02cb078b6d992050abda2fe1ba5527369cc67c12a9ea85d89d0077c514632d2f",
+    "chars": 15532,
+    "text_file": "text\\100-level_100_Level_CH-LectureNote1_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- AUE-CSC 104: Computer Hardware (3 units) Dr. A.R. Iyanda --- page 2 --- Recommended Textbook and Materials \u2022 Computer Organization And Architecture Designing For Performance Eighth Edition- William Stallings \u2022 Computer Organization Design: THE HARDWARE/SOFTWARE INTERFACE- David A. Patterson and John L. Hennessy --- page 3 --- Requirements \u2022 Class participation and attendance \u2022 Asse"
+  },
+  {
+    "file": "100-level\\100 Level\\CH-LectureNote1.pdf",
+    "sha256": "02cb078b6d992050abda2fe1ba5527369cc67c12a9ea85d89d0077c514632d2f",
+    "duplicate_of": "100-level\\100 Level\\CH-LectureNote1(1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\COS 101 Group A.pdf",
+    "sha256": "9fb7f5e13ccbce430b5838e91a7e58f7faedb4fd0cb669ad356e7ea836f59959",
+    "chars": 3482,
+    "text_file": "text\\100-level_100_Level_COS_101_Group_A.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- CSC 102 Group A S/N NAME MAT NO DEPARTMENT 1 ITUADON Godspower Inegbenose 23/0899 CSC 2 ABIOYE Fawaz Doyinsola 23/1376 CSC 3 UTHMAN Melvyn Omonigho 24/0423 CSC 4 OLAMIDE Taiwo Daniel 24/0433 CSC 5 ADESIDA Eniola Rapheal 24/0505 CSC 6 ADEYEMI Elizabeth Iyinoluwa 24/0506 CSC 7 ONAMADE Daniel Olamide 24/0508 CSC 8 ARIWOOLA Ademola Roqeeb 24/0509 CSC 9 BESONG Covenant Temiloluwa 24/051"
+  },
+  {
+    "file": "100-level\\100 Level\\COS 101 Introduction to Computing-1.pdf",
+    "sha256": "1da7f37d32da6326476210d651e23128df3c09d807c9edcc4e19bdc2dbd7cc67",
+    "chars": 13406,
+    "text_file": "text\\100-level_100_Level_COS_101_Introduction_to_Computing-1.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- COS 101 Introduction to Computing Instructors: Anozie G. Onyezewe Bunmi J. Bambi (Ph.D) Charity Oyewole Department of Computer Science, Adeleke University, Ede --- page 2 --- Outline \u25cf What is a Computer? \u25cf History of Computers: A Brief Timeline \u25cf Characteristics of the computer system \u25cf Data and Information \u25cf Functions of Computers \u25cf Components of a Computer System \u25cf Types of Comp"
+  },
+  {
+    "file": "100-level\\100 Level\\COS 102 - Problem Solving (CCMAS Course Outline).pdf",
+    "sha256": "7fcdba7782f77bf1c8e5c4cc66365797acbb7d1799b84d9b40b9cea6a039a461",
+    "chars": 1955,
+    "text_file": "text\\100-level_100_Level_COS_102_-_Problem_Solving_CCMAS_Course_Outline_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- COS 102: Problem Solving (3 Units C: LH 30; PH 45) Instructor: Anozie Onyezewe Learning Outcomes At the end of this course, students should be able to: 1. explain problem solving processes; 2. demonstrate problem solving skills; 3. describe the concept of algorithms development and properties of algorithms; 4. discuss the solution techniques of solving problem; 5. solve computer pr"
+  },
+  {
+    "file": "100-level\\100 Level\\COS 102_ Problem Solving (Assignment).pdf",
+    "sha256": "4f2ecf327327eda14165b1bba709ef2416b11bdf9987a9bb329e29a9ef61ca84",
+    "chars": 6962,
+    "text_file": "text\\100-level_100_Level_COS_102__Problem_Solving_Assignment_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- COS 102: Problem Solving (Assignment) Instructor: Anozie Onyezewe Assignment Instructions (for All Groups) Each group is required to complete the problem-solving steps for your given problem: \u25cf Understand the problem: Clearly identify and document the inputs, outputs, and constraints (if any). \u25cf Design a solution: Design a flowchart and pseudocode for your solution. \u25cf Implement the"
+  },
+  {
+    "file": "100-level\\100 Level\\COS MCQ Questions.docx",
+    "sha256": "f3b0ab3a264bb969d67bed509d7a1fc1dee82b6941155e734b268ce2e55c7920",
+    "chars": 10943,
+    "text_file": "text\\100-level_100_Level_COS_MCQ_Questions.docx.txt",
+    "error": null,
+    "preview": "[Normal] \ud83e\udde0 ADELEKE UNIVERSITY [Normal] COS 101 \u2013 Introduction to Computing [Normal] Complete Multiple Choice Questions (MCQs) [Normal] SECTION A: Introduction to Computers [Normal] A computer is best described as _______. [Normal] A. A calculating machine [Normal] B. An electronic device that processes data under control of a program [Normal] C. A storage device [Normal] D. A communication medium "
+  },
+  {
+    "file": "100-level\\100 Level\\CSC 102(1).pdf",
+    "sha256": "9db7dfc427e73100683196353b8a8b42171f8048150ad2316d45e41efa0851c0",
+    "chars": 25564,
+    "text_file": "text\\100-level_100_Level_CSC_102_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- INTRODUCTION TO PROBLEM SOLVING CSC 102 1 Introduction to problem solving --- page 2 --- Strategies Ask questions! \u2013 What do I know about the problem? \u2013 What is the information that I have to process in order the find the solution? \u2013 What does the solution look like? \u2013 What sort of special cases exist? \u2013 How will I recognize that I have found the solution? 2Introduction to problem "
+  },
+  {
+    "file": "100-level\\100 Level\\CSC 102.pdf",
+    "sha256": "9db7dfc427e73100683196353b8a8b42171f8048150ad2316d45e41efa0851c0",
+    "duplicate_of": "100-level\\100 Level\\CSC 102(1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\CSC 104 HARDWARE(1).pdf",
+    "sha256": "3f2202ec0abda495a671813c92fd0df8575af9192cfac437c5187047e602a783",
+    "chars": 5573,
+    "text_file": "text\\100-level_100_Level_CSC_104_HARDWARE_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- NAME: ADEDOKUN HAMMED OMOGBOLAHAN MATRIC NUMBER: 24/1238 DEPARTMENT: COMPUTER SCIENCE LEVEL: 100 COURSE: CSC 104 HARDWARE PRACTICAL --- page 2 --- ASSIGNMENT: 1. Write about Microprocessors and RAM 2. Write on different types of processors and their functions MICROPROCESSORS Microprocessor is a computer processor that is found in most modern personal computers, smartphones, and oth"
+  },
+  {
+    "file": "100-level\\100 Level\\CSC 104 HARDWARE(2).pdf",
+    "sha256": "3f2202ec0abda495a671813c92fd0df8575af9192cfac437c5187047e602a783",
+    "duplicate_of": "100-level\\100 Level\\CSC 104 HARDWARE(1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\CSC 104 HARDWARE.pdf",
+    "sha256": "3f2202ec0abda495a671813c92fd0df8575af9192cfac437c5187047e602a783",
+    "duplicate_of": "100-level\\100 Level\\CSC 104 HARDWARE(1).pdf",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\CSC HELP (THEORICAL).docx",
+    "sha256": "5fc5eeb6d9c40814636d0f810253ad2a16ec9c66aaf99bc4c3a8aa3a4f879e18",
+    "chars": 6320,
+    "text_file": "text\\100-level_100_Level_CSC_HELP_THEORICAL_.docx.txt",
+    "error": null,
+    "preview": "[normal] This breakdown of your CSC 102: Introduction to Problem Solving notes is structured to help you master the material for exams. It focuses on core definitions, the logic of programming, and memory aids for quick recall. [Heading 3] Module 1: Foundations of Problem Solving [normal] Core Definition: Computerization Computerization is the use of computers to develop software that automates ro"
+  },
+  {
+    "file": "100-level\\100 Level\\GDNX practice questions.html",
+    "sha256": "5eb3559a59fce00ea6b4df38f238a4759fbbe83fdbfd20b5f8018d3cbf1d9492",
+    "chars": 108,
+    "text_file": "text\\100-level_100_Level_GDNX_practice_questions.html.txt",
+    "error": null,
+    "preview": " CSC 104 Computer Hardware - CBT Practice CSC 104 Hardware Practice (40+ Qs) "
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112  GOD IN MODERN SOCIETY EXAMS 2021 2022 SESSION(1).txt",
+    "sha256": "eb2da17a8ef4162150e57031254787271d4e78d01abecabbab89eb7af32ecd05",
+    "chars": 20676,
+    "text_file": "text\\100-level_100_Level_GES_112_GOD_IN_MODERN_SOCIETY_EXAMS_2021_2022_SESSION_1_.txt.txt",
+    "error": null,
+    "preview": "Adeleke University, Ede Faculty of Arts GES 112 (God in Modern Society) 2nd Semester Examinations, 2021/2022 Session WHICH OF THESE IS STILL VALID IN THE NEW TESTAMENT DISPENSATION? (A) THE SEVENTH DAY SABBATH (B) THE ATONEMENT DAY (C) THE UNLEAVENED BREAD DAY (D) THE DAY OF TRUMPETS ANSWER: A The formula developed to calculate the degree of happiness in utilitarianism is called (A) FELICIFIC CALC"
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112  GOD IN MODERN SOCIETY EXAMS 2021 2022 SESSION(2).txt",
+    "sha256": "eb2da17a8ef4162150e57031254787271d4e78d01abecabbab89eb7af32ecd05",
+    "duplicate_of": "100-level\\100 Level\\GES 112  GOD IN MODERN SOCIETY EXAMS 2021 2022 SESSION(1).txt",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112  GOD IN MODERN SOCIETY EXAMS 2021 2022 SESSION.txt",
+    "sha256": "eb2da17a8ef4162150e57031254787271d4e78d01abecabbab89eb7af32ecd05",
+    "duplicate_of": "100-level\\100 Level\\GES 112  GOD IN MODERN SOCIETY EXAMS 2021 2022 SESSION(1).txt",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112 EXAMS 2016.docx",
+    "sha256": "6a05fb36ec57f96fcc2b1dd050f9a0501061b6b7fcd588e73ba1a1895e612763",
+    "chars": 8470,
+    "text_file": "text\\100-level_100_Level_GES_112_EXAMS_2016.docx.txt",
+    "error": null,
+    "preview": "[Normal] Adeleke University, Ede [Normal] Faculty of Arts & Education [Normal] GES 112 (God in Modern Society) [Normal] Final Examination, June, 2016. [Normal] Answer All. Each question carries 1 mark. You must provide correct answers to questions with multiple answers to earn the full mark. [Normal] 1 hour. [List Paragraph] _________________ are narratives and stories told (which are not believed"
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112 EXAMS 2019 extension-1.docx",
+    "sha256": "f43a30d6d047de2b251296bce4374363301f1a1c4e13e401b5926709d2f52505",
+    "chars": 7863,
+    "text_file": "text\\100-level_100_Level_GES_112_EXAMS_2019_extension-1.docx.txt",
+    "error": null,
+    "preview": "[Normal] Adeleke University, Ede [Normal] Faculty of Arts & Education [Normal] GES 112 (God in Modern Society) [Normal] Final Examination, June 24, 2019 (Extension). [Normal] Answer All. Each question carries 1 mark. You must provide correct answers to questions with multiple answers to earn the full mark. [Normal] 1 hour. [List Paragraph] _________________ are narratives and stories told (which a"
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112 EXAMS 2019 extension.docx",
+    "sha256": "16d4c22d196eed243bbbc5489c6be9d828236724852f961dc06d8381e7aa4e2f",
+    "chars": 8037,
+    "text_file": "text\\100-level_100_Level_GES_112_EXAMS_2019_extension.docx.txt",
+    "error": null,
+    "preview": "[Normal] Adeleke University, Ede [Normal] Faculty of Arts & Education [Normal] GES 112 (God in Modern Society) [Normal] Final Examination, June 24, 2019 (Extension). [Normal] Answer All. Each question carries 1 mark. You must provide correct answers to questions with multiple answers to earn the full mark. [Normal] 1 hour. [List Paragraph] _________________ are narratives and stories told (which a"
+  },
+  {
+    "file": "100-level\\100 Level\\GES 112 God in Modern Society slides.pptx",
+    "sha256": "b2f1ced82087286239a569b43c7c0bad426351c1b37bc7cfa6441eaf37ee535e",
+    "chars": 48612,
+    "text_file": "text\\100-level_100_Level_GES_112_God_in_Modern_Society_slides.pptx.txt",
+    "error": null,
+    "preview": " --- slide 1 --- GES 112 (God in Modern Society) --- slide 2 --- # Why People Don\u2019t believe in God Personal negative experiences Natural disasters Human made disasters Bad behaviors by professed believers in God Lack of empirical evidence of God\u2019s existence --- slide 3 --- # GES 112 (God in Modern Society) Myth & Mythology They are ways through which people over time have tried to explain meaning "
+  },
+  {
+    "file": "100-level\\100 Level\\God_s_plan_MTH_102_practice_question (1).pdf",
+    "sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+    "chars": 46402,
+    "text_file": "text\\100-level_100_Level_God_s_plan_MTH_102_practice_question_1_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- God\u2019s plan MTH 102 practice question GOD\u2019S PLAN TUTORIAL 09151406021 March 2026 1 AS YOU READ THROUGH THIS PDF ,THE LORD WILL GUIDE YOU, A IS YOURS, YOUR SUCCESS IS MY ACHIEVEMENT Functions and Limits: MCQs and Shortcut Solutions PART I: FUNCTIONS AND LIMITS 1. A function is said to be an even function ofxwhenf(\u2212x) equals: [label=(A)] (a)f(\u22121) (b)\u2212f(x) (c)f(\u2212x) (d)f(x) Answer:(D) S"
+  },
+  {
+    "file": "100-level\\100 Level\\GST 111 QUESTIONS.docx",
+    "sha256": "df26bc3ea7c3db13e457e8c731b09665e880480d1e609aafbd54e3e98fd94ac3",
+    "chars": 55554,
+    "text_file": "text\\100-level_100_Level_GST_111_QUESTIONS.docx.txt",
+    "error": null,
+    "preview": "[Normal] Questions FOR GST 111 [Normal] SECTION II [Normal] 1. which can be used to overcome the communication barrier [Normal] A) Using a translator [Normal] B) By writing a letter [Normal] C) Not communicating at all [Normal] D) Using your own language [Normal] Answer: A [Normal] 2. Which of the following is NOT a communication barrier? [Normal] A) Linguistic barrier [Normal] B) Interpersonal ba"
+  },
+  {
+    "file": "100-level\\100 Level\\Gst 112 obj.docx",
+    "sha256": "d1c6fbbab03b70d5dffa131b0b79b26ef0e365929bfa56adff876d7d09e42f49",
+    "chars": 17598,
+    "text_file": "text\\100-level_100_Level_Gst_112_obj.docx.txt",
+    "error": null,
+    "preview": "[normal] Glad you liked it! Here\u2019s the full set of questions with answer choices and the correct answers underneath each one. [normal] --- [normal] WEEK 1: THE PEOPLE OF NIGERIA [normal] 1. The estimated population of Nigeria is over _______ people. [normal] (A) 100 million [normal] (B) 200 million [normal] (C) 300 million [normal] (D) 400 million [normal] Answer: (B) 200 million [normal] 2. The n"
+  },
+  {
+    "file": "100-level\\100 Level\\Maths Trigonometric Identities .pdf",
+    "sha256": "f0e52550fa042cb640a52d632a74b5a417806e3a47edd7bd656ad7c3ec01edbf",
+    "chars": 140,
+    "text_file": "text\\100-level_100_Level_Maths_Trigonometric_Identities_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- CamScanner --- page 2 --- CamScanner --- page 3 --- CamScanner --- page 4 --- CamScanner --- page 5 --- CamScanner "
+  },
+  {
+    "file": "100-level\\100 Level\\mcq-probability-wiht-correct-answers.pdf",
+    "sha256": "1f78e2a6497e6113279824e642b3d63be9b0144b1db74f67ef000df0928ffac7",
+    "chars": 15994,
+    "text_file": "text\\100-level_100_Level_mcq-probability-wiht-correct-answers.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- MCQPROBABILITY MCQ 6.1 When the possible outcomes of an experiment are equally likely to occur, this we apply: (a) Relative probability (b) Subjective probability (c) Conditional probability (d) Classical probability MCQ 6.2 A number between 0 and 1 that is use to measure uncertainty is called: (a) Random variable (b) Trial (c) Simple event (d) Probability MCQ 6.3 Probability lies "
+  },
+  {
+    "file": "100-level\\100 Level\\Microprocessor and RAM.pdf",
+    "sha256": "11d8805f070848fa9608db49af8e7cf56d247f5b4befc36e6b26175e59e48a3c",
+    "chars": 12183,
+    "text_file": "text\\100-level_100_Level_Microprocessor_and_RAM.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- AN ASSIGNMENT ON COMPUTER HARDWARE (CSC 104) WRITTEN BY FADAYOMI, Funmilayo Elizabeth 24/1010 SUBMITTED TO Department of Computer Science Adeleke University, Ede. MARCH, 2025 --- page 2 --- QUESTION 1. Write about micro processor and RAM 2. Write on different types of processors and their functions ANSWER QUESTION 1 Microprocessor A microprocessor is the central processing unit (CP"
+  },
+  {
+    "file": "100-level\\100 Level\\NPC PRACTICE QUETION.pdf",
+    "sha256": "3346f945cfb2a5259fd959bdc2b5d4491a0fed90c42fa8a12a599a347030f302",
+    "chars": 10939,
+    "text_file": "text\\100-level_100_Level_NPC_PRACTICE_QUETION.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- WEEK 1:THE PEOPLE OF NIGERIA 1. The estimated population of Nigeria is over _______ people. (A) 100 million (B) 200 million (C) 300 million (D) 400 million 2. The number of ethnic groups in Nigeria is approximately _______. (A) 200 (B) 300 (C) 400 (D) 500 3. Culture refers to the _______ way of life. (A) sum total (B) partial total (C) whole total (D) complete total 4. Which of the"
+  },
+  {
+    "file": "100-level\\100 Level\\past questions .pdf",
+    "sha256": "928fd71c2dc246913ad711ab6a4d1be10fbd41292d8243fb70de69d2944564b7",
+    "chars": 168,
+    "text_file": "text\\100-level_100_Level_past_questions_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- CamScanner --- page 2 --- CamScanner --- page 3 --- CamScanner --- page 4 --- CamScanner --- page 5 --- CamScanner --- page 6 --- CamScanner "
+  },
+  {
+    "file": "100-level\\100 Level\\PHY 101.pdf",
+    "sha256": "7cc831e36b40ef10950c12ecfee828e5cba4330d9c20548cf6f67814161c8ab7",
+    "chars": 68,
+    "text_file": "text\\100-level_100_Level_PHY_101.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- --- page 2 --- --- page 3 --- --- page 4 --- "
+  },
+  {
+    "file": "100-level\\100 Level\\PHY 102 EXAM 16.....17 column(1).docx",
+    "sha256": "483b4099e1712af8119e8776366ea469d117864b8b71b9b3480c7ef2d8f07e4f",
+    "chars": 9015,
+    "text_file": "text\\100-level_100_Level_PHY_102_EXAM_16.....17_column_1_.docx.txt",
+    "error": null,
+    "preview": "[Normal] ADELEKE UNIVERSITY, EDE [Normal] FACULTY OF SCIENCE [Normal] Department of Physics [Title] 2nd Semester Examination (2016/2017 Session) [Normal] Course Code: PHY 102 Unit: 3 units [Normal] Course Title: General Physics II Duration: hours [Normal] Instruction: Answer all questions in Section A and any 3 from Section B [Normal] No. of Question Papers required: 300 [Normal] \u03b50 = 8.85, , [Lis"
+  },
+  {
+    "file": "100-level\\100 Level\\PHY 102 EXAM 16.....17 column.docx",
+    "sha256": "483b4099e1712af8119e8776366ea469d117864b8b71b9b3480c7ef2d8f07e4f",
+    "duplicate_of": "100-level\\100 Level\\PHY 102 EXAM 16.....17 column(1).docx",
+    "chars": 0
+  },
+  {
+    "file": "100-level\\100 Level\\PHY 102.doc",
+    "sha256": "b6a245aaa7e9c4fb047abd45112402114c0ce7c118e069bef5015df1fb2eae0f",
+    "chars": 427018,
+    "text_file": "text\\100-level_100_Level_PHY_102.doc.txt",
+    "error": null,
+    "preview": "<!DOCTYPE html> <!-- saved from url=(0155)https://docs.google.com/forms/d/e/1FAIpQLSfLz5sRLx48Q2UrU6DgrMUN0xV1ciRYsaIH8rfqkTfe37RVVA/viewscore?viewscore=AE0zAgAv5om8iBZCgYfJ-bUHHT9m0AThC7SpdahNNbLp --> <html lang=\"en\" class=\"m2\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://ssl.gstatic.com/docs/spreadsheets/forms/favi"
+  },
+  {
+    "file": "100-level\\100 Level\\Phy102 Multichoice question.pdf",
+    "sha256": "5293bd4bf3a3a97eba2987f8d831e067ca886ca3d4de6b70909aa329c5d3cad6",
+    "chars": 136009,
+    "text_file": "text\\100-level_100_Level_Phy102_Multichoice_question.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- PHY 152 PRACTICE QUESTIONS 1. Which of these is not correct as a basic property of electric charges? (a) Total charges in an insulated system is invariable (b) A charged body is electrically unstable (c) A charged body has equal number of positive and negative charges (d) Positively charged body is deficient of electrons x+q1+q2 = 2 q1 2.Calculate the distance x between charges q1 "
+  },
+  {
+    "file": "100-level\\100 Level\\phy102 waves tutorial ques.docx",
+    "sha256": "cf6f0a9bfb836c9b9514c0c82536bf620531e463b372356bff92792259863fff",
+    "chars": 4490,
+    "text_file": "text\\100-level_100_Level_phy102_waves_tutorial_ques.docx.txt",
+    "error": null,
+    "preview": "[Normal] ADELEKE UNIVERSITY EDE OSUN STATE [Normal] PHY 102 : General Physics II : Waves Tutorial Questions [Normal] Instructions: Answer all Questions, show your workings for all calculations based questions [List Paragraph] The ratio of frequencies of two wave travelling through the same medium is 2:5, the ratio of their wavelength is [List Paragraph] 5:2 `B. 2:5 C. 3:5 D. 1:2 [List Paragraph] I"
+  },
+  {
+    "file": "100-level\\100 Level\\Physics practical Sample questions .pdf",
+    "sha256": "fa9f1e6be8f7cb3885cc3ed6aea36aa6981f86915881fb07b6a9c021fb47b3ca",
+    "chars": 7443,
+    "text_file": "text\\100-level_100_Level_Physics_practical_Sample_questions_.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- --- 1. A meter rule has an accuracy of: A. \u00b11.0 cm B. \u00b10.1 cm C. \u00b10.01 cm D. \u00b10.001 cm Answer: B Meter rules measure accurately to \u00b10.1 cm or 1 mm. --- 2. The accuracy of a vernier caliper is: A. \u00b11 mm B. \u00b10.01 cm C. \u00b10.1 mm D. \u00b10.001 cm Answer: C Vernier calipers have an accuracy of 0.1 mm (0.01 cm). --- 3. A micrometer screw gauge is best used to measure: A. Diameter of a wire B."
+  },
+  {
+    "file": "100-level\\100 Level\\PHY_102_Course_Outline.pdf",
+    "sha256": "09499e967f59c23e08e76d90404f1d8603bb8a7ba86ca8eb0f9ec4abbbec48eb",
+    "chars": 999,
+    "text_file": "text\\100-level_100_Level_PHY_102_Course_Outline.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- PHY 102 Course Outline 1. Introduction to Semiconductors - Definition of semiconductors - Intrinsic and extrinsic semiconductors - Doping - p-type and n-type materials - p-n junctions 2. Electrostatics - Electric charge - Electric field - Electric field strength/intensity - Coulomb\u2019s Law - Electric field lines 3. Capacitors and Dielectrics - Capacitance - Energy stored in a capacit"
+  },
+  {
+    "file": "100-level\\100 Level\\STAT 7100 4.1 4.2 Bernoulli and Binomial Probability Distributions.pdf",
+    "sha256": "8da4e9898faae1e73f1400b8bca4d9658c2c95aae940e805dd546ab82f3a4e17",
+    "chars": 9856,
+    "text_file": "text\\100-level_100_Level_STAT_7100_4.1_4.2_Bernoulli_and_Binomial_Probability_Distributions.pdf.txt",
+    "error": null,
+    "preview": " --- page 1 --- The Bernoulli Probability Distribution A random variable with only two outcomes (1-0, true-false, right-wrong, on- o\u2044, etc.) is called a Bernoulli random variable , denoted as X~Bernoulli(p): For computing purposes we limit the numerical values to 1 for a success and 0 for a failure. Example 1 What is the expected value and standard deviation for a Bernoulli random variable with pr"
+  },
+  {
+    "file": "100-level\\100 Level\\WEEK 2 GST112_070834.docx",
+    "sha256": "9b6afca31a067d3a8467bb05a82a9fe4c5c42432dc1139d57bfc9ff4431dbae8",
+    "chars": 5888,
+    "text_file": "text\\100-level_100_Level_WEEK_2_GST112_070834.docx.txt",
+    "error": null,
+    "preview": "[Normal] WEEK 2: [Normal] Concept of Norms and Values; the acceptable norms and values of the major ethnic groups in Nigeria [Normal] Concept of Norms and Values [Normal] Norms and values are essential aspects of social life that guide behavior and interactions among individuals within a society. They form the foundation of culture, shaping what is considered acceptable or unacceptable within diff"
+  },
+  {
+    "file": "100-level\\100 Level\\WEEK 3 GST 112.docx",
+    "sha256": "e87a1fcf7e53ae7050db21b822c2f057d2d9599da19517c3d3ff6c2746647fb8",
+    "chars": 7454,
+    "text_file": "text\\100-level_100_Level_WEEK_3_GST_112.docx.txt",
+    "error": null,
+    "preview": "[Normal] WEEK 3 [Normal] TOPIC: The Historical Foundation of Nigerian Culture and Arts in Pre-Colonial Times (People of Southern and Northern Nigeria) [Normal] The Historical Foundation of Nigerian Culture and Arts in Pre-Colonial Times [Normal] Nigerian culture and arts have deep historical roots dating back thousands of years before the colonial era. The cultural and artistic traditions of pre-c"
+  }
+]

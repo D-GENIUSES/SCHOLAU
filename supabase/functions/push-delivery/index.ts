@@ -50,7 +50,7 @@ Deno.serve(async (request: Request) => {
             // Generate encrypted RFC8291 payload/VAPID headers with the maintained Web Push library.
             // fetch redirect:error prevents a provider redirect from reaching an unapproved host.
             const details = webpush.generateRequestDetails(delivery.subscription, JSON.stringify(delivery.payload), {
-              TTL: Math.min(ttl, 86400), urgency: "normal",
+              TTL: Math.min(ttl, 86400), urgency: "high",
               vapidDetails: { subject, publicKey, privateKey },
             });
             const response = await fetch(delivery.subscription.endpoint, {

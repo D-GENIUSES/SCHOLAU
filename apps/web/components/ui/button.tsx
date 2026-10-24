@@ -8,7 +8,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-brand-primary text-ink-inverse shadow-[0_1px_2px_#11243c14] hover:bg-brand-primary-hover active:bg-[#004fa8]",
+        primary: "bg-brand-primary text-ink-inverse font-[650] antialiased shadow-[0_1px_2px_#11243c14] [text-shadow:0_1px_0_rgba(17,36,60,0.12)] hover:bg-brand-primary-hover active:bg-[#004fa8]",
         secondary: "bg-surface-tint text-brand-primary hover:bg-[#dceafa] active:bg-[#cfe1f5]",
         outline: "border border-line bg-surface-card text-ink hover:border-line-strong hover:bg-surface-page",
         ghost: "text-ink-muted hover:bg-surface-page hover:text-ink",

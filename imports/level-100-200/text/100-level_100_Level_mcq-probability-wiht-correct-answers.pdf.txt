@@ -1,0 +1,470 @@
+
+
+--- page 1 ---
+MCQPROBABILITY 
+MCQ 6.1 
+When the possible outcomes of an experiment are equally likely to occur, this we apply:  
+(a) Relative probability     (b) Subjective probability  
+(c) Conditional probability     (d) Classical probability  
+ 
+MCQ 6.2 
+A number between 0 and 1 that is use to measure uncertainty is called:  
+(a) Random variable  (b) Trial (c) Simple event   (d) Probability  
+ 
+MCQ 6.3 
+Probability lies between:  
+(a) -1 and +1   (b) 0 and 1  (c) 0 and n   (d) 0 and ∞ 
+ 
+MCQ 6.4 
+Probability can be expressed as:  
+(a) Ration   (b) Fraction  (c) Percentage   (d) All of the above 
+ 
+MCQ 6.5 
+The probability based on the concept of relative frequency is called :  
+(a) Empirical probability  (b) Statistical probability (c) Both (a) and (b)    (d) Neither (a) nor (b) 
+ 
+MCQ 6.6 
+The probability of an event cannot be :  
+(a) Equal to zero   (b) Greater than zero  (c) Equal to one  (d) Less than zero 
+ 
+MCQ 6.7 
+A measure of the chance that an uncertain event will occur :  
+(a) An experiment   (b) An event  (c) A probability  (d) A trial 
+ 
+MCQ 6.8 
+A graphical device used to list all possibilities of a sequence of outcomes in systematic way is 
+called:  
+(a) Probability histogram  (b) Venn diagram (c) Pie diagram  (d) Tree diagram  
+ 
+MCQ 6.9 
+A random experiment contains: 
+(a) At least one outcome       (b) At least two outcomes   
+(c) At most one outcome         (d)   At most two outcomes  
+ 
+MCQ 6.10 
+The probability of all possible outcomes of a random experiment is always equal to :  
+(a) One   (b) Zero  (c) Infinity   (d) All of the above 
+ 
+MCQ 6.11 
+The outcome of tossing a coin is a :  
+(a) Mutually exclusive event  (b) Compound event     (c) Certain event     (d) Simple event 
+ 
+MCQ 6.12 
+The result of no interest of an experiment is called :  
+(a) Constant   (b) Event  (c) Failure   (d) Success 
+ 
+MCQ 6.13 
+A set of all possible outcomes of an experiment is called:  
+(a) Combination  (b) Sample point (c) Sample space   (d) Compound event  
+
+--- page 2 ---
+MCQ 6.14 
+The numbers of counting rules that are useful in determining t he number of outcomes in an 
+experiment are:  
+(a) One   (d) Two  (c) Three    (d) Four  
+ 
+MCQ 6.15 
+The events having no experimental outcomes in common is called:  
+(a) Equally likely events     (b) Exhaustive events 
+(c) Mutually exclusive events    (d) Independent events  
+ 
+MCQ 6.16 
+A set of outcomes formed after some additional information is called:  
+(a) Sample space  (b) Reduced sample space (c) Null set   (d) Random experiment  
+ 
+MCQ 6.17 
+The probability associated with the reduced sample space is called: 
+(a) Conditional probability     (b) Statistical probability  
+(c) Mathematical probability     (d) Subjective probability  
+ 
+MCQ 6.18 
+An arrangement of objects without regard to order is called:  
+(a) Permutation  (b) Combination  (c) Random experiment   (d) Sample point  
+ 
+MCQ 6.19 
+The number of permutations of a set of n things, taken r at a time with n 2 r given by: 
+                                                                                                               
+ 
+MCQ 6.20 
+If three candidates are selected to attend a course from the ten candidates, the number of ways of selecting 
+the candidates is an example of:  
+(a) Combination  (b) Permutation (c) Reduced sample space   (d) Both (a) and (b)  
+ 
+MCQ 6.21 
+When each outcome of a sample space is as likely to occur as any other, the outcomes are called:  
+(a) Exhaustive  (b) Mutually exclusive (c) Equally likely  (d) Not mutually exclusive  
+ 
+MCQ 6.22 
+If A is any event in S and    its complement, then P(  ) is equal to:  
+(a) 1    (b) 0   (c) 1- A    (d) 1 - P(A)     
+ 
+MCQ 6.23 
+When certainty is involved in a situation, its  probability is equal to:  
+(a) Zero   (b) Between -l and + 1  (c) Between 0 and 1   (d) One 
+ 
+MCQ 6.24 
+Which of the following cannot be taken as probability of an event?  
+(a) 0    (b) 0.5   (c) 1    (d) -1  
+ 
+MCQ 6.25 
+If an event contains more than one sample points, it is called a:  
+(a) Simple event  (b) Compound event  (c) Impossible event  (d) Certain event  
+ 
+ 
+ 
+
+--- page 3 ---
+MCQ 6.26 
+When the occurrence of one event has no effect on the probability of the occurrence of another 
+event, the events are called:  
+(a) Independent  (b) Dependent  (c) Mutually exclusive  (d)   Equally likely  
+ 
+MCQ 6.27 
+A particular result of an experiment is called:  
+(a) Trial   (b) Simple event (c) Compound event  (d) Outcome  
+ 
+MCQ 6.28 
+A collection of one or more outcomes of an experiment is called:  
+(a) Event   (b) Outcome  (c) Sample point   (d) None of the above  
+ 
+MCQ 6.29 
+A process that leads to the occurrence of one and only one of several possible  observations is 
+called:  
+(a) Random experiment    (c) Random variable    (c) Experiment  (d) Probability distribution 
+ 
+MCQ 6.30 
+Which statement is false? 
+(a) The classical definition applies when there are n equally likely outcomes to an experiment  
+(b) The empirical definition occurs when number of times an event happen is divided by the number       
+      of observations.  
+(c) A subjective probability is based on whatever information is available  
+(d) The general rule of addition is used when the events are mutually exclusive  
+ 
+MCQ 6.31 
+The term 'sample space' is used for: 
+(a) All possible outcomes (b) All possible coins (c) Probability  (d) Sample 
+ 
+MCQ 6.32 
+The term 'event' is used for:  
+(a) Time       (b) A sub-set of the sample space  
+(c) Probability      (d) Total number of outcomes.  
+ 
+MCQ 6.33 
+The six faces of the die are called equally likely if the die is:  
+(a) Small   (b) Fair   (c) Six-faced    (d) Round  
+ 
+MCQ 6.34 
+If we toss a coin and P(H) = 2P(T), then probability of head is equal to:  
+(a) 0   (b) 1/2   (c) 1/3    (d) 2/3  
+ 
+MCQ 6.35 
+A letter is chosen at random from the word "Statistics". The probability of getting a vowel is:  
+(a) 1/10   (b) 2/10  (c) 3/10   (d) 4/10 
+ 
+MCQ 6.36 
+An arrangement in which the order of the objects selec ted from a specific pool of objects is important  
+called:  
+(a) Combination  (b) Permutation (c) Factorial   (d) Sample space  
+ 
+ 
+ 
+ 
+
+--- page 4 ---
+MCQ 6.37 
+Two books are to be selected at random without replacement out of four books. Then number of possible 
+selections are:  
+(a) 4    (b) 2    (c) 6     (d) 3 
+ 
+MCQ 6.38 
+Three books of different colours are to be arranged in a book-shelf. The possible arrangements are:  
+(a) 3    (b) 1   (c) 6    (d) 2 
+ 
+MCQ 6.39 
+If a sample S = {1, 2}, the number of all possible sub-sets are:  
+(a) 2    (b) 1   (c) 3    (d) 4 
+ 
+MCQ 6.40 
+When a die and a coin are rolled together, all possible outcomes are:  
+(a) 6   (b) 2   (c) 36    (d) 12 
+ 
+MCQ 6.41 
+When two coins are tossed, the possible outcomes are:  
+(a) 2   (b) 4   (c) 1    (d) None of them 
+ 
+MCQ 6.42 
+If three coins are tossed, the possible outcomes are:  
+(a) 8    (b) 3   (c) 1    (d) None of them 
+ 
+MCQ 6.43 
+If n coins are tossed, the possible outcomes are:  
+(a) n   (b) 2   (c) 2n    (d) All of them 
+ 
+MCQ 6.44 
+If two dice are roiled, the possible outcomes are:  
+(a) 6    (b) 36   (c) 1    (d) Difficult to answer  
+ 
+MCQ 6.45 
+When n dice are rolled, the possible outcomes are:  
+(a) 6n    (b) 6    (c) 1    (d) 18  
+ 
+MCQ 6.46 
+When one card is selected at random from a pack of 52 playing cards, the  possible selections are:  
+(a) 104   (b) 52   (c) 520   (d) 2704  
+ 
+MCQ 6.47 
+Two cards are selected at random with replacement from a pack of 52 playing cards. The possible 
+outcomes are:  
+(a) 52 x 52    (b) 52   (c) 1326   (d) 2  
+ 
+MCQ 6.48 
+A bag contains 4 white and 2 black balls of the same size and weight, and two balls are selected at 
+random without replacement, the possible selections are:  
+(a) 6    (b) 4   (c) 36    (d) 15 
+ 
+MCQ 6.49 
+Two balls are selected at random with replacement from a bag containing 3 red, 3 black and 2 green 
+balls. The possible outcomes are:  
+(a) 8    (b) 64    (c) 16    (d) 2  
+
+--- page 5 ---
+MCQ 6.50 
+Five cards are selected at random from a pack of 52 cards with replacement.  The possible 
+combinations are:  
+(a) 52   (b) (52)5   (c) 52 x 52    (d) (5)52  
+ 
+MCQ 6.51 
+The digits 1, 2, 3, 4, 5 are the roll numbers of 5 students. These roll numbers are written on the paper 
+slips and two paper slips are selected at random without replacement. The possible combinations are:  
+(a) 5  (b) 2   (c) 25    (d) 10 
+ 
+MCQ 6.52 
+Which is the impossible event when a die is rolled :  
+(a) 2 or 3   (b) 5 or 6  (c) 1   (d) 0 or 7 
+ 
+MCQ 6.53 
+The probability of drawing any one spade card is :  
+(a) 1/13   (b) 1/4  (c) 4/13   (d) 1/52 
+ 
+MCQ 6.54 
+A balance die is rolled, the probability o f getting an odd number is:  
+(a) 1/2   (b) 1/4  (c) 1/6   (d) 1/36 
+ 
+MCQ 6.55 
+Two fair dice are rolled. The probability of throwing an odd sum is :  
+(a) 1   (b) 1/2  (c) 1/6   (d) 1/36 
+ 
+MCQ 6.56 
+Given P(A) = 0.4, P(B) = 0.5 and P(A⋃B)=0.9,then:  
+(a) A and B are not mutually exclusive events  (b) A and B are equally likely events  
+(c)  A and Bare independent events     (d) A and B are mutually exclusive events   
+ 
+MCQ 6.57 
+If P(B/A) = 0.50 and P(A⋂B) = 0.40, then p(A) will be equal to:  
+(a) 0.40   (b) 0.50  (c)  0.80    (d) 1  
+ 
+MCQ 6.58 
+Which of the following statements is incorrect:  
+          ⋃        ⋂                                    ⋃           ⋂   
+        ⋂           ⋃                                                                    ⋂        ⋃      
+ 
+MCQ 6.59 
+If P(A/B) = P(A) and P(B/A)=P(B), then A and B are :  
+(a) Mutually exclusive  (b) Dependent (c) Equally likely   (d) Independent 
+ 
+MCQ 6.60 
+A fair coin is tossed 100 times, the expected number of heads is:  
+(a) 100  (b) 50   (c) 30    (d) 60  
+ 
+MCQ 6.61 
+When two dice are rolled, the maximum total on the two faces of the dice will be:  
+(a) 6    (b) 36   (c) 12    (d) 2 
+ 
+ 
+ 
+ 
+
+--- page 6 ---
+MCQ 6.62 
+A random sample of 200 random digits is selected from a random number table. Expected number of 
+zeros in the sample is:  
+(a) Zero  (b) 10    (c) 20   (d) 5  
+ 
+MCQ 6.63 
+Six digits are selected at random again and again from a random number table and the even digits are 
+counted each time. In most of the cases, the number of even digits will be:  
+(a) 2    (b) 3    (c) 4    (d) 6 
+ 
+MCQ 6.64 
+Two events A and B are called mutually exclusive if:  
+(a) A⋃B = Φ   (b) A⋂B = Φ  (c) A⋂B = S   (d) A⋂B = 1 
+ 
+MCQ 6.65 
+If A and B are two mutually exclusive events, then:  
+(a) P(A⋂B) = 0  (b) P(A⋂B) = 1 (c) P(A⋃B) = 0   (d) P(A⋂B) = S  
+ 
+MCQ 6.66 
+When A and B are two non-empty and mutually exclusive events, then:  
+(a) P(A⋃B) = P(A).P(B)    (b) P(A⋃B) = P(A) + P(B)  
+(c) P(A⋂B) = P(A).P(B)    (d) P(A⋂B) = P(A)+P(B)  
+ 
+MCQ 6.67 
+The two events A and B are called not mutually exclusive events if:  
+(a) A⋂B = Φ   (b) A⋂B ≠ Φ   (c) A⋃B = Φ   (d) A⋂B = zero  
+ 
+MCQ 6.68 
+If A and B are disjoint events then the statement which is always true is:  
+(a) P(A/B) = 0  (b) P(A⋃B) = 0  (c) P(A⋂B) = 1   (d) P(A) = P(B)  
+ 
+MCQ 6.69 
+The events A, B and C are called exhaustive events if:  
+(a) A⋃B⋃C = S  (b) A⋂B⋂C = S  (c) A⋃B⋃C = Φ   (d) A⋃B⋃C = Zero  
+ 
+MCQ 6.70 
+If A and B are not-mutually exclusive events, then:  
+(a) P(A⋃B) + P(A⋂B) = P(A) + P(B)   (b) P(A⋃B) = P(A) + P(B)  
+(c) P(A⋃B) = P(A).P(B)     (d) P(A⋂B) = P(A) + P(B)  
+ 
+MCQ 6.71 
+If an event    is the complement of the event A, then: 
+(a) A⋃   = S   (b) A⋂   = S  (c) A⋃   = Φ    (d) P(A) = P(  )  
+ 
+MCQ 6.72 
+If A1, A2, A3, ..., Ak are k mutually exclusive events, then:  
+(a) P(A1⋃A2⋃A3⋃ ...⋃Ak ) = P(A1)+P(A2)+P(A3)+...+ P(Ak) 
+(b) P(A1⋃A2⋃A3⋃ ...⋃Ak ) > 1 
+(c) P(A1⋂A2⋂A3⋂ ...⋂Ak ) = 1 
+(d) P(A1⋂A2⋂A3⋂ ...⋂Ak ) = P(A1⋃A2⋃A3⋃ ...⋃Ak )  
+ 
+ MCQ 6.73 
+If A is an empty set and B is a non-empty set then:  
+(a) A⋂B = S   (b) A⋂B = B   (c) A⋃B = B   (d) P(A) = P(B)  
+ 
+
+--- page 7 ---
+MCQ 6.74 
+If A is an empty set and S is the sample space then:  
+(a) P(A⋃S) = P(S)   (b) P(A⋃S) = P(Φ)  (c) P(A⋂S) = 1  (d) P(A⋃S) = Zero  
+ 
+MCQ 6.75 
+If A and B are independent events, then:  
+(a) P(A⋃B) = P(A).P(B)    (b) P(A⋂B) = P(A).P(B)  
+(c) P(A⋂B) = P(A)+P(B)    (d) P(A) = P(B)  
+ 
+MCQ 6.76 
+If A and B are two independent  events, then:  
+(a) P(A/B) = P(A)  (b) P(A) = P(B) (c) P(A) < P(B)   (d) P(A/B) = P(B/A)  
+ 
+MCQ 6.77 
+A and B are two independent events. Which one of these equations is false?  
+(a) P(A⋂  ) = P(A)P(  )    (b) P(  ⋂  ) = P(  ⋂  )  
+(c) P(  ⋂  ) = P(  )P(  )   (d) P(A⋃B) = P(A)P(B)  
+ 
+MCQ 6.78 
+The conditional probability of the event A when event B  has occurred is denoted by:  
+(a) P(A + B)   (b) P(A - B)  (c) P(A/B)   (d) P(  )  
+ 
+MCQ 6.79 
+If A and B are any two events, then P(A/B)+P(  /B) is equal to:  
+(a) 0   (b) 0.25  (c) 0.5   (d) 1 
+ 
+MCQ 6.80 
+If A is an arbitrary event, then P(A/A) is equal to :  
+(a) Zero   (b) One  (c) Infinity   (d) Less than one 
+ 
+MCQ 6.81 
+If A and B are any two events, then P(   /B) is equal to:  
+(a) P(A/B)   (b) 1- P(A/B)    (c) 1+ P(A/B)  (d) P(  ⋂B) 
+ 
+MCQ 6.82 
+If A and B are any two events, then P(A⋃  ):  
+(a) 1+P(A⋂B)   (b) 1-P(A⋃B)  (c) 1- P(A⋂B)   (d) P(A)+P(B) 
+ 
+MCQ 6.83 
+If A and B are any two events, then P(  ⋂  ):  
+(a) 1-P(A⋃B)   (b) 1-P(A⋂B)  (c) 1-P(  ⋂B)   (d) 1-P(A⋂  ) 
+ 
+MCQ 6.84 
+Which of the following statements is correct?   
+     ⋂  ⋃     ⋂  ⋃  ⋂                                                  ⋃  ⋂     ⋂  ⋂  ⋃   
+     ⋂  ⋂     ⋃  ⋃  ⋂                                                    ⋂  ⋃       ⋂   
+ 
+MCQ 6.85 
+If A and B are two mutually exclusive and exhaustive events and P(A)=2P(B), then P(B) is equal to :  
+(a) 1/2   (b) 2/3  (c) 1/3   (d) 1/4 
+ 
+MCQ 6.86 
+Two coins are tossed. Probabilit y of getting head  on the first coin is:  
+(a) 2/4   (a) 1   (c) Zero    (d) 4  
+ 
+
+--- page 8 ---
+MCQ 6.87 
+A die and a coin are tossed together.  Probability of getting head on the coin is:  
+(a) 6/12   (b) 6   (c) 12     (d) Zero  
+ 
+MCQ 6.88 
+A fair die is rolled. Probability of getting even face given that face is  less than 5 is given by:  
+(a) 1/2   (b) 5    (c) 2    (d) 6  
+ 
+MCQ 6.89 
+Two coins are tossed. The probability that both faces will be matching  given by:  
+(a) 1/4   (b) 1/2   (c) 1    (d) Zero 
+ 
+MCQ 6.90 
+Two coins are tossed. Probability of getting two heads given that there is at  least one head is given  
+by:  
+(a) 1/2   (b) 1/3   (c) 1/4   (d) 2/3  
+ 
+MCQ 6.91 
+A fair die is rolled. Probability of getting more than4  or less than 3 is given by:  
+(a) 2/3   (b) 1/3   (c) 1/2     (d) 4/3  
+ 
+MCQ 6.92 
+74. A fair die is rolled. Probability of getting even face or face more than 4 is:  
+(a) 1/3   (b) 2/3  (c) 1/2    (d) 5/6  
+ 
+MCQ 6.93 
+Two dice are rolled. Probability of getting similar faces is:  
+(a) 5/36   (b) 1/6  (c) 1/3   (d) 1/2  
+ 
+MCQ 6.94 
+Two dice are rolled. Probability of getting total less than 4 or total more  than 10 is given by:  
+(a) 10/36   (c) 4/36  (c) 1/36   (d) 14/36  
+ 
+MCQ 6.95 
+Two dice are rolled. Probability of getting a total of 4 given that both -faces are similar is:  
+(a) 5/36   (b) 1/36  (c) 4/36   (d) 1/6  
+ 
+MCQ 6.96 
+If A and B are two not-independent events, then the  probability that both A and B will happen  
+together is:  
+(a) P(A⋂B) = P(A)P(B/A)     (b) P(A⋂B) = P(A)P(B)  
+(c) P(A⋂B) = P(A)+P(B)    (d) P(A⋂B) = P(A)  
+ 
+MCQ 6.97 
+If A and B are two dependent events, then:  
+(a) P(A) P(B/A) = P(B)P(A/B)    (b) P(A/B) = P(B/A)  
+(c) P(A/B) = P(A)      (d) P(A) = P(B)  
+ 
+MCQ 6.98 
+Which one is true?  
+                                                                                                
+                                                                                                
+ 
+ 
+ 
+
+--- page 9 ---
+MCQ 6.99 
+                                  
+(a) 1/5   (b) 2/5  (c) 3/5    (d) 1  
+ 
+MCQ 6.100 
+                                    
+(a) 7/10   (b) 1/10  (c) 3/10   (d) 1 
+ 
+MCQ 6.101 
+Given P(A)=2/3, P(B)=3/8 and PAB)=1/4, then A and B a re:  
+(a) Independent  (b) Dependent (c) Mutually exclusive  (d) Equally likely 
+ 

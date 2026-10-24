@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
-import { disableBrowserPush, enrollPendingNotifications, postponePushPermission, readPushDevice, readPushPermissionReminder, requestSignupNotifications } from "@/lib/push-browser";
+import { disableBrowserPush, enrollPendingNotifications, maintainBrowserPush, postponePushPermission, readPushDevice, readPushPermissionReminder, requestSignupNotifications } from "@/lib/push-browser";
 
 /** Finish email-confirmed consent and offer a reminder 24 hours after refusal. */
 export function PushLifecycle() {
@@ -23,6 +23,7 @@ export function PushLifecycle() {
           if (device && device.owner !== currentOwner) await disableBrowserPush(false);
           if (cancelled || !currentOwner || currentOwner !== owner) return;
           await enrollPendingNotifications(currentOwner).catch(() => undefined);
+          await maintainBrowserPush(currentOwner).catch(() => undefined);
           if ("serviceWorker" in navigator && updatedOwner !== currentOwner) {
             updatedOwner = currentOwner;
             void navigator.serviceWorker.getRegistration("/").then((registration) => registration?.update()).catch(() => undefined);

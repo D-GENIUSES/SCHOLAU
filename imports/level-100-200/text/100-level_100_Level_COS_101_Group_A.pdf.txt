@@ -1,0 +1,92 @@
+
+
+--- page 1 ---
+CSC 102 Group A
+S/N NAME MAT NO DEPARTMENT
+1 ITUADON  Godspower  Inegbenose 23/0899 CSC
+2 ABIOYE  Fawaz Doyinsola 23/1376 CSC
+3 UTHMAN Melvyn Omonigho 24/0423 CSC
+4 OLAMIDE  Taiwo  Daniel 24/0433 CSC
+5 ADESIDA Eniola Rapheal 24/0505 CSC
+6 ADEYEMI Elizabeth Iyinoluwa 24/0506 CSC
+7 ONAMADE  Daniel  Olamide 24/0508 CSC
+8 ARIWOOLA Ademola Roqeeb 24/0509 CSC
+9 BESONG  Covenant  Temiloluwa 24/0510 CSC
+10 AYOOLA Joy Oladeji 24/0512 CSC
+11 ALAO Olamilekan  Yusuff 24/0513 CSC
+12 NMEZI Princewill Nnamdi 24/0514 CSC
+13 OLAJIDE Temiloluwa Favour 24/0515 CSC
+14 MARAKPOR Onnogharemor 24/0516 CSC
+15 SALAWU  UmarFarouk  Akorede 24/0517 CSC
+16 DIKE Goodluck  Muele 24/0518 CSC
+17 AJIBOLA  Oluwafunmileriayo  David 24/0519 CSC
+18 SOKOYA Temiloluwa Peter 24/0520 CSC
+19 AHMED Martins Tiwalope 24/0521 CSC
+20 HAYFORD Greatness 24/0522 CSC
+21 ETISI Rukevwe  Essence 24/0523 CSC
+22 ABDULLAHI Yakubu Wisdom 24/0524 CSC
+23 OLANIRAN Emmanuel  Folarin 24/0525 CSC
+24 ABDULGANIYU  Abdulbaar  Adedayo 24/0527 CSC
+25 OLADIPO Oluwatoni Paul 24/0528 CSC
+26 OMOTOSO Adedoyin Samuel 24/0529 CSC
+27 ADEKUNLE  Reuben Oluwafisayomi 24/0530 CSC
+28 ONI Israel Ayomikun 24/0532 CSC
+29 ONOBRORHIE  David Temitayo 24/0533 CSC
+30 AFOLABI Samuel Oluwadarasimi 24/0534 CSC
+31 BANJO Kingdavid Oluwasemilore 24/0535 CSC
+32 OLADIMEJI  Oluwanifemi David 24/0536 CSC
+33 OLABAMIJI Dolapo 24/0537 CSC
+34 OLABAMIJI  Gbolahan Peter 24/0538 CSC
+35 OLUSANYA Uthman Olamilekan 24/0539 CSC
+36 SOBOGUN  Emmanuel Ogooluwa 24/0540 CSC
+37 OCHULO  Onyinyechi  Treasure 24/0541 CSC
+38 KOMOLAFE  Olorunjoba  Enoch 24/0542 CSC
+39 AKINOSHO  Daniel Iseoluwa 24/0543 CSC
+40 OLADELE Farhan  Olatomiwa 24/0544 CSC
+41 ADESEGUN  Nofisat Pelumi 24/0545 CSC
+42 KAYODE Boluwatife Darasimi 24/0546 CSC
+43 OLARINDE Oreofeoluwa Onoriode 24/0547 CSC
+44 ALA Victory  Etim 24/0548 CSC
+45 OROLUGBAGBE Victor 24/0549 CSC
+46 BANKOLE Favour 24/0550 CSC
+47 AWOYODE  Farish Doyinmola 24/0552 CSC
+
+--- page 2 ---
+48 LALA Oluwakorede Adeibukun 24/0553 CSC
+49 ADEPEJU Temitayo Desmond 24/0554 CSC
+50 OYATOKUN  OLUWAFIKEMI  OLAYINKA 24/0556 CSC
+51 TANIMOJO  Ayomide  Leonard 24/0557 CSC
+52 AJUEBOR  Ekelerinichukwu  Caleb 24/0558 CSC
+53 AHMED Toheeb 24/0559 CSC
+54 OYEKUNLE Olayinka Elisha 24/0560 CSC
+55 ADIO Oluwadamilare  Victor 24/0561 CSC
+56 SULAIMAN Richmond 24/0562 CSC
+57 ADEBAYO Daniel Oluwatimileyin 24/0563 CSC
+58 MUSA Shallom  Iko-ojo 24/0564 CSC
+59 AWE Oluwaseun  Dunmininu 24/0565 CSC
+60 ABODUNDE  Oluwadabira  Joy 24/0566 CSC
+61 OLADIPUPO Ayomide Emmanuel 24/0567 CSC
+62 OBAYORI  Samuel Oluwatobiloba 24/0568 CSC
+63 RABIU  Johnson  Oluwatimileyin 24/0569 CSC
+64 ADEYANJU Ruth Oluwasemilore 24/0570 CSC
+65 OYATOBO Victoria Fogofoluwa 24/0571 CSC
+66 OMILANI Israel Feranmi 24/0572 CSC
+67 ADEYEYE Alameen Temitayo 24/0573 CSC
+68 OGUNSEYE Abiola Fareed 24/0574 CSC
+69 OLAJIDE  Oluwanifemi  Samuel 24/0843 CSC
+70 ISMAIL Amir Adebisi 24/0845 CSC
+71 ADEBISI Toluwani David 24/0847 CSC
+72 AGHOLOR  Destiny  Chinonso 24/0849 CSC
+73 ADEBAYO Eminence Adeoluwa 24/0850 CSC
+74 OKAREKPE Favour Oju 24/0851 CSC
+75 TOBA Goodluck 24/0852 CSC
+76 FAVOUR  Divine  Ifeanyi 24/0853 CSC
+77 AYENI Adedayo Dada 24/0854 CSC
+78 ATANDA  Favour  Israel 24/0855 CSC
+79 OLADEJO Goodluck Okikiola 24/0856 CSC
+80 UWEFILI  Blessing Ifunenyachukwu 24/0857 CSC
+81 ANTHONY Marvelous Oluwatoyin 24/0858 CSC
+82 OYETOLA Olamilekan Olayinka  24/0859 CSC
+83 OLAWOYE Oladotun Stephen 24/0860 CSC
+84 ADEKOLA  Johnson Abiodun 24/0861 CSC
+85 OYEDEJI Rodiat Oyindamola 24/0862 CSC

@@ -1,0 +1,344 @@
+[Normal] 🧠 ADELEKE UNIVERSITY
+[Normal] COS 101 – Introduction to Computing
+[Normal] Complete Multiple Choice Questions (MCQs)
+[Normal] SECTION A: Introduction to Computers
+[Normal] A computer is best described as _______.
+[Normal] A. A calculating machine
+[Normal] B. An electronic device that processes data under control of a program
+[Normal] C. A storage device
+[Normal] D. A communication medium
+[Normal] Which of the following is not an essential function of a computer?
+[Normal] A. Input
+[Normal] B. Processing
+[Normal] C. Cooking
+[Normal] D. Output
+[Normal] The combination of input, processing, output, and storage is called a _______.
+[Normal] A. System program
+[Normal] B. Computer system
+[Normal] C. Logic unit
+[Normal] D. Memory board
+[Normal] The unit that carries out arithmetic and logic operations is called _______.
+[Normal] A. Control Unit
+[Normal] B. Arithmetic Logic Unit
+[Normal] C. Memory Unit
+[Normal] D. Output Unit
+[Normal] SECTION B: History of Computers
+[Normal] The need for computers arose mainly from _______.
+[Normal] A. Gaming
+[Normal] B. Efficient number-crunching
+[Normal] C. Entertainment
+[Normal] D. Photography
+[Normal] Joseph Marie Jacquard’s invention used _______ for fabric designs.
+[Normal] A. Magnetic tapes
+[Normal] B. Punch cards
+[Normal] C. Hard disks
+[Normal] D. Switches
+[Normal] The idea of a universal computing machine was presented by _______.
+[Normal] A. Alan Turing
+[Normal] B. Grace Hopper
+[Normal] C. Steve Jobs
+[Normal] D. Bill Gates
+[Normal] The first large-scale digital computer, ENIAC, was developed in _______.
+[Normal] A. 1941
+[Normal] B. 1943–44
+[Normal] C. 1946
+[Normal] D. 1953
+[Normal] The first commercial computer for business use was _______.
+[Normal] A. UNIVAC
+[Normal] B. IBM PC
+[Normal] C. Altair 8800
+[Normal] D. Macintosh
+[Normal] Grace Hopper is known for developing _______.
+[Normal] A. Java
+[Normal] B. COBOL
+[Normal] C. BASIC
+[Normal] D. Python
+[Normal] The computer mouse was invented by _______.
+[Normal] A. Douglas Engelbart
+[Normal] B. Alan Shugart
+[Normal] C. Charles Babbage
+[Normal] D. John von Neumann
+[Normal] Bill Gates and Paul Allen created software for _______.
+[Normal] A. IBM
+[Normal] B. Apple
+[Normal] C. Altair 8080
+[Normal] D. UNIVAC
+[Normal] The World Wide Web was invented by _______.
+[Normal] A. Larry Page
+[Normal] B. Sergey Brin
+[Normal] C. Tim Berners-Lee
+[Normal] D. Elon Musk
+[Normal] The Google search engine was developed in _______.
+[Normal] A. 1990
+[Normal] B. 1996
+[Normal] C. 2001
+[Normal] D. 1985
+[Normal] The first reprogrammable quantum computer appeared in _______.
+[Normal] A. 2000
+[Normal] B. 2010
+[Normal] C. 2016
+[Normal] D. 2020
+[Normal] SECTION C: Generations of Computers
+[Normal] First-generation computers used _______.
+[Normal] A. Transistors
+[Normal] B. Integrated Circuits
+[Normal] C. Vacuum Tubes
+[Normal] D. Microprocessors
+[Normal] Integrated circuits belong to the _______ generation.
+[Normal] A. Second
+[Normal] B. Third
+[Normal] C. Fourth
+[Normal] D. Fifth
+[Normal] The fourth generation of computers is characterized by _______.
+[Normal] A. Microprocessors
+[Normal] B. Transistors
+[Normal] C. Punch cards
+[Normal] D. Vacuum tubes
+[Normal] Fifth-generation computers are based on _______.
+[Normal] A. Quantum circuits
+[Normal] B. Artificial intelligence
+[Normal] C. Nanotechnology only
+[Normal] D. Relays
+[Normal] SECTION D: Characteristics of a Computer
+[Normal] Which characteristic means a computer can perform multiple tasks?
+[Normal] A. Accuracy
+[Normal] B. Versatility
+[Normal] C. Reliability
+[Normal] D. Speed
+[Normal] Which characteristic means computers don’t get tired?
+[Normal] A. Diligence
+[Normal] B. Speed
+[Normal] C. Automation
+[Normal] D. Memory
+[Normal] Performing tasks automatically without human help refers to _______.
+[Normal] A. Reliability
+[Normal] B. Automation
+[Normal] C. Speed
+[Normal] D. Diligence
+[Normal] A computer’s memory allows it to _______.
+[Normal] A. Forget data quickly
+[Normal] B. Store data and instructions
+[Normal] C. Work only offline
+[Normal] D. Display graphics
+[Normal] SECTION E: Data and Information
+[Normal] Data are _______.
+[Normal] A. Processed facts
+[Normal] B. Raw facts and figures
+[Normal] C. Organized information
+[Normal] D. Meaningful output
+[Normal] Information is _______.
+[Normal] A. Data organized meaningfully
+[Normal] B. Random facts
+[Normal] C. Useless numbers
+[Normal] D. Input values only
+[Normal] SECTION F: Functions of a Computer
+[Normal] Receiving data from devices like a keyboard is called _______.
+[Normal] A. Input
+[Normal] B. Output
+[Normal] C. Storage
+[Normal] D. Retrieval
+[Normal] Converting data into useful form is called _______.
+[Normal] A. Processing
+[Normal] B. Formatting
+[Normal] C. Deleting
+[Normal] D. Programming
+[Normal] The results produced by the computer are called _______.
+[Normal] A. Data
+[Normal] B. Information
+[Normal] C. Input
+[Normal] D. Storage
+[Normal] SECTION G: Components of a Computer System
+[Normal] Which of the following is an input device?
+[Normal] A. Monitor
+[Normal] B. Mouse
+[Normal] C. Printer
+[Normal] D. Speaker
+[Normal] The CPU consists of _______.
+[Normal] A. ALU and Control Unit
+[Normal] B. Monitor and Keyboard
+[Normal] C. Hard Disk and CD
+[Normal] D. Mouse and Joystick
+[Normal] Which of the following is an output device?
+[Normal] A. Keyboard
+[Normal] B. Scanner
+[Normal] C. Monitor
+[Normal] D. Mouse
+[Normal] SECTION H: Memory
+[Normal] The unit of memory is _______.
+[Normal] A. Bit
+[Normal] B. Byte
+[Normal] C. Word
+[Normal] D. Line
+[Normal] Which memory is volatile?
+[Normal] A. RAM
+[Normal] B. ROM
+[Normal] C. CD-ROM
+[Normal] D. Flash Drive
+[Normal] Data in ROM _______.
+[Normal] A. Can be erased easily
+[Normal] B. Disappears when power is off
+[Normal] C. Is permanent
+[Normal] D. Is temporary
+[Normal] One byte equals _______ bits.
+[Normal] A. 4
+[Normal] B. 6
+[Normal] C. 8
+[Normal] D. 16
+[Normal] Which of the following is a type of ROM?
+[Normal] A. DRAM
+[Normal] B. PROM
+[Normal] C. SRAM
+[Normal] D. DDR
+[Normal] A hard disk is an example of _______.
+[Normal] A. Primary memory
+[Normal] B. Secondary memory
+[Normal] C. Cache memory
+[Normal] D. Temporary memory
+[Normal] SECTION I: Types of Computers
+[Normal] Computers that measure continuous data are _______.
+[Normal] A. Analog computers
+[Normal] B. Digital computers
+[Normal] C. Hybrid computers
+[Normal] D. Quantum computers
+[Normal] A computer that combines features of analog and digital types is _______.
+[Normal] A. Hybrid
+[Normal] B. Super
+[Normal] C. Mainframe
+[Normal] D. Micro
+[Normal] Microcomputers are also called _______.
+[Normal] A. Personal computers
+[Normal] B. Workstations
+[Normal] C. Supercomputers
+[Normal] D. Minicomputers
+[Normal] A mainframe computer can support _______.
+[Normal] A. One user
+[Normal] B. 10 users
+[Normal] C. Thousands of users
+[Normal] D. None
+[Normal] Supercomputers are mainly used for _______.
+[Normal] A. Typing letters
+[Normal] B. Weather forecasting
+[Normal] C. Video editing only
+[Normal] D. School projects
+[Normal] SECTION J: Hardware and Software
+[Normal] Hardware refers to _______.
+[Normal] A. Tangible computer parts
+[Normal] B. Programs and applications
+[Normal] C. Data and information
+[Normal] D. Operating systems
+[Normal] Software refers to _______.
+[Normal] A. Hardware devices
+[Normal] B. Set of instructions for hardware
+[Normal] C. Electrical circuits
+[Normal] D. Storage media
+[Normal] Microsoft Word is an example of _______.
+[Normal] A. System software
+[Normal] B. Application software
+[Normal] C. Firmware
+[Normal] D. Programming language
+[Normal] Windows OS is an example of _______.
+[Normal] A. Application software
+[Normal] B. System software
+[Normal] C. Utility software only
+[Normal] D. Database software
+[Normal] SECTION K: Operating System
+[Normal] The first function performed by an operating system when the computer starts is _______.
+[Normal] A. Formatting
+[Normal] B. Booting
+[Normal] C. Shutting down
+[Normal] D. Compiling
+[Normal] A GUI operating system uses _______.
+[Normal] A. Text commands
+[Normal] B. Graphics and icons
+[Normal] C. Binary codes
+[Normal] D. Punch cards
+[Normal] File management is a function of _______.
+[Normal] A. Compiler
+[Normal] B. Operating System
+[Normal] C. Database
+[Normal] D. Input Unit
+[Normal] An operating system that allows multiple users at the same time is _______.
+[Normal] A. Multi-tasking OS
+[Normal] B. Multi-user OS
+[Normal] C. Multiprocessing OS
+[Normal] D. Real-time OS
+[Normal] The difference between cooperative and preemptive multitasking is _______.
+[Normal] A. Control by applications vs. control by OS
+[Normal] B. Use of RAM
+[Normal] C. Disk usage
+[Normal] D. Boot speed
+[Normal] DOS is a _______ system.
+[Normal] A. GUI-based
+[Normal] B. Command-line
+[Normal] C. Real-time
+[Normal] D. None
+[Normal] UNIX is known for being _______.
+[Normal] A. Weak in multitasking
+[Normal] B. Multi-user and robust
+[Normal] C. Limited to Apple devices
+[Normal] D. GUI-only
+[Normal] SECTION L: Networking
+[Normal] A network is defined as _______.
+[Normal] A. A computer virus
+[Normal] B. A group of computers sharing resources
+[Normal] C. A memory type
+[Normal] D. A CPU device
+[Normal] Devices that send or receive information on a network are called _______.
+[Normal] A. Links
+[Normal] B. Hosts
+[Normal] C. Nodes
+[Normal] D. A & B
+[Normal] Which of these is not a type of network?
+[Normal] A. LAN
+[Normal] B. PAN
+[Normal] C. MAN
+[Normal] D. FAN
+[Normal] The Internet is an example of _______.
+[Normal] A. WAN
+[Normal] B. LAN
+[Normal] C. PAN
+[Normal] D. MAN
+[Normal] SECTION M: The Internet
+[Normal] The Internet originated from _______.
+[Normal] A. ARPANET
+[Normal] B. Google
+[Normal] C. Microsoft
+[Normal] D. Yahoo
+[Normal] The communication protocol used on the Internet is _______.
+[Normal] A. TCP/IP
+[Normal] B. SMTP
+[Normal] C. HTML
+[Normal] D. USB
+[Normal] The World Wide Web was launched in _______.
+[Normal] A. 1981
+[Normal] B. 1991
+[Normal] C. 1999
+[Normal] D. 2001
+[Normal] E-mail allows _______.
+[Normal] A. Synchronous communication
+[Normal] B. Asynchronous communication
+[Normal] C. Physical message delivery
+[Normal] D. None
+[Normal] The first part of an email address identifies the _______.
+[Normal] A. User
+[Normal] B. Domain
+[Normal] C. IP address
+[Normal] D. Server
+[Normal] A web browser is used to _______.
+[Normal] A. Compose email
+[Normal] B. Access web pages
+[Normal] C. Install software
+[Normal] D. Connect hardware
+[Normal] One major benefit of the Internet is _______.
+[Normal] A. Slow data sharing
+[Normal] B. Cost-saving and quick communication
+[Normal] C. Increased cost
+[Normal] D. Reduced access to info
+[Normal] E-commerce means _______.
+[Normal] A. Buying and selling goods online
+[Normal] B. Social networking
+[Normal] C. Gaming
+[Normal] D. Data encryption
+[Normal] ✅ Total Questions: 65
+[Normal] ✅ Covers: Every single topic from COS 101: Introduction to Computing (Adeleke University style)
+[Normal] ✅ Format: 4-option objective style (fits CBT or paper-based exams)

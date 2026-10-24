@@ -1,6 +1,7 @@
 "use client";
 
-import { Check, Flame } from "lucide-react";
+import { Check } from "lucide-react";
+import { StreakFlame } from "@/components/icons/streak-flame";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -23,7 +24,7 @@ export function FirstLessonCelebration({ days, localDate, previousDays = Math.ma
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogContent hideClose className="streak-celebration" data-stage={stage}>
       <p className="text-xs font-semibold uppercase tracking-widest text-brand-primary">Lesson complete</p>
-      <div className="streak-ignite" aria-hidden="true"><span className="streak-halo" /><Flame fill="currentColor" strokeWidth={1.4} /><span className="streak-ember ember-one" /><span className="streak-ember ember-two" /><span className="streak-ember ember-three" /></div>
+      <div className="streak-ignite" aria-hidden="true"><span className="streak-halo" /><StreakFlame active={stage >= 1} size={86} /><span className="streak-ember ember-one" /><span className="streak-ember ember-two" /><span className="streak-ember ember-three" /></div>
       <DialogTitle className="!p-0 !text-center"><span className="sr-only">{days} day streak</span><span aria-hidden="true" className="streak-big-count" key={stage >= 2 ? "new" : "old"}>{stage >= 2 ? days : previousDays}</span><span aria-hidden="true" className="block text-lg font-semibold text-brand-primary">{days === 1 ? "day streak" : "days streak"}</span></DialogTitle>
       <DialogDescription className="text-center">{days === 1 ? "Your streak starts today." : "Another day of progress. Keep it going!"}</DialogDescription>
       <ol className="streak-week" aria-label="This week's streak">

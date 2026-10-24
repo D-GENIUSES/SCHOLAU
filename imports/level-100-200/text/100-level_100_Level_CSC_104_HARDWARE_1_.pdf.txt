@@ -1,0 +1,152 @@
+
+
+--- page 1 ---
+ 
+ 
+ 
+ 
+ 
+ 
+NAME: ADEDOKUN HAMMED OMOGBOLAHAN 
+MATRIC NUMBER: 24/1238 
+DEPARTMENT: COMPUTER SCIENCE 
+LEVEL: 100 
+COURSE: CSC 104 HARDWARE PRACTICAL 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- page 2 ---
+ASSIGNMENT: 
+1. Write about Microprocessors and RAM 
+2. Write on different types of processors and their functions 
+ 
+MICROPROCESSORS 
+ Microprocessor is a computer processor that is found in most modern 
+personal computers, smartphones, and other electronic devices. It is a central 
+processing unit (CPU) that performs most of the processing tasks in a computer 
+system. The microprocessor is a key component of a computer, as it controls the 
+fetching, decoding, and execution of instructions that are stored in memory. You 
+can say that microprocessor is used as the brain of the computing devices which 
+control overall execution and operations. The development of microprocessors has 
+played a significant role in the evolution of computers and has made it possible for 
+them to become smaller, faster, and more powerful over time. It works extremely 
+fast, processing billions of instructions per second. Modern microprocessors have 
+multiple cores, allowing them to handle several tasks at once. 
+    
+ 
+RAM (RANDOM ACCESS MEMORY) 
+ While the microprocessor does the thinking, RAM (Random Access 
+Memory) holds the data it needs. Imagine RAM as a workspace where a student 
+places books while studying. If the table is large (more RAM), the student can 
+keep more books open at once, making learning faster. If the table is small (less 
+RAM), they have to keep putting books away and bringing them back, slowing 
+
+
+--- page 3 ---
+things down. RAM is volatile memory, meaning it only stores data temporarily. 
+When the computer is turned off, everything in RAM is erased. That’s why files 
+need to be saved to permanent storage (like a hard drive or SSD). 
+ 
+TYPES OF PROCESSORS AND THEIR FUNCTIONS 
+1. General-Purpose Processors (CPU) 
+These are the most common processors found in computers and laptops. They 
+handle a wide range of tasks, from browsing the internet to running complex 
+software. Examples include: Intel Core series (i3, i5, i7, i9) – Used in personal 
+computers for general tasks. 
+
+
+--- page 4 ---
+ 
+2. Graphics Processing Unit (GPU) 
+A GPU is specialized for handling images, videos, and gaming. Unlike a CPU that 
+handles a variety of tasks, a GPU focuses on rendering visuals. It’s like an artist 
+who only works on painting rather than doing multiple jobs. Examples include: 
+NVIDIA GeForce & AMD Radeon – Used in gaming and video editing.  
+Integrated GPUs – Built into the CPU, handling basic graphics tasks. 
+
+
+--- page 5 ---
+ 
+3. Digital Signal Processor (DSP) 
+A digital signal processor (DSP) is a specialized microprocessor designed to 
+perform high-speed mathematical operations on digital signals, which are 
+sequences of digital data representing physical quantities such as sound, images, 
+and other sensory information. DSPs are used in a range of applications that 
+require fast processing of digital signals, including audio and video processing, 
+telecommunications, and scientific computing. 
+Function: Handles real-time signal processing, such as audio, video, and radar 
+signals. Where Used: Smartphones (for audio processing), Medical imaging 
+(MRI, CT scans), Voice recognition systems (Siri, Google Assistant), etc 
+
+
+--- page 6 ---
+ 
+ 
+4. Field-Programmable Gate Array (FPGA) 
+Unlike ASICs (which are fixed), FPGAs can be reprogrammed to change how they 
+function, making them useful for testing new technology. 
+Function: A flexible processor that can be programmed for different applications. 
+Where Used: Aerospace and defense systems, AI and robotics, 5G and 
+telecommunications 
+
+
+--- page 7 ---
+ 
+ 
+5. Tensor Processing Unit (TPU) 
+TPUs are much faster than CPUs and GPUs when it comes to training AI models. 
+Function: Designed specifically for machine learning and artificial intelligence. 
+Where Used: Google AI projects (e.g., Google Photos, Google Translate), Self-
+driving cars, Deep learning models 
+
+
+--- page 8 ---
+ 
+6. Neuro-processing Unit (NPU) 
+NPUs learn from patterns, improving performance in tasks like facial recognition 
+and speech processing. 
+Function: Mimics the human brain’s neural network for faster AI computations. 
+Where Used: 
+AI-powered smartphones (Huawei Kirin NPU, Apple Neural Engine), Advanced 
+robotics, Smart assistants (Alexa, Google Assistant) 
+
+
+--- page 9 ---
+ 
+7. Application-Specific Integrated Circuit (ASIC) 
+Unlike general-purpose CPUs, ASICs are optimized for one specific function, 
+making them highly efficient for that task 
+Function: Designed for a single task, like cryptocurrency mining or video 
+encoding. Where Used: Bitcoin mining (ASIC miners), AI and machine learning 
+(Google’s TPU), Networking hardware (routers, modems) 
+ 
+ 
+ 
+
+
+--- page 10 ---
+8. Microcontrollers 
+Microcontrollers are small, low-power processors used in embedded systems like 
+washing machines, traffic lights, and smart home devices. They don’t need high 
+power because they perform simple, repetitive tasks. Popular examples: 
+ARM Cortex series – Found in smartphones and smartwatches. 
+Arduino & PIC microcontrollers – Used in robotics and automation. 
+ 
+9. Server Processors 
+These are heavy-duty processors designed for cloud computing and handling large 
+amounts of data. They work like factory managers, ensuring multiple tasks are 
+completed efficiently. Examples include: 
+Intel Xeon & AMD EPYC – Used in data centers and high-performance 
+computing. 
+
+
+--- page 11 ---
+ 
+ 

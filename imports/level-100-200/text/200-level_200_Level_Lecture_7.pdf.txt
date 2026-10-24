@@ -1,0 +1,60 @@
+
+
+--- page 1 ---
+SOFTWARE REQUIREMENTS AND SPECIFICATIONS 
+In software engineering, every successful software project begins with a clear understanding 
+of what the system should do. This understanding is achieved through two critical concepts 
+software requirements and software specifications. Requirements define the needs and 
+expectations of users, while specifications describe these needs in a structured and detailed 
+form that guides developers. Without well-defined requirements and specifications, software 
+development risks failure, misunderstanding, and costly rework. Software requirements and 
+specifications are the foundation of every software project. They transform vague ideas into 
+structured, measurable objectives that guide development, testing, and maintenance. A well-
+prepared SRS ensures that both developers and clients share a common understanding, 
+reducing risks, improving quality, and ensuring that the software meets real-world needs. In 
+essence, the success of any software system depends largely on the clarity and completeness 
+of its requirements and specifications. 
+Software Requirements 
+A software requirement is a detailed description of a service, function, or constraint that a 
+system must provide or satisfy. It answers the question: What should the software do? 
+Requirements are gathered from stakeholders such as end-users, clients, managers, and 
+regulatory bodies. A software product that fails to meet its requirements is considered 
+unsuccessful, regardless of its technical excellence. 
+Types of Requirements: 
+Functional Requirements – Define specific actions or behaviors the system should perform. 
+Example: “The system shall allow users to log in using their email and password.” 
+Non-Functional Requirements – Define how the system should perform. Example: “The 
+system shall respond to user queries within two seconds.” These include performance, 
+usability, reliability, and security requirements. 
+Importance of Software Requirements 
+1. They serve as the foundation for software design and development. 
+2. They ensure clear communication between clients and developers. 
+3. They act as a reference for testing and validation of the final product. 
+4. They help in project estimation, planning, and risk management. 
+Software Specification 
+After collecting and analyzing requirements, they are documented in a formal way known as 
+the Software Requirements Specification (SRS). The SRS provides a precise and 
+unambiguous description of the software system to be built. It serves as a contract between 
+the customer and the development team. 
+ 
+Characteristics of a Good SRS 
+A good Software Requirements Specification should be: 
+1. Correct – Accurately reflects stakeholder needs. 
+2. Complete – Contains all required functionalities. 
+
+--- page 2 ---
+3. Unambiguous – Clear and precise with no room for multiple interpretations. 
+4. Verifiable – Each requirement can be tested or validated. 
+5. Modifiable – Easy to update when changes occur. 
+6. Traceable – Each requirement can be linked to its source and corresponding design or 
+test case. 
+Relationship between Requirements and Specifications 
+1. Requirements expresses user goals in natural language while Specification converts 
+those goals into technical documentation. 
+2. Requirements are user-focused, specifications are developer-focused 
+3. The requirements represent what users need, while the specification defines how those 
+needs are formally described. Example: 
+Requirement: “The user should be able to print receipts.” 
+Specification: “Upon completing a transaction, the system shall send a print command to 
+the connected printer to produce a receipt.” Thus, the specification converts user 
+intentions into technical instructions for developers. 

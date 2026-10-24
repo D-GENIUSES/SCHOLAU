@@ -12,6 +12,12 @@
   --color-surface-page: #ffffff;
   --color-surface-card: #ffffff;
   --color-surface-tint: #edf4ff;
+  --color-surface-canvas: #f2f7fd;
+
+  --color-chrome-icon: #3d4f63;
+  --color-chrome-icon-muted: #6b7f94;
+  --color-nav-active-bg: #e8f2ff;
+  --color-streak-active: #e85d1a;
 
   --color-line: #e2e6ed;
   --color-line-strong: #bbc5d2;

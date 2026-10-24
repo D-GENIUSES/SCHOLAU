@@ -52,8 +52,8 @@ export function NotificationSettings({ owner }: { owner: string }) {
       setMessage(error instanceof Error ? error.message : "Could not update notifications. Please try again.");
     } finally { setBusy(false); }
   }
-  return <section className="overflow-hidden rounded-2xl border border-line bg-surface-card" aria-labelledby="device-title" aria-busy={busy}>
-    <div className="p-3 sm:p-4">
+  return <section className="min-w-0 max-w-full overflow-hidden rounded-2xl border border-line bg-surface-card" aria-labelledby="device-title" aria-busy={busy}>
+    <div className="p-3">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2.5">
           <span className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${enabled ? "bg-brand-primary/10 text-brand-primary" : "bg-surface-page text-ink-muted"}`}>
@@ -62,7 +62,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
           <div className="min-w-0">
             <span className="block text-[10px] font-semibold text-ink-muted">This device</span>
             <h2 id="device-title" className="text-sm font-semibold text-ink">Push notifications</h2>
-            <p id="device-description" className="mt-0.5 max-w-sm text-xs leading-snug text-ink-muted">Grouped course updates, with quiet hours from 10 p.m. to 8 a.m.</p>
+            <p id="device-description" className="mt-0.5 text-xs leading-snug text-ink-muted wrap-anywhere">Grouped course updates, with quiet hours from 10 p.m. to 8 a.m.</p>
           </div>
         </div>
         <button
@@ -81,9 +81,9 @@ export function NotificationSettings({ owner }: { owner: string }) {
         </button>
       </div>
     </div>
-    <div className="flex items-center gap-2 border-t border-line bg-surface-page/50 px-3 py-2 text-xs text-ink-muted">
-      <span className={`size-1.5 rounded-full ${enabled ? "bg-brand-primary" : "bg-slate-400"}`} aria-hidden />
-      {busy ? "Updating…" : enabled ? "On · You’re all set" : "Off · Turn on whenever you’re ready"}
+    <div className="flex min-w-0 items-center gap-2 border-t border-line bg-surface-page/50 px-3 py-2 text-xs text-ink-muted">
+      <span className={`size-1.5 shrink-0 rounded-full ${enabled ? "bg-brand-primary" : "bg-slate-400"}`} aria-hidden />
+      <span className="min-w-0">{busy ? "Updating…" : enabled ? "On · You’re all set" : "Off · Turn on whenever you’re ready"}</span>
     </div>
     <div className="flex flex-wrap items-center gap-2 border-t border-blue-100 bg-blue-50 px-3 py-2 text-xs text-blue-900">
       <label className="flex items-center gap-2"><input type="checkbox" checked={sound} onChange={(event) => {

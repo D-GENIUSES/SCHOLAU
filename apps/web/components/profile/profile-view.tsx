@@ -5,9 +5,10 @@ import { LegalLinks } from "@/components/legal-links";
 import { useState } from "react";
 import { Segmented } from "@/components/ui/segmented";
 import { NotificationSettings } from "@/components/notifications/notification-settings";
-import { ChevronRight, Star, Flame, BookOpen, Swords, Settings } from "lucide-react";
+import { ChevronRight, Star, BookOpen, Swords, Settings } from "lucide-react";
+import { StreakFlame } from "@/components/icons/streak-flame";
 import Link from "next/link";
-import { useProfile, useXpProgress } from "@scholau/api/react";
+import { useFriends, useProfile, useXpProgress } from "@scholau/api/react";
 import type { XpProgress } from "@scholau/api";
 import { formatDate, formatNumber, formatStreak, formatXpDelta, NIGERIAN_UNIVERSITIES, SEMESTER_LABELS, type RegistrationAcademicInput } from "@scholau/core";
 import { XpProgressCard } from "@/components/xp/xp-progress";
@@ -20,6 +21,7 @@ import { ErrorState, LoadingState } from "@/components/ui/states";
 import { AccountDeletionDialog } from "./account-deletion-dialog";
 import { AcademicDetailsCard } from "./academic-details-card";
 import { ProfileEditForm } from "./profile-edit-form";
+import { ProfileFriends } from "./profile-friends";
 
 const activityNames: Record<string, string> = { lesson: "Lesson progress", review: "Topic review", practice: "Practice test", mock: "Mock exam", battle: "Quiz battle", signup: "Welcome to ScholAu", correction: "XP adjustment" };
 
@@ -70,9 +72,11 @@ function ActivityCards() {
 }
 
 export function ProfileView({ registration = null, email = null }: { registration?: RegistrationAcademicInput | null; email?: string | null }) {
-  const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "settings">("progress");
+  const [tab, setTab] = useState<"progress" | "activity" | "achievements" | "friends" | "settings">("progress");
   const [section, setSection] = useState("account");
   const profile = useProfile();
+  const friends = useFriends();
+  const requestCount = friends.data?.people.filter((person) => person.state === "pending" && person.incoming).length ?? 0;
   if (profile.isPending) return <LoadingState variant="profile" label="Loading your profile…" lines={4} />;
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
   const p = profile.data;
@@ -86,26 +90,41 @@ export function ProfileView({ registration = null, email = null }: { registratio
     ["Semester", p.academic?.semester.label ?? (registration ? SEMESTER_LABELS[registration.currentSemester] : "Not added yet")],
   ];
   const stats = [
-    { icon: Star, label: "Total XP", value: formatNumber(p.xp_total) },
-    { icon: Flame, label: "Current streak", value: formatStreak(p.streak.current) },
-    { icon: BookOpen, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed) },
-    { icon: Swords, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed) },
+    { kind: "star" as const, icon: Star, label: "Total XP", value: formatNumber(p.xp_total), tone: undefined },
+    { kind: "streak" as const, label: "Current streak", value: formatStreak(p.streak.current), tone: "streak" as const },
+    { kind: "book" as const, icon: BookOpen, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed), tone: "success" as const },
+    { kind: "swords" as const, icon: Swords, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed), tone: "purple" as const },
   ];
   return <div className="compact-profile">
     <Dialog>
-      <header className="profile-identity">
-        <Link href={`/people/${p.id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label="View your public profile"><Avatar name={p.display_name} path={p.avatar_path} size={72} /></Link>
-        <div className="min-w-0 flex-1"><h1><Link href={`/people/${p.id}`} className="hover:underline">{p.display_name}</Link></h1>{username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}<p className="profile-university">{university ?? "ScholAu learner"}</p></div>
+      <header className="profile-identity-panel">
+        <div className="profile-identity">
+          <Link href={`/people/${p.id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label="View your public profile">
+            <Avatar name={p.display_name} path={p.avatar_path} size={72} variant="profile" />
+          </Link>
+          <div className="min-w-0 flex-1">
+            <h1><Link href={`/people/${p.id}`} className="hover:underline">{p.display_name}</Link></h1>
+            {username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}
+            <p className="profile-university">{university ?? "ScholAu learner"}</p>
+          </div>
+        </div>
         <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
       </header>
-      <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "settings", label: "Settings" }]} />
-      <section className="profile-panel" aria-label={tab === "settings" ? "Settings" : tab === "activity" ? "Activity" : tab === "achievements" ? "Badges and reviews" : "Progress"}>
+      <Segmented name="profile-view" legend="Profile section" value={tab} onChange={setTab} options={[{ value: "progress", label: "Progress" }, { value: "activity", label: "Activity" }, { value: "achievements", label: "Badges" }, { value: "friends", label: requestCount ? `Friends (${requestCount})` : "Friends" }, { value: "settings", label: "Settings" }]} />
+      <section className="profile-panel" aria-label={tab === "settings" ? "Settings" : tab === "friends" ? "Friends" : tab === "activity" ? "Activity" : tab === "achievements" ? "Badges and reviews" : "Progress"}>
       {tab === "progress" ? <>
         <section aria-label="Learning statistics" className="profile-stat-grid">
-          {stats.map(({ label, value, icon: Icon }) => <Card key={label} className="profile-stat"><Icon size={23} aria-hidden /><div><strong>{value}</strong><p>{label}</p></div></Card>)}
+          {stats.map(({ kind, label, value, icon: Icon, tone }) => (
+            <Card key={label} className="profile-stat">
+              <span className="profile-stat-icon" data-tone={tone}>
+                {kind === "streak" ? <StreakFlame active={p.streak.active_today} size={22} /> : Icon ? <Icon size={22} aria-hidden /> : null}
+              </span>
+              <div><strong>{value}</strong><p>{label}</p></div>
+            </Card>
+          ))}
         </section>
         <XpProgressCard compact />
-      </> : tab === "achievements" ? <XpProgressCard /> : tab === "activity" ? <div className="profile-activity-grid"><ActivityCards /></div> : <Card className="settings-card">
+      </> : tab === "achievements" ? <XpProgressCard /> : tab === "activity" ? <div className="profile-activity-grid"><ActivityCards /></div> : tab === "friends" ? <ProfileFriends /> : <Card className="settings-card">
         <CardHeader><CardTitle><span className="flex items-center gap-2"><Settings size={21} aria-hidden /> Settings</span></CardTitle></CardHeader>
         <CardContent>
           <label htmlFor="settings-section" className="sr-only">Settings section</label>

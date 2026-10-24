@@ -5,6 +5,7 @@ const LEGACY_LAUNCH_PATHS = new Set(["/manifest.webmanifest", "/icon.svg", "/app
 self.addEventListener("install", (event) => event.waitUntil(self.skipWaiting()));
 self.addEventListener("activate", (event) => event.waitUntil((async () => {
   for (const name of await caches.keys()) {
+    if (name === "scholau-push-device") continue;
     const cache = await caches.open(name);
     for (const request of await cache.keys()) {
       const url = new URL(request.url);
@@ -31,29 +32,80 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
-async function deviceEnabled(deviceKey) {
-  const db = await new Promise((resolve, reject) => {
+const DEVICE_CACHE = "scholau-push-device";
+const DEVICE_URL = () => new URL("/__scholau/push-device", self.location.origin).href;
+
+async function openSettingsDb() {
+  return new Promise((resolve, reject) => {
     const request = indexedDB.open("scholau-push", 1);
     request.onupgradeneeded = () => request.result.createObjectStore("settings");
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
   });
+}
+
+async function readCachedDevice() {
   try {
-    return await new Promise((resolve, reject) => {
-      const request = db.transaction("settings").objectStore("settings").get("device");
-      request.onsuccess = () => resolve(request.result?.key === deviceKey && request.result?.enabled === true);
-      request.onerror = () => reject(request.error);
-    });
-  } finally { db.close(); }
+    const cached = await (await caches.open(DEVICE_CACHE)).match(DEVICE_URL());
+    const value = cached ? await cached.json() : null;
+    return value && typeof value === "object" ? value : null;
+  } catch { return null; }
+}
+
+async function readIndexedDevice() {
+  try {
+    const db = await openSettingsDb();
+    try {
+      return await new Promise((resolve, reject) => {
+        const request = db.transaction("settings").objectStore("settings").get("device");
+        request.onsuccess = () => resolve(request.result && typeof request.result === "object" ? request.result : null);
+        request.onerror = () => reject(request.error);
+      });
+    } finally { db.close(); }
+  } catch { return null; }
+}
+
+async function readDeviceRecord() {
+  const [cached, indexed] = await Promise.all([readCachedDevice(), readIndexedDevice()]);
+  if (cached?.enabled === false) return cached;
+  if (indexed?.enabled === false) return indexed;
+  return cached || indexed;
+}
+
+async function writeDeviceRecord(value) {
+  try {
+    await (await caches.open(DEVICE_CACHE)).put(DEVICE_URL(), new Response(JSON.stringify(value), { headers: { "Content-Type": "application/json" } }));
+  } catch { /* Cache Storage can be unavailable when a closed app is woken by push. */ }
+  try {
+    const db = await openSettingsDb();
+    try {
+      await new Promise((resolve, reject) => {
+        const transaction = db.transaction("settings", "readwrite");
+        transaction.objectStore("settings").put(value, "device");
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+      });
+    } finally { db.close(); }
+  } catch { /* IndexedDB is optional; Cache Storage is enough for later closed-app checks. */ }
+}
+
+/** Show unless this browser explicitly disabled the device. Missing local state must not drop background alerts. */
+async function deviceAllows(deviceKey) {
+  const device = await readDeviceRecord();
+  if (!device) return true;
+  if (device.enabled === false) return false;
+  return !device.key || device.key === deviceKey;
+}
+
+async function rememberEnabledDevice(deviceKey) {
+  const current = await readDeviceRecord();
+  if (current?.enabled === false) return;
+  if (current?.key === deviceKey && current.enabled === true) return;
+  await writeDeviceRecord({ ...(current || {}), key: deviceKey, enabled: true });
 }
 
 async function reserveAlert(deviceKey, id) {
-  const db = await new Promise((resolve, reject) => {
-    const request = indexedDB.open("scholau-push", 1);
-    request.onupgradeneeded = () => request.result.createObjectStore("settings");
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
+  const db = await openSettingsDb();
   try {
     return await new Promise((resolve, reject) => {
       const transaction = db.transaction("settings", "readwrite");
@@ -71,23 +123,63 @@ async function reserveAlert(deviceKey, id) {
   } finally { db.close(); }
 }
 
-self.addEventListener("push", (event) => {
-  event.waitUntil((async () => {
-    let message;
-    try { message = event.data?.json(); } catch { return; }
-    if (!message || typeof message.id !== "string" || !message.device_key || !Number.isFinite(Date.parse(message.expires_at)) || Date.parse(message.expires_at) <= Date.now()) return;
-    // Disabling this device also suppresses messages already accepted by the push provider.
-    if (!(await deviceEnabled(message.device_key))) return;
-    const audible = await reserveAlert(message.device_key, message.id);
-    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    const foreground = windows.find((client) => client.visibilityState === "visible");
-    if (audible && foreground) foreground.postMessage({ type: "scholau-notification", deviceKey: message.device_key });
-    await self.registration.showNotification(String(message.title || "ScholAu").slice(0, 100), {
-      body: String(message.body || "You have an update in ScholAu.").slice(0, 500),
+function decodeApplicationServerKey(publicKey) {
+  const normalized = String(publicKey || "").replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(normalized), (character) => character.charCodeAt(0));
+}
+
+async function presentNotification(title, options) {
+  await self.registration.showNotification(String(title || "ScholAu").slice(0, 100), options);
+}
+
+async function handlePush(event) {
+  let message;
+  try { message = event.data?.json(); } catch { message = null; }
+  if (!message || typeof message.id !== "string" || !message.device_key || !Number.isFinite(Date.parse(message.expires_at))) {
+    await presentNotification("ScholAu", {
+      body: "You have an update in ScholAu.",
       icon: "/icons/notification-blue-192.png", badge: "/icons/notification-badge.png",
-      tag: "scholau:" + (message.kind === "course_content" ? "course-updates" : message.id), renotify: false,
-      silent: !audible || Boolean(foreground),
-      data: { id: message.id, target: message.target },
+      tag: "scholau:update",
+    });
+    return;
+  }
+  if (Date.parse(message.expires_at) <= Date.now()) return;
+  if (!(await deviceAllows(message.device_key))) return;
+  await rememberEnabledDevice(message.device_key);
+  let audible = true;
+  try { audible = await reserveAlert(message.device_key, message.id); } catch { audible = true; }
+  let foreground;
+  try {
+    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+    foreground = windows.find((client) => client.visibilityState === "visible");
+  } catch { foreground = undefined; }
+  if (audible && foreground) foreground.postMessage({ type: "scholau-notification", deviceKey: message.device_key });
+  await presentNotification(message.title || "ScholAu", {
+    body: String(message.body || "You have an update in ScholAu.").slice(0, 500),
+    icon: "/icons/notification-blue-192.png", badge: "/icons/notification-badge.png",
+    tag: "scholau:" + (message.kind === "course_content" ? "course-updates" : message.id), renotify: false,
+    silent: !audible || Boolean(foreground),
+    data: { id: message.id, target: message.target },
+  });
+}
+
+self.addEventListener("push", (event) => {
+  event.waitUntil(handlePush(event).catch(async () => {
+    await presentNotification("ScholAu", {
+      body: "You have an update in ScholAu.",
+      icon: "/icons/notification-blue-192.png", badge: "/icons/notification-badge.png",
+      tag: "scholau:update",
+    });
+  }));
+});
+
+self.addEventListener("pushsubscriptionchange", (event) => {
+  event.waitUntil((async () => {
+    const device = await readDeviceRecord();
+    if (!device || device.enabled === false || !device.vapidPublicKey) return;
+    await self.registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: decodeApplicationServerKey(device.vapidPublicKey),
     });
   })());
 });

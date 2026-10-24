@@ -64,7 +64,7 @@ function workerFixture() {
 }
 test("worker activates immediately and removes only stale launch documents/assets",async()=>{
  const f=workerFixture();let work;f.listeners.install({waitUntil:p=>work=p});await work;assert.equal(f.stats().waiting,true);
- f.listeners.activate({waitUntil:p=>work=p});await work;assert.equal(f.stats().claimed,true);assert(!f.stored.has(f.origin+"/home"));assert(!f.stored.has(f.origin+"/icons/pwa-icon-192.png"));assert(f.stored.has(f.origin+"/api/saved-progress"));assert(f.stored.has("https://other.test/home"));assert(f.listeners.push&&f.listeners.notificationclick);
+ f.listeners.activate({waitUntil:p=>work=p});await work;assert.equal(f.stats().claimed,true);assert(!f.stored.has(f.origin+"/home"));assert(!f.stored.has(f.origin+"/icons/pwa-icon-192.png"));assert(f.stored.has(f.origin+"/api/saved-progress"));assert(f.stored.has("https://other.test/home"));assert(f.listeners.push&&f.listeners.notificationclick&&f.listeners.pushsubscriptionchange);
 });
 test("navigation uses the network with no-store, never cached legacy HTML",async()=>{
  const f=workerFixture();let result;f.listeners.fetch({request:{url:f.origin+"/home",mode:"navigate",method:"GET"},respondWith:p=>result=p});assert.equal(await(await result).text(),"fresh");assert.equal(f.stats().networkOptions.cache,"no-store");

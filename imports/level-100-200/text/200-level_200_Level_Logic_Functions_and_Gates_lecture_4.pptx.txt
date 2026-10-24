@@ -1,0 +1,230 @@
+
+
+--- slide 1 ---
+Logic Functions and Gates
+Alamu Femi O PhD 
+
+
+--- slide 2 ---
+Introduction 
+Representing numbers using transistors is one thing, but getting the computer to do something with those numbers is an entirely different matter. 
+Digital circuitry is used to perform operations such as addition or multiplication, manage data, or execute programs.
+This lecture presents the circuitry that is the foundation of data manipulation and management within a computer
+
+
+--- slide 3 ---
+Logic Gate Basics
+One level above the transistors, is a set of basic building blocks for digital circuitry. These building blocks are called logic gates.
+A logic gate has the basic format shown below in the Figure below. It takes one or more binary signals as its inputs, and using a specific algorithm, outputs a single bit as a result. Each time the inputs change, the output bit changes in a predictable fashion.
+Basic Format of a Logic Gate
+
+
+--- slide 4 ---
+A number of standard gates exist, each one of which has a specific symbol that uniquely identifies its function. 
+The Figure below presents the symbols for the four primary types of gates that are used in digital circuit design.
+Basic Logic Symbols
+
+
+--- slide 5 ---
+NOT Gate
+This logic gate, sometimes referred to as an inverter, is the only one that has a single input.
+Its input goes into the left side of a triangle symbol while its output exits the gate through a small circle placed at the tip of the opposite corner. 
+Note that it is the small circle that defines the operation of this gate, so it should not be left out.
+The NOT gate is used to flip the value of a digital signal. In other words, it changes a logic 1 input to a logic 0 or it changes a logic 0 input to a logic 1. 
+
+
+--- slide 6 ---
+An example of an inverter might be the light detection circuit used to control the automatic headlights of a car.
+During the daylight hours, sunshine enters the light detector which is typically installed on the top surface of the car's dashboard. This acts as a logic 1 input. Since it is daytime, the headlights need to be turned off, a logic 0. 
+When the sun goes down and no light enters the light detector, a logic 0, then the headlights must be turned on, a logic 1.
+Operation of the NOT Gate
+
+
+--- slide 7 ---
+AND Gate
+The operation of the AND gate is such that its output is a logic 1 only if all of its inputs are logic 1. Otherwise the output is a logic 0.
+The AND gate  has only two inputs, but an AND gate may have as many inputs as the circuit requires. Regardless of the number of inputs, all inputs must be a logic 1 for the output to be a logic 1.
+As an example, picture a lamp that is connected to a plug in the wall that is subsequently controlled by the light switch that is protected with a circuit breaker. In order for the lamp to be on (logic 1), the switch at the lamp must be on, the wall switch must be on, and the circuit breaker must be on. 
+If any of the switches turns to off (logic 0), then the lamp will turn off. Another way to describe the operation of this circuit might be to say, "The lamp is on if and only if the lamp switch is on and the wall switch is on and the circuit breaker is on."
+
+
+--- slide 8 ---
+All 22 = 4 states for a two-input AND gate
+Operation of a Two-Input AND Gate
+
+
+--- slide 9 ---
+OR Gate
+An OR gate outputs a logic 1 if any of its inputs are a logic 1. An OR gate only outputs a logic 0 if all of its inputs are logic 0. 
+The OR gate has only two inputs, but just like the AND gate, an OR gate may have as many inputs as the circuit requires. 
+Regardless of the number of inputs, if any input is a logic 1, the output is a logic 1.
+A common example of an OR gate circuit is a security system. Assume that a room is protected by a system that watches three inputs: a door open sensor, a glass break sensor, and a motion sensor. 
+If none of these sensors detects a break-in condition, i.e., they all send a logic 0 to the OR gate, the alarm is off (logic 0). If any of the sensors detects a break-in, it will send a logic 1 to the OR gate which in turn will output a logic 1 indicating an alarm condition. 
+
+
+--- slide 10 ---
+It doesn't matter what the other sensors are reading, if any sensor sends a logic 1 to the gate, the alarm should be going off. 
+Another way to describe the operation of this circuit might be to say, "The alarm goes off if the door opens or the glass breaks or motion is detected." Once again, the use of the word "or" suggests that this circuit should be implemented with an OR gate.
+Operation of a Two-Input OR Gate
+
+
+--- slide 11 ---
+Exclusive-OR (XOR) Gate
+An Exclusive-OR gate is sometimes called a parity checker. Parity checkers count the number of ones being input to a circuit and output a logic 1 or 0 based on whether the number of ones is odd or even. 
+The Exclusive-OR (XOR) gate counts the number of ones at its input and outputs a logic 1 for an odd count and a logic 0 for an even count.
+A common application for XOR gates is in error checking circuits.
+If two digital signals are compared bit-by-bit, an error free condition means that a logic 0 will be compared to a logic 0 and a logic 1 will be compared with a logic 1. In both of these cases, there is an even number of logic 1's being input to the XOR gate. 
+[
+
+
+--- slide 12 ---
+Therefore, as long as the XOR gate outputs a logic 0, there is no error. If, however, an error has occurred, then one signal will be logic 1 and the other will be a logic 0. This odd number of logic 1's will cause the XOR gate to output a logic 1 indicating an error condition.
+Just as with the AND and OR gates, the XOR gate may have two or more inputs. 
+Operation of a Two-Input XOR Gate
+
+
+--- slide 13 ---
+Truth Tables
+The previous slides described the operation of each logic gate with words. This method isn't efficient and is prone to misinterpretation.
+A method to show the output of a digital system based on each of the possible input patterns of ones and zeros is needed.
+A truth table serves this purpose by making a column for each of the inputs to a digital circuit and a column for the resulting output. 
+A row is added for each of the possible patterns of ones and zeros that could be input to the circuit. 
+For example, a circuit with three inputs, A, B, and C, would have 23 = 8 possible patterns of ones and zeros:
+
+
+--- slide 14 ---
+A=0, B=0, C=0
+A=0, B=0, C=1
+A=0, B=1, C=0
+A=0, B=1, C=1
+A=1, B=0, C=0
+A=1, B=0, C=1
+A=1, B=1, C=0
+A=1, B=1, C=1
+This means that a truth table representing a circuit with three inputs would have 8 rows. 
+The Figure below presents a sample truth table for a digital circuit with three inputs, A, B, and C, and one output, X. 
+Note that the output X doesn't represent anything in particular. It is just added to show how the output might appear in a truth table.
+
+
+--- slide 15 ---
+Sample Three-Input Truth Table
+For some, the hardest part of creating a truth table is being able to list all possible patterns of ones and zeros for the inputs.
+One thing that can help us is that we know that for n inputs, there must be 2n different patterns of inputs. 
+Therefore, if your truth table doesn't have exactly 2n rows, then a pattern is either missing or one has been duplicated.
+There is also a trick to deriving the combinations. Assume we need to build a truth table with four inputs, A, B, C, and D. Since 24 = 16, we know that there will be sixteen possible combinations of ones and zeros
+
+
+--- slide 16 ---
+For half of those combinations, A will equal zero, and for the other half, A will equal one. When A equals zero, the remaining three inputs, B, C, and D, will go through every possible combination of ones and zeros for three inputs. 
+Three inputs have 23 = 8 patterns, which coincidentally, is half of 16. For half of the 8 combinations, B will equal zero, and for the other half, B will equal one. Repeat this for C and then D.
+This gives us a process to create a truth table for four inputs. Begin with the A column and list eight zeros followed by eight ones. Half of eight is four, so in the B column write four zeros followed by four ones in the rows where A equals zero, then write four zeros followed by four ones in the rows where A equals one.
+Half of four equals two, so the C column will have two zeros followed by two ones followed by two zeros then two ones and so on. The process should end with the last column having alternating ones and zeros. If done properly, the first row should have all zeros and the last row should have all ones.
+
+
+--- slide 17 ---
+Listing All Bit Patterns for a Four-Input Truth Table
+
+
+--- slide 18 ---
+Truth table for Not gate or inverter 
+The inverter has one input and one output. Therefore, there is one column for inputs and one column for outputs. 
+For single input, there are exactly two possible states: logic 1 and logic 0. Therefore, there will be two rows of data for the inverter truth table. 
+Inverter Truth Table
+
+
+--- slide 19 ---
+AND GATE
+AND gate outputs a logic 1 only if all of its inputs are logic 1. 
+The operation of a two-input AND gate can be represented with the truth table shown in Figure below 
+OR GATE
+The output of an OR gate is set to logic 1 if any of its inputs equal 1.
+The OR gate truth table is shown in Figure
+Two-Input OR Gate Truth Table
+Two-Input AND Gate Truth Table
+
+
+--- slide 20 ---
+The XOR gate's output is set to logic 1 if there are an odd number of ones being input to the circuit.  
+The Figure below shows that for a two input XOR gate, this occurs twice, once for A=0 and B=1 and once form A=1 and B=0.
+Two-Input XOR Gate Truth Table
+
+
+--- slide 21 ---
+Timing Diagrams for Gates
+The operation of a logic gate can also be represented with a timing diagram. The three figures below show the output that results from three binary input signals for an AND gate, OR gate, and XOR gate respectively. 
+Remember that the AND gate outputs a one only if all its inputs equal one, the OR gate outputs a one if any input equals one, and the XOR gate outputs a one if an odd number of ones is present at the input. Use these rules to verify the outputs shown in the figures.
+Sample Timing Diagram for a Three-Input AND Gate
+Sample Timing Diagram for a Three-Input OR Gate
+Sample Timing Diagram for a Three-Input XOR Gate
+
+
+--- slide 22 ---
+Combinational Logic
+By themselves, logic gates are not very practical. Their power comes when you combine them to create combinational logic.
+Combinational logic connects multiple logic gates by using the outputs from some of the gates as the inputs to others. 
+Sample Combinational Logic
+
+
+--- slide 23 ---
+There are three combinational logic circuits that are so common that they are considered gates in themselves. 
+By adding an inverter to the output of each of the three logic gates, AND, OR, and XOR, three new combinational logic circuits are created. 
+The Figure below shows the new logic symbols
+
+
+--- slide 24 ---
+The NAND gate outputs a 1 if any input is a zero, this gate is in fact a very important gate in the design of digital circuitry. 
+It has two important characteristics: 
+the transistor circuit that realizes the NAND gate is typically one of the fastest circuits and 
+(2) every digital circuit can be realized with combinational logic made entirely of NAND gates.
+The NOR gate outputs a 1 only if all of the inputs are zero. 
+The Exclusive-NOR gate outputs a 1 as an indication that an even number of ones is being input to the gate.
+A similar method is used to represent inverted inputs. 
+Instead of inserting the NOT gate symbol in a line going to the input of a gate, a circle can be placed at the gate's input to show that the signal is inverted before entering the gate. An example of this is shown in the circuit on the right in the Figure below
+
+
+--- slide 25 ---
+
+
+--- slide 26 ---
+Truth Tables for Combinational Logic
+Not all digital circuits lend themselves to quick conversion to a truth table. For example, input B in the digital circuit shown in the Figure below passes through four logic gates before its effect is seen at the output.
+So how do we convert this circuit to a truth table? One method is to go through each pattern of ones and zeros at the input and fill in the resulting output in the truth table row by row. The following Figures depict the processes it takes A=0, B=0, and C=0 through each gate to determine its corresponding output.
+
+
+--- slide 27 ---
+
+
+--- slide 28 ---
+This process can be rather tedious, especially if there are more than three inputs to the combinational logic. 
+Note that the bit pattern in the Figure in the previous slides represents only one row of a truth table with eight rows. Add another input and the truth table doubles in size to sixteen rows.
+There is another way to determine the truth table. Notice that in
+Figure above, we took the inputs through a sequence of steps passing it first through the inverter connected to the input B, then through the AND gate, then through the OR gate, and lastly through the inverter connected to the output of the OR gate. 
+These steps are labelled (a), (b), (c), and (d) in the Figure below.
+
+
+--- slide 29 ---
+If we apply those same steps to the individual columns of a truth table instead of using the schematic, the process becomes more orderly.
+Begin by creating the input columns of the truth table listing all of the possible combinations of ones and zeros for the inputs. In the case of our sample circuit, that gives us a truth table with eight rows.
+
+
+--- slide 30 ---
+All Combinations of Ones and Zeros for Three Inputs
+Next, add a column for each layer of logic. Going back to staring Figure, we begin by making a column representing the (a) step. Since (a)
+represents the output of an inverter that has B as its input, fill the (a)
+column with the opposite or inverse of each condition in the B column.
+Step (a) in Sample Truth Table Creation
+
+
+--- slide 31 ---
+Next, step (b) is the output of an AND gate that takes as its inputs step (a) and input A. 
+Add another column for step (b) and fill it with the AND of columns A and (a).
+Step (c) is the output from the OR gate that takes as its inputs step (b) and the input C. Add another column for (c) and fill it with the OR of column C and column (b).
+Last of all, the final output is the inverse of the output of the OR gate of step (c). Make a final column and fill it with the inverse of column (c). 
+This will be the final output column for the truth table.
+
+
+--- slide 32 ---
+Next 
+Boolean Algebra
+Thank you for listening 
+“?”

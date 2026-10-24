@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC 104 Computer Hardware - CBT Practice</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .question-box { margin-bottom: 25px; padding: 15px; border-left: 5px solid #3498db; background: #fafafa; }
+        .question-text { font-weight: bold; font-size: 1.1em; margin-bottom: 10px; }
+        .options { list-style: none; padding: 0; }
+        .options li { background: #fff; border: 1px solid #ddd; margin-bottom: 8px; padding: 10px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .options li:hover { background: #eef2f3; }
+        .correct { background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; font-weight: bold; }
+        .incorrect { background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }
+        .explanation { margin-top: 10px; font-style: italic; color: #555; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CSC 104 Hardware Practice (40+ Qs)</h1>
+    <div id="quiz-container"></div>
+</div>
+
+<script>
+    const quizData = [
+        { q: "Which component is known as the 'brain' of the computer, responsible for overall execution?", a: "Microprocessor (CPU)", ops: ["RAM", "Microprocessor (CPU)", "Hard Drive", "Motherboard"], e: "Your material identifies the microprocessor as the brain that controls overall execution." },
+        { q: "Which basic electronic component limits and controls the flow of electric current?", a: "Resistors", ops: ["Capacitors", "Transistors", "Resistors", "Diodes"], e: "Resistors are defined in Module 1.2 as current limiters." },
+        { q: "What is the primary function of a Capacitor?", a: "Store and release electrical energy", ops: ["Store energy in magnetic fields", "Limit current flow", "Store and release electrical energy", "Act as a switch"], e: "Capacitors are used for filtering and timing by storing energy." },
+        { q: "Which semiconductor device allows current to flow in only one direction?", a: "Diode", ops: ["Transistor", "Inductor", "Resistor", "Diode"], e: "This is the fundamental definition of a diode (Module 1.3)." },
+        { q: "Which type of IC integration contains hundreds of thousands or millions of components?", a: "VLSI", ops: ["SSI", "MSI", "LSI", "VLSI"], e: "VLSI stands for Very Large Scale Integration." },
+        { q: "What do Peripheral Interface Adapters (PIAs) manage?", a: "Communication between CPU and peripherals", ops: ["Power regulation", "Communication between CPU and peripherals", "Arithmetic operations", "BIOS settings"], e: "PIAs enable synchronization and data transfer with external devices." },
+        { q: "The process of the CPU fetching, decoding, and executing instructions is called:", a: "The Machine Cycle", ops: ["The Storage Cycle", "The Machine Cycle", "The Logic Cycle", "The Peripheral Cycle"], e: "Fetching, decoding, and executing is the 'Machine Cycle'." },
+        { q: "Which part of the CPU performs all mathematical and logical comparisons?", a: "ALU", ops: ["Control Unit", "ALU", "Cache", "Register"], e: "The Arithmetic and Logic Unit (ALU) does the 'math'." },
+        { q: "Why is RAM considered 'volatile'?", a: "It loses data when power is off", ops: ["It is very expensive", "It stores data forever", "It loses data when power is off", "It is made of magnetic disks"], e: "RAM is temporary 'workspace' memory." },
+        { q: "Which memory type is built into the CPU for ultra-fast access?", a: "Cache Memory", ops: ["Hard Disk", "Cache Memory", "Optical Disk", "ROM"], e: "Cache holds frequently used data close to the processor." },
+        { q: "Compared to HDD, which is a key advantage of an SSD?", a: "No moving parts and faster speed", ops: ["Larger physical size", "Uses magnetic tapes", "No moving parts and faster speed", "Cheaper per GB"], e: "SSDs use flash memory, making them faster and more durable." },
+        { q: "Which processor is optimized specifically for rendering visuals and gaming?", a: "GPU", ops: ["CPU", "TPU", "GPU", "NPU"], e: "Graphics Processing Units handle parallel visual tasks." },
+        { q: "What is a Google TPU used for?", a: "AI and machine learning", ops: ["Bitcoin mining", "AI and machine learning", "Word processing", "Web browsing"], e: "TPU stands for Tensor Processing Unit, used for AI." },
+        { q: "Which processor mimics the human brain's neural network?", a: "NPU", ops: ["NPU", "DSP", "ASIC", "FPGA"], e: "Neural Processing Units are designed for speech and facial recognition." },
+        { q: "Microcontrollers (like Arduino) are best suited for:", a: "Simple, repetitive tasks in embedded systems", ops: ["Cloud data centers", "High-end gaming", "Simple, repetitive tasks in embedded systems", "Server management"], e: "They are found in washing machines and smart home devices." },
+        { q: "In Boolean Algebra, which gate outputs 1 only if BOTH inputs are 1?", a: "AND Gate", ops: ["OR Gate", "NOT Gate", "AND Gate", "XOR Gate"], e: "AND logic requires all inputs to be True." },
+        { q: "Which logic gates are referred to as 'Universal Gates'?", a: "NAND and NOR", ops: ["AND and OR", "NAND and NOR", "NOT and XOR", "Buffer and Inverter"], e: "Universal gates can build any other logic gate." },
+        { q: "What does DNS (Domain Name System) do?", a: "Resolves domain names to IP addresses", ops: ["Blocks viruses", "Resolves domain names to IP addresses", "Speeds up CPU", "Encrypts hard drives"], e: "DNS turns 'google.com' into an IP address." },
+        { q: "The 'Subnet Mask' is used to:", a: "Divide an IP address into network and host parts", ops: ["Hide the IP address", "Divide an IP address into network and host parts", "Connect to the BIOS", "Install software"], e: "Crucial for network segregation." },
+        { q: "Which security tool is configured to allow or block specific network traffic?", a: "Firewall", ops: ["Modem", "Encryption", "Firewall", "Subnet"], e: "Firewalls control traffic based on security rules." },
+        { q: "What does 'Graceful Degradation' mean?", a: "System continues at reduced levels after failure", ops: ["System stops immediately", "System continues at reduced levels after failure", "System self-repairs", "System warns the user"], e: "Ensures viability by not crashing completely." },
+        { q: "MTBF stands for:", a: "Mean Time Between Failures", ops: ["Minimum Time Before Finish", "Mean Time Between Failures", "Maximum Tech Base Frequency", "Memory Total Base Format"], e: "It measures the reliability of hardware." },
+        { q: "Which device converts continuous analog signals into digital values?", a: "ADC", ops: ["DAC", "MODEM", "ADC", "Op-Amp"], e: "Analog-to-Digital Converter." },
+        { q: "Which application mode processes large amounts of data all at once?", a: "Batch processing", ops: ["Real-time", "Timesharing", "Batch processing", "Interactive"], e: "Batch processing collects data over time then runs it." },
+        { q: "A specialized processor designed for ONE specific function (like mining) is:", a: "ASIC", ops: ["CPU", "ASIC", "GPU", "NPU"], e: "Application-Specific Integrated Circuit." },
+        { q: "Optical storage technology is found in:", a: "DVDs and Blu-ray disks", ops: ["Hard drives", "DVDs and Blu-ray disks", "RAM chips", "Magnetic tapes"], e: "Uses lasers to read/write data." },
+        { q: "What is the exit status usually indicated by at the end of a C++ program?", a: "return 0;", ops: ["exit;", "end 0;", "return 0;", "stop;"], e: "Indicates successful completion (from your 102/104 hybrid review)." },
+        { q: "Which processor type is found in data centers (e.g., Intel Xeon)?", a: "Server Processors", ops: ["Microcontrollers", "Server Processors", "ASICs", "DSPs"], e: "Heavy-duty processors for handling massive traffic." },
+        { q: "Diodes are used for 'Rectification', which means:", a: "Converting AC to DC", ops: ["Amplifying sound", "Converting AC to DC", "Increasing storage", "Cooling the CPU"], e: "Rectification allows current to flow in one direction." },
+        { q: "What is the primary material used to make IC wafers?", a: "Silicon", ops: ["Copper", "Silicon", "Plastic", "Gold"], e: "Silicon is the standard semiconductor material." },
+        { q: "Which setting helps secure data by turning it into unreadable code?", a: "Encryption", ops: ["Firewall", "Encryption", "Subnetting", "Batching"], e: "Used for emails, hard drives, and communication." },
+        { q: "A processor with 'Multiple Cores' can:", a: "Handle several tasks at once", ops: ["Run without power", "Handle several tasks at once", "Only run one program", "Store more files"], e: "Multi-core allows for parallel processing." },
+        { q: "Which gate acts as an 'Inverter'?", a: "NOT Gate", ops: ["AND Gate", "OR Gate", "NOT Gate", "XOR Gate"], e: "It flips 0 to 1 and 1 to 0." },
+        { q: "Analog computers are best for:", a: "Continuous data processing", ops: ["Playing games", "Continuous data processing", "Storing Word docs", "Online banking"], e: "They work on physical quantities like voltage." },
+        { q: "Which unit ensures the 'Fetch' and 'Decode' happens in the right order?", a: "Control Unit (CU)", ops: ["ALU", "Control Unit (CU)", "RAM", "Register"], e: "The CU acts as the manager of the CPU." },
+        { q: "A 'Modem' performs which two tasks?", a: "Multiplexing and Demultiplexing", ops: ["Heating and Cooling", "Multiplexing and Demultiplexing", "Scanning and Printing", "Input and Output"], e: "Essential for network signal translation." },
+        { q: "MTTR stands for:", a: "Mean Time To Repair", ops: ["Maximum Time To Run", "Mean Time To Repair", "Minimum Total RAM", "Memory Time To Read"], e: "Measures how long it takes to fix a failed system." },
+        { q: "High input impedance and high voltage gain are features of:", a: "Op-Amps", ops: ["Resistors", "Op-Amps", "Diodes", "Batteries"], e: "Operational Amplifiers (Module 6)." },
+        { q: "Which IC scale has the most components?", a: "VLSI", ops: ["SSI", "MSI", "LSI", "VLSI"], e: "VLSI is the highest level listed." },
+        { q: "Keyboards and Scanners are examples of:", a: "Input Devices", ops: ["Output Devices", "Processing Units", "Input Devices", "Storage Units"], e: "They send data INTO the computer." }
+    ];
+
+    const container = document.getElementById('quiz-container');
+
+    quizData.forEach((item, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question-box';
+        qDiv.innerHTML = `<div class="question-text">${index + 1}. ${item.q}</div>`;
+        
+        const uList = document.createElement('ul');
+        uList.className = 'options';
+        
+        item.ops.forEach(opt => {
+            const li = document.createElement('li');
+            li.innerText = opt;
+            li.onclick = function() {
+                const siblings = uList.getElementsByTagName('li');
+                for(let s of siblings) s.style.pointerEvents = 'none';
+                
+                if(opt === item.a) {
+                    li.classList.add('correct');
+                } else {
+                    li.classList.add('incorrect');
+                    for(let s of siblings) if(s.innerText === item.a) s.classList.add('correct');
+                }
+                explanation.style.display = 'block';
+            };
+            uList.appendChild(li);
+        });
+        
+        const explanation = document.createElement('div');
+        explanation.className = 'explanation';
+        explanation.innerText = "Correct Answer: " + item.a + ". " + item.e;
+        
+        qDiv.appendChild(uList);
+        qDiv.appendChild(explanation);
+        container.appendChild(qDiv);
+    });
+</script>
+
+</body>
+</html>

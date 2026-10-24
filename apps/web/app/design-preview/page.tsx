@@ -20,7 +20,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "public-profile") return <PublicProfilePreview />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
   if (state === "lessons") return <ShellFrame pathname="/study" displayName="Learner"><LessonListPreview /></ShellFrame>;
-  if (state === "profile") return <ShellFrame pathname="/profile" displayName="John Nwaokolo"><ProfileView email="learner@example.com" /></ShellFrame>;
+  if (state === "profile") return <ShellFrame pathname="/profile" displayName="John Nwaokolo" streak={{ current: 7, active_today: true }}><ProfileView email="learner@example.com" /></ShellFrame>;
   if (state === "streak") return <FirstLessonPreview />;
   if (state === "battle-options") return <AnswerOptionsPreview />;
   if (state === "battle-arena") return <ArenaPreview />;
@@ -42,5 +42,5 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "empty") { summary.enrolled_courses = []; summary.continue_learning = null; summary.recent_activity = []; }
   if (state === "complete") summary.continue_learning = null;
   if (state === "live") summary.live_battle = { battle_id: "preview-battle", queue_id: null, expires_at: new Date(now.getTime() + 120000).toISOString() };
-  return <ShellFrame displayName="Learner" unread={2}><div className="mb-6 rounded-card border border-line bg-white p-4 text-xs text-ink-muted"><p className="mb-2">Development design preview · sample data · account actions require sign-in.</p><nav aria-label="Preview state" className="flex flex-wrap gap-4">{["returning", "new", "empty", "complete", "live"].map((s) => <Link key={s} href={`/design-preview?state=${s}`} aria-current={s === state ? "page" : undefined} className="text-brand-primary underline">{s}</Link>)}</nav></div><HomeDashboard summary={summary} /></ShellFrame>;
+  return <ShellFrame displayName="Learner" unread={2} streak={summary.streak} pathname="/home"><div className="mb-6 rounded-card border border-line bg-white p-4 text-xs text-ink-muted"><p className="mb-2">Development design preview · sample data · account actions require sign-in.</p><nav aria-label="Preview state" className="flex flex-wrap gap-4">{["returning", "new", "empty", "complete", "live"].map((s) => <Link key={s} href={`/design-preview?state=${s}`} aria-current={s === state ? "page" : undefined} className="text-brand-primary underline">{s}</Link>)}</nav></div><HomeDashboard summary={summary} /></ShellFrame>;
 }

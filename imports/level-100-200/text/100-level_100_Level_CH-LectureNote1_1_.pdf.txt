@@ -1,0 +1,352 @@
+
+
+--- page 1 ---
+AUE-CSC 104: 
+Computer Hardware 
+(3 units)
+Dr. A.R. Iyanda
+
+--- page 2 ---
+Recommended Textbook and Materials
+• Computer Organization And Architecture Designing For Performance 
+Eighth Edition- William Stallings
+• Computer Organization Design: THE HARDWARE/SOFTWARE 
+INTERFACE- David A. Patterson and John L. Hennessy
+
+--- page 3 ---
+Requirements
+• Class participation and attendance
+• Assessment (Assignment, Quiz, Test, Examination)
+• Practical
+
+--- page 4 ---
+Outline
+• A survey of fundamentals with emphasis on hardware and systems 
+concepts. Interfaces and configurations. Computer application 
+modes: Batch   processing:   Process/operation   control interactive,
+real Times.  Timesharing. Multiplexing/ Demultiplexing: 
+MODEMS, ADC, DAC, Systems Viability: Graceful degradation; MTTR, 
+MTBF etc. Computer Selection for a given application, economic 
+versus technical considerations.
+• Computer circuits; diode arrays, PIAs etc, Integrated circuits 
+fabrication process.Use of MSI, LSI and VLSI IC’ hardware Design.  
+Primary and Secondary memories; core memory, etc.  Magnetic 
+devices; disks, tapes, video disks etc.  Peripheral devices; printers, 
+CRT’s, keyboards, character recognition.  Operational amplifiers; 
+Analog-to- digital and Digital-to-analog converter. Analogcomputers.
+
+--- page 5 ---
+Definitions
+• Hardware refers to the physical components of a computer system 
+that are responsible for executing tasks and supporting the 
+operations of software. These tangible devices work together to 
+perform tasks such as processing data, storing information, providing 
+input, and generating output.
+• Hardware devices in a computer system include the Central 
+Processing Unit (CPU), memory (RAM and storage devices), 
+input/output devices (keyboard, monitor, mouse), and more.
+
+--- page 6 ---
+Significance of Hardware in a Computer 
+System
+• Execution of Tasks: Hardware is the foundation upon which software runs. 
+Without hardware, software cannot function, as it provides the necessary 
+infrastructure to process and store data.
+• Interaction with Software: Hardware and software work in tandem to deliver 
+system functionality. Hardware executes the instructions provided by software 
+(applications, programs) through processing units, memory, and I/O devices.
+• Performance and Efficiency: The quality and capability of hardware impact 
+system performance. For example, faster processors, more memory, and high-
+quality storage can significantly improve the overall speed and responsiveness 
+of the system.
+• Dependability: Properly configured and maintained hardware ensures system 
+stability and longevity. It impacts a system's ability to handle workloads, 
+prevent system failures, and provide consistent operation.
+
+--- page 7 ---
+Distinction Between Hardware and Software
+• Both hardware and software are essential components of a computer system, 
+but they serve fundamentally different roles:
+• 1.Hardware:
+• Physical Components: Hardware refers to the actual physical part of the 
+computer, directly involved in processing data, and can be touched and seen. 
+Examples include the motherboard, CPU, RAM, hard drive, monitor, and 
+keyboard.
+• Direct Execution: Hardware executes the instructions provided by the 
+software and performs tasks such as computation, data storage, and 
+input/output operations.
+• Characteristics:
+• Tangible, physical components
+• Requires physical space and energy to operate
+• Can be upgraded or replaced
+
+--- page 8 ---
+Distinction Between Hardware and Software
+• 2.Software:
+• Virtual Components: Software refers to the programs, applications, and 
+operating systems that run on the hardware. A collection of instructions and 
+data. It provides instructions to the hardware on how to operate and interact 
+with data.
+• Indirect Interaction: Software tells the hardware what to do, and does not 
+physically exist. Without software, the hardware remains idle. There are two 
+types (System and Application software)
+• Characteristics:
+• Intangible, non-physical code
+• Stored digitally on hardware (e.g., hard disk, cloud storage)
+• Can be updated or patched to improve functionality
+
+--- page 9 ---
+Hardware Components
+• A computer system consists of four primary categories of hardware 
+components, each serving specific functions: input, output, 
+processing, and storage.
+
+
+--- page 10 ---
+Hardware Components
+• Input Components: These are hardware devices used to enter data 
+and commands into the computer. They provide a way for users to 
+interact with the system.
+• Examples:
+• Keyboard: Used for typing input commands and data.
+• Mouse: Allows user to point and select options on a screen.
+• Scanner: Digitizes physical documents and converts them into a digital format.
+• Microphone: Converts sound into data that can be processed by the 
+computer.
+
+--- page 11 ---
+Hardware Components
+• Output Components: These hardware devices are used to present 
+the results of computer processing to the user. The output can be 
+visual, auditory, or hard copy.
+• Examples:
+• Monitor: Displays images, text, and video output for the user.
+• Printer: Produces a physical copy of digital documents.
+• Speakers: Produce audio output, such as system alerts, music, or video sound.
+
+--- page 12 ---
+Hardware Components
+• Processing Components: The central components responsible for 
+performing the majority of the computer's operations, including 
+computation and control.
+• Examples:
+• Central Processing Unit (CPU): Often referred to as the "brain" of the 
+computer, the CPU interprets and executes instructions from programs via the 
+control unit (CU) and performs calculations with the arithmetic and logic unit 
+(ALU).
+• Graphics Processing Unit (GPU): A specialized processor designed to handle 
+rendering images, videos, and visual data efficiently.
+
+--- page 13 ---
+Hardware Components
+• Storage Components: These devices store data and instructions that are 
+needed during processing or for future use. Storage can be temporary 
+(volatile/ primary) or permanent (non-volatile/ secondary).
+• Examples:
+• Random Access Memory (RAM): A form of temporary memory used by the CPU to store 
+and quickly access data and instructions during active operations.
+• Hard Disk Drives (HDDs): Permanent storage devices that store data even when the 
+computer is turned off.
+• Solid-State Drives (SSDs): Similar to HDDs but with faster data access speeds as they use 
+flash memory to store data.
+• Optical Discs (CD/DVD/Blu-ray): Storage devices that use lasers to read and write data 
+onto a disk.
+• USB Drives and SD Cards: Portable storage devices commonly used for transferring and 
+saving data.
+
+--- page 14 ---
+Hardware Components
+• There is also a Bus System which comprises of:
+• Data Bus: Transports data between components of the computer.
+• Address Bus: Carries addresses to and from the memory.
+• Control Bus: Carries control signals to coordinate the activities of the system.
+
+--- page 15 ---
+Basic Working Principle of a Computer
+• A computer follows a systematic process to perform tasks. The working 
+principle can be described as the Fetch-Decode-Execute Cycle, also known as 
+the Machine Cycle.
+• Fetch: The control unit fetches (retrieves) an instruction from memory (RAM) 
+based on the Program Counter (PC), which points to the address of the next 
+instruction.
+• Decode: The instruction fetched is decoded by the control unit. The decoding 
+process translates the instruction into signals that the CPU understands, 
+preparing it for execution.
+• Execute: The ALU executes the operation defined by the instruction (e.g., 
+addition, subtraction, logical operations).
+• Store (if needed): After execution, the results may be stored back into 
+memory (RAM) or into a register for further processing.
+
+--- page 16 ---
+Types of Computers
+• Computers come in different types based on their use, size, capabilities, and 
+processing power. 
+• Desktop Computers: a general-purpose computer that is typically designed to be 
+stationary, as it requires external peripherals like a monitor, keyboard, and mouse.
+• Components:
+• Tower or all-in-one setup with CPU, memory, storage, and expansion slots.
+• Large displays and multiple peripheral connections.
+• Typically used for office tasks, gaming, multimedia applications, software 
+development, etc.
+• Laptop Computers: A portable version of a computer that integrates a monitor, 
+keyboard, storage, and battery into a compact form, allowing for mobility.
+• Components: Similar to desktops but in a smaller, integrated, and lightweight design, 
+with a built-in battery.
+• Designed for portability and often used by individuals, professionals, and students 
+for a wide range of tasks such as browsing, programming, multimedia, and gaming.
+
+--- page 17 ---
+Types of Computers
+• Servers: powerful computers that manage, store, and process data for other 
+computers (clients) over a network. Servers are typically designed for specific 
+tasks such as hosting websites, databases, and applications.
+• Components: High-capacity CPUs, RAM, storage, and sometimes, specialized 
+components like GPUs for handling large-scale workloads.
+• Use for Web hosting, data storage, cloud computing, enterprise applications, and 
+databases.
+• Embedded Systems: Embedded systems are specialized computers designed to 
+perform specific tasks within larger systems. They are usually small and operate 
+on a limited set of functions, often without direct user interaction.
+• Components: Microcontrollers or microprocessors, limited memory, and 
+sometimes, real-time operating systems (RTOS).
+• Found in everyday devices like smartphones, cars, home appliances (e.g., washing 
+machines, microwave ovens), medical devices (e.g., heart monitors), and 
+industrial machinery.
+
+--- page 18 ---
+Interfaces and Configurations
+• An interface in computing is a point of interaction between two systems, 
+devices, or software components, enabling communication and data 
+exchange. It allows one system to communicate with another, ensuring 
+that inputs and outputs are appropriately processed.
+• Types of Interfaces:
+• Hardware Interface: The physical and logical connections between devices (e.g., 
+USB ports, network adapters).
+• Software Interface: Communication between different software programs (e.g., 
+Application Programming Interfaces - APIs).
+• Human-Machine Interface (HMI): The system through which users interact with 
+the computer (e.g., graphical user interfaces - GUI, command-line interfaces -
+CLI).
+
+--- page 19 ---
+Hardware Interfaces
+• Peripheral Interfaces
+• Universal Serial Bus (USB): A widely used interface for connecting 
+peripherals such as keyboards, mice, printers, external storage devices, 
+etc.
+• USB Versions:
+• USB 2.0: Up to 480 Mbps.
+• USB 3.0: Up to 5 Gbps.
+• USB 3.1/3.2/USB-C: Higher data transfer speeds and reversible connections.
+• Function: Both for data transfer and providing power to connected 
+devices.
+
+--- page 20 ---
+Hardware Interfaces
+• Network Interfaces
+• Ethernet: A standard networking interface for wired connections 
+between computers and devices, typically using twisted pair cables 
+and TCP/IP protocol. Commonly used in local area networks (LANs) 
+for connecting devices such as computers, printers, and routers.
+• Wi-Fi: A wireless networking interface allowing devices to connect to 
+local area networks using radio waves.
+• Bluetooth: A short-range wireless interface for connecting devices like 
+keyboards, headsets, and smartphones to computers.
+
+--- page 21 ---
+Hardware Interfaces
+• Display Interfaces
+• HDMI (High-Definition Multimedia Interface): Transmits high-
+definition video and audio between devices like computers, monitors, 
+TVs, and projectors. HDMI 1.4 (supports 1080p resolution), HDMI 2.0 
+(supports 4K resolution).
+• VGA (Video Graphics Array): An older interface for video output, 
+commonly found on projectors and older monitors.
+
+--- page 22 ---
+Software Interfaces
+• Application Programming Interface (API)
+• An API provides an interface for software applications to 
+communicate with each other. It defines functions, commands, data 
+structures, and objects that developers can use to interact with the 
+software without needing to understand the implementation details.
+• Example: Google Maps API that allows third-party developers to 
+integrate map functionality into their own applications.
+
+--- page 23 ---
+Software Interfaces
+• Graphical User Interface (GUI)
+• A GUI enables users to interact with computers through graphical 
+icons, buttons, and menus rather than text commands.
+• Examples: Windows OS, macOS, Android.
+• Command-Line Interface (CLI)
+• A CLI allows users to input text commands for program execution. It is 
+faster and more powerful but less user-friendly compared to GUIs.
+• Examples: Bash (Linux), Command Prompt (Windows).
+
+--- page 24 ---
+Configurations
+• Configuration refers to the arrangement and settings of hardware and 
+software within a system, defining its behavior and functionality. 
+Proper configuration can ensure that hardware components and 
+software run optimally. Type of configuration are:
+• Hardware Configuration
+• Network Configuration
+• Software Configuration
+• Security Configuration
+
+--- page 25 ---
+Configurations
+• Hardware Configuration
+• CPU Configuration: Settings affecting CPU performance (e.g., 
+overclocking settings, cores enabled).
+• Memory Configuration: Choices between different types of RAM, 
+speed settings (e.g., DDR4 or DDR5, frequency settings).
+• Disk Configuration: How disks are arranged for performance, such as 
+in RAID (Redundant Array of Independent/Inexpensive Disk) setups
+• BIOS/UEFI Configuration: Basic settings that control how the 
+computer boots and interacts with peripherals.
+
+--- page 26 ---
+Configurations
+• Network Configuration
+• IP Addressing: Assigning static or dynamic IP addresses to network 
+devices.
+• Static IP: Manually assigned for fixed devices such as servers.
+• Dynamic IP (DHCP): Automatically assigned by a DHCP (Dynamic Host 
+Configuration Protocol) server (for devices like smartphones and laptops).
+• DNS Settings: Configuring the Domain Name System to resolve 
+domain names to IP addresses for accessing websites.
+• Subnet Mask: Divides an IP address into network and host parts, 
+crucial for network segregation
+
+--- page 27 ---
+Configurations
+• Software Configuration
+• Operating System Settings: Various configuration options such as user 
+management, access control, and system performance optimizations.
+• For example, adjusting power settings on Windows to high performance 
+mode or battery saver mode.
+• Application Settings: Customizing the behavior and features of 
+applications.
+• Example: Adjusting security settings in an antivirus program or defining 
+storage paths in cloud applications.
+
+--- page 28 ---
+Configurations
+• Security Configuration
+• Firewall Settings: Configuring firewalls to allow or block specific 
+network traffic (e.g., blocking port 80 for HTTP access).
+• Encryption: Configuring encryption algorithms and keys for securing 
+data, whether for email, hard drives, or communication.
+
+--- page 29 ---
+Assignment
+• Define and explain the significance of hardware in a computer system.
+• Describe the four basic hardware components of a computer system 
+and their roles.
+• Discuss the differences between (i) SSD and HDD as storage devices 
+(ii) RAM and ROM?
+• What is the function of a CPU, and how does it contribute to the 
+processing of data in a computer?
+• Discuss various Interfaces and Configurations that exist

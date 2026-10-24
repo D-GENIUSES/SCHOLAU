@@ -1,0 +1,268 @@
+
+
+--- page 1 ---
+Statistics Mcq Questions
+Q1.________is not a common measure of central 
+tendency.
+a)Mean
+b)Median
+c)Mode
+d)Range
+Q2. _____ is not a measure of variability
+a)Median
+b)Standard Variance
+c)Variance
+d)Range
+Q3.Which of these is a type of statistics?
+(A) Descriptive statistics
+(B) Inferential statistics
+
+--- page 2 ---
+(C) Industry statistics
+(D)Both A and B
+Q4.Variables which can be measured in terms of height , 
+weight and length are ___?
+A) continuous variables
+B) measuring variables
+C) flowchart variables
+D) discrete variables
+Q5. The discrete variables and continuous variables are 
+the types of
+A. open end classification
+B. time series classification
+C. qualitative classification
+D. quantitative classification
+Q6. In the systematic sampling, the value of k is __?
+A. sampling interval
+
+--- page 3 ---
+B. sub stage interval
+C. secondary stage interval
+D. multistage interval
+Q7. ____   involve methods of organizing ,picturing, and 
+summarizing information from samples and populations.
+a) Descriptive statistics
+b) Inferential statistics 
+c) Analytical statistics 
+d) All of the above
+Q8.______ is a descriptive measurement computed from 
+an entire population of data.
+a)  Statistics
+b)  Parameter
+c)  Clustering
+d)  None of these
+Q9. Score Of computer exam is an example of ___?
+a) Ratio data
+
+--- page 4 ---
+b) Interval Data
+c) Ordinal Data
+d) Nominal Data
+Q10.Pin Code is an example of ___?
+a) Ratio data
+b) Interval Data
+c) Ordinal Data
+d) Nominal data  
+Q11.  Sample is regared as a subset of___?
+(a) Data
+(b) Set
+(c) Distribution
+(d) Population
+Q12. ______technique where every item in the 
+population has equal probability of being selected?
+(a) Simple random sampling
+(b) Stratified random sampling
+
+--- page 5 ---
+(c) Systematic sampling
+(d) Probability sampling
+Q13. A number in a data-set  which is very different from 
+others is called ______?
+a) Error
+b) Mode
+c) Outliers
+d) Median
+Q14.  The number of observations in a particular class is 
+called: 
+a) Width of the class 
+b) Class mark 
+c) Frequency 
+d) None of the above
+Q15.  The square root of the variance is called the 
+________ deviation.
+a) empirical
+b) mean
+
+--- page 6 ---
+c) continuous
+d) standard Deviation
+Q16. When the correlation coefficient, r, is close to one: 
+a) There is no relationship between the two variables 
+b) There is a strong linear relationship between the two 
+variables 
+c) It is impossible to tell if there is a relationship between
+the two variables
+d) The slope of the regression line will be close to one
+Q17. If the assumed hypothesis is tested for rejection 
+considering it to be true is called?
+a) Null Hypothesis
+b) Statistical Hypothesis
+c) Simple Hypothesis
+d) Composite Hypothesis
+Q18. The values of mean, median and mode can be
+a) Some time equal
+b) Never equal
+
+--- page 7 ---
+c) Always equal
+d) None of these
+Q19.Cumulative frequency is____ frequency?
+a)Decreasing
+b)Increasing
+c)Different
+d)None of these
+Q20. If the mean of the sampling distribution is equal to 
+the parameters then estimators will be
+A)Biased
+B)Consistent
+C)Sufficient
+D)Unbiased
+MACHINE LEARNING QUESTIONS
+Q1.Which of the following is not a supervised learning?
+a)Naive Bayes
+
+--- page 8 ---
+b)PCA
+c)Linear Regression
+d)Decision Tree Answer
+Q2. Which of the following is not type of learning?
+a)Unsupervised Learning
+b)Supervised Learning
+c)Semi-unsupervised Learning
+d)Reinforcement Learning 
+Q3. Fraud Detection, Image Classification, Diagnostic, and
+Customer Retention are applications in which of the 
+following
+a)Unsupervised Learning: Regression
+b)Supervised Learning: Classification
+c)Unsupervised Learning: Clustering
+d)Reinforcement Learning 
+
+--- page 9 ---
+Q4. Which of the following is a widely used and effective 
+machine learning algorithm based on the idea of 
+bagging?
+A. Decision Tree
+B. Random Forest
+C. Regression
+D. Classification
+Q5. A model can learn based on the rewards it received 
+for its previous action is known as:
+A. Supervised learning
+B. Unsupervised learning
+C. Reinforcement learning
+D. Concept learning
+Q6. Which of the following is an application of 
+reinforcement learning?
+A) Topic modeling
+B) Recommendation system
+
+--- page 10 ---
+C)Pattern recognition
+D)Image classification
+Q6. What would be the best regression model for more 
+than one independent variable?
+A) Simple Linear Regression
+B) Multiple Linear Regression
+C) Logistic Regression
+D) All of the Above
+Q7. Regression is a __?
+A. Supervised Learning Algorithm 
+B. Unsupervised Learning Algorithm
+C. Reinforcement Learning Algorithm
+D. None
+Q8. Linear regression is___ to Outliers
+A) sensitive
+
+--- page 11 ---
+B) not sensitive 
+C) not affected by outliers
+D) None
+Q9.What does k stand for in the KNN algorithm?
+ A. Number of neighbors 
+ B. Number of output classes
+ C. Number of input features
+ D. None
+Q10. For clustering, we do not require-
+A. Labeled data 
+B. Unlabeled data 
+C. Numerical data
+D. Categorical data
+Q11. The average squared difference between classifier 
+predicted output and actual output.
+a) mean squared error
+
+--- page 12 ---
+b) root mean squared error
+c) mean absolute error
+d) mean relative error
+Q12. Regression trees are often used to model _______ 
+data.
+a) Linear
+b) Nonlinear
+c) Categorical
+d) Symmetrical
+Q13 What device below is not an example of Machine 
+Learning?
+A)Speech to text
+B)Google Search 
+C)Google Assistant
+D)None Of The Above
+
+--- page 13 ---
+Q14. How many dependent variables are used in multiple
+regression?
+a) One
+b) One or more
+c) Two or more
+d) Two
+Q15. If a distribution is skewed to the left, then it is .
+a) Negatively skewed
+b) Positively skewed
+c) Symmetrically skewed
+d) Symmetrical
+Q16. A Type I error is also known as a ______.
+a. False positive
+b. False negative
+c. Double negative
+d. Positive negative
+
+--- page 14 ---
+Q17. A Type II error is also known as a ______.
+a. False positive
+b. False negative
+c. Double negative
+d. Positive negative
+Q18. High Entropy Means That the partitions in 
+Classification are?
+A)Useful
+B)Useless
+C)Not Pure
+D)Pure
+Q19.Probability Of Occurrence Of A single event?
+A. conditional probability
+B. marginal probability
+C. non conditional probability
+D. occurrence probability
+
+--- page 15 ---
+Q20 For two events, the probability of occurrence of 
+both events at same time or occurrence in series is 
+Classified as
+A. joint probability
+B. dependent probability
+C. series probability
+D. conditional probability
+ 
+
+--- page 16 ---

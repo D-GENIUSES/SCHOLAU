@@ -1,0 +1,2667 @@
+
+
+--- page 1 ---
+DISCRETE STRUCTURES (CSC 203) 
+ 
+A 
+ 
+LECTURE NOTE PREPARED  
+ 
+BY 
+ 
+COURSE LECTURER 
+ 
+FOR 
+ 
+DEGREE PROGRAMME 
+ 
+ 
+ 
+
+--- page 2 ---
+2 
+ 
+Propositional Logic 
+A field of mathematics known as propositional logic examines the logical connections between 
+propositions—also known as statements,  sentences, or assertions—when viewed as a whole and 
+joined by logical connectives. 
+ 
+Example: 
+1. The sun rises in the East and sets in the West. 
+2. 1 + 1 = 2 
+3. 'b' is a vowel. 
+Above 3 sentences are propositions, where the first two are Valid (True) and the third o ne is 
+Invalid (False). 
+ 
+All of the above sentences are propositions, where the first two are Valid (True) and the third one 
+is Invalid (False). Some sentences that do not have a truth value or may have more than one truth 
+value are not propositions.  
+ 
+Example, 
+• What time is it? 
+• Go out and Play 
+• x + 1 = 2 
+Third sentence may or may not be true, and the first two are not propositions since they lack 
+truth value. Propositional variables, such as p, q, r, and s, are used to represent propositions. 
+Propositional ca lculus, also known as propositional logic, is the area of logic that focusses on 
+propositions. It also ad dresses the creation of new hypotheses from preexisting ones. Compound 
+propositions are propositions composed of one or more propositions joined by log ical 
+connectives (also known as operators). 
+ 
+Types of Propositions 
+Propositions are statements that can be assessed as true or false in propositional logic. They serve 
+as the foundation for more intricate logical arguments. The two primary categories of 
+propositions are broken down as follows: 
+• Atomic Propositions 
+• Compound Propositions 
+ 
+Atomic Propositions in Propositional Logic 
+The fundamental unit o f propositional logic is an atomic proposition, sometimes referred to as a 
+simple proposition. 
+• It is a declar ative sentence that, according to propositional logic, cannot be divided into 
+smaller statements but is either true (T) or false (F). 
+• Logical c onnectives such as AND ( ∧), OR ( ∨), NOT ( ¬), etc., are absent from atomic 
+propositions. 
+ 
+Examples of Atomic Propositions 
+1. P: "It is raining." 
+2. Q: "The sun is shining." 
+
+--- page 3 ---
+3 
+ 
+3. R: "2 + 2 = 4." 
+Each of these is a complete, indivisible statement — it’s either true or false. 
+ 
+Non-Atomic (Compound) Propositions 
+When we combine atomic propositions with logical connectives, we get compound 
+propositions. 
+ 
+For example: 
+• P ∧ Q → "It is raining AND the sun is shining." 
+• ¬P → "It is NOT raining." 
+• P → Q → "If it is raining, then the sun is shining." 
+Here, P and Q are atomic propositions, while P ∧ Q, ¬P, and P → Q  are compound 
+propositions. 
+ 
+Truth Table of Propositional Logic 
+We take into account every possible combination of propositions that are joined together by 
+logical connectives to form the given co mpound proposition because we need to  know the truth 
+value of a proposition in every scenario. A truth table is a tabular compilation of every scenario 
+that could possibly occur. Most Frequently Used Logical Connectives: 
+ 
+1. Negation 
+If p   is a propositio n, then the negation of  p   is denoted by  \neg p, which when translated to 
+simple English mean s- "It is not the case that  p" or simply "not  p". The truth value of  -p is the 
+opposite of the truth value of p. The truth table of -p is: 
+ 
+p ¬p 
+T F 
+F T 
+ 
+Example, Negation of "It is raining today", is "It is not the case that is raining today" or simply 
+"It is not raining today".  
+2. Conjunction 
+For any two propositions  p   and q, their conjunction is denoted by  p\wedge q, which means 
+"p   and q   ". The conju nction p\wedge q    is True when both  p   and q   are True, otherwise 
+False. The truth table of p\wedge q   is: 
+ 
+p q p ∧ q 
+T T T 
+T F F 
+F T F 
+F F F 
+
+--- page 4 ---
+4 
+ 
+ 
+ 
+Example, Conjunction of the propositions  p   - "Today is Friday" and  q   - "It is raining 
+today", p\wedge q   is "Today is Friday and it is raining today". This proposition is true only on 
+rainy Fridays and is false on any other rainy day or on Fridays when it does not rain.  
+3. Disjunction 
+For any two propositions  p   and q, their disjunction is denoted by  p\vee q , which means 
+"p   or q   ". The disjunction  p\vee q is True when either  p   or q   is True, otherwise F alse. The 
+truth table of p\vee q   is: 
+p q p ∨ q 
+T T T 
+T F T 
+F T T 
+F F F 
+ 
+Example, Disjunction of the propositions  p   - "Today is Friday" and  q   - "It is raining 
+today", p\vee q   is "Today is Friday or it is raining today". This proposition is true on any day 
+that is a Friday or a rainy day (including rainy Fridays) and is false on any  day other than Friday 
+when it also does not rain.  
+ 
+4. Exclusive Or 
+For any two propositions  p   and q   , their exclusive or is denoted by  p\oplus q   , which means 
+"either p   or q   but not both". The exclusi ve or p\oplus q   is True when either  p   or q   is True, 
+and False when both are true or both are false. The truth table of p\oplus q   is: 
+ 
+p q p ⊕ q 
+T T F 
+T F T 
+F T T 
+F F F 
+Example, Exclusive or of the propositions  p   - "Today is Friday" and  q   - "It is raining 
+today", p\oplus q   is "Either today is Friday or it is raining today, but not both". This proposition 
+is true on any day that is a Friday or a rainy day (not including rainy Fridays) and is false on any 
+day other than Friday when it does not rain or rainy Fridays.  
+5. Implication 
+
+--- page 5 ---
+5 
+ 
+For any two propositions p   and q   , the statement "if p   then q   " is called an implication and it 
+is denoted by p\rightarrow q   . In the implication p\rightarrow q   , p   is called the hypothesis or 
+antecedent or premise and q   is called the conclusion or consequence. The implication 
+is p\rightarrow q   is also called a conditional statement. The implication is false when p   is 
+true and q   is false otherwise it is true. The truth table of p\rightarrow q   is: 
+p q p → q 
+T T T 
+T F F 
+F T T 
+F F T 
+One might wonder that why is  p\rightarrow q    true when  p   is false. This is because the 
+implication gu arantees that when  p   and q   are true then the implication is true. But the 
+implication does not guarantee anything when the premise  p   is false. There is no way of 
+knowing whether or not the implication is false since  p   did not happen. This situation is similar 
+to the "Innocent until proven Guilty" stance, which means that the implication  p\rightarrow q   is 
+considered true until proven false. Since we cannot call the implication  p\rightarrow q    false 
+when p   is false, our only alternative is to call it true.  
+This follows from the Explosion Principle which says: "A False statement implies anything" 
+Conditional statements play a very important role in mathematical reasoning, thus a variety of 
+terminology is used to express p\rightarrow q, some of which are listed below. 
+"If p, then "q"p is sufficient for q""q when p""a necessary condition for p is q""p only if q""q 
+unless ≠p""q follows from p" 
+ 
+Example, "If it is Friday then it is raining today" is a proposition which is of the  
+form p\rightarrow q. The above proposition is true if it is not Friday  (premise is false) or if it is 
+Friday and it is raining, and it is false when it is Friday but it is not raining.  
+6. Biconditional or Double Implication 
+For any two propositions  p   and q, the statement "p    if a nd only if(i ff) q   " is called a 
+biconditional and it is denoted by  p\leftrightarrow q . The statement  p\leftrightarrow q    is also 
+called a bi-implication. p\leftrightarrow q   has the same truth value as  (p\rightarrow q) \wedge 
+(q\rightarrow p). The implication is true when p   and q   have same truth values, and is false 
+otherwise. The truth table of p\leftrightarrow q   is: 
+ 
+p q p ↔ q 
+T T T 
+T F F 
+F T F 
+F F T 
+ 
+
+--- page 6 ---
+6 
+ 
+Some other common ways of expressing p\leftrightarrow q   are: 
+"p is necessary and sufficient for q""if p then q, and conversely""p if q" 
+Example, "It is raining today if and only if it is Friday today." is a proposition which is of the 
+form p\leftrightarrow q   . The above proposition is true if it is not Friday and it is not raining or 
+if it is Friday and it is raining, and it is false when it is not Friday or it is not raining.  
+ 
+Tautologies 
+A Tautology is a formula which is always true for every value of its propositional variables. 
+ 
+Example − Prove [(A→B) ∧A] →B is a tautology 
+The truth table is as follows – 
+ 
+A B A → B (A → B) ∧ A [(A → B) ∧ A] → B 
+True True True True True 
+True False False False True 
+False True True False True 
+False False True False True 
+ 
+As we can see every value of [(A→B) ∧A] →B is "True", it is a tautology. 
+ 
+Contradictions 
+A Contradiction is a formula which is always false for every value of its propositional variables. 
+Example − Prove (A∨B) ∧[(¬A) ∧(¬B)] is a contradiction 
+The truth table is as follows – 
+ 
+A B A ∨ B ¬ A ¬ B (¬ A) ∧ (¬ B) (A ∨ B) ∧ [(¬ A) ∧ (¬ B)] 
+True True True False False False False 
+True False True False True False False 
+False True True True False False False 
+False False False True True True False 
+ 
+As we can see every value of (A∨B)∧[(¬A)∧(¬B)] is False, it is a contradiction. 
+ 
+Contingency 
+A Contingency is a formula which has both some true and some false values for every value of 
+its propositional variables. 
+Example − Prove (A∨B) ∧(¬A) a contingency 
+The truth table is as follows – 
+ 
+A B A ∨ B ¬ A (A ∨ B) ∧ (¬ A) 
+True True True False False 
+True False True False False 
+False True True True True 
+False False False True False 
+ 
+
+--- page 7 ---
+7 
+ 
+As we can see every value of (A∨B) ∧(¬A) has both True and False, it is a contingency. 
+ 
+ 
+Propositional Equivalences 
+Two statements X and Y are logically equivalent if any of the following two conditions hold − 
+• The truth tables of each statement have the same truth values. 
+• The bi-conditional statement X⇔Y 
+• is a tautology. 
+Example − Prove ¬(A∨B) and[(¬A) ∧(¬B)] are equivalent 
+ 
+Testing by 1st method (Matching truth table) 
+A B A ∨ B ¬ (A ∨ B) ¬ A ¬ B [(¬ A) ∧ (¬ B)] 
+True True True False False False False 
+True False True False False True False 
+False True True False True False False 
+False False False True True True True 
+ 
+Here, we can see the truth values of ¬(A∨B) and[(¬A) ∧(¬B)] are same, hence the statements are 
+equivalent. 
+ 
+Testing by 2nd method (Bi-conditionality) 
+A B ¬ (A ∨ B) [(¬ A) ∧ (¬ B)] [¬ (A ∨ B)] ⇔ [(¬ A) ∧ (¬ B)] 
+True True False False True 
+True False False False True 
+False True False False True 
+False False True True True 
+ 
+As [¬(A∨B)]⇔[(¬A)∧(¬B)] is a tautology, the statements are equivalent. 
+ 
+Inverse, Converse, and Contra-positive 
+Implication / if-then (→) 
+is also called a conditional statement. It has two parts − 
+• Hypothesis, p 
+• Conclusion, q 
+As mentioned earlier, it is denoted as p→q 
+. 
+Example of C onditional Statement  − If you do your homework, you will not be punished. 
+Here, "you do your homework" is the hypothesis, p, and "you will not be punished" is the 
+conclusion, q. 
+Inverse − An inverse of the conditional statement is the negation of both the hypothesis and the 
+conclusion. If the statement is If p, then q, the inverse will be If not p, then not q. Thus, the 
+inverse of p→q is ¬p→¬q 
+. 
+Example − The inverse of I f you do your homework,  you will not be punished is If you do not 
+do your homework, you will be punished. 
+
+--- page 8 ---
+8 
+ 
+ 
+Converse − The converse of the conditional statement is computed by interchanging the 
+hypothesis and the conclusion. If the statement is If p, then q , the converse will be If q, then p. 
+The converse of p→q 
+is q→p 
+. 
+Example − The converse of "If you do your homework, you will not be punished" is "If you will 
+not be punished, you do your homework. 
+ 
+Contra-positive − The contra -positive of the conditional  is computed by interchanging the 
+hypothesis and the conclusion of the inverse statement. If the statement is If p, then q, the contra-
+positive will be If not q, then not p. The contra-positive of p→q 
+is ¬q→¬p 
+. 
+Example − The Contra -positive of " If you do  your homework, you will not be punished is "If 
+you are punished, you did not do your homework. 
+ 
+Duality Principle 
+Duality principle states that for any true statement, the dual statement obtained by interchanging 
+unions into intersections (and vice versa)  and interchanging Universal set into Null set (and vice 
+versa) is also true. If dual of any statement is the statement itself, it is said self-dual statement. 
+ 
+Example − The dual of (A∩B) ∪C 
+is (A∪B) ∩C 
+ 
+Normal Forms 
+We can convert any proposition in two normal forms − 
+• Conjunctive normal form 
+• Disjunctive normal form  
+ 
+Conjunctive Normal Form 
+A compound statement is in conjunctive normal form if it is obtained by operati ng AND among 
+variables (negation of variables included) connected with ORs. In terms of set operations, it is a 
+compound statement obtained by Intersection among variables connected with Unions. 
+Examples 
+• (A∨B) ∧(A∨C) ∧(B∨C∨D) 
+• (P∪Q) ∩(Q∪R) 
+ 
+A compound statement is in disjunctive normal form if it is obtained by operating OR am ong 
+variables (negation of variables included) connected with ANDs. In terms of set operations, it is 
+a compound statement obtained by Union among variables connected with Intersections. 
+Examples 
+• (A∧B) ∨(A∧C) ∨(B∧C∧D) 
+• (P∩Q) ∪(Q∩R) 
+ 
+
+--- page 9 ---
+9 
+ 
+Logical Equivalence in Discrete Mathematics 
+Logical equivalence is a fundamental concept in propositional logic. It is used in analyzing and 
+transforming logical statements into more manageable forms.   Logical equivalence is the 
+relationship between two statements that have the sa me truth value in every possible scenario. In 
+simpler terms, we can say two statements are logically equivalent if they are both either True or 
+False. It is like saying two people always agreeing on every topic. 
+Mathematically, we can express this relationship between two statements P and Q by writing P ≡ 
+Q, which means P and Q are logically equivalent. 
+ 
+Understanding Logical Equivalence Using Truth Tables 
+Like logics, a truth table i s a tool to determine whether two statements are logically equivalent. 
+We list out all pos sible truth values for each sta tement and then compare the results. If the truth 
+values match in every case, the statements are logically equivalent. 
+ 
+Example of Logical Equivalence of P → Q and ¬P ∨ Q 
+Let us see an example of logical equivalence between t wo statements, P → Q (if P then Q) and 
+¬P ∨ Q (not P or Q). To prove these two statements are logically equivalent, we construct the 
+truth table – 
+ 
+P Q P → Q ¬P ∨ Q 
+T T T T 
+T F F F 
+F T T T 
+F F T T 
+ 
+ 
+ 
+As we can see, the final columns of both statements are the same, meaning P → Q and ¬P ∨ Q 
+are logically equivalent. 
+ 
+De Morgan's Laws 
+We have learnt the concept of De Morgan’s Laws in Set Theory and Boolean algebra. They are a 
+set of logical equivalences in discrete mathematics. These laws show us a way to distribute 
+negations across conjunctions (ANDs) and disjunctions (ORs). They are useful in simplifying 
+complex logical expressions. 
+De Morgan's Laws are − 
+• ¬ (P ∧ Q) ≡ ¬P ∨ ¬Q 
+• ¬ (P ∨ Q) ≡ ¬P ∧ ¬Q 
+
+--- page 10 ---
+10 
+ 
+ 
+Example of Logical Equivalence Using De Morgan’s Law 
+Let us see how to apply De Morgan's law to check if the statements ¬(P ∨ Q) and ¬P ∧ ¬Q are 
+logically equivalent. 
+ 
+P Q ¬ (P ∨ Q) ¬P ∧ ¬Q 
+T T F F 
+T F F F 
+F T F F 
+F F T T 
+ 
+As the truth values are the same, De Morgan's law holds, confirming that ¬(P ∨ Q) ≡ ¬P ∧ ¬Q 
+ 
+Negation of Implications 
+Another useful but trickier thing is negation of implications. The negation of an implication 
+P → Q is not another impli cation. It is a con junction of the hypothesis being true and the 
+conclusion being false. In other words, ¬ (P → Q) ≡ P ∧ ¬Q 
+ 
+Example of Negating an Implication 
+Let us see the prove that ¬ (P → Q) ≡ P ∧ ¬Q without using a truth table by br eaking it down 
+step-by-step − 
+• Start with ¬ (P → Q). 
+• Recall that P → Q is equivalent to ¬P ∨ Q (We also proved this in the first example) 
+• Now apply negation: ¬(¬P ∨ Q) 
+• Using De Morgan’s Law, we get ¬¬P ∧ ¬Q 
+• Finally, simplify the double negation to P ∧ ¬Q 
+ 
+By using logical transformations instead of truth tables, we showed that ¬(P → Q) ≡ P ∧ ¬Q 
+ 
+More Complex Examples of Logical Equivalence 
+We have understood the basics examples. Let us see some of the complex examples where we 
+have much things to do. Let us determine whether it is logically equi valent to another statement 
+using a truth table. 
+ 
+Example: Are (P ∨ Q) → R and (P → R) ∨ (Q → R) Logically Equivalent? 
+Constructing the truth table – 
+P Q R (P ∨ Q) → R (P → R) ∨ (Q → R) 
+T T T T T 
+T T F F F 
+T F T T T 
+T F F F T 
+F T T T T 
+F T F F T 
+F F T T T 
+F F F T T 
+
+--- page 11 ---
+11 
+ 
+ 
+In the fourth and sixth rows, the truth values differ, meaning that the two statements are not 
+logically equivalent. However, in certain scenarios, (P ∨ Q) → R implies (P → R) ∨ (Q → R), 
+but not the reverse. 
+ 
+Predicates and Quantifiers 
+Predicates and Quantifiers are fundamental concepts in mathematical logic, essential for 
+expressing statements and reasoning about the properties of objects within a domain. These 
+concepts are widely used in computer science, engineering, and mathematics to formulate precise 
+and logical statements.  
+ 
+Predicates 
+A predicate is a statement that contains variables and becomes a proposition when specific 
+values are substituted for those variables. Predicates express proper ties or relations a mong 
+objects. Example:  
+P(x) = "x is an even number"  
+• When x = 2, P (2) is True.  
+• When x = 3, P (3) is False. 
+ 
+A predicate is a logical expression that contains variables and becomes a statement when specific 
+values are substituted for t hose variables. So, predicates describe properties or conditions that 
+elements of a set can satisfy. 
+ 
+Example of a Predicate 
+Consider we have a predicate P(x) that states, "x is a prime number". 
+• If we replace x with 2, the predicate P (2) becomes the statement, "2 is a prime number" 
+which is True. 
+• Similarly, if we substitute x = 4 , the predicate P ( 4) becomes " 4 is a prime number " 
+which is False. 
+In both the cases, by substituting specific values for x, the predicate becomes a definite statement 
+that can be either True or False. 
+ 
+Difference between a Predicate and a Statement 
+Predicates and Statements are quite similar and that’s why they become confusing. A statement 
+is a sentence that is either True or False. However, a predicate has a variable and is not a 
+statement until the variable is replaced with a specific value. For example: 
+• Predicate − "n is a prime number." 
+• Statement − "7 is a prime number." 
+ 
+Without assigning a value to the variable n, the predicate is incomplete and does not hold a truth 
+value. Only when we provid e a value for n, like in the case of "7 is a prime number," does the 
+predicate become a true or false statement. 
+ 
+Quantifiers in Discrete Mathematics 
+
+--- page 12 ---
+12 
+ 
+The next part is the qua ntifiers. These are symbols or words that define the extent to which a 
+predicate is true for a set of elements. 
+In mathematics, we use two main types of quantifiers: 
+• Universal quantifier (denoted by ∀), meaning "for all." 
+• Existential quantifier (denoted by ∃), meaning "there exists." 
+ 
+ 
+Universal Quantifier (∀) 
+From the name itself we can understand this. The universal quantifier is used when we want to 
+declare that a predicate is true for every possib le value of a variable. It is read as "for all" or "for 
+every." 
+Let us understand with examples. Consider the following statement − 
+∀x (x≥0) 
+It means, "For all values of x, x is greater than or equal to zero." In the domain of natural 
+numbers (0, 1, 2, ...), this statement is True. 
+ 
+Existential Quantifier (∃) 
+Another type of quantifier is the existential quantifier. It is used when we want to say that there 
+is at least one value of a variable for which a predicate is true. It is read as "there exists" or "there 
+is." 
+For example, consider the following statement − 
+∃x (x<0) 
+This means "There exists an x such that x is less than zero." In the domain of natural numbers, 
+this statement is false because no natural number is less than zero. However, in the domain o f 
+real numbers, this statement is true. 
+ 
+Combining the Quantifiers 
+We can combine these two quantifiers for better use cases. Let us look at how this works by 
+checking the following examples – 
+ 
+Example of Universal and Existential Quantifiers 
+Consider the statement − 
+∀x ∃y (y<x) 
+This reads, "For every x, there exists a y such that y is less than x." 
+If we are working within the domain of natural numbers (0, 1, 2, ...), this statement is false 
+because for x = 0, there is no natural number y such that y < 0. However, if we change the 
+domain to real numbers, this sta tement becomes true, since for any real number x, there exists a 
+real number y that is smaller. 
+ 
+Example of Nested Quantifiers 
+Now, let us look at a more complex statement with nested quantifiers − 
+∃x ∀y (y≥x) 
+This reads, "There exists an x such that for all y, y is greater than or equal to x." 
+In the domain of natural numbers, this statement is true because the number x = 0 satisfies this 
+condition. No matter which number y we choose, it will always be greater than or equal to 0. 
+
+--- page 13 ---
+13 
+ 
+ 
+ 
+Negation of Quantifiers 
+When we negate quantified statements, the type of quantifier changes. The negation of a 
+universal quantifier becomes an existential quantifier, and the negation of an existential 
+quantifier becomes a universal quantifier. 
+Following are the rules of negation − 
+• ¬∀xP(x) is equivalent to ∃x¬P(x), meaning "It is not true that for all x, P(x) is true" is the 
+same as "There exists an x such that P(x) is false." 
+• ¬∃xP(x) is equivalent to ∀x¬P(x), meaning "There does not exist an x such that P(x) is 
+true" is the same as "For all x, P(x) is false." 
+ 
+Example of Negating a Universal Quantifier 
+Consider the following statement − 
+∀x (x≥0) 
+The negation of this statement would be − 
+¬∀x (x≥0), which is equivalent to ∃x (x<0) 
+This negation reads, "There exists an x such that x < 0" In the domain of real numbers, this i s 
+true, as there are negative numbers. 
+ 
+Example of Negating an Existential Quantifier 
+Consider the following statement − 
+∃x (x>10) 
+The negation of this statement would be − 
+¬∃x (x>10), which is equivalent to ∀x (x≤10) 
+This negation reads, "For all x, x is less than or equal to 10." If we are in the domain of natural 
+numbers, this is false because numbers greater than 10 exist. 
+ 
+Implicit Quantifiers 
+In some cases, the quantifiers in a sentence are implied rather than explicitly stated. For example, 
+when we say − 
+"If a shape is a square, then it is a rectangle" 
+Although this is not written with quantifiers, it is understood that we mean − 
+"For all shapes, if the shape is a square, then it is a rectangle" 
+Here, the universal quantifier "for all shapes" is implicit. 
+Similarly, when we use predicates, it is often assumed that the variables are universally 
+quantified unless otherwise stated. For instance, when we define a predicate P(n) to mean "n is 
+prime," we assume that n is universally quantified. 
+ 
+Using Predicates and Quantifiers in Proofs 
+Predicates and quantifiers are often used in formal proofs to express general statements about 
+numbers, sets, or other mathematical objects. The combination of these tools allows for precision 
+and clarity in mathematical reasoning. 
+ 
+ 
+
+--- page 14 ---
+14 
+ 
+ 
+ 
+Set - Definition 
+A set is an unordered collection of different elements. A set can be written explicitly by listing its 
+elements using set bracket. If the order of the elements is changed  or any element of a set is 
+repeated, it does not make any changes in the set. 
+ 
+Some Example of Sets 
+• A set of all positive integers 
+• A set of all the planets in the solar system 
+• A set of all the states in India 
+• A set of all the lowercase letters of the alphabet 
+ 
+Representation of a Set 
+Sets can be represented in two ways − 
+• Roster or Tabular Form 
+• Set Builder Notation 
+ 
+Roster or Tabular Form 
+The set is represented by listing all the elements comprising it. The elements are enclosed within 
+braces and separated by commas. 
+Example 1 − Set of vowels in English alphabet, A={a,e,i,o,u} 
+Example 2 − Set of odd numbers less than 10, B={1,3,5,7,9} 
+ 
+Set Builder Notation 
+The set is defined by specifying a property that elements of the set have in common. The set is 
+described as A={x:p(x)} 
+ 
+Example 1 − The set {a,e,i,o,u} 
+is written as − 
+A={x:x is a vowel in English alphabet} 
+ 
+Example 2 − The set {1,3,5,7,9} 
+is written as − 
+ 
+B= {x:1≤x<10 and (x%2) ≠0} 
+If an element x is a member of any set S, it is denoted by x∈S and if an element y is not a 
+member of set S, it is denoted by y∉S 
+. 
+Example − If S= {1,1.2,1.7,2},1∈S but 1.5∉S 
+ 
+Cardinality of a Set 
+Cardinality of a set S, denoted by |S| 
+, is the number of elements of the set. The number is also referred as the cardinal number. If a set 
+has an infinite number of elements, its cardinality is ∞ 
+
+--- page 15 ---
+15 
+ 
+. 
+ 
+Example − |{1,4,3,5}|=4,|{1,2,3,4,5,…}|=∞ 
+If there are two sets X and Y, 
+• |X|=|Y| 
+denotes two sets X and Y having same cardinality. It occurs when the number of elements in X is 
+exactly equal to the number of elements in Y. In this case, there exists a bijective function f from 
+X to Y. 
+ |X|≤|Y| 
+denotes that set Xs cardinality is less than or equal to set Ys cardinality. It occurs when number of 
+elements in X is less than or equal to that of Y. Here, there exists  an injective function f from X 
+to Y. 
+ |X|<|Y| 
+denotes that set X s cardinality is less than set Y s cardinality. It occurs when number of elements 
+in X is less than that of Y. Here, the function f from X to Y is injective function but not bijective. 
+If |X|≤|Y| and |X|≥|Y| then |X|=|Y| 
+ 
+• . The sets X and Y are commonly referred as equivalent sets. 
+ 
+Types of Sets 
+Sets can be classified into many types. Some of which are finite, infinite, subset, universal, 
+proper, singleton set, etc. 
+ 
+Finite Set 
+A set which contains a definite number of elements is called a finite set. 
+Example − S= {x|x∈N and 70>x>50} 
+ 
+Infinite Set 
+A set which contains infinite number of elements is called an infinite set. 
+Example − S={x|x∈N and x>10} 
+ 
+Subset 
+A set X is a subset of set Y (Written as X⊆Y) if every element of X is an element of set Y. 
+Example 1 − Let, X= {1,2,3,4,5,6} and Y= {1,2}. Here set Y is a subset of set X as all the 
+elements of set Y is in set X. Hence, we can write Y⊆X 
+. 
+Example 2 − Let, X= {1,2,3}and Y= {1,2,3}. Here set Y is a subset (Not a proper subset) 
+of set X as all the elements of set Y is in set X. Hence, we can write Y⊆X 
+. 
+Proper Subset 
+The term proper subset can be defined as subset of but not equal to. A Set X is a proper subset of 
+set Y (Written as X⊂Y) if every element of X is an element of set Y and |X|<|Y| 
+. 
+Example − Let, X= {1,2,3,4,5,6}and Y= {1,2}. Here set Y⊂X since all elements in Y are 
+contained in X too and X has at least one element been more than set Y 
+
+--- page 16 ---
+16 
+ 
+. 
+ 
+Universal Set 
+It is a collection of all elem ents in a particular context or application. All the sets in that context 
+or application are essentially subsets of this universal set. Universal sets are represented as U 
+. 
+Example − We may define U as the set of all animals on earth. In this case, set of  all 
+mammals is a subset of U, set of all fishes is a subset of U, set of all insects is a subset of 
+U, and so on. 
+ 
+Empty Set or Null Set 
+An empty set contains no elements. It is denoted by ∅ 
+. As the number of elements in an empty set is finite, empty set  is a finite set. The cardinality of 
+empty set or null set is zero. 
+Example − S={x|x∈N and 7<x<8}=∅ 
+ 
+Singleton Set or Unit Set 
+Singleton set or unit set contains only one element. A singleton set is denoted by {s} 
+. 
+Example − S={x|x∈N, 7<x<9}= {8} 
+ 
+Equal Set 
+If two sets contain the same elements, they are said to be equal. 
+Example − If A= {1,2,6}and B={6,1,2} 
+, they are equal as every element of set A is an element of set B and every element of set B 
+is an element of set A. 
+Equivalent Set 
+If the cardinalities of two sets are same, they are called equivalent sets. 
+Example − If A={1,2,6} and B={16,17,22}, they ar e equivalent as cardinality of A is 
+equal to the cardinality of B. i.e. |A|=|B|=3 
+ 
+Overlapping Set 
+Two sets that have at least one common element are called overlapping sets.   In case of 
+overlapping sets − 
+• n(A∪B) =n(A)+n(B)−n(A∩B) 
+• n(A∪B) =n(A−B) +n(B−A) +n(A∩B) 
+• n(A)=n(A−B) +n(A∩B) 
+• n(B)=n(B−A) +n(A∩B) 
+•  
+Example − Let, A= {1,2,6}and B={6,12,42} 
+. There is a common element 6, hence these sets are overlapping sets. 
+ 
+Disjoint Set 
+Two sets A and B are called disjoint sets if they do not have even one element in common. 
+Therefore, disjoint sets have the following properties − 
+
+--- page 17 ---
+17 
+ 
+• n(A∩B) =∅ 
+• n(A∪B)=n(A)+n(B) 
+ 
+Example − Let, A={1,2,6}and B={7,9,14}, there is not a sing le common element, hence these 
+sets are overlapping sets. 
+ 
+Venn Diagrams 
+Venn diagram, invented in 1880 by John Venn, is a schematic diagram that shows all possible 
+logical relations between different mathematical sets. 
+ 
+Examples 
+ 
+ 
+Set Operations 
+Set Operations include Set Union, Set Intersection, Set Difference, Complement of Set, and 
+Cartesian Product. 
+ 
+Set Union 
+The union of sets A and B ( denoted by A∪B) is the set of elements which are in A, in B, or in 
+both A and B. Hence, A∪B= {x|x∈A OR x∈B} 
+. 
+Example − If A= {10,11,12,13}and B = {13,14,15}, then A∪B= {10,11,12,13,14,15} 
+ 
+. (The common element occurs only once) 
+ 
+Set Intersection 
+The intersection of sets A and B (denoted by A∩B) is the set of elements which are in both A and 
+B. Hence, A∩B= {x|x∈A AND x∈B} 
+. 
+Example − If A= {11,12,13}and B={13,14,15}, then A∩B={13} 
+
+--- page 18 ---
+18 
+ 
+. 
+ 
+ 
+Set Difference/ Relative Complement 
+The set difference of sets A and B (denoted by AB) is the set of elements which are only in A but 
+not in B. Hence, A−B= {x|x∈A AND x∉B} 
+. 
+Example − If A= {10,11,12,13}and B= {13,14,15}, then (A−B)={10,11,12} and (B−A)={14,15}. 
+Here, we can see (A−B) ≠(B−A) 
+ 
+ 
+Complement of a Set  
+The complement of a set A (denoted by A) is the set of elements which are not in set A. Hence, 
+A′={x|x∉A} 
+. 
+More specifically, A′=(U−A) where U is a universal set which contains all objects. 
+ 
+Example − If A= {x|x belongstosetofoddintegers}then A′={y|y doesnotbelongtosetofoddintegers} 
+ 
+ 
+Cartesian Product / Cross Product 
+The Cartesian product of n number of sets A1, A2…An 
+
+--- page 19 ---
+19 
+ 
+denoted as A1×A2⋯×An can be defined as all possible ordered pairs (x1, x2…xn) where x1∈A1, 
+x2∈A2…xn∈An 
+ 
+Example − If we take two sets A={a,b}and B={1,2} 
+, 
+The Cartesian product of A and B is written as − A×B={(a,1), (a,2), (b,1), (b,2)} 
+The Cartesian product of B and A is written as − B×A= {(1, a), (1, b), (2, a), (2, b)} 
+ 
+Power Set 
+Power set of a set S is the set of all subsets of S including the empty set. The cardinality of a 
+power set of a set S of cardinality n is 2n . Power set is denoted as P(S) 
+. 
+Example − 
+For a set S={a,b,c,d} 
+let us calculate the subsets − 
+• Subsets with 0 elements − {∅} (the empty set) 
+• Subsets with 1 element − {a},{b},{c},{d} 
+• Subsets with 2 elements − {a,b},{a,c},{a,d},{b,c},{b,d},{c,d} 
+• Subsets with 3 elements − {a,b,c},{a,b,d},{a,c,d},{b,c,d} 
+• Subsets with 4 elements − {a,b,c,d} 
+•  
+Hence, P(S)= 
+{{∅},{a},{b},{c},{d},{a,b},{a,c},{a,d},{b,c},{b,d},{c,d},{a,b,c},{a,b,d},{a,c,d},{b,c,d},{a,b,c
+,d}} 
+|P(S)|=24=16 
+Note − The power set of an empty set is also an empty set. 
+|P ({∅}) |=20=1 
+ 
+Sets and Notations in Discrete Mathematics 
+In Set Theory, we use elements inside sets as discrete elements. We can consider them as 
+discrete elements in discrete mathematics. In several use -cases of discrete mathematics, we use 
+sets. Sets are the foundational building blocks in discrete mathematics. 
+ 
+Definition of a Set 
+A set is an unordered collection of objects. These objects are called elements or members of the 
+set. They can be anything: numbers, letters, other sets, or even abstract concepts. 
+In a set, order does not matter and repetition is ignored (an element is either in the set or not).  
+ 
+Following are some examples of sets – 
+• The set of all actors who have played The Doctor on Doctor Who 
+• The set of natural numbers between 1 and 10 inclusive 
+ 
+Set Notation 
+Here we will see the different types of set notations used in mathematics with their usecases and 
+benefits. 
+
+--- page 20 ---
+20 
+ 
+Set Notation Example and Descriptions 
+Element Notation 
+We use the symbol ∈ to denote that an object is 
+an element of a set. 
+Example − a ∈ {a, b, c} 
+It is read as "a is an element of the set 
+containing a, b, and c." 
+Conversely, we use ∉ to denote that an object 
+is not an element of a set. 
+Example − d ∉ {a, b, c} 
+Set Builder Notation 
+Set builder notation is used to describe sets, 
+especially when listin g all elements is 
+impractical. The general form is: {x : 
+condition(s) that x must satisfy} 
+Example − A = {x ∈ N : ∃n ∈ N(x = 2n)} 
+This is read as "A is the set of all x in the 
+natural numbers such that there exists some n 
+in the natural numbers for which x is twice n." 
+In simpler terms, A is the set of all even natural 
+numbers. 
+A simpler way to write this could be − 
+A = {x ∈ N : x is even} 
+ 
+Special Sets 
+There are some special types of sets that play an important role in set theory  
+Special Sets Descriptions 
+Empty Set The empty set, denoted by ∅, is the set containing no elements. 
+Universal Set The universal set, often denoted by U, is the set of all elements under consideration. 
+Common Number Sets 
+• N: The set of natural numbers 
+(including 0) 
+• Z: The set of integers 
+• Q: The set of rational numbers 
+• R: The set of real numbers 
+Set Operations and Relations 
+ 
+Subsets 
+A subset can either be an ordinary subset or a proper subset. 
+Subset Types Descriptions 
+Subset A set A is a subset of set B (written A ⊆ B) if every element of A is also an element of B. 
+Proper Subset A set A is a proper subset of set B (written A ⊂ B) if A ⊆ B and A ≠ B. 
+ 
+
+--- page 21 ---
+21 
+ 
+ 
+ 
+ 
+ 
+Set Operations 
+The operations on sets are given in the following table in sh ort. We will see the operations wit h 
+examples in a later chapter in detail. 
+Operations Descriptions 
+Intersection 
+The intersection of sets A and B (written A ∩ 
+B) is the set containing all elements that are in 
+both A and B. 
+Union 
+The union of sets A and B  (written A ∪ B) is 
+the set contain ing all elements that are in A or 
+B or both. 
+Cartesian Product 
+The Cartesian product of sets A and B (written 
+A × B) is the set of all ordered pairs (a, b) 
+where a ∈ A and b ∈ B. 
+Set Difference 
+The set difference of A and B (written A \ B) is 
+the set containing all elements of A that are not 
+in B. 
+Complement 
+The complement of set A (written A) is the set 
+of all elements in the universal set that are not 
+in A. 
+ 
+Some other concepts in sets are given below − 
+Operations Descriptions 
+Power Set The power set of A (written P(A)) is the set of all subsets of A. 
+Cardinality The cardinality of a set A (written |A|) is the number of elements in A. 
+ 
+Example of Related to Sets 
+Let us take a look at some of the examples of these topics related to sets for a better 
+understanding − 
+• Describe the set { x: x + 3 ∈ N} − This is the set of all numbers which, when 3 is added 
+to them, result in a natural number. The set could be written as {-3, -2, -1, 0, 1, 2, ...}. 
+• Describe the set {x ∈ N: x + 3 ∈ N}: Solution − This is the set o f all natural numbers 
+which, when 3 is added to them, result in a natural number. So here we just have {0, 1, 2, 
+3 ...}. 
+• Describe the set { x: x ∈ N ∨ -x ∈ N} − This is the set of all intege rs (positive and 
+negative whole numbers, written Z). In other words, {... , -2, -1, 0, 1, 2, ...}. 
+• Describe the set { x: x ∈ N ∧ -x ∈ N} − Here we want all numbers x such that x and -x 
+are natural numbers. There is only one: 0. So we have the set {0}. 
+•  
+Set Theory Notation Table 
+
+--- page 22 ---
+22 
+ 
+All the symbols that are used in sets are given in the following table, for a quick reference – 
+Symbol Meaning 
+{, } Used to enclose elements of a set 
+: Such that 
+∈ Is an element of 
+∉ Is not an element of 
+⊆ Is a subset of 
+⊂ Is a proper subset of 
+∩ Intersection 
+∪ Union 
+× Cartesian product 
+\ Set difference 
+A Complement of A 
+|A| Cardinality of A 
+∅ Empty set 
+U Universal set 
+N Set of natural numbers 
+Z Set of integers 
+Q Set of rational numbers 
+R Set of real numbers 
+P(A) Power set of A 
+ 
+Relations 
+Relations may exist between objects of the same set or between objects of two or more sets. 
+ 
+Definition and Properties 
+A binary relation R from set x to y (written as xRy or R(x,y)) is a subset of the Cartesian product 
+x×y. If the ordered pair of G is reversed, the relation also changes. 
+Generally, an n -ary relation R between sets A1…, and An is a subset of the n -ary produc t 
+A1×⋯×An. The minimum cardinality of a relation R is Zero and maximum is n2 
+in this case.  A binary relation R on a single set A is a subset of A×A 
+. 
+For two distinct sets, A and B, having cardinalities m and n respectively, the maximum 
+cardinality of a relation R from A to B is mn. 
+ 
+Domain and Range 
+If there are two sets A and B, and relation R have order pair (x, y), then − 
+• The domain of R, Dom(R), is the set {x|(x,y) ∈ R for some y in B} 
+• The range of R, Ran(R), is the set {y|(x,y) ∈ R for some x in A} 
+ 
+Examples 
+Let, A= {1,2,9} and B= {1,3,7} 
+• Case 1 − If relation R is 'equal to' then R= {(1,1), (3,3)} 
+Dom(R) = {1,3}, Ran(R)= {1,3} 
+
+--- page 23 ---
+23 
+ 
+• Case 2 − If relation R is 'less than' then R= {(1,3), (1,7), (2,3), (2,7)} 
+Dom(R) = {1,2}, Ran(R)= {3,7} 
+• Case 3 − If relation R is 'greater than' then R= {(2,1), (9,1), (9,3), (9,7)} 
+Dom(R) = {2,9}, Ran(R)= {1,3,7} 
+ 
+Types of Relations 
+• The Empty Relation between sets X and Y, or on E, is the empty set ∅ 
+• The Full Relation between sets X and Y is the set X×Y 
+• The Identity Relation on set X is the set {(x,x)|x∈X} 
+• The Inverse Relation R' of a relation R is defined as − R′={(b,a)|(a,b)∈R} 
+ 
+Example − If R= {(1,2), (2,3)} then R′ will be {(2,1), (3,2)} 
+• A relation R on set A is called Reflexive if ∀a∈A is related to a (aRa holds) 
+ 
+Example − The relation R={(a,a),(b,b)}on set X={a,b} 
+• is reflexive. 
+• A relation R on set A is called Irreflexive if no a∈A is related to a (aRa does not hold). 
+ 
+Example − The relation R={(a,b),(b,a)}on set X={a,b} 
+• is irreflexive. 
+• A relation R on set A is called Symmetric if xRy mplies yRx, ∀x∈A and ∀y∈A 
+. 
+Example − The relation R= {(1,2), (2,1), (3,2), (2,3)} on set A={1,2,3} 
+• is symmetric. 
+• A relation R on set A is called Anti-Symmetric if xRy and yRx implies x=y∀x∈A and 
+∀y∈A 
+. 
+Example − The relation R={(x,y)→N|x≤y}is anti-symmetric since x≤y and y≤x implies x=y 
+ 
+• A relation R on set A is called Transitive if xRy and yRz implies xRz,∀x,y,z∈A 
+. 
+Example − The relation R= {(1,2),(2,3),(1,3)}on set A={1,2,3} 
+• is transitive. 
+• A relation is an Equivalence Relation if it is reflexive, symmetric, and transitive. 
+ 
+Example − The relation R= {(1,1), (2,2), (3,3), (1,2), (2,1), (2,3), (3,2), (1,3), (3,1)} 
+on set A= {1,2,3} is an equivalence relation since it is reflexive, symmetric, and transitive. 
+ 
+Set Operations  
+ 
+Union of Sets 
+The most b asic operation on sets is union. The union of two sets combines all elements from 
+both sets into one. We can say this mathematically as the union of sets A and B is written as (A 
+
+--- page 24 ---
+24 
+ 
+∪ B). This operation includes all elements that are in  A, in B, or in both. I t is important to note 
+that duplicate elements are not counted twice. 
+ 
+Definition: The union of sets A and B is the set containing all elements that are either in A, in B, 
+or in both. 
+ 
+Symbol − (A ∪ B) 
+ 
+Example − If A = {1, 2, 3} and B = {2, 3, 4}, then A ∪ B = {1, 2, 3, 4} 
+ 
+Intersection of Sets 
+The next widely used operation is the intersection of two sets. Intersection fi nds the common 
+elements shared by both sets. It is denoted by (A ∩ B) and contains only the elements that exist 
+in both A and B. 
+ 
+Definition: The intersection of sets A and B is the set containing all elements that are present in 
+both A and B. 
+ 
+Symbol − (A ∩ B) 
+ 
+Example − If A = {1, 2, 3} and B = {2, 3, 4}, then A ∩ B = {2, 3} 
+ 
+Set Difference 
+The next operation is the difference of two sets. This is denoted as (A – B). Set difference gives 
+the elements that are in A but not in B. It is also called the relative complement of B in A. 
+ 
+Definition: The difference of sets A and B is the set of all elements that belong to A but not to B. 
+ 
+Symbol − (A – B) 
+ 
+Example − If A = {1, 2, 3} and B = {2, 3, 4}, then A – B = {1}. 
+ 
+Complement of a Set 
+After union and intersection, another fundamental operation is complement. Remember the 
+difference is a combination of these fundamental operations. The complement of a set A, denoted 
+as AC or A′.  Complement contains all the elements not in A, assuming there is a universal set U 
+that includes all possible elements under consideration. 
+ 
+Definition: The complement of set A consists of all elem ents in the universal  set U that are not 
+in A. 
+ 
+Symbol − AC or A′ 
+Example − If the universal set U = {1, 2, 3, 4, 5} and A = {1, 2, 3} then AC = {4, 5} 
+ 
+Symmetric Difference 
+
+--- page 25 ---
+25 
+ 
+The symmetric difference between two sets A and B, which is denoted by ( A B), is th e set of 
+elements that are in either of the sets but not in their intersection. 
+Definition: The symmetric difference is the set of elem ents that are in one of the sets but not in 
+both. 
+ 
+Symbol − (A B) 
+ 
+Example − If A = {1, 2, 3} and B = {2, 3, 4} then A B = {1, 4}. 
+ 
+Cartesian Product 
+The Cartesian product of two sets A and B, denoted as (A × B). It is the set of all ordered pairs 
+where the first element is from A and the second is from B. 
+ 
+Definition:The Cartesian product of sets A and B is the set of all ordered pairs (a, b) where  
+a ∈ A and b ∈ 
+ 
+Symbol − (A × B) 
+ 
+Example − If A = {1, 2} and B = {3, 4}, then A × B = {(1, 3), (1, 4), (2, 3), (2, 4)} 
+ 
+Examples of Set Operations 
+Here are a couple of examples to illustrate set operations in greater detail. 
+ 
+Example 1 − Let A = {1, 2, 3, 4, 5, 6}, B = {2, 4, 6}, C = {1, 2, 3}, and D = {7, 8, 9} 
+• A ∪ B = {1, 2, 3, 4, 5, 6} (since everything in B is already in A). 
+• A ∩ B = {2, 4, 6} (elements common to both sets). 
+• B ∩ C = {2} (the only element common to both B and C). 
+• A ∩ D = ∅ (no common elements between A and D). 
+• B ∪ C = {1, 2, 3, 4, 6} (union of B and C). 
+• A – B = {1, 3, 5} (elements in A but not in B). 
+ 
+Example 2 − Let A = {1, 2} and B = {3, 4, 5} 
+• A × B = {(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)} 
+• A × A = {(1, 1), (1, 2), (2, 1), (2, 2)} 
+ 
+Using Venn Diagrams 
+Sometimes we need to represent sets through diagrams. These are known as Venn diagrams. 
+These diagrams are a visual tool for representing set operations. 
+
+--- page 26 ---
+26 
+ 
+ 
+In Venn diagrams, sets are represented by overlapping circles. The intersection, union, and other 
+operations can be shown by shading the appropriate regions of the circles. 
+• Union − The u nion of two sets is shown by shading the entire area covered by both 
+circles. 
+• Intersection − The intersection is represented by shading only the region where the 
+circles overlap. 
+• Difference − The difference A – B is represented by shading the part o f A that does not 
+overlap with B. 
+Venn diagrams help visualize the relationships between sets and can simplify the process of 
+understanding more complex operations. 
+ 
+Important Properties of Set Operations 
+Let us see some of the key properties of set operations − 
+Commutativity − 
+• A ∪ B = B ∪ A 
+• A ∩ B = B ∩ A 
+Associativity − 
+• A ∪ (B ∪ C) = (A ∪ B) ∪ C 
+• A ∩ (B ∩ C) = (A ∩ B) ∩ C 
+Distributivity − 
+• A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) 
+• A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) 
+De Morgan’s Laws − 
+• (A ∪ B) C = AC ∩ BC  
+• (A ∩ B) C = AC ∪ BC  
+ 
+What are Venn Diagrams? 
+A Venn diagram is a tool to represent sets and their relationships with one another. Each set is 
+typically represented as a circle, and the relationships between sets are shown by how these 
+circles overlap. 
+ 
+• In a V enn diagram,  each circle represents a set. When two or more sets overlap, the 
+intersection (shared elements) is displayed in the overlapping region of the circles. 
+Elements unique to each set are located in the non-overlapping parts. 
+• Often, the sets are contained with in a rectangle that represents the universal set, denoted 
+as U, which includes all the possible elements under consideration. 
+
+--- page 27 ---
+27 
+ 
+ 
+Take a look at the following Venn diagram. Here, we have the rectangle region as the Universe 
+and there is a set A inside universe. All set are subset of the Universe. 
+ 
+Here, we get one example of overlapping sets. A and B are overlapping. 
+ 
+ 
+Example 
+Let us consider two sets − 
+• Set A = {1, 2, 3} 
+• Set B = {2, 3, 4} 
+Using a Venn diagram, we draw two overlapping circles. The intersection (shared part) would be 
+{2, 3} and the non-overlapping parts would be {1} for A and {4} for B. 
+ 
+Let us now check some operations that are usually done on Venn Diagrams. 
+ 
+Union of Sets 
+The union of two sets A and B denoted as (A ∪ B, is the set of elements that are in either A, B, 
+or both. In a Venn diagram, the union is represented by shading the entire area covered by both 
+circles. 
+
+--- page 28 ---
+28 
+ 
+ 
+In the Venn diagram, both circles would be completely shaded. 
+ 
+Intersection of Sets 
+The intersection of two sets A and B, denoted by A ∩ B, is the set of elements common to both 
+sets. In a Venn diagram, the intersection is shown by sha ding only the overlapping region of the 
+circles. 
+ 
+In the Venn diagram, only the overlapping part of the two circles would be shaded. 
+ 
+Difference of Sets 
+The difference of two sets A and B, denoted by A − B, is the set of elements that are in A but not 
+in B. In a Venn diagram, the difference is represented by shading only the part of A that does not 
+overlap with B. 
+
+--- page 29 ---
+29 
+ 
+ 
+In the Venn diagram, only the non-overlapping part would be shaded. 
+ 
+Complement of a Set 
+The complement of a set A, denoted by A′ of AC, contains all the elements that are not in A. The 
+complement depends on the universal set U, which includes all possible elements. 
+In a Venn diagram, the complement is represented by shading the area outside the circle of set A. 
+ 
+In the Venn diagram, the area outside of the circle representing set AAA would be shaded. 
+ 
+Symmetric Difference 
+The symmetric difference between two sets A and B, denoted by AB, is the set of elements that 
+are in either A or B, but not in both.  In a Venn diagram, this is represented by shading the non -
+overlapping parts of both circles. 
+ 
+In the Venn diagram, the parts of A and B that do not overlap would be shaded. 
+ 
+
+--- page 30 ---
+30 
+ 
+ 
+Venn Diagrams with More Than Two Sets 
+Venn diagrams are not limited to two sets. When we work with three sets or more, the diagrams 
+become more complex, but the basic principles remain the same.   We simply add more circles to 
+represent additional sets, and their intersections and unions can be observed visually. 
+ 
+Example with Three Sets 
+Let us consider three sets − 
+• A = {1, 2} 
+• B = {2, 3} 
+• C = {3, 4} 
+In its Venn diagram, the intersection of all three sets, A ∩ B ∩ C , would be empty (since no 
+element is in all three sets). 
+ 
+The pairwise intersections, such as A ∩ B = {2}  and B ∩  C = {3} , would be shown by 
+overlapping regions of the circles. 
+ 
+Another complicated example could be: (B ∩ C) U (C ∩ A C), this could be represented as the 
+following Venn diagram: 
+ 
+ 
+ 
+ 
+
+--- page 31 ---
+31 
+ 
+Functions 
+A Function assigns to each element of a set, exactly one element of a related set. Functions find 
+their application in various fields like represent ation of the computational complexity of 
+algorithms, counting objects, study of sequences and strings, to name a few.  
+ 
+Function - Definition 
+A function or mapping (Defined as f:X→Y) is a relationship from elements of one set X to 
+elements of another set Y  (X and Y are non -empty sets). X is called Domain and Y is called 
+Codomain of function f. 
+ 
+Function f is a relation on X and Y such that for each x∈X, there exists a unique y∈Y such that 
+(x,y)∈R. x is called pre-image and y is called image of function f. 
+ 
+A function can be one to one or many to one but not one to many. 
+ 
+Injective / One-to-one function 
+A function f: A→B is injective or one -to-one function if for every  b∈B, there exists at most one  
+a∈A such that f(s)=t 
+. 
+This means a function f is injective if a1≠a2 implies f(a1) ≠f(a2) 
+. 
+Example 
+• f: N→N,f(x)=5x is injective. 
+•  f: N→N,f(x)=x2 is injective. 
+•  f: R→R,f(x)=x2 is not injective as (−x)2=x2 
+ 
+Surjective / Onto function 
+A function f: A→B is surjective (onto) if the image of f equals its range. Equivalent ly, for every 
+b∈B, there exists some a∈A such that f(a)=b. This means that for any y in B, there exists some x 
+in A such that y=f(x) 
+. 
+Example 
+• f: N→N,f(x)=x+2  is surjective. 
+• f: R→R,f(x)=x2 is not surjective since we cannot find a real number whose square is 
+negative. 
+ 
+Bijective / One-to-one Correspondent 
+A function f: A→B is bijective or one -to-one correspondent if and only if f is both injective and 
+surjective. 
+ 
+Problem 
+Prove that a function f: R→R defined by f(x)=2x3 is a bijective function. 
+ 
+Explanation − We have to prove this function is both injective and surjective. 
+If f(x1) =f(x2), then 2x13=2x23 and it implies that x1=x2 
+
+--- page 32 ---
+32 
+ 
+. 
+Hence, f is injective. 
+Here, 2x3=y 
+So, x=(y+5)/3 
+which belongs to R and f(x)=y 
+. 
+Hence, f is surjective. 
+Since f is both surjective and injective, we can say f is bijective. 
+ 
+Inverse of a Function 
+The inverse of a one -to-one corresponding function  f: A→B, is the function  g: B→A , holding 
+the following property − 
+f(x)=y⇔g(y)=x 
+The function f is called invertible, if its inverse function g exists. 
+ 
+Example 
+• A Function  f:Z→Z,f(x)=x+5, is invertible since it has the inverse function  
+g:Z→Z,g(x)=x−5 
+• A Function f:Z→Z,f(x)=x2 is not invertiable since this is not one-to-one as (−x)2=x2 
+ 
+Composition of Functions 
+Two functions  f: A→B and g: B→C can be composed to give a composition  gof. This is a 
+function from A to C defined by (gof)(x)=g(f(x)) 
+ 
+Example 
+Let f(x)=x+2 and g(x)=2x+1, find (fog)(x) and (gof)(x) 
+. 
+Solution 
+(fog)(x)=f(g(x)) =f(2x+1) =2x+1+2=2x+3 
+(gof)(x)=g(f(x)) =g(x+2) =2(x+2) +1=2x+5 
+ 
+Hence, (fog)(x)≠(gof)(x) 
+ 
+Some Facts about Composition 
+• If f and g are one-to-one then the function (gof) is also one-to-one. 
+• If f and g are onto then the function (gof) is also onto. 
+• Composition always holds associative property but does not hold commutative property. 
+ 
+Surjection, Injection and Bijection Function 
+Functions are nothing but mapping relationships between different sets. To fully understand 
+functions, we need to und erstand three key concepts: surjection, injection, and bijection. In this 
+chapter, we will see each of these function types with examples and see how they differ from one 
+another. 
+ 
+ 
+
+--- page 33 ---
+33 
+ 
+Functions in Sets and Relations 
+A function is a rule that takes elements f rom one set (domain) and assigns them to elements in 
+another set (codomain). Every element in th e domain must map to exactly one element in t he 
+codomain. However, the reverse is not necessarily true. For example, imagine we assign every 
+student in a class a locker. Each student gets exactly one locker, but some lockers may remain 
+unused. 
+ 
+Here is another example. Take a look at the following mapping: Here, each number from left has 
+a square on the right − 
+ 
+Surjection Functions That Are "Onto" 
+A surjective function, also known as an "onto" function. It is a function where every element in 
+the codomain is the image of at least one element in the domain. In simpler words, there are no 
+unused elements in the codomain. 
+Formally, a function is surjective if every elemen t of the codomain is the im age of at least one 
+element from the domain. Nothing in the codomain is left out. 
+ 
+Example of Surjection 
+Let us consider the function f: {1, 2, 3} → {a, b, c} defined by: f (1) = a, f (2) = b, f(3) = c 
+Here, every element in the codomain {a, b, c} has been "hit" by some element from the domain 
+{1, 2, 3}. This means f is a surjective function be cause there are no elements left out in the 
+codomain.  The following mapping presents another example − 
+
+--- page 34 ---
+34 
+ 
+ 
+Example of Non-Surjective 
+Now, consider a function g : {1, 2, 3} → {a, b, c} where: g(1) = a, g(2) = a, g(3) = c. 
+In this case, the element b from the codomain is never " hit" by any element from the domain. 
+This means g is not surjective because something in the codomain is left out. 
+Surjections are important when we want to ensure that every possible output is covered. There is 
+no leaving "gaps." 
+ 
+Injection Functions That Are "One-to-One" 
+On the other hand, the injective function, or "one -to-one" function, shows that no two differ ent 
+elements in the domain map to the same element in the codomain. This means every element in 
+the codomain is the image of at most one element in the domain. 
+Formally, a function is injective if every element of the codomain is the image of at most one 
+element from the domain. There are no "repeated" images in the codomain. 
+ 
+Example of Injection 
+Let us consider f : Z → Z (where Z represents all integers) is defined by: f(n) = 3n 
+For every integer n, f(n) produces a unique result. No two different integers will give the same 
+value after being multiplied by 3. Therefore, this function is injective. It does not "reuse"  
+codomain elements for different domain inputs. 
+ 
+Example of Non-Injective 
+Consider a function h : {1, 2, 3} → {a, b} defined by: h(1) = a, h(2) = a, h(3) = b 
+In this case, both h(1) and h(2) are mapped to a. Since two different domain elements are 
+assigned to the same codomain element, h is not injective. Injection fails when there is "overlap" 
+in the codomain. 
+
+--- page 35 ---
+35 
+ 
+ 
+Bijection The Perfect Function 
+Next comes the bijection functions. It is both injective and surjective. In other words, every 
+element in the domain maps to a unique element in the codomain, and every element in the 
+codomain is covered. This makes bijections "perfect" functi ons because they pair every element 
+in the domain with one (and only one) element in the codomain, with no repeats and no leftovers. 
+Formally, a function is bijective if it is both injective and surjective, meaning it’s a one -to-one 
+correspondence between the domain and codomain. 
+ 
+Example of Bijection 
+Consider the function f : {1, 2, 3} → {a, b, c}, defined as: f(1) = a, f(2) = b, f(3) = c. 
+This is a bijection because every element in the domain has a unique match in the codomain, and 
+every codomain element is used. There are no repeated values and no leftover elements. 
+ 
+Example of Non-Bijective Function 
+If we modify f such that f(2) = a , then the function is no longer bijective. It might still be 
+surjective (depending on the other values), but it is no longer injective because two element s in 
+the domain share the same codomain value. 
+
+--- page 36 ---
+36 
+ 
+ 
+Combining Concepts: Injective vs Surjective 
+We understood the idea of injective and surjective. But these are essential to understand that 
+injective and surjective functions are not opposites. 
+A function can be injective but not surjective; surjective but not injective; both; or neither. 
+• A function can be injective but miss out some elements in the codomain, making it not 
+surjective. 
+• A function can be surjective but reuse elements of the codomain, making it not injective. 
+• A bijection is both injective and surjective, satisfying both properties. 
+ 
+What is the Image of a Function? 
+The image of a function is the set of all outputs that the function produces when applied to 
+elements from the domain. More specifically, it is the set of all elements in the codomain that are 
+"hit" or "mapped to" by some element in the domain. 
+ 
+Example of Image 
+Consider a function f: {1, 2, 3, 4} → {a, b, c} defined as: f(1) = a, f(2) = b, f(3) = a, f(4) = c 
+ 
+Here, the image of f is the set of all elements in the co domain that are mapped by the function. 
+So, in this case, the image is: Image (f) = {a, b, c} 
+The image includes every codomain element that is assigned to at least one domain element. In 
+our example, every element in the codomain is part of the image beca use every element of {a, b, 
+c} has at least one input from the domain. 
+ 
+ 
+
+--- page 37 ---
+37 
+ 
+Example of Partial Image 
+Now, imagine a different function g: {1, 2, 3} → {x, y, z} defined as: g (1) = x, g(2) = y, g(3) = y 
+ 
+Here, the image is: Image (g) = {x, y} 
+Notice that z is not part  of the image because no element from the domain maps to z. This 
+happens when some elements of the codomain are left "unused." 
+ 
+Subset Image 
+Another concept of image is the subset image. Concept of image can also apply to a subset of the 
+domain. If we want to know the image of only part of the domain, we can restrict the function to 
+that subset. 
+ 
+Example of Subset Image 
+Consider the same function f: {1, 2, 3, 4} → {a, b, c} , defined as before. Now, we want to find 
+the image of the subset {1, 4}: Image of {1, 4} = {f (1), f (4)} = {a, c} 
+ 
+In this case, we are only concerned with the elements in the codomain that correspond to inp uts 
+from the subset {1, 4}. The image is simply {a, c}. 
+ 
+Inverse-Image of a Function 
+Let us now understand the inverse -image (also called the preimage). Given an element in the 
+codomain, which elements in the domain map to it? 
+Instead of starting with eleme nts from the domain and mapping to the codomain (as with the 
+image), the inverse -image starts with elements in the codomain and traces back to their 
+corresponding elements in the domain. 
+ 
+ 
+
+--- page 38 ---
+38 
+ 
+Example of Inverse-Image 
+Let us consider the same function f: {1, 2, 3, 4} → {a, b, c}  defined as: f (1) = a, f(2) = b, f(3) = 
+a, f(4) = c 
+Now, suppose we want to find the inverse -image of the element a in the codoma in. The inverse-
+image of a is the set of all elements in the domain that map to a. From the definition of the  
+function, we see that f (1) = a and f(3) = a, so: f−1(a) = {1, 3} 
+ 
+The inverse-image of a includes both 1 and 3, because both of these domain elements map to a. 
+ 
+Empty Inverse-Image 
+Sometimes, there may be codomain elements that no domain elements map to. In this case, the  
+inverse-image of those elements is the empty set. 
+For example, if we wanted to find f−1(d) for our function f, we would notice that no domain 
+element maps to d. Therefore, the inverse-image of d is: f−1(d) = ∅ 
+ 
+This simply means that d is not mapped by any element from the domain. 
+ 
+Inverse-Image of a Subset 
+Just like with the image of a subset of the domain, we can also find the inverse -image of a subset 
+of the codomain. In this case, we look for all domain elements th at map to any element in the 
+codomain subset. 
+ 
+Example of Inverse-Image of a Subset 
+Again, using our function f : {1, 2, 3, 4} → {a, b, c} , let us find the inverse -image of the subset 
+{a, c} in the codomain: f−1({a, c}) = {1, 3, 4} 
+This is because: f(1) = a, f(3) = a, f(4) = c 
+
+--- page 39 ---
+39 
+ 
+ 
+Therefore, the inverse-image of {a, c} includes all domain elements that map to either a or c. 
+ 
+Inverse-Images: Points to Note 
+The inverse-image of an elem ent in the codomain is always a set, not a single element. This is 
+because multiple domain elements can map to  the same codomain element, so the inverse -image 
+might contain more than one element. 
+The inverse-image only refers to which domain elements map to a given codomain element or 
+set of elements. It is not the same as an inverse function. Inverse functions on ly exist when the 
+function is a bijection (one-to-one and onto), but inverse-images exist for all types of functions. 
+ 
+Combining Image and Inverse-Image 
+The concepts of image and inverse -image are closely related, and they are used to understand 
+how a fun ction behaves. The image gives us insight into which codomain elements are "hit" by 
+the function, while the inverse-image tells us where those hits came from in the domain. 
+In general, the image helps us see the "forward" movement of a function, from the d omain to the 
+codomain. The inverse -image allows us to trace backwards, from the codo main to the domain, 
+and identify which domain elements correspond to certain codomain elements. 
+ 
+Proof by Contrapositive in Discrete Mathematics 
+In Discrete mathematics, we  use logics to deduct and prove in several ways. Another way of 
+proving logics is us ing the techniques with the proof by contrapositive . This method 
+demonstrates the truth of an implication by proving  the equivalent contrapositive statement 
+instead. It is a useful and often simpler way to verify a claim when direct proof methods might 
+be cumbersome or unclear. 
+ 
+What is Proof by Contrapositive? 
+To understand the concept of proof by contrapositive, we mus t cover the basics of implications. 
+Let us first recall  what an implication is. In logical terms, an implication is a statement of the 
+form "if P, then Q", which we write as − 
+P→Q 
+ 
+Here, P is called the hypothesis (or premise), and Q is the conclusion. 
+The contrapositive of an implication reverses and negates b oth the hypothesis and the 
+conclusion. So, the contrapositive of the statement P → Q is − 
+¬Q→¬P 
+ 
+
+--- page 40 ---
+40 
+ 
+This means that instead of proving "if P, then Q", we prove "if not Q, then not P". An important 
+fact is that the contrapositive is logically equivalent to the original statement. In other words, if 
+the contrapositive is true, the original implication must also be true. 
+ 
+Why Use Contrapositive Proofs? 
+Sometimes, it is difficult to prove a statement directly. The relationship between P and Q might 
+be too complex o r unclear when handling this. However, the contrapositive may offer a simpler 
+or more intuitive way out. Giving the contrapositive can sometimes break down the problem into 
+smaller, more manageable parts. 
+To get the idea clear on how a proof by contraposit ive works, let us look at an example from the 
+idea of even and odd numbers. 
+ 
+Example 1: Proving the Statement with Contrapositive 
+Consider the statement: "For all integers n, if n2 is even, then n is even". 
+We want to prove this implication. Proving it dir ectly would mean starting with the assumption 
+that n 2 is even and trying to show t hat n itself is even. While possible, this approach might not 
+feel straightforward. Instead, let us prove its contrapositive: 
+The contrapositive of the given statement is − 
+"If n is odd, then n2 is odd" 
+Proving this contrapositive will be enough to confirm the truth of the original implication. So, we 
+start by assuming that n is odd and show that n2 must also be odd. 
+ 
+Step 1: Assume the negation of the conclusion 
+We start with assuming that n is odd. If n is odd, we can write n in the form − 
+n=2k+1 
+where k is an integer. This is the standard way to represent odd numbers because they differ 
+from the nearest even number by 1. 
+ 
+Step 2: Square the assumption 
+Next, we need to find n2, the square of an odd number. Using the expression for n, we calculate 
+− 
+n2=(2k+1)2 
+Expanding the square − 
+n2=4k2+4k+1 
+ 
+Step 3: Analyze the result 
+We can factor this expression − 
+n2=2(2k2+2k) +1 
+Notice that the expression 2(2k2 + 2k)  is clearly an even nu mber since it is divisible by 2. 
+Therefore, n2 is of the form "even number + 1", which means that n2 is odd. 
+ 
+Step 4: Conclusion 
+Thus, we have shown that if n is odd, then n2 must also be odd. Since w e have successfully 
+proven the contrapositive, we can now conclude that the original statement is true − 
+"For all integers n, if n2, then n is even." 
+
+--- page 41 ---
+41 
+ 
+Let us now see another effective example of Proof by Contrapositive. 
+ 
+Example 2: Divisibility and Contrapositive 
+Let us prove the following statement − 
+"For all integers a and b, if a × b is odd, then both a and b are odd." 
+Again, a direct pro of could be tricky, but the contrapositive offers a simpler approach. The 
+contrapositive of this statement is − 
+"If either a or b is even, then a × b is even." 
+This is much ea sier to prove. We assume that one of the numbers, say a, is even. If a is even, 
+then we can write a = 2k for some integer k. Now, a × b = (2k) × b = 2(k × b) , which is clearly 
+an even number because it is divisible by 2. Hence, we can conclude this is cont rapositive, and 
+by extension, the original statement is True. 
+ 
+Proof by Contradiction in Discrete Mathematics 
+Contradiction means negating a statement or when something false we care about . Proof by 
+Contradiction is one of the most powerful methods used in  discrete mathematics, especially 
+when we are working on statements that are diff icult to prove directly. The idea of this method 
+lies in its simplicity; it assumes the opposite of what we  are trying to prove, and shows how it 
+leads to a contradiction. 
+In this chapter, we will explain Proof by Contraction in detail, discussing its basi c framework 
+and providing practical examples for a better understanding of this concept. 
+ 
+What is Proof by Contradiction? 
+Proof by Contradiction operates on the following log ical principle: to prove a statement P, 
+assume that P is false (i.e., assume ¬P, t he negation of P is true), and then show that this 
+assumption leads to a contradiction. The contradiction ar ises when two mutually exclusive facts 
+or statements are derived. Since the assumption ¬P leads to a contradiction, the original 
+statement P must be true. 
+The basic structure of a proof by contradiction follows these steps − 
+• Assume the negation of the statement we are trying to prove. 
+• Develop the argument, using logical steps and known facts. 
+• Arrive at a contradiction, a situation where a logical inconsistency arises. 
+• Conclude that the original statement must be true because the assumption that it was 
+false leads to an impossible scenario. 
+ 
+Proof by Contradiction is usefu l when we are working with universal statements, the theorems 
+involving inequalities, or proving the existence of something that cannot be easily demonstrated 
+by construction. 
+Let us now understand the concept with the help of a set of examples. 
+ 
+Example 1: Proving √2 is Irrational 
+One of the most famous examples of proof by contradicti on is the proof that √2 is irrational. The 
+statement to be proved is − 
+"The square root of 2 is irrational." 
+
+--- page 42 ---
+42 
+ 
+ 
+Step 1: Assume the negation 
+Assume the opposite, i.e., that √2 i s rational. We know by definition of rationality, this means 
+that − 
+2–√=ab 
+where a and b are integers, and the fraction is in its simplest form (i.e., a and b have no common 
+divisors other than 1). 
+ 
+Step 2: Develop the argument 
+By squaring both sides, we get − 
+2=a2b2 which implies that −a2=2b2 
+This equation tells us that a2 is an even number (because it is equal to 2b2). From this, it follows 
+that A itself must also be even (because the square of an odd number is odd, and the square of an 
+even number is even). So, we can write − 
+a=2k 
+for some integer k. Substituting this into the equation a2 = 2b2 we get − 
+(2k)2=2b2 
+⇒4k2=2b2 
+⇒b2=2k2 
+Thus, b2 is also even, meaning that b is even. 
+ 
+Step 3: Arrive at the contradiction 
+At this point, we have an idea that that bo th a and b are even. But this contradicts our original 
+assumption that ab 
+is in its simplest form (because if both A and B are even, then they share at least 2 as a common 
+divisor). Therefore, our assumption that √2 is rational must be False. 
+ 
+Step 4: Conclude 
+Since the assumption led to a contradiction, we conclude that √2 is irrational. 
+ 
+Example 2: No Integer Solutions for x2 = 4y + 2 
+Let us consider another example of a quadratic equation, 
+"Prove that there are no integers x and y such that x2 = 4y + 2" 
+Step 1: Assume the negation 
+Assume that there are integers x and y such that − 
+x2=4y+2 
+Step 2: Develop the argument 
+We can rewrite this equation as − 
+x2=2(2y+1) 
+This shows that x2 is an even number. If x2 is even, then x must also be even. This is because the 
+square of an odd number is odd). 
+So, let x = 2k for some integer k. Substituting this into the equation, we get − 
+(2k)2=2(2y+1) 
+⇒4k2=2(2y+1) 
+⇒2k2=2y+1 
+
+--- page 43 ---
+43 
+ 
+Step 3: Arrive at the contradiction 
+The equation 2k2 = 2y + 1 implies that the left-hand side is even (since 2k2 is divisible by 2), but 
+the right-hand side is odd (since 2y + 1  is an odd number). This is a contradiction because an 
+even number cannot equal an odd number. 
+Step 4: Conclude 
+Thus, the assumption that there exist integers x and y satisfying x2 = 4y + 2  leads to a 
+contradiction. So, no such integers exist. 
+ 
+Example 3: The Pigeonhole Principle 
+Let us see our third example, which is one of the most famous problem in discrete mathematics. 
+The Problem of Pigeonhole Principle. It states that if more than n objects are placed into n 
+containers, at least one container mus t hold more  than one object. Here, how we can prove it 
+using contradiction: 
+"If more than n pigeons fly into n pigeonholes, at least one pigeonhole must contain more than 
+one pigeon." 
+ 
+Step 1: Assume the negation 
+Assume the opposite, that no pigeonhole cont ains more than one pigeon. In other words, each 
+pigeonhole contains at most one pigeon. 
+ 
+Step 2: Develop the argument 
+If each pigeonhole contains at most one pigeon, then the total num ber of pigeons that can fit into 
+the n pigeonholes is at most n (Each pigeonhole holds no more than one pigeon). 
+Step 3: Arrive at the contradiction 
+We have assumed that there are more than n pigeons. This gives a contradiction, because if there 
+are more pigeons than pigeonholes, at least one pigeonhole must contain more than one pigeon. 
+ 
+Step 4: Conclude 
+Thus, the assumption that no pigeonhole contains more than one pigeon leads to a contradiction. 
+Therefore, at least one pigeonhole must contain more than one pigeon.  There are some other 
+examples where we use this method of cont radiction to prove something. In automata theory, a 
+special branch of discrete math and computation, we use the concept called pumping lemma for 
+regular languages  and contextfree la nguages. For them as well, we use the method of 
+contradiction to prove some expres sion is not falling under regular language or context free 
+language. 
+ 
+Proof by Cases in Discrete Mathematics 
+What is Proof by Cases? 
+Proof by cases is simpler than other meth ods. The goal is to prove a statement P, but instead of 
+proving P directly, we div ide the problem into several cases, Q 1, Q 2, ..., Q n. For each case, we 
+proved that the statement P holds. Since one of the cases must always be true. So proofing the 
+statement for all cases guarantees that P is universally true. 
+The structure of a Proof by Cases is as follows − 
+• Identify all the cases  − These are the different condition s or scenarios under which the 
+problem can occur. 
+
+--- page 44 ---
+44 
+ 
+• Prove each case − For each individual case, show that the statement holds. 
+• Conclude − Since one of the cases must be true, the overall statement is true. 
+This method is interesting and quite useful when the problem involves logical "or" conditions, or 
+when a value can take different forms, such as being even or odd, positive or negative. 
+ 
+Why Use Proof by Cases? 
+Proof by Cases i s helpful when the problem is complex and cannot be easily addressed with a 
+single argument. Sometimes, different conditions lead to different approaches. For example, in 
+number theory, a number can be even or odd, and proving the same statement for both conditions 
+may require separate reasoning. 
+After breaking down the problem, Proof by Cases provides clarity and ensures that every 
+possible situation is covered. This method is  exhaustive, and it ensures there are no gaps in the 
+proof. 
+ 
+Example 1: Proving n3 − n is Even for Any Integer n 
+Let us consider an example, for any integer n, the expression n3 − n is always even. 
+ 
+Step 1: Identify the cases 
+The key observation here is tha t every integer n is either even or odd. So that, we can divide the 
+problem into two cases − 
+• Case 1 − n is even 
+• Case 2 − n is odd 
+ 
+Step 2: Prove Each Case 
+Case 1: n is even − If n is even, we can write it like n = 2k for some integer k. Then substituting 
+n = 2k into the expression n3 − n, we get − 
+n3−n=(2k)3−2k=8k3−2k=2(4k3−k) 
+Since 4k3 − k is an integer, the expression is divisible by 2, which means that n3 − n is even 
+when n is even. 
+ 
+Case 2: n is odd − If n is odd, we can write n = 2k + 1 for some integer k. Substituting n = 2k + 
+1 into n3 − n, we get: 
+n3−n=(2k+1)3−(2k+1) 
+Expanding the cubic term, we get − 
+(2k+1)3=8k3+12k2+6k+1 
+Thus, 
+n3−n=(8k3+12k2+6k+1) −(2k+1) =8k3+12k2+4k 
+Factoring out 2, 
+n3−n=2(4k3+6k2+2k) 
+Again, the expression is divisible by 2, which means that n3 – n is even when n is odd. 
+ 
+Step 3: Conclude 
+Since n3 – n is even in both cases (here n is even or odd), we conclude that for any integer n, the 
+expression n3 – n is always even. 
+ 
+
+--- page 45 ---
+45 
+ 
+Example 2: Sum of Odd Numbers 
+Let us see another example. This one is another interesting problem. Prove the statement − 
+"If a + b is odd, then a is odd or b is odd." 
+ 
+Step 1: Identify the cases 
+We can handle this by considering the two possible scenarios for A and B: 
+• Case 1 − Both a and b are even. 
+• Case 2 − Both a and b are odd. 
+ 
+Step 2: Prove Each Case 
+Case 1: Both a and b are even − If both a and b are even, then we can write a = 2m and b = 2n 
+for some integers m and n. Adding them together − 
+a+b=2m+2n=2(m+n) 
+Since a + b  is divisible by 2, the sum is even, contrad icting the assum ption that a + b  is odd. 
+Therefore, this case does not hold. 
+ 
+Case 2: Both a and b are odd – If both a and b are odd, we can write a = 2m + 1 and b = 2n + 1 
+for some integers m and n. Adding them together − 
+a+b=(2m+1) +(2n+1) =2(m+n+1) 
+This sum is again even,  which contradicts the assumption that a + b is odd. Therefore, this case 
+also does not hold. 
+ 
+Step 3: Conclude 
+We have shown that if a + b  is odd, then at least one of a or b must be odd, as the statement 
+requires. 
+ 
+Example 3: Proof by Cases in Geometry 
+Let us see the third example in geometry. Consider the following statement − 
+"For any triangle, the sum of the interior angles is 180 degrees." 
+ 
+Step 1: Identify the cases 
+We can consider different types of triangles: 
+• Case 1 − The triangle is acute (all angles are less than 90 degrees). 
+• Case 2 − The triangle is right (one angle is 90 degrees). 
+• Case 3 − The triangle is obtuse (one angle is greater than 90 degrees). 
+ 
+Step 2: Prove each case 
+ 
+Case 1: Acute Triangle  − In an acute triangle, all an gles are less than 90 degree. Regardless of 
+the specific angle measures, the  geometric properties of triangles ensure that the sum of the 
+angles always equal to 180 degrees. 
+ 
+Case 2: Right Triangle  − In a right triangle, one an gle is exactly 90 degrees. Th e other two 
+angles must sum to 90 degrees, ensuring that the total sum of the interior angles is 180 degrees. 
+ 
+
+--- page 46 ---
+46 
+ 
+Case 3: Obtuse Triangle  − In an obtuse triangle, one angle is greater than 90 degrees, and the 
+other two angles must be the sum to less than 90 d egrees. Again, the total sum of the angles in 
+the triangle will always be 180 degrees. 
+ 
+Step 3: Conclude 
+Since the interior angles of a triangle sum to 180 degrees in all possible cases, the statement is 
+universally true for all triangles. 
+ 
+What is Sequence? 
+For example:  
+• 2, 4, 6, 8 ...., 20 is a finite sequence obtained by adding 2 to the previous number. 
+• 10, 6, 2, -2, ...... is an infinite sequence obtained by subtracting 4 from the previous 
+number.  
+If the terms of a sequence can be described by a formu la, then the sequen ce is called a 
+progression.  
+1, 1, 2, 3, 5, 8, 13, ......, is a progression called the Fibonacci sequence in which each term is the 
+sum of the previous two numbers. 
+Types of Sequences 
+1. Arithmetic Sequence (AP) 
+o Each term differs from the previous one by a fixed number (common difference 
+d). 
+o Formula: 
+an = a1 + (n-1) d 
+Example: 2,5,8, 11… (d=3) 
+Geometric Sequence (GP) 
+• Each term is obtained by multiplying the previous one by a fixed ratio r. 
+• Formula: 
+an = a1. rn-1 
+Example: 3,6,12, 24…(r=2) 
+
+--- page 47 ---
+47 
+ 
+Fibonacci Sequence 
+• Defined recursively 
+F1 =1, F2=1, Fn= Fn-1 + Fn-2 
+• Sequence: 1,1,2,3,5,8, 13…., 
+Summation (Σ Notation) 
+Definition 
+The summation symbol ∑ represents the sum of terms of a sequence. 
+ 
+• Lower limit (m): starting index. 
+• Upper limit (n): ending index. 
+• General term: ak. 
+Examples 
+1.
+  
+2.
+  
+Important Summation Formulas 
+1. 
+  
+ 
+  
+2. 
+  
+ 
+  
+3. 
+  
+ 
+  
+ 
+ 
+
+--- page 48 ---
+48 
+ 
+Series (Special Summations) 
+Arithmetic Series 
+Sum of first n terms of an AP: 
+Sn =
+  
+Example 
+Find the sum of the first 20 terms of 5, 8, 11, … 
+a1 = 5, d = 3, n =20 
+S20 =
+  
+Geometric Series 
+Sum of first n terms of a GP: 
+Sn =
+  
+Example: 
+Find the sum of first 6 terms of 3, 6, 12, 24, … 
+a1 = 3, r= 2, n = 6 
+S6 =
+  
+Infinite Geometric Series 
+If |r| < 1, the infinite GP converges: 
+S
+  =
+  
+Example: 
+3 + 1.5 + 0.75 +… 
+Here 
+  
+
+--- page 49 ---
+49 
+ 
+S
+  =
+ = 6 
+Property of Summations 
+• Linearity: 
+=
+  
+ 
+• Constant factor: 
+ 
+Principle of Mathematical Induction 
+Mathematical induction is a concept in mathematics that is used to prove various mathematical 
+statements and theorems. The principle of mathematical induction is sometimes referred to as 
+PMI. It is a technique used to prove basic theorems in mathematics tha t involve solving up to n 
+finite natural terms. 
+ 
+Suppose P(n) is a statement for n natural numbers, then it can be proved using the Principle of 
+Mathematical Induction.  
+ 
+• We will prove for P (1), then let P(k) be true then prove for P(k+1).  
+• If P(k+1) holds, then we say that P(n) is true by the principle of mathematical induction. 
+ 
+Principle of Mathematical Induction Statement 
+Any statement P(n), which is for "n" a natural number, can be proved usin g the Principle of 
+Mathematical Induction by following the steps below, 
+ 
+Step 1: Verify if the statement is true for trivial cases (n = 1) i.e. check if P(1) is true. 
+Step 2: Assume that the statement is true for n = k for some k ≥ 1 i.e. P(k) is true. 
+Step 3: If the truth of P(k) implies the truth of P(k + 1), then  the statement P(n) is true for all n ≥ 
+1. 
+The first statement is a fact, and if it is not possible for all P(n) to hold at n = 1, then these 
+statements are true for some other values of n, say n = 2, n = 3, and others. 
+If the statement is true for P(k), then if P(k+1) is proven to be true, then we say that P(n) is true 
+for all n belonging to Natural Numbers (N) 
+Mathematical Induction Solution and Proof 
+Consider a statement P(n), where n is a na tural number. Then, to determi ne the validity of P(n) 
+for every n, use the following principle: 
+• Base Step: Prove P(k) is true for k =1 
+
+--- page 50 ---
+50 
+ 
+• Assumption Step: Assume that the given statement P (n) is also true for n = k, whether k 
+is any positive integer. 
+• Induction Step: Prove P(k+1) is true using basic mathematical properties. 
+ 
+If the a bove three steps are proved, then we can say that "By the principle of mathem atical 
+induction, P(n) is true for all n belonging to N". 
+ 
+Proof: 
+The principle starts with a base case, which is a statement confirmed to be true for a specific 
+starting value. N ext comes the inductive step, where we assume the statement holds for some 
+positive integer k (this is the inductive hypothesis) and then show that it must also hold for k+1. 
+If both parts are satisfied, the statement is proven true for all required values of n. 
+ 
+Mathematical Induction Example 
+Mathematical induction is used to prove various statements. We can learn this with the help of 
+the following example. 
+ 
+Example: For any positive integer n, prove that n3 + 2n is always divisible by 3 
+ 
+Solution: 
+Let P(n): n3 + 2n is divisible by 3 be the given statement. 
+ 
+ 
+ 
+
+--- page 51 ---
+51 
+ 
+ 
+ 
+Thus, P(k+1) is true i.e. (k + 1)3 + 2(k + 1) is be divisible by 3. Now by the Principle of 
+Mathematical Induction, we can say that, P(n): n3 + 2n is divisible by 3 is true. 
+Solved Examples of Mathematical Induction 
+Example 1: For all n ≥ 1, prove that, 12 + 22 + 32+.... +n2 = {n (n + 1) (2n + 1)} / 6 
+Solution: 
+ 
+
+--- page 52 ---
+52 
+ 
+ 
+Thus P(k + 1) is true, whenever P(k) is true for all natural numbers. Hence, by the process of 
+mathematical induction, the given result is true for all natural numbers. 
+Example 2: For all n ≥ 1, prove that, 1.2.3 + 2.3.4 + 3.4.5+...+n (n + 1) (n + 2) = {n (n + 1) (n + 
+2) (n + 3)} / 4 
+Solution:  
+ 
+ 
+
+--- page 53 ---
+53 
+ 
+Thus S(k + 1) is true, whenever S(k) is true for all natural numbers. And we initially showed that 
+S(1) is true thus S(n) is true for all natural numbers. 
+Example 3: For all n ≥ 1, prove that, 1 + 3 + 5 +... + 2n - 1 = n2 
+Solution:  
+ 
+ 
+Thus S(k + 1) is true, whenever S(k) is true for all natural numbers. And we initially showed that 
+S(1) is true thus S(n) is true for all natural numbers. 
+Example 4: For all n ≥ 1, prove that, 1.2 + 2.3 + 3.4 +...+ n(n + 1) = {n(n + 1)(n + 2)} / 3 
+Solution:  
+
+--- page 54 ---
+54 
+ 
+ 
+ 
+Thus S(k + 1) is true, whenever S(k) is true for all natural numbers. And we initially showed that 
+S(1) is true thus S(n) is true for all natural numbers. 
+Example 5: Prove that an = a1 + (n - 1) d is the general term of any arithmetic sequence. 
+Solution:  
+
+--- page 55 ---
+55 
+ 
+ 
+Thus, the formula is true for k + 1, whenever it is true for k. And we initially showed that the 
+formula is true for n = 1. Thus, the formula is true for all natural numbers. 
+Principle of Inclusion and Exclusion 
+The Principle of Inclusion and Exclusion (PIE) is a counting technique used to find the size of 
+the union of multiple sets by systematically including and excluding overlapping parts. 
+It corrects the overcounting that happens when you simply add the  sizes of the sets. When sets 
+have overlapping elements, counting them directl y can lead to overcounting. The Principle of 
+Inclusion and Exclusion fixe s this by alternately adding and subtracting the sizes of the 
+intersection to get the exact total. 
+ 
+ 
+For example, when calculating the number of people who own a dog or a cat, PIE add s up all 
+dog owners and subtracts all cat owners. This includes: 
+• Adding the sizes of each individual set. 
+• Subtracting the sizes of the pairwise intersections to avoid double-counting. 
+
+--- page 56 ---
+56 
+ 
+• Adding back the size of the intersection of all three sets, as it was su btracted too many 
+times. 
+• Subtracting the sizes of the intersection of four sets, as it was added twice in the last step. 
+• And so on. 
+ 
+Formula for Principle of Inclusion & Exclusion 
+ 
+Where: 
+• The first term sums the sizes of all individual sets. 
+• The second term subtracts the sizes of all pairwise intersections. 
+• The third term adds back the sizes of all three-way intersections. 
+• This alternating pattern continues, with the signs changing for each subsequent term, until 
+the intersection of all N sets is reached. 
+ 
+Note: This formula effectively accounts for all overlaps among the sets , ensuring that each 
+unique element is counted exactly once. 
+ 
+Formula for Two Sets 
+For two sets A and B  
+∣AUB∣ = ∣A∣+∣B∣-∣A∩B∣ 
+Where, 
+• ∣A∣ is the number of elements in set 𝐴. 
+• ∣B∣ is the number of elements in set B. 
+• ∣A∩B∣ is the number of elements in both set A and set B. 
+ 
+Formula for Three Sets 
+For three sets A,B, and C, the Principle of Inclusion and Exclusion (PIE) formula to find the size 
+of the union is: 
+∣AUBUC∣ = ∣A∣+∣B∣+∣C∣-∣A∩B∣-∣A∩C∣-∣B∩C∣+∣A∩B∩C∣ 
+Where, 
+• ∣A∣, ∣B∣, and ∣C∣ are the number of elements in the sets A, B, and C, respectively. 
+• ∣A∩B∣, ∣A∩C∣, ∣and B∩C∣ are the numbers of elements in the pairwise intersections of 
+the sets. 
+• ∣A∩B∩C∣ is the number of elements that are in all three sets. 
+ 
+ 
+ 
+
+--- page 57 ---
+57 
+ 
+Derivation of the Inclusion and Exclusion Principle Using Venn Diagrams 
+We can visualize this using a Venn diagram for a finite number of sets. Here we will discuss the 
+formula for the Principle of Inclusion and Exclusion for two and three sets and  derive it using a 
+Venn diagram. 
+ 
+Venn Diagram for Two Sets 
+ 
+ 
+• First Step (Inclusion):  Add the sizes of the two sets ∣A∣ and ∣B∣. This counts all the 
+elements in A and B, but elements in the intersection of A∩and B are counted twice 
+(once in A and once in B). 
+ 
+• Second Step (Exclusion):  Subtract the size of the intersecti on ∣A∩B∣|A \cap B|∣A∩B∣, 
+because these elements were counted twice in the first step. 
+ 
+Thus, the number of elements in the union of these two sets, ∣A ∪ and B∣, is given by: 
+∣A∪B∣ = ∣A∣ + ∣B∣ − ∣A∩B∣ 
+ 
+Venn Diagram for Three Sets 
+ 
+• First Step (Inclusion): Add the sizes of the individual sets ∣A∣, ∣B∣, and ∣C∣. This counts 
+all the elements in A, B, and C, but it also counts the elements in the intersections more 
+than once. 
+
+--- page 58 ---
+58 
+ 
+• Second Step (Exclusion): Subtract the pairwise intersections ∣A∩B∣, ∣B∩C∣, and ∣C∩A∣ 
+because these elements were counted twice in the first step. 
+ 
+• Third Step (Re) Inclusion): Add back the intersection of all three sets ∣A∩, B∩C∣, as it 
+was subtracted three times (once for each pairwise intersection) in the previous step. 
+ 
+Thus, the number of elements in the union of these three sets, ∣A∪B∪C∣, is given by: 
+∣A∪B∪C∣ = ∣A∣ + ∣B∣ + ∣C∣ − ∣A∩B∣ − ∣B∩C∣ − ∣C∩A∣ + ∣A∩B∩C∣ 
+ 
+Solved Examples 
+Question 1: In a class of 100 students: 
+• 60 study Math. 
+• 45 study Science. 
+• 20 students study both Math and Science. 
+How many students study either Math or Science? 
+ 
+Solution: 
+As we know, n(A⋃B) = n(A) + n(B) – n(A⋂B) 
+Given: 
+• n(A) = 60 
+• n(B) = 45 
+• n(A∩B) = 20 
+n(A⋃B) = n(A) + n(B) – n(A⋂B) = 60 + 45 - 20 = 85 
+Thus, 85 students study either Math or Science. 
+ 
+Question 2: The probability of getting at least one head is Problem: In a survey of 120 people: 
+• 80 people like tea. 
+• 70 people like coffee. 
+• 50 people like both tea and coffee. 
+How many people like either tea or coffee? 
+ 
+Solution: 
+As we know, n(A⋃B) = n(A) + n(B) – n(A⋂B) 
+Given: 
+• IAI = 80 
+• IBI = 70 
+• IA∩BI = 50 
+Thus, n(A⋃B) = 80 + 70 - 50 = 100 
+Thus, 100 people like either tea or coffee. 
+ 
+Question 3: A company has 30 employees, 10 are assigned to Task A, 15 to Task B, and 5 ar e 
+assigned to both. How many employees are assigned to at least one task? 
+ 
+Solution: 
+As we know, n(A⋃B) = n(A) + n(B) – n(A⋂B) 
+
+--- page 59 ---
+59 
+ 
+Given: 
+• IAI = 10 Task A 
+• IBI = 15 Task B 
+• IA∩BI = 5 Both tasks 
+Substitute the Values, We get  
+n(A⋃B) = 10 + 15 - 5 = 20 
+Thus, 20 employees are assigned to at least one task. 
+ 
+Question 4: In a survey of 200 people: 
+• 120 likes pizza. 
+• 100 like burgers. 
+• 80 like tacos. 
+• 60 likes both pizza and burgers. 
+• 40 likes both burgers and tacos. 
+• 30 likes both pizza and tacos. 
+• 20 likes all three: pizza, burgers, and tacos. 
+How many people like at least one of these three foods? 
+ 
+Solution: 
+As we know, ∣AUBUC∣ = ∣A∣ + ∣B∣ + ∣C∣ - ∣A∩B∣ - ∣A∩C∣ - ∣B∩C∣ + ∣A∩B∩C∣ 
+Given: 
+• ∣A∣ = 120 Pizza lovers 
+• ∣B∣ = 100 Burger lovers 
+• ∣C∣ = 80 Taco lovers 
+• ∣A∩B∣ = 60 
+• ∣A∩C∣ = 30 
+• ∣B∩C∣ = 40 
+• ∣A∩B∩C∣ = 20 
+Substituting in the formula, we get, 
+∣AUBUC∣ = 120 + 100 + 80 - 60 - 30 - 40 + 20 = 190 
+Thus, 190 people like at least one of the three foods. 
+ 
+Question 5: In a university of 300 students: 
+• 150 students take Math. 
+• 120 students take Physics. 
+• 100 students take Chemistry. 
+• 80 students take both Math and Physics. 
+• 60 students take both Physics and Chemistry. 
+• 50 students take both Math and Chemistry. 
+• 30 students take all three subjects. 
+How many students are taking at least one subject? 
+ 
+Solution: 
+As we know, ∣AUBUC∣ = ∣A∣ + ∣B∣ + ∣C∣ - ∣A∩B∣ - ∣A∩C∣ - ∣B∩C∣ + ∣A∩B∩C∣ 
+ 
+
+--- page 60 ---
+60 
+ 
+Given:  
+• ∣A∣ = 150 (Math), 
+• ∣B∣ = 120 (Physics), 
+• ∣C∣ = 100 (Chemistry), 
+• ∣A∩B∣ = 80 
+• ∣A∩C∣ = 60 
+• ∣B∩C∣ = 50 
+• ∣A∩B∩C∣ = 30 
+Substituting values, we get 
+∣AUBUC∣ = 150 + 120 + 100 - 80 - 60 - 50 + 30 = 210 
+Thus, 210 students are taking at least one subject. 
+ 
+Permutations and Combinations 
+In combinatorics, we study methods of  counting arrangements and selections  of objects . 
+Two basic tools are: 
+ 
+• Permutation: arrangement of objects in a specific order. 
+• Combination: selection of objects without regard to order. 
+ 
+Fundamental Counting Principle 
+If an event can occur in mmm ways, and another independent event in nnn ways, then both 
+events can occur in m×n ways. 
+ 
+Example: 
+• 3 shirts and 2 trousers → total outfits = 3×2=6 
+ 
+Definition 
+A permutation is an ordered arrangement of objects. 
+• Order matters. 
+• Formula for permutations of n objects taken r at a time: 
+• P (n, r) =
+  
+ 
+Permutations without Repetition 
+• Each object is used once. 
+• Example: How many ways can we arrange 3 letters A, B, C? 
+P (3, 3) =
+ =6 
+Arrangements: ABC, ACB, BAC, BCA, CAB, CBA 
+ 
+Worked Examples 
+Example 1 — Permutation without repetition 
+How many 4-digit PINs can be formed from digits 0–9 if no digit is repeated? 
+
+--- page 61 ---
+61 
+ 
+P (10, 4) =
+ = 
+ = 5040 
+ 
+Permutations with Repetition 
+• Objects may be repeated. 
+• Formula: nr. 
+How many ways can we arrange 3 letters A, B, C using permutation with repetition? 
+ 
+Step 1: Understand the problem 
+• We have 3 letters: A, B, C 
+• We want to form arrangements of length 3. 
+• Since repetition is allowed, each position can be filled with any of the 3 letters. 
+ 
+Step 2: Apply formula for permutation with repetition 
+Total arrangements=nr 
+Where, 
+• n= number of objects = 3 
+• r= length of arrangement = 3 
+33=27 
+ 
+Step 3: Example listing 
+Some examples: 
+• AAA, AAB, AAC 
+• ABA, ABB, ABC  
+• BAA, BBB, BCC 
+• CCC, CCA, CCB …and so on, total = 27 distinct arrangements. 
+ 
+Example 2 — Permutation with repetition 
+How many 4-digit PINs can be formed from digits 0–9 if digits may repeat? 
+104=10,000 
+ 
+Combinations 
+A combination is a selection of objects without regard to order. 
+• Formula: 
+C (n, r) =
+  
+ 
+Combinations without Repetition 
+• Choose r distinct objects from n. 
+• Example: Number of ways to choose 3 students from 10: 
+ = 
+  = 120 
+ 
+ 
+
+--- page 62 ---
+62 
+ 
+Combinations with Repetition 
+• Objects can be chosen more than once. 
+• Formula: 
+ 
+where n= number of object types, r = number of choices. 
+• Example: Number of ways to choose 3 fruits from {apple, banana, orange} (repetition 
+allowed): 
+=
+  
+ 
+Example 3 — Combination without repetition 
+From a group of 12 students, how many ways can we select a committee of 4? 
+ = 
+  = 495 
+ 
+Example 4 — Combination with repetition 
+How many ways can we distribute 5 identical candies to 3 children? 
+=
+  
+ 
+Example 5 — Mixed problem 
+How many distinct arrangements of the word “MISSISSIPPI” ? 
+Total letters = 11 (M=1, I=4, S=4, P=2). 
+ =  
+ = 34,650 
+ 
+Example 6:  
+Number of distinct arrangements of word “BALLOON” (7 letters: B=1, A=1, L=2, O=2, N=1): 
+ =  
+ = 1,260 
+ 
+Binomial Theorem 
+Binomial theorem is a fundamental principle in algebra that describes th e algebraic expansion of 
+powers of a binomial. Accordin g to this theorem, the expression (a + b) n where a and b are any 
+numbers and n is a non -negative integer. It can be expanded into the sum of terms involving 
+powers of a and b.  Binomial theorem is used to find the expansion of two terms  hence it is 
+called the Binomial Theorem.  
+
+--- page 63 ---
+63 
+ 
+ 
+Binomial Theorem Statement 
+Binomial theorem for the expansion of (a+b)n is stated as, 
+(a + b) n = nC0 anb0 + nC1 an-1 b1 + nC2 an-2 b2 + .... + nCr an-r br + .... + nCn a0bn 
+where n > 0 and the nCk is the binomial coefficient. 
+ 
+Example: Find the expansion of (x + 5)6 using the binomial theorem. 
+Solution: 
+We know that here, 
+(a + b) n = nC0 anb0 + nC1 an-1 b1 + nC2 an-2 b2 + .... + nCr an-r br + .... + nCn a0bn 
+Thus, (x + 5) 6 = 6C0 x650 + 6C1 x6-151 + 6C2 x6-252 + 6C3 x6-353 + 6C4 x6-454 + 6C5 x6-555 + 
+6C6 x6-656 
+ = 6C0 x6 + 6C1 x55 + 6C2 x452 + 6C3 x353 + 6C4 x254 + 6C5 x155 + 6C6 x056 
+ = x6 + 30x5 + 375x4 + 2500x3 + 9375x2 + 18750x + 15625 
+ 
+Binomial Expansion Formula 
+Binomial theorem formula gives the expansion of the algebraic identi ties in the form of a series. 
+This formula is used to find the expansion up to n terms of the (a+ b) n. The binomial expansion 
+of (a + b) n can easily be represented with the summation formula. 
+ 
+Binomial Theorem Formula for the expansion of (a + b) n is, (a + b) n = ∑nr nCr an-r br 
+where, 
+• n is a positive integer, 
+• a, b are real numbers, and 0 < r ≤ n 
+
+--- page 64 ---
+64 
+ 
+We can easily find the expansion of the various identities such as (x+y) 7, (x+9) 11, and others 
+using the Binomial Theorem Formula. We can also find the expansion  of (ax + by) n using the 
+Binomial Theorem Formula, Expansion formula for (ax + by) n is, 
+(ax + by) n = ∑nr nCr (ax)n-r (by)r 
+where 0< r ≤ n. 
+ 
+Binomial Theorem Proof 
+We can easily proof Binomial Theorem Expansion using the concept of  Principle of 
+Mathematical Induction 
+Let's take x, a, n ∈ N, and then the Binomial Theorem says that, 
+ 
+(x+y) n = nC0 xny0 + nC1 xn-1y1 + nC2 xn-2 y2 + ... + nCn-1 x1yn-1 + nCn x0yn 
+Proof: 
+For n = 1, we get 
+(x +y)1 = x +y which is true. 
+For n = 2, 
+(x +y)2 = (x + y) (x +y) 
+⇒ (x +y)2 = x2 + xy + xy + y2 (using distributive property of multiplication over addition) 
+⇒ (x +y)2 = x2 + 2xy + y2 
+which is also true. 
+ 
+Thus, theorem is true for n = 1 and n = 2. 
+Let's take a positive integer k. 
+(x+y) k = kC0 xky0 + kC1 xk-1y1 + kC2 xk-2 y2 + ... + kCk-1 x1yk-1 + kCk x0yk 
+ 
+Now consider the expansion for n = k + 1 
+(x + y) k+1 = (x + y) (x + y) k 
+⇒ (x + y) k+1 = (x + y) (xk + kC1 xk-1y1 + kC2 xk-2 y2 + ... + kCr xk-ryr +.... + yk) 
+⇒ (x + y) k+1 = xk+1 + (1 + kC1)xky + (kC1 + kC2) xk-1y2 + ... + ( kCr-1 + kCr) xk-r+1yr + ... + ( kCk-1 + 
+1) xyk + yk+1 
+⇒ (x + y) k+1 = xk+1 + k+1C1xky + k+1C2 xk-1y2 + ... + k+1Cr xk-r+1yr + ... + k+1Ck xyk + yk+1     
+[As we know, nCr + nCr-1 = n+1Cr] 
+This result is true for n = k+1. 
+ 
+Binomial Expansion 
+Binomial Theorem is used to expand the algebraic identity (x + y) n. Hence it is also called the 
+binomial expansion. The binomial expansion of (x + y) n with the help of the binomial theorem 
+is, (x+y) n = nC0 xny0 + nC1 xn-1y1 + nC2 xn-2 y2 + ... + nCn-1 x1yn-1 + nCnx0yn  
+Using this expansion we get each term in the expansion of (x+y)nl 
+ 
+Example: Find the value of (x+y)2 and (x+y)3 using Binomial expansion. 
+Solution: 
+(x+y)2 = 2C0 x2y0 + 2C1 x2-1y1 + 2C2 x2-2 y2 
+⇒ (x+y)2 = x2 + 2xy + y2 
+And (x+y)3 = 3C0 x3y0 + 3C1 x3-1y1 + 3C2 x3-2 y2 + 3C3 x3-3 y3 
+
+--- page 65 ---
+65 
+ 
+⇒ (x+y)3 = x3 + 3x2y + 3xy2 + y3 
+⇒ (x+y)3 = x3 + 3xy(x+y) + y3 
+ 
+Discrete Probability Distribution 
+A discrete probability distribution describes the likelihood of each possible outcome for a 
+discrete random variable. A discrete rand om variable is a variable that can take on a c ountable 
+number of distinct values, typically whole numbers. In simpler terms, it’s a way to assign a 
+probability to each value  that the variable can have, showing how likely each outcome is.   The 
+common examples of discrete probability distributions include Bernoulli, Binomial, Poisson, and 
+Geometric distributions. 
+ 
+Basic Concepts 
+Bernoulli Distribution 
+A discrete probability distribution with the probability of success p if the value of random 
+variable is 1 and the probability of failure 1-p if the value of random variable is zero is called the 
+Bernoulli distribution. The probability mass function of the Bernoulli distribution is given by: 
+ 
+ 
+Binomial Distribution 
+A discrete probability distribution that includes the number of trials n, probability of succ ess and 
+probability of failure is called as  Binomial distribution . The probability mass function of the 
+Binomial distribution is given by: 
+ 
+Poisson Distribution 
+A discrete probability distribution that gives t he number of events occurred at a specific tim e 
+period with the help of its  mean is called as the Poisson di stribution. The probability mass 
+function of Poisson distribution is given by: 
+ 
+ 
+Geometric Distribution 
+A discrete probability distribution that in cludes the successive failure probability unti l the 
+success probability is encountered is called as  Geometric distribution . The probability mass 
+function of the geometric distribution is given by: 
+
+--- page 66 ---
+66 
+ 
+ 
+Random Experiment: An experiment in which all possible ou tcomes are known and the exact 
+output cannot be predicted in advance is called a random experiment. Tossing a fair coin is an 
+example of random experiment. 
+ 
+Sample Space : When we perform an experiment, then the set S of all possible outcomes is 
+called the sample space. If we toss a coin, the sample space S= {H, T} 
+ 
+Event: Any subset of a sample space is called an event. After tossing a coin, getting Head on the 
+top is an event. 
+ 
+The word "probability" means the chance of occurrence of a particular event. Th e best we can 
+say is how likely they are to happen, using the idea of probability. 
+ 
+Probability of occurrence of an event =
+  
+ 
+As the occurrence of any event varies between 0% and 100%, the probability varies between 0 
+and 1. 
+ 
+Throwing a Dice 
+When a dice is thrown, six possible outcomes can be on the top − 1,2,3,4,5,6 
+The probability of any one of the numbers is 1/6 
+The probability of getting even numbers is 3/6 = 1/2 
+The probability of getting odd numbers is 3/6 = 1/2 
+ 
+Taking Cards from a Deck 
+From a deck of 52 cards, if one card is picked find the probability of an ace being drawn and also 
+find the probability of a diamond being drawn. 
+Total number of possible outcomes − 52 
+Outcomes of being an ace − 4 
+Probability of being an ace = 4/52 = 1/13 
+Probability of being a diamond = 13/52 = 1/4 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- page 67 ---
+67 
+ 
+Probability Axioms 
+ 
+ 
+Properties of Probability 
+ 
+ 
+Conditional Probability 
+The conditional probability of an event B is the probability that the event will occur given an 
+event A has already occurred. This is written as P(B|A) 
+. 
+Mathematically – P(B|A) =P(A∩B)/P(A) 
+If event A and B are mutually exclusive, then the conditional probability of event B after the 
+event A will be the probability of event B that is P(B). 
+ 
+OR 
+ 
+Conditional Probability 
+The probability of event A given that event B has occurred: 
+P (A\B) =
+  
+ 
+Worked Examples 
+Example 1 — Simple probability 
+A die is rolled. Find probability of getting a number greater than 4. 
+• Sample space S= {1,2,3,4,5,6}. 
+• Favorable outcomes = {5,6} → 2 
+
+--- page 68 ---
+68 
+ 
+• Probability: P (E)= 
+  =
+  
+ 
+Example 2 — Conditional probability 
+A box contains 3 red and 2 blue balls. One is chosen at random. Find probability it is red, given 
+that it is not blue. 
+• P (Red) = 3/5 
+• P (Not blue) = P (Red) = 3/5 
+• So, P (Red\Not blue) = (3/5) / (3/5) = 1 
+ 
+Problem 1 
+In a c ountry 50% of all teenagers own a cycle and 30% of all teenagers own a bike and cycle. 
+What is the probability that a teenager owns bike given that the teenager owns a cycle? 
+ 
+Solution 
+Let us assume A is the event of teenagers owning only a cycle and B is the event of teenagers 
+owning only a bike. 
+So, P(A)=50/100=0.5 
+and P(A∩B) =30/100=0.3 
+from the given problem. 
+P(B|A) =P(A∩B)/P(A)=0.3/0.5=0.6 
+Hence, the probability that a teenager owns bike given that the teenager owns a cycle is 60%. 
+ 
+Problem 2 
+In a clas s, 50% of all students play cricket and 25% of all students play cricket and volleyball. 
+What is the probability that a student plays volleyball given that the student plays cricket? 
+ 
+Solution 
+Let us assume A is the event of students playing only cricket and B is the event of students 
+playing only volleyball. 
+So, P(A)=50/100=0.5 
+and P(A∩B) =25/100=0.25 
+from the given problem. 
+P⟮B|A⟯=P⟮A∩B⟯/P⟮A⟯=0.25/0.5=0.5 
+Hence, the probability that a student plays volleyball given that the student plays cricket is 50%. 
+ 
+Problem 3 
+Six good laptops and three defective laptops are mixed up. To find the defective laptops all of 
+them are tested one -by-one at random. What is the probability to find both of the defective 
+laptops in the first two pick? 
+ 
+Solution 
+Let A be the event that we find a defective laptop in the first test and B be the event that we find 
+a defective laptop in the second test. 
+Hence, P(A∩B) =P(A)P(B|A) =3/9×2/8=1/12 
+
+--- page 69 ---
+69 
+ 
+ 
+Bayes' Theorem 
+Theorem − If A and B are two mutually exclusive events, where P(A) is the probability of A and 
+P(B) is the probability of B, P(A|B) is the probability of A given that B is true. P(B|A) 
+is the probability of B given that A is true, then Bayes Theorem states: 
+P (A\B) =
+  
+ 
+Problem 
+Consider three pen -stands. The first pen -stand contains 2 red pens and 3 blue pens; the second 
+one has 3 red pens and 2 blue pens; and the third one has 4 red pens and 1 blue pen. There is 
+equal probability of each pen -stand to be selected. If one pen is drawn at random, what is the 
+probability that it is a red pen? 
+ 
+Solution 
+Let Ai be the event that ith pen-stand is selected. 
+Here, i = 1,2,3. 
+Since probability for choosing a pen-stand is equal, P(Ai)=1/3 
+Let B be the event that a red pen is drawn. 
+The probability that a red pen is chosen among the five pens of the first pen-stand, 
+P(B|A1) =2/5 
+The probability that a red pen is chosen among the five pens of the second pen-stand, 
+P(B|A2) =3/5 
+The probability that a red pen is chosen among the five pens of the third pen-stand, 
+P(B|A3) =4/5 
+According to Bayes' Theorem, 
+P(B)=P(A1). P(B|A1) +P(A2). P(B|A2) +P(A3). P(B|A3) 
+=1/3.2/5+1/3.3/5+1/3.4/5 
+=3/5 
+ 

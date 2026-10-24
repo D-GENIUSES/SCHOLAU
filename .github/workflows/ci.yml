@@ -39,7 +39,7 @@ jobs:
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
       - name: Verify splash and installed-app updates
-        run: node scripts/check-splash.mjs && node --test scripts/splash-update.test.mjs scripts/launch-session.test.mjs
+        run: node scripts/check-splash.mjs && node --test scripts/splash-update.test.mjs scripts/launch-session.test.mjs scripts/push-sw.test.mjs
       - name: Lint
         run: pnpm lint
       - name: Verify authentication and request origin guards

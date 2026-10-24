@@ -1,0 +1,2557 @@
+[
+  {
+    "course_code": "COS 101",
+    "module_position": 1,
+    "module_title": "What a computer is",
+    "lesson_position": 1,
+    "title": "Computers and early milestones",
+    "objective": "Define a computer and place early computing milestones on the course timeline.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What a computer does"
+      },
+      {
+        "type": "paragraph",
+        "text": "A computer is an electronic device that takes data as input, processes that data under the control of a program, and produces an output. The whole arrangement is called a computer system."
+      },
+      {
+        "type": "paragraph",
+        "text": "The lecture timeline starts from a need for efficient number-crunching. Punch-card computers began around the late 19th century, and modern smartphones have more computing power than early computers."
+      },
+      {
+        "type": "list",
+        "items": [
+          "1801: Jacquard's loom uses punch cards for fabric designs.",
+          "1822: Babbage conceives a steam-driven calculating machine, left incomplete.",
+          "1890: Hollerith's punch-card system calculates the U.S. Census.",
+          "1936: Turing presents the universal computing machine.",
+          "1943-1944: Mauchly and Eckert build ENIAC, the first large-scale digital computer.",
+          "1946: UNIVAC becomes the first commercial computer for government and business use."
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Grace Hopper's COBOL work and the integrated circuit are placed in 1953-1958."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 3-8"
+  },
+  {
+    "course_code": "COS 101",
+    "module_position": 2,
+    "module_title": "Generations and characteristics",
+    "lesson_position": 1,
+    "title": "Five generations and system characteristics",
+    "objective": "Match each computer generation to its technology and name the listed system characteristics.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Generations and characteristics"
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes summarise five generations: vacuum tubes (1940-1956), transistors (1956-1963), integrated circuits (1964-1971), microprocessors (1971-present), and artificial intelligence (present and future)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Listed characteristics are speed, accuracy, diligence, versatility, reliability, automation, and memory. Accuracy means calculations are precise, and errors occur only with inconsistent or inaccurate data. Memory uses primary built-in storage and secondary removable storage such as CDs and pen drives."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Speed",
+          "Accuracy",
+          "Diligence",
+          "Versatility",
+          "Reliability",
+          "Automation",
+          "Memory"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Diligence means the system keeps performing without fatigue."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 9-10"
+  },
+  {
+    "course_code": "COS 101",
+    "module_position": 3,
+    "module_title": "Data, information, and functions",
+    "lesson_position": 1,
+    "title": "From data to output",
+    "objective": "Distinguish data from information and list the four computer functions in the notes.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Data, information, and functions"
+      },
+      {
+        "type": "paragraph",
+        "text": "Data is a collection of unorganized facts and figures and does not by itself show patterns or context. Information is structured data: organized, meaningful, and processed. A computer is used to turn data into information."
+      },
+      {
+        "type": "paragraph",
+        "text": "The four functions are receiving input, processing the information according to program instructions, storing the information in primary or secondary storage, and producing output through devices such as a monitor or printer."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Receiving input",
+          "Processing",
+          "Storing",
+          "Producing output"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Input examples on the slide include the keyboard, mouse, digital pen, CD-ROM, pen drive, and scanner."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 11-12"
+  },
+  {
+    "course_code": "COS 101",
+    "module_position": 4,
+    "module_title": "CPU, memory, and devices",
+    "lesson_position": 1,
+    "title": "The CPU and memory units",
+    "objective": "Name the CPU parts and contrast RAM with ROM using the lecture comparison.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "CPU and memory"
+      },
+      {
+        "type": "paragraph",
+        "text": "The CPU is called the brain of the computer and controls the operations of all parts. The ALU processes data, performs calculations and comparisons, and handles non-numeric processing and decision-making. The control unit extracts instructions, directs CPU operations, and supervises data flow."
+      },
+      {
+        "type": "paragraph",
+        "text": "The memory unit stores data, instructions, and results. Its unit is the byte, and 1 byte equals 8 bits. RAM is volatile temporary storage that is lost when power is off. ROM is non-volatile permanent storage that remains when power is off."
+      },
+      {
+        "type": "list",
+        "items": [
+          "ALU: calculations, comparisons, and decision-making",
+          "Control unit: fetches instructions and directs data flow",
+          "RAM: volatile, user-modifiable, SRAM and DRAM",
+          "ROM: non-volatile, read-only, PROM, EPROM, EEPROM, and flash",
+          "Secondary memory: non-volatile supplementary storage such as CDs, floppy disks, pen drives, and external hard drives"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The comparison table says RAM has high speed and smaller capacity, while ROM has lower speed and higher capacity."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 13-20"
+  },
+  {
+    "course_code": "COS 101",
+    "module_position": 5,
+    "module_title": "Types, hardware, and software",
+    "lesson_position": 1,
+    "title": "Classes of computers and software",
+    "objective": "Classify computers by operation and size, and separate hardware from applications and systems software.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Types, hardware, and software"
+      },
+      {
+        "type": "paragraph",
+        "text": "By operation, analog computers measure physical quantities and are described as nearly extinct. Digital computers use binary 0 and 1 and are programmable. Hybrid computers combine analog and digital functions for process control."
+      },
+      {
+        "type": "paragraph",
+        "text": "By size, microcomputers use a microprocessor and include desktops, laptops, notebooks, tablets, and PDAs. Minicomputers support about 10 to 100 users. Mainframes support about 100 to 1000 or more users and are used for bulk data. Supercomputers handle extremely fast scientific work such as weather forecasting."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hardware is the physical equipment. Software is the set of instructions that control hardware. Applications software does specific tasks, with examples MS Word, Excel, PowerPoint, and MySQL. Systems software is the operating system and utilities, with examples Windows, Linux, and macOS."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Analog",
+          "Digital",
+          "Hybrid",
+          "Microcomputer",
+          "Minicomputer",
+          "Mainframe",
+          "Supercomputer"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "A modem is listed with output hardware on this slide, alongside the monitor, printer, and sound card."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 21-24"
+  },
+  {
+    "course_code": "COS 101",
+    "module_position": 6,
+    "module_title": "Operating systems, networks, and the internet",
+    "lesson_position": 1,
+    "title": "Operating systems and networks",
+    "objective": "List operating-system jobs and network types, and state how the notes describe the internet.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Systems and networks"
+      },
+      {
+        "type": "paragraph",
+        "text": "Operating-system functions in the notes are booting, a command-line or graphical user interface, hardware management, file-system management, and program support such as saving files and allocating memory."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cooperative multitasking needs cooperation between the OS and applications, with Macintosh OS as the example. Preemptive multitasking lets the OS control CPU time, with UNIX and Windows NT as examples. UNIX and Windows NT are also the multi-user examples. In asymmetric multiprocessing one CPU controls the others. In symmetric multiprocessing the CPUs work independently."
+      },
+      {
+        "type": "paragraph",
+        "text": "A network is a system formed by links that allow information sharing. A host sends or receives information on the network. Named types are PAN, LAN, WAN, and MAN. The internet is a global network of computers. It began with ARPANET in the 1960s, and networks communicate using TCP/IP. Data is broken into packets."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Booting",
+          "User interface",
+          "Hardware management",
+          "File system management",
+          "Program support",
+          "PAN, LAN, WAN, and MAN"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The World Wide Web is dated to 1991 and uses hyperlinks. E-mail is asynchronous because the recipient need not be online."
+      }
+    ],
+    "source_reference": "COS 101 Introduction to Computing-1.pdf, pages 25-32"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 1,
+    "module_title": "Foundations of problem solving",
+    "lesson_position": 1,
+    "title": "Asking questions before you code",
+    "objective": "Use the five-question strategy and state what the notes mean by computer science.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Five questions"
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes define computerization as using computers to develop software that automates routine human tasks efficiently."
+      },
+      {
+        "type": "paragraph",
+        "text": "Before solving a problem, ask what you know, what information you must process, what the solution looks like, what special cases exist, and how you will recognize that the solution has been found."
+      },
+      {
+        "type": "paragraph",
+        "text": "Computer science is described as the study of the theoretical foundations of information and computation. It is compared with mathematics because both define and solve problems using models."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Know",
+          "Info",
+          "Look",
+          "Special",
+          "Recognize"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes' mnemonic for those five questions is K-I-L-S-R."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 1; notes titled CSC 102"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 2,
+    "module_title": "Programming languages and levels",
+    "lesson_position": 1,
+    "title": "Machine, assembly, and high-level languages",
+    "objective": "Distinguish a program from a programming language and the three language levels.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Three levels"
+      },
+      {
+        "type": "paragraph",
+        "text": "A program is a sequence of instructions a computer executes to solve a problem. A programming language is an artificial language used to organize information and express solutions precisely."
+      },
+      {
+        "type": "paragraph",
+        "text": "Machine level is instructions the CPU executes directly, made of binary. Assembly level is low-level, with a one-to-one correspondence with machine code, and an assembler converts it to machine code. High level is closer to human language and independent of the hardware. Examples given are C++, Java, and Python."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Machine level: binary instructions",
+          "Assembly level: assembler converts it",
+          "High level: closer to human language"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Do not confuse the assembler, which is the tool, with assembly, which is the language."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 2"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 3,
+    "module_title": "The problem-solving lifecycle",
+    "lesson_position": 1,
+    "title": "Analyse, algorithm, code, test",
+    "objective": "Order the four computer problem-solving steps and separate syntax errors from logical errors.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Four steps"
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem solving is described as a sequence: identify, then algorithm, then implement."
+      },
+      {
+        "type": "paragraph",
+        "text": "The four key steps are analysing the problem so inputs and outputs are clear, developing an algorithm as a recipe in natural language, coding that algorithm in a programming language, and testing and debugging."
+      },
+      {
+        "type": "paragraph",
+        "text": "A syntax error violates the language rules, such as a missing semicolon, and produces no output. A logical error lets the program run but produces the wrong output because the plan was wrong."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Analyse the problem",
+          "Develop an algorithm",
+          "Code",
+          "Test and debug"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Syntax errors stop output. Logical errors give the wrong output."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 3"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 4,
+    "module_title": "Algorithms and flowcharts",
+    "lesson_position": 1,
+    "title": "Characteristics of a good algorithm",
+    "objective": "State the five characteristics and contrast a flowchart with pseudocode.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Algorithms"
+      },
+      {
+        "type": "paragraph",
+        "text": "An algorithm is a finite sequence of steps that produces a desired output."
+      },
+      {
+        "type": "paragraph",
+        "text": "The five characteristics are precision, uniqueness, finiteness, input, and output. Precision means steps are clearly stated. Uniqueness means each step depends only on previous steps or input. Finiteness means it must stop. Input means it receives data. Output means it produces a result."
+      },
+      {
+        "type": "paragraph",
+        "text": "A flowchart is a visual representation using boxes, diamonds, and arrows. Pseudocode is not real code. It is a non-formal, human-readable description of the instructions."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Precision",
+          "Uniqueness",
+          "Finiteness",
+          "Input",
+          "Output"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes' mnemonic is P-U-F-I-O."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 4"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 5,
+    "module_title": "Object-oriented programming",
+    "lesson_position": 1,
+    "title": "Objects, classes, and the seven ideas",
+    "objective": "Contrast procedure-oriented programming with OOP and name the seven ideas in the notes.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "OOP ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Procedure-oriented programming views a problem as a sequence of things to do, such as reading, calculating, and printing. Object-oriented programming partitions memory into objects that contain both data and functions."
+      },
+      {
+        "type": "paragraph",
+        "text": "The seven ideas listed are objects, classes, data abstraction, encapsulation, inheritance, polymorphism, and dynamic binding. A class is a template for objects that share properties. Encapsulation wraps data and functions into one unit. Inheritance lets one class acquire properties of another. Polymorphism is the ability to take more than one form. Dynamic binding links a procedure call to code at run time."
+      },
+      {
+        "type": "paragraph",
+        "text": "Benefits named in the likely-exam notes are code reuse through inheritance, productivity from standard modules, security through data hiding, and scalability from small systems to large ones."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Objects",
+          "Classes",
+          "Abstraction",
+          "Encapsulation",
+          "Inheritance",
+          "Polymorphism",
+          "Dynamic binding"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes' mnemonic is O-C-A-E-I-P-D."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 5"
+  },
+  {
+    "course_code": "COS 102",
+    "module_position": 6,
+    "module_title": "C++ program shape",
+    "lesson_position": 1,
+    "title": "Hello World and C++ symbols",
+    "objective": "Identify the roles of include, main, cout, and the comment marks in the sample.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A first C++ program"
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes say C++ was developed by Bjarne Stroustrup at Bell Labs in the early 1980s and was originally called C with Classes."
+      },
+      {
+        "type": "paragraph",
+        "text": "The sample starts with #include <iostream>, which the notes call a preprocessor directive that brings in input and output tools. Execution starts at int main, which is mandatory. std::cout with the insertion operator << prints text. return 0 ends the program."
+      },
+      {
+        "type": "paragraph",
+        "text": "// is a single-line comment. /* ... */ is a multi-line comment. A semicolon ends a statement."
+      },
+      {
+        "type": "list",
+        "items": [
+          "#include <iostream>",
+          "int main",
+          "std::cout and <<",
+          "return 0",
+          "comments and semicolons"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The include is required so the program can use std::cout."
+      }
+    ],
+    "source_reference": "CSC HELP (THEORICAL).docx, Module 6"
+  },
+  {
+    "course_code": "AUE-CSC 104",
+    "module_position": 1,
+    "module_title": "Computer circuits",
+    "lesson_position": 1,
+    "title": "Components, diodes, and adapters",
+    "objective": "Name the basic components and the role of a peripheral interface adapter.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Circuits"
+      },
+      {
+        "type": "paragraph",
+        "text": "Computer circuits are interconnected electronic components that process, store, and transmit electrical signals representing data and instructions."
+      },
+      {
+        "type": "paragraph",
+        "text": "Resistors limit current. Capacitors store and release energy for filtering and timing. Inductors store energy in magnetic fields for power regulation. Transistors act as switches or amplifiers and are the building blocks of digital circuits."
+      },
+      {
+        "type": "paragraph",
+        "text": "A diode lets current flow in only one direction. The notes list rectification, voltage regulation, and signal clipping. A diode array packs several diodes into one package. A peripheral interface adapter lets the CPU communicate with peripheral devices."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Resistor",
+          "Capacitor",
+          "Inductor",
+          "Transistor",
+          "Diode",
+          "PIA"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "PIAs manage data transfer, control signals, and synchronization."
+      }
+    ],
+    "source_reference": "AUE-CSC-104 .pdf, Module 1"
+  },
+  {
+    "course_code": "AUE-CSC 104",
+    "module_position": 2,
+    "module_title": "Integrated circuits",
+    "lesson_position": 1,
+    "title": "How chips are scaled",
+    "objective": "Define an integrated circuit and order the integration levels.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Integrated circuits"
+      },
+      {
+        "type": "paragraph",
+        "text": "An integrated circuit is a complete electronic circuit fabricated on a small semiconductor, usually silicon."
+      },
+      {
+        "type": "paragraph",
+        "text": "The fabrication list is silicon crystal growth, wafer slicing and polishing, oxidation, photolithography, etching, doping, metallization, then packaging and testing."
+      },
+      {
+        "type": "paragraph",
+        "text": "SSI covers logic gates and flip-flops. MSI covers adders, counters, and multiplexers. LSI covers microprocessors and memory chips. VLSI covers modern CPUs and systems on a chip. These levels support compact design, higher speed, lower power, and better reliability."
+      },
+      {
+        "type": "list",
+        "items": [
+          "SSI",
+          "MSI",
+          "LSI",
+          "VLSI"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Doping is one step in the fabrication list."
+      }
+    ],
+    "source_reference": "AUE-CSC-104 .pdf, Module 2"
+  },
+  {
+    "course_code": "AUE-CSC 104",
+    "module_position": 3,
+    "module_title": "Memory systems",
+    "lesson_position": 1,
+    "title": "Primary, secondary, and core memory",
+    "objective": "Contrast RAM, ROM, secondary memory, and core memory.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Memory"
+      },
+      {
+        "type": "paragraph",
+        "text": "Memory stores the data and instructions the computer needs for processing."
+      },
+      {
+        "type": "paragraph",
+        "text": "RAM is volatile memory for active processes. ROM stores permanent instructions such as firmware. Secondary memory is non-volatile storage for long-term retention."
+      },
+      {
+        "type": "paragraph",
+        "text": "Core memory used magnetic cores to store binary data. The notes say it was common in early computers, was non-volatile, and was bulky and expensive."
+      },
+      {
+        "type": "list",
+        "items": [
+          "RAM: volatile, active processes",
+          "ROM: firmware",
+          "Secondary: long-term",
+          "Core: magnetic and bulky"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Core memory is not the same as a modern CPU core."
+      }
+    ],
+    "source_reference": "AUE-CSC-104 .pdf, Module 3"
+  },
+  {
+    "course_code": "AUE-CSC 104",
+    "module_position": 4,
+    "module_title": "Magnetic storage and peripherals",
+    "lesson_position": 1,
+    "title": "Disks, tapes, and input/output devices",
+    "objective": "Contrast disk and tape access and name the peripheral examples.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Storage and peripherals"
+      },
+      {
+        "type": "paragraph",
+        "text": "Magnetic disks, including hard disk drives, are described as high-capacity random-access storage. Magnetic tapes are sequential-access storage used for backups and archives."
+      },
+      {
+        "type": "paragraph",
+        "text": "The video-disk section gives optical and magnetic examples: CDs, DVDs, and Blu-ray disks."
+      },
+      {
+        "type": "paragraph",
+        "text": "Input examples are keyboards and character-recognition devices such as OCR and MICR. Output examples are dot-matrix, inkjet, and laser printers, plus CRTs as early displays. Peripherals let people interact with the computer."
+      },
+      {
+        "type": "list",
+        "items": [
+          "HDD: random access",
+          "Tape: sequential access",
+          "CD, DVD, Blu-ray",
+          "Keyboard, OCR, MICR",
+          "Printers and CRTs"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Sequential tape is a poor fit when you need an arbitrary record immediately."
+      }
+    ],
+    "source_reference": "AUE-CSC-104 .pdf, Modules 4-5"
+  },
+  {
+    "course_code": "AUE-CSC 104",
+    "module_position": 5,
+    "module_title": "Op-amps, converters, and analog computers",
+    "lesson_position": 1,
+    "title": "Analog circuits and converters",
+    "objective": "State op-amp traits and the direction of ADC and DAC conversion.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Analog hardware"
+      },
+      {
+        "type": "paragraph",
+        "text": "An operational amplifier is a high-gain electronic amplifier used in analog circuits. The notes list high input impedance, low output impedance, and high voltage gain. Applications include signal amplification, filtering, and voltage regulation."
+      },
+      {
+        "type": "paragraph",
+        "text": "An ADC converts a continuous analog signal into discrete digital values. A DAC converts digital data into an analog signal for output devices."
+      },
+      {
+        "type": "paragraph",
+        "text": "Analog computers operate on continuous data represented by physical quantities such as voltage or current. They are described as fast and continuous, with limited accuracy, and are used for engineering simulations and control systems."
+      },
+      {
+        "type": "list",
+        "items": [
+          "High input impedance",
+          "Low output impedance",
+          "High voltage gain",
+          "ADC and DAC"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Digital computers in COS 101 use discrete binary values. Analog computers here use continuous quantities."
+      }
+    ],
+    "source_reference": "AUE-CSC-104 .pdf, Modules 6-8"
+  },
+  {
+    "course_code": "AUE-GST 102",
+    "module_position": 1,
+    "module_title": "Religious dialogue",
+    "lesson_position": 1,
+    "title": "What dialogue is for",
+    "objective": "Explain religious dialogue and the four types named in the notes.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Dialogue"
+      },
+      {
+        "type": "paragraph",
+        "text": "Religious dialogue is the attempt to create cooperation and a productive relationship among groups such as Christianity, Islam, African Traditional Religion, and secular-minded people. It seeks mutual respect and peaceful coexistence."
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes say dialogue is a continuous journey. It is not aimed at converting the other person. It is for mutual understanding and tolerance."
+      },
+      {
+        "type": "paragraph",
+        "text": "The four types are interfaith dialogue between representatives of different religions, intrafaith dialogue among members of the same tradition, interreligious dialogue among different religious traditions, and secular-religious dialogue between religious and secular perspectives."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Interfaith",
+          "Intrafaith",
+          "Interreligious",
+          "Secular-religious"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes say interfaith and interreligious are often used interchangeably, with interreligious dialogue more focused on specific religious traditions."
+      }
+    ],
+    "source_reference": "AUGST supplementary notes, AU-GST 102"
+  },
+  {
+    "course_code": "AUE-GST 102",
+    "module_position": 2,
+    "module_title": "Challenges and faith",
+    "lesson_position": 1,
+    "title": "Obstacles and the meaning of faith",
+    "objective": "List challenges to dialogue and give the notes' theological meaning of faith.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Challenges and faith"
+      },
+      {
+        "type": "paragraph",
+        "text": "Challenges named in the notes include misunderstanding and stereotypes, dogmatism, cultural and linguistic barriers, fear of proselytism, political interference, historical conflicts, lack of education, gender and power dynamics, radicalization, and the secular-religious divide."
+      },
+      {
+        "type": "paragraph",
+        "text": "Theologically, faith is a firm belief in God and His promises, leading to trust and obedience."
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes also connect faith with mental well-being. They say prayer, meditation, and reliance on God can reduce stress, and that gratitude encouraged in faith traditions improves mental well-being."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Stereotypes",
+          "Dogmatism",
+          "Fear of proselytism",
+          "Historical conflict",
+          "Lack of education"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Fear of proselytism means people worry that dialogue will pressure them to convert."
+      }
+    ],
+    "source_reference": "AUGST supplementary notes, challenges and faith"
+  },
+  {
+    "course_code": "GST 112",
+    "module_position": 1,
+    "module_title": "Norms and values",
+    "lesson_position": 1,
+    "title": "Norms, values, and three major groups",
+    "objective": "Distinguish norms from values and recall examples given for Hausa-Fulani, Yoruba, and Igbo communities.",
+    "estimated_minutes": 14,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Norms and values"
+      },
+      {
+        "type": "paragraph",
+        "text": "Norms are established rules or expected behaviours. Folkways are everyday customs that are not strictly enforced, such as greeting elders with respect. Mores are strongly held norms with moral significance, and breaking them may bring disgrace or legal punishment."
+      },
+      {
+        "type": "paragraph",
+        "text": "Values are fundamental beliefs about what is good or desirable. Examples in the notes include honesty, respect, hard work, and hospitality. Nigeria is said to have over 250 ethnic groups, with Hausa-Fulani, Yoruba, and Igbo treated as the three major ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hausa-Fulani examples include respect for elders, modest dress, and the value of faith (Iman). Yoruba examples include prostration or kneeling when greeting elders, titles such as Baba, Iya, and Kabiyesi, and the value of respect (Owo). Igbo examples include the age-grade system, titles such as Ozo or Ichie, and a strong value on self-reliance and trade."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Folkways and mores",
+          "Hausa-Fulani",
+          "Yoruba",
+          "Igbo"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The conclusion says respect, hard work, and communal living are shared across groups."
+      }
+    ],
+    "source_reference": "WEEK 2 GST112 notes"
+  },
+  {
+    "course_code": "GST 112",
+    "module_position": 2,
+    "module_title": "Pre-colonial culture and arts",
+    "lesson_position": 1,
+    "title": "Southern kingdoms and their arts",
+    "objective": "Identify Ife, Benin, and Igbo-Ukwu art from the week 3 notes.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Southern Nigeria"
+      },
+      {
+        "type": "paragraph",
+        "text": "The week 3 notes say southern peoples included Yoruba, Igbo, Edo (Bini), Ijaw, and Ibibio groups."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ife is called the spiritual centre of the Yoruba and is known for naturalistic terracotta and bronze sculptures of the 12th to 15th centuries. The Oyo Empire is described as a military and political power with textiles, beadwork, and wood carving."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Benin Kingdom is famous for bronze and ivory carvings. The Benin Bronzes used the lost-wax technique. Igbo-Ukwu, in the 9th to 10th century, produced intricate bronzes. Nri is linked with peace and ritual kingship, and Arochukwu with trade and religion."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ife bronzes and terracotta",
+          "Oyo textiles and carving",
+          "Benin lost-wax bronzes",
+          "Igbo-Ukwu bronzes"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Nok terracotta, dated about 900 BCE to 200 CE, is also named later in the art section."
+      }
+    ],
+    "source_reference": "WEEK 3 GST 112 notes"
+  },
+  {
+    "course_code": "GST 112",
+    "module_position": 2,
+    "module_title": "Pre-colonial culture and arts",
+    "lesson_position": 2,
+    "title": "Northern societies, textiles, and belief",
+    "objective": "Recall Hausa, Kanem-Bornu, and Sokoto examples and the art forms that close the week.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Northern Nigeria and shared arts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hausa city-states such as Kano, Zaria, Katsina, and Gobir are placed between the 10th and 15th centuries as trans-Saharan trade centres. The notes mention Kano's walls and mosques, leatherwork, metalwork, and indigo-dyed cloth."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kanem-Bornu, ruled by the Sayfawa dynasty, is linked with Arabic calligraphy, mosque architecture, and horse-mounted warriors. The Sokoto Caliphate under Usman dan Fodio is the 19th-century Islamic influence named for calligraphy, mosques, and Quranic manuscript illumination."
+      },
+      {
+        "type": "paragraph",
+        "text": "Later sections add Yoruba adire resist-dye cloth, Hausa embroidered robes such as Babban Riga, Yoruba dundun talking drums, the Hausa-Kanuri goje, the Gobarau Minaret, Yoruba Orisha art, and Igbo Mbari houses."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hausa city-states",
+          "Kanem-Bornu",
+          "Sokoto Caliphate",
+          "Adire and Babban Riga",
+          "Dundun and goje"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Trans-Saharan trade is the route the notes give for exchange with North Africa."
+      }
+    ],
+    "source_reference": "WEEK 3 GST 112 notes"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 1,
+    "module_title": "Introduction to semiconductors",
+    "lesson_position": 1,
+    "title": "Introduction to semiconductors",
+    "objective": "State the PHY 102 outline points for Introduction to semiconductors.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Introduction to semiconductors"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Introduction to semiconductors with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Definition of semiconductors",
+          "Intrinsic and extrinsic semiconductors",
+          "Doping",
+          "p-type and n-type materials",
+          "p-n junctions"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 2,
+    "module_title": "Electrostatics",
+    "lesson_position": 1,
+    "title": "Electrostatics",
+    "objective": "State the PHY 102 outline points for Electrostatics.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Electrostatics"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Electrostatics with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Electric charge",
+          "Electric field",
+          "Electric field strength",
+          "Coulomb's law",
+          "Electric field lines"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 3,
+    "module_title": "Capacitors and dielectrics",
+    "lesson_position": 1,
+    "title": "Capacitors and dielectrics",
+    "objective": "State the PHY 102 outline points for Capacitors and dielectrics.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Capacitors and dielectrics"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Capacitors and dielectrics with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Capacitance",
+          "Energy stored in a capacitor",
+          "Capacitors in series and parallel",
+          "Dielectrics",
+          "Drift velocity"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 4,
+    "module_title": "Ohm's law and resistance",
+    "lesson_position": 1,
+    "title": "Ohm's law and resistance",
+    "objective": "State the PHY 102 outline points for Ohm's law and resistance.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ohm's law and resistance"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Ohm's law and resistance with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ohm's law, V = IR",
+          "Resistors in series",
+          "Resistors in parallel"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 5,
+    "module_title": "Current electricity",
+    "lesson_position": 1,
+    "title": "Current electricity",
+    "objective": "State the PHY 102 outline points for Current electricity.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Current electricity"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Current electricity with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Electric current",
+          "Electromotive force",
+          "Internal resistance",
+          "Cells in series and parallel"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 6,
+    "module_title": "Alternating current",
+    "lesson_position": 1,
+    "title": "Alternating current",
+    "objective": "State the PHY 102 outline points for Alternating current.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Alternating current"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Alternating current with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "AC voltage and current",
+          "Frequency and angular frequency",
+          "RMS values"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 7,
+    "module_title": "Components in AC circuits",
+    "lesson_position": 1,
+    "title": "Components in AC circuits",
+    "objective": "State the PHY 102 outline points for Components in AC circuits.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Components in AC circuits"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Components in AC circuits with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Resistors",
+          "Capacitors",
+          "Inductors"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "PHY 102",
+    "module_position": 8,
+    "module_title": "Special AC circuits",
+    "lesson_position": 1,
+    "title": "Special AC circuits",
+    "objective": "State the PHY 102 outline points for Special AC circuits.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Special AC circuits"
+      },
+      {
+        "type": "paragraph",
+        "text": "The PHY 102 course outline lists Special AC circuits with these points and no further formulas in the outline file."
+      },
+      {
+        "type": "list",
+        "items": [
+          "RC circuit",
+          "RL circuit",
+          "RLC circuit",
+          "Resonance"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Questions in this chapter use only the outline headings, not formulas the outline does not state."
+      }
+    ],
+    "source_reference": "PHY_102_Course_Outline.pdf"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 1,
+    "module_title": "Concept of entrepreneurship",
+    "lesson_position": 1,
+    "title": "Entrepreneurs, intrapreneurs, and theories",
+    "objective": "Distinguish entrepreneurship from intrapreneurship and name the theories in Unit 1.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 1"
+      },
+      {
+        "type": "paragraph",
+        "text": "Entrepreneurship is identifying opportunities, mobilizing resources, and establishing ventures to create value. It includes both a mindset and the act of creating an enterprise."
+      },
+      {
+        "type": "paragraph",
+        "text": "An entrepreneur starts ventures independently. An intrapreneur innovates inside an existing organization. The comparison table says the entrepreneur bears the risk and receives profit, while the organization shares intrapreneurial risk and provides the resources."
+      },
+      {
+        "type": "paragraph",
+        "text": "Schumpeter's innovation theory says entrepreneurs introduce new combinations and drive creative destruction. Other perspectives named are economic theories about market gaps, psychological theories such as McClelland's need for achievement, and sociological theories about culture and networks."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Schumpeter: innovation and creative destruction",
+          "Economic: market gaps",
+          "Psychological: need for achievement",
+          "Sociological: culture and networks"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Necessity-based entrepreneurship comes from lack of other employment. Opportunity-based entrepreneurship exploits a profitable gap."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 1"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 2,
+    "module_title": "Characteristics of entrepreneurs",
+    "lesson_position": 1,
+    "title": "Traits that can be learned",
+    "objective": "List the core characteristics and the natural-versus-developed distinction.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "Core characteristics are opportunity seeking, calculated risk taking, problem solving, and innovation. The Dangote cement example illustrates opportunity seeking. Flutterwave is the fintech example of solving limited access to global payments."
+      },
+      {
+        "type": "paragraph",
+        "text": "Other traits are persistence, vision, leadership, networking, and ethical orientation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Natural traits listed are creativity, passion, intuition, and confidence. Developed traits are business planning, financial literacy, negotiation, and strategic management."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Opportunity seeker",
+          "Calculated risk taker",
+          "Problem solver",
+          "Innovator"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes say entrepreneurship can be nurtured through education, mentorship, and experience."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 2"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 3,
+    "module_title": "Entrepreneurial thinking",
+    "lesson_position": 1,
+    "title": "Critical, reflective, and creative thinking",
+    "objective": "Define the three thinking modes and how the notes say they are cultivated.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 3"
+      },
+      {
+        "type": "paragraph",
+        "text": "Entrepreneurial thinking is the mindset used to find opportunities, solve problems, and decide under uncertainty."
+      },
+      {
+        "type": "paragraph",
+        "text": "Critical thinking analyses a situation and questions assumptions. Reflective thinking looks back at success and failure. Creative thinking generates novel and useful ideas. Techniques named are brainstorming, mind-mapping, and lateral thinking. Nollywood is the example of creative use of limited resources and digital distribution."
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes say this thinking is cultivated through education, mentorship, small experiments, feedback, and reading."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Critical",
+          "Reflective",
+          "Creative"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "A failed first venture can still teach pricing, marketing, or team lessons if the founder reflects."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 3"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 4,
+    "module_title": "Innovation",
+    "lesson_position": 1,
+    "title": "Five dimensions of innovation",
+    "objective": "Separate invention from innovation and name the five dimensions.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 4"
+      },
+      {
+        "type": "paragraph",
+        "text": "Invention creates something new. Innovation applies that creation in a useful, profitable, and sustainable way."
+      },
+      {
+        "type": "paragraph",
+        "text": "The five dimensions are product, process, business-model, marketing, and organizational innovation. Examples are smartphones, automation, Netflix's subscription model instead of video rental, viral social campaigns, and flatter organizations."
+      },
+      {
+        "type": "paragraph",
+        "text": "Change is an alteration in the environment. Innovation is a deliberate response to change. The COVID-19 example is online delivery and remote work. Knowledge is created, shared, and applied."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Product",
+          "Process",
+          "Business model",
+          "Marketing",
+          "Organizational"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Netflix is the business-model example, not the product-only example."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 4"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 5,
+    "module_title": "Enterprise formation and networking",
+    "lesson_position": 1,
+    "title": "Plans, ownership, and registration",
+    "objective": "List business-plan parts, ownership forms, and the CAC steps in the note.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 5"
+      },
+      {
+        "type": "paragraph",
+        "text": "A business plan describes vision, mission, objectives, strategies, and operations. Parts listed are the executive summary, business description, market analysis, organization and management, marketing and sales, operations, and the financial plan."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ownership forms are sole proprietorship, partnership, limited liability company, public limited company, and cooperative. A sole proprietor has full control and unlimited liability. A partnership shares risk but can face conflict. An LLC is a separate legal entity with limited liability."
+      },
+      {
+        "type": "paragraph",
+        "text": "In Nigeria the Corporate Affairs Commission registers businesses. The steps are choose a name, search availability, complete forms, pay fees, and obtain a certificate of incorporation."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sole proprietorship",
+          "Partnership",
+          "LLC",
+          "PLC",
+          "Cooperative"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "A joint venture creates a new entity for a specific project. A strategic alliance does not have to create that new entity."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 5"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 6,
+    "module_title": "Contemporary issues",
+    "lesson_position": 1,
+    "title": "Intellectual property and digital work",
+    "objective": "Name the IP types and the finance sources in Unit 6.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 6"
+      },
+      {
+        "type": "paragraph",
+        "text": "Intellectual property covers creations of the mind. Patents protect inventions and processes. Copyrights protect creative works such as books, music, films, and software. Trademarks protect names, logos, and slogans. Trade secrets protect confidential information. The example is Coca-Cola's recipe."
+      },
+      {
+        "type": "paragraph",
+        "text": "Virtual offices use tools such as Zoom, Teams, Slack, Trello, and Asana. Advantages are cost, flexibility, and a global workforce. Challenges are cohesion, data security, and productivity."
+      },
+      {
+        "type": "paragraph",
+        "text": "Crowdfunding raises small amounts from many people. Angel investors use personal money. Venture capital firms invest larger sums. Other issues named are globalization, green business, cybersecurity, and online shopping."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Patent",
+          "Copyright",
+          "Trademark",
+          "Trade secret"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "LinkedIn, X, WhatsApp groups, forums, and webinars are the digital networking tools."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 6"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 7,
+    "module_title": "Entrepreneurship in Nigeria",
+    "lesson_position": 1,
+    "title": "Nigerian examples and support bodies",
+    "objective": "Match the named entrepreneurs and support institutions.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 7"
+      },
+      {
+        "type": "paragraph",
+        "text": "Examples are Dangote Group, Folorunsho Alakija of Famfa Oil, Tony Elumelu of UBA and the Tony Elumelu Foundation, Jason Njoku of iROKOtv, and Tara Fela-Durotoye of House of Tara."
+      },
+      {
+        "type": "paragraph",
+        "text": "Support bodies are SMEDAN, the Bank of Industry, the National Directorate of Employment, the Tony Elumelu Foundation, and YouWin Connect Nigeria. Networks named include the Nigerian Young Professionals Forum, Fate Foundation, and Co-Creation Hub."
+      },
+      {
+        "type": "paragraph",
+        "text": "Barriers listed are poor electricity and roads, costly finance, policy changes, corruption and bureaucracy, and cultural preference for salaried jobs."
+      },
+      {
+        "type": "list",
+        "items": [
+          "SMEDAN",
+          "Bank of Industry",
+          "NDE",
+          "TEF",
+          "YouWin"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "CcHub is named for tech innovation."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 7"
+  },
+  {
+    "course_code": "ENT 211",
+    "module_position": 8,
+    "module_title": "E-commerce",
+    "lesson_position": 1,
+    "title": "Types and challenges of e-commerce",
+    "objective": "Define e-commerce and the four relationship types in the note.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Unit 8"
+      },
+      {
+        "type": "paragraph",
+        "text": "E-commerce is buying and selling goods and services over the internet. It also includes online banking, mobile money, ticketing, and digital marketing. Nigerian examples named are Jumia, Konga, Paystack, and Flutterwave."
+      },
+      {
+        "type": "paragraph",
+        "text": "B2B is company to company. B2C is business to consumer, with Jumia and Amazon as examples. C2C is consumer to consumer, with OLX and Facebook Marketplace. C2B is an individual serving a business, with freelancers on Upwork or Fiverr."
+      },
+      {
+        "type": "paragraph",
+        "text": "Advantages include wider reach, lower store costs, 24/7 availability, personalized marketing, and scalability. Challenges include trust and fraud, weak logistics, the digital divide, weak consumer-protection enforcement, and high competition."
+      },
+      {
+        "type": "list",
+        "items": [
+          "B2B",
+          "B2C",
+          "C2C",
+          "C2B"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Future points include mobile commerce, AI recommendations, social commerce, and fintech payments."
+      }
+    ],
+    "source_reference": "ENT 211 UPDATED NOTE.docx, Unit 8"
+  },
+  {
+    "course_code": "CYB 203",
+    "module_position": 1,
+    "module_title": "Understanding cybercrime",
+    "lesson_position": 1,
+    "title": "Crime, technology, and six characteristics",
+    "objective": "Define the scope of cybercrime and list the six characteristics.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lesson 1"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cybercrime is not simply crime on the internet. It covers criminal activities involving computers, networks, digital devices, information systems, or electronic data."
+      },
+      {
+        "type": "paragraph",
+        "text": "The notes treat it as technology plus people plus money plus law plus society. Phishing can succeed because a person trusts a message such as a warning that a university account will be disabled."
+      },
+      {
+        "type": "paragraph",
+        "text": "Six characteristics are its borderless nature, speed, anonymity, scalability, dependence on fragile digital evidence, and technical complexity. The discussion point is that fraud, theft, impersonation, and extortion existed before computers, but technology changed their speed and reach."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Borderless",
+          "Speed",
+          "Anonymity",
+          "Scalability",
+          "Fragile evidence",
+          "Technical complexity"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "A graduate may meet cybercrime as a developer, administrator, analyst, forensic examiner, auditor, or incident responder."
+      }
+    ],
+    "source_reference": "CYB 203 NOTE U.pdf, Lesson 1"
+  },
+  {
+    "course_code": "CYB 203",
+    "module_position": 2,
+    "module_title": "Definition and categories",
+    "lesson_position": 1,
+    "title": "Tool, target, and evidence",
+    "objective": "Explain the three computer roles and the four victim categories.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lesson 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cybercrime is any unlawful activity in which a computer, system, network, digital device, or digital information is a tool, a target, an environment, or a source of evidence."
+      },
+      {
+        "type": "paragraph",
+        "text": "The computer is the target in unauthorised access, malware, data destruction, denial of service, or sabotage. It is the tool in online fraud, identity theft, phishing, cyberstalking, and online impersonation. It is evidence when investigators recover emails, documents, messages, or transaction records."
+      },
+      {
+        "type": "paragraph",
+        "text": "Categories are crimes against individuals, organisations, government, and society. Organisational examples include corporate data theft, ransomware, insider attacks, website compromise, and intellectual-property theft."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Target",
+          "Tool",
+          "Evidence",
+          "Individuals",
+          "Organisations",
+          "Government",
+          "Society"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "A fake bursar email that moves money uses the computer as a tool."
+      }
+    ],
+    "source_reference": "CYB 203 NOTE U.pdf, Lesson 2"
+  },
+  {
+    "course_code": "CYB 203",
+    "module_position": 3,
+    "module_title": "Types of cybercrime",
+    "lesson_position": 1,
+    "title": "Nine named types",
+    "objective": "Match each named type with the example given in the note.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lesson 3"
+      },
+      {
+        "type": "paragraph",
+        "text": "Unauthorised access is entering a system, account, or network without lawful permission. The example is using another student's portal password. The notes say it may still be unlawful even if nothing is stolen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phishing deceives people into revealing passwords, banking details, or other personal information. Prevention steps are to verify the sender, avoid suspicious links, check addresses, use multifactor authentication, and report the message."
+      },
+      {
+        "type": "paragraph",
+        "text": "Other types are identity theft, online financial fraud, malware, denial of service, cyberstalking, intellectual-property crime, and insider threats. Malware examples are viruses, worms, trojans, ransomware, spyware, and some malicious scripts. A distributed denial of service uses multiple sources. An insider has legitimate access but misuses it."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Unauthorised access",
+          "Phishing",
+          "Malware",
+          "Denial of service",
+          "Insider threat"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Authorised access does not mean unlimited authority."
+      }
+    ],
+    "source_reference": "CYB 203 NOTE U.pdf, Lesson 3"
+  },
+  {
+    "course_code": "CYB 203",
+    "module_position": 4,
+    "module_title": "Critical infrastructure",
+    "lesson_position": 1,
+    "title": "Essential services and threat types",
+    "objective": "Define critical infrastructure and the threat types named in the lesson.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lesson 4"
+      },
+      {
+        "type": "paragraph",
+        "text": "Critical infrastructure means systems and services essential to a country or society. Examples are electricity, telecommunications, banking, transportation, healthcare, government services, water, emergency services, and major information systems."
+      },
+      {
+        "type": "paragraph",
+        "text": "These targets are attractive because one incident can affect many people. A hospital system outage can affect patient care. A financial-system outage can affect businesses and citizens."
+      },
+      {
+        "type": "paragraph",
+        "text": "Threat types are cyber espionage, sabotage, ransomware, distributed denial of service, and supply-chain compromise. Supply-chain compromise means the attacker first compromises a supplier or third party."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Electricity",
+          "Banking",
+          "Healthcare",
+          "Water",
+          "Emergency services"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Espionage is unauthorised collection of sensitive information. Sabotage is intentional disruption or destruction."
+      }
+    ],
+    "source_reference": "CYB 203 NOTE U.pdf, Lesson 4"
+  },
+  {
+    "course_code": "CYB 203",
+    "module_position": 5,
+    "module_title": "Perpetrators and social engineering",
+    "lesson_position": 1,
+    "title": "Who attacks, and how they persuade",
+    "objective": "List perpetrator groups, motivations, and social-engineering tactics.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lesson 5"
+      },
+      {
+        "type": "paragraph",
+        "text": "Perpetrators can include individuals, organised criminal groups, disgruntled insiders, fraud networks, ideologically motivated groups, state-associated actors, and opportunistic criminals. The notes say they do not all share one motivation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Motivations named are financial gain, revenge, espionage, political or ideological objectives, and recognition inside a criminal community."
+      },
+      {
+        "type": "paragraph",
+        "text": "Social-engineering tactics are urgency, fear, authority, curiosity, and reward. Example lines are 'You must act immediately', 'Your account will be closed', 'I am calling from the bank', 'See the attached document', and 'You have won a prize'."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Urgency",
+          "Fear",
+          "Authority",
+          "Curiosity",
+          "Reward"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Financial gain means the offender wants money. Espionage means the objective is information."
+      }
+    ],
+    "source_reference": "CYB 203 NOTE U.pdf, Lesson 5"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 1,
+    "module_title": "Programming and Java",
+    "lesson_position": 1,
+    "title": "Instructions, Java, and the JDK",
+    "objective": "Explain programming, why the notes use Java, and how JDK, JRE, and JVM relate.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lecture 1"
+      },
+      {
+        "type": "paragraph",
+        "text": "Computer programming is giving a computer instructions that say what to do and how to do it. Ordinary English is not enough. The average-of-three-scores example must be expressed in a programming language."
+      },
+      {
+        "type": "paragraph",
+        "text": "A programming language is a formal language for instructions. Examples named are Java, Python, C, C++, JavaScript, C#, Kotlin, and PHP."
+      },
+      {
+        "type": "paragraph",
+        "text": "Java is described as general purpose, object oriented, and strongly typed. It is platform independent through the Java Virtual Machine. The principle stated is Write Once, Run Anywhere. The JVM executes bytecode. The JRE provides what is needed to run programs. The JDK adds development tools, including the compiler, and contains the JRE, which contains the JVM."
+      },
+      {
+        "type": "list",
+        "items": [
+          "JVM executes bytecode",
+          "JRE runs programs",
+          "JDK includes the compiler and the JRE"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes draw JDK above JRE above JVM."
+      }
+    ],
+    "source_reference": "COMPUTER PROGRAMMING I x.pdf, Lecture 1"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 2,
+    "module_title": "Paradigms and structured programming",
+    "lesson_position": 1,
+    "title": "Four paradigms and three structures",
+    "objective": "Name the paradigms and the three structured-programming structures.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lecture 2"
+      },
+      {
+        "type": "paragraph",
+        "text": "A paradigm is a way of thinking about and organising a program. Functional programming treats computation largely as functions that receive input and produce output. Declarative programming focuses on what should be achieved. Logic programming uses facts and rules. Prolog is the language named for it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Object-oriented programming organises software around objects and classes. Java is described as primarily object oriented. Concepts named are class, object, abstraction, encapsulation, inheritance, and polymorphism."
+      },
+      {
+        "type": "paragraph",
+        "text": "Structured programming uses sequence, selection, and iteration. The selection example is if score is at least 50, display Pass, otherwise display Fail. Scripting languages named for automating tasks are JavaScript, Python, PHP, PowerShell, and Bash."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sequence",
+          "Selection",
+          "Iteration"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Java can be used for scripting-like tasks, but the notes still call it a general-purpose compiled language."
+      }
+    ],
+    "source_reference": "COMPUTER PROGRAMMING I x.pdf, Lecture 2"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 3,
+    "module_title": "Variables and data types",
+    "lesson_position": 1,
+    "title": "Names, primitives, and constants",
+    "objective": "Define a variable, list the primitive types shown, and state what final means.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lecture 3"
+      },
+      {
+        "type": "paragraph",
+        "text": "A variable is a named memory location used to store a value. In int age = 20, int is the type, age is the name, and 20 is the value. The value can later change."
+      },
+      {
+        "type": "paragraph",
+        "text": "Primitive types shown are byte, short, int, long, float, double, char, and boolean. Examples include 100, 2000, 50, 50000L, 12.5f, 12.5, 'A', and true."
+      },
+      {
+        "type": "paragraph",
+        "text": "A constant should not change after it is assigned. Java uses final, as in final double PI = 3.14159. An identifier is the name of a programming element."
+      },
+      {
+        "type": "list",
+        "items": [
+          "byte",
+          "short",
+          "int",
+          "long",
+          "float",
+          "double",
+          "char",
+          "boolean"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "char example is 'A'. boolean example is true."
+      }
+    ],
+    "source_reference": "COMPUTER PROGRAMMING I x.pdf, Lecture 3"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 4,
+    "module_title": "Operators, input, decisions, arrays, strings, methods, classes, and APIs",
+    "lesson_position": 1,
+    "title": "What the later lectures cover",
+    "objective": "Use only the lecture section titles that appear in the programming note.",
+    "estimated_minutes": 12,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lectures 4 to 11"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lecture 4 is titled around assignment, arithmetic operators, relational operators, logical operators, and increment and decrement."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lecture 5 covers output and input using Scanner. Lecture 6 covers the if statement, if...else, multiple conditions, switch, the for loop, the while loop, and the do...while loop."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lecture 7 covers accessing array elements, processing an array, and multidimensional arrays. Lecture 8 covers common string operations, comparing strings, string concatenation, and a practical exercise. Lecture 9 covers methods with no return value, methods with parameters, methods that return a value, and parameter passing. Lecture 10 covers classes, objects, adding methods, encapsulation, and abstraction. Lecture 11 covers packages, importing classes, and what an API is."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Lecture 4 operators",
+          "Lecture 5 Scanner",
+          "Lecture 6 decisions and loops",
+          "Lecture 7 arrays",
+          "Lecture 8 strings",
+          "Lecture 9 methods",
+          "Lecture 10 classes",
+          "Lecture 11 packages and APIs"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The note names Scanner as the input tool in Lecture 5. It does not, in the extracted section titles, define each operator's symbol."
+      }
+    ],
+    "source_reference": "COMPUTER PROGRAMMING I x.pdf, Lectures 4 to 11 section titles"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 1,
+    "module_title": "Week 1",
+    "lesson_position": 1,
+    "title": "What software engineering covers",
+    "objective": "Distinguish software, programming, and the professional duties named in Week 1.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What software engineering covers"
+      },
+      {
+        "type": "paragraph",
+        "text": "Software is the programs plus documentation, configuration data, and support resources needed for a program to operate correctly."
+      },
+      {
+        "type": "paragraph",
+        "text": "Software engineering is the disciplined approach to designing, developing, testing, and maintaining software across its lifecycle, using systematic methods rather than ad-hoc coding."
+      },
+      {
+        "type": "paragraph",
+        "text": "Programming writes code for a specific problem. Software engineering also gathers requirements, designs a maintainable architecture, writes automated tests, plans for scale and failure, and documents for future maintainers. The term was coined in 1968 at a NATO conference on the software crisis. Two failure causes named are unrealistic schedules or budgets, and poorly understood requirements. ACM and IEEE codes cited include honesty, competence, confidentiality, and the public interest."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Programs",
+          "Documentation",
+          "Configuration data",
+          "Support resources"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The primary reference named on the cover is Sommerville, Software Engineering, 10th edition, 2016."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 1"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 2,
+    "module_title": "Week 2",
+    "lesson_position": 1,
+    "title": "Generic process activities",
+    "objective": "Name the four activities shared by most software processes.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Generic process activities"
+      },
+      {
+        "type": "paragraph",
+        "text": "The SDLC is the sequence from an initial idea to retirement. Following it reduces risk by making sure activities such as understanding requirements and testing are not skipped."
+      },
+      {
+        "type": "paragraph",
+        "text": "Most processes share specification, development, validation, and evolution. Specification decides what the system should do. Development designs and implements it. Validation checks that it meets requirements. Evolution changes it for new needs."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Specification",
+          "Development",
+          "Validation",
+          "Evolution"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The week heading mentions process models, but these notes do not name a specific model such as a diagram in the extracted paragraphs."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 2"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 3,
+    "module_title": "Week 3",
+    "lesson_position": 1,
+    "title": "Agile, Scrum's neighbours, and user stories",
+    "objective": "Describe Agile, XP, Kanban, and the user-story format.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Agile, Scrum's neighbours, and user stories"
+      },
+      {
+        "type": "paragraph",
+        "text": "Agile builds working software in short iterations or sprints and welcomes changing requirements. Customers see working software every few weeks. Cost and date are harder to fix, and the customer must stay involved."
+      },
+      {
+        "type": "paragraph",
+        "text": "Extreme Programming pushes practices such as pair programming, test-driven development, and continuous integration. Kanban uses a board such as To Do, In Progress, and Done, limits work in progress, and does not use Scrum's fixed sprints."
+      },
+      {
+        "type": "paragraph",
+        "text": "A user story has the form: As a type of user, I want some goal so that some reason."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Pair programming",
+          "Test-driven development",
+          "Continuous integration",
+          "Kanban board"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The notes name Scrum as a heading but the extracted sentences describe XP and Kanban beside it."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 3"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 4,
+    "module_title": "Week 4",
+    "lesson_position": 1,
+    "title": "Eliciting requirements",
+    "objective": "Separate functional from non-functional requirements and name elicitation techniques.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Eliciting requirements"
+      },
+      {
+        "type": "paragraph",
+        "text": "Requirements work asks users, stakeholders, and clients what the software must do, and records functional and non-functional requirements."
+      },
+      {
+        "type": "paragraph",
+        "text": "Non-functional requirements are classified as product requirements such as speed, reliability, and usability, organisational requirements from the customer's policies, and external requirements such as legal constraints."
+      },
+      {
+        "type": "paragraph",
+        "text": "Techniques are interviews, questionnaires, observation of users at work, and workshops. Stakeholders include end users, managers, engineers, and regulators."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Interviews",
+          "Questionnaires",
+          "Observation",
+          "Workshops"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Product requirements describe how the delivered product must behave."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 4"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 5,
+    "module_title": "Week 5",
+    "lesson_position": 1,
+    "title": "Specifying and managing requirements",
+    "objective": "Describe an SRS, validation, change control, and a use-case diagram.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Specifying and managing requirements"
+      },
+      {
+        "type": "paragraph",
+        "text": "An SRS is the agreed statement of what the system must do. A good SRS is unambiguous, complete, consistent, verifiable, and traceable, and typically includes scope, functional and non-functional requirements, system models, and a glossary."
+      },
+      {
+        "type": "paragraph",
+        "text": "Validation checks validity, consistency, completeness, and feasibility before design and implementation. Change control records a proposed change, assesses cost and impact, and accepts, defers, or rejects it."
+      },
+      {
+        "type": "paragraph",
+        "text": "A use-case diagram shows actors and the goals they perform with the system."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Unambiguous",
+          "Complete",
+          "Consistent",
+          "Verifiable",
+          "Traceable"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Actors can be users or external systems."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 5"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 6,
+    "module_title": "Week 6",
+    "lesson_position": 1,
+    "title": "UML class diagrams",
+    "objective": "Read the class-diagram symbols that Week 6 actually defines.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "UML class diagrams"
+      },
+      {
+        "type": "paragraph",
+        "text": "A model is a simplified view used to understand a system and communicate design before implementation. UML is the industry-standard notation named in the notes."
+      },
+      {
+        "type": "paragraph",
+        "text": "A class is a rectangle with three compartments: name, attributes, and operations. A line shows a relationship. A hollow triangle shows inheritance, a subclass is-a superclass. A diamond shows composition, one class has a part made of another."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Name",
+          "Attributes",
+          "Operations"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The heading mentions common UML diagram types, but the extracted paragraphs define the class diagram symbols above."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 6"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 7,
+    "module_title": "Week 7",
+    "lesson_position": 1,
+    "title": "Mid-semester revision",
+    "objective": "State what Week 7 reviews and how much the test contributes.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Mid-semester revision"
+      },
+      {
+        "type": "paragraph",
+        "text": "Week 7 consolidates Weeks 1 to 6: introduction, process activities, Agile, requirements elicitation and specification, and UML modelling."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mid-semester test covers Weeks 1 to 6 and contributes 20 percent of the course grade. Students are told to restate terms in their own words and retry worked examples without looking at the explanation first."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Weeks 1 to 6",
+          "20 percent of the course grade"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "This week is revision rather than a new technical topic."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 7"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 8,
+    "module_title": "Week 8",
+    "lesson_position": 1,
+    "title": "Software architecture",
+    "objective": "Define architecture and the properties it influences.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Software architecture"
+      },
+      {
+        "type": "paragraph",
+        "text": "Software architecture is the high-level structure: major components, their responsibilities, and how they communicate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Architectural decisions are made early and are expensive to change. They influence performance, scalability, security, and maintainability."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Performance",
+          "Scalability",
+          "Security",
+          "Maintainability"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The heading mentions common architectural patterns, but the extracted paragraphs do not name a particular pattern."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 8"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 9,
+    "module_title": "Week 9",
+    "lesson_position": 1,
+    "title": "Design patterns",
+    "objective": "Give the notes' definition of a design pattern.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Design patterns"
+      },
+      {
+        "type": "paragraph",
+        "text": "Week 9 has a heading for object-oriented design principles, but the extracted sentences define a design pattern rather than a named principle list."
+      },
+      {
+        "type": "paragraph",
+        "text": "A design pattern is a general, reusable solution to a commonly occurring design problem. It captures proven experience so the solution can be reused rather than rediscovered."
+      },
+      {
+        "type": "list",
+        "items": [
+          "General",
+          "Reusable",
+          "Common problem",
+          "Proven experience"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Do not add pattern names that this week's paragraphs do not list."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 9"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 10,
+    "module_title": "Week 10",
+    "lesson_position": 1,
+    "title": "Reuse, Git, and continuous integration",
+    "objective": "Contrast merge with rebase and state what CI triggers.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Reuse, Git, and continuous integration"
+      },
+      {
+        "type": "paragraph",
+        "text": "Reuse means using existing libraries, frameworks, and components instead of writing everything from scratch, to reduce cost and improve reliability."
+      },
+      {
+        "type": "paragraph",
+        "text": "A version-control system tracks changes so people can work together, revert, and see who changed what. Git is named as the most widely used. Merge is compared to joining two ropes with a knot that records both histories. Rebase is compared to retying your rope at the end of the other, so the history looks straight and the original join is no longer visible."
+      },
+      {
+        "type": "paragraph",
+        "text": "Continuous integration means merging into a shared main branch frequently, with each merge triggering an automated build and test."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Libraries",
+          "Frameworks",
+          "Components",
+          "Git",
+          "Merge",
+          "Rebase",
+          "CI"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The rope analogy is the notes' own picture of merge and rebase."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 10"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 11,
+    "module_title": "Week 11",
+    "lesson_position": 1,
+    "title": "Regression testing and TDD",
+    "objective": "State what regression testing and test-driven development do.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Regression testing and TDD"
+      },
+      {
+        "type": "paragraph",
+        "text": "The week headings mention verification versus validation and levels of testing, but the extracted paragraphs define regression testing and test-driven development."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regression testing re-runs existing tests after a change to confirm that working features still work."
+      },
+      {
+        "type": "paragraph",
+        "text": "Test-driven development writes a failing automated test before the code, then writes the code to pass, then refactors while the test stays green."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Re-run tests after changes",
+          "Write the failing test first",
+          "Refactor while tests pass"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The course revision later asks students to distinguish verification from validation, but these paragraphs do not define that pair."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 11"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 12,
+    "module_title": "Week 12",
+    "lesson_position": 1,
+    "title": "Technical debt and project concerns",
+    "objective": "Define technical debt and the four project-management concerns.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Technical debt and project concerns"
+      },
+      {
+        "type": "paragraph",
+        "text": "Technical debt is the future cost of shortcuts, messy code, or missing documentation taken to deliver faster. The notes compare it to financial debt that accrues interest."
+      },
+      {
+        "type": "paragraph",
+        "text": "The software architect chooses technologies, defines how major components communicate, and looks after growth, security, and performance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Project-management concerns are scope, cost, risk, and team."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Scope",
+          "Cost",
+          "Risk",
+          "Team"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "Interest means the shortcut becomes more expensive the longer it is left."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 12"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 13,
+    "module_title": "Week 13",
+    "lesson_position": 1,
+    "title": "Evolution, legacy systems, and revision",
+    "objective": "Explain why software evolves and what makes a legacy system hard to keep.",
+    "estimated_minutes": 10,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Evolution, legacy systems, and revision"
+      },
+      {
+        "type": "paragraph",
+        "text": "Software that is used keeps changing with its users, its environment, and its owner. Planning for change is a core concern."
+      },
+      {
+        "type": "paragraph",
+        "text": "A legacy system is an old system, often on outdated technology, that remains because it is still critical and too costly or risky to replace. Documentation may be missing, original developers may be gone, and the technology may no longer be well supported."
+      },
+      {
+        "type": "paragraph",
+        "text": "Revision asks students to define terms, contrast close ideas, and apply a concept to a new scenario. The notes' examples of close pairs are verification versus validation, merge versus rebase, and a bug versus a feature request. The paragraphs still do not define verification or validation."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Changing user needs",
+          "Changing environment",
+          "Changing organisation"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "The heading mentions types of maintenance, but the extracted paragraphs do not list those type names."
+      }
+    ],
+    "source_reference": "SEN201_Complete_Course_Notes.docx, Week 13"
+  },
+  {
+    "course_code": "STA 111",
+    "module_position": 1,
+    "module_title": "Ideas in the statistics practice file",
+    "lesson_position": 1,
+    "title": "Central tendency, variability, and variable types",
+    "objective": "Use only the distinctions stated in the opening statistics questions.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Opening distinctions"
+      },
+      {
+        "type": "paragraph",
+        "text": "The practice file says range is not a common measure of central tendency, while mean, median, and mode are the other options in that item."
+      },
+      {
+        "type": "paragraph",
+        "text": "It says median is not a measure of variability, while variance and range appear as the other variability options."
+      },
+      {
+        "type": "paragraph",
+        "text": "It treats descriptive statistics and inferential statistics as types of statistics. It calls height, weight, and length continuous variables."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mean, median, and mode",
+          "Variance and range",
+          "Descriptive and inferential statistics",
+          "Continuous variables"
+        ]
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "text": "These sentences follow the opening items of that file. They are not a full statistics textbook."
+      }
+    ],
+    "source_reference": "526001962-Statistics-Mcq-Questions PDF, opening items"
+  }
+]

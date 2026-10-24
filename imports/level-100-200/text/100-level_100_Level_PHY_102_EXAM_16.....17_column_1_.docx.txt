@@ -1,0 +1,105 @@
+[Normal] ADELEKE UNIVERSITY, EDE
+[Normal] FACULTY OF SCIENCE
+[Normal] Department of Physics 
+[Title]                        2nd Semester Examination (2016/2017 Session)
+[Normal] Course Code:	PHY 102						Unit: 3 units	
+[Normal] Course Title: General Physics II					Duration:  hours
+[Normal] Instruction: Answer all questions in Section A and any 3 from Section B
+[Normal] No. of Question Papers required: 300
+[Normal] ε0 = 8.85, , 
+[List Paragraph] At room temperature, an intrinsic semiconductor has ........
+[List Paragraph] (a) many holes only (b) a few free electrons and holes (c) many free electrons only
+[List Paragraph] (d) no holes or free electrons
+[List Paragraph] A light ray of wavelength 579nm traveling through air is incident on a smooth flat slab of crown glass at angle of 400 to the normal. The angle of refraction and speed of light in glass respectively are:
+[List Paragraph] (a)  (b)  (c)  
+[List Paragraph] (d)  
+[List Paragraph] A large number of free electrons exist in ..............
+[List Paragraph] semiconductors (b) metals (c) insulators (iv) non-metals
+[List Paragraph] When the outermost orbit of an atom has exactly 4 valence electrons, the material is
+[Normal]  generally .............. (a) a metal (b) a non-metal (c) a semiconductor (d) an insulator
+[List Paragraph] The electrons in the conduction band are known as ........
+[List Paragraph] (a) bound electrons (b) valence electrons (c) free electrons (d) none of the above
+[List Paragraph] In insulators, the energy gap between valence and conduction bands is ........
+[List Paragraph] (a) very large (b) zero (c) very small (d) none of the above
+[List Paragraph] Two identical machines are positioned the same distance from a worker. The intensity sound delivered by each operating machine at the workers location is , find the sound level heard by the worker when the two machines are in operation.
+[List Paragraph]    (b)    (c)     (d)   
+[List Paragraph] In a conductor, the energy gap between valence and conduction bands is ........
+[List Paragraph] large (b) very large (c) very small (d) none of the above
+[List Paragraph] Characteristics of sound wave includes the following except:
+[List Paragraph] Quantity		(b)   Loudness		(C)   Pitch	(d)   Timbre
+[List Paragraph] Calculate the drift velocity of the free electrons in a copper wire of area 1.00 mm2 if the current flowing through the wire is 4.0A ( take n = )             
+[List Paragraph]  0.0052 m/s  (b)   0.00025 m/s  (c) 0.000025m/s  (d) 0.25m/s
+[List Paragraph] In a semiconductor, the energy gap between valence and conduction bands is about ........
+[List Paragraph] 15 eV (b) 100 eV (c) 50 eV (d) 1 eV
+[List Paragraph] The energy gap between valence and conduction bands in insulators is about ........
+[List Paragraph]  15 eV (b) 1.5 eV  (c) zero (d) 0.5 eV
+[List Paragraph] .            																																							
+[List Paragraph] The internal resistance of each of the cells shown aboaamve is 2Ω. Calculate the total current in the circuit.
+[List Paragraph] 0.8 A  (b)   0.4 A  (c)  0.50 A  (d)  0.004A 
+[List Paragraph] When a pentavalent impurity is added to a pure semiconductor, it becomes ........
+[List Paragraph] (a) an insulator (b) an intrinsic semiconductor (c) p-type semiconductor (d) n-type semiconductor
+[List Paragraph] For a sound wave to be audible to human hearing, the frequency must be within the range
+[List Paragraph] 20Hz to 200Hz	(b)    20Hz to 2000Hz 	(c)    20Hz to 20,000Hz     (d)    Greater than 20KHz
+[List Paragraph] A point source emits sound waves with an average power output of 80W. what is the intensity of the sound wave at distance 3.00m from the source
+[List Paragraph]    (b)      (c)    
+[List Paragraph]  (d) 
+[List Paragraph] Addition of pentavalent impurity to a semiconductor creates many ........
+[List Paragraph]  free electrons  (b) holes  (c) valence electrons (d) bound electrons
+[List Paragraph]  Find the net capacitance of the figure below 
+[List Paragraph] 8.0 µF   (b)  6.0 µF   (c)  2.0µF    (d)  4.0 µF 
+[List Paragraph] An n-type semiconductor is ........
+[List Paragraph] (a) positively charged (b) negatively charged (c) electrically neutral (d) none of the above
+[List Paragraph] Three electric cells each of e.m.f 1.5V and internal resistance 1.0 are connected in parallel across an external resistance of 2/3. Calculate the value of the current in the resistor 
+[List Paragraph] 0.5A (b) 0.9A (c)	1.5A (d)  4.5A
+[List Paragraph] A trivalent impurity has ........ valence electrons.
+[List Paragraph] 4 (b)  5 (c)  6 (d)  3
+[List Paragraph]  Addition of trivalent impurity to a semiconductor creates many ........
+[List Paragraph] holes (b) free electrons(c) valence electrons (d) bound electrons
+[List Paragraph] A hole in a semiconductor is defined as ........ 
+[List Paragraph] (a)  a free electron  (b) the incomplete part of an electron pair bond 
+[List Paragraph] (c) a free proton    (d) a free neutron
+[List Paragraph] Given that the frequency of a police car siren is 400Hz,calculate the apparent frequency of the sound received by the stationary observer when the car approaches him with a speed of 30m/s
+[List Paragraph] 367Hz   (b) 410Hz   (c) 414Hz (d)  440Hz
+[List Paragraph] The battery connections required to forward bias a pn junction are ........  
+[List Paragraph] (a) +ve terminal to p and −ve terminal to n  (b) −ve terminal to p and +ve terminal to n
+[Normal]             (c) −ve terminal to p and −ve terminal to n (d) none of the above
+[List Paragraph] Two mirrors of the same size are inclined at an angle 450 to each other; find the number of the images formed on the two mirrors when the length of each mirror is 10cm.
+[List Paragraph] 6   (b)   5    (c)   8   (d)    7
+[List Paragraph] A candle 5cm is placed 20cm in front of a convex mirror whose focal length is 15cm. find the location size and nature of the image formed?
+[List Paragraph] V = +60cm & h1 = 3cm (b) V = +60cm & h1 = 15cm (c) V = +8.57cm & h1 = 3cm
+[List Paragraph] (d) V = -8.57cm & h1 = 2.14cm
+[List Paragraph] Three electric cells each of e.m.f 1.5V and internal resistance 1.0 are connected in parallel across an external resistance of 2/3. Calculate the value of the current in the resistor 
+[List Paragraph] 0.5A	(b)	0.9A	(c)	1.5A	(d)	4.5A
+[List Paragraph] A charge of  Coulombs experiences a force of 40N at acertain point in space.     What is the electrical field intensity? 
+[List Paragraph]     (b)  (c)     (d)   
+[List Paragraph] A pn junction acts as a ........
+[Normal]            (a) controlled switch (b) bidirectional switch (c) unidirectional switch
+[Normal]           (d) none of the above
+[Normal] QUESTION ONE
+[List Paragraph] With the use of energy band diagram, differentiate between Conductors, Insulators and Semiconductor. Clearly state the properties of each of them.
+[List Paragraph] Differentiate between n-type and p-type Extrinsic Semiconductor.
+[List Paragraph] (i)    Briefly explain PN Junction Diode and hence, state its applications.
+[List Paragraph] (ii)   Write short note on forward bias and reverse bias of a PN Junction diode?
+[Normal] QUESTION TWO  
+[List Paragraph] What is Doppler Effect?
+[List Paragraph] List and explain the characteristics of a Musical Note? 
+[List Paragraph] A whistle producing sound of frequency 300Hz moves from with a velocity of 50m/s. An observer also moves with a speed of 25m/s. If the speed of sound in air is 350m/s, calculate the frequency of the sound as heard by the observer: (1) when approaching each another (2) as they depart from each other (3) moving in the same direction with the sound source.
+[Normal] QUESTION THREE
+[List Paragraph] Construct and write the characteristics of the Image formed by a bi-convex Lens and a concave mirror by varying the locations of the object, clearly define the terms used.
+[List Paragraph] A potential difference of 24v from a battery is applied to the network of resistors below,
+[List Paragraph] Determine the total resistance in the circuit 
+[List Paragraph] What is the current in the 8Ω resistor
+[List Paragraph] What is the potential difference across the parallel network
+[Normal] QUESTION FOUR
+[List Paragraph] Define the following
+[List Paragraph] Electromotive force 
+[List Paragraph] Electric potential
+[List Paragraph] Capacitance
+[List Paragraph] The distance between the plates of a parallel plate capacitor is 5.0mm and the area of each plate is 2.0m2. the plates are in a vacuum.A potential difference of  is applied across the plates. Find 
+[List Paragraph] the capacitance
+[List Paragraph] The charge on each plate
+[List Paragraph] The electric field intensity between the plates
+[Normal] QUESTION FIVE
+[List Paragraph] State the factors affecting the capacitance of a capacitor
+[List Paragraph] Three charges +10C, -20C and -16C are distributed as shown below. Find the resultant  force acting on the 10C charge
+[List Paragraph] A platinum wire 80mm long is to have a resistance of 0.1Ω. Find the diameter of the wire if its resistivity is 

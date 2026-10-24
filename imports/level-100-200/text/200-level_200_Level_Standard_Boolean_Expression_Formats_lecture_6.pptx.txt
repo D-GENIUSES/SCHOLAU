@@ -1,0 +1,192 @@
+
+
+--- slide 1 ---
+Standard Boolean Expression Formats
+Alamu F.O. Ph.D.
+
+
+--- slide 2 ---
+The development of standards is important to the computer industry for a number of reasons. 
+It allows independently developed systems and subsystems to be connected, it provides reliability through well tested design methods, and it shortens the design time by providing off the-shelf tools and components for quick development.
+In the design of digital systems, there are some standards that are regularly applied to combinational logic. 
+Over time, design tools and programmable hardware have been developed to support these standards allowing for quick implementation of digital logic.
+Two standard representations of combinational logic are presented : Sum-of-Products and Product-of-Sums. 
+Both of these formats represent the fastest possible digital circuitry since, aside from a possible inverter, all of the signals pass through exactly two layers of logic gates. 
+This also opens the door for the development of programmable hardware where a single computer chip can be programmed to handle any logic circuit.
+
+
+--- slide 3 ---
+Sum-of-Products
+A sum-of-products (SOP) expression is a Boolean expression in a specific format.
+The term sum-of-products comes from the expression’s form: a sum (OR) of one or more products (AND). 
+As a digital circuit, an SOP expression takes the output of one or more AND gates and OR's them together to create the final output.
+The inputs to the AND gates are either inverted or non-inverted input signals. This limits the number of gates that any input signal passes through before reaching the output to an inverter, an AND gate, and an OR gate. 
+Since each gate causes a delay in the transition from input to output, and since the SOP format forces all signals to go through exactly two gates (not counting the inverters), an SOP expression gives us predictable performance regardless of which input in a combinational logic circuit changes.
+
+
+--- slide 4 ---
+Below is an example of an SOP expression:
+There are no parentheses in an SOP expression since they would necessitate additional levels of logic. 
+This also means that an SOP expression cannot have more than one variable combined in a term with an inversion bar. 
+The following is not an SOP expression:
+This is because the first term has A and B passing through a NAND gate before being AND'ed with C and D thereby creating a third level of logic. 
+To fix this problem, we need to break up the NAND using DeMorgan's Theorem.
+
+
+--- slide 5 ---
+This expression is now considered to be in SOP format.
+As far as the implementation of an SOP expression is concerned, combinations of non-inverted and inverted signals are input to one or more AND gates. 
+The outputs from these gates are all input to a single OR gate. The Figure below shows a sample SOP binary circuit.
+
+
+--- slide 6 ---
+Sample Sum-of-Products Binary Circuit
+
+
+--- slide 7 ---
+Converting an SOP Expression to a Truth Table
+Examining the truth table for an AND gate reveals that exactly one row has a one for its output. All of the other rows have a zero output. 
+If we invert one of the inputs, this simply moves the row with the one output to another position. There is still only one row outputting a one. The Figure below shows some examples of this behaviour.
+
+
+--- slide 8 ---
+The output of an OR gate is a one if any of the inputs is a one. Therefore, when the products are OR'ed together, a one appears in the output column for each of the products. 
+For example, if we OR’ed together each of the products from the Figure above, a one would be output in the rows corresponding to A=1, B=1, and C=1; A=1, B=0, and C=1; and A=0, B=1, and C=0.
+This is shown in the Figure below
+
+
+--- slide 9 ---
+Therefore, to convert an SOP expression to a truth table, examine each product to determine when it is equal to a one. 
+Where that product is a one, a one will also be outputted from the OR gate. 
+Each of the products in the above example contains all of the input variables for the SOP expression. 
+What if one of the products doesn’t do this? For example, what if an SOP expression has inputs A, B, and C, but one of its products only depends on A and B?
+This is not a problem if we remember that we are looking to see when that product is equal to a one. 
+For a product containing only A and B in an SOP expression containing inputs A, B, and C, the product has ones in two rows, one for C=0 and one for C=1. 
+
+
+--- slide 10 ---
+As an example, let's convert the following SOP expression to a truth table.
+The first step is to determine where each product equals a one. Beginning with the first term, the different input conditions resulting in the output of a logic one from the AND gates are listed below.
+
+
+--- slide 11 ---
+Placing a one in each row identified above should result in the truth table for the corresponding SOP expression. 
+Remember to set the remaining row outputs to zero to complete the table.
+
+
+--- slide 12 ---
+Converting a Truth Table to an SOP Expression
+Any truth table can be converted to an SOP expression. The conversion process goes like this: 
+identify the rows with ones as the output, and 
+then come up with the unique product to put a one in that row. 
+Note that this will give us an SOP expression where all of the products use all of the variables for inputs. 
+This usually gives us an expression that can be simplified using the tools of Boolean algebra 
+
+
+--- slide 13 ---
+Example
+Derive the SOP expression for the following truth table.
+Solution
+First, identify each row that contains a one as the output
+Now we need to make a product for each of these rows. 
+The product that outputs a one for the row where A=0, B=0, and C=1 must invert A and B in order to have a product of 1·1·1 = 1. 
+Therefore, our product is:
+
+
+--- slide 14 ---
+The product that outputs a one for the row where A=0, B=1, and C=1 must invert A in order to have a product of 1·1·1 = 1. 
+This gives us our second product:
+The third product outputs a one for the row where A=1, B=0, and C=0. Therefore, we must invert B and C in order to have a product of 1·1·1 = 1.
+The final product outputs a one for the row where A=1, B=1, and C=0. This time only C must be inverted.
+OR'ing all of these products together gives us our SOP expression.
+
+
+--- slide 15 ---
+Product-of-Sums
+The product-of-sums (POS) format of a Boolean expression is much like the SOP format with its two levels of logic (not counting inverters). 
+The difference is that the outputs of multiple OR gates are combined with a single AND gate which outputs the final result. 
+The expression below adheres to the format of a POS expression.
+
+
+--- slide 16 ---
+As with SOP expressions, a POS expression cannot have more than one variable combined in a term with an inversion bar. For example, the following is not a POS expression:
+In this example, the sum (OR) of A, B, and C is inverted thereby adding a third level of logic: A, B, and C are OR'ed together then inverted and then OR'ed with D before going to the AND gate. 
+Getting this expression to adhere to the proper POS format where the NOT is distributed to the individual terms is not as easy as it was with the SOP.
+Often times it is easier to determine the truth table for the function and then convert that truth table to the correct POS format.
+
+
+--- slide 17 ---
+As far as hardware is concerned, POS expressions take the output of OR gates and connect them to the inputs of a single AND gate. 
+The sample circuit shown in the Figure below adheres to this format
+
+
+--- slide 18 ---
+Converting POS to Truth Table
+Converting a POS expression to a truth table follows a similar process as the one used to convert an SOP expression to a truth table.
+The difference is this: where the SOP conversion focuses on rows with a one output, the POS conversion focuses on rows with a zero output.
+We do this because the OR gate has an output of zero on exactly one row while all of the other rows have an output of one. 
+If we invert one of the inputs, this moves the row with the zero output to another position. There is still only one row outputting a zero.
+The row with the zero output is the row where all of the inputs equal zero. If one of the inputs is inverted, then its non-inverted value must be one for the OR gate to output a zero. 
+Then Figure below shows a few examples of this behaviour.
+
+
+--- slide 19 ---
+By AND'ing the output from these OR gates together, then the final output will be zero anytime one of the OR gates outputs a zero.
+Therefore, AND'ing the three sums in Figure above together will produce a zero output on the following conditions:
+A=0, B=0. and C=0
+A=0, B=1. and C=0
+A=1, B=0. and C=1
+
+
+--- slide 20 ---
+Therefore, to convert a POS expression to a truth table, examine each of the sums to determine where the sum is equal to zero. When that sum is equal to a zero, a zero will also be present at the final output of the circuit.
+When a sum does not contain all of the circuit's inputs, then more than one row will get a zero output from the OR gate. Every time an input drops out of a sum, the number of rows with a zero output from that OR gate is doubled.
+
+
+--- slide 21 ---
+For example, if a POS expression uses as its inputs A, B, C, and D, then a sum within that expression that uses only B, C, and D as inputs will have two rows with zero outputs and a sum using only A and C as inputs will have four rows with zero outputs.
+The output of the first sum is equal to zero only when all of the inputs, A, B and the inverse of D, are equal to zero. This occurs in two places, once for C=0 and once for C=1. 
+Therefore, the output of a product-of-sums circuit with this OR expression in it will have a zero in the rows where A=0, B=0, C=0, and D=1 and where A=0, B=0, C=1, and D=1.
+The next sum uses only B and C from the four inputs. Therefore, there must be four rows with outputs of zero. This is because A and D have no effect on this sum and can have any of the four states: A=0 and D=0; A=0 and D=1; A=1 and D=0; or A=1 and D=1.
+
+
+--- slide 22 ---
+A single variable sum as shown in the last column of the truth table in the Figure below will force zeros to be output for half of the input conditions. 
+In the case of this truth table, the inverse of A equals zero when A equals 1.
+
+
+--- slide 23 ---
+Example
+Convert the following POS expression to a truth table.
+Solution
+The first step is to determine where each sum equals zero. Beginning with the first term, the three different conditions for a zero output are listed below.
+
+
+--- slide 24 ---
+Placing a zero in each row identified above should result in the truth table for the corresponding POS expression. 
+Remember to set the remaining row outputs to zero to complete the table.
+
+
+--- slide 25 ---
+Converting a Truth Table to a POS Expression
+Just as with SOP expressions, any truth table can be converted to a POS expression. 
+The conversion process goes like this: identify the rows with zeros as the output, and then come up with the unique sum to put a zero in that row. 
+The final group of sums can then be AND’ed together producing the POS expression.
+Derive the POS expression for the following truth table.
+
+
+--- slide 26 ---
+First, identify each row that contains a zero as the output.
+Next, make a sum for each of these rows. Remember that a sum outputs a zero when all of its inputs equal zero. Therefore, to make a sum for a row equal to zero, the inputs equal to one must be inverted.
+For the first row, a zero is output when A=0, B=0, and C=0. Since for this case, all of the inputs are already zero, simply OR the non-inverted inputs together.
+A+B+C
+The sum that outputs a zero for the row where A=0, B=1, and C=0 must invert B in order to have a sum of 0+0+0=0. This gives us our second sum:
+
+
+--- slide 27 ---
+The third sum outputs a zero for the row where A=1, B=0, and C=1. Therefore, we must invert A and C in order to have a sum of 0+0+0=0.
+The final sum outputs a zero for the row where A=1, B=1, and C=1. In this case, all of the inputs must be inverted to get the sum 0+0+0=0.
+AND'ing all of these sums together gives us our POS expression.
+
+
+--- slide 28 ---
