@@ -11,7 +11,7 @@ export interface AcademicOption {
   label: string;
 }
 
-/** Labelled native select; lists longer than 8 options get a labelled filter input above. */
+/** Labelled native select; long lists except departments get a filter input above. */
 export function AcademicSelect({
   id,
   label,
@@ -39,7 +39,7 @@ export function AcademicSelect({
   selectRef?: React.Ref<HTMLSelectElement>;
 }) {
   const [filter, setFilter] = React.useState("");
-  const searchable = options.length > SEARCH_THRESHOLD;
+  const searchable = noun !== "departments" && options.length > SEARCH_THRESHOLD;
   const query = filter.trim().toLowerCase();
   const visible = searchable && query ? options.filter((o) => o.value === value || o.label.toLowerCase().includes(query)) : options;
 
