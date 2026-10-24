@@ -48,5 +48,6 @@ begin
 end $$;
 revoke all on function private.initialize_registration_academic() from public,anon,authenticated;
 -- PostgreSQL orders same-event triggers by name: on_auth_user_created runs first.
+drop trigger if exists zz_initialize_registration_academic on auth.users;
 create trigger zz_initialize_registration_academic after insert on auth.users
 for each row execute function private.initialize_registration_academic();
