@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Flame, Star } from "lucide-react";
+import { AppStarIcon } from "@/components/icons/app-chrome-icons";
+import { StreakFlame } from "@/components/icons/streak-flame";
 import type { HomeSummary } from "@scholau/api";
 import { COPY, formatStreak, formatXp } from "@scholau/core";
 import { Button } from "@/components/ui/button";
@@ -8,8 +9,8 @@ import { Progress } from "@/components/ui/misc";
 export function StatsPanel({ summary }: { summary: Pick<HomeSummary, "streak" | "xp_total"> }) {
   return (
     <section aria-label="Your progress" className="home-stats">
-      <div className="home-stat"><Star className="stat-star" size={21} aria-hidden /><div><strong>{formatXp(summary.xp_total)}</strong><small>Total XP</small></div></div>
-      <div className="home-stat"><Flame className="stat-flame" size={21} aria-hidden /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div></div>
+      <div className="home-stat"><AppStarIcon className="stat-star" size={21} /><div><strong>{formatXp(summary.xp_total)}</strong><small>Total XP</small></div></div>
+      <div className="home-stat"><StreakFlame active={summary.streak.active_today} className="stat-flame" size={21} /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div></div>
     </section>
   );
 }
