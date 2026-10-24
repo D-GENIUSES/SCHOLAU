@@ -9,6 +9,7 @@ import { Input, NativeSelect } from "@/components/ui/input";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { AcademicSelect, type AcademicOption } from "@/components/onboarding/academic-select";
 
 const named = z.object({ id: z.string().uuid(), name: z.string() });
 const labelled = z.object({ id: z.string().uuid(), label: z.string() });
@@ -17,6 +18,9 @@ const catalogueSchema = z.object({
   departments: z.array(named.extend({ faculty_id: z.string().uuid() })), levels: z.array(labelled),
   academic_periods: z.array(labelled), semesters: z.array(labelled.extend({ academic_period_id: z.string().uuid() })),
 });
+
+const namedOptions = (items: { id: string; name: string }[]): AcademicOption[] =>
+  items.map((item) => ({ value: item.name, label: item.name }));
 
 export function RegistrationStudyFields({ form }: { form: UseFormReturn<SignUpInput> }) {
   const [universitySlug, facultyName, selected] = useWatch({ control: form.control, name: ["universitySlug", "faculty", "catalogProfile"] });
@@ -29,32 +33,67 @@ export function RegistrationStudyFields({ form }: { form: UseFormReturn<SignUpIn
     }, retry: false,
   });
   const data = options.data;
-  const faculty = data?.faculties.find(item => item.name === facultyName);
-  const departments = data?.departments.filter(item => item.faculty_id === faculty?.id) ?? [];
+  const departments = data?.departments ?? [];
   const semesters = data?.semesters.filter(item => item.academic_period_id === selected?.academicPeriodId) ?? [];
   const errors = form.formState.errors;
   const clearDepartment = () => { form.setValue("department", ""); form.setValue("catalogProfile", undefined); };
 
   if (options.isError) return <Alert tone="error" role="alert">Your study options could not be loaded. <Button type="button" variant="link" onClick={() => void options.refetch()}>Try again</Button></Alert>;
   return <>
-    <Field id="sign-up-faculty" label="Faculty" error={errors.faculty?.message}>
-      {data ? <NativeSelect disabled={options.isPending} {...form.register("faculty", { onChange: clearDepartment })}>
-        <option value="">Select your faculty</option>
-        {data.faculties.map(item => <option key={item.id} value={item.name}>{item.name}</option>)}
-      </NativeSelect> : <Input disabled={!universitySlug || options.isPending} autoComplete="off" placeholder="Enter your faculty" maxLength={200} {...form.register("faculty")} />}
-    </Field>
-    <Field id="sign-up-department" label="Department" error={errors.department?.message}>
-      {departments.length ? <Controller control={form.control} name="department" render={({ field }) => <NativeSelect {...field} id="sign-up-department" aria-invalid={Boolean(errors.department)} aria-describedby={errors.department ? "sign-up-department-error" : undefined} onChange={event => {
-        field.onChange(event);
-        const department = departments.find(item => item.name === event.target.value);
-        form.setValue("catalogProfile", department && faculty && data ? {
-          universityId: data.university_id, facultyId: faculty.id, departmentId: department.id,
-          levelId: "", academicPeriodId: data.academic_periods.length === 1 ? data.academic_periods[0]?.id ?? "" : "", semesterId: "",
-        } : undefined);
-        form.setValue("currentSemester", "" as SignUpInput["currentSemester"]);
-      }}><option value="">Select your department</option>{departments.map(item => <option key={item.id} value={item.name}>{item.name}</option>)}</NativeSelect>} />
-        : <Input disabled={!facultyName || options.isPending} autoComplete="off" placeholder="Enter your department" maxLength={200} {...form.register("department")} />}
-    </Field>
+    {data ? <>
+      <Controller control={form.control} name="faculty" render={({ field }) => (
+        <AcademicSelect
+          id="sign-up-faculty"
+          label="Faculty"
+          noun="faculties"
+          filterable={false}
+          error={errors.faculty?.message}
+          options={namedOptions(data.faculties)}
+          loading={options.isPending}
+          value={field.value}
+          onBlur={field.onBlur}
+          selectRef={field.ref}
+          onChange={(value) => {
+            field.onChange(value);
+            const department = form.getValues("department");
+            const picked = departments.find((item) => item.name === department);
+            if (picked && picked.faculty_id !== data.faculties.find((item) => item.name === value)?.id) clearDepartment();
+          }}
+        />
+      )} />
+      <Controller control={form.control} name="department" render={({ field }) => (
+        <AcademicSelect
+          id="sign-up-department"
+          label="Department"
+          noun="departments"
+          filterable={false}
+          error={errors.department?.message}
+          options={namedOptions(departments)}
+          loading={options.isPending}
+          value={field.value}
+          onBlur={field.onBlur}
+          selectRef={field.ref}
+          onChange={(value) => {
+            field.onChange(value);
+            const department = departments.find(item => item.name === value);
+            const matchedFaculty = department ? data.faculties.find(item => item.id === department.faculty_id) : undefined;
+            if (matchedFaculty) form.setValue("faculty", matchedFaculty.name, { shouldDirty: true });
+            form.setValue("catalogProfile", department && matchedFaculty ? {
+              universityId: data.university_id, facultyId: matchedFaculty.id, departmentId: department.id,
+              levelId: "", academicPeriodId: data.academic_periods.length === 1 ? data.academic_periods[0]?.id ?? "" : "", semesterId: "",
+            } : undefined);
+            form.setValue("currentSemester", "" as SignUpInput["currentSemester"]);
+          }}
+        />
+      )} />
+    </> : <>
+      <Field id="sign-up-faculty" label="Faculty" error={errors.faculty?.message}>
+        <Input disabled={!universitySlug || options.isPending} autoComplete="off" placeholder="Enter your faculty" maxLength={200} {...form.register("faculty")} />
+      </Field>
+      <Field id="sign-up-department" label="Department" error={errors.department?.message}>
+        <Input disabled={!facultyName || options.isPending} autoComplete="off" placeholder="Enter your department" maxLength={200} {...form.register("department")} />
+      </Field>
+    </>}
     {selected && data ? <>
       <Field id="sign-up-level" label="Level" error={errors.catalogProfile?.levelId?.message}>
         <NativeSelect {...form.register("catalogProfile.levelId")}><option value="">Select your level</option>{data.levels.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</NativeSelect>

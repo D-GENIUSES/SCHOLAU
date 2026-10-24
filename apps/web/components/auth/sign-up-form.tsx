@@ -115,7 +115,7 @@ export function SignUpForm() {
           }} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
         } />
         <RegistrationStudyFields form={form} />
-        <p className="text-xs leading-relaxed text-ink-muted">Your selected age declaration and acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> apply to this registration. <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>
+        <p className="text-xs leading-relaxed text-ink-muted">Your acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> applies to this registration. <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>
         <Button type="submit" block loading={isSubmitting}>Create account</Button>
         <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => { setError(null); setStep("account"); }}>Back</Button>
       </>}
