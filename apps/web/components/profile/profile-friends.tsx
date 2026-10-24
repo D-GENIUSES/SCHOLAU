@@ -33,7 +33,7 @@ export function ProfileFriends() {
     <div className="grid max-w-[720px] gap-4">
       {notice ? <p role="status" className="text-sm font-medium text-success">{notice}</p> : null}
       <InlineError error={action.error} />
-      <Card>
+      <Card className={requests.length ? "profile-friends-requests" : undefined}>
         <CardHeader>
           <CardTitle>Friend requests{requests.length ? ` (${requests.length})` : ""}</CardTitle>
           <p className="text-sm text-ink-muted">Accept or decline people who want to connect with you.</p>

@@ -56,3 +56,37 @@ export function AppSearchIcon({ className, size, ...props }: IconProps) {
     </svg>
   );
 }
+
+export function AppStarIcon({ className, size, ...props }: IconProps) {
+  return (
+    <svg {...base({ className, size, ...props })}>
+      <path
+        d="M12 3.8 14.2 9.5l6 0.5-4.6 3.8 1.5 5.9L12 16.8 7.9 19.7l1.5-5.9L4.8 10l6-.5L12 3.8Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export function AppBookIcon({ className, size, ...props }: IconProps) {
+  return (
+    <svg {...base({ className, size, ...props })}>
+      <path
+        d="M12 4.2c-4.35 0-7.75 1.25-7.75 2.85V18.4c0 .75.62 1.35 1.38 1.35.42 0 .82-.2 1.08-.52L12 16.5l5.29 3.73c.26.32.66.52 1.08.52.76 0 1.38-.6 1.38-1.35V7.05c0-1.6-3.4-2.85-7.75-2.85Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export function AppSwordsIcon({ className, size, ...props }: IconProps) {
+  return (
+    <svg {...base({ className, size, ...props })}>
+      <path
+        d="m8.5 17.2 2.2-9.5 2.8 1.2-2.2 9.5-2.8-1.2ZM15.5 17.2l-2.2-9.5-2.8 1.2 2.2 9.5 2.8-1.2Z"
+        fill="currentColor"
+      />
+      <circle cx="12" cy="5.5" r="2.2" fill="currentColor" />
+    </svg>
+  );
+}

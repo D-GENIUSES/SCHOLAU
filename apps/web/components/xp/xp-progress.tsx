@@ -52,7 +52,7 @@ export function AchievementBadges({ badges }: { badges: { code: string }[] }) {
         <div className="flex items-center gap-3">
           <div><h3 className="font-semibold tracking-tight">Badges</h3><p className="mt-1 text-xs text-ink-muted">Earned from lessons, reviews, and assessments.</p></div>
         </div>
-        <span className="rounded-full border border-line bg-surface-card px-3 py-1.5 text-xs font-semibold text-brand-primary">{earnedCount} of {entries.length} earned</span>
+        <span className="profile-badge-count">{earnedCount} of {entries.length} earned</span>
       </div>
       <div className="mt-4"><Progress value={entries.length ? earnedCount / entries.length * 100 : 0} label="Badge collection progress" /></div>
       {earnedCount === 0 ? <p className="mt-2 text-xs leading-relaxed text-ink-muted">Complete a lesson knowledge check to earn your first badge.</p> : null}

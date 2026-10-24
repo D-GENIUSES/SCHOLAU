@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Check, Search, UserPlus } from "lucide-react";
+import { ArrowLeft, Award, Check, Search, UserPlus } from "lucide-react";
+import { AppStarIcon } from "@/components/icons/app-chrome-icons";
 import { type ReactNode, useState } from "react";
 import { type PublicProfile, isApiError } from "@scholau/api";
 import { useFriendAction, useFriends, useProfile, usePublicProfile, useSearchFriends } from "@scholau/api/react";
@@ -22,9 +23,9 @@ export function PeopleSearch() {
   const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
   const results = useSearchFriends(query);
-  return <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-    <header><h1 className="text-3xl font-extrabold">Find people</h1><p className="mt-2 text-ink-muted">Search by name or username.</p></header>
-    <Card><CardContent className="pt-6">
+  return <div className="public-profile-page">
+    <header className="public-profile-page-head"><h1>Find people</h1><p>Search by name or username.</p></header>
+    <Card className="public-profile-search-card"><CardContent className="pt-6">
       <form onSubmit={event => { event.preventDefault(); setQuery(input.trim().replace(/^@/, "")); }} className="flex flex-wrap items-end gap-3">
         <label className="min-w-0 flex-1 text-sm font-semibold">Name or username<Input value={input} onChange={event => setInput(event.target.value)} placeholder="Name or username" minLength={3} maxLength={60} required type="search" /></label>
         <Button type="submit" loading={results.isFetching}><Search className="size-4" aria-hidden />Search</Button>
@@ -33,19 +34,19 @@ export function PeopleSearch() {
     {results.isFetching ? <LoadingState label="Finding people…" /> : results.isError ? <ErrorState error={results.error} onRetry={() => void results.refetch()} /> : query.length >= 3 && results.isSuccess ? <section aria-label="People" aria-live="polite">
       <p className="mb-3 text-sm text-ink-muted">{results.data.people.length ? `${results.data.people.length} people found` : "No people found. Try a different name or username."}</p>
       <ul className="grid gap-3 sm:grid-cols-2">{results.data.people.map(person => <li key={person.user_id}>
-        <Link href={`/people/${person.user_id}`} className="flex h-full items-center gap-4 rounded-2xl border border-line bg-surface-card p-5 transition-colors hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary">
+        <Link href={`/people/${person.user_id}`} className="public-profile-person-link">
           <Avatar name={person.display_name} path={person.avatar_path} publicProfile size={56} />
           <div className="min-w-0"><h2 className="break-words font-bold">{person.display_name}</h2>{person.username ? <p className="break-all text-sm text-ink-muted">@{person.username}</p> : null}</div>
         </Link>
       </li>)}</ul>
-    </section> : <div className="rounded-2xl border border-dashed border-line p-8 text-center"><h2 className="font-bold">Search for someone</h2><p className="mt-2 text-sm text-ink-muted">Enter a name or username to find classmates.</p></div>}
+    </section> : <div className="public-profile-empty"><h2>Search for someone</h2><p>Enter a name or username to find classmates.</p></div>}
   </div>;
 }
 
 export function PublicProfileView({ userId }: { userId: string }) {
   const profile = usePublicProfile(userId);
   if (profile.isPending) return <LoadingState label="Loading public profile…" />;
-  if (profile.isError) return <div className="mx-auto max-w-3xl"><Link href="/people" className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Find people</Link>{isApiError(profile.error, "NOT_FOUND") ? <Card><CardContent className="py-10 text-center"><h1 className="text-xl font-bold">Profile unavailable</h1><p className="mt-2 text-ink-muted">This profile is no longer available to view.</p></CardContent></Card> : <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />}</div>;
+  if (profile.isError) return <div className="public-profile-page"><Link href="/people" className="public-profile-back"><ArrowLeft className="size-4" aria-hidden />Find people</Link>{isApiError(profile.error, "NOT_FOUND") ? <Card className="public-profile-unavailable"><CardContent className="py-10 text-center"><h1 className="text-xl font-bold">Profile unavailable</h1><p className="mt-2 text-ink-muted">This profile is no longer available to view.</p></CardContent></Card> : <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />}</div>;
   return <PublicProfileContent profile={profile.data} actions={<ProfileFriendAction userId={profile.data.id} />} />;
 }
 
@@ -75,37 +76,123 @@ export function PublicProfileContent({ profile: p, actions }: { profile: PublicP
   const [section, setSection] = useState<"progress" | "about">("progress");
   const academic = [["University", p.university], ["Faculty", p.faculty], ["Department", p.department], ["Level", p.level]].filter(([, value]) => value);
   const joined = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.joined_at));
-  return <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
-    <Link href="/people" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-brand-primary"><ArrowLeft className="size-4" aria-hidden />Find people</Link>
-    <section className="overflow-hidden rounded-2xl border border-brand-primary/25 bg-surface-card">
-      <header className="flex flex-col gap-4 p-4 sm:p-5">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="shrink-0 rounded-full border border-brand-primary/25 p-1"><Avatar name={p.display_name} path={p.avatar_path} size={56} publicProfile /></div>
-          <div className="min-w-32 flex-1"><h1 className="break-words text-xl font-bold tracking-tight sm:text-2xl">{p.display_name}</h1>{p.username ? <p className="mt-1 break-all text-sm text-ink-muted">@{p.username}</p> : null}</div>
-          {actions}
+  const eyebrow = [p.department, p.level].filter(Boolean).join(" · ");
+  return (
+    <div className="public-profile-page">
+      <Link href="/people" className="public-profile-back">
+        <ArrowLeft className="size-4" aria-hidden />
+        Find people
+      </Link>
+      <section className="public-profile-hero">
+        {eyebrow ? <p className="profile-identity-eyebrow">{eyebrow}</p> : null}
+        <div className="public-profile-hero-row">
+          <Avatar name={p.display_name} path={p.avatar_path} size={72} publicProfile variant="profile" />
+          <div className="public-profile-hero-copy">
+            <h1>{p.display_name}</h1>
+            {p.username ? <p className="public-profile-username">@{p.username}</p> : null}
+            {p.university ? <p className="public-profile-university">{p.university}</p> : null}
+          </div>
+          {actions ? <div className="public-profile-actions">{actions}</div> : null}
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="min-w-0 flex-1"><p className="text-sm text-ink-muted"><span className="break-words">{p.department ?? "No department listed"}{p.level ? ` · ${p.level}` : ""}</span></p>{p.university ? <p className="mt-1 break-words text-xs text-ink-muted">{p.university}</p> : null}</div>
+        <div role="group" aria-label="Profile sections" className="public-profile-tabs">
+          {(["progress", "about"] as const).map((value) => (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={section === value}
+              aria-controls="public-profile-section"
+              onClick={() => setSection(value)}
+              className={cn("public-profile-tab", section === value && "is-active")}
+            >
+              {value === "progress" ? "Progress" : "About"}
+            </button>
+          ))}
         </div>
-      </header>
-      <div role="group" aria-label="Profile sections" className="grid grid-cols-2 gap-1 border-t border-brand-primary/15 bg-surface-page/50 p-1.5">
-        {(["progress", "about"] as const).map(value => <button key={value} type="button" aria-pressed={section === value} aria-controls="public-profile-section" onClick={() => setSection(value)} className={cn("min-h-10 rounded-xl px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-brand-primary", section === value ? "border border-brand-primary/20 bg-surface-card text-brand-primary shadow-sm" : "border border-transparent text-ink-muted hover:bg-surface-card")}>{value === "progress" ? "Progress" : "About"}</button>)}
-      </div>
-    </section>
-    <section id="public-profile-section" aria-label={section === "progress" ? "Learning progress" : "About this learner"} className={cn("grid items-start gap-3", section === "progress" && "sm:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)]")}>
-      {section === "progress" ? <>
-        <div className="grid grid-cols-2 gap-3 self-stretch">
-          <div className="rounded-2xl border border-brand-primary/25 bg-surface-card p-4"><p className="text-xs text-ink-muted">Total XP</p>{p.xp_total === null ? <p className="mt-1 text-sm font-semibold">Not shared</p> : <p className="mt-1 text-2xl font-bold tabular-nums text-brand-primary">{formatNumber(p.xp_total)}</p>}</div>
-          <div className="rounded-2xl border border-brand-primary/25 bg-surface-card p-4"><p className="text-xs text-ink-muted">Badges earned</p><p className="mt-1 text-2xl font-bold tabular-nums text-brand-primary">{p.badges.length}</p></div>
-        </div>
-        <Card className="border-brand-primary/25 shadow-none"><CardHeader><CardTitle>Learning milestones</CardTitle></CardHeader><CardContent>
-          {p.badges.length ? <ul className="flex flex-wrap gap-2">{p.badges.map(code => <li key={code} className="flex min-w-0 max-w-full items-center gap-2 rounded-xl border border-brand-primary/15 bg-surface-tint/40 p-2.5"><span className="min-w-0 break-words text-xs font-semibold">{badgeNames[code] ?? "Badge"}</span></li>)}</ul> : <div className="py-4"><p className="text-sm font-semibold">No badges yet</p><p className="mt-1 text-xs text-ink-muted">Badges appear here when they are earned.</p></div>}
-        </CardContent></Card>
-      </> : <Card className="border-brand-primary/25 shadow-none"><CardHeader><CardTitle>Academic profile</CardTitle></CardHeader><CardContent>
-        {academic.length ? <dl className="grid gap-4 sm:grid-cols-2">{academic.map(([label, value]) => <div key={label}><dt className="text-xs text-ink-muted">{label}</dt><dd className="mt-1 break-words text-sm font-semibold">{value}</dd></div>)}</dl> : <p className="text-sm text-ink-muted">No academic information shared yet.</p>}
-        <p className="mt-5 border-t border-line pt-3 text-xs text-ink-muted">Joined {joined}</p>
-      </CardContent></Card>}
-    </section>
-    <p className="text-center text-xs text-ink-muted">Only information this person has chosen to share is shown.</p>
-  </div>;
+      </section>
+      <section
+        id="public-profile-section"
+        aria-label={section === "progress" ? "Learning progress" : "About this learner"}
+        className={cn("public-profile-body", section === "progress" && "public-profile-body-progress")}
+      >
+        {section === "progress" ? (
+          <>
+            <div className="public-profile-stat-grid">
+              <div className="public-profile-stat">
+                <div className="profile-stat-icon">
+                  <AppStarIcon className="size-5" />
+                </div>
+                <div>
+                  {p.xp_total === null ? (
+                    <>
+                      <strong>—</strong>
+                      <p>Total XP not shared</p>
+                    </>
+                  ) : (
+                    <>
+                      <strong>{formatNumber(p.xp_total)}</strong>
+                      <p>Total XP</p>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="public-profile-stat">
+                <div className="profile-stat-icon" data-tone="purple">
+                  <Award className="size-5" aria-hidden />
+                </div>
+                <div>
+                  <strong>{p.badges.length}</strong>
+                  <p>Badges earned</p>
+                </div>
+              </div>
+            </div>
+            <Card className="public-profile-milestones">
+              <CardHeader>
+                <p className="profile-activity-label">Achievements</p>
+                <CardTitle>Learning milestones</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {p.badges.length ? (
+                  <ul className="public-profile-badge-list">
+                    {p.badges.map((code) => (
+                      <li key={code}>
+                        <span className="profile-badge-count">{badgeNames[code] ?? "Badge"}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="py-4">
+                    <p className="text-sm font-semibold">No badges yet</p>
+                    <p className="mt-1 text-xs text-ink-muted">Badges appear here when they are earned.</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </>
+        ) : (
+          <Card className="public-profile-about">
+            <CardHeader>
+              <p className="profile-activity-label">Academic</p>
+              <CardTitle>Academic profile</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {academic.length ? (
+                <dl className="public-profile-about-grid">
+                  {academic.map(([label, value]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : (
+                <p className="text-sm text-ink-muted">No academic information shared yet.</p>
+              )}
+              <p className="public-profile-joined">Joined {joined}</p>
+            </CardContent>
+          </Card>
+        )}
+      </section>
+      <p className="public-profile-disclaimer">Only information this person has chosen to share is shown.</p>
+    </div>
+  );
 }
