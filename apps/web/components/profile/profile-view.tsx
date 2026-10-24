@@ -5,7 +5,8 @@ import { LegalLinks } from "@/components/legal-links";
 import { useState } from "react";
 import { Segmented } from "@/components/ui/segmented";
 import { NotificationSettings } from "@/components/notifications/notification-settings";
-import { ChevronRight, Star, BookOpen, Swords, Settings } from "lucide-react";
+import { ChevronRight, Settings } from "lucide-react";
+import { AppBookIcon, AppStarIcon, AppSwordsIcon } from "@/components/icons/app-chrome-icons";
 import { StreakFlame } from "@/components/icons/streak-flame";
 import Link from "next/link";
 import { useFriends, useProfile, useXpProgress } from "@scholau/api/react";
@@ -90,10 +91,10 @@ export function ProfileView({ registration = null, email = null }: { registratio
     ["Semester", p.academic?.semester.label ?? (registration ? SEMESTER_LABELS[registration.currentSemester] : "Not added yet")],
   ];
   const stats = [
-    { kind: "star" as const, icon: Star, label: "Total XP", value: formatNumber(p.xp_total), tone: undefined },
+    { kind: "star" as const, icon: AppStarIcon, label: "Total XP", value: formatNumber(p.xp_total), tone: undefined },
     { kind: "streak" as const, label: "Current streak", value: formatStreak(p.streak.current), tone: "streak" as const },
-    { kind: "book" as const, icon: BookOpen, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed), tone: "success" as const },
-    { kind: "swords" as const, icon: Swords, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed), tone: "purple" as const },
+    { kind: "book" as const, icon: AppBookIcon, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed), tone: "success" as const },
+    { kind: "swords" as const, icon: AppSwordsIcon, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed), tone: "purple" as const },
   ];
   return <div className="compact-profile">
     <Dialog>

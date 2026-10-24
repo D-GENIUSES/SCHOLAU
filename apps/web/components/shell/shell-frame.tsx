@@ -1,4 +1,5 @@
-import { Bell, ChevronRight, Shield, Search } from "lucide-react";
+import { ChevronRight, Shield } from "lucide-react";
+import { AppBellIcon, AppSearchIcon } from "@/components/icons/app-chrome-icons";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
@@ -15,10 +16,10 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Your learning space";
   const account = guest ? <Button asChild size="sm" ><Link href="/sign-in">Sign in</Link></Button> : <>
-    <Link href="/people" className="notification-button" aria-label="Find people"><Search className="size-5" aria-hidden /></Link>
+    <Link href="/people" className="notification-button" aria-label="Find people"><AppSearchIcon size={20} /></Link>
     {streak ? <StreakBadge current={streak.current} activeToday={streak.active_today} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
-      <Bell className="size-5" aria-hidden />
+      <AppBellIcon size={20} />
       {unread > 0 ? <span aria-hidden className="notification-badge">{unread > 9 ? "9+" : unread}</span> : null}
     </Link>
     <Link href="/profile" className="header-profile-link" aria-label={`${displayName || "Your"} profile`}>

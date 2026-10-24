@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import type { HomeSummary } from "@scholau/api";
 import { useCourseOverview } from "@scholau/api/react";
 import Link from "next/link";
@@ -17,12 +17,11 @@ import { buildPreviewCourseOverview } from "./home-preview-overview";
 
 export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [offeringId, setOfferingId] = useState<string | null>(() => resolveHomeOfferingId(summary, null));
-
-  useEffect(() => {
-    const stored = readStoredHomeOfferingId();
-    setOfferingId(resolveHomeOfferingId(summary, stored));
-  }, [summary]);
+  const [userPick, setUserPick] = useState<string | null>(null);
+  const offeringId = useMemo(() => {
+    if (userPick && summary.enrolled_courses.some((c) => c.offering_id === userPick)) return userPick;
+    return resolveHomeOfferingId(summary, readStoredHomeOfferingId());
+  }, [summary, userPick]);
 
   const enrolled = summary.enrolled_courses.find((c) => c.offering_id === offeringId);
   const isPreviewOffering = Boolean(offeringId?.startsWith("preview-"));
@@ -32,7 +31,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
     summary.continue_learning?.offering_id === offeringId ? summary.continue_learning.lesson_id : null;
 
   const selectOffering = (id: string) => {
-    setOfferingId(id);
+    setUserPick(id);
     writeStoredHomeOfferingId(id);
   };
 
