@@ -1,7 +1,8 @@
 "use client";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 
-import { CheckCircle2, MinusCircle, XCircle } from "lucide-react";
+import { CheckCircle2, Eye, EyeOff, MinusCircle, XCircle } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
 import type { Battle, BattleRound } from "@scholau/api";
 import { useProfile } from "@scholau/api/react";
@@ -20,7 +21,7 @@ const HEADLINE = {
   draw: { text: "Draw" },
 } as const;
 
-/** finished / voided result. Never shows answer keys or the opponent's choices. */
+/** finished / voided result. Answer keys stay hidden until you expand a round. */
 export function ResultPanel({ battle }: { battle: Battle }) {
   const profile = useProfile();
   const me = battle.participants.find((p) => p.is_me);
@@ -113,10 +114,20 @@ function ScoreBox({ label, value, total }: { label: string; value: number | null
 }
 
 function RoundRow({ round }: { round: BattleRound }) {
-  const mine = round.my_option_id === null ? "none" : round.my_is_correct ? "correct" : "incorrect";
+  const [open, setOpen] = useState(false);
+  const mine = round.my_option_id === null && !round.my_text_answer?.trim() ? "none" : round.my_is_correct ? "correct" : "incorrect";
+  const review = hasRoundReview(round);
   return (
     <li className="flex flex-col gap-2 rounded-card border border-line bg-surface-card p-4">
-      <p className="text-sm font-semibold text-ink-muted">Question {round.position}{round.course_code ? ` · ${round.course_code}` : ""}</p>
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <p className="text-sm font-semibold text-ink-muted">Question {round.position}{round.course_code ? ` · ${round.course_code}` : ""}</p>
+        {review ? (
+          <Button type="button" variant="ghost" size="sm" className="min-h-9 shrink-0 px-2" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+            {open ? <EyeOff aria-hidden /> : <Eye aria-hidden />}
+            {open ? "Hide answer" : "View answer"}
+          </Button>
+        ) : null}
+      </div>
       <p>{round.prompt}</p>
       <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
         <span>
@@ -126,7 +137,54 @@ function RoundRow({ round }: { round: BattleRound }) {
           Opponent: <Mark kind={round.opponent_is_correct ? "correct" : "incorrect"} />
         </span>
       </div>
+      {open && review ? <RoundAnswerReview round={round} /> : null}
     </li>
+  );
+}
+
+function hasRoundReview(round: BattleRound): boolean {
+  if (round.explanation?.trim()) return true;
+  if (round.gap_answers?.length) return true;
+  return Boolean(round.options?.length && round.correct_option_id);
+}
+
+function optionLabel(round: BattleRound, optionId: string | null | undefined): string | null {
+  if (!optionId || !round.options?.length) return null;
+  const i = round.options.findIndex((o) => o.id === optionId);
+  const o = round.options[i];
+  if (!o) return null;
+  return `${String.fromCharCode(65 + i)}. ${o.body}`;
+}
+
+function RoundAnswerReview({ round }: { round: BattleRound }) {
+  const yours =
+    round.answer_format === "fill_in_gap"
+      ? round.my_text_answer?.trim() || null
+      : optionLabel(round, round.my_option_id);
+  const correct =
+    round.answer_format === "fill_in_gap"
+      ? round.gap_answers?.map((g) => g.accepted_answers.join(" / ")).join("; ") || null
+      : optionLabel(round, round.correct_option_id);
+
+  return (
+    <div className="mt-1 flex flex-col gap-3 border-t border-line pt-3">
+      <dl className="grid gap-2 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-4">
+        <dt className="font-semibold text-ink-muted">Your answer</dt>
+        <dd className="whitespace-pre-line break-words">{yours ?? "Not answered"}</dd>
+        {correct ? (
+          <>
+            <dt className="font-semibold text-ink-muted">Correct answer</dt>
+            <dd className="whitespace-pre-line break-words">{correct}</dd>
+          </>
+        ) : null}
+      </dl>
+      {round.explanation?.trim() ? (
+        <div className="rounded-control bg-surface-page p-3">
+          <p className="text-sm font-semibold">Explanation</p>
+          <p className="whitespace-pre-line text-sm">{round.explanation}</p>
+        </div>
+      ) : null}
+    </div>
   );
 }
 

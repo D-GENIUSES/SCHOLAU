@@ -688,7 +688,13 @@ export interface BattleRound {
   course_code?: string;
   position: number;
   prompt: string;
+  answer_format?: BattleCurrentQuestion["answer_format"];
+  options?: (AttemptOption & { steps?: string[] })[];
+  correct_option_id?: Uuid | null;
+  gap_answers?: { index?: number; accepted_answers: string[] }[] | null;
+  explanation?: string | null;
   my_option_id: Uuid | null;
+  my_text_answer?: string | null;
   my_is_correct: boolean;
   opponent_is_correct: boolean;
 }

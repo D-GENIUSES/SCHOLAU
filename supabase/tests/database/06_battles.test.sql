@@ -158,7 +158,8 @@ select is(current_setting('t.fb')::jsonb ->> 'state', 'finished', 'battle reachi
 select is(current_setting('t.fb')::jsonb -> 'outcome' ->> 'result', 'loss', 'B lost (accuracy only)');
 select is((current_setting('t.fb')::jsonb -> 'outcome' ->> 'xp_awarded')::integer, 0, 'zero correct answers and a loss earns no XP');
 select is(jsonb_array_length(current_setting('t.fb')::jsonb -> 'rounds'), 5, 'results list every round');
-select ok(position('correct_option' in current_setting('t.fb')::jsonb::text) = 0, 'results never reveal battle answer keys');
+select ok((current_setting('t.fb')::jsonb -> 'rounds' -> 0 ->> 'correct_option_id') is not null, 'finished rounds include the correct option for review');
+select ok((current_setting('t.fb')::jsonb -> 'current_question') is null, 'finished battle omits the live question payload');
 reset role;
 select pg_temp.login(current_setting('t.a')::uuid);
 select is((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'result', 'win', 'A won');
