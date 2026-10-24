@@ -22,7 +22,7 @@ select throws_ok($$select public.get_my_profile_v1()$$,'PT409','INVALID_STATE','
 select is(authz.can_access_topic('user:'||current_setting('t.google')),false,'pending account cannot access realtime channels');
 select is(authz.is_admin(),false,'pending identity never receives admin authorization');
 select throws_ok($$select public.complete_registration_v1('{}')$$,'P0001','LEGAL_ACCEPTANCE_REQUIRED','missing acceptance is rejected');
-select throws_ok($$select public.complete_registration_v1(pg_temp.adult_registration()||'{"age_declaration":"under18"}')$$,'P0001','GUARDIAN_REGISTRATION_CLOSED','Google cannot bypass guardian protections');
+select is((public.complete_registration_v1(pg_temp.adult_registration()||'{"age_declaration":"under18"}')->>'completed')::boolean,true,'OAuth completion ignores legacy age metadata');
 select is((public.complete_registration_v1(pg_temp.adult_registration())->>'completed')::boolean,true,'valid explicit acceptance completes registration');
 select is((public.complete_registration_v1(pg_temp.adult_registration())->>'completed')::boolean,true,'retry is idempotent');
 select is((public.get_my_registration_status_v1()->>'pending')::boolean,false,'completed account no longer needs the form');
