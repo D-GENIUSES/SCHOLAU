@@ -16,7 +16,7 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
 }) {
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Home";
-  const account = guest ? <Button asChild size="sm" ><Link href="/sign-in">Sign in</Link></Button> : <>
+  const account = guest ? <Button asChild size="sm" ><Link href="/sign-up">Sign in</Link></Button> : <>
     <Link href="/people" className="notification-button" aria-label="Find people"><AppSearchIcon size={20} /></Link>
     {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
