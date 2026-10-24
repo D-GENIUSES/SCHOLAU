@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, History, Swords } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import type { BattleHistoryItem } from "@scholau/api";
 import { useBattleHistory } from "@scholau/api/react";
@@ -15,16 +15,15 @@ export function BattleHistory() {
 
   return (
     <section aria-labelledby="battle-history-heading" className="battle-history flex flex-col gap-3">
-      <div className="battle-history-heading"><span className="battle-section-icon"><History size={20} aria-hidden /></span><div><h2 id="battle-history-heading" className="text-base font-bold">Battle history</h2><p>Your matches. Your progress. Your next rematch.</p></div></div>
+      <div className="battle-history-heading"><div><h2 id="battle-history-heading" className="text-base font-bold">Battle history</h2><p>Completed matches</p></div></div>
       {history.isPending ? (
         <LoadingState label="Loading battle history…" lines={3} />
       ) : history.isError && items.length === 0 ? (
         <ErrorState error={history.error} onRetry={() => void history.refetch()} />
       ) : items.length === 0 ? (
         <EmptyState
-          icon={<Swords className="size-6" />}
-          title="Your first rivalry starts here"
-          description="Play a battle, then come back to see how you did."
+          title="No battles yet"
+          description="Finished matches will appear here."
         />
       ) : (
         <>

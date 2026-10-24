@@ -43,7 +43,7 @@ export function streakStatusMessage(streak: StreakSnapshot): string {
   if (streak.active_today) {
     return streak.current === 1
       ? "Your streak started today. Come back tomorrow to keep it going."
-      : "You studied today. Keep showing up every day to grow your streak.";
+      : "You studied today. Come back tomorrow to continue your streak.";
   }
   return `Complete a lesson today to keep your ${streak.current}-day streak.`;
 }

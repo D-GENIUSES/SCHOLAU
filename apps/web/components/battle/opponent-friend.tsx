@@ -21,9 +21,9 @@ export function BattleOpponentFriend({ opponent }: { opponent: BattleParticipant
   return <section aria-label={`Connect with ${opponent.display_name}`} className="flex min-w-0 flex-col gap-4 rounded-2xl border border-blue-200 bg-blue-50 p-4 sm:flex-row sm:items-center sm:justify-between">
     <div className="flex min-w-0 items-center gap-3">
       <Avatar name={opponent.display_name} path={opponent.avatar_path} size={40} publicProfile />
-      <div className="min-w-0"><p className="text-xs font-semibold text-brand-primary">Good match. New friend?</p>
+      <div className="min-w-0">
         <Link href={`/people/${opponent.user_id}`} className="block truncate text-sm font-bold hover:underline" title={opponent.display_name}>{opponent.display_name}</Link>
-        <p className="text-xs text-ink-muted">Keep the rivalry going beyond this battle.</p>
+        <p className="text-xs text-ink-muted">Add them as a friend to challenge them again.</p>
       </div>
     </div>
     <div className="flex shrink-0 flex-col gap-2">

@@ -1,14 +1,13 @@
-import { Ban, CircleDashed, Equal, ShieldOff, Trophy, XCircle } from "lucide-react";
 import type { BattleCancelReason, BattleOutcome } from "@scholau/core";
 import { Badge } from "@/components/ui/misc";
 
 const OUTCOME = {
-  win: { label: "Win", tone: "success", icon: Trophy },
-  loss: { label: "Loss", tone: "danger", icon: XCircle },
-  draw: { label: "Draw", tone: "brand", icon: Equal },
-  cancelled: { label: "Cancelled", tone: "neutral", icon: Ban },
-  voided: { label: "Voided", tone: "warning", icon: ShieldOff },
-  in_progress: { label: "In progress", tone: "brand", icon: CircleDashed },
+  win: { label: "Win", tone: "success" },
+  loss: { label: "Loss", tone: "danger" },
+  draw: { label: "Draw", tone: "brand" },
+  cancelled: { label: "Cancelled", tone: "neutral" },
+  voided: { label: "Voided", tone: "warning" },
+  in_progress: { label: "In progress", tone: "brand" },
 } as const;
 
 export function outcomeLabel(outcome: BattleOutcome): string {
@@ -17,10 +16,8 @@ export function outcomeLabel(outcome: BattleOutcome): string {
 
 export function OutcomeBadge({ outcome, className }: { outcome: BattleOutcome; className?: string }) {
   const o = OUTCOME[outcome];
-  const Icon = o.icon;
   return (
     <Badge tone={o.tone} className={className}>
-      <Icon className="size-4" aria-hidden />
       {o.label}
     </Badge>
   );

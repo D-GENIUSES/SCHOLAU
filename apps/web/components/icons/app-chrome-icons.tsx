@@ -16,46 +16,6 @@ function base({ className, size = 24, ...props }: IconProps) {
   };
 }
 
-export function AppStarIcon({ className, size, ...props }: IconProps) {
-  return (
-    <svg {...base({ className, size, ...props })}>
-      <path
-        d="M12 2.8 14.4 8.6l6.2.5-4.7 3.9 1.5 6.1L12 16.4l-5.4 3.7 1.5-6.1-4.7-3.9 6.2-.5L12 2.8Z"
-        fill="currentColor"
-      />
-      <path
-        d="M12 5.2 13.6 9.2l4.2.35-3.2 2.65.95 3.95L12 14.1l-3.55 2.45.95-3.95-3.2-2.65 4.2-.35L12 5.2Z"
-        fill="currentColor"
-        opacity="0.35"
-      />
-    </svg>
-  );
-}
-
-export function AppBookIcon({ className, size, ...props }: IconProps) {
-  return (
-    <svg {...base({ className, size, ...props })}>
-      <path
-        d="M5 5.5c0-.83.67-1.5 1.5-1.5.42 0 .81.17 1.09.45L12 8.2l4.41-3.75A1.5 1.5 0 0 1 17.5 4c.83 0 1.5.67 1.5 1.5v13c0 .83-.67 1.5-1.5 1.5-.42 0-.81-.17-1.09-.45L12 15.3l-4.41 3.75A1.5 1.5 0 0 1 6.5 19.5 1.5 1.5 0 0 1 5 18V5.5Z"
-        fill="currentColor"
-      />
-      <path d="M12 8.2v11.1" stroke="currentColor" strokeWidth="1.25" strokeOpacity="0.35" />
-    </svg>
-  );
-}
-
-export function AppSwordsIcon({ className, size, ...props }: IconProps) {
-  return (
-    <svg {...base({ className, size, ...props })}>
-      <path
-        d="m8.2 16.8 1.6-7.2 2.9 1.2-1.6 7.2-2.9-1.2ZM15.8 16.8l-1.6-7.2-2.9 1.2 1.6 7.2 2.9-1.2Z"
-        fill="currentColor"
-      />
-      <circle cx="12" cy="6.5" r="2" fill="currentColor" opacity="0.85" />
-    </svg>
-  );
-}
-
 export function AppBellIcon({ className, size, ...props }: IconProps) {
   return (
     <svg {...base({ className, size, ...props })}>

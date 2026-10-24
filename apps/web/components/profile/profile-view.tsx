@@ -5,9 +5,7 @@ import { LegalLinks } from "@/components/legal-links";
 import { useState } from "react";
 import { Segmented } from "@/components/ui/segmented";
 import { NotificationSettings } from "@/components/notifications/notification-settings";
-import { ChevronRight, Settings } from "lucide-react";
-import { AppBookIcon, AppStarIcon, AppSwordsIcon } from "@/components/icons/app-chrome-icons";
-import { StreakFlame } from "@/components/icons/streak-flame";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useFriends, useProfile, useXpProgress } from "@scholau/api/react";
 import type { XpProgress } from "@scholau/api";
@@ -24,7 +22,7 @@ import { AcademicDetailsCard } from "./academic-details-card";
 import { ProfileEditForm } from "./profile-edit-form";
 import { ProfileFriends } from "./profile-friends";
 
-const activityNames: Record<string, string> = { lesson: "Lesson progress", review: "Topic review", practice: "Practice test", mock: "Mock exam", battle: "Quiz battle", signup: "Welcome to ScholAu", correction: "XP adjustment" };
+const activityNames: Record<string, string> = { lesson: "Lesson progress", review: "Topic review", practice: "Practice test", mock: "Mock exam", battle: "Quiz battle", signup: "Account created", correction: "XP adjustment" };
 
 function LearningActivity({ data }: { data: XpProgress }) {
   const today = new Date(data.server_time);
@@ -46,7 +44,7 @@ function LearningActivity({ data }: { data: XpProgress }) {
         </div>)}
       </div>
       <p className="mt-4 text-xs text-ink-muted">Based on your latest 50 XP awards. Days use West Africa Time.</p>
-      <p className="mt-4 flex items-start gap-2 text-sm text-ink-muted">{days.some((day) => day.xp > 0) ? "Keep showing up. Every lesson counts." : "Your next learning session starts the story."}</p>
+      <p className="mt-4 text-sm text-ink-muted">{days.some((day) => day.xp > 0) ? "XP earned this week." : "No XP recorded in the last 7 days."}</p>
     </CardContent>
   </Card>;
 }
@@ -66,7 +64,7 @@ function ActivityCards() {
             <div className="min-w-0 flex-1"><p className="font-semibold">{activityNames[item.activity] ?? "Learning activity"}</p><p className="mt-0.5 break-words text-xs text-ink-muted">{item.reason}</p><p className="mt-1 text-xs text-ink-muted">{formatDate(item.date)}</p></div>
             <span className="shrink-0 text-sm font-semibold text-brand-primary">{formatXpDelta(item.amount)}</span>
           </li>;
-        })}</ul> : <div className="py-5"><p className="font-semibold">Your journey starts here.</p><p className="mt-1 text-sm text-ink-muted">Complete a knowledge check to start building your learning history.</p><Button asChild variant="link" className="mt-3"><Link href="/study">Explore learning <ChevronRight className="size-4" aria-hidden /></Link></Button></div>}
+        })}</ul> : <div className="py-5"><p className="font-semibold">No activity yet</p><p className="mt-1 text-sm text-ink-muted">Complete a knowledge check to start a history.</p><Button asChild variant="link" className="mt-3"><Link href="/study">Go to Study <ChevronRight className="size-4" aria-hidden /></Link></Button></div>}
       </CardContent>
     </Card>
   </>;
@@ -91,10 +89,10 @@ export function ProfileView({ registration = null, email = null }: { registratio
     ["Semester", p.academic?.semester.label ?? (registration ? SEMESTER_LABELS[registration.currentSemester] : "Not added yet")],
   ];
   const stats = [
-    { kind: "star" as const, icon: AppStarIcon, label: "Total XP", value: formatNumber(p.xp_total), tone: undefined },
-    { kind: "streak" as const, label: "Current streak", value: formatStreak(p.streak.current), tone: "streak" as const },
-    { kind: "book" as const, icon: AppBookIcon, label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed), tone: "success" as const },
-    { kind: "swords" as const, icon: AppSwordsIcon, label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed), tone: "purple" as const },
+    { label: "Total XP", value: formatNumber(p.xp_total) },
+    { label: "Current streak", value: formatStreak(p.streak.current) },
+    { label: "Lessons completed", value: formatNumber(p.learning_totals.lessons_completed) },
+    { label: "Battles completed", value: formatNumber(p.learning_totals.battles_completed) },
   ];
   return <div className="compact-profile">
     <Dialog>
@@ -105,8 +103,8 @@ export function ProfileView({ registration = null, email = null }: { registratio
           </Link>
           <div className="min-w-0 flex-1">
             <h1><Link href={`/people/${p.id}`} className="hover:underline">{p.display_name}</Link></h1>
-            {username ? <p>@{username}</p> : <p>{department ? `${department} student` : "ScholAu learner"}</p>}
-            <p className="profile-university">{university ?? "ScholAu learner"}</p>
+            {username ? <p>@{username}</p> : department ? <p>{department}</p> : null}
+            {university ? <p className="profile-university">{university}</p> : null}
           </div>
         </div>
         <DialogTrigger asChild><Button variant="outline" size="sm">Edit profile</Button></DialogTrigger>
@@ -115,18 +113,15 @@ export function ProfileView({ registration = null, email = null }: { registratio
       <section className="profile-panel" aria-label={tab === "settings" ? "Settings" : tab === "friends" ? "Friends" : tab === "activity" ? "Activity" : tab === "achievements" ? "Badges and reviews" : "Progress"}>
       {tab === "progress" ? <>
         <section aria-label="Learning statistics" className="profile-stat-grid">
-          {stats.map(({ kind, label, value, icon: Icon, tone }) => (
+          {stats.map(({ label, value }) => (
             <Card key={label} className="profile-stat">
-              <span className="profile-stat-icon" data-tone={tone}>
-                {kind === "streak" ? <StreakFlame active={p.streak.active_today} size={22} /> : Icon ? <Icon size={22} aria-hidden /> : null}
-              </span>
               <div><strong>{value}</strong><p>{label}</p></div>
             </Card>
           ))}
         </section>
         <XpProgressCard compact />
       </> : tab === "achievements" ? <XpProgressCard /> : tab === "activity" ? <div className="profile-activity-grid"><ActivityCards /></div> : tab === "friends" ? <ProfileFriends /> : <Card className="settings-card">
-        <CardHeader><CardTitle><span className="flex items-center gap-2"><Settings size={21} aria-hidden /> Settings</span></CardTitle></CardHeader>
+        <CardHeader><CardTitle>Settings</CardTitle></CardHeader>
         <CardContent>
           <label htmlFor="settings-section" className="sr-only">Settings section</label>
           <select id="settings-section" value={section} onChange={(event) => setSection(event.target.value)} className="settings-select">

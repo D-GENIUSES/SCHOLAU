@@ -16,7 +16,7 @@ function Status({ label, children }: { label: string; children: ReactNode }) {
 
 export function HomeSkeleton() {
   return (
-    <Status label="Getting your learning space ready…">
+    <Status label="Loading home…">
       <div className="home-dashboard compact-home" aria-hidden>
         <div className="home-welcome">
           <Skeleton className="h-7 w-56 max-w-full" />

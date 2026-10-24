@@ -21,6 +21,18 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "public-profile") return <PublicProfilePreview />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
   if (state === "lessons") return <ShellFrame pathname="/study" displayName="Learner"><LessonListPreview /></ShellFrame>;
+  if (state === "social") {
+    return (
+      <ShellFrame pathname="/social" displayName="Learner">
+        <div className="home-welcome">
+          <div>
+            <h1>Social</h1>
+            <p>We&apos;re building something new here.</p>
+          </div>
+        </div>
+      </ShellFrame>
+    );
+  }
   if (state === "profile") return <ShellFrame pathname="/profile" displayName="John Nwaokolo" streak={{ current: 7, longest: 12, active_today: true, local_date: now.toISOString().slice(0, 10) }}><ProfileView email="learner@example.com" /></ShellFrame>;
   if (state === "streak") return <FirstLessonPreview />;
   if (state === "battle-options") return <AnswerOptionsPreview />;

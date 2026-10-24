@@ -31,26 +31,15 @@
 
 /* Arena lobby: scoped so in-match screens retain their existing layout. */
 .battle-lobby { max-width: 1120px; gap: 24px; }
-.battle-hero { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px; overflow: hidden; padding: 30px 34px; border-radius: 24px; background: #0759d5; color: #fff; }
-.battle-hero-copy { position: relative; z-index: 1; max-width: 620px; }
-.battle-eyebrow { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 800; letter-spacing: .16em; color: #d2e5ff; }
-.battle-hero h1 { color: #fff; margin: 10px 0 2px; font-size: clamp(32px,4vw,44px); line-height: 1.1; font-weight: 800; letter-spacing: -.045em; }
-.battle-hero-copy > p { margin: 8px 0; font-size: 19px; font-weight: 650; letter-spacing: -.02em; }
-.battle-hero-description { display: block; max-width: 410px; color: #e0edff; font-size: 13px; line-height: 1.65; }
-.battle-hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.battle-hero-tags > span { display: flex; align-items: center; gap: 6px; border: 1px solid #ffffff30; border-radius: 999px; background: #ffffff12; padding: 6px 10px; font-size: 11px; font-weight: 600; }
-.battle-hero-art { position: relative; display: grid; place-items: center; width: 210px; min-width: 180px; height: 190px; }
-.battle-orbit { position: absolute; width: 185px; height: 185px; border: 1px solid #ffffff26; border-radius: 50%; box-shadow: 0 0 0 24px #ffffff06, 0 0 0 49px #ffffff05; }
-.battle-emblem { display: grid; place-items: center; width: 108px; height: 108px; border: 1px solid #ffffff70; border-radius: 28px; background: #fff; color: #0759d5; transform: rotate(-10deg); box-shadow: 8px 10px 0 #003e9b; }
-.battle-emblem svg { width: 61px; height: 61px; }
-.battle-art-star { position: absolute; right: 12px; top: 17px; color: #ffe48a; font-size: 36px; }
-.battle-art-label { position: absolute; bottom: 0; font-size: 9px; font-weight: 800; letter-spacing: .16em; color: #d2e5ff; }
+.battle-hero { display: flex; flex-direction: column; gap: 6px; }
+.battle-hero-copy { max-width: 620px; }
+.battle-hero h1 { margin: 0; font-size: clamp(24px,3vw,28px); line-height: 1.15; font-weight: 700; letter-spacing: -.035em; }
+.battle-hero-copy > p { margin: 0; color: #607080; font-size: 14px; line-height: 1.55; }
 .battle-lobby .rounded-card { border-color: #e2e8f1; box-shadow: none; }
 .battle-lobby-content { gap: 20px; }
 .battle-setup-grid { gap: 20px; }
 .battle-lobby .battle-setup-card { border-radius: 20px; }
 .battle-setup-heading { flex-direction: row; align-items: center; gap: 12px; padding: 22px 22px 18px; border-bottom: 1px solid #eef1f6; margin-bottom: 6px; }
-.battle-section-icon { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border-radius: 13px; color: #0866e8; background: #edf4ff; }
 .battle-setup-heading h2 { font-size: 17px; font-weight: 750; }
 .battle-setup-heading p { margin-top: 4px; font-size: 12px; }
 .battle-setup-fields { padding: 18px 22px 22px; gap: 22px; }
@@ -86,12 +75,7 @@
 @media(min-width:1100px) { .battle-setup-fields { gap: 22px; } }
 @media(max-width:600px) {
   .battle-lobby { gap: 18px; }
-  .battle-hero { padding: 24px 20px; border-radius: 19px; }
-  .battle-hero-copy > p { font-size: 17px; }
-  .battle-hero-description { max-width: 290px; font-size: 12px; }
-  .battle-hero-art { display: none; }
-  .battle-hero-tags { margin-top: 16px; gap: 6px; }
-  .battle-hero-tags > span { font-size: 10px; }
+  .battle-hero-copy > p { font-size: 13px; }
   .battle-setup-heading { padding: 18px 16px 16px; }
   .battle-setup-heading h2 { font-size: 15px; }
   .battle-setup-fields { padding: 14px 16px 18px; gap: 20px; }
@@ -103,16 +87,13 @@
 /* Carry the arena identity through the setup and community sections. */
 .battle-lobby .battle-setup-card { border-color: #c9ddfa; box-shadow: 0 4px 0 #e8f1ff; overflow: hidden; }
 .battle-setup-heading { background: #f0f6ff; border-bottom-color: #dce9fc; }
-.battle-section-icon { background: #e0edff; border: 1px solid #c9ddfa; color: #0759d5; box-shadow: 0 3px 0 #c9ddfa; transform: rotate(-4deg); }
-.battle-setup-heading .battle-section-icon { background: #0759d5; color: white; border-color: #0759d5; box-shadow: 0 3px 0 #003e9b; }
 .battle-mode-option:has(input:checked) { background: #eaf3ff; }
 .battle-create-button:not(:disabled) { box-shadow: 0 4px 0 #0044a6; }
 .battle-create-button:not(:disabled):active { transform: translateY(2px); box-shadow: 0 2px 0 #0044a6; }
 .battle-lobby .battle-rules-card { background: #f5f9ff; border-color: #d4e4fc; }
 .battle-lobby .battle-rules-heading { gap: 13px; }
-.battle-rewards-panel { display: flex; align-items: flex-start; gap: 10px; padding: 14px 12px; margin: 14px 0; background: #fff8e7; border: 1px solid #f1e0af; border-radius: 12px; }
-.battle-rewards-panel > svg { flex-shrink: 0; color: #966610; margin-top: 2px; }
-.battle-rewards-label { display: block; margin-bottom: 6px; font-size: 8px; font-weight: 800; letter-spacing: .09em; color: #80570d; }
+.battle-rewards-panel { display: flex; align-items: flex-start; gap: 10px; padding: 14px 12px; margin: 14px 0; background: #f7f9fc; border: 1px solid #e2e8f1; border-radius: 12px; }
+.battle-rewards-label { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 600; color: #607080; }
 .battle-lobby .battle-rewards-panel p { color: #624b21; font-size: 12px; }
 .battle-friends-disclosure { border-color: #c9ddfa; padding: 0; overflow: visible; }
 .battle-friends-summary { display: flex; align-items: center; gap: 13px; cursor: pointer; padding: 18px 20px; border-radius: 16px; background: #f0f6ff; list-style: none; }

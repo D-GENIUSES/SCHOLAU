@@ -1,6 +1,5 @@
 "use client";
 
-import { Swords } from "lucide-react";
 import Link from "next/link";
 import type { LiveBattle } from "@scholau/api";
 import type { BattleState } from "@scholau/core";
@@ -39,10 +38,7 @@ function ResumeCard({ title, body, href, cta }: { title: string; body: string; h
   return (
     <Card tint>
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <Swords className="size-5 text-brand-primary" aria-hidden />
-          <CardTitle>{title}</CardTitle>
-        </div>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>{body}</CardDescription>
       </CardHeader>
       <CardFooter className="pt-2 sm:pt-2">

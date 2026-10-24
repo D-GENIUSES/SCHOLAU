@@ -3,12 +3,13 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Clock, RefreshCw, Target } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson } from "@scholau/api";
 import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
 import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
 import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonBlocks } from "@/components/lesson/blocks";
+import { FlashcardDeck } from "@/components/lesson/flashcard-deck";
 import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
 import { Alert } from "@/components/ui/alert";
@@ -17,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge, PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
+import { buildExamFlashcards } from "@/lib/lesson-exam-cards";
 import { shouldCelebrateStreak } from "@/lib/streak-celebration";
 
 export default function LessonPage() {
@@ -66,7 +68,9 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const start = useStartLesson();
   const home = useHomeSummary();
   const [streakCelebration, setStreakCelebration] = useState<{ days: number; localDate: string; previousDays: number } | null>(null);
+  const [deckFinished, setDeckFinished] = useState(false);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
+  const examCards = useMemo(() => buildExamFlashcards(lesson), [lesson]);
 
   const { mutate: startMutate } = start;
   const startedFor = useRef<string | null>(null);
@@ -100,6 +104,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const reviewHref = lesson.review
     ? `/study/assessments/${lesson.review.assessment_version_id}?offering=${lesson.offering_id}`
     : null;
+  const hasBlockContent = lesson.blocks.length > 0;
+  const canMarkComplete = isCompleted || deckFinished || alreadyCompleted;
 
   return (
     <article className="mx-auto flex max-w-reading flex-col">
@@ -156,11 +162,23 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
         </div>
       </div>
 
-      {lesson.blocks.length > 0 ? (
-        <LessonBlocks blocks={lesson.blocks} />
+      {hasBlockContent ? (
+        <>
+          <FlashcardDeck cards={examCards} onLastCardReached={() => setDeckFinished(true)} />
+          <details className="mt-2 rounded-control border border-line bg-surface-page">
+            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">View original notes</summary>
+            <div className="border-t border-line px-4 py-4">
+              <LessonBlocks blocks={lesson.blocks} />
+            </div>
+          </details>
+        </>
       ) : (
         <EmptyState title="This lesson has no content yet" description={COPY.empty.contentRemoved} />
       )}
+
+      {!isCompleted && hasBlockContent && !canMarkComplete ? (
+        <p className="text-sm text-ink-muted">Flip through to the last flashcard to unlock Mark as complete.</p>
+      ) : null}
 
       <Card className="mt-8">
         <CardContent className="flex flex-col gap-4 pt-4 sm:pt-6">
@@ -192,7 +210,11 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
               ) : null
             ) : (
               <>
-                <Button onClick={() => markComplete()} loading={complete.isPending} disabled={complete.isError}>
+                <Button
+                  onClick={() => markComplete()}
+                  loading={complete.isPending}
+                  disabled={complete.isError || !canMarkComplete}
+                >
                   <CheckCircle2 className="size-4" aria-hidden /> Mark as complete
                 </Button>
                 {reviewHref ? (

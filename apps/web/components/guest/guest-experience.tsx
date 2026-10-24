@@ -1,5 +1,5 @@
 "use client";
-import { ArrowLeft, BookOpen, ClipboardCheck, Swords, Trophy, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
@@ -14,20 +14,33 @@ const MaterialQuiz = dynamic(() => import("./material-quiz").then((module) => mo
   loading: () => <p role="status" className="text-sm text-ink-muted">Loading practice questions…</p>,
 });
 
-const VIEWS = ["home", "study", "battles", "leaderboard", "profile", "lesson", "practice", "mock"] as const;
+const VIEWS = ["home", "study", "social", "battles", "leaderboard", "profile", "lesson", "practice", "mock"] as const;
 type View = typeof VIEWS[number];
 
 export function GuestExperience() {
   const params = useSearchParams();
   const requested = params.get("view");
   const view: View = VIEWS.find((option) => option === requested) ?? "home";
-  const pathname = view === "lesson" || view === "practice" || view === "mock" ? "/study" : `/${view}`;
+  const pathname =
+    view === "lesson" || view === "practice" || view === "mock"
+      ? "/study"
+      : view === "study"
+        ? "/home"
+        : `/${view}`;
   let content: ReactNode;
 
   switch (view) {
     case "home": content = <GuestHome />; break;
     case "study":
       content = <><GuestHeader title="Study" description="Read a sample lesson or take a general knowledge test." /><SampleCourses /><div className="mt-6"><HowItWorks guest /></div></>;
+      break;
+    case "social":
+      content = (
+        <>
+          <GuestHeader title="Social" description="We're building something new here." />
+          <p className="text-sm text-ink-muted">Courses and lessons are on Home.</p>
+        </>
+      );
       break;
     case "lesson": content = <GuestLesson />; break;
     case "practice": content = <MaterialQuiz />; break;
@@ -46,16 +59,16 @@ function GuestHeader({ title, description }: { title: string; description: strin
 
 function GuestHome() {
   const actions = [
-    { label: "Sample courses", href: "/home?view=study", icon: BookOpen },
-    { label: "Practice", href: "/home?view=practice", icon: ClipboardCheck },
-    { label: "Quiz battles", href: "/home?view=battles", icon: Swords },
-    { label: "Leaderboard", href: "/home?view=leaderboard", icon: Trophy },
+    { label: "Sample courses", href: "/home?view=study" },
+    { label: "Practice", href: "/home?view=practice" },
+    { label: "Quiz battles", href: "/home?view=battles" },
+    { label: "Leaderboard", href: "/home?view=leaderboard" },
   ];
   return <div className="home-dashboard compact-home">
     <div className="home-welcome"><div><h1>Try ScholAu</h1><p>Start with a free sample lesson.</p></div></div>
     <div className="compact-home-grid"><div className="compact-home-main">
       <ContinueLearningCard item={starterLesson} firstLesson preview href="/home?view=lesson" />
-      <nav className="home-action-grid" aria-label="Learning shortcuts">{actions.map(({ label, href, icon: Icon }) => <Link key={label} href={href} className="home-action-tile"><span className="tile-icon"><Icon size={23} aria-hidden /></span><strong>{label}</strong></Link>)}</nav>
+      <nav className="home-action-grid" aria-label="Learning shortcuts">{actions.map(({ label, href }) => <Link key={label} href={href} className="home-action-tile"><strong>{label}</strong></Link>)}</nav>
     </div><aside className="compact-home-aside" aria-label="Sample courses"><SampleCourses compact /><section className="study-note"><h2>Save your progress</h2><p className="mt-2 text-sm text-ink-muted">Create an account to access your courses, earn XP and join battles.</p><Button asChild size="sm" className="mt-3"><Link href="/sign-up">Create account</Link></Button></section></aside></div>
   </div>;
 }
@@ -87,7 +100,7 @@ function GuestLesson() {
   const lessons = [
     { title: "Why is Mars called the Red Planet?", heading: "A planet with a distinctive colour", body: "Mars is known as the Red Planet. Iron oxide on its surface gives it a reddish appearance. The same kind of chemical change gives iron rust its familiar colour." },
     { title: "What makes a triangle a triangle?", heading: "Three sides and three corners", body: "A triangle has three straight sides and three corners. It can be tall, wide, small, or turned in any direction. Its size and orientation do not change the number of sides." },
-    { title: "Discover Earth’s oceans", heading: "A world of water", body: "Oceans are vast bodies of salt water. Earth has five named oceans: the Pacific, Atlantic, Indian, Southern, and Arctic. The Pacific is the largest." },
+    { title: "Earth’s oceans", heading: "Five named oceans", body: "Oceans are vast bodies of salt water. Earth has five named oceans: the Pacific, Atlantic, Indian, Southern, and Arctic. The Pacific is the largest." },
   ];
   const selected = params.has("topic") && Number.isInteger(topic) ? lessons[topic] : undefined;
   const visibleLessons = selected ? [selected] : lessons;

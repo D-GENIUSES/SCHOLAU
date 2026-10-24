@@ -1,6 +1,5 @@
 "use client";
 
-import { Swords } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { isApiError } from "@scholau/api";
@@ -25,13 +24,10 @@ export default function InvitePage() {
 
   return (
     <div className="mx-auto flex w-full max-w-reading flex-col gap-6">
-      <PageHeader eyebrow="Battle invitation" title="You've been challenged" />
+      <PageHeader title="Battle invitation" />
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Swords className="size-5 text-brand-primary" aria-hidden />
-            <CardTitle>A classmate challenged you to a 1v1 battle</CardTitle>
-          </div>
+          <CardTitle>A classmate invited you to a 1v1 battle</CardTitle>
           <CardDescription>
             Accept to join their battle in a course you share. You&apos;ll both confirm you&apos;re ready before the questions start.
           </CardDescription>

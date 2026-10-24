@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Users } from "lucide-react";
 import type { FriendPerson } from "@scholau/api";
 import { useFriendAction, useFriends } from "@scholau/api/react";
 import { Avatar } from "@/components/ui/avatar";
@@ -76,7 +75,7 @@ export function ProfileFriends() {
             </ul>
           ) : (
             <div className="py-2">
-              <p className="flex items-center gap-2 font-semibold"><Users className="size-4 text-brand-primary" aria-hidden />Your friends will show up here.</p>
+              <p className="font-semibold">No friends yet</p>
               <p className="mt-1 text-sm text-ink-muted">Find classmates and send a friend request from their profile.</p>
               <Button asChild variant="link" className="mt-3"><Link href="/people">Find people</Link></Button>
             </div>

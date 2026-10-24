@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import type { LeaderboardRow } from "@scholau/api";
-import { PageHeader } from "@/components/ui/misc";
+import { formatDateTime } from "@scholau/core";
+import { LeaderboardChrome } from "./leaderboard-chrome";
 import { LeaderboardList } from "./leaderboard-list";
 import { MyPositionCard } from "./my-position-card";
 
@@ -12,11 +16,22 @@ const rows: LeaderboardRow[] = [
   { rank: 6, user_id: "preview-6", display_name: "new_learner", avatar_path: null, xp_total: 10, is_me: false },
 ];
 
+const asOf = formatDateTime(new Date().toISOString());
+
 export function LeaderboardPreview() {
-  return <div className="flex flex-col gap-5">
-    <PageHeader eyebrow="ScholAu rankings" title="Leaderboard" description="Ranked by lifetime XP. Equal points? Earlier registrations come first." />
-    <p className="text-xs text-ink-muted">Development preview · sample students and scores</p>
-    <MyPositionCard me={{ rank: 3, xp_total: 1050 }} scopeLabel="Global" />
-    <LeaderboardList rows={rows} label="Sample global leaderboard" />
-  </div>;
+  const [scope, setScope] = useState<"global" | "faculty">("global");
+  const scopeLabel = scope === "faculty" ? "Faculty" : "Global";
+
+  return (
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
+      <p className="text-xs text-ink-muted">Development preview · compact header layout</p>
+      <LeaderboardChrome scope={scope} onScopeChange={setScope} />
+      <LeaderboardList
+        rows={rows}
+        label={`${scopeLabel} leaderboard`}
+        updatedAt={`Updated ${asOf}`}
+        positionBar={<MyPositionCard me={{ rank: 3, xp_total: 1050 }} scopeLabel={scopeLabel} variant="compact" />}
+      />
+    </div>
+  );
 }

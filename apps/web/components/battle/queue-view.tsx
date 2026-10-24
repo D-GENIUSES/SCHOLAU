@@ -1,6 +1,5 @@
 "use client";
 
-import { SearchX, Users } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { QueueEntry } from "@scholau/api";
@@ -30,10 +29,7 @@ export function QueueWaiting({
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <Users className="size-5 text-brand-primary" aria-hidden />
-          <CardTitle as="h2">Looking for an opponent</CardTitle>
-        </div>
+        <CardTitle as="h2">Looking for an opponent</CardTitle>
         <CardDescription>
           {courseLabel ? `${courseLabel} · ` : null}We&apos;ll match you with a classmate in the same course.
         </CardDescription>
@@ -62,10 +58,7 @@ export function NoOpponent({ onRetry, retrying, canRetry }: { onRetry: () => voi
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <SearchX className="size-5 text-brand-primary" aria-hidden />
-          <CardTitle as="h2">{COPY.battle.noOpponent}</CardTitle>
-        </div>
+        <CardTitle as="h2">{COPY.battle.noOpponent}</CardTitle>
         <CardDescription>Nobody else was searching in this course. You can try again or keep studying.</CardDescription>
       </CardHeader>
       <CardFooter className="pt-2 sm:pt-2">

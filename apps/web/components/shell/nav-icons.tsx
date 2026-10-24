@@ -32,7 +32,21 @@ export function NavHomeIcon({ className, ...props }: NavIconProps) {
   );
 }
 
-/** Open book — Busuu-style study tab. */
+/** People — Social tab (placeholder until product is defined). */
+export function NavSocialIcon({ className, ...props }: NavIconProps) {
+  return (
+    <svg {...iconProps(className, props)}>
+      <circle cx="9" cy="9" r="3.25" fill="currentColor" />
+      <circle cx="16.5" cy="10" r="2.75" fill="currentColor" opacity="0.55" />
+      <path
+        d="M4.5 18.5c.65-2.85 2.85-4.5 4.5-4.5s3.85 1.65 4.5 4.5M13.5 17.5c.45-1.65 1.65-2.75 3-2.75 1.1 0 2.05.65 2.55 2.75"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Open book — used in app chrome / course links. */
 export function NavStudyIcon({ className, ...props }: NavIconProps) {
   return (
     <svg {...iconProps(className, props)}>

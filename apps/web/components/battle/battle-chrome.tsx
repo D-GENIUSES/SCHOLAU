@@ -1,7 +1,7 @@
 "use client";
 
 
-import { ArrowLeft, Book, Check, LogOut, RefreshCw } from "lucide-react";
+import { ArrowLeft, Check, LogOut, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode, Ref } from "react";
 import type { Battle, BattleParticipant } from "@scholau/api";
@@ -155,7 +155,6 @@ export function BattleCourseStrip({ code, title }: { code: string | null; title:
   const showTitle = Boolean(title && title !== code);
   return (
     <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-[#eaf3ff] px-4 py-3.5 text-sm text-[#16324c]">
-      <Book className="size-[18px] shrink-0 text-[#0875e4]" aria-hidden />
       {code ? <span className="shrink-0 font-bold">{code}</span> : null}
       {code && showTitle ? <span className="h-4 w-px shrink-0 bg-[#d3e0ee]" aria-hidden /> : null}
       {showTitle ? <span className="min-w-0 truncate">{title}</span> : null}

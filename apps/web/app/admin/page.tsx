@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowRight, BookOpen, CircleHelp, Flag, GraduationCap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { useAdminCounts } from "@scholau/api/react";
 import { formatNumber } from "@scholau/core";
 import { AdminErrorState } from "@/components/admin/shared";
@@ -10,15 +9,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PageHeader } from "@/components/ui/misc";
 import { LoadingState } from "@/components/ui/states";
 
-function CountCard({ label, value, href, hint, icon }: { label: string; value: number; href: string; hint: string; icon: ReactNode }) {
+function CountCard({ label, value, href, hint }: { label: string; value: number; href: string; hint: string }) {
   return (
     <Link
       href={href}
       className="group flex items-center gap-4 rounded-card border border-line bg-surface-card p-4 shadow-card transition-colors hover:border-brand-primary"
     >
-      <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-pill bg-surface-tint text-brand-primary" aria-hidden>
-        {icon}
-      </span>
       <span className="flex min-w-0 flex-1 flex-col">
         <span className="text-sm font-semibold text-ink-muted">{label}</span>
         <span className="text-2xl font-bold text-ink">{formatNumber(value)}</span>
@@ -59,7 +55,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.lessonsDraft}
                 hint="Waiting for review"
                 href="/admin/review?tab=lessons&status=draft"
-                icon={<BookOpen className="size-5" />}
               />
             </li>
             <li>
@@ -68,7 +63,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.lessonsPublished}
                 hint="Live for enrolled students"
                 href="/admin/review?tab=lessons&status=published"
-                icon={<BookOpen className="size-5" />}
               />
             </li>
             <li>
@@ -77,7 +71,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.questionsDraft}
                 hint="Waiting for review"
                 href="/admin/review?tab=questions&status=draft"
-                icon={<CircleHelp className="size-5" />}
               />
             </li>
             <li>
@@ -86,7 +79,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.questionsPublished}
                 hint="Learning and battle pools"
                 href="/admin/review?tab=questions&status=published"
-                icon={<CircleHelp className="size-5" />}
               />
             </li>
             <li>
@@ -95,7 +87,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.offeringsPublished}
                 hint="Visible in the catalog"
                 href="/admin/offerings"
-                icon={<GraduationCap className="size-5" />}
               />
             </li>
             <li>
@@ -104,7 +95,6 @@ export default function AdminOverviewPage() {
                 value={counts.data.reportsOpen}
                 hint="Need triage"
                 href="/admin/reports"
-                icon={<Flag className="size-5" />}
               />
             </li>
           </ul>

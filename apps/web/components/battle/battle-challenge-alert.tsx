@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Swords } from "lucide-react";
 import { useAcceptBattle, useBattleInvitations, useDeclineBattleInvitation } from "@scholau/api/react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -50,8 +49,7 @@ export function BattleChallengeAlert() {
   return (
     <Dialog open={Boolean(invite)} onOpenChange={(open) => { if (!open) setAlerted(null); }}>
       {invite ? <DialogContent>
-        <div className="flex size-12 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary"><Swords className="size-6" aria-hidden /></div>
-        <DialogTitle>You&apos;ve been challenged!</DialogTitle>
+        <DialogTitle>Battle invitation</DialogTitle>
         <DialogDescription>{invite.display_name} invited you to a 1v1 battle in {invite.courses.join(" + ")} ({invite.round_count} questions).</DialogDescription>
         {accept.error || decline.error ? <p role="alert" className="text-sm text-destructive">{(accept.error || decline.error)?.message || "Could not respond. Please try again."}</p> : null}
         <div className="flex flex-wrap justify-end gap-2">

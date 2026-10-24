@@ -1,7 +1,7 @@
 "use client";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 
-import { Ban, CheckCircle2, Equal, MinusCircle, ShieldOff, Trophy, XCircle } from "lucide-react";
+import { CheckCircle2, MinusCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import type { Battle, BattleRound } from "@scholau/api";
 import { useProfile } from "@scholau/api/react";
@@ -15,9 +15,9 @@ import { BattleOpponentFriend } from "./opponent-friend";
 import { cancelReasonCopy } from "./outcome";
 
 const HEADLINE = {
-  win: { text: "You won!", icon: Trophy, className: "text-success" },
-  loss: { text: "You lost this one", icon: XCircle, className: "text-danger" },
-  draw: { text: "It's a draw", icon: Equal, className: "text-brand-primary" },
+  win: { text: "You won" },
+  loss: { text: "You lost" },
+  draw: { text: "Draw" },
 } as const;
 
 /** finished / voided result. Never shows answer keys or the opponent's choices. */
@@ -27,14 +27,12 @@ export function ResultPanel({ battle }: { battle: Battle }) {
   const opponent = battle.participants.find((p) => !p.is_me);
   const voided = battle.state === "voided";
   const result = battle.outcome && battle.outcome.result !== "cancelled" ? battle.outcome.result : null;
-  const headline = voided ? { text: "Result voided", icon: ShieldOff, className: "text-warning" } : result ? HEADLINE[result] : null;
-  const Icon = headline?.icon;
+  const headline = voided ? { text: "Result voided" } : result ? HEADLINE[result] : null;
 
   return (
     <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="items-center text-center">
-          {Icon && headline ? <Icon className={`size-10 ${headline.className}`} aria-hidden /> : null}
           <CardTitle as="h2" className="text-2xl">
             {headline?.text ?? "Battle complete"}
           </CardTitle>
@@ -51,7 +49,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
             <ScoreBox label={opponent?.display_name ?? "Opponent"} value={opponent?.correct_count} total={battle.round_count} />
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Stat label="XP earned" value={formatXpDelta(battle.outcome?.xp_awarded ?? 0)} icon={<Trophy className="size-5" />} />
+            <Stat label="XP earned" value={formatXpDelta(battle.outcome?.xp_awarded ?? 0)} />
             <Stat
               label="Your XP balance"
               value={profile.data ? formatXp(profile.data.xp_total) : profile.isError ? "Unavailable" : "Updating…"}
@@ -158,7 +156,6 @@ export function CancelledPanel({ battle }: { battle: Battle }) {
   return (
     <Card>
       <CardHeader className="items-center text-center">
-        <Ban className="size-10 text-ink-muted" aria-hidden />
         <CardTitle as="h2" className="text-2xl">
           Battle cancelled
         </CardTitle>

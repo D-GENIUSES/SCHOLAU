@@ -1,6 +1,5 @@
 "use client";
 
-import { BookOpen } from "lucide-react";
 import type { Battle, BattleParticipant } from "@scholau/api";
 import { Avatar } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -39,7 +38,6 @@ export function BattleRoundProgress({ count, position, answered }: { count: numb
 export function BattleCourseStrip({ code, title }: { code?: string; title?: string }) {
   if (!code) return null;
   return <div className="flex min-w-0 items-center gap-2.5 rounded-xl bg-surface-tint px-3 py-2 text-sm">
-    <BookOpen className="size-4 shrink-0 text-brand-primary" aria-hidden />
     <span className="shrink-0 font-bold">{code}</span>
     {title ? <span className="truncate border-l border-line pl-2.5 text-ink-muted" title={title}>{title}</span> : null}
   </div>;

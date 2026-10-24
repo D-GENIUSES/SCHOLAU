@@ -1,7 +1,7 @@
 "use client";
 import { InlineSkeleton } from "@/components/ui/misc";
 
-import { Clock, LockKeyhole, WifiOff } from "lucide-react";
+import { Clock, WifiOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { type Battle, type BattleCurrentQuestion, isApiError } from "@scholau/api";
 import { useSubmitBattleAnswer } from "@scholau/api/react";
@@ -90,7 +90,7 @@ export function QuestionPanel({
             </Button>
           ) : (
             <Button size="lg" block onClick={send} disabled={reading || !selected || remaining <= 0} loading={status === "sending"}>
-              <LockKeyhole className="size-4" aria-hidden /> Lock in answer
+              Submit answer
             </Button>
           )}
         </CardFooter>

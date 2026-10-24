@@ -100,7 +100,7 @@ function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "chec
     <p id={`${id}-note`} className="mt-3 text-sm text-ink-muted">Practice check. This does not award XP or affect your assessment score.</p>
     {!checked ? <Button className="mt-3" disabled={selected === null} onClick={() => setChecked(true)}>Check answer</Button> : null}
     <div aria-live="polite" role="status" className="mt-3">
-      {checked ? <><p className="font-bold">{correct ? "That's right." : "Let's work through it."}</p>
+      {checked ? <><p className="font-bold">{correct ? "Correct." : "Not quite."}</p>
         <p className="mt-2">{block.explanation}</p>
         {!correct ? <><p className="mt-2">Correct answer: {block.options[block.correct_index]}</p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
       </> : null}

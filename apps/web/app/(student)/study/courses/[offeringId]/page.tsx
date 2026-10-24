@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Swords } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
@@ -103,7 +103,7 @@ function Overview({ data }: { data: CourseOverview }) {
           data.battle_ready ? (
             <Button asChild variant="secondary">
               <Link href={`/battles?offering=${data.offering_id}`}>
-                <Swords className="size-4" aria-hidden /> Battle on this course
+                Start a battle
               </Link>
             </Button>
           ) : null

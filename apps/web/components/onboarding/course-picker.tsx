@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -37,7 +37,6 @@ function AcademicSummary() {
 function NoCourses() {
   return (
     <EmptyState
-      icon={<BookOpen className="size-6" />}
       title={COPY.empty.noCourse}
       description={
         <>

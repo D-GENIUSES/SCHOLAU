@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import type { Notification } from "@scholau/api";
@@ -20,7 +20,6 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
   const target = internalTarget(item.safe_target);
   const content = (
     <>
-      <span className="inbox-mark"><Bell className="size-4" aria-hidden /></span>
       <span className="inbox-copy">
         <p>{item.body}</p>
         <time dateTime={item.created_at} title={formatDateTime(item.created_at)}>{formatRelative(item.created_at)}</time>
@@ -95,7 +94,7 @@ export function NotificationsView({ settings }: { settings?: ReactNode }) {
       {notifications.isPending ? <LoadingState variant="notifications" label="Loading notifications…" /> : null}
       {notifications.isError ? <ErrorState error={notifications.error} onRetry={() => void notifications.refetch()} /> : null}
       {!notifications.isPending && !notifications.isError && items.length === 0 ? (
-        <EmptyState icon={<Bell className="size-6" />} title="No notifications yet" description="Updates about your account and activity will appear here." />
+        <EmptyState title="No notifications yet" description="Updates about your account and activity will appear here." />
       ) : null}
       {items.length > 0 ? (
         <section aria-label="Notification inbox" className="inbox-block">

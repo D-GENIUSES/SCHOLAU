@@ -41,7 +41,7 @@ function PreviewLesson() {
       <p className="text-xs text-ink-muted">Development preview · sample data · no account progress is changed.</p>
       <div><h1 className="text-2xl font-bold tracking-tight">Your first lesson</h1><p className="mt-2 text-sm text-ink-muted">Complete this sample to see the fire animation, followed by your updated streak.</p></div>
       {data ? <StatsPanel summary={data} /> : null}
-      <section className="rounded-card border border-line bg-surface-card p-5"><h2 className="font-semibold">A little progress, every day</h2><p className="my-4 text-sm leading-relaxed text-ink-muted">One completed lesson starts your learning streak. Come back tomorrow to keep it going.</p>
+      <section className="rounded-card border border-line bg-surface-card p-5"><h2 className="font-semibold">Daily streak</h2><p className="my-4 text-sm leading-relaxed text-ink-muted">Complete a lesson to start your streak. Come back tomorrow to keep it going.</p>
         <Button onClick={() => complete.mutate({ lessonVersionId: "preview-version" })} loading={complete.isPending}>{complete.data ? "Complete again" : "Mark as complete"}</Button>
         {complete.data ? <p role="status" className="mt-3 text-sm text-success">{complete.data.already_completed ? "Already completed. Your streak stays the same." : "Lesson complete."}</p> : null}
       </section>

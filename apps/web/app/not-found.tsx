@@ -1,4 +1,3 @@
-import { Compass } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
@@ -9,9 +8,6 @@ export default function NotFound() {
       <Link href="/" aria-label="ScholAu home" className="rounded-control">
         <Logo />
       </Link>
-      <span className="inline-flex size-12 items-center justify-center rounded-pill bg-surface-tint text-brand-primary" aria-hidden>
-        <Compass className="size-6" />
-      </span>
       <h1 className="text-2xl font-bold">We couldn&apos;t find that page</h1>
       <p className="text-ink-muted">The link may be broken, or the page may have moved.</p>
       <div className="flex flex-wrap justify-center gap-2">

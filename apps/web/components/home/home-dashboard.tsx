@@ -7,7 +7,7 @@ export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
   return (
     <div className="home-dashboard compact-home home-dashboard-course">
       {isNew && s.welcome_xp_awarded ? (
-        <p className="welcome-note">10 welcome XP added · Your learning journey starts here.</p>
+        <p className="welcome-note">10 welcome XP added.</p>
       ) : null}
       <HomeCourseFocus summary={s} />
     </div>

@@ -50,7 +50,7 @@ export function AchievementBadges({ badges }: { badges: { code: string }[] }) {
     <div className="border-b border-line pb-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div><h3 className="font-semibold tracking-tight">Your badge collection</h3><p className="mt-1 text-xs text-ink-muted">Achievements earned through your studies.</p></div>
+          <div><h3 className="font-semibold tracking-tight">Badges</h3><p className="mt-1 text-xs text-ink-muted">Earned from lessons, reviews, and assessments.</p></div>
         </div>
         <span className="rounded-full border border-line bg-surface-card px-3 py-1.5 text-xs font-semibold text-brand-primary">{earnedCount} of {entries.length} earned</span>
       </div>
@@ -89,7 +89,7 @@ export function XpProgressCard({ compact = false }: { compact?: boolean }) {
   if (query.isPending) return <LoadingState variant="progress" label="Loading learning progress…" />;
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   const data = query.data;
-  return <Card><CardHeader><CardTitle>Your learning progress</CardTitle></CardHeader>
+  return <Card><CardHeader><CardTitle>Progress</CardTitle></CardHeader>
     <CardContent className="flex flex-col gap-5">
       <XpLevel total={data.xp_total} />
       {compact ? null : <>

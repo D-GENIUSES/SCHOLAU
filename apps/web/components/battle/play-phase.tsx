@@ -1,6 +1,6 @@
 "use client";
 
-import { Hourglass, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import { useEffect } from "react";
 import type { Battle } from "@scholau/api";
 import { COPY } from "@scholau/core";
@@ -55,7 +55,6 @@ function BetweenRounds({ at, refetch }: { at: string; refetch: () => unknown }) 
   return (
     <Card>
       <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
-        <Hourglass className="size-8 text-brand-primary" aria-hidden />
         <h2 className="text-xl font-bold" role="status">
           {seconds > 0 ? `Next question in ${seconds}s` : "Loading the next question…"}
         </h2>

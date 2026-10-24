@@ -1,6 +1,5 @@
 "use client";
 
-import { MailCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { emailSchema } from "@scholau/core";
@@ -56,9 +55,6 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
 
   return (
     <>
-      <span className="mb-4 inline-flex size-12 items-center justify-center rounded-pill bg-surface-tint text-brand-primary" aria-hidden>
-        <MailCheck className="size-6" />
-      </span>
       <AuthHeading
         title="Check your email"
         description={
