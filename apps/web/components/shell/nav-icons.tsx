@@ -38,16 +38,8 @@ export function NavStudyIcon({ className, ...props }: NavIconProps) {
   return (
     <svg {...iconProps(className, props)}>
       <path
-        d="M5 6.5 12 4l7 2.5v11.2a1 1 0 0 1-.65.94L12 20l-6.35-1.86A1 1 0 0 1 5 17.7V6.5Z"
         fill="currentColor"
-        opacity="0.15"
-      />
-      <path
-        d="M12 4v16M5 6.5 12 4l7 2.5M5 17.7l7 2.3 7-2.3"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M21.25 4h-.75v-.75a.75.75 0 00-.75-.75H15c-1.2275 0-2.3155.5955-3 1.5095C11.3155 3.0955 10.2275 2.5 9 2.5H4.25a.75.75 0 00-.75.75V4h-.75c-.414 0-.75.336-.75.75v15.5c0 .414.336.75.75.75h18.5c.414 0 .75-.336.75-.75V4.75c0-.414-.336-.75-.75-.75zM5 4h4c1.2405 0 2.25 1.0095 2.25 2.25v11A.75.75 0 0012 18a.75.75 0 00.75-.75v-11C12.75 5.0095 13.7595 4 15 4h4v14h-4c-1.213 0-2.308.588-3 1.516C11.308 18.588 10.213 18 9 18H5V4z"
       />
     </svg>
   );
