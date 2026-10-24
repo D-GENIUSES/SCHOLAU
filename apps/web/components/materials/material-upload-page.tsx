@@ -2,7 +2,7 @@
 
 import { Upload } from "lucide-react";
 import Link from "next/link";
-import { type ChangeEvent, useCallback, useEffect, useState } from "react";
+import { type ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -91,6 +91,15 @@ export function MaterialUploadPage({
     void pollJob(id);
   };
 
+  /** Shared courses (e.g. AUE-GST 201) have many published offerings; one row per code. */
+  const courseOptions = useMemo(() => {
+    const byCode = new Map<string, Offering>();
+    for (const o of offerings) {
+      if (!byCode.has(o.code)) byCode.set(o.code, o);
+    }
+    return [...byCode.values()].sort((a, b) => a.code.localeCompare(b.code));
+  }, [offerings]);
+
   const eyebrow = workspace === "admin" ? "Admin · content pipeline" : "Lecturer workspace";
   const courseHint =
     role === "admin"
@@ -115,14 +124,14 @@ export function MaterialUploadPage({
           <Field id="offering" label="Course offering">
             <NativeSelect id="offering" value={offeringId} onChange={(e: ChangeEvent<HTMLSelectElement>) => setOfferingId(e.target.value)}>
               <option value="">Select course…</option>
-              {offerings.map((o) => (
-                <option key={o.id} value={o.id}>
+              {courseOptions.map((o) => (
+                <option key={o.code} value={o.id}>
                   {o.code} — {o.title}
                 </option>
               ))}
             </NativeSelect>
           </Field>
-          {offerings.length === 0 ? (
+          {courseOptions.length === 0 ? (
             <Alert tone="warning">
               No published offerings available for your account. Administrators need a published offering; lecturers need a course assignment.
             </Alert>
@@ -141,7 +150,7 @@ export function MaterialUploadPage({
             <Input id="source-file" type="file" accept=".pdf,.docx,.pptx,.txt,.jpg,.jpeg,.png,.webp" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
           </Field>
           {message ? <Alert tone={status === "failed" ? "error" : "info"}>{message}</Alert> : null}
-          <Button size="lg" onClick={() => void upload()} disabled={uploading || !offeringId || !file || offerings.length === 0} loading={uploading}>
+          <Button size="lg" onClick={() => void upload()} disabled={uploading || !offeringId || !file || courseOptions.length === 0} loading={uploading}>
             <Upload className="size-4" aria-hidden /> Upload and process with Gemini
           </Button>
           {jobId ? <p className="text-sm text-ink-muted">Job {jobId} — {status ?? "…"}</p> : null}
