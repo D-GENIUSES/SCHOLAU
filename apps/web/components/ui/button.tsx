@@ -1,15 +1,14 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Loader2 } from "lucide-react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "ui-button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-transparent font-semibold leading-5 tracking-[-0.01em] transition-[background-color,border-color,color,box-shadow,transform] duration-100 disabled:pointer-events-none disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary active:translate-y-px active:scale-[0.98] [&_svg]:size-4 [&_svg]:shrink-0",
+  "ui-button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-transparent font-semibold leading-5 tracking-[-0.01em] transition-[background-color,border-color,color,box-shadow,transform,scale,filter] duration-150 disabled:pointer-events-none disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary active:translate-y-px motion-reduce:active:translate-y-0 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-brand-primary text-ink-inverse shadow-[0_1px_2px_#11243c14] hover:bg-brand-primary-hover active:bg-[#004fa8]",
+        primary: "bg-brand-primary text-ink-inverse font-[650] antialiased shadow-[0_1px_2px_#11243c14] [text-shadow:0_1px_0_rgba(17,36,60,0.12)] hover:bg-brand-primary-hover active:bg-[#004fa8]",
         secondary: "bg-surface-tint text-brand-primary hover:bg-[#dceafa] active:bg-[#cfe1f5]",
         outline: "border border-line bg-surface-card text-ink hover:border-line-strong hover:bg-surface-page",
         ghost: "text-ink-muted hover:bg-surface-page hover:text-ink",
@@ -39,7 +38,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, block, asChild, loading, disabled, children, type, ...props }, ref) => {
     if (asChild) {
       return (
-        <Slot ref={ref} className={cn(buttonVariants({ variant, size, block }), className)} {...props}>
+        <Slot ref={ref} className={cn(buttonVariants({ variant, size, block }), loading && "loading-shape", (disabled || loading) && "pointer-events-none opacity-45", className)} aria-disabled={disabled || loading || undefined} aria-busy={loading || undefined} {...props}>
           {children}
         </Slot>
       );
@@ -48,12 +47,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type={type ?? "button"}
-        className={cn(buttonVariants({ variant, size, block }), className)}
+        className={cn(buttonVariants({ variant, size, block }), loading && "loading-shape", className)}
         disabled={disabled || loading}
         aria-busy={loading || undefined}
         {...props}
       >
-        {loading ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
         {children}
       </button>
     );

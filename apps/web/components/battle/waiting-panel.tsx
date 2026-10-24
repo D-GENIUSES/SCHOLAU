@@ -55,7 +55,7 @@ export function WaitingPanel({
       <CardHeader>
         <CardTitle as="h2">Waiting for your opponent</CardTitle>
         <CardDescription>
-          {battle.invited_user_id ? "Your friend has received an invitation for" : "Share this link with a classmate enrolled in"} {battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code ?? "the selected courses"}. The battle starts once they accept and you&apos;re
+          {battle.invited_user_id ? "Your opponent has received a challenge for" : "Share this link with a classmate enrolled in"} {battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code ?? "the selected courses"}. The battle starts once they accept and you&apos;re
           both ready.
         </CardDescription>
       </CardHeader>

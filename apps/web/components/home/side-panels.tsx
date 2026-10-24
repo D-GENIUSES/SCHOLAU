@@ -11,7 +11,7 @@ export function StatsPanel({ summary }: { summary: Pick<HomeSummary, "streak" | 
   return (
     <section aria-label="Your progress" className="home-stats">
       <div className="home-stat"><Star className="stat-star" size={21} aria-hidden /><div><strong>{formatXp(summary.xp_total)}</strong><small>Total XP</small></div></div>
-      <div className="home-stat"><Flame className="stat-flame" size={21} aria-hidden /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div><StreakShare days={summary.streak.current} /></div>
+      <div className="home-stat"><Flame className="stat-flame" size={21} aria-hidden /><div><strong>{formatStreak(summary.streak.current)}</strong><small>Current streak</small></div></div>
     </section>
   );
 }

@@ -100,7 +100,6 @@ export interface Streak {
 
 export interface Profile extends Envelope {
   username: string;
-
   id: Uuid;
 
   display_name: string;
@@ -619,7 +618,9 @@ export interface NotificationReadResult extends Envelope {
 
 }
 
-
+export interface NotificationClearResult extends Envelope {
+  deleted: number;
+}
 
 export interface Notification {
 
@@ -634,7 +635,7 @@ export interface Notification {
   read_at: IsoDateTime | null;
 
   created_at: IsoDateTime;
-
+  expires_at: IsoDateTime;
 }
 
 
@@ -649,7 +650,6 @@ export interface Notification {
 
 export interface BattleParticipant {
   user_id?: string;
-
   seat: 1 | 2;
 
   display_name: string;
@@ -673,31 +673,7 @@ export interface BattleCurrentQuestion {
   answer_format?: "standard" | "worked_solution";
 
   duration_seconds?: number;
-
   reading_at?: string;
-
-  course_code?: string;
-
-
-
-  position: number;
-
-  prompt: string;
-
-  options: (AttemptOption & { steps?: string[] })[];
-
-  opened_at: IsoDateTime;
-
-  deadline: IsoDateTime;
-
-  my_option_id: Uuid | null;
-
-}
-
-
-
-export interface BattleRound {
-
   course_code?: string;
 
   position: number;
@@ -712,7 +688,14 @@ export interface BattleRound {
 
 }
 
-
+export interface BattleRound {
+  course_code?: string;
+  position: number;
+  prompt: string;
+  my_option_id: Uuid | null;
+  my_is_correct: boolean;
+  opponent_is_correct: boolean;
+}
 
 export interface Battle {
 
@@ -837,9 +820,7 @@ export interface BattleAnswerAck extends Envelope {
 
 
 export interface BattleHistoryItem {
-
   courses?: { code: string; title: string }[];
-
   battle_id: Uuid;
 
   mode: BattleMode;
@@ -897,7 +878,8 @@ export interface LeaderboardRow {
   xp_total: number;
 
   is_me: boolean;
-
+  faculty_name?: string | null;
+  level_label?: string | null;
 }
 
 
@@ -989,17 +971,11 @@ export interface RetireResult extends Envelope {
 
 
 export interface AdminQuestion extends Envelope {
-
-  answer_format?: "standard" | "worked_solution";
-
-  battle_seconds?: number | null;
-
+  answer_format: "standard" | "worked_solution";
+  battle_seconds: number | null;
   battle_reading_seconds?: number | null;
-
   suggested_answer_seconds?: number;
-
   suggested_reading_seconds?: number;
-
   question_id: Uuid;
 
   course_id: Uuid;
@@ -1337,7 +1313,6 @@ export interface XpProgress extends Envelope {
 
 
 export type FriendAction = "request" | "accept" | "decline" | "cancel" | "remove" | "block" | "unblock";
-
 export interface PublicProfile extends Envelope {
   id: string; display_name: string; username: string | null; avatar_path: string | null;
   joined_at: string; university: string | null; faculty: string | null;
@@ -1346,7 +1321,6 @@ export interface PublicProfile extends Envelope {
 
 export interface FriendPerson {
   avatar_path?: string | null;
-
   user_id: string; display_name: string; username: string | null;
 
   state: "pending" | "accepted" | "blocked" | null; incoming: boolean;
@@ -1413,4 +1387,28 @@ export interface PushHealth extends Envelope {
 
   failures: Array<{ id: string; last_code: string | null; attempts: number; updated_at: string }>;
 
+}
+
+
+export interface NotificationPreferences {
+  activity: boolean; academic: boolean; announcement: boolean; account: boolean; reminder: boolean;
+  timezone: string; reminder_time: string; quiet_start: string; quiet_end: string;
+}
+export interface NotificationSettingsResult extends Envelope {
+  preferences: NotificationPreferences & { updated_at: string | null };
+  push_available: boolean; vapid_public_key: string;
+  devices: Array<{ device_key: string; active: boolean }>;
+}
+export interface AnnouncementAudienceResult extends Envelope {
+  offerings: Array<{ id: string; label: string }>;
+}
+export interface AnnouncementInput {
+  title: string; body: string; target: string | null;
+  audience: "offering" | "role" | "everyone"; audienceId: string | null; requestKey: string;
+}
+export interface AnnouncementReceipt extends Envelope { announcement_id: string; recipient_count: number }
+export interface PushHealth extends Envelope {
+  delivery_enabled: boolean; states: Record<string, number>; pending_recipients: number;
+  oldest_pending_at: string | null;
+  failures: Array<{ id: string; last_code: string | null; attempts: number; updated_at: string }>;
 }

@@ -46,6 +46,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
   const [keys, setKeys] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, unknown>>({});
   const [checking, setChecking] = useState<string | null>(null);
+  const [animatedQuestion, setAnimatedQuestion] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -71,6 +72,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
   const unchecked = questions.filter((q) => !viewOf(q).locked).length;
 
   const goTo = (i: number) => {
+    setAnimatedQuestion(null);
     setIndex(i);
     requestAnimationFrame(() => headingRef.current?.focus());
   };
@@ -91,6 +93,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
     check
       .mutateAsync({ attemptId, questionVersionId: qv, optionId, requestKey })
       .then((res) => {
+        setAnimatedQuestion(qv);
         setChecked((prev) => ({ ...prev, [qv]: res }));
         const idx = current.options.findIndex((o) => o.id === res.correct_option_id);
         const correct = current.options[idx];
@@ -136,7 +139,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
           />
 
           {view.feedback ? (
-            <AnswerFeedback correct={view.feedback.is_correct} explanation={view.feedback.explanation} />
+            <AnswerFeedback key={qv} correct={view.feedback.is_correct} explanation={view.feedback.explanation} animate={animatedQuestion === qv} />
           ) : view.locked ? (
             <p className="text-sm text-ink-muted">Answer locked. Feedback will be shown in your results.</p>
           ) : (

@@ -2,6 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
 declare v uuid:=gen_random_uuid(); begin
   insert into auth.users(instance_id,id,aud,role,email,raw_user_meta_data,created_at,updated_at)
@@ -39,12 +40,12 @@ select throws_ok($$select private.award_points(auth.uid(),'signup_welcome','sign
 select is((public.get_xp_progress_v1()->>'xp_total')::integer,10,'repeated signed-in reads do not grant XP');
 reset role;
 
--- The same totals share a rank, with deterministic cursor ordering.
+-- Equal totals have distinct positions, ordered by registration date and user ID.
 select pg_temp.login(current_setting('t.b')::uuid);
 select set_config('t.rank_b',public.get_leaderboard_v1()->'me'->>'rank',true) is not null as setup;
 reset role;
 select pg_temp.login(current_setting('t.a')::uuid);
-select is(public.get_leaderboard_v1()->'me'->>'rank',current_setting('t.rank_b'),'equal welcome XP shares a rank');
+select ok(public.get_leaderboard_v1()->'me'->>'rank'<>current_setting('t.rank_b'),'equal welcome XP has distinct deterministic positions');
 reset role;
 update public.profiles set leaderboard_visible=false where id=current_setting('t.b')::uuid;
 select pg_temp.login(current_setting('t.b')::uuid);

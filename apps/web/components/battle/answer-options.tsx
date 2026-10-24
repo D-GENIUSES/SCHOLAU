@@ -13,47 +13,34 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
 }) {
   const worked = question.answer_format === "worked_solution";
   return (
-    <fieldset aria-labelledby={labelledBy} className="min-w-0">
-      <legend className="sr-only">Answer choices</legend>
-      {worked ? <p className="mb-3 text-center text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
-      <div className="grid grid-cols-2 gap-3 max-[340px]:grid-cols-1">
+    <fieldset disabled={disabled} className="min-w-0">
+      <legend className="mb-4 w-full whitespace-pre-wrap break-words text-center text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
+      {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
+      <div className={worked ? "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
         {question.options.map((option, index) => {
           const checked = selected === option.id;
           const letter = String.fromCharCode(65 + index);
           return (
             <label key={option.id} className={cn(
-              "flex min-w-0 cursor-pointer rounded-2xl border-2 bg-white transition-colors focus-within:ring-2 focus-within:ring-[#0875e4] focus-within:ring-offset-2",
-              worked ? "min-h-40 flex-col gap-3 p-3" : "min-h-16 items-center gap-2.5 px-3 py-2.5",
-              checked ? "border-[#0875e4] bg-[#f4f9ff]" : "border-[#e5ebf1] hover:border-[#c9d5e2]",
-              disabled && "cursor-default hover:border-[#e5ebf1]",
-              disabled && checked && "hover:border-[#0875e4]",
+              "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
+              worked ? "min-h-40 flex-col rounded-2xl p-3 sm:min-h-44 sm:p-4" : "min-h-[56px] items-center rounded-xl px-3 py-2 sm:min-h-[64px]",
+              checked ? "border-brand-primary bg-surface-tint" : "border-brand-primary/20 bg-surface-card hover:border-brand-primary",
+              disabled && "cursor-default",
             )}>
-              <input
-                type="radio"
-                name={`battle-q-${question.position}`}
-                value={option.id}
-                checked={checked}
-                disabled={disabled}
-                onChange={() => onSelect(option.id)}
-                className="sr-only"
-              />
-              <span className={cn("flex min-w-0 items-center gap-2.5", worked && "w-full")}>
-                <span className={cn(
-                  "flex size-8 shrink-0 items-center justify-center rounded-[10px] border text-sm font-bold",
-                  checked ? "border-transparent bg-[#e7f2ff] text-[#0875e4]" : "border-[#e1e7ee] bg-white text-[#1c3348]",
-                )}>{letter}</span>
-                {worked ? <ChoiceRadio checked={checked} className="ml-auto" /> : (
-                  <span className="min-w-0 flex-1 break-words text-[15px] font-semibold text-ink">{option.body}</span>
-                )}
-                {worked ? null : <ChoiceRadio checked={checked} />}
+              <span className="flex shrink-0 items-center gap-2">
+                <input type="radio" name={`battle-q-${question.position}`} value={option.id} checked={checked}
+                  onChange={() => onSelect(option.id)} className="peer sr-only" />
+                <span className="flex size-8 items-center justify-center rounded-full bg-surface-tint text-sm font-bold text-brand-primary peer-checked:bg-brand-primary peer-checked:text-white">{String.fromCharCode(65 + index)}</span>
               </span>
-              {worked && option.steps?.length ? (
-                <span className="flex flex-col gap-2 font-mono text-xs leading-relaxed sm:text-sm">
-                  {option.steps.map((step, stepIndex) => <span key={stepIndex} className="whitespace-pre-wrap break-words">{step}</span>)}
-                </span>
-              ) : null}
-              {worked ? <span className="mt-auto whitespace-pre-wrap break-words border-t border-[#e5ebf1] pt-3 text-[15px] font-bold text-ink">{option.body}</span> : null}
-              {checked && received ? <span className="sr-only">Your answer</span> : null}
+              <span className="flex min-w-0 flex-1 flex-col gap-3 break-words">
+                {worked && option.steps?.length ? (
+                  <span className="flex flex-col gap-2 font-mono text-xs leading-relaxed sm:text-sm">
+                    {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap">{step}</span>)}
+                  </span>
+                ) : null}
+                <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}>{option.body}</span>
+              </span>
+              {checked ? <span className="sr-only">{received ? "Answer received" : "Selected"}</span> : null}
             </label>
           );
         })}

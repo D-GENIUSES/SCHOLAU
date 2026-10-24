@@ -1,0 +1,57 @@
+[
+  {
+    "id": "guest-starter-force",
+    "courseCode": "SCIENCE",
+    "courseTitle": "General knowledge",
+    "level": 100,
+    "prompt": "Which quantity is measured in newtons?",
+    "options": ["Force", "Energy", "Power", "Mass"],
+    "correct": 0,
+    "explanation": "The newton is the unit of force. Mass is measured in kilograms, energy in joules, and power in watts.",
+    "sourceReference": "General knowledge: units of measurement"
+  },
+  {
+    "id": "guest-starter-mars",
+    "courseCode": "SCIENCE",
+    "courseTitle": "General knowledge",
+    "level": 100,
+    "prompt": "Which planet is known as the Red Planet?",
+    "options": ["Venus", "Mars", "Jupiter", "Earth"],
+    "correct": 1,
+    "explanation": "Mars looks reddish because iron oxide on its surface gives it a rust-like colour.",
+    "sourceReference": "Sample lesson: Why is Mars called the Red Planet?"
+  },
+  {
+    "id": "guest-starter-triangle",
+    "courseCode": "MATHS",
+    "courseTitle": "General knowledge",
+    "level": 100,
+    "prompt": "How many sides does a triangle have?",
+    "options": ["Two", "Four", "Three", "Five"],
+    "correct": 2,
+    "explanation": "A triangle always has three straight sides and three corners, whatever its size or orientation.",
+    "sourceReference": "Sample lesson: What makes a triangle a triangle?"
+  },
+  {
+    "id": "guest-starter-ocean",
+    "courseCode": "GEOGRAPHY",
+    "courseTitle": "General knowledge",
+    "level": 100,
+    "prompt": "Which is Earth's largest ocean?",
+    "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
+    "correct": 3,
+    "explanation": "The Pacific is the largest of Earth's five named oceans.",
+    "sourceReference": "Sample lesson: Discover Earth's oceans"
+  },
+  {
+    "id": "guest-starter-addition",
+    "courseCode": "MATHS",
+    "courseTitle": "General knowledge",
+    "level": 100,
+    "prompt": "What is 7 + 5?",
+    "options": ["10", "12", "14", "15"],
+    "correct": 1,
+    "explanation": "Adding five to seven gives twelve: 7 + 5 = 12.",
+    "sourceReference": "General knowledge: basic addition"
+  }
+]

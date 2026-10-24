@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.managed_user(actor uuid, account_role text, request_key uuid, verified boolean default true) returns uuid language plpgsql as $$
 declare v uuid:=gen_random_uuid(); begin
   insert into auth.users(id,email,raw_user_meta_data)

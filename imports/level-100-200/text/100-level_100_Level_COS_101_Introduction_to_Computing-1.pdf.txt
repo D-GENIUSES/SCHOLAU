@@ -1,0 +1,399 @@
+
+
+--- page 1 ---
+COS 101
+Introduction to Computing
+Instructors: Anozie G. Onyezewe
+ Bunmi J. Bambi (Ph.D)
+ Charity Oyewole
+ Department of Computer Science, Adeleke University, Ede 
+
+
+--- page 2 ---
+Outline
+● What is a Computer?
+● History of Computers: A Brief Timeline
+● Characteristics of the computer system
+● Data and Information
+● Functions of Computers
+● Components of a Computer System
+● Types of Computers
+● Concept of Hardware and Software
+● Operating System: Functions, Categories, Types
+● Principles of Networking
+● Overview of the Internet
+2
+
+--- page 3 ---
+What is a Computer?
+Deﬁnition: A computer is an electronic device that:
+● T akes data as input
+● Processes the data under the control of a program (set of instructions)
+● Produces an output
+● The entire system is called a computer system
+3
+
+--- page 4 ---
+History of Computers: A Brief Timeline
+Computing Evolution:
+● Born out of a need for efﬁcient number-crunching
+● Punch-card based computers started around the late 19th century
+● Modern smartphones possess more computing power than early 
+computers
+4
+
+--- page 5 ---
+Early Milestones in Computing (1801 - 1937)
+● 1801: Joseph Marie Jacquard’s loom uses punch cards for weaving fabric 
+designs
+● 1822: Charles Babbage conceives the ﬁrst steam-driven calculating machine 
+(though incomplete)
+● 1890: Herman Hollerith develops a punch card system to calculate the U.S. 
+Census
+● 1936: Alan Turing presents the concept of a universal computing machine 
+(Turing Machine)
+5
+
+--- page 6 ---
+Mid-20th Century Developments (1939 - 1958)
+● 1941: Atanasoff and Clifford Berry create a computer with memory for 
+simultaneous equation solving
+● 1943-1944: ENIAC, the ﬁrst large-scale digital computer, is built by 
+Pennsylvania professors, John Mauchly and J. Presper Eckert
+● 1946: UNIVAC by John Mauchly and J. Presper Eckert becomes the ﬁrst 
+commercial computer for government/business use
+● 1953-1958: Grace Hopper develops COBOL, and the integrated circuit 
+(computer chip) is invented
+6
+
+--- page 7 ---
+Personal Computers & Major Inventions (1964 - 1981)
+● 1964: Douglas Engelbart invents the computer mouse and GUI
+● 1969: UNIX operating system developed
+● 1971: Alan Shugart invents the ﬂoppy disk
+● 1975: Paul Allen and Bill Gates write software for the Altair, using BASIC. 
+Altair 8080 sparks the personal computer revolution and Microsoft is born
+● 1976: Steve Jobs and Steve Wozniak start Apple Computers on April Fool's 
+Day and roll out the  Apple I, the ﬁrst computer with a single-circuit board, 
+according to Stanford University
+● 1981: IBM introduces its ﬁrst personal computer using MS-DOS
+7
+
+--- page 8 ---
+The Internet Era & Modern Computing (1990 - Present)
+● 1990: Tim Berners-Lee invents HTML and the World Wide Web is born
+● 1996: Sergey Brin and Larry Page develop the Google search engine
+● 2016: The ﬁrst reprogrammable quantum computer was created, enabling 
+the programming of new algorithms into a single system for the ﬁrst time
+● 2017-Present: DARPA develops Molecular Informatics using molecules as 
+computers
+8
+
+--- page 9 ---
+Generations of Computers
+In summary, there are ﬁve Generations of Computers:
+● First Generation (1940–1956): Vacuum tubes
+● Second Generation (1956–1963): Transistors
+● Third Generation (1964–1971): Integrated circuits
+● Fourth Generation (1971–present): Microprocessors
+● Fifth Generation (present & future): Artiﬁcial intelligence
+9
+
+--- page 10 ---
+Characteristics of the computer system
+● Speed: Performs millions of instructions per second, operating in microseconds or 
+nanoseconds
+● Accuracy: Executes calculations with 100% precision, errors occur only with 
+inconsistent or inaccurate data
+● Diligence: Maintains consistent performance without fatigue, capable of millions of 
+operations with accuracy
+● Versatility: Can handle a variety of tasks with equal accuracy and efﬁciency
+● Reliability: Produces consistent results for the same input every time
+● Automation: Operates tasks automatically without the need for manual 
+intervention
+● Memory: Stores data in primary (built-in) and secondary (removable) storage 
+devices like CDs and pen drives
+10
+
+--- page 11 ---
+Data and Information
+● Data:
+Data  is a collection of unorganized facts & ﬁgures and does not provide any further 
+information regarding patterns, context, etc. Hence data means "unstructured 
+facts and ﬁgures" .
+● Information: 
+Information is structured data i.e. organized, meaningful and processed data. T o 
+process the data and convert into information, a computer is used.
+11
+
+--- page 12 ---
+Functions of Computers
+● Receiving Input:
+○ Data is fed into computer through various input devices like keyboard, mouse, digital 
+pens, etc. 
+○ Input can also be fed through devices like CD-ROM, pen drive, scanner, etc.
+● Processing the information
+○ Operations on the input data are carried out based on the instructions provided in the 
+programs.
+● Storing the information
+○ After processing, the information gets stored in the primary or secondary storage 
+area.
+● Producing output
+○ The processed information and other details are communicated through output 
+devices like monitor, printer, etc
+12
+
+--- page 13 ---
+Components of a Computer System
+● Key Components:
+○ Central Processing Unit (CPU)
+○ Input Devices
+○ Output Devices
+● Process Overview:
+○ Input devices provide data to the CPU
+○ CPU processes data and generates output
+○ Output devices display results to the user
+○ Data is stored in computer memory
+13
+
+--- page 14 ---
+Central Processing Unit (CPU)
+● Deﬁnition: The "brain" of the computer that controls operations of all parts
+● Components:
+○ Arithmetic Logic Unit (ALU):
+■ Processes data, performs calculations, and comparisons
+■ Non-numeric processing and decision-making occur here
+○ Control Unit:
+■ Extracts instructions and directs CPU operations
+■ Supervises data ﬂow within the CPU
+14
+
+--- page 15 ---
+Functions of the Control Unit
+● Controls all activities of the computer.
+● Supervises and directs the ﬂow of data within the CPU.
+● Transfers data to the ALU and results to memory.
+● Fetches results from memory to output devices.
+Memory Unit
+● Deﬁnition: Stores data, instructions, and results
+● Types: Primary and Secondary
+● Unit of Memory: Byte (1 Byte = 8 Bits).
+15
+
+--- page 16 ---
+Input Devices
+Deﬁnition: Devices that provide data input to the computer.
+Examples:
+● Keyboard
+● Mouse
+● Trackballs
+● Digital pens
+● Scanners
+● Barcode readers
+● Voice recognition systems
+● T ouch screens
+16
+
+--- page 17 ---
+Output Devices
+Deﬁnition: Devices that that display output to the user
+Examples:
+● Monitors
+● Printers
+● Speakers (sound systems)
+17
+
+--- page 18 ---
+Primary Memory
+● Deﬁnition: Main memory present on the motherboard
+● Types:
+○ Random Access Memory (RAM):
+■ Volatile, temporary storage
+■ Data is lost when powered off
+■ Types: Static RAM (SRAM), Dynamic RAM (DRAM)
+○ Read Only Memory (ROM):
+■ Non-volatile, permanent storage
+■ Data remains when powered off
+■ Types: PROM, EPROM, EEPROM, Flash memory
+18
+
+--- page 19 ---
+RAM vs. ROM
+Feature RAM ROM
+Volatility Volatile (temporary) Non-volatile (permanent)
+Data Loss Lost when power is off Retained when powered off
+Storage Capacity Small capacity High capacity
+Processing Speed High speed Low speed
+User-deﬁned Yes (modiﬁable) No (read-only)
+Cost High Cost-effective
+Types SRAM, DRAM PROM, EPROM, EEPROM, Flash
+19
+
+--- page 20 ---
+Secondary Memory
+Deﬁnition: Supplementary storage for larger data sets
+Characteristics: Non-volatile, permanent storage
+Examples: 
+● Compact disks 
+● Floppy disks 
+● Pen drives
+● External hard drives
+20
+
+--- page 21 ---
+Types of Computers (Based on Operation)
+● Analog Computers: Measure physical quantities; now nearly extinct
+● Digital Computers: Use binary (0 and 1), programmable, suitable for 
+complex computations
+● Hybrid Computers: Combine analog and digital functionalities for process 
+control
+21
+
+--- page 22 ---
+Types of Computers (Based on Size and Processing 
+Power)
+● Microcomputers: Uses microprocessor as CPU; also called personal computers 
+(PCs)
+○ Smaller in size
+○ Input: Keyboard, mouse
+○ Output: Monitor
+○ Examples: Desktops, laptops, notebooks, tablets, Personal Digital Assistants (PDAs)
+● Minicomputers: Multi-user computers supporting 10 to 100 users 
+simultaneously.
+○ Positioning: Intermediate in size and processing capacity between microcomputers 
+and mainframes.
+○ Use: Mid-range systems or workstations for businesses and organizations
+22
+
+--- page 23 ---
+● Super Mini Computers: 32-bit word length, Memory: 1 M byte to 8 M 
+bytes, Speed: Nearly 2 million instructions per second
+○ Applications: Research, development, process control in commercial 
+organizations.
+● Mainframe Computers: Powerful multi-user computers, capable of 
+supporting 100 to 1000+ users simultaneously
+○ Applications: Used in large organizations for processing bulk data and critical 
+applications like ERP
+● Supercomputers: Extremely fast computers capable of hundreds of 
+millions of instructions per second.
+○ Applications: Quantum physics, weather forecasting, molecular theory, 
+scientiﬁc research
+23
+
+--- page 24 ---
+Concept of Hardware and Software
+● Hardware: Physical components of a computer system including the:
+○ Input Devices: Keyboard, Mouse, Joystick, Scanner
+○ Processing Devices: CPU, Memory
+○ Storage Devices: Floppy Disk, Hard Disk, CD-ROM, T ape Drive, Zip Drive
+○ Output Devices: Monitor, Printer, Sound Card, Modem
+● Software: Set of instructions (programs) that control hardware operations
+○ Applications Software: Programs for speciﬁc tasks like word processing, 
+spreadsheets, database management, and presentations. E.g. MS Word, Excel, 
+PowerPoint, MySQL
+○ Systems Software: The operating system and utilities that manage hardware and 
+enable other programs to run. E.g. Windows, Linux, macOS
+24
+
+--- page 25 ---
+Functions of an Operating System
+● Booting the Computer: Initializes hardware and allows the system to start
+● User Interface: Provides Command Line or Graphical User Interface (CLI or 
+GUI)
+● Hardware Management: Controls and manages hardware resources
+● File System Management: Organizes and maintains ﬁles on the disk
+● Program Support: Provides services like saving/loading ﬁles, memory 
+allocation, etc
+25
+
+--- page 26 ---
+Categories of Operating Systems
+● Multitasking Operating System:
+○ Cooperative Multitasking: Requires cooperation between OS and applications 
+(e.g., Macintosh OS)
+○ Preemptive Multitasking: OS controls CPU time and priority (e.g., UNIX, 
+Windows NT)
+● Multi-user Operating System:
+○ Supports multiple users at the same time (e.g., UNIX, Windows NT)
+● Multiprocessing Operating System:
+○ Asymmetric: One CPU controls others
+○ Symmetric: No single controlling CPU, all CPUs work independently.
+26
+
+--- page 27 ---
+Types of Operating Systems
+● DOS (Disk Operating System): Command-line based, popular on Intel PCs
+● Microsoft Windows: GUI-based, runs DOS and Windows programs
+● OS/2: IBM/Microsoft OS for Intel processors, multitasking capabilities
+● Macintosh OS: Purely graphical, easy-to-use, ideal for desktop publishing
+● UNIX: Multi-platform, robust, command-line-based, widely used
+● Windows NT: 32-bit OS, multitasking, supports Windows and some UNIX 
+applications
+27
+
+--- page 28 ---
+Principles of Networking
+● Deﬁnition of Networks: Systems formed by links that allow information 
+sharing. Examples include:
+○ Mail delivery system
+○ T elephone system
+○ Corporate computer networks
+○ The Internet
+● Hosts and Peripherals:
+○ A host is any device that sends/receives information on a network.
+○ Devices like printers can act as peripherals or hosts depending on how they are 
+connected.
+28
+
+--- page 29 ---
+● Types of Devices on a Network:
+○ Desktop computers, Laptops, T ablets, Smartphones, Printers, Servers, Game 
+consoles, Home appliances
+● Resources Shared Over Networks:
+○ Printing or scanning services
+○ Storage (hard drives, optical drives)
+○ Applications (e.g., databases)
+○ Information (stored on other computers)
+○ Documents
+● Types of Network:
+○ Personal Area Network (PAN)
+○ Local Area Network (LAN)
+○ Wide Area Network (WAN)
+○ Metropolitan Area Network (MAN)
+29
+
+--- page 30 ---
+Overview of the Internet
+● Deﬁnition: A global network of computers that communicate seamlessly
+● Origins: Began with ARPANET in the 1960s by the U.S. Department of 
+Defense
+● Connection: Networks worldwide communicate using Transmission 
+Control Protocol/Internet Protocol (TCP/IP)
+● How Information is Transmitted on the Internet:
+○ Data is broken into packets for transmission.
+○ TCP/IP ensures proper delivery of these packets across networks.
+30
+
+--- page 31 ---
+Services Oﬀered on the Internet
+● Electronic Mail (E-mail):
+○ Allows asynchronous communication (messages sent without needing the 
+recipient to be online)
+○ Cost-effective, reliable, and efﬁcient
+● World Wide Web (WWW):
+○ Launched in 1991; uses hyperlinks for easy navigation
+○ Multimedia content (text, images, video, audio)
+○ Allows access to web pages through browsers
+31
+
+--- page 32 ---
+Beneﬁts of the Internet
+● Speed: Quick transmission of information saves time and money.
+● Breadth: Access to vast resources and information.
+● Cost-saving: Cheaper than using traditional methods like fax or phone.
+● Two-way Communication: Allows instant feedback and interaction.
+● Trading: Supports e-commerce with:
+○ Faster response times
+○ Extended market reach
+○ Improved customer service
+32

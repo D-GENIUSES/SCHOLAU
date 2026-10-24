@@ -1,0 +1,783 @@
+
+
+--- page 1 ---
+Philosophy, Logic and Human Existence
+Introduction to Philosophy
+Definition, Nature, and Scope of Philosophy
+Philosophy is derived from the Greek words philo (love) and sophia (wisdom), meaning "love of
+wisdom." It is a discipline that involves the systematic study of fundamental questions about
+existence, knowledge, values, reason, mind, and language. Philosophy is both a theoretical and
+practical field, engaging in deep reflection on life's most profound questions.
+Nature of Philosophy: Philosophy is characterized by its critical, systematic, and reflective
+nature. It is concerned with asking and answering deep, fundamental questions about the world
+and human existence. The nature of philosophy includes:
+ Critical Thinking: Philosophy challenges established beliefs and promotes logical
+reasoning and inquiry.
+ Systematic Inquiry: It employs structured methods to explore fundamental issues.
+ Universality: Philosophy deals with concepts that are relevant across different cultures
+and times.
+ Reflectiveness: Encourages self-examination and the questioning of assumptions.
+Scope of Philosophy: Philosophy is a broad discipline that influences various aspects of human
+life, including science, politics, ethics, religion, and art. Its scope covers multiple areas of human
+inquiry, and it provides frameworks for analyzing complex problems and developing reasoned
+solutions.
+Branches of Philosophy
+Philosophy is generally divided into five major branches, each dealing with different aspects of
+human thought and existence:
+1. Metaphysics – The study of reality, existence, and the fundamental nature of being. It
+explores questions such as: What is real? What is the nature of existence? What is the
+relationship between mind and matter?
+2. Epistemology – The study of knowledge, its nature, sources, and limits. It investigates
+questions like: What can we know? How do we acquire knowledge? What distinguishes
+justified belief from opinion?
+3. Ethics – The study of moral principles that govern human behavior. It examines concepts
+of right and wrong, justice, virtue, and moral responsibility.
+4. Logic – The study of reasoning, argumentation, and the principles of valid inference.
+Logic helps distinguish between valid and fallacious reasoning.
+5. Aesthetics – The study of beauty, art, and taste. It seeks to understand what makes things
+aesthetically pleasing and how artistic expression impacts human experience.
+
+--- page 2 ---
+Importance of Philosophy in Human Life
+Philosophy plays a crucial role in shaping human thought, decision-making, and problem-solving.
+1. Enhancing Critical Thinking – Philosophy trains individuals to analyze arguments,
+identify biases, and think logically. This skill is essential in making well-reasoned
+decisions in both personal and professional life.
+2. Moral and Ethical Guidance – Ethical philosophy helps individuals and societies
+establish moral values and frameworks that govern behavior.
+3. Understanding Human Existence – Through existential and metaphysical inquiry,
+philosophy helps people seek meaning, purpose, and a better understanding of their place
+in the world.
+4. Improving Communication Skills – Engaging in philosophical discourse enhances
+clarity in reasoning, persuasion, and articulation of ideas.
+5. Influencing Other Disciplines – Philosophy underpins many other fields, including law,
+politics, science, and technology, by providing foundational principles and methods of
+inquiry.
+6. Promoting Social and Political Awareness – Political philosophy informs discussions
+on justice, rights, governance, and the responsibilities of individuals within a society.
+7. Contributing to Technological and Scientific Advancements – The philosophy of
+science examines the methods, assumptions, and ethical implications of scientific
+discoveries and technological innovations.
+Characteristics of a Philosopher
+1. Critical and Rational Inquiry – Philosophy involves logical reasoning and questioning rather
+than relying on assumptions or dogma.
+2. Systematic and Structured Thinking – Philosophical arguments follow structured methods of
+reasoning and analysis.
+3. Fundamental Questions – Philosophy addresses deep questions about existence, knowledge,
+morality, reality, and human purpose.
+4. Universality and Generality – Unlike specialized sciences, philosophy seeks broad,
+foundational principles that apply universally.
+5. Conceptual Analysis – Philosophers analyze the meanings, implications, and interconnections of
+concepts.
+6. Reflective and Self-Examinatory – Philosophy encourages self-awareness and critical
+examination of one's beliefs and assumptions.
+7. Interdisciplinary Nature – It intersects with other disciplines such as science, religion, politics,
+and ethics.
+8. Search for Wisdom – Philosophy is not just about acquiring knowledge but seeking wisdom in
+understanding life and the universe.
+9. Dialectical Method – Philosophical discussions often involve argumentation, counterarguments,
+and refinement of ideas through dialogue.
+10. Normative and Evaluative – Philosophy not only describes reality but also prescribes values and
+ethical standards.
+
+--- page 3 ---
+2. The Origins and History of Philosophy
+ Early beginnings: African, Eastern, and Western traditions
+Philosophy originated as a product of man’s gift of rationality which aids him in his interaction
+with nature, the environment and human experiences (Molokwu, 2009). Though traces of the
+origin always start with the western traditions, particularly, the Greeks, its presence in Africa and
+the Eastern part of the world cannot be overlooked. The early philosophical traditions of Africa,
+the East (including China and India), and the West (particularly Greece) reveal diverse
+philosophical thoughts that shaped human intellectual history.
+In Africa, Egyptian civilization which is one of the oldest in human history, played a role in the
+development of early philosophical thought as Egyptian philosophy which was mixed with
+mythology, ethics, and governance, emphasised the concept of Ma'at—order, justice, and balance
+(Ebo, 2018). Philosophers such as Ptahhotep, who authored "The Maxims of Ptahhotep,"
+provided ethical guidance on leadership, humility, and social harmony. Moreover, recent
+scholarship suggests that early Greek philosophers, including Thales and Pythagoras, were
+influenced by Egyptian thought as the Greeks borrowed heavily from Egyptian metaphysics and
+mathematical principles (Anakwue, 2018). Beyond Egypt, African philosophy thrived in oral
+traditions and the wisdom of sages. The Akan, Yoruba, and Igbo peoples had sophisticated
+systems of thought, often transmitted through proverbs, folklore, and storytelling (Kanu, 2013).
+In Eastern part of the world, the Indian philosophical tradition dates back to the Vedas (c. 1500
+BCE), which contain hymns and metaphysical speculations about the nature of existence and the
+universe. The Upanishads (800–200 BCE) further developed concepts such as Brahman (ultimate
+reality) and Atman (self), forming the basis of Vedantic thought (Osborne, 1992). According to
+Osborne (1992), six major philosophical schools—Nyaya, Vaisheshika, Samkhya, Yoga,
+Mimamsa, and Vedanta—offered different approaches to epistemology, logic, and ethics.
+Nonetheless, the emergence of Buddhism and Jainism in the 6th century BCE introduced new
+perspectives on suffering, karma, and liberation. Furthermore, in China, early philosophical
+thought was shaped by Confucianism, Daoism, and Legalism. Confucius (551–479 BCE)
+focused on moral virtue, social harmony, and the role of education in personal development. His
+Analects remain central to Chinese thought (Osborne, 1992). Daoism, attributed to Laozi, offered
+a contrasting view that valued natural spontaneity and harmony with the Dao (Way). Meanwhile,
+Legalism, championed by Han Feizi, focused on strict laws and governance as essential for
+societal order.
+Western philosophy is said to have started with wonder and curiosity about the nature of the
+universe (Molokwu, 2009). It is often traced to the Pre-Socratic thinkers of Ionia, such as Thales,
+Anaximander, and Heraclitus, who sought natural explanations for the cosmos, moving away
+from mythological narratives (Ebo, 2018). The achievements of these philosophers will be
+discussed later.
+
+--- page 4 ---
+ Key philosophical movements: Ancient, Medieval, Modern, and
+Contemporary
+Philosophy, as a discipline, has undergone transformations over centuries and has been shaped
+by cultural, political, and scientific developments. Therefore, this sub-section looks into four key
+philosophical movements: Ancient, Medieval, Modern, and Contemporary philosophy, as each
+period contributed unique perspectives and helped in shaping the evolution of thought and
+influencing modern philosophical inquiries.
+I. Ancient Period
+Ancient philosophy which emerged in the 6th century BCE, focused on understanding the nature
+of reality, ethics, and knowledge. According to Molokwu (2009), this period can be divided into
+two: The pre-Socratic and Socratic periods.
+The pre-Socratic period focused more on issues related to cosmology—the universe and its
+constitutive elements and the philosophers of the period were known as members of the Milesian
+school (Molokwu, 2009). Some of the philosophers of this period include philosophers such as
+Thales, Anaximander, and Heraclitus, who initiated inquiries into metaphysics and cosmology
+(Sokal, Oden, Rosenberg, & Digiovanni, 1997).
+Thales, the first member of this school, contended that the source or origin of the universe was
+water as he believed that all things are made from it. Thales’ contributions spanned various fields,
+including philosophy, science, mathematics, and astronomy. Despite the scarcity of primary
+sources, much of what is known about Thales comes from later philosophers, particularly
+Aristotle, who credited him as the first philosopher to propose a naturalistic explanation for the
+cosmos (Cantor, 2022).
+Thales’ philosophical approach was a radical departure from traditional mythological narratives.
+He proposed that water was the underlying principle (arche) of all matter, suggesting that the
+world’s complexity could be reduced to a single, fundamental substance. This concept of
+material monism introduced a new method of inquiry based on natural causes rather than
+supernatural explanations. Kartal (2023) discusses how Aristotle interpreted Thales’ theory as an
+early attempt at material monism, a concept that would later influence the development of
+metaphysics. While Aristotle critiqued Thales’ idea for its simplicity, he acknowledged its
+importance in initiating the tradition of seeking naturalistic explanations for natural phenomena.
+One of Thales’ most significant contributions was his pioneering approach to understanding
+natural events through observation and reason. He is credited with predicting a solar eclipse
+which demonstrates his application of empirical methods to astronomy (Molinari, 2022). This
+achievement not only showcased his knowledge of celestial patterns but also illustrated his
+departure from viewing such phenomena as governed by capricious gods. According to Rajiyung
+(2024), Thales’ work marked the beginning of the shift from mythos (myth) to logos (reason), a
+critical transformation that laid the groundwork for scientific inquiry and the philosophical
+tradition of rational analysis.
+Thales’ influence extended beyond natural philosophy into mathematics. He is attributed with
+several geometric principles, including what is now known as Thales’ Theorem, which states that
+if a triangle is inscribed in a circle with one side as the diameter, then the triangle is a right
+
+--- page 5 ---
+triangle. Kvasz (2020) argues that Thales’ approach to geometry reflected a cognitive unity
+between his philosophical and mathematical thinking. His use of deductive reasoning in
+mathematics parallels the methodological rigor he applied to natural philosophy.
+After Thales, Anaximander, an evolutionist, came up as the second member of this school. He
+stated that all things came as a product of the activity of an element whose nature is infinite,
+eternal and ageless (Molokwu, 2009). As a member of the Milesian school, alongside Thales and
+Anaximenes, Anaximander sought natural explanations for the origin and structure of the cosmos,
+departing from the mythological frameworks that dominated ancient Greek culture. His ideas
+introduced the concept of the apeiron (the “boundless” or “infinite”), a revolutionary notion that
+not only influenced subsequent philosophers but also laid foundational principles for scientific
+inquiry and metaphysical speculation (Stella & Divino, 2023).
+Anaximander’s concept of the apeiron is one of his most enduring philosophical contributions.
+Unlike his predecessor Thales, who posited water as the primary substance of all things,
+Anaximander proposed that the cosmos originated from the apeiron, an indefinite and boundless
+principle that transcends conventional elements like water, air, or fire (López, 2020). The
+apeiron was not a specific material substance but rather an eternal and ageless source from
+which all things emerge and into which they return. This cyclical process of generation and
+destruction reflects a form of natural justice (dike), where the elements atone for their excesses
+over time, maintaining balance in the universe (Griffith, 2022). By introducing the apeiron,
+Anaximander advanced a metaphysical idea that suggested the world is governed by abstract
+principles rather than capricious deities, which is a shift towards rationalism and naturalism in
+Greek philosophy.
+Anaximander also made substantial contributions to cosmology. He was the first known
+philosopher to conceptualise the universe with a structured, mechanical order. According to
+Naddaf (2019), Anaximander proposed that the Earth was a cylindrical shape, suspended freely
+at the center of the cosmos, not supported by any physical structure. This idea broke away from
+earlier mythological views that imagined the Earth resting on a physical foundation, such as the
+back of a giant creature or a world-pillar. Anaximander’s assertion that the Earth remained in its
+place due to its equidistant position from all points of the celestial sphere introduced a
+rudimentary concept of equilibrium.
+Furthermore, Anaximander’s work in astronomy and meteorology revealed his empirical
+approach to natural phenomena. He is credited with creating one of the earliest maps of the
+known world and contributing to the understanding of celestial bodies’ movements (Zhu, 2024).
+His theories on the formation of the Earth and the heavens were not only speculative but also
+grounded in observable phenomena, as seen in his explanation of natural events like rain, wind,
+and the changing seasons. Rahman (2023) highlights Anaximander’s use of dialectical reasoning,
+particularly his exploration of opposites—such as hot and cold, wet and dry—as fundamental
+forces driving natural change. This dialectical method influenced later philosophical traditions,
+including Heraclitus’ doctrine of change and the development of dialectics by Plato and Aristotle.
+
+--- page 6 ---
+Anaximander’s philosophical ideas also extended into the realm of biology and the natural
+sciences. He proposed an early theory of evolution, suggesting that life originated in the moisture
+of the Earth and that human beings evolved from fish-like creatures (Salles, 2024). This proto-
+evolutionary theory demonstrated his ability to apply naturalistic explanations to biological
+processes. His ideas on natural processes emphasised the importance of observation and rational
+analysis.
+Anaximenes, the third of the Milesian school, differed in opined from both Thales and
+Anaximander as he was concerned with the nature of cosmic matter or primary element (Ozuzu,
+2005). Anaximenes proposed that air was the fundamental substance from which all things
+originate. Unlike his predecessor Anaximander, who posited the apeiron (the “boundless”) as the
+ultimate principle, Anaximenes chose a more tangible and observable element. He introduced the
+theory of condensation and rarefaction (Molokwu, 2009). He argued that air could transform into
+various forms of matter through processes of condensation and rarefaction. According to Hobza
+(2020), Anaximenes suggested that when air condenses, it becomes visible and material,
+transforming into water, then earth, and finally stones. Conversely, when air rarefies, it becomes
+fire. This theory provided an early model of physical transformation based on natural processes,
+which shows Anaximenes’ pioneering approach to explaining the physical world through
+empirical observation and rational deduction.
+Anaximenes’ understanding of air extended beyond its material aspect to a more metaphysical
+interpretation. He viewed air as a life-giving force, drawing an analogy between the macrocosm
+of the universe and the microcosm of human life. As air sustains human life through breathing,
+so too does it sustain the universe. Deng (2023) points out that this perspective infused
+Anaximenes’ philosophy with a quasi-spiritual dimension, as air was not only a physical
+substance but also a source of vitality and motion.
+Anaximenes’ contributions to cosmology were also significant as he envisioned a flat Earth
+suspended in air, with celestial bodies such as the sun, moon, and stars floating above it
+(Kočandrle, 2019). He proposed that these heavenly bodies were ignited by the movement of air
+and that their rising and setting were optical illusions caused by their rotation around the Earth.
+This meteorological approach to cosmology differed from modern scientific understandings but
+represented a critical step toward naturalistic explanations of celestial phenomena. By attributing
+cosmic events to observable natural processes, Anaximenes laid the groundwork for later
+astronomical theories and challenged the notion that such events were governed by the whims of
+gods.
+Deng (2023) draws a comparison between Anaximenes’ concept of air as a fundamental
+principle and the Chinese philosophy of Qi as described in the Wuxing (Five Elements)
+framework. Both systems propose a dynamic, process-oriented understanding of the natural
+world, where a basic substance transforms into different forms through specific mechanisms.
+Such cross-cultural analyses underscore the universality of early human attempts to understand
+the natural world through elemental theories, suggesting that Anaximenes’ thought was part of a
+broader pattern of philosophical inquiry into the nature of existence.
+
+--- page 7 ---
+Anaximenes’ methodology also reflects an evolution in scientific thinking. His emphasis on
+natural processes like condensation and rarefaction can be seen as an early form of empirical
+science, where hypotheses about natural phenomena were grounded in observable processes
+(Hobza, 2020). While Anaximenes lacked the experimental rigor of modern science, his
+approach contributed to the development of the scientific method by promoting the idea that
+natural laws governed the behavior of matter. His influence extended to later philosophers,
+including Heraclitus, who developed the concept of perpetual change, and Empedocles, who
+proposed a more developed theory of the four classical elements.
+Pythagoras was also an Ionia but migrated to kroton in southern Italy. He formed a movement
+known as the pythagorean school (Ozuzu, 2005). Pythagoras was a genius at calculation, the
+shapes of symbols and he calculated the triangle. He also believed in reincarnation and claimed
+that the soul was divine and undergoes purification through life, death, and rebirth to attain
+perfection (Molokwu, 2009). Despite the scarcity of direct writings attributed to Pythagoras, his
+legacy is preserved through the works of later philosophers such as Plato, Aristotle, and
+Iamblichus (Moore, 2019).
+Central to Pythagorean philosophy is the concept that numbers constitute the fundamental
+essence of reality. Pythagoras and his followers believed that “all things are numbers,”
+suggesting that the universe’s structure and harmony could be understood through mathematical
+relationships (Amangeldiyev & Aldanazarova, 2020). This perspective laid the groundwork for
+the metaphysics of numbers, where numbers were not merely tools for counting but intrinsic
+elements of the cosmos with mystical and ontological significance. The Pythagoreans proposed
+that the principles of mathematics could explain natural phenomena, with particular emphasis on
+the ratios found in musical harmony. Konovalova (2021) reveals how Pythagoras’ discovery of
+the harmonic intervals in music—such as the octave, fifth, and fourth—demonstrated the deep
+connection between numerical ratios and the physical world, leading to the concept of the
+“harmony of the spheres.” This idea proposed that celestial bodies produced a form of cosmic
+music through their movements, reflecting a universal order governed by mathematical laws.
+Pythagoras’ contributions to mathematics extend beyond metaphysics. He is best known for the
+Pythagorean theorem, which establishes the relationship between the sides of a right-angled
+triangle. While this theorem was likely known to earlier cultures, Pythagoras is credited with
+providing the first formal proof, a hallmark of Greek mathematical rigor (Erovenko &
+Michailova, 2022). His approach to mathematics emphasised logical deduction and proof,
+influencing the development of geometry and laying the foundations for Euclidean geometry.
+Chiotis (2020) opines that Pythagorean mathematical principles influenced ancient architecture,
+including the design of the Polycratean temple of Heraion in Samos. The use of Pythagorean
+triples in temple layouts also illustrates how Pythagorean mathematics was not only theoretical
+but also applied in practical contexts.
+The Pythagorean school also ventured into metaphysical and religious domains. Pythagoras
+introduced the doctrine of metempsychosis, or the transmigration of souls, which posits that the
+soul is immortal and undergoes a cycle of rebirths (John & Akpan, 2021). This belief, influenced
+by Orphic traditions, emphasises the ethical dimensions of Pythagoreanism, which advocates for
+
+--- page 8 ---
+a life of purity and self-discipline to achieve spiritual liberation. De Campos (2022) opines that
+Pythagoras’ unwritten teachings, preserved through oral tradition and interpreted by later
+Neoplatonists like Hermias of Alexandria, contributed to a mystical strand of Greek philosophy
+that valued esoteric knowledge and the inner transformation of the soul. This integration of
+philosophy with religious practice positioned Pythagoras as not merely a mathematician or
+scientist but as a spiritual guide whose teachings aimed at the cultivation of both mind and spirit.
+Pythagorean philosophy also extended into the realm of political thought. According to Brovkin
+(2024), the early Pythagoreans promoted political stability, moderation, and the integration of
+philosophical principles into public life. Their community in Croton, Southern Italy, functioned
+as a model of philosophical governance, emphasising equality, justice, and communal living.
+However, Pythagorean influence in politics was not without controversy. The secretive nature of
+their society and their elitist inclinations led to political conflicts, resulting in the persecution of
+Pythagoreans and the dispersal of their community. Despite this setback, the political ideals of
+Pythagoras influenced later thinkers, including Plato, whose Republic echoes Pythagorean
+notions of philosopher-kings and the role of education in achieving a just society.
+Pythagoras’ influence is also evident in his impact on music theory and cultural works.
+Konovalova (2021) explains that Pythagoras’ insights into the mathematical basis of musical
+harmony contributed to the mathematisation of music, transforming it from a mystical art into a
+disciplined science. This approach laid the groundwork for Western music theory and reinforced
+the idea that beauty and harmony in art are reflections of deeper mathematical and cosmic orders.
+Moreover, Danesi (2020) emphasises Pythagoras’ enduring legacy in the intellectual traditions of
+science and philosophy, arguing that his integration of mathematics, music, and metaphysics
+established a model of interdisciplinary inquiry that continues to inspire contemporary thinkers.
+Another influential philosopher of this period was Heraclitus, who argued that nothing is
+permanent in this world except for change (Molokwu, 2009). Heraclitus also added that in spite
+the fact that there is perpetual change in the world, there is also perpetual conflict and strife
+(Ozuzu, 2005). Heraclitus of Ephesus (c. 535–475 BCE) was known for his doctrine of flux and
+his enigmatic aphorisms. His philosophy, characterised by the idea of constant change and the
+unity of opposites, contributed significantly to the development of Western philosophy,
+particularly through his concept of the logos (reason or word). Heraclitus’ work, primarily
+surviving in fragments, presents a worldview where stability is an illusion, and change is the
+only constant (Desta, 2023).
+Heraclitus’ doctrine of flux is famously encapsulated in his statement that one cannot step into
+the same river twice, which reveals his belief that everything is in a state of continuous
+transformation. According to Hui (2019), this idea contrasts sharply with later philosophical
+systems, such as Plato’s theory of eternal Forms, which emphasise stability and permanence.
+Heraclitus argued that all things are in a perpetual state of becoming, driven by an underlying
+order he called logos. This logos is not only a principle of order but also a rational structure that
+governs the cosmos, suggesting that while things change, they do so according to a rational
+pattern (Hui, 2019).
+
+--- page 9 ---
+The concept of logos plays a central role in Heraclitus’ philosophy. He proposed that the logos is
+an objective truth accessible through reason, distinguishing it from the mythical explanations of
+the world offered by poets like Homer and Hesiod (Desta, 2023). Halapsis (2020) emphasises
+that Heraclitus’ logos bridges the gap between mythos and logos as it represents a shift from
+mystical explanations to rational thought.
+Heraclitus is also known for his principle of the unity of opposites. He believed that opposites
+are not mutually exclusive but interdependent. For example, he argued that life and death, day
+and night, and war and peace are interconnected, and one cannot exist without the other (De
+Campos, 2022). This principle led to his famous assertion that “war is the father of all things,”
+suggesting that conflict and tension drive the creation and destruction that sustain the cosmos
+(Lopes, 2021). Heraclitus’ exploration of opposites laid the groundwork for dialectical thinking,
+later developed by philosophers such as Hegel and Nietzsche.
+Heraclitus’ philosophy of fire as the fundamental element of the cosmos is another key aspect of
+his thought. He viewed fire not only as a physical substance but as a metaphor for change and
+transformation. Ignatenko (2020) explains that for Heraclitus, fire represented the ever-present
+process of creation and destruction, mirroring the perpetual flux of the universe.
+Heraclitus’ enigmatic style and use of paradox have also contributed to his enduring legacy. His
+writings are often described as obscure, using metaphor, symbolism, and aphoristic statements
+that resist straightforward interpretation (Jeck, 2019).
+Parmenides from Elea, was the first to focus on the difference between the senses and reason
+(Molokwu, 2009). According to Ozuzu (2005), the philosophy of Parmenides is contained in his
+poem title ‘On Nature,’ in which he explained two things, the way of truth and way of opinion.
+According to Parmenides, the first is the way of reason while the second is the of the way of the
+senses (Ozuzu, 2005). Central to Parmenides’ philosophy is the assertion that “what is, is” and
+“what is not, is not,” encapsulating his principle of the immutability and unity of being. He
+argued that being is ungenerated, indestructible, indivisible, and unchanging. According to Meza
+(2020), Parmenides’ monism posits that reality is a singular, continuous entity, and any
+perception of change or plurality is illusory. This view directly opposed earlier thinkers like
+Heraclitus, who emphasised the constant flux of the universe. Parmenides’ rejection of change
+and multiplicity led to a stark dichotomy between the world of appearances and the world of true
+reality, influencing later philosophers such as Plato and Aristotle.
+The method by which Parmenides arrived at his conclusions involves rigorous logical reasoning,
+which some scholars consider an early form of deductive logic. His poem introduces the “Way of
+Truth,” where he outlines the characteristics of being, and contrasts it with the “Way of Opinion,”
+which deals with the deceptive nature of sensory experience. Sorensen (2022) highlights that
+Parmenides’ approach to truth is not empirical but rational, relying on the intellect to access an
+eternal and unchanging reality. This rationalist perspective marked a critical shift from
+mythological explanations of the cosmos to a more systematic and philosophical approach to
+knowledge.
+
+--- page 10 ---
+Parmenides’ influence on the development of logic is also noteworthy. Çetin (2022) argues that
+Parmenides’ work prefigures several principles of classical logic, including the law of non-
+contradiction, the principle of identity, and the law of the excluded middle. These principles,
+though not formally articulated until Aristotle, are implicit in Parmenides’ arguments against the
+possibility of non-being and change. His use of logical consistency to support his ontological
+claims set a precedent for the philosophical tradition of constructing metaphysical theories
+through deductive reasoning.
+Despite Parmenides’ emphasis on the unity of being, his poem also addresses cosmological ideas
+by creating an apparent contradiction between his metaphysical monism and his descriptions of
+the physical world. Conte (2023) discusses this paradox, noting that while Parmenides denies the
+reality of becoming and change in the “Way of Truth,” he provides a cosmological account in the
+“Way of Opinion” that includes elements of traditional Greek cosmology, such as the roles of
+light and night. Scholars have debated whether this cosmological section represents a concession
+to popular belief or a didactic tool to illustrate the errors of sensory perception. This dual strategy,
+as suggested by Thanassas (2020), might reflect a deeper methodological approach, where
+Parmenides juxtaposes truth with illusion to reinforce his argument about the unreliability of the
+senses.
+There were also the Atomists and Sophists. Atomists like Leucipus and Democritus believed that
+everything is composed of atoms which are physically indivisible and indestructible while
+Sophists were teachers who employed the deductive method often beginning with particular
+cases and ending with general principle (Molokwu, 2009).
+The Socratic period is the second period of the ancient period in the historical development of
+philosophy. Socrates did not write anything (Molokwu, 2009); however, Bonacchi, Witte, &
+Altaweel (2024) reveal that Socrates introduced ethical philosophy which emphasised rational
+inquiry and dialectics and his student, Plato, expanded on these ideas, advocating for idealism
+and establishing the Academy. According to Molokwu (2009), Socrates compelled philosophy to
+consider lifestyle, issues of existence and morals. Thus, one of Socrates’ most significant
+contributions to philosophy is his development of the Socratic method, a form of dialectical
+questioning designed to stimulate critical thinking and expose contradictions in thought. This
+method involves asking a series of probing questions to help individuals examine their beliefs
+and arrive at a deeper understanding of truth. According to Avdić (2021), this approach marked a
+critical transition from pre-Socratic natural philosophy, which focused on explaining the physical
+world, to a new focus on human life, ethics, and the pursuit of virtue. Socrates believed that
+through dialogue and questioning, individuals could achieve self-knowledge, which he
+considered the highest form of wisdom. His famous assertion, “I know that I do not know,”
+highlights his commitment to intellectual humility and the endless pursuit of knowledge (Avdić,
+2021).
+Socrates’ philosophy was not only methodological but also ethical. He is often credited as the
+first philosopher to place ethics at the center of philosophical inquiry. Wolfsdorf (2020) argues
+that Socrates’ ethical philosophy was revolutionary in its emph asis on the idea that virtue is
+knowledge. According to this view, wrongdoing is a result of ignorance, and those who truly
+
+--- page 11 ---
+understand what is good will naturally do good. This perspective introduced a rational basis for
+ethics, suggesting that moral excellence could be taught and learned through education and
+reflection. Socrates’ ethical views also laid the groundwork for later philosophical traditions,
+including stoicism and Christian ethics, which similarly emphasise the importance of wisdom
+and the cultivation of the soul.
+The life and death of Socrates serve as a powerful testament to his philosophical principles. In
+399 BCE, he was tried and sentenced to death by the Athenian state on charges of impiety and
+corrupting the youth. His trial and defense, as recorded in Plato’s Apology, show his unwavering
+commitment to his philosophical mission. Jiao (2023) notes that Socrates used his trial as an
+opportunity to educate the public about the importance of virtue and the examined life. Rather
+than plead for his life, he maintained that a true philosopher must not fear death but instead
+remain dedicated to the pursuit of truth and justice. His acceptance of the death penalty rather
+than compromising his beliefs solidified his status as a martyr for philosophy, embodying the
+ideal of living according to one’s principles regardless of the consequences.
+Socrates’ impact on subsequent philosophy cannot be overstated. Taylor (2019) emphasises that
+Socrates’ influence on Plato was particularly significant as Plato’s portrayal of Socrates not only
+preserved his teachings but also transformed them into a robust philosophical framework that
+underpinned the development of Western philosophy. Through Plato’s dialogues, Socratic ideas
+influenced a wide array of philosophical schools, including the Academy founded by Plato,
+Aristotelian philosophy, and later, the Stoics, who adopted Socratic ethics as a core component
+of their doctrine. Socrates’ ideas also reached into medieval thought through the revival of
+Platonic philosophy during the Renaissance.
+Plato (c. 427–347 BCE), a student who was greatly influence by his teacher, Socrates,
+contributed immensely to the development of philosophy. To him, man is made of the soul
+(reason) and the body (Molokwu, 2009). Plato introduced the concept of Forms (or Ideas),
+proposing that the material world is a mere shadow of a higher, unchanging reality of abstract,
+perfect entities. According to Nicolae Sfetcu (2022), Plato distinguished between perceptible but
+unintelligible reality (empirical knowledge) and imperceptible but intelligible reality (rational
+knowledge) by drawing influence from Pythagoras and mathematics. Plato emphasised the role
+of reason in acquiring knowledge. He argued that true knowledge (episteme) comes from rational
+insight rather than sensory experience (doxa or mere opinion). His dialectical method, based on
+structured argumentation, remains central to philosophical inquiry (Herrmann, 2007). Plato’s
+ethical theory was rooted in his concept of the tripartite soul, consisting of reason, spirit, and
+appetite. He also argued that Justice emerges when these elements function harmoniously. Plato
+also made contributions to mathematical philosophy and its application in natural sciences. Wu
+Wen (2013) explains that he integrated mathematical reasoning into his metaphysical and
+scientific outlook, influencing fields such as astronomy. Plato founded the Academy in Athens,
+one of the first higher-learning institutions in the Western world (Ahemad & Shah, 2016).
+Aristotle, Plato’s student, advanced empiricism by laying the groundwork for scientific
+methodology. His works in ethics, politics, and metaphysics influenced various disciplines
+(Narasimhan et al., 2019). Molokwu (2009) reveals that he founded a school called Lyceum and
+
+--- page 12 ---
+was known to have developed formal logic which deals with the form that reasoning takes. One
+of Aristotle’s significant contributions to philosophy is his work in metaphysics, where he
+explored the nature of being and reality. His seminal text, Metaphysics, introduces the concept of
+‘substance’ as the primary category of being. Aristotle argued that substance is composed of both
+matter and form, where matter is the potentiality and form is the actuality (Meister, 2022). He
+proposed that the ultimate reality is not separate from the physical world, as Plato suggested, but
+is present within tangible objects through their forms. Aristotle’s doctrine of the “four causes”
+(material, formal, efficient, and final) provided a comprehensive framework for explaining
+change and existence in the natural world. His notion of the “unmoved mover” as the first cause
+of all motion influenced theological and philosophical discourse for centuries, particularly in
+medieval scholasticism (Jeffrey, 2021).
+Aristotle’s contributions to logic are foundational to Western philosophy. His Organon
+introduced formal logic and syllogistic reasoning, establishing a method of deductive reasoning
+that dominated philosophical thought until the modern era (Castelli, 2020). Aristotle’s
+categorisation of logical propositions and his development of the principles of non-contradiction
+and the excluded middle became critical tools for evaluating philosophical arguments and
+scientific hypotheses. Aristotle categorised propositions into four types: universal affirmative,
+universal negative, particular affirmative, and particular negative. Taysina (2023) emphasises
+that Aristotle’s methodological arsenal, particularly his use of categories, provided a structured
+approach to philosophical inquiry that influenced not only ancient thought but also modern
+philosophy through figures like Immanuel Kant.
+In ethics, Aristotle is best known for his concept of eudaimonia, often translated as “happiness”
+or “flourishing.” His ‘Nicomachean Ethics’ argues that the highest human good is living a life of
+rational activity in accordance with virtue (Melnikov, 2023). Aristotle distinguished between
+intellectual virtues, which involve reasoning, and moral virtues, which arise from habit. He
+introduced the “Golden Mean,” a doctrine that virtue lies between the extremes of excess and
+deficiency. For example, courage is a mean between recklessness and cowardice. Aristotle’s
+ethical theory is a form of virtue ethics, which contrasts with consequentialist and deontological
+ethical frameworks developed later in Western philosophy. His ideas on ethics were not only
+theoretical but also practical, influencing political philosophy and education.
+Aristotle’s political philosophy is articulated in Politics, where he explores the role of the polis
+(city-state) in achieving the good life. He believed that humans are “political animals” whose
+fulfillment is closely tied to their participation in civic life (Ishino, 2022). Aristotle analysed
+different forms of government, including monarchy, aristocracy, and democracy and proposed a
+mixed regime as the most stable and just form of governance. He emphasised the importance of
+the middle class in maintaining political stability and critiqued both extreme democracy and
+oligarchy for their potential to lead to tyranny. Unlike Plato, who envisioned a philosopher-king
+ruling the ideal state, Aristotle advocated for a more pragmatic approach that considered
+historical and cultural contexts (Trang & Quỳnh, 2021).
+Medieval Philosophy
+
+--- page 13 ---
+Medieval philosophy, spanning roughly from the 5th to the 15th century, helped in preserving and
+transforming classical philosophical traditions. This period was influenced by Greek, Roman,
+Christian, Jewish, and Islamic thought and sought to reconcile faith with reason, laying the
+foundation for modern philosophy. Following the fall of the Western Roman Empire,
+philosophical activity shifted towards preserving ancient knowledge and integrating it with
+Christian theology. Thus, medieval philosophy bridged classical philosophy with theological
+doctrines. Augustine’s works integrated Platonic thought into Christianity (Cesaretti, et al., 2016).
+One notable philosopher of this period was St. Augustine (354–430). Influenced by
+Neoplatonism, he laid emphasises on the role of divine illumination in knowledge (Marenbon,
+2006).
+Boethius (477–524) translated and commented on Aristotle’s logic, bridging classical and
+medieval thought (György, 2013). The monastic tradition in Europe helped preserve and
+transmit classical works.
+The Islamic and Jewish influence (9th–12th Century) was key to the development of philosophy
+as Islamic and Jewish scholars helped in transmitting and interpreting classical philosophy.
+Scholars like Avicenna (Ibn Sina) (980–1037) synthesised Aristotelianism and Neoplatonism,
+contributing to metaphysics and logic (Inglis, 2002).
+Averroes (Ibn Rushd) (1126–1198) emphasised on reason and provided detailed commentaries
+on Aristotle which influenced Latin Scholasticism (König-Pralong, 2009).
+Maimonides (1138–1204) integrated Jewish theology with Aristotelian philosophy which
+impacted Christian thought.
+Furthermore, in 12th–14th Century, there was the translation movement in Islamic Spain which
+reintroduced Aristotle’s works to Christian Europe, leading to Scholasticism. This era of
+scholasticism had scholars like St. Anselm (1033–1109) who developed the ontological
+argument for God’s existence (Deely, 2010).
+Thomas Aquinas (1225–1274) merged Aristotelian philosophy with Christian theology,
+emphasising natural reason and divine revelation (Schmiga & Porro, 2013). He synthesised
+advocated for natural law and rational theology. His work remains a cornerstone of Catholic
+philosophy (Musielak, Kubicka, Woźniak, Jóźwiak, & Liu, 2021). John Duns Scotus (1266–
+1308) and William of Ockham (1287–1347) challenged Aquinas, introducing Nominalism,
+which questioned the reality of universals (Pomplun, 2016).
+In the late Medieval period (14th–15th Century) William of Ockham proposed the Ockham’s
+Razor, which emphasised simplicity in philosophical reasoning, anticipating scientific
+empiricism (Risti & Gorgiev, 2006). Also, the decline of Scholasticism and the rise of
+Renaissance humanism shifted the focus from theological concerns to human-centered inquiry.
+The revival of Platonic and Aristotelian traditions in the Renaissance set the stage for modern
+philosophy (Gilson, 2019).
+
+--- page 14 ---
+II. Modern Philosophy
+Modern philosophy (17th-19th century) shifted towards individual reason and empirical
+observation. It marked a transition from medieval scholasticism to new ways of understanding
+reality, knowledge, and human existence. During this period, the Age of Reason, scientific
+advancements, and political revolutions greatly influenced philosophical thought, leading to
+Rationalism, Empiricism, Idealism, Existentialism, and Analytic Philosophy. Descartes’ cogito
+argument laid the foundation for rationalism, while Locke and Hume developed empiricism
+(Bašić, Kružić, Jerković, Anđelinović, & Anđelinović, 2017).
+A. The Early Modern Period (17th–18th Century)
+In the early modern period, there was focus on Rationalism which emphasised reason as the
+source of knowledge. Some scholars of rationalism this period includes:
+ René Descartes (1596–1650) introduced methodological skepticism and the
+famous dictum “Cogito, ergo sum” (I think, therefore I am) (Shapiro, 2016).
+ Baruch Spinoza (1632–1677) and Gottfried Leibniz (1646–1716) developed
+monist and pluralist metaphysical systems.
+B. Empiricism in this period emphasised experience and sensory perception as sources of
+knowledge.
+ John Locke (1632–1704) argued for the mind as a tabula rasa (blank slate).
+ George Berkeley (1685–1753) and David Hume (1711–1776) critiqued
+materialism and introduced skepticism (Mercer & O’Neill, 2005).
+ Immanuel Kant (1724–1804) synthesised rationalism and empiricism in his
+“Critique of Pure Reason,” arguing that knowledge is shaped by both sensory
+experience and innate structures of reason (Corrias, 2019). He introduced the
+concept of synthetic a priori knowledge (Eraslan, 2014).
+C. German Idealism and the 19th Century
+German idealism scholars in the 19th century includes:
+ Georg Wilhelm Friedrich Hegel (1770–1831), who developed dialectical
+idealism, where reality unfolds through contradictions and resolutions (Bunge,
+2014).
+ Arthur Schopenhauer (1788–1860) introduced pessimism, seeing life as driven
+by irrational “Will”.
+ Karl Marx (1818–1883) applied dialectics to history, proposing materialism and
+class struggle as central forces shaping society [(Liao, 2000).
+D. Existentialism and Phenomenology (19th–20th Century)
+ Søren Kierkegaard (1813–1855) and Friedrich Nietzsche (1844–1900) rejected
+absolute truths and focus on individual existence, authenticity, and the “death of
+God”.
+ Edmund Husserl (1859–1938) developed Phenomenology by emphasising
+conscious experience as the foundation of knowledge.
+
+--- page 15 ---
+ Jean-Paul Sartre (1905–1980) and Martin Heidegger (1889–1976) expanded
+Existentialism, arguing for radical human freedom and responsibility (Han, 2006).
+E. Analytic Philosophy and 20th-Century Developments
+ Ludwig Wittgenstein (1889–1951) argued that language shapes reality. He
+divided his work into early logical positivism and later ordinary language
+philosophy.
+ Bertrand Russell (1872–1970) and G.E. Moore (1873–1958) critiqued Idealism,
+laying the groundwork for modern Analytic Philosophy.
+ Postmodernism, led by Michel Foucault (1926–1984) and Jacques Derrida
+(1930–2004), deconstructed truth, power, and language, challenging the
+foundations of Western philosophy (Sevostyanov, 2023).
+III. Contemporary Philosophy
+Contemporary philosophy emerged in the late 19th and 20th centuries and has been shaped by
+scientific advancements, globalisation, and interdisciplinary influences. It includes movements
+such as Analytic Philosophy, Continental Philosophy, Postmodernism, and Political Philosophy,
+all of which have engaged with modern social, ethical, and epistemological issues (Bartels,
+Onstenk, & Veugelers, 2016). This period emphasised historicism, questioning whether
+philosophy should evolve based on contemporary concerns rather than being tied to historical
+traditions (Menzhulin, 2022).
+A. Analytic Philosophy and Its Influence
+Molokwu (2009) revealed that the analytic movement was brought by G. E. Moore and Bertrand
+Russell. They opined that philosophy should concern itself with analysing language (Molokwu,
+2009). The linguistic turn, initiated by Wittgenstein, argued that philosophical problems stem
+from misunderstandings of language (Frede, 2021). Later pragmatist and post-analytic
+philosophers, such as W.V.O. Quine and Richard Rorty, challenged foundationalism,
+emphasizing practical consequences over abstract theorising (Watson, 2012).
+B. Continental Philosophy and Postmodernism
+Existentialism, with figures like Jean-Paul Sartre and Martin Heidegger, focused on individual
+freedom and meaning in a post-religious world.
+Postmodernism, led by Michel Foucault and Jacques Derrida, deconstructed metaphysical and
+historical assumptions, emphasising power structures, language, and subjectivity (Jiong, 2006).
+Furthermore, critical theory, influenced by the Frankfurt School, engaged with Marxist and
+psychoanalytic ideas to critique ideology and cultural systems.
+C. Political and Ethical Philosophy
+John Rawls revitalised political philosophy with his theory of justice which emphasised fairness
+and social contract theory. Feminist and postcolonial philosophy, including bell hooks and Frantz
+Fanon, critiqued traditional power structures and expanded the discourse on identity, race, and
+gender (Xing, 2011).
+
+--- page 16 ---
+3. Logic: The Science of Correct Thinking
+ Definition and nature of logic
+Man by nature is a logical being and without logic, man would cease to be man (Ukah, 2010).
+This provides us with the need to ask questions like what is logic? Of what importance is logic to
+man? To answer the question of what logic is, it can be noted that it has no universally accepted
+definition as it has been defined in various ways by different scholars; however, the different
+definitions point out some salient features of what logic is about (Ogbinaka, 2009). Ogbinaka
+(2009) reveals that etymologically, logic is derived from the Greek word ‘Logos’ which means
+‘word,’ ‘reason’ or ‘thought.’ Some definitions by scholars are given below:
+Irving Copi sees logic as “the study of the methods and principles used to distinguish good
+(correct) from bad (incorrect) reasonings” (Copi, 1978). Ogbinaka (2009) reveals that Copi
+further gave two other definitions of logic: “Logic is the science of the law of thought” and
+“logic is the science of reasoning,” which bring it closer to psychology.
+A.R. Lacey opines that logic deals with “valid reasoning, its systematisation and the study of
+notions relevant to it.” It has two main parts, formal logic and philosophical logic which is also
+called logical theory (Lacey, n.d.). Moreover, Mourant defines “logic as both a science and an art,
+concerned with the quest for knowledge and truth. It is also a study of the validity or correctness
+of our reasoning” (Nze Agwaranze, 2005).
+Leonard describes logic as “the science of exact reasoning.” He believes that the science of logic
+seeks to discover and state laws in accordance with which any act of thought may be judge good
+or bad (Nze Agwaranze, 2005). Bertrand Russell also defines logic in terms of the formal and
+legitimate ways of reasoning validly (Russell, 1903).
+Ogbinaka (2009) points out the following as important points to be gleaned from various
+definitions of logic:
+(i) Logic concerns orderly reasoning and thought (i.e thinking).
+(ii) It is about inferences as it deals on how propositions are inferred.
+(iii) It deals with the order and form of arguments.
+(iv) It is about judgments and how these judgments are either arrived at or derived.
+(v) It is more of a formal, not so much of factual inquiry into how we make our
+judgments in reasoning.
+(vi) Logic can only be the activity of rational human beings since it relates to thought.
+The fundamental question of whether logic is a discovery about reality or a human construction
+has been a long-standing philosophical debate. Logical realism, as advocated by thinkers like
+A.N. Prior, asserts that logic is not merely a linguistic or conceptual construct but reflects an
+objective structure of the world (Jakobsen, 2020). This suggests the idea that logical principles
+govern reality independently of human cognition. Conversely, inferentialist and expressivist
+views, such as those proposed by Brandom, argue that logic is shaped by human discourse and
+the rules governing natural and artificial languages (Peregrin, 2019).
+
+--- page 17 ---
+Aristotle’s contribution remains one of the most enduring aspects of logic, with his syllogisms
+establishing foundational principles for deductive reasoning (O’Regan, 2020). His work was
+expanded by the Stoics, who introduced propositional logic, wherein logical statements could be
+evaluated as true or false independent of their constituent terms. Later developments by thinkers
+like Frege, Boole, and Russell revolutionised logic, transforming it into a formal system with
+precise symbolic representation (O’Regan, 2020). Frege’s work was also important in shifting
+logic from a language-dependent system to a formal, axiomatic structure (Shieh, 2019). His
+conception of logic as a system of truths grounded in primitive axioms provided the basis for
+modern predicate logic. He argued that logical truths justify themselves through an inherent
+rational perception, which contrasts with later formalist interpretations that treat logic as an
+abstract mathematical structure (Shieh, 2019).
+In essence, logic, as a discipline, is concerned with the principles of valid inference, the nature of
+truth, and the structure of rational argumentation. It reveals when, how and if reasoning,
+judgement and arguments are correct or incorrect; valid or invalid.
+ Types of logic: Formal and Informal logic
+Logic is the foundation of structured reasoning as it provides a systematic method for evaluating
+arguments and distinguishing valid inferences from fallacious ones. It is basically divided into
+formal logic and informal logic.
+ Formal Logic
+Formal logic is the study of principles and structures that govern valid reasoning. It focuses on
+the form of arguments rather than on their content and thus, provides a ground for distinguishing
+between valid and invalid arguments. It also allows reasoning to be expressed in a precise and
+systematic manner by using formal symbols and rules.
+Historically, formal logic can be traced back to ancient philosophers such as Aristotle, who
+formulated syllogistic logic to study deductive reasoning. His system was the first attempt to
+establish a formal structure for logical arguments based on categorical propositions. In the 19th
+and 20th centuries, logicians such as Frege, Peano, Russell, and Hilbert expanded upon
+Aristotle’s ideas, developing symbolic logic and formal systems that laid the foundation for
+modern logic (Ono, 2019). The formalisation of logic during this period led to breakthroughs in
+the foundations of mathematics and the philosophy of logic.
+Fundamentally, formal logic operates through well-defined syntactic rules and semantics that
+determine how statements relate to one another. The syntax of formal logic consists of symbols
+and rules for combining them into well-formed formulas and these formulas represent
+propositions, which are declarative statements that can be either true or false. The semantics of
+formal logic assigns meaning to these formulas by interpreting them within a logical system.
+This dual structure—syntax and semantics—ensures that formal logic maintains both precision
+and consistency (Polat, 2024).
+Formal logic also relies on axioms and inference rules. Axioms are fundamental logical truths
+assumed to be self-evident, while inference rules determine how new truths can be derived from
+
+--- page 18 ---
+existing ones. Logical systems such as propositional logic and predicate logic are built upon
+these axioms and rules. Propositional logic, also known as sentential logic, deals with
+propositions as whole units and focuses on logical connectives such as “and,” “or,” “if…then,”
+and “not.” It evaluates the truth value of compound statements based on the truth values of their
+components. Predicate logic, or first-order logic, extends propositional logic by incorporating
+quantifiers (“for all” and “there exists”) and predicates, allowing for more complex reasoning
+about objects and their properties (Polat, 2024).
+The precision of formal logic makes it an essential tool in mathematical reasoning because it
+provides the foundation for mathematical proofs by ensuring that conclusions follow necessarily
+from premises. Mathematicians use formal logic to construct rigorous arguments, eliminating
+ambiguity and potential errors in reasoning (Zach, 2024). The formalisation of mathematics has
+also led to the development of mathematical logic, which deals with the relationship between
+logic and mathematical structures. However, the application of formal logic extends beyond
+mathematics and philosophy to incorporate fields such as computer science and artificial
+intelligence. In computing, formal logic is used to design programming languages, verify
+algorithms, and develop automated reasoning systems. Logic programming, a paradigm based on
+formal logic, enables computers to perform logical inference and solve complex problems (Zach,
+2024). Additionally, formal logic plays a vital role in artificial intelligence, specifically in
+knowledge representation and automated theorem proving. As a result, AI systems can reason
+about data and make decisions based on logical principles through encoding knowledge in a
+logical format.
+ Informal Logic
+Informal logic is the study of reasoning as it naturally occurs in everyday language, focusing on
+evaluating arguments in real-world contexts. Unlike formal logic, which relies on symbolic
+notation and abstract structures to assess validity, informal logic is concerned with how
+arguments are constructed, interpreted, and evaluated in practical discourse.
+Basically, informal logic seeks to understand how people argue outside the rigid constraints of
+formal systems. It recognises that in daily reasoning, arguments are often influenced by context,
+emotions, rhetorical techniques, and audience perception (Tindale, 2019). Informal logic instead
+asks whether an argument is reasonable and convincing given its context, rather than simply
+whether it follows formal rules of inference. The rise of informal logic as a distinct field was a
+response to the limitations of formal logic in evaluating everyday reasoning. Philosophers and
+educators in the mid-20th century began to advocate for a more practical approach to logic that
+can address reasoning in ordinary language rather than abstract symbols (Kakas, 2019).
+One important component of informal logic is the analysis of argument structure. Informal logic
+often deals with incomplete, implied, or context-dependent reasoning and thus, arguments are
+evaluated based on their coherence, persuasiveness, and ability to withstand critical scrutiny.
+This makes informal logic particularly useful in analysing persuasive communication, including
+political speeches, advertising, legal arguments, and journalistic reports (Polat, 2024). A central
+concern of informal logic is the identification of logical fallacies—flaws in reasoning that can
+
+--- page 19 ---
+make an argument misleading or unsound. Common informal fallacies include ad hominem
+attacks (attacking the person rather than their argument), straw man arguments (misrepresenting
+an opponent’s position to make it easier to refute), and false dilemmas (presenting only two
+options when more exist (Gupta et al., 2021).
+ Importance of Logic in Philosophy and Daily Life
+Logic is important in both philosophy and daily life as it provides a structure for reasoning,
+argumentation, and decision-making. It is the foundation of rational thought which enables
+individuals to construct sound arguments, analyse complex problems and also distinguish
+between valid and invalid reasoning.
+In philosophy, logic is an essential tool used in evaluating arguments and looking into
+fundamental questions about reality, knowledge and truth. Philosophers rely on logical principles
+to assess the validity of arguments and avoid fallacies that may lead to incorrect conclusions.
+Bertrand Russell described logic as “the essence of philosophy,” by highlighting that it clarifies
+philosophical problems through rigorous reasoning (MacFarlane, 2020). Philosophical logic,
+particularlly seeks to resolve ambiguities in natural language by analysing logical forms. This
+method allows philosophers to construct precise arguments and addresses issues in metaphysics,
+epistemology, ethics and the philosophy of language.
+The stoics, including Epictetus, viewed logic as a necessary discipline for achieving wisdom and
+virtue. They believed that logical reasoning protected the mind from fallacies, enabling
+individuals to make rational decisions and distinguish between right and wrong [(Durhan, 2022).
+This perspective emphasises the ethical dimension of logic, suggesting that clear reasoning
+contributes to moral decision-making and intellectual freedom. Similarly, in modern times, logic
+continues to play a role in ethical theories, legal reasoning, and debates about moral
+responsibility.
+Beyond philosophy, logic is indispensable in everyday life, influencing how individuals process
+information, evaluate evidence, and make rational choices. Logical reasoning is crucial in
+decision-making, allowing people to weigh different options, consider consequences, and reach
+informed conclusions. Whether assessing financial investments, making healthcare choices, or
+engaging in political discussions, logical thinking helps individuals navigate complex issues
+without falling prey to misinformation or biases (Wong & Eurotech, 2021).
+Logic also helps in providing clarity and coherence in discourse, thereby, enhancing
+communication. It is also used in debates, journalism and everyday conversations to improve
+persuasion and credibility. Moreover, one in recognising and avoiding fallacies which
+strengthens critical thinking and promotes constructive dialogue (Okolo & Nwaorgu, 2021).
+Furthermore, logic is important in science and technology as scientific inquiry depends on
+logical reasoning to formulate hypotheses, conduct experiments and interpret data. Logical
+principles help to ensure that scientific conclusions are based on sound reasoning rather than
+fallacious assumptions (Zach, 2024).

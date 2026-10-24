@@ -18,28 +18,32 @@ const labels = { pending: "Pending review", changes_requested: "Changes requeste
 export function AdminLecturerApplications() {
   const [status,setStatus]=useState<LecturerApplicationStatus|"">("pending"),[search,setSearch]=useState(""),[query,setQuery]=useState(""),[page,setPage]=useState(0);
   const [selected,setSelected]=useState<LecturerApplication|null>(null),[offerings,setOfferings]=useState<LecturerOffering[]>([]),[offeringIds,setOfferingIds]=useState<string[]>([]),[offeringSearch,setOfferingSearch]=useState("");
-  const [busy,setBusy]=useState(false),[detailLoading,setDetailLoading]=useState(false),[actionError,setError]=useState<string|null>(null),[notice,setNotice]=useState<string|null>(null);
+  const [busy,setBusy]=useState(false),[detailLoading,setDetailLoading]=useState(false),[error,setError]=useState<string|null>(null),[notice,setNotice]=useState<string|null>(null);
   const [decision,setDecision]=useState<Exclude<LecturerApplicationStatus,'pending'>>('approved'),[message,setMessage]=useState(''),[note,setNote]=useState('');
   const requestKey=useRef<string|null>(null), detailGeneration=useRef(0);
-  const list = useQuery({
+  const applications = useQuery({
     queryKey: ["admin", "lecturer-applications", status, query, page],
     queryFn: () => lecturerApi(getBrowserSupabase()).list(status || null, query, page * 20),
+    retry: false,
+    staleTime: 0,
   });
-  const items = list.data?.items ?? [], total = list.data?.total ?? 0, pending = list.data?.pending_count ?? 0;
-  const loading = list.isFetching;
-  const error = actionError ?? (list.error ? registrationError(list.error) : null);
-  const load = async () => { setError(null); await list.refetch(); };
+  const items = applications.data?.items ?? [];
+  const total = applications.data?.total ?? 0;
+  const pending = applications.data?.pending_count ?? 0;
+  const loading = applications.isFetching;
+  const displayError = error ?? (applications.isError ? registrationError(applications.error) : null);
+  const load = () => applications.refetch();
   const open=async(id:string)=>{const gen=++detailGeneration.current;setDetailLoading(true);setSelected(null);setError(null);setNotice(null);try{const api=lecturerApi(getBrowserSupabase());const [r,o]=await Promise.all([api.detail(id),api.offerings()]);if(gen!==detailGeneration.current)return;setSelected(r.application);setOfferings(o.items);setOfferingIds(r.application.assigned_offering_ids);setDecision('approved');setMessage('');setNote('');requestKey.current=null}catch(e){if(gen===detailGeneration.current)setError(registrationError(e))}finally{if(gen===detailGeneration.current)setDetailLoading(false)}};
   const submit=async(e:React.FormEvent)=>{e.preventDefault();if(!selected||busy)return;if(selected.status==='pending'&&decision==='approved'&&!selected.email_verified){setError('The applicant must verify their email before approval.');return}if(!window.confirm(selected.status==='approved'?'Save these course assignments?':decision==='approved'?'Approve this application and activate lecturer access?':`Send this ${decision==='rejected'?'rejection':'request for changes'} to the applicant?`))return;setBusy(true);setError(null);requestKey.current??=newRequestKey();try{const api=lecturerApi(getBrowserSupabase());const r=selected.status==='approved'?await api.assign(selected.id,offeringIds,selected.revision,requestKey.current):await api.review({id:selected.id,decision,message,internalNote:note,offeringIds,revision:selected.revision,requestKey:requestKey.current});setSelected(r.application);setNotice('Application saved. The applicant sees the updated status when they sign in or refresh.');requestKey.current=null;await load()}catch(e){setError(registrationError(e))}finally{setBusy(false)}};
   return <>
     <PageHeader eyebrow="People & access" title="Lecturer applications" description={`${pending} pending · Review teaching affiliations before activating lecturer access.`} />
-    {error?<Alert tone="error" role="alert" action={<Button variant="outline" onClick={()=>{void load();if(selected)void open(selected.id)}}>Refresh</Button>}>{error}</Alert>:null}
+    {displayError?<Alert tone="error" role="alert" action={<Button variant="outline" onClick={()=>{void load();if(selected)void open(selected.id)}}>Refresh</Button>}>{displayError}</Alert>:null}
     {notice?<Alert tone="success" role="status">{notice}</Alert>:null}
     <form className="my-5 flex flex-wrap items-end gap-3" onSubmit={e=>{e.preventDefault();setQuery(search.trim());setPage(0);setSelected(null)}}>
       <Field id="application-search" label="Search applicants"><Input value={search} maxLength={200} onChange={e=>setSearch(e.target.value)} placeholder="Name, email or university" /></Field>
       <Field id="application-status" label="Status"><NativeSelect value={status} onChange={e=>{setStatus(e.target.value as LecturerApplicationStatus|'');setPage(0);setSelected(null)}}><option value="">All statuses</option>{Object.entries(labels).map(([k,v])=><option key={k} value={k}>{v}</option>)}</NativeSelect></Field><Button type="submit" variant="outline">Search</Button>
     </form>
-    {loading?<LoadingState label="Loading applications…"/>:items.length?<DataTable caption="Lecturer applications" rowKey={a=>a.id} rows={items} columns={[
+    {loading?<LoadingState variant="table" label="Loading applications…"/>:items.length?<DataTable caption="Lecturer applications" rowKey={a=>a.id} rows={items} columns={[
       {key:'name',header:'Applicant',cell:a=><><p>{a.full_name}</p><p className="break-all text-xs font-normal text-ink-muted">{a.email}</p></>},
       {key:'university',header:'Institution',cell:a=><>{a.university}<p className="text-xs text-ink-muted">{a.department}</p></>},
       {key:'status',header:'Status',cell:a=><Badge tone={a.status==='approved'?'success':'warning'}>{labels[a.status]}</Badge>},
@@ -47,7 +51,7 @@ export function AdminLecturerApplications() {
       {key:'action',header:'Action',action:true,cell:a=><Button size="sm" variant="outline" disabled={busy} onClick={()=>void open(a.id)}>Review</Button>},
     ]}/>:<EmptyState title="No applications found" description="Try another status or search. New lecturer applications will appear here."/>}
     <div className="my-4 flex items-center justify-between gap-3 text-sm"><p>{total} applications · Page {page+1} of {Math.max(1,Math.ceil(total/20))}</p><div className="flex gap-2"><Button size="sm" variant="outline" disabled={!page||loading} onClick={()=>setPage(p=>p-1)}>Previous</Button><Button size="sm" variant="outline" disabled={(page+1)*20>=total||loading} onClick={()=>setPage(p=>p+1)}>Next</Button></div></div>
-    {detailLoading?<LoadingState label="Loading application details…"/>:null}
+    {detailLoading?<LoadingState variant="table" label="Loading application details…"/>:null}
     {selected?<section aria-label="Application details" className="mt-6 flex flex-col gap-5">
       <Card><CardHeader><CardTitle>{selected.full_name}</CardTitle></CardHeader><CardContent><dl className="grid gap-4 sm:grid-cols-2">{[['Email',selected.email],['University',selected.university],['Faculty',selected.faculty],['Department',selected.department],['Position',selected.position],['Requested courses',selected.requested_courses],['Verification information',selected.verification_note||'Not provided']].map(([k,v])=><div key={k}><dt className="text-sm text-ink-muted">{k}</dt><dd className="break-words whitespace-pre-wrap">{v}</dd></div>)}</dl>{selected.institutional_profile_url?<a className="mt-4 inline-block text-brand-primary underline" href={selected.institutional_profile_url} target="_blank" rel="noopener noreferrer">Open institutional profile</a>:null}</CardContent></Card>
       {!selected.email_verified?<Alert tone="warning">The applicant has not confirmed their email. Approval is blocked; you may request changes or reject.</Alert>:null}

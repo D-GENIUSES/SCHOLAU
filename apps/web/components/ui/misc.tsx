@@ -61,7 +61,11 @@ export function Progress({
 }
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden className={cn("skeleton-wave rounded-control", className)} />;
+  return <div aria-hidden className={cn("loading-shape rounded-control bg-[#e3ecf6]", className)} />;
+}
+
+export function InlineSkeleton({ className }: { className?: string }) {
+ return <span aria-hidden className={cn("loading-shape inline-block h-2 w-8 shrink-0 rounded-full bg-[#e3ecf6]", className)} />;
 }
 
 export function PageHeader({

@@ -17,10 +17,19 @@ export function createRequestAuthenticator<C extends VerifiableClient>(dependenc
     return client;
   };
 }
+/** Hosted adapters can expose an internal origin; trust the configured public origin. */
+export function isSameOriginRequest(request: Request) {
+  try {
+    const origin = new URL(process.env.NEXT_PUBLIC_SITE_URL || request.url).origin;
+    return request.headers.get('origin') === origin;
+  } catch {
+    return false;
+  }
+}
 export function allowRequestWrite(request: Request) {
-  return request.headers.has('authorization') || request.headers.get('origin') === new URL(request.url).origin;
+  return request.headers.has('authorization') || isSameOriginRequest(request);
 }
 /** These handlers authenticate bearer requests themselves; page routes still use cookie redirects. */
 export function isBearerApiRequest(request: Request) {
-  return request.headers.has('authorization') && ['/api/profile-photo', '/api/lesson-assets', '/api/account/photo'].includes(new URL(request.url).pathname);
+  return request.headers.has('authorization') && ['/api/profile-photo', '/api/lesson-assets', '/api/account/photo', '/api/course-materials', '/api/admin/content-sync'].includes(new URL(request.url).pathname);
 }

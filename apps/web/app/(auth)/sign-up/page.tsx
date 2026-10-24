@@ -6,7 +6,12 @@ import { LecturerSignUpForm } from "@/components/auth/lecturer-sign-up-form";
 import { AuthHeading } from "@/components/auth/auth-heading";
 import { param, type SearchParams } from "@/components/auth/params";
 
-export const metadata: Metadata = { title: "Create account" };
+export const metadata: Metadata = {
+  title: "Create a ScholAu account",
+  description: "Create a ScholAu student account to study, practise and compete, or apply for lecturer access.",
+  alternates: { canonical: "https://scholau.com/sign-up" },
+  robots: { index: true, follow: true },
+};
 export default async function SignUpPage({ searchParams }: { searchParams: SearchParams }) {
   const role = param((await searchParams).role);
   if (role === "student") return <><Link href="/sign-up" className="mb-5 inline-block text-sm font-semibold text-brand-primary">← Account options</Link><SignUpForm /></>;

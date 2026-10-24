@@ -8,13 +8,13 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/home",
     scope: "/",
     display: "standalone",
-    background_color: "#F5F9FD",
-    theme_color: "#0066D6",
+    background_color: "#0866e8",
+    theme_color: "#FFFFFF",
     icons: [
-      { src: "/icon.svg", sizes: "any", type: "image/svg+xml" },
-      { src: "/icons/pwa-icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icons/pwa-icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/icons/pwa-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/icons/app-white-on-blue-v1.svg", sizes: "any", type: "image/svg+xml" },
+      { src: "/icons/app-white-on-blue-v1-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/icons/app-white-on-blue-v1-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icons/app-white-on-blue-v1-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

@@ -4,11 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { type SignUpInput, signUpSchema, registrationAcademicMetadata, SEMESTER_LABELS } from "@scholau/core";
+import { type SignUpInput, signUpSchema, registrationAcademicMetadata } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
-import { Input, NativeSelect, PasswordInput } from "@/components/ui/input";
+import { Input, PasswordInput } from "@/components/ui/input";
 import { useAnalytics } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { authErrorMessage } from "./auth-errors";
@@ -16,9 +16,13 @@ import { AuthHeading } from "./auth-heading";
 import { AuthSteps } from "./auth-steps";
 import { SignupNotifications } from "@/components/notifications/signup-notifications";
 import { UniversitySelect } from "./university-select";
+import { RegistrationStudyFields } from "./registration-study-fields";
 import { suggestUsernames, UsernameSuggestions } from "./username-suggestions";
+import { RegistrationLegal, useRegistrationLegal } from "./registration-legal";
+import { GoogleSignIn } from "./google-sign-in";
 
 export function SignUpForm() {
+  const legal = useRegistrationLegal();
   const analytics = useAnalytics();
   const [step, setStep] = useState<"account" | "studies">("account");
   const [error, setError] = useState<string | null>(null);
@@ -31,11 +35,17 @@ export function SignUpForm() {
   const { errors, isSubmitting } = form.formState;
 
   const nextStep = async () => {
+    const legalError = legal.validate();
+    if (legalError) { setError(legalError); return; }
+    setError(null);
     if (await form.trigger(["username", "email", "password"], { shouldFocus: true })) setStep("studies");
   };
 
   const createAccount = form.handleSubmit(async (values) => {
     setError(null);
+    const legalError = legal.validate();
+    if (legalError) { setError(legalError); setStep("account"); return; }
+    try {
     const { data: available, error: availabilityError } = await getBrowserSupabase().rpc("is_username_available_v1", { p_username: values.username });
     if (availabilityError) { setError("Could not check your username. Please try again."); return; }
     if (!available) {
@@ -48,7 +58,7 @@ export function SignUpForm() {
       email: values.email,
       password: values.password,
       options: {
-        data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values) },
+        data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values), ...legal.metadata() },
         emailRedirectTo: `${window.location.origin}/auth/callback?next=/home`,
       },
     });
@@ -63,6 +73,9 @@ export function SignUpForm() {
     }
     analytics.track({ name: "signup_completed" });
     setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/home" : `/verify?email=${encodeURIComponent(values.email)}` });
+    } catch {
+      setError("Registration could not be confirmed. Check your email or try signing in before retrying.");
+    }
   });
 
   if (completion) return <SignupNotifications {...completion} />;
@@ -71,6 +84,7 @@ export function SignUpForm() {
     <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
       description={step === "account" ? "Choose a username, then enter your email and a password." : "We use these details to find your course assignments."} />
+    {step === "account" ? <div className="mb-4"><GoogleSignIn disabled={isSubmitting} /></div> : null}
     <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);
@@ -92,24 +106,16 @@ export function SignUpForm() {
           <PasswordInput autoComplete="new-password" {...form.register("password")} />
         </Field>
         
-        <Button type="submit" block>Continue</Button>
+        <RegistrationLegal legal={legal} />
+        <Button type="submit" block disabled={legal.loading}>Continue</Button>
       </> : <>
         <Controller control={form.control} name="universitySlug" render={({ field }) =>
-          <UniversitySelect value={field.value} onChange={field.onChange} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
+          <UniversitySelect value={field.value} onChange={value => {
+            field.onChange(value); form.setValue("faculty", ""); form.setValue("department", ""); form.setValue("catalogProfile", undefined);
+          }} onBlur={field.onBlur} inputRef={field.ref} error={errors.universitySlug?.message} />
         } />
-        <Field id="sign-up-faculty" label="Faculty" error={errors.faculty?.message}>
-          <Input autoComplete="off" placeholder="Enter your faculty" maxLength={200} {...form.register("faculty")} />
-        </Field>
-        <Field id="sign-up-department" label="Department" error={errors.department?.message}>
-          <Input autoComplete="off" placeholder="Enter your department" maxLength={200} {...form.register("department")} />
-        </Field>
-        <Field id="sign-up-semester" label="Current semester" error={errors.currentSemester?.message}>
-          <NativeSelect defaultValue="" {...form.register("currentSemester")}>
-            <option value="" disabled>Select your semester</option>
-            {Object.entries(SEMESTER_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </NativeSelect>
-        </Field>
-        <p className="text-xs leading-relaxed text-ink-muted">By creating an account, you acknowledge our <Link href="/privacy" className="font-semibold text-brand-primary underline">privacy summary</Link>.</p>
+        <RegistrationStudyFields form={form} />
+        <p className="text-xs leading-relaxed text-ink-muted">Your selected age declaration and acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> apply to this registration. <Link href="/privacy" className="underline">Privacy Policy</Link>.</p>
         <Button type="submit" block loading={isSubmitting}>Create account</Button>
         <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => { setError(null); setStep("account"); }}>Back</Button>
       </>}

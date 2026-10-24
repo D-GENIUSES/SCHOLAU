@@ -3,30 +3,58 @@
 import { parseRpcError } from "@scholau/api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
+const PUSH_DEVICE_CACHE = "scholau-push-device";
+const PUSH_DEVICE_PATH = "/__scholau/push-device";
+
+export type PushDeviceState = { key: string; owner: string; enabled: boolean; vapidPublicKey?: string };
+
 export function pushSupportMessage(): string | null {
   if (!window.isSecureContext) return "Notifications need a secure HTTPS connection.";
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (ios && !window.matchMedia("(display-mode: standalone)").matches) return "On iPhone or iPad, use Share → Add to Home Screen, open ScholAu from that icon, then enable notifications.";
+  if (ios && !window.matchMedia("(display-mode: standalone)").matches && !(navigator as Navigator & { standalone?: boolean }).standalone) return "On iPhone or iPad, use Share → Add to Home Screen, open ScholAu from that icon, then enable notifications.";
   if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return "This browser does not support push notifications. Your inbox is still available.";
   if (Notification.permission === "denied") return "Open this site’s browser settings, change Notifications from Block to Allow, then return and tap Enable notifications.";
   return null;
 }
 
-export async function setLocalPushDevice(value: { key: string; owner: string; enabled: boolean }) {
-  const db = await new Promise<IDBDatabase>((resolve, reject) => {
-    const request = indexedDB.open("scholau-push", 1);
-    request.onupgradeneeded = () => request.result.createObjectStore("settings");
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
+function applicationServerKey(publicKey: string) {
+  const normalized = publicKey.replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(normalized), (character) => character.charCodeAt(0));
+}
+
+async function subscribePush(registration: ServiceWorkerRegistration, publicKey: string) {
   try {
-    await new Promise<void>((resolve, reject) => {
-      const transaction = db.transaction("settings", "readwrite");
-      transaction.objectStore("settings").put(value, "device");
-      transaction.oncomplete = () => resolve();
-      transaction.onerror = () => reject(transaction.error);
+    return await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: applicationServerKey(publicKey) });
+  } catch {
+    const old = await registration.pushManager.getSubscription();
+    if (old) await old.unsubscribe();
+    return registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: applicationServerKey(publicKey) });
+  }
+}
+
+export async function setLocalPushDevice(value: PushDeviceState) {
+  try {
+    const cache = await caches.open(PUSH_DEVICE_CACHE);
+    await cache.put(new URL(PUSH_DEVICE_PATH, location.origin).href, new Response(JSON.stringify(value), {
+      headers: { "Content-Type": "application/json" },
+    }));
+  } catch { /* Cache Storage is best-effort; IndexedDB still covers same-origin workers. */ }
+  try {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open("scholau-push", 1);
+      request.onupgradeneeded = () => request.result.createObjectStore("settings");
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
     });
-  } finally { db.close(); }
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const transaction = db.transaction("settings", "readwrite");
+        transaction.objectStore("settings").put(value, "device");
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+      });
+    } finally { db.close(); }
+  } catch { /* Closed-app delivery can use Cache Storage alone if IndexedDB is blocked. */ }
 }
 
 export async function disableBrowserPush(revoke = true) {
@@ -47,6 +75,7 @@ export async function disableBrowserPush(revoke = true) {
   }
   if (revokeError) throw revokeError;
   localStorage.removeItem("scholau.push.device.v1");
+  localStorage.removeItem("scholau.push.endpoint.v1");
 }
 
 export async function enableBrowserPush(publicKey: string, owner: string) {
@@ -63,12 +92,9 @@ export async function enableBrowserPush(publicKey: string, owner: string) {
   }
   const registration = await navigator.serviceWorker.register("/push-sw.js", { scope: "/", updateViaCache: "none" });
   await navigator.serviceWorker.ready;
-  const old = await registration.pushManager.getSubscription();
-  if (old) await old.unsubscribe();
-  const normalized = publicKey.replace(/-/g, "+").replace(/_/g, "/");
-  const applicationServerKey = Uint8Array.from(atob(normalized), (character) => character.charCodeAt(0));
-  const subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey });
-  const device = { key: crypto.randomUUID(), owner };
+  const subscription = await subscribePush(registration, publicKey);
+  const existing = readPushDevice();
+  const device = existing?.owner === owner ? existing : { key: crypto.randomUUID(), owner };
   try {
     const { error } = await getBrowserSupabase().rpc("enable_all_notifications_v1", {
       p_owner_id: owner, p_device_key: device.key, p_delivery_config: subscription.toJSON(),
@@ -86,8 +112,9 @@ export async function enableBrowserPush(publicKey: string, owner: string) {
     }
     const { data } = await getBrowserSupabase().auth.getSession();
     if (data.session?.user.id !== owner) throw new Error("Sign in again to enable notifications.");
-    localStorage.setItem("scholau.push.device.v1", JSON.stringify(device));
-    await setLocalPushDevice({ ...device, enabled: true });
+    localStorage.setItem("scholau.push.device.v1", JSON.stringify({ ...device, vapidPublicKey: publicKey }));
+    localStorage.setItem("scholau.push.endpoint.v1", subscription.endpoint);
+    await setLocalPushDevice({ ...device, enabled: true, vapidPublicKey: publicKey });
     localStorage.removeItem("scholau.push.signup.v1");
     localStorage.removeItem(`scholau.push.permission.v1:${owner}`);
     window.dispatchEvent(new Event("scholau-push-consent"));
@@ -95,11 +122,12 @@ export async function enableBrowserPush(publicKey: string, owner: string) {
 }
 
 
-export function readPushDevice(): { key: string; owner: string } | null {
+export function readPushDevice(): { key: string; owner: string; vapidPublicKey?: string } | null {
   if (typeof window === "undefined") return null;
   try {
     const saved = JSON.parse(localStorage.getItem("scholau.push.device.v1") || "null");
-    return typeof saved?.key === "string" && typeof saved?.owner === "string" ? saved : null;
+    if (typeof saved?.key !== "string" || typeof saved?.owner !== "string") return null;
+    return typeof saved.vapidPublicKey === "string" ? saved : { key: saved.key, owner: saved.owner };
   } catch { return null; }
 }
 
@@ -114,6 +142,34 @@ export async function requestSignupNotifications(owner: string): Promise<boolean
   localStorage.removeItem(`scholau.push.permission.v1:${owner}`);
   localStorage.setItem("scholau.push.signup.v1", JSON.stringify({ owner, requestedAt: Date.now() }));
   return true;
+}
+
+const repairs = new Map<string, Promise<void>>();
+/** Keep an already-allowed device subscribed so alerts continue after the app is closed. */
+export function maintainBrowserPush(owner: string): Promise<void> {
+  if (repairs.has(owner)) return repairs.get(owner)!;
+  const attempt = async () => {
+    if (pushSupportMessage() || !("Notification" in window) || Notification.permission !== "granted") return;
+    const device = readPushDevice();
+    if (!device || device.owner !== owner) return;
+    const client = getBrowserSupabase();
+    const { data: sessionData } = await client.auth.getSession();
+    if (sessionData.session?.user.id !== owner) return;
+    const registration = await navigator.serviceWorker.getRegistration("/")
+      ?? await navigator.serviceWorker.register("/push-sw.js", { scope: "/", updateViaCache: "none" });
+    await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    if (subscription && localStorage.getItem("scholau.push.endpoint.v1") === subscription.endpoint) {
+      await setLocalPushDevice({ key: device.key, owner: device.owner, enabled: true, vapidPublicKey: device.vapidPublicKey });
+      return;
+    }
+    const { data, error } = await client.rpc("get_notification_preferences_v1");
+    if (error || !data?.push_available || !data?.vapid_public_key) return;
+    await enableBrowserPush(data.vapid_public_key, owner);
+  };
+  const promise = attempt().finally(() => repairs.delete(owner));
+  repairs.set(owner, promise);
+  return promise;
 }
 
 const enrollments = new Map<string, Promise<void>>();

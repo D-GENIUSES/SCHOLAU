@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.new_person(kind text default 'student') returns uuid language plpgsql as $$
 declare id uuid:=gen_random_uuid(); begin
  insert into auth.users(id,email,created_at,email_confirmed_at,raw_user_meta_data) values(id,id::text||'@management.test',now(),now(),jsonb_build_object('display_name','Directory test'));

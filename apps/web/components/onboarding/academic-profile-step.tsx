@@ -24,15 +24,15 @@ export function AcademicProfileStep({ changeRequested }: { changeRequested: bool
   }, [skip, router]);
 
   if (profile.isError) return <ErrorState error={profile.error} onRetry={() => void profile.refetch()} />;
-  if (profile.isPending || skip || completed) return <LoadingState label="Loading your profile…" />;
+  if (profile.isPending || skip || completed) return <LoadingState variant="form" label="Loading your profile…" />;
 
   const header = changeMode ? (
     <PageHeader eyebrow="Profile" title="Change academic details" description="Update the university details your courses are based on." />
   ) : (
     <PageHeader
       eyebrow={<span>Academic profile</span>}
-      title="Tell us what you study"
-      description="Your saved signup details are filled in where they match our catalogue. Complete any missing details to assign your required courses automatically."
+      title="Complete your study profile"
+      description="Your registration details are already saved. Add only the missing details to find your courses."
     />
   );
 

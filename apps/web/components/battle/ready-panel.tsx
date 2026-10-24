@@ -1,7 +1,5 @@
 "use client";
-
 import Link from "next/link";
-
 import { CheckCircle2, CircleDashed } from "lucide-react";
 import type { Battle, BattleParticipant } from "@scholau/api";
 import { useReadyBattle } from "@scholau/api/react";
@@ -13,14 +11,12 @@ import { InlineError } from "@/components/ui/states";
 import { CountdownBar } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
 import { BattleRulesList } from "./rules-card";
-
 export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () => unknown }) {
   const ready = useReadyBattle();
   const remaining = useRefetchWhenDue(battle.ready_deadline, refetch);
   const opponent = battle.participants.find((p) => !p.is_me);
   const iAmReady = Boolean(battle.me?.ready);
   const opponentReady = Boolean(opponent?.ready);
-
   return (
     <Card>
       <CardHeader>
@@ -61,7 +57,6 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
     </Card>
   );
 }
-
 function ReadyRow({ participant: p }: { participant: BattleParticipant }) {
   return (
     <li className="flex items-center gap-3 rounded-control border border-line p-3">

@@ -1,7 +1,8 @@
--- Mastery XP v2: math, idempotency, review stages, battle limits, and personal progress security.
+-- Per-answer XP: math, idempotency, review stages, battle limits, and personal progress security.
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 
 create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
 declare v uuid := gen_random_uuid(); begin
@@ -48,7 +49,7 @@ end $$;
 create function pg_temp.battle(p_user uuid,p_other uuid,p_state text default 'finished',p_kind text default 'win')
 returns uuid language plpgsql as $$ declare v uuid; begin
   insert into public.battles(offering_id,rules_id,mode,state,created_by,request_key,starts_at,ends_at,finalized_at,result_kind,round_count,seconds_per_round)
-    values('20000000-0000-4000-8000-000000000002','40000000-0000-4000-8000-000000000001','direct',p_state,p_user,gen_random_uuid(),
+    values('20000000-0000-4000-8000-000000000002',(select id from public.battle_rules where published_at is not null order by version desc limit 1),'direct',p_state,p_user,gen_random_uuid(),
       now()-interval '2 minutes',now()-interval '1 minute',now(),p_kind,5,20) returning id into v;
   insert into public.battle_participants(battle_id,user_id,seat,correct_count) values(v,p_user,1,5),(v,p_other,2,0); return v;
 end $$;
@@ -72,19 +73,19 @@ select pg_temp.login(current_setting('t.u')::uuid);
 select is((public.complete_lesson_v1('23000000-0000-4000-8000-000000000001',gen_random_uuid())->>'xp_awarded')::integer,0,'reading completion awards no XP');
 select is((public.get_xp_progress_v1()->>'xp_total')::integer,10,'reading leaves welcome XP unchanged');
 reset role;
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',6,10)),30,'first 60 percent practice earns 30');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',8,10)),10,'improving to 80 percent earns difference');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',8,10)),0,'equal best earns zero');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',4,10)),0,'lower score earns zero');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',6,10)),6,'six practice answers earn six XP');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',8,10)),8,'eight practice answers earn eight XP');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',8,10)),8,'new attempt matching best earns XP per correct answer');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',4,10)),4,'lower score still earns XP per correct answer');
 select set_config('t.perfect',pg_temp.attempt(current_setting('t.u')::uuid,'practice',10,10)::text,true) is not null as setup;
-select is(pg_temp.delta(current_setting('t.perfect')::uuid),10,'perfect score earns final difference');
+select is(pg_temp.delta(current_setting('t.perfect')::uuid),10,'perfect score earns one XP per answer');
 select lives_ok($$select private.award_mastery_attempt(current_setting('t.perfect')::uuid)$$,'duplicate finalization is safe');
 select is(pg_temp.delta(current_setting('t.perfect')::uuid),10,'duplicate finalization does not double XP');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'practice',1,3)),16,'fractional award rounds down');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'practice',1,3)),1,'one correct answer earns one XP regardless of quiz length');
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'mock',5,5,'active')),0,'unfinished attempt earns zero');
 update public.assessment_attempts set status='expired',finalized_at=now() where user_id=current_setting('t.v')::uuid and status='active';
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'mock',5,5,'expired')),0,'expired attempt earns zero');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',4,5)),80,'80 percent mock earns 80 without a daily learning cap');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',4,5)),4,'four correct mock answers earn four XP');
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'review',4,5)),16,'knowledge check earns up to 20');
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'review',5,5)),4,'knowledge check improvement shares topic allowance');
 select is((select count(*)::integer from private.xp_badges where user_id=current_setting('t.u')::uuid),4,'four achievement badges earned once each');
@@ -118,32 +119,32 @@ select is((select sum(amount)::integer from public.points_ledger where user_id=c
 
 -- Same opponent limit counts completed matches even at zero XP.
 select set_config('t.battle1',pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid)::text,true) is not null as setup;
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_setting('t.battle1')::uuid,'battle_win',15),15,'perfect win earns 15 XP');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_setting('t.battle1')::uuid,'battle_win',15),0,'battle replay awards zero');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_setting('t.battle1')::uuid,'battle_win',30),30,'perfect five-question win earns 30 XP');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_setting('t.battle1')::uuid,'battle_win',30),0,'battle replay awards zero');
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),1,'battle replay does not increment limits');
 select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_loss',0),0,'zero-correct completed loss awards zero');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_win',15),0,'third same-opponent match earns zero');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_win',30),0,'third same-opponent match earns zero');
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),3,'zero-award matches count toward daily limits');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','cancelled'),'battle_win',15),0,'cancelled match earns zero');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','forfeit'),'battle_win',15),0,'forfeited match earns zero');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','cancelled'),'battle_win',30),0,'cancelled match earns zero');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','forfeit'),'battle_win',30),0,'forfeited match earns zero');
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),3,'cancelled matches do not consume limits');
 -- Fill daily allowance using fresh opponents to separate daily and opponent caps.
 do $$ declare i integer; v_other uuid; begin
   for i in 1..7 loop v_other:=pg_temp.new_user('Opponent '||i); perform private.award_mastery_battle(current_setting('t.b')::uuid,
-    pg_temp.battle(current_setting('t.b')::uuid,v_other),'battle_win',15); end loop;
+    pg_temp.battle(current_setting('t.b')::uuid,v_other),'battle_win',30); end loop;
 end $$;
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),10,'first ten completed matches counted');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.u')::uuid),'battle_win',15),0,'eleventh completed match cannot earn XP');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.u')::uuid),'battle_win',30),0,'eleventh completed match cannot earn XP');
 -- Move counter rows to yesterday to simulate the next daily window.
 update private.battle_xp_counts set local_date=private.lagos_date()-1 where user_id=current_setting('t.b')::uuid;
 update private.battle_opponent_counts set local_date=private.lagos_date()-1 where user_id=current_setting('t.b')::uuid;
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_draw',12),12,'new Lagos day resets both daily and opponent allowances');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_draw',10),10,'new Lagos day resets both daily and opponent allowances');
 
-select is((select total from public.user_points where user_id=current_setting('t.u')::uuid),190::bigint,'lifetime XP includes welcome bonus and learning improvements');
+select is((select total from public.user_points where user_id=current_setting('t.u')::uuid),100::bigint,'lifetime XP includes welcome bonus and per-answer rewards');
 select is((select count(*)::integer from private.xp_badges where user_id=current_setting('t.u')::uuid),5,'badges remain unique and award no bonus XP');
 select pg_temp.login(current_setting('t.u')::uuid);
-select is((public.get_home_summary_v1()->>'learning_xp_today')::integer,180,'dashboard daily learning XP derives from ledger');
-select is((public.get_xp_progress_v1()->>'xp_total')::integer,190,'personal progress returns own total including welcome XP');
+select is((public.get_home_summary_v1()->>'learning_xp_today')::integer,90,'dashboard daily learning XP derives from ledger');
+select is((public.get_xp_progress_v1()->>'xp_total')::integer,100,'personal progress returns own total including welcome XP');
 select throws_ok($$select private.award_mastery_attempt(current_setting('t.perfect')::uuid)$$,'42501',null,'students cannot invoke internal awards');
 select throws_ok($$select * from private.xp_badges$$,'42501',null,'private badge records not directly readable');
 select throws_ok($$insert into public.points_ledger(user_id,source_type,source_id,event_key,requested_amount,amount,local_date)
@@ -181,18 +182,18 @@ select is((public.get_attempt_result_v1(current_setting('t.c_review')::uuid)->'r
 select is((pg_temp.submit_n(current_setting('t.c_retry')::uuid,3)->'result'->>'xp_awarded')::integer,10,'retry keeps scheduled-review award category');
 reset role;
 
--- Revised assessment versions keep the logical activity XP allowance.
+-- Revised practice assessment versions also use per-answer rewards.
 insert into public.assessment_versions(assessment_id,version,question_count,feedback_mode)
   values('30000000-0000-4000-8000-000000000004',2,6,'after_submit');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'practice',2,3)),17,'new version earns improvement over the existing logical assessment best');
-select is((select earned from private.xp_bests where user_id=current_setting('t.v')::uuid and activity_type='practice'),33,'new assessment version does not reset personal-best allowance');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.v')::uuid,'practice',2,3)),2,'new version earns one XP per correct answer');
+select is((select count(*)::integer from private.xp_bests where user_id=current_setting('t.v')::uuid and activity_type='practice'),0,'practice no longer uses personal-best allowances');
 
 -- Administrative corrections retain a reason and cannot be replayed.
 select set_config('t.entry',(select id::text from public.points_ledger where source_id=current_setting('t.perfect')::uuid),true) is not null as setup;
 select is(private.compensate_entry(current_setting('t.entry')::uuid,current_setting('t.u')::uuid,'Test review correction'),-10,'reasoned correction reverses only original award');
 select is(private.compensate_entry(current_setting('t.entry')::uuid,current_setting('t.u')::uuid,'Duplicate correction'),0,'correction retry cannot reverse XP twice');
 select is((select reason from public.points_ledger where adjusts_entry_id=current_setting('t.entry')::uuid),'Test review correction','correction reason retained in immutable history');
-select is((select earned from private.xp_bests where user_id=current_setting('t.u')::uuid and activity_type='practice'),50,'correction does not reopen earned allowance');
+select is(pg_temp.delta(current_setting('t.perfect')::uuid),0,'correction reverses the original award without changing other attempts');
 
 select * from finish();
 rollback;

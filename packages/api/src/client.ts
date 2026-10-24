@@ -121,8 +121,14 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     }),
 
     /* -------------------------------------- Assessments --------------------------------------- */
-    startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean }>) =>
-      rpc<T.Attempt>("start_attempt_v1", {
+    startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean; questionCount?: number; durationSeconds?: number | null }>) =>
+      a.questionCount !== undefined ? rpc<T.Attempt>("start_configured_attempt_v1", {
+        p_assessment_version_id: a.assessmentVersionId,
+        p_request_key: a.requestKey,
+        p_question_count: a.questionCount,
+        p_duration_seconds: a.durationSeconds ?? null,
+        p_resume: a.resume ?? true,
+      }) : rpc<T.Attempt>("start_attempt_v1", {
         p_assessment_version_id: a.assessmentVersionId,
         p_request_key: a.requestKey,
         p_resume: a.resume ?? true,
@@ -163,6 +169,7 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
         p_notification_id: a.notificationId ?? null,
         p_all: a.all ?? false,
       }),
+    clearNotifications: () => rpc<T.NotificationClearResult>("clear_my_notifications_v1"),
     getNotificationSettings: () => rpc<T.NotificationSettingsResult>("get_notification_preferences_v1"),
     updateNotificationPreferences: (preferences: T.NotificationPreferences) =>
       rpc<T.NotificationSettingsResult>("update_notification_preferences_v1", { p_preferences: preferences }),
@@ -177,7 +184,8 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       select<T.Notification[]>(
         supabase
           .from("notifications")
-          .select("id, kind, body, safe_target, read_at, created_at")
+          .select("id, kind, body, safe_target, read_at, created_at, expires_at")
+          .gt("expires_at", new Date().toISOString())
           .order("created_at", { ascending: false })
           .limit(limit),
       ),

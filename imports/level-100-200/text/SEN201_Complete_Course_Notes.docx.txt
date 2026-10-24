@@ -1,0 +1,106 @@
+[Normal] ADELEKE UNIVERSITY, EDE
+[Normal] SEN 201 — Introduction to Software Engineering
+[Normal] Complete Course Notes — Weeks 1 to 13
+[Normal] These notes follow the course outline from introduction to the final week, in order. Read each week's section before the corresponding lecture, and use it afterwards to review. Primary reference: Sommerville, I. (2016). Software Engineering, 10th Edition, Pearson.
+[Normal] WEEK 1
+[Heading 1] Introduction to Software Engineering
+[Normal] What is Software?
+[Normal] Software is not just the executable program. It is the complete package of programs, documentation, configuration data, and support resources needed for a program to operate correctly and usefully.
+[Normal] What is Software Engineering?
+[Normal] Software Engineering is the disciplined, engineering-based approach to designing, developing, testing, and maintaining software across its entire lifecycle, using systematic methods, tools, documentation, and quality controls rather than ad-hoc coding.
+[Normal] Programming vs. Software Engineering
+[Normal] Programming writes code to solve a specific, well-defined problem. Software engineering is the broader discipline: gathering requirements, designing a maintainable architecture, writing automated tests, planning for scale and failure, and documenting for future maintainers.
+[Normal] Attributes of Good Software
+[Normal] The term “software engineering” was coined in 1968 at a NATO conference addressing the “software crisis”: individual, informal approaches to programming did not scale to large, complex systems. Two recurring causes of project failure are unrealistic schedules or budgets, and poorly understood requirements that leave the delivered system not matching what users actually need.
+[Normal] Professional Ethics & Responsibility
+[Normal] Because software affects people's lives, livelihoods, and safety, engineers carry responsibilities beyond technical competence. Professional bodies such as the ACM and IEEE publish codes of conduct built around principles including honesty, competence, confidentiality, and acting in the public interest.
+[Normal] WEEK 2
+[Heading 1] Software Process Models
+[Normal] The Software Development Life Cycle (SDLC)
+[Normal] The SDLC is a structured sequence of stages software passes through, from an initial idea to eventual retirement. Following an SDLC reduces risk and improves quality by ensuring important activities — such as understanding requirements and testing — are not skipped.
+[Normal] Regardless of the specific model used, most software processes share four generic activities: specification (deciding what the system should do), development (designing and implementing it), validation (checking it meets requirements), and evolution (changing it to meet new needs).
+[Normal] Process Models
+[Normal] WEEK 3
+[Heading 1] Agile Software Development
+[Normal] What is Agile Development?
+[Normal] Agile is an iterative approach in which working software is built in small, fast cycles called iterations or sprints, each delivering a usable increment of the system. Rather than fixing requirements upfront, Agile teams welcome and adapt to changing requirements, favouring close customer collaboration over rigid contracts and documentation.
+[Normal] Agile is flexible, with customers seeing working software every few weeks, but less predictable, since it is harder to fix an exact cost and delivery date up front, and it demands continuous customer involvement.
+[Normal] Scrum
+[Normal] Extreme Programming (XP) & Kanban
+[Normal] Extreme Programming pushes good engineering practices to an extreme: pair programming, test-driven development (tests written before code), and continuous integration (merging code into a shared branch multiple times a day).
+[Normal] Kanban is a visual method for managing work with a board of columns such as ‘To Do’, ‘In Progress’, ‘Done’. Unlike Scrum's fixed sprints, it supports continuous flow, limiting work in progress at any time.
+[Normal] User Stories
+[Normal] Requirements in Agile are often written as user stories, in the format: “As a [type of user], I want [some goal] so that [some reason].”
+[Normal] WEEK 4
+[Heading 1] Requirements Engineering I — Eliciting Requirements
+[Normal] Gathering Requirements
+[Normal] The software team engages users, stakeholders, and clients to understand precisely what the software must do, producing a documented set of functional and non-functional requirements that guide every later phase.
+[Normal] Functional vs. Non-Functional Requirements
+[Normal] Non-functional requirements can be classified into product requirements (how the delivered product must behave, speed, reliability, usability), organisational requirements (policies and procedures of the customer's organisation), and external requirements (arising from factors outside the system, e.g. legal or regulatory constraints).
+[Normal] Requirements Elicitation Techniques
+[Normal] Common techniques include interviews, questionnaires, direct observation of users at work, and facilitated workshops with stakeholders — any individuals or groups affected by the system, including end users, managers, engineers, and regulators.
+[Normal] WEEK 5
+[Heading 1] Requirements Engineering II — Specifying & Managing Requirements
+[Normal] The Software Requirements Specification (SRS)
+[Normal] Once elicited, requirements are documented in an SRS — the official, agreed statement of what the system must do. A good SRS is unambiguous, complete, consistent, verifiable, and traceable to its source, and typically includes scope, functional & non-functional requirements, system models, and a glossary.
+[Normal] Requirements Validation
+[Normal] Validation checks that the documented requirements actually define the system the customer wants — covering validity, consistency, completeness, and feasibility — catching errors before the far more expensive design and implementation stages.
+[Normal] Requirements Management
+[Normal] Requirements inevitably change. A formal change control process records a proposed change, assesses its cost and impact, and accepts, defers, or rejects it before the requirements document and downstream design are updated.
+[Normal] Use Case Diagrams
+[Normal] A use case diagram is a simple visual model capturing the functional requirements of a system by showing the actors (users or external systems) and the use cases (goals or tasks) they perform with the system, connected by lines representing interactions.
+[Normal] WEEK 6
+[Heading 1] System Modeling with UML
+[Normal] What is a Model?
+[Normal] A model is a simplified, abstract view of a complex system. Engineers build models to understand a system, communicate design ideas, and reason about a design before the expensive work of implementation begins. UML (Unified Modeling Language) is the industry-standard notation for these models.
+[Normal] Common UML Diagram Types
+[Normal] Reading a Class Diagram
+[Normal] A class is drawn as a rectangle divided into three compartments: the class name, its attributes (data), and its operations (behaviour). A line between two classes shows they are related; an arrow with a hollow triangle head shows inheritance (a subclass ‘is a’ superclass); a diamond shows composition (one class ‘has a’ part made of another).
+[Normal] WEEK 7
+[Heading 1] Revision & Mid-Semester Test
+[Normal] This week consolidates Weeks 1 to 6: introduction to software engineering, process models, Agile, requirements engineering (eliciting and specifying), and system modelling with UML. The Mid-Semester Test is administered this week, covering Weeks 1 to 6, and contributes 20% to the overall course grade.
+[Normal] Use this week to revisit each week's section in these notes, re-attempt the worked examples without looking at the explanation first, and list any terms you cannot yet define confidently in your own words.
+[Normal] WEEK 8
+[Heading 1] Software Architecture & Design
+[Normal] What is Software Architecture?
+[Normal] Software architecture is the high-level structure of a system: its major components, their responsibilities, and how they communicate. Architectural decisions are made early and are expensive to change later, because they strongly influence a system's non-functional properties — performance, scalability, security, and maintainability.
+[Normal] Common Architectural Patterns
+[Normal] WEEK 9
+[Heading 1] Object-Oriented Design & Design Patterns
+[Normal] Object-Oriented Design Principles
+[Normal] Design Patterns
+[Normal] A design pattern is a general, reusable solution to a commonly occurring problem in software design, capturing proven design experience so it can be reused rather than rediscovered.
+[Normal] WEEK 10
+[Heading 1] Implementation, Reuse, Version Control & CI
+[Normal] Software Reuse
+[Normal] Rather than writing every component from scratch, engineers reuse existing, tested software — libraries, frameworks, and components — to reduce cost, speed up delivery, and improve reliability.
+[Normal] Version Control Systems (VCS)
+[Normal] A VCS tracks changes to code over time, allowing multiple developers to work on the same project, revert to older versions, and see who changed what and why. Git is the most widely used VCS today.
+[Normal] Analogy: merge is like joining two ropes with a knot (the merge commit records that both were joined); rebase is like untying your rope and retying it to the end of the other rope — the history looks like a single straight line, but the original joining point is no longer visible.
+[Normal] Continuous Integration (CI)
+[Normal] Continuous Integration means merging code changes into a shared main branch frequently, with every merge automatically triggering an automated build and test run, so integration problems are caught early.
+[Normal] WEEK 11
+[Heading 1] Software Testing & Quality Assurance
+[Normal] Verification vs. Validation
+[Normal] Levels of Testing
+[Normal] Regression Testing & Test-Driven Development
+[Normal] Regression testing re-runs existing tests after code changes to confirm previously working features have not been broken — important because developers can accidentally break old functionality while adding new features or fixing bugs.
+[Normal] Test-Driven Development (TDD) has the developer write an automated (failing) test for a small piece of functionality before writing the code to make it pass, then refactor while keeping the test passing — keeping the codebase continually covered by tests.
+[Normal] WEEK 12
+[Heading 1] Technical Debt, Software Quality & Project Management
+[Normal] Technical Debt
+[Normal] Technical debt is the future cost of shortcuts, messy code, or missing documentation taken now to deliver software faster. Like financial debt, it accrues ‘interest’: the longer it is left unaddressed, the more expensive it becomes to fix.
+[Normal] The Role of the Software Architect
+[Normal] The software architect makes high-level design decisions about a system's structure: choosing technologies, defining how major components communicate, and ensuring the system can handle growth, security, and performance requirements.
+[Normal] Software Project Management Essentials
+[Normal] Key project management concerns are scope (what will and won't be built), cost (budget), risk (identifying and mitigating what could go wrong), and team (staffing and managing the people who build the system).
+[Normal] WEEK 13
+[Heading 1] Software Evolution, Maintenance & Course Revision
+[Normal] Why Software Evolves
+[Normal] Software that is used continues to be shaped by the changing needs of its users, its operating environment, and the organisation that owns it. Software that cannot evolve gradually becomes less useful, so planning for change is a core software engineering concern, not an afterthought.
+[Normal] Legacy Systems
+[Normal] A legacy system is an old system, often built with outdated technology, that remains in use because it is still critical to business operations and is too costly or risky to fully replace. Maintaining it is challenging because original documentation may be missing, developers may no longer be available, and the technology may no longer be well supported.
+[Normal] Types of Software Maintenance
+[Normal] Course Revision
+[Normal] As you prepare for the semester examination, be able to: define key terms precisely; explain the difference between closely related concepts (e.g. verification vs. validation, merge vs. rebase, bug vs. feature request); and apply concepts to short scenario questions. Revisit the worked examples throughout these notes, exam questions will often present a new situation and ask you to identify the relevant concept.
+[Normal] End of notes.

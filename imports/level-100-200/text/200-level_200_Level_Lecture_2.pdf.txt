@@ -1,0 +1,104 @@
+
+
+--- page 1 ---
+Design, Development, and Testing of Software Systems 
+Software does not exist by accident. It is conceived, designed, built, and evaluated through 
+structured activities. These activities—design, development, and testing—form the backbone 
+of software engineering practice. Understanding these phases is essential for every software 
+engineer because they determine not only how well a system works but also how 
+maintainable, secure, and scalable it will be in the long term. 
+ 
+ 
+ 
+Software Design 
+Design is transforming requirements into structured blueprints. Design is the blueprint of the 
+system before coding. A poor design leads to complex code, making development difficult 
+and testing ineffective. Design gives structure and direction. Just as architects design a 
+building before construction, software engineers design the architecture, components, 
+interfaces, and data flows of a system before writing code. 
+ 
+Levels of Software Design 
+High-Level (Architectural) Design: Focuses on system structure. It defines major components 
+(modules, services, databases) and how they interact. 
+Example: In an online banking system, architectural design would specify modules such as 
+authentication, transaction processing, and report generation. 
+ 
+Low-Level (Detailed modules) Design: Focuses on the internal working of individual 
+modules. It specifies algorithms, data structures, function logic, and class diagrams. 
+Example: How exactly the transaction processing module validates an account balance before 
+transferring money. 
+ 
+Design Principles: Good design reduces complexity, minimizes errors, and provides a clear 
+map for developers. 
+Modularity: Divide the system into independent modules. 
+ 
+Abstraction: Hide unnecessary details; focus on essential features. 
+ 
+
+
+--- page 2 ---
+Reusability: Design components that can be reused across projects. 
+ 
+Cohesion and Coupling: Modules should have high cohesion (do one job well) and low 
+coupling (minimal dependency on other modules). 
+ 
+Software Development 
+Software development is the actual construction of the system. It involves writing, compiling, 
+integrating, and refining code based on the design specifications. Development brings ideas 
+to life through code. By converting designs into actual working code. Development is the 
+actual coding/implementation. It must follow design to avoid mismatches. Use of 
+programming standards. Development is not just coding; it’s about building reliable systems 
+that align with design specifications and user needs. Weak development practices produce 
+buggy systems, even with a strong design. 
+ 
+Activities in Software Development 
+Coding (Implementation): Translating design into programming languages like Java, Python, 
+or C# and following coding standards and conventions for readability and maintainability. 
+ 
+Integration: Combining modules into a larger system and ensuring that modules interact 
+correctly through their defined interfaces. 
+ 
+Documentation: Writing technical documents, inline comments, and user manuals. 
+ 
+Ensures future developers and end-users can understand and maintain the system. 
+ 
+Software Testing 
+Testing is the process of verifying and validating a software system to ensure it meets 
+requirements and works as expected. Testing is ensuring the system behaves correctly, 
+reliably, and efficiently. While design and development are creative, testing is investigative 
+and evaluative. Testing is not optional; it is a safeguard against failure, financial loss, and 
+reputational damage. Insufficient testing allows errors to reach the end-users, causing 
+dissatisfaction and potential harm. Testing ensures quality and dependability. 
+ 
+Objectives of Testing 
+1. Detect errors and bugs before deployment. 
+2. Ensure system reliability, performance, and security. 
+3. Increase user confidence in the software. 
+ 
+Types of Testing 
+ 
+Unit Testing: Tests individual modules or functions. (Checking that the login function 
+accepts correct credentials and rejects wrong ones.) 
+ 
+Integration Testing: Ensures different modules work together. (The payment module 
+correctly interacts with the bank API.) 
+ 
+System Testing: Tests the whole system against requirements. ( Running the entire e-
+commerce application to confirm correct order processing.) 
+ 
+
+--- page 3 ---
+Acceptance Testing: Conducted by end-users or clients. To ensures the system is ready for 
+real-world use. 
+ 
+Testing Strategies 
+Black Box Testing: Focuses on inputs and outputs without considering internal code. 
+White Box Testing: Examines the internal logic and structure of the code. 
+Automated Testing: Uses scripts and tools (e.g., Selenium, JUnit) to test repeatedly and 
+efficiently. 
+ 
+ 
+ 
+ 
+ 
+ 

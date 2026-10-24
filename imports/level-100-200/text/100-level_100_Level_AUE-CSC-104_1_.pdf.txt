@@ -1,0 +1,114 @@
+
+
+--- page 1 ---
+AUE-CSC 104: COMPUTER HARDWARE 
+Course Units: 3 Units (C: LH 30; PH 45) 
+MODULE 1: COMPUTER CIRCUITS 
+1.1 Introduction to Computer Circuits 
+Computer circuits form the physical foundation of computer systems. They consist of interconnected 
+electronic components designed to process, store, and transmit electrical signals that represent data and 
+instructions. 
+1.2 Basic Electronic Components 
+• Resistors: Limit and control the flow of electric current. 
+• Capacitors: Store and release electrical energy; used for filtering and timing. 
+• Inductors: Store energy in magnetic fields; used in power regulation. 
+• Transistors: Act as electronic switches or amplifiers and are the building blocks of digital 
+circuits. 
+1.3 Diodes and Diode Arrays 
+• Diodes: Semiconductor devices that allow current to flow in only one direction. 
+• Functions of Diodes: Rectification, voltage regulation, and signal clipping. 
+• Diode Arrays: Multiple diodes integrated into a single package for compact and efficient circuit 
+design. 
+1.4 Peripheral Interface Adapters (PIAs) 
+PIAs enable communication between the CPU and peripheral devices. They manage data transfer, 
+control signals, and synchronization between hardware components. 
+MODULE 2: INTEGRATED CIRCUITS (ICs) 
+2.1 Meaning of Integrated Circuits 
+An integrated circuit (IC) is a complete electronic circuit fabricated on a small semiconductor material, 
+usually silicon. 
+2.2 IC Fabrication Process 
+1. Silicon crystal growth 
+2. Wafer slicing and polishing 
+3. Oxidation 
+
+--- page 2 ---
+4. Photolithography 
+5. Etching 
+6. Doping 
+7. Metallization 
+8. Packaging and testing 
+2.3 Levels of Integration 
+• SSI (Small Scale Integration): Logic gates and flip-flops 
+• MSI (Medium Scale Integration): Adders, counters, multiplexers 
+• LSI (Large Scale Integration): Microprocessors and memory chips 
+• VLSI (Very Large Scale Integration): Modern CPUs and SoCs 
+2.4 Hardware Design Using MSI, LSI, and VLSI 
+These technologies enable compact design, increased speed, reduced power consumption, and improved 
+reliability in computer hardware. 
+MODULE 3: MEMORY SYSTEMS 
+3.1 Overview of Computer Memory 
+Memory stores data and instructions required by the computer system for processing. 
+3.2 Primary Memory 
+• RAM (Random Access Memory): Volatile memory used for active processes 
+• ROM (Read Only Memory): Stores permanent instructions such as firmware 
+3.3 Secondary Memory 
+Non-volatile storage used for long-term data retention. 
+3.4 Core Memory 
+Core memory uses magnetic cores to store binary data. It was widely used in early computers and is 
+non-volatile but bulky and expensive. 
+MODULE 4: MAGNETIC STORAGE DEVICES 
+4.1 Magnetic Disks 
+• Hard Disk Drives (HDDs) 
+• High-capacity random access storage 
+
+--- page 3 ---
+4.2 Magnetic Tapes 
+• Sequential access storage 
+• Used for backups and archival purposes 
+4.3 Video Disks 
+• Optical and magnetic storage technologies 
+• Examples: CDs, DVDs, Blu-ray disks 
+MODULE 5: PERIPHERAL DEVICES 
+5.1 Input Devices 
+• Keyboards: Alphanumeric data entry 
+• Character Recognition Devices: OCR and MICR systems 
+5.2 Output Devices 
+• Printers: Dot matrix, inkjet, laser 
+• CRTs (Cathode Ray Tubes): Early visual display units 
+5.3 Importance of Peripherals 
+They enable interaction between users and the computer system. 
+MODULE 6: OPERATIONAL AMPLIFIERS (OP-AMPS) 
+6.1 Definition 
+Operational amplifiers are high-gain electronic amplifiers used in analog circuits. 
+6.2 Characteristics of Op-Amps 
+• High input impedance 
+• Low output impedance 
+• High voltage gain 
+6.3 Applications 
+• Signal amplification 
+• Filtering 
+• Voltage regulation 
+
+--- page 4 ---
+MODULE 7: ANALOG-TO-DIGITAL AND DIGITAL-TO-ANALOG 
+CONVERTERS 
+7.1 Analog-to-Digital Converter (ADC) 
+Converts continuous analog signals into discrete digital values. 
+7.2 Digital-to-Analog Converter (DAC) 
+Converts digital data into analog signals for output devices. 
+MODULE 8: ANALOG COMPUTERS 
+8.1 Definition 
+Analog computers operate on continuous data represented by physical quantities such as voltage or 
+current. 
+8.2 Characteristics 
+• High-speed computation 
+• Continuous data processing 
+• Limited accuracy 
+8.3 Applications 
+• Engineering simulations 
+• Control systems 
+RECOMMENDED TEXTBOOKS 
+• M. Morris Mano – Computer System Architecture 
+• Andrew S. Tanenbaum – Structured Computer Organization 
+• Thomas L. Floyd – Electronic Devices 
+ 

@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, Circle, CircleDot, Loader2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Circle, CircleDot } from "lucide-react";
 import { COPY } from "@scholau/core";
 import { cn } from "@/lib/utils";
 
@@ -13,10 +13,10 @@ export const ANSWER_STATUS: Record<AnswerStatus, { label: string; short: string;
 
 export function AnswerStatusLabel({ status, saving }: { status: AnswerStatus; saving?: boolean }) {
   const s = ANSWER_STATUS[status];
-  const Icon = saving && status === "selected" ? Loader2 : s.icon;
+  const Icon = s.icon;
   return (
     <span className={cn("inline-flex items-center gap-1.5 text-sm font-semibold", s.className)}>
-      <Icon className={cn("size-4", saving && status === "selected" && "animate-spin")} aria-hidden />
+      <Icon className={cn("size-4", saving && status === "selected" && "opacity-50")} aria-hidden />
       {saving && status === "selected" ? `${COPY.learning.selected} — saving…` : s.label}
     </span>
   );

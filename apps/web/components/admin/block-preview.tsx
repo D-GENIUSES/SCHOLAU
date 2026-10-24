@@ -19,6 +19,14 @@ function Block({ block }: { block: RawBlock }) {
   switch (block.type) {
     case "paragraph":
       return <p className="whitespace-pre-line">{str(block.text)}</p>;
+    case "checkpoint": {
+      const options = Array.isArray(block.options) ? block.options.map(str) : [];
+      return <aside className="rounded-control border border-line bg-surface-page p-4">
+        <p className="font-semibold">Knowledge check: {str(block.question)}</p>
+        <ol className="my-2 list-decimal pl-6">{options.map((option, i) => <li key={i}>{option}{i === block.correct_index ? " (correct)" : ""}</li>)}</ol>
+        <p>{str(block.explanation)}</p>
+      </aside>;
+    }
     case "heading": {
       const level = block.level === 3 ? 3 : block.level === 4 ? 4 : 2;
       const text = str(block.text);

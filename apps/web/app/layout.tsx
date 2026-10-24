@@ -2,24 +2,35 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { OfflineIndicator } from "@/components/offline-indicator";
 import { ViewportLock } from "@/components/viewport-lock";
+import { SplashGate } from "@/components/shell/splash-gate";
+import { getAppVersion } from "@/lib/app-version";
+import { LAUNCH_BOOTSTRAP } from "@/lib/launch-session.mjs";
+import { startupImages } from "@/lib/startup-images";
 import { Providers } from "./providers";
 import "./globals.css";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: { default: "ScholAu — Study. Compete. Rise.", template: "%s · ScholAu" },
+  title: { default: "ScholAu", template: "%s · ScholAu" },
   description: "Study your university courses, practise with feedback and compete in 1v1 quiz battles.",
   applicationName: "ScholAu",
   manifest: "/manifest.webmanifest",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu — Study. Compete. Rise." },
+  metadataBase: new URL(SITE_URL),
+  verification: { google: "-pTEF3WmHVIBlSQ5aZ7fS2rEyPDtTjB1iO8KpiGIYjY" },
+  robots: { index: false, follow: true },
+  openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu" },
   twitter: { card: "summary_large_image" },
-  appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default", startupImage: startupImages },
+  icons: {
+    icon: [{ url: "/icons/app-white-on-blue-v1-192.png", sizes: "192x192", type: "image/png" }],
+    apple: [{ url: "/icons/app-white-on-blue-v1-180.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 // Intentional product choice: lock page scale for a native-app feel (no pinch/browser zoom).
 // Users who rely on system zoom may prefer the browser; this targets installed / standalone use.
 export const viewport: Viewport = {
-  themeColor: "#0066D6",
+  themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -30,7 +41,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // Browser extensions may add attributes to <html> before React hydrates.
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#ffffff" }}>
+      <head>
+        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#0866e8!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
+        <script dangerouslySetInnerHTML={{ __html: LAUNCH_BOOTSTRAP }} />
+      </head>
       <body>
         <a
           href="#main"
@@ -38,11 +53,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
-        <Providers>
-          <ViewportLock />
-          <OfflineIndicator />
-          {children}
-        </Providers>
+        <SplashGate>
+          <Providers appVersion={getAppVersion()}>
+            <ViewportLock />
+            <OfflineIndicator />
+            {children}
+          </Providers>
+        </SplashGate>
       </body>
     </html>
   );

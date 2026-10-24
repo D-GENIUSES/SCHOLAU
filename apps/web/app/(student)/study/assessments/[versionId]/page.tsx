@@ -11,13 +11,15 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ConfirmDialog } from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
 
 export default function AssessmentIntroPage() {
   return (
-    <Suspense fallback={<LoadingState label="Loading assessment…" />}>
+    <Suspense fallback={<LoadingState variant="assessment" label="Loading assessment…" />}>
       <AssessmentIntro />
     </Suspense>
   );
@@ -55,7 +57,7 @@ function AssessmentIntro() {
     return (
       <>
         {backLink}
-        <LoadingState label="Loading assessment…" />
+        <LoadingState variant="assessment" label="Loading assessment…" />
       </>
     );
   }
@@ -101,7 +103,7 @@ function AssessmentIntro() {
   return (
     <>
       {backLink}
-      <Intro assessment={assessment} courseTitle={overview.data.course.title} />
+      <Intro key={assessment.assessment_version_id} assessment={assessment} courseTitle={overview.data.course.title} />
     </>
   );
 }
@@ -118,7 +120,8 @@ function Rule({ title, children }: { title: string; children: ReactNode }) {
 }
 
 function xpRule(a: CourseAssessment): string {
-  const max = a.kind === "review" ? 20 : a.kind === "practice" ? 50 : 100;
+  if (a.kind === "practice" || a.kind === "mock") return "1 XP per correct answer on each submitted attempt. No completion bonus.";
+  const max = 20;
   return `Up to ${max} XP based on your best score. Improve your best to earn the difference.`;
 }
 
@@ -127,13 +130,23 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
   const analytics = useAnalytics();
   const start = useStartAttempt();
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const timed = a.duration_seconds !== null;
+  const customizable = a.kind === "mock" || a.kind === "practice";
+  const configuring = customizable && !a.active_attempt_id;
+  const [questionCount, setQuestionCount] = useState(String(Math.min(30, a.question_count)));
+  const [minutes, setMinutes] = useState("30");
+  const [untimed, setUntimed] = useState(a.kind === "practice");
+  const count = configuring ? Number(questionCount) : a.question_count;
+  const duration = configuring ? (untimed ? null : Number(minutes) * 60) : a.duration_seconds;
+  const validCount = Number.isInteger(count) && count >= 1 && count <= a.question_count;
+  const validTime = duration === null || (Number.isInteger(Number(minutes)) && Number(minutes) >= 1 && Number(minutes) <= 240);
+  const valid = !configuring || (validCount && validTime);
+  const timed = duration !== null;
   const activeId = isApiError(start.error, "ATTEMPT_ACTIVE") ? start.error.field_errors?.attempt_id : undefined;
   const activeFromError = typeof activeId === "string" ? activeId : null;
 
   const begin = () =>
     start.mutate(
-      { assessmentVersionId: a.assessment_version_id },
+      { assessmentVersionId: a.assessment_version_id, ...(configuring ? { questionCount: count, durationSeconds: duration } : {}) },
       {
         onSuccess: (attempt) => {
           analytics.track({ name: "attempt_started", assessment_kind: attempt.kind, attempt_id: attempt.attempt_id });
@@ -148,13 +161,25 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
 
       <Card>
         <CardContent className="pt-4 sm:pt-6">
+          {configuring ? <fieldset disabled={start.isPending} className="mb-5 rounded-control border border-line bg-surface-tint p-4">
+            <legend className="px-1 font-semibold">Choose your session</legend>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field id="attempt-count" label="Number of questions" hint={`Choose 1–${a.question_count}. Questions are randomly selected from this assessment.`} error={validCount ? undefined : `Enter a whole number from 1 to ${a.question_count}.`}>
+                <Input type="number" inputMode="numeric" min={1} max={a.question_count} step={1} value={questionCount} onChange={event => setQuestionCount(event.target.value)} />
+              </Field>
+              <Field id="attempt-minutes" label="Time limit (minutes)" hint={untimed ? "No countdown for this practice session." : "Choose 1–240 minutes. The timer continues if you leave."} error={!untimed && !validTime ? "Enter a whole number from 1 to 240." : undefined}>
+                <Input type="number" inputMode="numeric" min={1} max={240} step={1} disabled={untimed} value={minutes} onChange={event => setMinutes(event.target.value)} />
+              </Field>
+            </div>
+            {a.kind === "practice" ? <label className="mt-3 flex min-h-11 items-center gap-2 text-sm"><input type="checkbox" checked={untimed} onChange={event => setUntimed(event.target.checked)} className="size-4 accent-brand-primary" />Practice without a timer</label> : null}
+          </fieldset> : null}
           <ul className="flex flex-col gap-4">
-            <Rule title={pluralize(a.question_count, "question")}>
-              Single-choice questions.
+            <Rule title={a.active_attempt_id ? "Saved session" : validCount ? pluralize(count, "question") : "Choose your question count"}>
+              {a.active_attempt_id ? "Resume with the question count and time limit saved when you started." : "Single-choice questions."}
             </Rule>
-            <Rule title={timed ? formatDuration(a.duration_seconds) : "Untimed"}>
+            {!a.active_attempt_id ? <Rule title={timed ? validTime ? formatDuration(duration) : "Choose your time limit" : "Untimed"}>
               {timed ? COPY.learning.timerRule : "Take as long as you need."}
-            </Rule>
+            </Rule> : null}
             <Rule title="Feedback">
               {a.feedback_mode === "immediate"
                 ? "Immediate feedback after each answer. Your first checked answer is locked."
@@ -191,7 +216,7 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
               </Link>
             </Button>
           ) : (
-            <Button block loading={start.isPending && !confirmOpen} onClick={() => (timed ? setConfirmOpen(true) : begin())}>
+            <Button block disabled={!valid} loading={start.isPending && !confirmOpen} onClick={() => (timed ? setConfirmOpen(true) : begin())}>
               <Play className="size-4" aria-hidden /> Start {ASSESSMENT_KIND_LABEL[a.kind].toLowerCase()}
             </Button>
           )}
@@ -208,7 +233,7 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
         loading={start.isPending}
       >
         <p className="text-sm text-ink-muted">
-          {formatDuration(a.duration_seconds)} for {pluralize(a.question_count, "question")}. {COPY.learning.timerRule}
+          {formatDuration(duration)} for {pluralize(count, "question")}. {COPY.learning.timerRule}
         </p>
         <InlineError error={start.error} />
       </ConfirmDialog>

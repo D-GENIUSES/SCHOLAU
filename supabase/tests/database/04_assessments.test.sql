@@ -3,6 +3,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 
 create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
 declare v uuid := gen_random_uuid();
@@ -140,7 +141,7 @@ select pg_temp.login(current_setting('t.s')::uuid);
 
 select set_config('t.psubmit', (public.submit_attempt_v1(current_setting('t.p')::uuid, null, '00000000-0000-4000-8000-00000000b002'))::text, true) is not null as setup;
 select is(current_setting('t.psubmit')::jsonb ->> 'status', 'submitted', 'practice submitted');
-select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 8, 'practice earns floor(50 times 1/6)');
+select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'xp_awarded')::integer, 1, 'practice earns one XP for one correct answer');
 select is((current_setting('t.psubmit')::jsonb -> 'result' ->> 'correct_count')::integer, 1, 'graded against private key');
 select ok(jsonb_path_exists(current_setting('t.psubmit')::jsonb, '$.questions[*].feedback.explanation'), 'explanations shown after submission');
 select is((public.submit_attempt_v1(current_setting('t.p')::uuid, null, gen_random_uuid())) -> 'result', current_setting('t.psubmit')::jsonb -> 'result',
@@ -149,15 +150,15 @@ select throws_ok(format($$select public.save_attempt_answers_v1(%L, jsonb_build_
   'option_id', %L, 'answer_revision', 9)), gen_random_uuid())$$, current_setting('t.p'), current_setting('t.pq1'), current_setting('t.pq1_bad')),
   'PT409', 'DEADLINE_PASSED', 'finalized attempt answers cannot change');
 
--- second practice attempt: no second first-completion reward
+-- Each new practice attempt earns XP for its correct answers.
 select set_config('t.p2', (public.start_attempt_v1(current_setting('t.practice')::uuid, gen_random_uuid())) ->> 'attempt_id', true) is not null as setup;
 reset role;
 select set_config('t.p2q1', (select question_version_id::text from public.attempt_questions where attempt_id = current_setting('t.p2')::uuid and position = 1), true) is not null as setup;
 select set_config('t.p2q1_ok', pg_temp.key_of(current_setting('t.p2q1')::uuid)::text, true) is not null as setup;
 select pg_temp.login(current_setting('t.s')::uuid);
 select is(((public.submit_attempt_v1(current_setting('t.p2')::uuid, jsonb_build_array(jsonb_build_object('question_version_id',
-  current_setting('t.p2q1'), 'option_id', current_setting('t.p2q1_ok'), 'answer_revision', 1)), gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer, 0,
-  'repeat practice earns no second first-completion XP');
+  current_setting('t.p2q1'), 'option_id', current_setting('t.p2q1_ok'), 'answer_revision', 1)), gen_random_uuid())) -> 'result' ->> 'xp_awarded')::integer, 1,
+  'repeat practice earns one XP for its correct answer');
 select is((select count(*)::integer from public.points_ledger where source_type='practice'), 2, 'each attempt has one idempotent ledger entry including zero awards');
 
 -- ---------------------------------------------------------------- mock: deadline enforcement

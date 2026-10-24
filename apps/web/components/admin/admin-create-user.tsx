@@ -28,7 +28,7 @@ export function AdminCreateUser({ enabled, onCreated }: { enabled: boolean; onCr
           setMessage({ error: true, text: result.message || "The account could not be created." });
           return;
         }
-        setMessage({ error: false, text: `${values.displayName} (${values.email}) has been added as a ${values.role === "lecturer" ? "lecturer" : "student"}. Share the initial password privately. They can change it after signing in.` });
+        setMessage({ error: false, text: `${values.displayName} (${values.email}) has been added as a ${values.role === "lecturer" ? "lecturer" : "student"}. Share the initial password privately. They must complete registration and accept the terms on their first sign-in.` });
         onCreated?.();
         form.reset({ displayName: "", email: "", password: "", role: values.role, requestKey: "" });
       } catch {
@@ -46,7 +46,7 @@ export function AdminCreateUser({ enabled, onCreated }: { enabled: boolean; onCr
         <Field id="new-user-name" label="Name" error={errors.displayName?.message}><Input autoComplete="off" maxLength={60} {...form.register("displayName")} /></Field>
         <Field id="new-user-email" label="Email" error={errors.email?.message}><Input type="email" autoComplete="off" {...form.register("email")} /></Field>
         <Field id="new-user-password" label="Initial password" hint="Use 8â€“72 characters. Share this password privately with the account owner." error={errors.password?.message}><PasswordInput autoComplete="new-password" maxLength={72} {...form.register("password")} /></Field>
-        <p className="text-sm text-ink-muted">This account can sign in immediately. Confirm the email belongs to the intended person before creating it. Students complete their academic details after signing in; lecturers receive direct access to their workspace.</p>
+        <p className="text-sm text-ink-muted">Confirm the email belongs to the intended person before creating the account. The owner completes registration on their first sign-in; students then add their academic details.</p>
         <Button type="submit" loading={isSubmitting}>Add user</Button>
       </fieldset>
     </form>

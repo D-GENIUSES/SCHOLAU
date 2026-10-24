@@ -1,0 +1,325 @@
+
+
+--- slide 1 ---
+Boolean Algebra
+Alamu Femi O PhD 
+
+
+--- slide 2 ---
+Need for Boolean Expressions
+In the study of digital circuits, we have two methods for representing combinational logic: schematics and truth tables.
+These two methods are inadequate for a number of reasons:
+•Both schematics and truth tables take too much space to describe the operation of complex circuits with numerous inputs.
+•The truth table "hides" circuit information.
+•The schematic diagram is difficult to use when trying to determine output values for each input combination.
+To overcome these problems, a discipline much like algebra is practiced that uses expressions to describe digital circuitry. 
+These expressions, which are called Boolean expressions, use the input variable names, A, B, C, etc., and combine them using symbols representing the AND, OR, and NOT gates
+
+
+--- slide 3 ---
+These Boolean expressions can be used to describe or evaluate the output of a circuit.
+There is an additional benefit. Just like algebra, a set of rules exist that when applied to Boolean expressions can dramatically simplify them. 
+A simpler expression that produces the same output can be realized with fewer logic gates. 
+A lower gate count results in cheaper circuitry, smaller circuit boards, and lower power consumption.
+If your software uses binary logic, the logic can be represented with boolean expressions. 
+Applying the rules of simplification will make the software run faster or allow it to use less memory.
+
+
+--- slide 4 ---
+Symbols of Boolean Algebra
+Analogous behaviour can be shown between Boolean algebra and mathematical algebra, and as a result, similar symbols and syntax can be used. 
+For example, the following expressions hold true in math.
+0 · 0 = 0   0 · 1 = 0   1 · 0 = 0    1 · 1 = 1
+This looks like the AND function allowing an analogy to be drawn between the mathematical multiply and the Boolean AND functions.
+Therefore, in Boolean algebra, A AND'ed with B is written “A · B”.
+
+
+--- slide 5 ---
+Mathematical addition has a similar parallel in Boolean algebra, although it is not quite as flawless. 
+The following four mathematical expressions hold true for addition.
+		0 + 0 = 0     0 + 1 = 1      1 + 0 = 1        1 + 1 = 2
+The first three operations match the OR function, and if the last operation is viewed as having a non-zero result instead of the decimal result of two, it too can be viewed as operating similar to the OR function. 
+Therefore, the Boolean OR function is analogous to the mathematical function of addition.
+
+
+--- slide 6 ---
+An analogy cannot be made between the Boolean NOT and any mathematical operation. 
+Later we will see how the NOT function, unlike AND and OR, requires its own special theorems for algebraic manipulation. 
+The NOT is represented with a bar across the inverted element.
+The NOT operation may be used to invert the result of a larger expression. 
+For example, the NAND function which places an inverter at the output of an AND gate is written as:
+
+
+--- slide 7 ---
+Since the bar goes across A · B, the NOT is performed after the AND.
+Let's begin with some simple examples. Can you determine the output of the boolean expression 1 + 0 + 1? 
+Since the plus-sign represents the OR circuit, the expression represents 1 or 0 or 1.
+Since an OR-gate outputs a 1 if any of its inputs equal 1, then 1 + 0 + 1 = 1.
+
+
+--- slide 8 ---
+The two-input XOR operation is represented using the symbol ⊕, but it can also be represented using a Boolean expression. 
+Basically, the two-input XOR equals one if A = 0 and B = 1 or if A = 1 and B = 0.
+This gives us the following expression.
+
+
+--- slide 9 ---
+Boolean Expressions of Combinational Logic
+Just as mathematical algebra combines multiplication and addition to create complex expressions, Boolean algebra combines AND, OR, and NOT functions to represent complex combinational logic. 
+Our experience with algebra allows us to understand the expression Y = X · (X +5) + 3. 
+The decimal value 5 is added to a copy of X, the result of which is then multiplied by a second copy of X. Lastly, a decimal 3 is added and the final result is assigned to Y.
+This example shows us two things. 
+First, each mathematical operation has a priority, e.g., multiplication is performed before addition. 
+This priority is referred to as precedence. 
+Second, variables such X can appear multiple times in an expression, each appearance representing the current value of X.
+
+
+--- slide 10 ---
+Remember the combinational circuit in our previous lectures, we determined the truth table for this circuit by taking the input signals A, B, and C from left to right through each gate. 
+We can do the same thing to determine the boolean expression.
+
+
+--- slide 11 ---
+Notice the use of parenthesis in step c.
+Just as in mathematical algebra, parenthesis can be used to force the order in which operations are taken.
+In the absence of parenthesis, however, the AND, OR, and NOT functions have an order of precedence.
+
+
+--- slide 12 ---
+Note!
+To begin with, AND takes precedence over OR unless overridden by
+parenthesis. 
+NOT is a special case in that it can act like a set of parenthesis. If the bar indicating the NOT function spans a single, it takes precedence over AND and OR. 
+If, however, the NOT bar spans an expression, the expression beneath the bar must be evaluated before the NOT is taken.
+
+
+--- slide 13 ---
+Examples of handling precedence with the NOT function.
+Understanding this is vital because unlike the mathematical inverse, the two expressions below are not equivalent.
+
+
+--- slide 14 ---
+Let's do an example addressing precedence with a more complex Boolean expression. Using parenthesis and the order of precedence, the Boolean expression below has a single interpretation.
+The following steps show the order to evaluate the above expression.
+1. OR B with C because the operation is contained under a single NOT bar and is contained within the lowest set of parenthesis
+2. Invert the result of step 1 because NOT takes precedence over OR
+3. OR A with the result of step 2 because of the parenthesis
+4. Invert result of step 3
+5. AND A and D because AND takes precedence over OR
+6. OR the results of steps 4 and 5
+
+
+--- slide 15 ---
+We can use this order of operations to convert the expression to its schematic representation. 
+By starting with a list of inputs to the circuit, then passing each input through the correct gates, we can develop the circuit. The Figure below does just this for the previous Boolean expression.
+We list the inputs for the expression, A, B, C, and D, on the left side of the figure. These inputs are then passed through the gates using the same order as the steps shown above. 
+The number inside each gate of the figure corresponds to the order of the steps.
+
+
+--- slide 16 ---
+Laws of Boolean Algebra
+The manipulation of algebraic expressions is based on fundamental laws. Some of these laws extend to the manipulation of Boolean expressions. 
+For example, the commutative law of algebra which states that the result of an operation is the same regardless of the order of operands holds true for Boolean algebra too. 
+This is shown for the OR function applied to two variables in the truth tables below
+
+
+--- slide 17 ---
+Not only does Figure above show how the commutative law applies to the OR function, it also shows how truth tables can be used in boolean algebra to prove laws and rules. 
+If a rule states that two Boolean expressions are equal, then by developing the truth table for each expression and showing that the output is equal for all combinations of ones and zeros at the input, then the rule is proven true.
+Below, the three fundamental laws of Boolean algebra are given along with examples.
+
+
+--- slide 18 ---
+Commutative Law: The results of the boolean operations AND and OR are the same regardless of the order of their operands.
+A + B = B + A
+A · B = B · A
+Associative Law: The results of the Boolean operations AND and OR with three or more operands are the same regardless of which pair of elements are operated on first.
+A + (B + C) = (A + B) + C
+A · (B · C) = (A · B) · C
+Distributive Law: The AND'ing of an operand with an OR expression is equivalent to OR'ing the results of an AND between the first operand and each operand within the OR expression.
+A · (B + C) = A · B + A · C
+The next section uses truth tables and laws to prove twelve rules of Boolean algebra.
+
+
+--- slide 19 ---
+Rules of Boolean Algebra
+NOT Rule
+In algebra, the negative of a negative is a positive and taking the inverse of an inverse returns the original value. 
+Although the NOT gate does not have an equivalent in mathematical algebra, it operates in a similar manner. 
+If the Boolean inverse of a Boolean inverse is taken, the original value results.
+              This is proven with a 
+                 truth table
+Since the first column and the third column have the same pattern of ones and zeros, they must be equivalent. Then follow Figure shows this rule in schematic form.
+OR Rules
+If an input to a logic gate is a constant 0 or 1 or if the same signal is connected to more than one input of a gate, a simplification of the expression is almost always possible. 
+This is true for the OR gate as is shown with the following four rules for simplifying the OR function.
+First, what happens when one of the inputs to an OR gate is a constant logic 0? 
+It turns out that the logic 0 input drops out leaving the remaining inputs to stand on their own. 
+Notice that the two columns in the truth table below are equivalent thus proving this rule
+
+
+--- slide 20 ---
+Rule: A + 0 = A
+What about inputting a logic 1 to an OR gate? In this case, a logic 1 forces the other operands into the OR gate to drop out. Notice that the output column (A + 1) is always equal to 1 regardless of what A equals. Therefore, the output of this gate will always be 1.
+Rule: A + 1 = 1
+If the same operand is connected to all of the inputs of an OR gate, we find that the OR gate has no effect. 
+Notice that the two columns in the truth table below are equivalent thus proving this rule.
+Rule: A + A = A
+Another case of simplification occurs when an operand is connected to one input of a two-input OR gate and its inverse is connected to the other. 
+In this case, either the operand is equal to a one or its inverse is.
+There is no other possibility. Therefore, at least one logic 1 is connected to the inputs of the OR gate. This gives us an output of logic 1 regardless of the inputs. 
+Rule: A + A = 1
+
+
+--- slide 21 ---
+AND Rules
+Just as with the OR gate, if either of the inputs to an AND gate is a constant (logic 0 or logic 1) or if the two inputs are the same or inverses of each other, a simplification can be performed.
+ Let's begin with the case where one of the inputs to the AND gate is a logic 0. 
+Remember that an AND gate must have all ones at its inputs to output a one. In this case, one of the inputs will always be zero forcing this AND to always output zero. The truth table below shows this.
+Rule: A · 0 = 0 
+If one input of a two-input AND gate is connected to a logic 1, then it only takes the other input going to a one to get all ones on the inputs.
+If the other input goes to zero, the output becomes zero. This means that the output follows the input that is not connected to the logic 1
+Rule: A · 1 = A.
+If the same operand is connected to all of the inputs of an AND gate, we get a simplification similar to that of the OR gate. Notice that the two columns in the truth table below are equivalent proving this rule.
+Rule: A · A = A
+
+
+--- slide 22 ---
+Last of all, when an operand is connected to one input of a two-input AND gate and its inverse is connected to the other, either the operand is equal to a zero or its inverse is equal to zero. There is no other possibility. 
+Therefore, at least one logic 0 is connected to the inputs of the AND gate giving us an output of logic 0 regardless of the inputs.
+Rule: A · A = 0
+XOR Rules
+Remember that a two-input XOR gate outputs a 1 if its inputs are different and a zero if its inputs are the same. If one of the inputs to a two-input XOR gate is connected to a logic 0, then the gate's output follows the value at the second input. 
+In other words, if the second input is a zero, the inputs are the same forcing the output to be zero and if the second input is a one, the inputs are different and the output equals one.
+Rule: A ⊕ 0 = A
+If one input of a two-input XOR gate is connected to a logic 1, then the XOR gate acts as an inverter as shown in the table below.
+Rule: A ⊕ 1 = A
+If the same operand is connected to both inputs of a two-input XOR gate, then the inputs are always the same and the gate outputs a 0.
+
+
+--- slide 23 ---
+Rule: A ⊕ A = 0
+Lastly, if the inputs of a two-input XOR gate are inverses of each other, then the inputs are always different and the output is 1.
+Rule: A ⊕ A = 1
+Derivation of Other Rules
+If we combine the NOT, OR, and AND rules with the commutative, associative, and distributive laws, we can derive other rules for Boolean algebra. This can be shown with the following example.
+Example
+Prove that A + A·B = A
+Solution
+A + A·B 
+= A·1 + A·B Rule: A · 1 = A
+= A·(1 + B) Distributive Law
+= A·(B + 1) Commutative Law
+= A·1 Rule: A + 1 = 1
+= A Rule: A · 1 = A
+Remember also that rules of Boolean algebra can be proven using a truth table. The example below uses a truth table to derive another rule.
+
+
+--- slide 24 ---
+Example
+Prove A + A ⋅ B = A + B
+Solution
+The truth table below goes step-by-step through both sides of the expression to prove that 
+A + A ⋅ B = A + B .
+[[
+The mathematical "F-O-I-L" principle, based on the distributive law, works in boolean algebra too. FOIL is a memory aid referring to the multiplication pattern for multiplying quadratic equations. It stands for:
+F – AND the first terms from each OR expression
+O – AND the outside terms (the first term from the first OR expression and the last term from the last OR expression)
+I – AND the inside terms (the last term from the first OR expression and the first term from the last OR expression)
+L – AND the last terms from each OR expression
+
+
+--- slide 25 ---
+Example
+Prove (A + B)·(A + C) = A + B·C
+Solution
+(A + B)·(A + C) 
+= (A + B)·A + (A + B)·C Distributive Law
+= A·A + B·A + A·C + B·C Distributive Law
+= A + B·A + A·C + B·C Rule: A·A = A
+= A + A·B + A·C + B·C Commutative Law
+= A + A·C + B·C Rule: A + A·B = A
+= A + B·C Rule: A + A·B = A
+Now that you have a taste for the manipulation of Boolean expressions, the next section will show examples of how complex expressions can be simplified.
+
+
+--- slide 26 ---
+Simplification
+The rules of the previous section are summarized
+
+
+--- slide 27 ---
+Example
+Simplify (A·B + C)(A·B + D)
+Solution
+From the rules of Boolean algebra, we know that
+ (A + B)(A + C) = A + BC. 
+Substitute A·B for A, C for B, and D for C and we get:
+(A·B + C)(A·B + D) = A·B + C·D
+Example
+Simplify (A + B) ⋅ (B + B)
+Solution
+(A + B)·1 Anything OR'ed with its inverse is 1
+(A + B) Anything AND'ed with 1 is itself
+
+
+--- slide 28 ---
+
+
+--- slide 29 ---
+
+
+--- slide 30 ---
+
+
+--- slide 31 ---
+DeMorgan's Theorem
+You may have noticed that the truth tables for the AND and OR gates are similar. Below is a comparison of the two operations.
+Notice that the output for each gate is the same for three rows and different for the fourth. 
+For the AND gate, the row that is different occurs when all of the inputs are ones, and for the OR gate, the different row occurs when all of the inputs are zeros. 
+What would happen if we inverted the inputs of the AND truth table?
+
+
+--- slide 32 ---
+The two truth tables are still not quite the same, but they are quite close. 
+The two truth tables are now inverses of one another. 
+Let's take the inverse of the output of the OR gate and see what happens.
+
+
+--- slide 33 ---
+So the output of an AND gate with inverted inputs is equal to the inverted output of an OR gate with non-inverted inputs. 
+A similar proof can be used to show that the output of an OR gate with inverted inputs is equal to the inverted output of an AND gate with non-inverted inputs. 
+This resolves our earlier discussion where we showed that the NOT gate cannot be distributed to the inputs of an AND or an OR gate.
+This brings us to DeMorgan's Theorem, the last Boolean law
+The purpose of DeMorgan's Theorem is to allow us to distribute an inverter from the output of an AND or OR gate to the gate's inputs. In doing so, an AND gate is switched to an OR gate and an OR gate is switched to an AND gate
+
+
+--- slide 34 ---
+DeMorgan's Theorem applies to gates with three or more inputs too.
+
+
+--- slide 35 ---
+One of the main purposes of DeMorgan's Theorem is to distribute any inverters in a digital circuit back to the inputs. 
+This typically improves the circuit's performance by removing layers of logic and can be done either with the Boolean expression or the schematic. 
+Either way, the inverters are pushed from the output side to the input side one
+gate at a time. 
+The sequence of steps below shows this process using a schematic.
+It is a little more difficult to apply DeMorgan's Theorem to a boolean expression.
+To guarantee that the inverters are being distributed properly, it is a good idea to apply DeMorgan's Theorem in the reverse order of precedence for the expression.
+
+
+--- slide 36 ---
+Consider the expression
+Step 1: The AND takes precedence over the OR, so distribute inverter across the OR gate first. 
+Step 2: Now distribute the inverter across the A·B term.
+                        (A + B) . C
+Step 3: In this final case, the use of parenthesis is vital.
+
+
+--- slide 37 ---
+Next 
+Standard Boolean Expression Formats
+Sum-of-Products (SOP)
+Product-of-Sums (POS)
+Thank you for listening
+?

@@ -7,6 +7,7 @@ import { adminUsersApi, userManagementError, type ManagedUser } from "@/lib/admi
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { AdminCreateUser } from "./admin-create-user";
+import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
 import { Avatar } from "@/components/ui/avatar";
 import { Alert } from "@/components/ui/alert";
@@ -129,7 +130,7 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All statuses</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
       <Button type="submit" variant="outline">Search</Button><Button variant="ghost" onClick={() => void load()}>Refresh</Button>
     </form>
-    {loading ? <LoadingState label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
+    {loading ? <LoadingState variant="table" label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
       { key: "name", header: "User", cell: user => <div className="flex items-center gap-3"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0"><p>{user.display_name || "No profile name"}</p><p className="break-all text-xs font-normal text-ink-muted">{user.email || "No email"}</p></div></div> },
       { key: "type", header: "Account type", cell: user => <>{roleLabel(user)}{user.roles.includes("admin") && <Badge tone="brand">Admin</Badge>}</> },
       { key: "registered", header: "Registered", cell: user => date(user.registered_at) },
@@ -142,13 +143,14 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       <DialogContent className="max-w-2xl" hideClose={busy}>
         <DialogTitle>{selected?.display_name || "Manage account"}</DialogTitle>
         <DialogDescription>{selected?.email || "Account access and teaching assignments."}</DialogDescription>
-        {detailLoading && <LoadingState label="Loading account details..." />}
+        {detailLoading && <LoadingState variant="table" label="Loading account details..." />}
         {detailError && <Alert tone="error" role="alert">{detailError}</Alert>}
         {detailNotice && <Alert tone="success" role="status">{detailNotice}</Alert>}
         {selected && <>
           <dl className="grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-ink-muted">Registered</dt><dd>{date(selected.registered_at)}</dd></div><div><dt className="text-ink-muted">Last sign-in</dt><dd>{date(selected.last_sign_in_at)}</dd></div><div><dt className="text-ink-muted">Account type</dt><dd>{roleLabel(selected)}</dd></div><div><dt className="text-ink-muted">Email</dt><dd>{selected.email_verified ? "Verified" : "Unverified"}</dd></div><div><dt className="text-ink-muted">Access</dt><dd>{selected.deactivated_at ? `Frozen since ${date(selected.deactivated_at)}` : "Active"}</dd></div></dl>
           {!selected.has_profile && <Alert tone="warning">This account has no application profile. Account actions are unavailable.</Alert>}
           {protectedAccount && <Alert>Administrator accounts are protected from suspension and deletion.</Alert>}
+          <AdminAwardXp key={selected.id} user={selected} disabled={busy} onBusyChange={value => { busyRef.current = value; setBusy(value); }} />
           {action ? <form className="flex flex-col gap-4 rounded-control border border-line p-4" onSubmit={event => { event.preventDefault(); void save(action); }} onChange={() => { requestKey.current = null; }}>
             <h3 className="font-bold">{action === "delete" ? "Permanently delete this account" : action === "freeze" ? "Freeze this account" : "Reactivate this account"}</h3>
             <p className="text-sm text-ink-muted">{action === "delete" ? "This permanently removes the sign-in account, personal progress, enrollments and teaching assignments. This cannot be undone." : action === "freeze" ? "The user loses application access. Their data and teaching assignments are kept for reactivation." : "The user will regain access to their account and existing assignments."}</p>

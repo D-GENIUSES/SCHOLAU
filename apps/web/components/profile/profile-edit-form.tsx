@@ -50,7 +50,7 @@ export function ProfileEditForm({ profile }: { profile: Profile }) {
       <CardContent>
         <div className="mb-6 border-b border-line pb-6"><ProfilePhotoEditor profile={profile} /></div>
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
-          <Field id="profile-name" label="Username" hint="Unique across ScholAu. Used in battles, rankings and friends. 3–24 letters, numbers or underscores." error={errors.username?.message}>
+          <Field id="profile-name" label="Username" hint="You can change your public username here. Used in battles, rankings and friends. 3–24 letters, numbers or underscores." error={errors.username?.message}>
             <Input autoComplete="username" autoCapitalize="none" spellCheck={false} maxLength={24} {...form.register("username", { onChange: () => update.reset() })} />
           </Field>
           <UsernameSuggestions names={suggestions} onChoose={(name) => {

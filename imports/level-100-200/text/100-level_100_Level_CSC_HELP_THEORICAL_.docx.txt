@@ -1,0 +1,82 @@
+[normal] This breakdown of your CSC 102: Introduction to Problem Solving notes is structured to help you master the material for exams. It focuses on core definitions, the logic of programming, and memory aids for quick recall.
+[Heading 3] Module 1: Foundations of Problem Solving
+[normal] Core Definition: Computerization Computerization is the use of computers to develop software that automates routine human tasks efficiently.
+[normal] The 5 "Ask Questions" Strategy Before solving any problem, you must ask these five questions:
+[normal] Know: What do I know about the problem?
+[normal] Info: What information must I process to find the solution?
+[normal] Look: What does the solution look like?
+[normal] Special: What special cases exist?
+[normal] Recognize: How will I recognize the solution is found?
+[normal] 🧠 Mnemonic: K-I-L-S-R "Kings In London Solve Riddles"
+[normal] What is Computer Science? It is the study of the theoretical foundations of information and computation. It is similar to mathematics because both define and solve problems using models.
+[Heading 3] Module 2: Programming Languages & Levels
+[normal] Program vs. Programming Language
+[normal] Program: A sequence of instructions a computer executes to solve a problem.
+[normal] Programming Language: An artificial language used to organize information and express solutions precisely.
+[Heading 4] The Three Levels of Language
+[normal] Exam Trap: Do not confuse "Assembler" (the tool) with "Assembly" (the language).
+[Heading 3] Module 3: The Problem-Solving Lifecycle
+[normal] Problem solving is a sequential process: Identify -> Algorithm -> Implement.
+[normal] 4 Key Steps for Solving Problems via Computer:
+[normal] Analysing the problem: Clearly understand the inputs (what it accepts) and outputs (what it produces).
+[normal] Developing an Algorithm: Creating a "recipe" in natural language.
+[normal] Coding: Converting the algorithm into a programming language.
+[normal] Testing and Debugging: Checking for Syntactical errors (no output) or Logical errors (wrong output).
+[Heading 3] Module 4: Algorithms & Flowcharts
+[normal] Algorithm: A finite sequence of steps to get a desired output.
+[normal] 5 Characteristics of a Good Algorithm:
+[normal] Precision: Steps are clearly stated.
+[normal] Uniqueness: Each step depends only on previous steps/input.
+[normal] Finiteness: It MUST stop after a set number of steps.
+[normal] Input: Receives data.
+[normal] Output: Produces a result.
+[normal] 🧠 Mnemonic: P-U-F-I-O "People Usually Finish In Order"
+[normal] Visual vs. Textual Tools
+[normal] Flowchart: A visual representation using boxes, diamonds, and arrows.
+[normal] Pseudocode: "Not real code." A non-formal, human-readable description of instructions.
+[Heading 3] Module 5: Object-Oriented Programming (OOP)
+[normal] POP vs. OOP: The Big Difference
+[normal] Procedure-Oriented (POP): Views problems as a sequence of things to do (reading, calculating, printing).
+[normal] Object-Oriented (OOP): Modularizes programs by partitioning memory into "objects" containing both data and functions.
+[Heading 4] The 7 Pillars of OOP
+[normal] Objects: Basic run-time entities (e.g., a person or bank account) combining data and functions.
+[normal] Classes: A group of objects sharing common properties; a "template".
+[normal] Data Abstraction: Representing essential features without background details.
+[normal] Encapsulation: Wrapping data and functions into one unit (Class) to hide it from the outside world.
+[normal] Inheritance: One class acquiring properties of another (promotes reusability).
+[normal] Polymorphism: The ability to take more than one form (e.g., operator overloading where '+' adds different types).
+[normal] Dynamic Binding: Linking a procedure call to code only at run-time.
+[normal] 🧠 Mnemonic: O-C-A-E-I-P-D "Only Clever Ants Eat Insects Plus Dirt"
+[Heading 3] Module 6: C++ Basics
+[normal] C++ was developed by Bjarne Stroustrup (often spelled "Jarney" in notes) at Bell Labs in the early 1980s. It was originally called "C with Classes".
+[normal] Anatomy of "Hello World"
+[normal] [span_52](start_span)#include <iostream>  // Preprocessor directive: includes I/O tools[span_52](end_span)
+[span_53](start_span)int main() {         // Execution starts here; mandatory function[span_53](end_span)
+    std::cout << "Hello World!"; [span_54](start_span)// Prints output to screen[span_54](end_span)
+    return 0;        [span_55](start_span)// Exit status; ends the program[span_55](end_span)
+}
+
+[normal] Key Exam Symbols:
+[normal] //: Single-line comment (ignored by compiler).
+[normal] /* ... */: Multi-line comment.
+[normal] ;: Semicolon indicates the end of a statement.
+[normal] <<: Insertion operator used with cout.
+[Heading 3] Likely Exam Questions & How to Answer
+[normal] Q1: Differentiate between a Logical Error and a Syntactical Error.
+[normal] Answer: A Syntactical error violates the rules of the language (like a missing semicolon) and results in no output. A Logical error occurs when the program runs but produces the incorrect output because the underlying plan was wrong.
+[normal] Q2: List four benefits of OOP.
+[normal] Answer:
+[normal] Code Reusability: Through inheritance, redundant code is eliminated.
+[normal] Productivity: Programs can be built from standard modules, saving time.
+[normal] Security: Data hiding (encapsulation) protects code from outside interference.
+[normal] Scalability: Systems can easily be upgraded from small to large.
+[normal] Q3: What are the characteristics of a good algorithm?
+[normal] Answer: Use the P-U-F-I-O mnemonic: Precision, Uniqueness, Finiteness, Input, and Output. (Briefly define each for full marks).
+[normal] Q4: Why is the #include <iostream> directive necessary?
+[normal] Answer: It is a preprocessor directive that includes the Input/Output Stream file. It is necessary because it allows the program to use std::cout to print output to the screen.
+
+--- table 1 ---
+Level | Description | Key Fact
+Machine Level | Instructions executed directly by the CPU. | Made of binary/series of instructions.
+Assembly Level | Low-level; has a 1-to-1 correspondence with machine code. | Uses a utility called an Assembler to convert to machine code.
+High Level | Simpler context; independent of hardware. | Closer to human language (e.g., C++, Java, Python).

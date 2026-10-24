@@ -36,24 +36,10 @@ export function BattleTopBar({
   onLeave: () => void;
 }) {
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex items-center justify-between gap-3">
-        <Logo className="h-8" />
-        {live ? (
-          <button
-            type="button"
-            onClick={onLeave}
-            className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2 text-sm font-medium text-[#6d7f92] hover:text-ink"
-          >
-            <LogOut className="size-4" aria-hidden />
-            Leave
-          </button>
-        ) : (
-          <Link href="/battles" className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2 text-sm font-medium text-[#6d7f92] hover:text-ink">
-            <ArrowLeft className="size-4" aria-hidden />
-            Battles
-          </Link>
-        )}
+    <div className="flex items-center justify-between gap-3">
+      <div className="min-w-0">
+        <p className="text-xl font-bold tracking-tight sm:text-2xl">{battle?.state === "active" ? "Live battle" : "Battle"}</p>
+        {battle ? <p className="flex items-center gap-1.5 text-xs font-medium text-ink-muted">{battle.state === "active" ? <span className="size-1.5 rounded-full bg-success" aria-hidden /> : null}{STATE_LABEL[battle.state]}</p> : null}
       </div>
       {live ? (
         <div className="flex items-center gap-2.5">

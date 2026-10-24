@@ -1,0 +1,15 @@
+[Normal] 100 Level First Semester (Computer Science)
+
+--- table 1 ---
+Course Code | Course Title | Unit(s) | Status
+GST 111 | Communication in English | 2 | C
+MTH 101 | Elementary Mathematics I | 2 | C
+PHY 101 | General Physics I | 2 | C
+PHY 107 | General Practical Physics I | 1 | C
+STA 111 | Descriptive Statistics | 3 | C
+COS 101 | Introduction to Computing Sciences | 3 | C
+AUE-GST 100 | Students Life Seminar | 0 | R
+AUE-GST 101 | Use of Library | 2 | C
+CHM 101 | General Chemistry I | 2 | E
+BIO 101 | General Biology I | 2 | E
+ | Total | 19 | 

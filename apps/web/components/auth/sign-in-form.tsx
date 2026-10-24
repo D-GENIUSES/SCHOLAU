@@ -14,10 +14,11 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { safeNext } from "@/lib/utils";
 import { authErrorMessage, isEmailNotConfirmed } from "./auth-errors";
 import { AuthHeading } from "./auth-heading";
+import { GoogleSignIn } from "./google-sign-in";
 
 type SignInError = { kind: "unconfirmed"; email: string } | { kind: "message"; message: string };
 
-export function SignInForm({ next, deactivated, linkError }: { next?: string; deactivated?: boolean; linkError?: boolean }) {
+export function SignInForm({ next, deactivated, linkError, oauthError }: { next?: string; deactivated?: boolean; linkError?: boolean; oauthError?: boolean }) {
   const router = useRouter();
   const [error, setError] = useState<SignInError | null>(null);
   const [redirecting, setRedirecting] = useState(false);
@@ -26,23 +27,29 @@ export function SignInForm({ next, deactivated, linkError }: { next?: string; de
 
   const onSubmit = form.handleSubmit(async (values) => {
     setError(null);
-    const { error: authError } = await getBrowserSupabase().auth.signInWithPassword({
-      email: values.email,
-      password: values.password,
-    });
-    if (authError) {
-      setError(isEmailNotConfirmed(authError) ? { kind: "unconfirmed", email: values.email } : { kind: "message", message: authErrorMessage(authError) });
-      return;
+    try {
+      const { error: authError } = await getBrowserSupabase().auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+      });
+      if (authError) {
+        setError(isEmailNotConfirmed(authError) ? { kind: "unconfirmed", email: values.email } : { kind: "message", message: authErrorMessage(authError) });
+        return;
+      }
+      setRedirecting(true);
+      router.replace(safeNext(next, "/auth/continue"));
+      router.refresh();
+    } catch {
+      setRedirecting(false);
+      setError({ kind: "message", message: "Sign-in could not be completed. Check your connection and try again." });
     }
-    setRedirecting(true);
-    router.replace(safeNext(next, "/auth/continue"));
-    router.refresh();
   });
 
   return (
     <>
       <AuthHeading title="Sign in" description="Use the email address linked to your student or lecturer account." />
       <div className="flex flex-col gap-4">
+        {oauthError ? <Alert tone="warning" role="alert">Google sign-in was cancelled or could not be completed. Please try again or sign in with email.</Alert> : null}
         {deactivated ? (
           <Alert tone="error" role="alert" title="This account is deactivated.">
             If you think this is a mistake, contact support (see our <Link href="/privacy#contact" className="font-semibold text-brand-primary underline">privacy page</Link>).
@@ -67,6 +74,7 @@ export function SignInForm({ next, deactivated, linkError }: { next?: string; de
           </Alert>
         ) : null}
 
+        <GoogleSignIn next={next} disabled={isSubmitting || redirecting} />
         <form onSubmit={onSubmit} noValidate className="auth-form">
           <Field id="sign-in-email" label="Email" error={errors.email?.message}>
             <Input type="email" autoComplete="email" inputMode="email" {...form.register("email")} />

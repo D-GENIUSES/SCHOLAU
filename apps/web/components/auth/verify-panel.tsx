@@ -26,6 +26,7 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
   }, [cooldown]);
 
   const resend = async () => {
+    if (sending || cooldown > 0) return;
     const parsed = emailSchema.safeParse(email);
     if (!parsed.success) {
       setStatus({ tone: "error", text: parsed.error.issues[0]?.message ?? "Enter a valid email address." });
@@ -33,18 +34,24 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
     }
     setSending(true);
     setStatus(null);
-    const { error } = await getBrowserSupabase().auth.resend({
-      type: "signup",
-      email: parsed.data,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/continue` },
-    });
-    setSending(false);
-    if (error) {
-      setStatus({ tone: "error", text: authErrorMessage(error) });
-      return;
+    try {
+      const { error } = await getBrowserSupabase().auth.resend({
+        type: "signup",
+        email: parsed.data,
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/auth/continue` },
+      });
+      setSending(false);
+      if (error) {
+        setStatus({ tone: "error", text: authErrorMessage(error) });
+        return;
+      }
+      setCooldown(COOLDOWN_SECONDS);
+      setStatus({ tone: "ok", text: "Email sent. Check your inbox and spam folder." });
+    } catch {
+      setStatus({ tone: "error", text: "The email could not be sent. Check your connection and try again." });
+    } finally {
+      setSending(false);
     }
-    setCooldown(COOLDOWN_SECONDS);
-    setStatus({ tone: "ok", text: "Email sent. Check your inbox and spam folder." });
   };
 
   return (
@@ -66,7 +73,7 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
       />
       <div className="flex flex-col gap-4">
         <p className="text-ink-muted">
-          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the link on this device to confirm your address and continue to set up your academic profile."} The link expires after a while, so use it soon.
+          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the confirmation link to continue directly to ScholAu."} The link expires after a while, so use it soon.
         </p>
         {initialEmail ? null : (
           <Field id="verify-email" label="Email">

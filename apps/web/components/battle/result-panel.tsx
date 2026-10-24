@@ -11,6 +11,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Stat } from "@/components/ui/misc";
+import { BattleOpponentFriend } from "./opponent-friend";
 import { cancelReasonCopy } from "./outcome";
 
 const HEADLINE = {
@@ -67,6 +68,8 @@ export function ResultPanel({ battle }: { battle: Battle }) {
           <ReportDialog targetType="battle" targetId={battle.battle_id} triggerLabel="Report battle" title="Report this battle" />
         </CardFooter>
       </Card>
+
+      {opponent?.user_id ? <BattleOpponentFriend opponent={opponent} /> : null}
 
       {battle.courses && battle.courses.length > 1 && battle.rounds ? (
         <section aria-label="Results by course" className="grid gap-3 sm:grid-cols-3">

@@ -1,0 +1,47 @@
+[Normal]   			ADELEKE UNIVERSITY EDE OSUN STATE 
+[Normal] 			PHY 102 : General Physics II : Waves Tutorial Questions
+[Normal] Instructions: Answer all Questions, show your workings for all calculations based questions
+[List Paragraph] The ratio of frequencies of two wave travelling through the same medium is 2:5, the ratio of their wavelength is 
+[List Paragraph] 5:2		`B. 2:5		C. 3:5     	D. 1:2
+[List Paragraph] If two antinodes and three nodes are formed in a distance of 1.21, Calculate the wavelength and the distance between the antinodes of the stationary wave.
+[List Paragraph] 1.21m, 0.303m	B. 1.21m, 0.61m	C. 0.61m, 0.31m	D. 0.61m, 1.21m
+[List Paragraph] A popular music producer (Sarz) was working on two sound waves which led to a southing music, the two sound waves undergo what type interference
+[List Paragraph] Distorting		B. Constructive 		C.   Destructive		D. definite 
+[List Paragraph] A type of wave which doesn’t require material medium for its propagation is called
+[List Paragraph] Matter waves	B. Mechanical waves       C. Body waves   D. Electromagnetic waves
+[List Paragraph] The position where the standing wave amplitude is maximum is called.
+[List Paragraph] A. Amplitude	B. Nodes      C. Antinodes   D. Minima
+[List Paragraph] The vector sum of the separate displacements of waves passing through the same region of space at the same time is called
+[List Paragraph] Principle of Superposition	B. wave theory 	C. Huygen’s principle	D. Molecular wave law
+[List Paragraph] The compressibility of an unknown material is 1500 is applied to a paino string of linear density 
+[List Paragraph] . The is the wave speed?
+[List Paragraph] 49.5m/s	B. 0.47m/s	C. 707.1m/s	D. 27.5m/s
+[List Paragraph] A transverse wave on a string is described by the wave function . Where x is in meters and t is seconds, what is the wavelength and frequency of the wave?
+[List Paragraph] 16m, 2 Hz		B. 25m, 10 Hz		C. 12m,25 Hz		D. 20m,10 Hz
+[List Paragraph] A wave is described by  where x is in cm, y is in cm, t is in seconds. The angular wave number is ?
+[List Paragraph] 300rad/m		B. 362rad/m 		C. 282rad/m		D. 232rad/m
+[List Paragraph] An elastic string produces waves with a frequency of 5.00 Hz and has amplitude 12.0cm. if the speed of the wave is 20m/s, the angular frequency of the wave will be ?  
+[List Paragraph] 3.0 rad/s	B.  15 rad/s	C. 15.7 rad/s	D. 31.4 rad/s
+[List Paragraph] What type of lens is in used in an ophthalmologist’s laboratory when the power of the lens is negative?
+[List Paragraph] Converging lens	B.  Convex lens 		C. Concave lens		D. spectate lens   
+[List Paragraph] If the wavelength of a wave travelling with a velocity of 360m/s is 60cm, the period of the wave is
+[List Paragraph] 6s		B. 3.6s		C. 0.0017s	D. 0.61s
+[List Paragraph] A wave moving along a spring will always 
+[List Paragraph] be transverse 		B. transport particles of matter	
+[List Paragraph] C. have no kinetic energy	D. have a definite wavelength
+[List Paragraph] The resultant of two waves travelling together can give rise to
+[List Paragraph] Interference		B. Diffraction		C. Reflection	D. Sinusoidal waves
+[List Paragraph] A wave of frequency of 2 Hz and wavelength of 40cm. the velocity of the wave is
+[List Paragraph] 60.0m/s		B.   6.0m/s		C.  1.5m/s		D. 0.8m/s
+[List Paragraph] The combination of sound waves with different frequencies is known as
+[List Paragraph] interferences 	   B. diffraction 	C. superposition       D. forced vibration
+[List Paragraph] The equation of a progressive sinusoidal wave can be written as , where x is in meters and t in seconds. What is the Amplitude, frequency, wavelength, wave velocity, and direction of the wave?
+[List Paragraph] 0.03m, 0.678Hz, 2.98m,1.72m/s, left	B.  0.02m, 0.578Hz, 2.98m,1.72m/s, right	
+[List Paragraph] 0.13m, 0.576Hz, 2.98m,1.72m/s, left	D. 0.02m, 0.576Hz, 2.98m,1.72m/s, left
+[List Paragraph] The general equation of a travelling wave is  which describes the motion of the wave, what is the name of this parameter ?
+[List Paragraph] Phase angle		B. wave angle		C. wave number	D. angular frequency
+[List Paragraph] Which of the following is NOT one of the properties of a wave?
+[List Paragraph] reflection		B.  diffraction	C. interference		D. frequency
+[List Paragraph] The wave number of a sinusoidal wave of angular frequency of 20 rad/s with the speed of 5 m/s
+[List Paragraph] 3.76		B. 4.00		C. 5.26		D. 6.02
+[List Paragraph] All Departments should submit in a fulscap sheet on the 5th of June 2023 before 10am

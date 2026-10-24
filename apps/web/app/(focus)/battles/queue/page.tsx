@@ -13,7 +13,7 @@ import { useAnalytics } from "@/lib/analytics";
 
 export default function QueuePage() {
   return (
-    <Suspense fallback={<LoadingState label="Loading queue…" />}>
+    <Suspense fallback={<LoadingState variant="battle" label="Loading queue…" />}>
       <Queue />
     </Suspense>
   );
@@ -83,7 +83,7 @@ function Queue() {
 
   let body: ReactNode;
   if (live.isPending || (!live.isFetchedAfterMount && !queue && !battleId)) {
-    body = <LoadingState label="Checking the queue…" lines={2} />;
+    body = <LoadingState variant="battle" label="Checking the queue…" lines={2} />;
   } else if (live.isError && !live.data) {
     body = <ErrorState error={live.error} onRetry={() => void live.refetch()} />;
   } else if (battleId) {

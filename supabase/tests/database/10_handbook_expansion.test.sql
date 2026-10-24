@@ -2,6 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
 declare v uuid:=gen_random_uuid(); begin
   insert into auth.users(id,email,raw_user_meta_data) values(v,v::text||'@expanded-curriculum.test',jsonb_build_object('display_name',p_name)); return v;
@@ -18,17 +19,17 @@ select set_config('t.first',(select id::text from public.semesters where academi
 select set_config('t.second',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=2),true) is not null as setup;
 select set_config('t.l100',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='100 Level'),true) is not null as setup;
 select set_config('t.l300',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='300 Level'),true) is not null as setup;
-select is((select count(*)::integer from public.curriculum_courses where university_id=current_setting('t.uni')::uuid),196,'196 programme requirements, without duplicate old entries');
-select is((select count(distinct course_id)::integer from public.curriculum_courses where university_id=current_setting('t.uni')::uuid),96,'96 canonical course identities');
-select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.first')::uuid),101,'first semester has 101 programme-level offerings');
+select is((select count(*)::integer from public.curriculum_courses where university_id=current_setting('t.uni')::uuid),213,'213 programme requirements, without duplicate old entries');
+select is((select count(distinct course_id)::integer from public.curriculum_courses where university_id=current_setting('t.uni')::uuid),105,'105 canonical course identities');
+select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.first')::uuid),118,'first semester has 118 programme-level offerings');
 select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.second')::uuid),95,'second semester has 95 programme-level offerings');
 select is((select count(*)::integer from public.curriculum_courses where level_id=current_setting('t.l100')::uuid and department_id<>current_setting('t.cs')::uuid),36,'shared first-year list adds 36 requirements for CYB and SEN');
 select is((select count(*)::integer from public.levels where university_id=current_setting('t.uni')::uuid and label='400 Level'),1,'400-level tables now imported from complete PDF');
 select is((select count(*)::integer from public.courses where code='CSC 203'),1,'existing CSC 203 course retained');
 select is((select count(*)::integer from public.courses where code='COS 203'),0,'COS 203 source variant does not create a duplicate');
 select is((select count(*)::integer from public.curriculum_courses cc join public.courses c on c.id=cc.course_id where c.code='CSC 203' and cc.source_code='COS 203'),2,'source code retained for both handbook occurrences');
-select is((select count(*)::integer from public.curriculum_courses where unit_count=0),6,'all six zero-unit seminars retained');
-select is((select count(*)::integer from public.curriculum_courses where requirement_status='E'),13,'all thirteen elective entries retain E status');
+select is((select count(*)::integer from public.curriculum_courses where unit_count=0),7,'all seven zero-unit seminars retained');
+select is((select count(*)::integer from public.curriculum_courses where requirement_status='E'),14,'all fourteen elective entries retain E status');
 select is((select count(*)::integer from public.curriculum_courses where elective_group is not null),4,'both explicit select-one pairs form elective groups');
 select ok((select lecture_hours is null from public.curriculum_courses cc join public.courses c on c.id=cc.course_id where cc.department_id=current_setting('t.cs')::uuid and c.code='CYB 305'),'obscured lecture hours are not invented');
 select is((select cc.practical_hours from public.curriculum_courses cc join public.courses c on c.id=cc.course_id where cc.department_id=current_setting('t.cs')::uuid and c.code='CSC 399'),135,'SIWES practical hours preserved');
@@ -66,7 +67,7 @@ select pg_temp.login(current_setting('t.thirdyear')::uuid);
 select is((public.enroll_course_v1(current_setting('t.e2')::uuid,gen_random_uuid())->>'active')::boolean,true,'ended elective no longer blocks another choice');
 reset role;
 select lives_ok($$select private.materialize_curriculum(current_setting('t.first')::uuid)$$,'expanded curriculum resync safe');
-select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.first')::uuid),101,'resync does not duplicate expanded first-semester offerings');
+select is((select count(*)::integer from public.course_offerings where semester_id=current_setting('t.first')::uuid),118,'resync does not duplicate expanded first-semester offerings');
 select throws_ok($$update public.curriculum_courses set unit_count=-1$$,'23514',null,'negative course units remain invalid');
 select throws_ok($$update public.curriculum_courses set lecture_hours=-1$$,'23514',null,'negative contact hours remain invalid');
 select is((select count(*)::integer from public.curriculum_courses cc join public.departments d on d.id=cc.department_id join public.levels l on l.id=cc.level_id where d.name='Computer Science' and l.label='100 Level' and cc.semester_number=1),10,'Computer Science 100 semester 1 course count');

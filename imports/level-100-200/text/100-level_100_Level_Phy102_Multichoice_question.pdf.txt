@@ -1,0 +1,8353 @@
+
+
+--- page 1 ---
+PHY 152 PRACTICE QUESTIONS
+ 
+ 
+1.         Which of these is not correct as a basic property of
+ 
+electric charges?
+ 
+(a)        Total charges in an insulated system is invariable
+ 
+(b)        A charged body is electrically unstable
+ 
+(c)        A charged body has 
+equal number of positive and negative 
+charges
+ 
+(d)        Positively charged body is deficient of electrons
+ 
+ 
+x+q1+q2 = 2 q1
+ 
+ 
+2.Calculate the distance x between charges q1 and q2 shown, given 
+the
+ 
+repulsive force between them as 1.2 x 10
+-
+4 N, take the permitt
+ivity of
+ 
+vacuum where they were as 8.842x 10 
+-
+12 F/M and charge on q1=
+ 
+1.6x10
+-
+19c
+ 
+(a)
+ 
+1.96x10
+-
+12M (b) 9.1x104N (c) 16.8x10
+-
+4 N. (d) 4.3x108 N
+ 
+ 
+3.         Two charges separated by distance x are located in vacuum.
+ 
+One is a quarter in a magnitude of the other. I
+n terms of two charges
+ 
+above Coulomb’s law can correctly represented by:
+ 
+(a)             (b)       (c)               (d)
+ 
+ 
+4.         Find the ratio (Fe/Fg) of the Coulomb electrical force Fe,
+ 
+to the gravitational force, Fg, between two electrons separated 
+by
+ 
+distance r
+ 
+(a)         (b)        (c)     (d)
+ 
+ 
+5.         Two identical balls, carrying equal charge each of mass
+ 
+0.10g, are suspended freely by two threads of equal length repelled
+ 
+each other so that each thread make angle 300 with vertical line. At
+ 
+equilibrium, calculate the tension in one of the threads.
+ 
+(Acceleration of gravity pull g = 9.8 m/s2)
+ 
+(a) 1.13x10
+-
+3 N     (b) 6.3x10
+-
+6 N         (c) 0.41 N        (d) 5.1x10
+-
+12 N
+ 
+ 
+6.         When two identically charged bodies suspended freely by
+ 
+thread of
+ 
+equal length repel each other all of these forces are acting
+ 
+on one of then except:
+ 
+ 
+(a) Tension (b) Gravitational pull (c) Coulomb attraction force (d)
+ 
+Repulsive force
+ 
+7.
+ 
+t
+wo charges are separated as shown. Where a third positive charge 
+must
+ 
+be placed if
+ 
+the force it experiences is to be zero?
+ 
+ 
+(a) At D                       (b) At C                       (c) At E
+ 
+                       
+(d) At B
+ 
+8.         For series of charges in a closed surface within a vacuum,
+ 
+given that Îo andYe are the electric 
+permitivity and field flux,
+ 
+Gauss’ law can be stated as
+ 
+(a)  (b)    (c)    (d)
+ 
+9.         One of the following is not a practical use of a capacitor:
+ 
+ 
+(a)        To establishment of electric field of a required pattern.
+ 
+ 
+(b)        As oscillatory device in
+ 
+circuit.
+ 
+ 
+(c)        Used in time
+-
+base circuit to initiate an event at a specific time.
+ 
+ 
+(d)        To produce and store charges when electric field is lacking.
+ 
+ 
+ 
+ 
+10.       2mF and 3mF capacitors are both connected in parallel across
+ 
+a 100 V supply line.
+ 
+Calculate the charge on the plates of the
+ 
+capacitors:
+ 
+ 
+ 
+ 
+(a) 1.5x10
+-
+6 C (b) 1.0x10
+-
+6 C (c) 5.0x10
+-
+4 C (d) 0.7x10
+-
+4 C
+ 
+ 
+ 
+ 
+11.       Capacitance of a parallel plate capacitor is in directly
+ 
+proportional to:
+ 
+ 
+(a)        The magnitude of the permittivity of th
+e of the dielectric
+ 
+within the plates
+ 
+ 
+            
+(b)        The magnitude of the surface area of the plates
+ 
+in the capacitor
+ 
+ 
+(c)        Separation of the plates in the capacitor
+ 
+ 
+(d)        The magnitude of the voltage applied
+ 
+12.       One plate of a 
+parallel
+-
+ 
+plate air capacitor has a surface
+ 
+area of 0.2m2 and is separated from the second plate by 0.01m if the
+ 
+electric permittivity of the dielectric used is 8.85x10
+-
+12 F/M.
+ 
+Calculate the voltage that will develop       8.85x10
+-
+9c charge on its
+ 
+plate.
+ 
+ 
+(a) 7.1x10
+-
+2        (b) 50V            (c) 4.1V           (d) 60.2V
+ 
+13.       A parallel plate air
+-
+capacitor has square plate whose area
+ 
+is 0.2m2 and plates separated by 1cm, is connected to 50V battery.
+ 
+Calculate the energy stored in the capacitor if the 
+permittivity of
+ 
+the dielectric used is 8.85x10
+-
+12 F/M.
+ 
+ 
+(a) 1.6x10
+-
+7 J    (b) 2.21x10
+-
+7 J    (c) 3.0X10
+-
+7J        (d)  4.6X10
+-
+7J
+ 
+14.       Which of the following is not a characteristic of air
+-
+capacitor?
+ 
+(a)        It is stable
+ 
+(b)        It has high insul
+ation strength
+ 
+(c)        It is simple to make
+ 
+(d)        It can be easily adapted as a variable capacitor
+ 
+15.       Which of the following is not a characteristic of an
+ 
+electrolytic capacitor?
+ 
+ 
+(a)        Its dielectric is of high insulation strength.
+ 
+ 
+(b
+)        It is cheap to make.
+ 
+ 
+(c)        Its dielectric is made of oxide deposit of aluminium borate.
+ 
+ 
+(d)        (a) and (c)
+ 
+16.       Two capacitors 0.2mF and 0.4mF are connected in series to a
+ 
+supply of 10V. Calculate the energy stored in the field 
+within the
+ 
+dielectrics of the capacitors
+ 
+ 
+(a) 6.7X10
+-
+5J   (b) 14.2X10
+-
+5J  (c) 26.3X10
+-
+5J  (d)    9.8X10
+-
+5J
+ 
+ 
+17.       What area of the plate of parallel
+-
+plate capacitor gives
+ 
+1mF, if the plate’s separation is 0.001m and permittivity of the
+ 
+dielectric used 
+is 8.85x10
+-
+12?
+ 
+ 
+(a)        9.13x10
+-
+3m2      (b)    113 m2 C 6.6X10
+-
+3 (d) 21 m2
+ 
+ 
+ 
+ 
+18.       The inverse of constant of proportionality in ohm’s law for
+ 
+metallic conductors can be called:
+ 
+ 
+(a)   Inductance   (b)    Conductance (c)   Reactance    (d) Remitta
+nce
+ 
+19.       One major difference between Ohm metallic conductors and
+ 
+semi conductors is:
+ 
+(a)        Temperature increase increases the conductivity of 
+semiconductor
+ 
+(b)        Temperature increase makes valence electrons to fall to
+ 
+ground state in semico
+nductor
+ 
+(c)        Temperature increase reduces the speed of the conducting
+ 
+electrons in the semi conductor.
+ 
+(d)        Temperature increase ejects the valence electrons in
+ 
+metals.
+ 
+20                Which of these figures best represent Temperature T/
+ 
+Resistance R characteristics  curve for a dry         wood?
+ 
+22. 
+Obtain the equivalent resistance between points X and Y in the 
+diagram shown.
+ 
+(a). 11.6 Ω       B 37 Ω             C 18.6 Ω         D 8.3 Ω
+ 
+23.       Conductivity of metal conductor does not d
+epend on one of
+ 
+the following:
+ 
+            
+(a) Permeability            (b) Temperature           (c)
+ 
+Length         (d) Cross section area
+ 
+24.       The diameter of a 5 m long constantan wire is 0.1mm.
+ 
+Calculate its conductivity if
+ 
+            
+Its resistan
+ce per unit length is 2 Ω/m.
+ 
+            
+(a) 1.5X106/ Ω m  (b) 99x10
+-
+9/ Ω m     (c) 6.4x107/ Ω m
+ 
+(d) 5.5x10
+-
+7/ Ω m
+ 
+25.       The initial resistance R of a conductor increases by 3 Ω
+ 
+when its initial temperature T was raised to twice its initial value.
+ 
+Calc
+ulate is initial resistance if the temperature co
+-
+efficient of
+ 
+resistance of the conductor is µ
+ 
+            
+(a) 3µt             (b)             (c)              (d)
+ 
+26.       A wire conductor has initial resistivity of 1.003 Ωm, its
+ 
+resistivity changes to 
+a new one when temperature is increased by 15
+ 
+0K. If its resistance per unit length and radius are 1.02x107 W/m and
+ 
+0.25 mm, calculate its temperature co
+-
+efficient or resistivity.
+ 
+ 
+            
+(a) 1.6x10
+-
+2/K              (b) 8.6x10
+-
+6/K
+ 
+(c) 7.0x10
+-
+2/K      
+             
+(d) 4.1x10
+-
+6/K
+ 
+ 
+ 
+ 
+27.       A 500
+-
+watt boiling ring was used to raise the temperature of
+ 
+200g of a liquid by 250K within 2 seconds. What is the specific heat
+ 
+capacity of the liquid?
+ 
+ 
+
+--- page 2 ---
+(a) 2.0x102 J/KgK (b) 6.3x10
+-
+3 J/KgK (c) 4.41x104 J/KgK
+    
+(d) 1.333x105 
+J/KgK28                500
+-
+watt power source connected to a conductor for
+ 
+0.5 seconds energized a  9.1x10
+-
+3Kg electron for it to
+ 
+attain a velocity. Calculate the velocity of the     electron.
+ 
+ 
+(a) 5.31x1012m/s    (b) 8.40x1021m/s    C(c) 
+7.11x1029m/s      (d) 
+2.34x1016m/s29        One of the following cannot be a unit of electrical 
+potential
+ 
+(a) Joule per Coulomb  (b) Volt (c) Watt per coulomb (d) 
+Newton meter
+ 
+per Coulomb30        Which of the following is the correct statement for
+ 
+Kirchof
+f’s rule for current at a junction of circuit network?
+ 
+            
+(a)        Algebraic sum of current at a junction is zero
+ 
+            
+(b)        Algebraic sum of current flowing into a
+ 
+junction is equal to that, leaving                          that
+ 
+jun
+ction
+ 
+            
+(c)        Algebraic sum of current at a junction is constant
+ 
+            
+(d)        (a) and (b) are correct31.       A total of 1.92x 10
+-
+18J work 
+is required to carry 1.6x10
+-
+19
+ 
+charges across the two terminals of a cell within 1 minute. 
+What is
+ 
+the maximum current in the circuit?
+ 
+ 
+(a) 8.99x10
+-
+12 A           (b) 2.67x10
+-
+21A (c) 7.12x10
+-
+14 A (d) 4.13x10
+-
+13A32.       Consider a charge e at a point in vacuum, absolute
+ 
+electrical potential at point x away from e can be correctly obtained
+ 
+using
+:
+ 
+33.       Three equal 2μF charges are located at the angles of an
+ 
+equilateral triangle whose          sides are 7cm each in
+ 
+vacuum.  Determine the absolute electric potential at the
+ 
+centre of the triangle (K =   9   x 109Nm2/C2)
+ 
+  
+(a)        6.09 x 105V 
+      
+(b)   9.66 x 103V (c) 444V
+ 
+(d)         2.6 x 104V
+ 
+35.       A metre bridge has 3 Ω and 1 Ω resistors in its left and
+ 
+right gaps.  When a wire of length 218cm was    connected in parallel
+ 
+with the 3 Ω resistor the balance point is 54.6cm from the 
+left.  What
+ 
+is the        resistance of     the wire connected across the 3 Ω
+ 
+resistor?
+ 
+ 
+            
+(a)        3.5 λ Ω    (b)     2.0 Ω     (c)    5.5 Ω (d)    6.5 Ω
+ 
+36.       All of these are the uses of potentiometer with exception of:
+ 
+            
+(a)  
+      
+Comparison of emf  of  two cells
+ 
+            
+(b)        Comparison of capacitance of two capacitors
+ 
+            
+(c)        Measurement of internal resistance of a cell
+ 
+            
+(d)        Measurement of small current
+ 
+37.       Which of the followi
+ng is a necessary condition for working
+ 
+potentiometer?
+ 
+ 
+(a)        Positive terminals of the driver and test cells
+ 
+must be connected to a common point
+ 
+(b)               emf of driver cell must always be greater than of
+ 
+the test cell
+ 
+            
+(c)        
+When galvanometer is balanced no current could
+ 
+flow in the potentiometer
+ 
+            
+(d)        (a),     (b),    and    (c)   are correct
+ 
+38.       While determining the internal resistance r of a cell using
+ 
+potentiometer               graph was plotted 
+for    the
+ 
+relation .  If the slope was found to be
+ 
+            
+0.25 Ω/m and the balance point L1 from the left side is
+ 
+34.2 cm calculate the      internal resistance.
+ 
+            
+(a)        6.05 Ω    (b)   8.55 Ω    (c)   14.9 Ω     (d)    50.33 Ω
+ 
+39.    
+   
+In electromagnetism one of the following is not among the
+ 
+three entities that are mutually dependent:
+ 
+ 
+(a)        Current    (b)   Charges    (c)    Motion
+ 
+(d)   Magnetic field
+ 
+41.       The magnitude of the electromagnetic force produced when a
+ 
+current
+ 
+carrying    conductor is in a magnetic         field is not
+ 
+increased by:            (a)        Thickness of the conductor
+ 
+            
+(b)        Length of the conductor
+ 
+            
+(c)        Magnetic field strength
+ 
+            
+(d)        Magnitude of si
+ne of the angle made by the
+ 
+conductor with the field.
+ 
+42.       What angle will the current carrying 
+conductor laying in a
+ 
+magnetic field make for the electromagnetic force F it experience to
+ 
+be a minimum?
+ 
+ 
+(a)    90o      (b)    180o     (c)     0o    (d)
+     
+-
+60o43.       Calculate the 
+force on a power cable 2 km long carrying 200
+ 
+A current in N30oE          direction if earth’s
+ 
+horizontal magnetic component is 10
+-
+5T
+ 
+ 
+(a)    2N      (b)   4N     (c)    6N      (d)    8N
+ 
+ 
+45.       What is the magnetic flu
+x density B at 2m from a straignt
+ 
+wire in vacuum            carrying 3A current?                  (μo
+ 
+=    4n  x   10
+-
+7 H/m)
+ 
+ 
+a)   5 x   10
+-
+7 T    (b)   3 x   10
+-
+7 T    (c)   6 x
+ 
+10
+-
+7 T    (d)   2 x   10
+-
+7 T46.
+ 
+a 
+ 
+current carrying solenoid is wound N 
+times
+ 
+in
+ 
+cylindrical form with radius r as             shown.  The magnetic
+ 
+flux             density at point P is given by:
+ 
+47.       Electromagnetic 
+induction is a process of converting:
+ 
+            
+(a)        Electrical energy to potential energy
+ 
+           
+ 
+(b)        Mechanical energy to electronic energy
+ 
+            
+(c)        Kinetic energy to electrical energy
+ 
+            
+(d)        M
+echanical energy to light energy
+ 
+48.
+ 
+Three current carrying wires shown are in vacuum.  If is 0.25m 
+long,
+ 
+calculate the   
+       
+net electromagnetic             force on it
+ 
+((μo   =    4π x   10
+-
+7 H/m)
+ 
+           
+(a)    42   x 10
+-
+4N    (b)    4.2   x   10
+-
+4N   (c)    8.2
+ 
+x   10
+-
+4N   (d)   3   x   10
+-
+4N
+ 
+49.       Motion of the magnetic flux during induction can be achieved
+ 
+in 
+any of the          following ways:
+ 
+ 
+(i)    Dynamo effect   (ii) Sliding effect   (iii)
+ 
+Transformer effect.
+ 
+ 
+(a)    I only (b)   II only   (c)   I and II only   (d)
+ 
+I and III only50.    Using Faraday’s law of induction of emf and self 
+induced emf in
+ 
+a curr
+ent           carrying wire, obtain an expression
+ 
+for self inductance L in terms of flux ф and         current I.
+ 
+51.       Use Faraday’s law of induction of emf  in a solenoid and
+ 
+mutually induced emf in a second nearby solenoid as    a  result of
+ 
+current
+ 
+changes in the first coil to obtain an expression for
+ 
+mutual inductance m in terms of             flux  ф and current  I.
+ 
+52.       Major similarity between self inductance and mutual
+ 
+inductance is that:            (a)        They are both measured in Tes
+las
+ 
+            
+(b)        They are both produced when current change at
+ 
+the rate of 1A per second
+ 
+            
+(c)        They both oppose the current producing them
+ 
+            
+(d)        They are both measured in Henry53.       Static electricity 
+is the 
+study of the energy associated
+ 
+with electrons:
+ 
+ 
+(a)        In translational motion
+ 
+            
+(b)        In vibrational motion
+ 
+            
+(c)        At rest
+ 
+            
+(d)        In charged bodies
+ 
+54.       Current I flow changes with time t in a fully 
+charged
+ 
+parallel plate capacitor        when disconnected from the
+ 
+power source I/t characteristic curve for this case is:
+ 
+55.       According to its definition the unit of the emf of a cell can be
+ 
+         
+(a)     Joule/Kelvin     (b)   Joule/coulomb    (
+c)
+ 
+Joule/second   (d)  volt/second
+ 
+56.       A major difference between electric current and voltage
+ 
+(potential difference) is:
+ 
+(a)        Current is time rate of flow of charges while voltage is a
+ 
+measure of energy        required to move a charge within 
+a given
+ 
+place.
+ 
+     
+(b)        Current can be measured in Coulomb/second
+ 
+voltage is Joule/Coulomb
+ 
+            
+(c)        Current is point phenomenon while voltage is a
+ 
+gap phenomenon
+ 
+            
+(d)        All above are correct.
+ 
+58.       The volume control in a radiowave receiver is an example of:
+ 
+            
+(a) Air capacitor    (b) Potentiometer (c) Resistor   (d) Inductor ф
+ 
+59.       Which of these is/are sample(s) unit (s) of capacitance of a
+ 
+capacitor?
+ 
+            
+(a)    Pic
+ofarad   (b) Coulomb/volt (c) Joule/metre (d) a
+ 
+and b are correct
+ 
+60.       Which of the following statement is wrong about self 
+induced/back emf?
+ 
+            
+(a)        It reduces the efficiency of the current that
+ 
+produced it.
+ 
+            
+(b)        It i
+s induced as a result of variation in
+ 
+magnetic field caused by varying
+ 
+electric current.
+ 
+            
+(c)        It opposes the applied emf
+ 
+            
+(d)        All above are wrong about self induced/back emf.
+ 
+Q61.    Ferromagnetic materials are materials
+ 
+which can be 
+permanently
+ 
+magnetized.
+ 
+            
+(A)       When the material is doped with positive materials
+ 
+            
+(B)       When the material is doped with negative materials
+ 
+            
+(C)       When an internal magnetic field is applied to
+ 
+the 
+material.
+ 
+            
+(D)      When an external magnetic field is applied to the 
+material.
+ 
+Q62.   If the temperature of a ferromagnetic material is raised past
+ 
+the Curie temperature,                                             the
+ 
+material abruptly loses i
+ts permanent magnetisation and becomes
+ 
+            
+(A) Paramagnetic          (B) Electromagnetic
+ 
+    
+(C) Diamagnetic                       (D) Curiemagnetic
+ 
+Q63.    Which of the following statements is correct about
+ 
+Paramagnetic Materials?
+ 
+ 
+            
+(A)
+ 
+Paramagnetic materials are attracted toward magnets,
+ 
+but do not become    permanently magnetised.           (B)
+ 
+Paramagnetic materials are attracted toward      magnets, and become
+ 
+permanently magnetised.             (C)            Paramagnetic
+ 
+materials 
+are repelled from magnets, and do not become permanently
+ 
+magnetised.          (D) None
+ 
+ 
+
+--- page 3 ---
+Q64.    Which of the following statement is correct about Diamagnetic 
+materials?
+ 
+ 
+            
+(A)       Diamagnetic materials are repelled by magnets,
+ 
+but do not become        permanently magnetised.
+ 
+(B) Paramagnetic materials are attracted           toward magnets, and
+ 
+become permanently magnetised.              (C)
+ 
+Diamagnetic materials are attracted toward magnets, but do not 
+become
+ 
+          
+permanen
+tly magnetised            (D) None
+ 
+ 
+Q65.    Which of the following statement is incorrect about Remanent 
+Magnetism?
+ 
+ 
+            
+(A) Remanent Magnetism is the magnetisation remaining
+ 
+after the removal of an             externally applied field   (B)
+ 
+Remanent Magnetism is exhibited by ferromagnetic materials.
+ 
+ 
+ 
+(C) If
+ 
+the external field is reduced more, the         remanent 
+magnetisation
+ 
+will be removed                                                (D)
+ 
+Remanent Magnetism is not exhibited by ferromagne
+tic materials.
+ 
+Q66.    Which of the following statement is correct about hysteresis?
+ 
+            
+(A)  As the external magnetic field is increased, the
+ 
+induced magnetization also decreases.
+ 
+                           
+(B) The induced magnetisation is eventua
+lly
+ 
+lost
+ 
+                                         
+(C) As the external magnetic
+ 
+field is increased, the induced magnetization also increases.
+ 
+                          
+(D) All
+ 
+ 
+Q67.    The lack of retraceability is known as
+ 
+ 
+            
+(A)       Magnetisat
+ion      (B)    Hysteresis     (C)
+ 
+Remanence         (D)  Coercive force
+ 
+ 
+Q68.    Given that B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is             empty and BM is the
+ 
+additional flux density set up by the material of the 
+core. A
+ 
+material with B < Bo  is known as
+ 
+ 
+            
+(A) Paramagnetic material         (B) Electromagnetic
+ 
+material     (C) Diamagnetic material
+ 
+             
+(D) ferromagnetic material
+ 
+ 
+Q69.   Given that B is the resultant flux density, Bo is the flux
+ 
+de
+nsity when the toroid is             empty and BM is the
+ 
+additional flux density set up by the material of the core. The
+ 
+correct relation is given by?
+ 
+ 
+                 
+(A) B o = BM + B         (B) B + Bo =  BM
+ 
+(C)       B = Bo = BM
+ 
+ 
+                 
+(D)  
+ 
+B = Bo +  BM
+ 
+ 
+Q70.    These materials and their alloys are termed ferromagnetic
+ 
+materials except
+ 
+ 
+            
+(A) Iron            (B) cobalt         (C) nickel        (D) None
+ 
+Q71.    Given that B is the resultant flux density, Bo is the flux
+ 
+density when
+ 
+the toroid is empty and BM is the      additional flux
+ 
+density set up by the material of the core. A material with B > Bo  is
+ 
+known as
+ 
+            
+(A) Paramagnetic material         (B) Electromagnetic
+ 
+material
+ 
+                          
+(C) Diamagnetic material           (D)
+ 
+ferromagnetic material
+ 
+ 
+Q72.    Given that B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the material o
+f the core. A material with B>> Bo  is
+ 
+known as
+ 
+ 
+            
+(A) Paramagnetic material         (B) Electromagnetic
+ 
+material
+ 
+                          
+(C) Diamagnetic material           (D)
+ 
+ferromagnetic material
+ 
+ 
+ 
+ 
+Q73.    Given that B is the resultant 
+flux density, Bo is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the material of the core. The ratio B/Bo  is known
+ 
+as
+ 
+ 
+            
+(A) Magnetic susceptibility        (B)       Absolute
+ 
+permeability
+ 
+       
+          
+(C)   Relative permeability     (D)       Unity
+ 
+permeability
+ 
+ 
+Q74.    Given that B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the material of the core. The 
+ratio BM /Bo  is known
+ 
+as
+ 
+ 
+            
+(A) Magnetic susceptibility        (B)       Absolute
+ 
+permeability
+ 
+                 
+(C)   Relative permeability     (D)       Unity
+ 
+permeability
+ 
+ 
+ 
+ 
+Q75.    From the Absolute permeability, μ,  can be defined as
+ 
+ 
+      
+       
+(A)      μo /μr   (B)       μr /μo              (C)
+ 
+μ/μr      (D)       μr μo
+ 
+ 
+Q76.
+ 
+ 
+ 
+            
+From the curve, Points c and f represent
+ 
+ 
+            
+(A)       Current (B) Permanent magnetism         (C)
+ 
+hysteresis loss         (D) maximum
+ 
+ 
+Q77.  
+  
+From the curve, Point b represents
+ 
+            
+(A)       Saturation   (B) Coercivity  (C) Remanence
+ 
+(D) Magnetic susceptibility
+ 
+Q78.    From the curve, ac is a measure of the
+ 
+             
+(A)      Saturation   (B) Coercivity      (C) Remanence
+ 
+(D) 
+Magnetic susceptibility
+ 
+Q79.    From the curve, ac is a measure of the
+ 
+(A)      Saturation   (B) Coercivity      (C) Remanence   (D)
+ 
+Magnetic 
+susceptibility
+ 
+yQ80. The curve between points "a" and "b” in figure1 is called
+ 
+    
+    
+(A) The magnetisation curve
+.     (B) The remanent
+ 
+magnetisation curve  (C) the external magnetization field        (D)
+ 
+The coercive magnetisation curve
+ 
+ 
+Q81.    In hysteresis, if the external mmagnetic field is reduced the
+ 
+material retains a certain permanent magnetisation          
+   
+termed
+ 
+the remanent magnetisation.
+ 
+    
+(A)       The induced magnetisation also is increased.
+ 
+(B) The induced magnetisation also is reduced, but it             does
+ 
+not follow the original curve.         (C)  The induced magnetisation
+ 
+also is reduced, 
+and it will follow the             original curve.
+ 
+(D)  The induced magnetisation will reach saturation.
+ 
+ 
+Q82.    Which of the following statement is incorrect about the
+ 
+current in hysteresis loop?
+ 
+ 
+(A) current is increased from a to b       (B) current is
+ 
+increased from e to f        (C)       current is reduced to zero
+ 
+       
+from b to c       (D) current is increased from f to b
+ 
+ 
+Q83. Which of the following statement is incorrect about the current
+ 
+in hysteresis loop?
+ 
+ 
+(A) current is increased from a to b                   (B)
+ 
+current is increased from c to e        (C)       current is reduced
+ 
+          
+from c to e     (D) current is increased from f to b
+ 
+Q84. Which of the following does not correctly describe a conduc
+tive
+ 
+solid metal?
+ 
+            
+(A) It contains a large population of mobile, or free,
+ 
+electrons.   (B)  The electrons are bound to the metal
+ 
+lattice but not to any individual atom. (C) The electrons move about
+ 
+randomly due to thermal energy      (D)        
+     
+Thermal energy, on
+ 
+the average, causes the current within the metal to flow when 
+external
+ 
+field is not applied.
+ 
+ 
+Q85. The correct unit of electric current is?
+ 
+ 
+            
+(A)       Coulomb per second    (B)       Coulomb
+-
+second
+ 
+ 
+            
+(C)      
+ 
+Volt per coulomb          (D)       Volt 
+-
+ 
+coulomb
+ 
+ 
+Q86. Which of the following does not correctly describe the Current 
+density?
+ 
+ 
+            
+(A)       Current density is a measure of the density of
+ 
+an electric current.        (B)     It is defined as a v
+ector
+ 
+   
+whose magnitude is the electric current per cross
+-
+sectional area.
+ 
+                
+(C)    Current density is measured in
+ 
+amperes per  meter.   (D)    Current density is measured in Coulomb
+ 
+per second per square meter.
+ 
+ 
+Q87. Which of the following d
+oes not correctly describe 
+semiconductor?
+ 
+ 
+
+--- page 4 ---
+            
+(A) A semiconductor allows an electric current to flow
+ 
+very strongly in one direction
+ 
+ 
+            
+(B) A semiconductor allows an electric current to flow
+ 
+very weakly in the opposite direction
+ 
+ 
+            
+(C) The direction in which a semiconductor allows the
+ 
+forward current to flow depends on whether it is a p
+-
+      
+type
+ 
+semiconductor or an n
+-
+type semiconductor.
+ 
+ 
+            
+(D)The direction in which a semiconductor allows the
+ 
+forward current to
+ 
+flow does not depend on whether it     is a p
+-
+type
+ 
+semiconductor or an n
+-
+type semiconductor.
+ 
+ 
+ 
+ 
+Q88.   Which of the following does not correctly describe 
+semiconductor?
+ 
+ 
+            
+(A) The amounts of current which flow in each direction
+ 
+depend mainly on 
+the amount of the voltage applied.     (B) The
+ 
+forward resistance is relatively low. (C) The amounts of current which
+ 
+flow in each direction depend            mainly on the forward and the
+ 
+reverse resistance. (D)The amounts of current which flow in each
+ 
+di
+rection             depend partly on the amount of the voltage
+ 
+applied but mainly on the forward and the reverse resistance.
+ 
+ 
+Q89. Which of the following does not correctly describe 
+semiconductor?
+ 
+ 
+            
+(A) The forward resistance is relatively low       (B) The
+ 
+reverse resistance is always very high (C) like a
+ 
+conductor, the flow of current through a semiconductor is not the 
+same
+ 
+amount of current whichever way the             voltage is appli
+ed.
+ 
+     
+(D) The amounts of current which flow in each direction depend
+ 
+partly on the amount    of the voltage applied but mainly on the
+ 
+forward and the reverse resistance.
+ 
+ 
+ 
+ 
+Q90. Which of the following statement is not true?
+ 
+ 
+            
+(A)       Conduc
+tors allow electrons to pass through them
+ 
+easily because of their low resistance.
+ 
+             
+(B) Insulators do not allow electrons to pass through
+ 
+them because of their high resistance
+ 
+ 
+            
+(C) Insulators do not allow electrons to pass through th
+em
+ 
+because their atoms hold the electrons strongly.
+ 
+            
+(D) None
+ 
+ 
+Q91. Which of the following does not correctly describe the
+ 
+conventional current?
+ 
+ 
+            
+(A) Electric charge moves from the positive side of the
+ 
+power source to the negative.
+ 
+ 
+            
+(B) A flow of positive charge gives the same electric
+ 
+current as an opposite flow of negative charge.
+ 
+ 
+            
+(C) The opposite flows of opposite charges contribute to a
+ 
+single electric current.
+ 
+ 
+            
+(D) None
+ 
+ 
+Q92. Which of the foll
+owing statement is not true?
+ 
+ 
+            
+(A) In solid metals such as wires, the positive charge
+ 
+carriers are immobile.
+ 
+ 
+            
+(B) In solid metals such as wires, the positive charge
+ 
+carriers are mobile.
+ 
+ 
+            
+(C)   Because the electron carries
+ 
+negative charge, the
+ 
+electron motion in a metal is in the direction opposite to that of
+ 
+conventional (or electric) current.
+ 
+ 
+            
+(D) In solid metals such as wires, only the negatively
+ 
+charged electrons flow.
+ 
+ 
+Q93     Which of the following does no
+t have a mobile charge carrier?
+ 
+ 
+             
+(A)      Metals (B)       Insulators  (C)
+ 
+Semiconductors   (D)  None
+ 
+ 
+Q94.    Which of the following does not have a charge carrier?
+ 
+ 
+            
+(A)       Metals    (B)     Insulators   (C)
+ 
+Semiconductors     
+ 
+(D)           None
+ 
+ 
+Q95.    Which of the following does not have a charge carrier?
+ 
+ 
+            
+(A)       Gases    (B)      Insulators   (C)
+ 
+Electrolytes      (D)     None
+ 
+ 
+Q96.    The units of conductance G of a device is?
+ 
+ 
+             
+(A) Mho          
+(B) Siemens      (C) Ohms         (D)       None
+ 
+ 
+Q97.    From the usual symbols, the unit of conductivity σ of a device
+ 
+is?
+ 
+ 
+            
+(A)       Ω
+-
+1 m          (B)            Ω m
+-
+1
+ 
+(C)       Ω m                 (D)       Ω
+-
+1m
+-
+1
+ 
+ 
+Q98.    From the usual s
+ymbols, the unit of conductivity σ of a device
+ 
+is?
+ 
+ 
+            
+(A)       Ω
+-
+1 S          (B)            S m
+-
+1
+ 
+  
+(C)       S m                  (D)       S Ω
+ 
+ 
+ 
+ 
+Q99.    From the usual symbols, the units of conductance G of a device 
+is?
+ 
+ 
+            
+(A)       S                (B)            S m
+-
+1
+ 
+    
+(C)       S m                  (D)       S Ω
+ 
+ 
+Q100. The electrons, with number density n, carry a charge of
+ 
+magnitude e, and moves            with an average drift
+ 
+velocity vd , through a give
+n length of a conductor, with cross
+ 
+section area, A, when a field E is applied   across its ends. What is
+ 
+the current           passing through the length?
+ 
+ 
+            
+(A)       e σ nA vd         (B)   σE            (C)   e nA
+ 
+vd                  (D)    e
+ 
+A vd
+ 
+ 
+Q101. The electrons, with number density n, carry a charge of
+ 
+magnitude e, and moves            with an average drift
+ 
+velocity vd , through a given length of a conductor, with cross
+ 
+section area, A, when a field E is applied             across its
+ 
+e
+nds. Which of the following expressions is not correct about the
+ 
+current density? Given that             conductivity of the conductor
+ 
+is σ.
+ 
+ 
+            
+(A)       e σ n vd           (B)       σ l / RA
+ 
+(C) e n vd         (D)       σE
+ 
+ 
+Q102.   The moving co
+il galvanometer that has a coil of N turns each
+ 
+of area A and       carrying I, experiences a             torque T
+ 
+when its plane is in the field B. Which equation            best
+ 
+described the torque T experience when the             plane is
+ 
+parallel to 
+the field?
+ 
+ 
+            
+(A)       T = NIAB   (B)  T = NABθ    (C)  T = NIBθ
+ 
+     
+(D)  T = NIAθ
+ 
+ 
+Q103. The moving coil galvanometer that has a coil of N turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in the 
+field B. Which equation            best defined
+ 
+the current sensitivity S, when other             parameters have
+ 
+their usual       meanings?
+ 
+ 
+            
+(A)       S = θ/I   (B)  S = θ/Q  (C)  S = Q/θ    (D)  S =
+ 
+BAN/cR
+ 
+ 
+Q104. The moving coil galvanometer
+ 
+that has a coil of N turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in the field B. Which equation            does not
+ 
+defined the voltage sensitivity Sv, when             other parameters
+ 
+have their usual
+           
+meanings?
+ 
+ 
+            
+(A)       Sv = θ/IR   (B)  Sv = S/R          (C)  Sv =
+ 
+BAN/cR       (D)  Sv = R/θ
+ 
+ 
+Q105. The moving coil galvanometer that has a coil of N turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in the field B. Which equation            best defined
+ 
+the charge sensitivity Sq, when other             parameters have
+ 
+their usual       meanings?
+ 
+ 
+            
+(A)       Sq = θ/IR   (B)   Sq = θ/I          (C)  Sq =
+ 
+BAN/cR       (D)  Sq
+ 
+= θ/Q
+ 
+ 
+ 
+
+--- page 5 ---
+ 
+Q106. Dead
+-
+beat movement occurs when
+ 
+ 
+         
+(A) the galvanometer is free         (B)       the
+ 
+galvanometer is critically damped
+ 
+ 
+         
+(C) the galvanometer is steady     (D)       the galvanometer
+ 
+is electromagnetic
+ 
+ 
+Q107. Which of the fol
+lowing statement is not true of the ballistic
+ 
+galvanometer?
+ 
+ 
+             
+(A)      the kinetic energy is used to the rotate the
+ 
+coil
+ 
+(B)       the             kinetic energy is converted to the potential
+ 
+energy stored in the system   (C)      the potential
+ 
+energy stored
+ 
+    
+in the system provides the restoring torque            (D)
+ 
+the kinetic energy of the system  is used to heat the coil
+ 
+                                              
+Q108. Which of the
+ 
+following statement is not true of the dynamo?
+ 
+ 
+      
+       
+(A)      Dynamo can be shunt
+-
+wound    (B)       Dynamo
+ 
+can be series
+-
+wound  (C)      Dynamo can      be compound
+-
+wound
+ 
+(D)       Dynamo can be slip
+-
+ring
+-
+ 
+wound
+ 
+ 
+Q109. Which of the following statement is not true?
+ 
+ 
+            
+(A)   Alternating current is one in which magnitude and
+ 
+direction vary periodically        (B)   Direct current is       one
+ 
+in which magnitude and direction vary periodically
+ 
+(C)   Electromotive force is one in which magnitude and direction ca
+n
+ 
+vary periodically        (D)  Alternating current gives the value of
+ 
+magnetic fields      that vary in magnitude and direction periodically
+ 
+ 
+Q110. Which of the following statement is not true of Rectification?
+ 
+ 
+             
+(A) Rectification is the proce
+ss by which one converts
+ 
+a.c to d.c           (B) Rectification is the process by which
+ 
+    
+one converts d.c to a.c  (C) Rectifier impedes the flow of current
+ 
+in one direction more than in the reverse             direction
+ 
+   
+(D)When a sinusoidal waveform is input to a rectifier, a half
+-
+wave
+ 
+output is produced.
+ 
+Q111.  An external magnetic field can be supplied by any of the
+ 
+following except
+ 
+            
+(A) An electromagnet   (B)       solenoid            (C)
+ 
+Another permanen
+t magnet (D) None
+ 
+Q112.     An electric heater is labeled 240V ac, 1000W.   What is the
+ 
+peak current in the heater when connected to      a 240V ac supply.
+ 
+(A)             4.17A              (B)      5.89A   (C)    2.95A
+ 
+(D)    8.34A
+ 
+Q113.     Calculate 
+the electromotive force induced in a copper rod of
+ 
+length 6cm rotating at 2 rev/sec in a uniform             magnetic
+ 
+field B of 0.02 Tesla.
+ 
+(A)   4.52 x 10
+-
+4 volts (B)     3.50 x 10
+-
+4 volts   (C)   2.0 x 10
+-
+4
+ 
+volts  (D)    6.0 x 10
+-
+4 volts
+ 
+Q114.     Calcu
+late the peak value of the emf induced in a circular
+ 
+coil of 1000 turns of radius 4cm rotating at 1800       rpm about an
+ 
+axis in its own plane at right angles to a magnetic field of flux
+ 
+density 0.03T.
+ 
+(A)    30.62 volts    (B)       20.26  volts  (C)    
+25.02  volts  (D)
+ 
+   
+28.43  volts.
+ 
+Q115.     A domestic ac source has a peak value of 325v.  What is the
+ 
+rms current in a 100w light bulb?
+ 
+(A)     0.31A          (B)     0.44A    (C)   0.22A      (D)   0.62A
+ 
+Q116.     A 2kΩvariable resistor is connected ac
+ross a 10v supply.
+ 
+What is the potential difference between the             sliding
+ 
+contact and the negative side of the supply when the slider is 2/3 way
+ 
+long?
+ 
+ 
+(A)    3.3v              (B)     6.7v       (C)   1.6v         (D)   8.4v
+ 
+Q117.     An ac sour
+ce is connected across a resistor.  What is the
+ 
+average power produced in the resistor over
+ 
+one cycle if the peak current in th
+e resistor of resistance R is 
+ 
+Q118.  A flat circular coil with 40 loops of wire has a diameter of 32
+ 
+cm. What current must flow 
+in its wire to   produce a field of 3
+ 
+X10
+-
+4Wb/m2 at its Centre?
+ 
+(A) 1.29A        (B)   1.09A  (C)   1.19A  (D)   1.9A
+ 
+Q119. An air core solenoid with 2000 loops is 60cm long and has a
+ 
+diameter of 2 cm . If a current of 5A is sent             through it,
+ 
+what will be the flux density within it?
+ 
+(A)  0.21T        (B)   0.12T  (C)   1.02T  (D)    0.021T
+ 
+Q120.  A long wire carries a current of 20A along  the axis of a long
+ 
+solenoid. The field due to the solenoid is 4mT.      Find the
+ 
+resultant field at a 
+point 3mm from the solenoid axis.
+ 
+(A) 2.33MT     (B)   1.33MT (C)   3.33MT (D)   5.33MT
+ 
+Q121. Two long parallel wires X and Y are 10cm apart and carry
+ 
+currents 6A and 4A respectively. Find the force on             a 1m
+ 
+length of wire Y if the currents are 
+in the same direction.
+ 
+            
+(A)  48μN attractive force. (B)   4.8N attractive force.
+ 
+(C)   48μN repulsive force (D)   4.8N repulsive force
+ 
+Q122. A copper bar 30cm long is perpendicular to a field of flux
+ 
+density 0.8Wb/m2 and moves at right angles to
+ 
+the     field with a
+ 
+speed of 0.5m/s.Determine the emf induced in the bar.
+ 
+(A)  0.0012V     (B)   0.012V (C)   0.12V (D)   1.2V
+ 
+Q123.  Three long, straight, parallel wires X,Y and Z carry currents
+ 
++30A,
+-
+10A and +20A respectively, Where XY is 3cm apart and
+ 
+YZ is 
+5cm
+ 
+apart and +/ 
+–
+ 
+indicates their directions. Find the force on a 25cm
+ 
+length of wire Y.
+ 
+      
+(A) 3.3mN       (B)   2.3mN (C)   1.3mN (D)   0.3mN
+ 
+Q124.  A 50
+-
+loop circular coil has a radius of 3cm. it is oriented so
+ 
+that the field lines of a magne
+tic field are normal       to the coil.
+ 
+If the magnetic field is varied so that B increases from 0.10T to
+ 
+0.35T in a time of         2milliseconds.find the average induced emf
+ 
+in the coil. (A) 170.7V      (B)   17.7V (C)   1.77V (D)   0.177V
+ 
+Q125.  A coil 
+of 50 loops is pulled in 0.02s from between the poles
+ 
+of a magnet, where its area intercepts a flux of             3X10
+-
+4Wb,
+ 
+to a place where the intercepted flux is 0.1X10
+-
+4Wb. What is the
+ 
+average emf
+ 
+induced in the coil?   (A) 0.75V        (B)   7.5V (C)   75.0V 
+(D)   750V
+ 
+Q126.              The net charge on an n
+-
+type semiconductor is
+ 
+(A) Positive            (B)   negative    (C)       Zero     (D)       Minus
+ 
+Q127.             An example of trivalen
+t element used for doping of
+ 
+semiconductor is
+ 
+(A) Phosphoric       (B)     Silicon   (C)       Germanium       (D)   Boron
+ 
+Q128.     The Resistivity of a semiconductor with increasing 
+temperature
+ 
+(A) Increases          (B)       Remain constant           (
+C)
+ 
+Decreases            (D)   DoublesQ129.     A domestic ac source has a peak 
+value of 325v.  What is the
+ 
+rms current in a 100w light bulb?
+ 
+(A)     0.31A          (B)     0.44A    (C)   0.22A      (D)   0.62A
+ 
+Q130.     Which of these cannot be utilized wi
+th a variable resistor
+ 
+(A)  Volume control (B)    Dimmers on light switches (C)   Thermostat
+ 
+(D)   None of the above
+ 
+Q131.     A 2kπ variable resistor is connected across a 10v supply.
+ 
+What is the potential difference between                         the
+ 
+sl
+iding contact and the negative side of the supply when the slider is
+ 
+2/3 way long?
+ 
+ 
+(A)    3.3v              (B)     6.7v       (C)   1.6v         (D)   8.4v
+ 
+Q132.     Which of these is the impedance for an inductor 
+–
+ 
+Resistor
+ 
+circuit in series?
+ 
+   
+Q133.     An ac source is connected across a resistor.  What is
+ 
+the average power produced in the resistor
+ 
+over one cycle if the peak current in the resistor of resistance R is
+ 
+Q134.     An electric heater is labeled 240V ac, 1000W.   What is the
+ 
+peak c
+urrent in the heater when                             connected
+ 
+to a 240V ac supply.
+ 
+(A)             4.17A              (B)      5.89A   (C)    2.95A
+ 
+(D)    8.34AQ135.     The device used in converting mechanical power 
+into
+ 
+electrical power is called
+ 
+A)  
+Dynamo    (B)      Lever    (C)    Armature
+ 
+(D)    MotorQ136.     Calculate the electromotive force induced in a 
+copper rod of
+ 
+length 6cm rotating at 2 rev/sec in a                   uniform
+ 
+magnetic field B of 0.02 Tesla.
+ 
+(A)   4.52 x 10
+-
+4 volts (B)     3
+.50 x 10
+-
+4 
+volts   (C)   2.0 x 10
+-
+4
+ 
+volts  (D)    6.0 x 10
+-
+4 volts
+ 
+    
+Q137.     Calculate the peak value of the emf induced in a
+ 
+circular coil of 1000 turns of radius 4cm rotating at
+ 
+           
+1800 rpm about an axis in its own plane at right angles to
+ 
+a 
+magnetic field of flux density 0.03T
+ 
+(A)    30.62 volts    (B)       20.26  
+volts  (C)    25.02  volts  (D)
+ 
+   
+28.43  volts.
+ 
+ 
+ 
+ 
+    
+Q138.          Which of the following is suitable for measuring
+ 
+the quantity of charge?
+ 
+ 
+(A) Ballistic Galvanometer   (B)   
+Powerful Galvanometer (C)
+ 
+Holistic Galvanometer (D)   Meter Bridge
+ 
+ 
+ 
+ 
+  
+Q139.    A particular component of the direct current generator that
+ 
+maintains the direction of the generated emf in the circuit is the
+ 
+ 
+ 
+ 
+(A)   Commutator
+   
+(B)       Slip ring            (C)       Armature
+ 
+       
+(D)       Rectangular coil
+ 
+     
+Q140.        What is the product of the slope of the graph below
+ 
+and the rate of distance covered across the
+ 
+             
+magnetic flux  (ø)
+ 
+
+--- page 6 ---
+  
+(A)  Flux density   
+ 
+ 
+(B)       Potential Difference
+ 
+(C)     Induced Electromotive force      (D)       Energy
+ 
+ 
+ 
+ 
+Q143.              The direction of magnetic field can determined using
+ 
+ 
+(A) The right hand grip rule  (B)   just the electron (C)   Maxwellian
+ 
+rule (D)   Faraday’
+s direction
+ 
+ 
+Q144.   The speed of electromagnetic radiation in free space is
+ 
+(A)     (B)       (C)      (D)
+ 
+Q145.     The potential difference applied to the armature of a motor
+ 
+is 12 volts.  If the current and resistance of the armature are 0.4 A
+ 
+and 5 ohms respectively.   Calculate the back emf in the winding.
+ 
+(A)  10 volts     (B)     12 volts    (C)     15 volts     (D)     5 volts.
+ 
+Q146.     In an a.c generator the magnitude of the emf generated 
+increases with
+ 
+i)                    Increase in 
+the strength of the magnet
+ 
+ii)                   Decrease in the rate of change of the flux
+ 
+iii)                 Increase in the number of turns of the coil
+ 
+iv)                 Increase in area of the coil
+ 
+Which of the state is correct.
+ 
+(A)  i,   ii,   and
+   
+iii    (B)     i,  iii  and  iv   (C)    ii,
+ 
+iii  and  iv   (D)    i   and  iii
+ 
+Q147.              The induced emf generated in an alternator is such
+ 
+in a direction as to oppose the motion producing it.  This statement
+ 
+is
+ 
+(A)              Right hand gri
+p rule       (B)   Faraday’s law
+ 
+(C)        Fleming’s law     (D)   Lenz’s law
+ 
+Q148.  What is the value of B in air at a point 5 cm from a long
+ 
+straight wire carrying a current of 15A?
+ 
+(A) 6X10
+-
+2T     (B)   6X10
+-
+4T (C)   6X10
+-
+1T (D)   6X10
+-
+5T
+ 
+Q149.  A prot
+on enters a magnetic field of flux density 1.5Wb/m2 with
+ 
+a velocity of 2X107 m/s at an angle of 30o with the field. What is the
+ 
+force on the proton?
+ 
+(A) 2.4 X10
+-
+14 N          (B)   2.4 X10
+-
+13 N (C)   2.4 X10
+-
+12 N (D)
+ 
+2.4 X10
+-
+11 N
+ 
+Q150.     Which of the fol
+lowing represents electric potential V
+ 
+between A and B in free space
+ 
+Q151. The negative sign in Faraday’s law of electromagnetic induction 
+indicates
+ 
+(A) Induced emf (B)   direction of induced current (C)   Current (D)
+ 
+Faraday’s direction
+ 
+Q152.  A flat circ
+ular coil with 40 loops of wire has a diameter of 32
+ 
+cm. What current must flow in its wire to produce a field of 3
+ 
+X10
+-
+4Wb/m2 at its Centre?
+ 
+(A) 1.29A        (B)   1.09A  (C)   1.19A  (D)   1.9A
+ 
+Q153. An air core solenoid with 2000 loops is 60cm long and 
+has a
+ 
+diameter of 2 cm . If a current of 5A is sent through it, what will be
+ 
+the flux density within it?
+ 
+(A)  0.21T        (B)   0.12T  (C)   1.02T  (D)    0.021T
+ 
+Q154.  A long wire carries a current of 20A along  the axis of a long
+ 
+solenoid. The field due
+ 
+to the solenoid is 4mT. Find the resultant
+ 
+field at a point 3mm from the solenoid axis.
+ 
+(A) 2.33MT     (B)   1.33MT (C)   3.33MT (D)   5.33MT
+ 
+Q155. Two long parallel wires X and Y are 10cm apart and carry
+ 
+currents 6A and 4A respectively. Find the force on
+ 
+a 1m length of wire
+ 
+Y if the currents are in the same direction.
+ 
+(A)  48μN attractive force. (B)   4.8N attractive force.   (C)   48μN
+ 
+repulsive force (D)   4.8N repulsive forceQ156. A copper bar 30cm long 
+is perpendicular to a field of flux
+ 
+density 
+0.8Wb/m2 and moves at right angles to the field with a speed
+ 
+of 0.5m/s.Determine the emf induced in the bar.
+ 
+ 
+(A)  0.0012V     (B)   0.012V (C)   0.12V (D)   1.2V
+ 
+ 
+ 
+ 
+Q157.  Three long, straight, parallel wires X,Y and Z carry currents
+ 
++30A,
+-
+10A and +20A re
+spectively, Where XY is 3cm apart and YZ is 
+5cm
+ 
+apart and +/ 
+–
+ 
+indicates their directions. Find the force on a 25cm
+ 
+length of wire Y.
+ 
+ 
+(A) 3.3mN       (B)   2.3mN (C)   1.3mN (D)   0.3mN
+ 
+ 
+ 
+ 
+Q158.  A 50
+-
+loop circular coil has a radius of 3cm. it is oriented
+ 
+so
+ 
+that the field lines of a magnetic field are      normal to the coil.
+ 
+If the magnetic field is varied so that B increases from 0.10T to
+ 
+0.35T in a time of         2milliseconds.find the average induced emf
+ 
+in the coil.
+ 
+ 
+            
+(A) 170.7V      (B)   17.7V (C)   1.77V (D)   0.177V
+ 
+ 
+ 
+ 
+Q159. A coil of 50 loops is pulled in 0.02s from between the poles of
+ 
+a magnet, where its area intercepts a      flux of 3X10
+-
+4Wb, to a
+ 
+place where the intercepted flux is 0.1X10
+-
+4Wb. What
+ 
+is the average
+ 
+emf induced        in the coil?
+ 
+ 
+            
+(A) 0.75V        (B)   7.5V (C)   75.0V (D)   750V
+ 
+ 
+ 
+ 
+Q160.             Two long parallel wires X and Y are 10cm apart and
+ 
+carry currents 6A and 4A respectively. Find the             force on a
+ 
+1
+m length of wire Y if the currents are in the opposite direction.
+ 
+ 
+(A)  48μN attractive force. (B)   4.8N attractive force.   (C)   48μN
+ 
+repulsive force (D)   4.8N repulsive force
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q161.  What is the value of B in air at a point 5 cm from a long
+ 
+straight wire carrying a current of 15A?
+ 
+ 
+            
+(A) 6X10
+-
+2T     (B) 6X10
+-
+4T (C) 6X10
+-
+1T (D) 6X10
+-
+5T
+ 
+ 
+ 
+ 
+Q162.  A flat circular coil with 40 loops of wire has a diameter of 32
+ 
+cm. What current must flow in its wire to produce a field of 3
+ 
+X10
+-
+4Wb/m2 at
+ 
+its Centre?
+ 
+ 
+(A) 1.29A        (B) 1.09A  (C) 1.19A  (D) 1.9A
+ 
+ 
+ 
+ 
+Q163. An air core solenoid with 2000 loops is 60cm long and has a
+ 
+diameter of 2 cm . If a current of 5A is sent through it, what will be
+ 
+the flux density within it?
+ 
+ 
+(A) 0.21T         (B) 0.1
+2T  (C) 1.02T  (D)  0.021T
+ 
+ 
+ 
+ 
+Q164.  Which of the following is correct?
+ 
+ 
+            
+(A) 1Wb=1NmA         (B) 1Wb=1Vs   (C) 1Wb=1Nm
+-
+1A
+-
+1 (D) 
+1Wb=1NAm
+-
+1
+ 
+ 
+ 
+ 
+Q165. Two long parallel wires X and Y are 10cm apart and carry
+ 
+currents 6A and 4A respectively. Find 
+the    force on a 1m length of
+ 
+wire Y if the currents are in the same direction.
+ 
+ 
+            
+(A) 48μN attractive force. (B) 4.8N attractive force.
+ 
+(C) 48μN repulsive force (D) None
+ 
+ 
+ 
+ 
+Q166. Two long parallel wires X and Y are 10cm apart and carry
+ 
+currents
+ 
+6A and 4A respectively. Find the     force on a 1m length of
+ 
+wire Y if the currents are in the opposite direction.
+ 
+ 
+            
+(A)  48μN attractive force. (B) 4.8N attractive force.
+ 
+(C) 48μN repulsive force (D) None
+ 
+ 
+ 
+ 
+Q167.  We can define the unit of 
+magnetic flux density as
+ 
+ 
+            
+(A) tesla           (B) weber          (C) NA
+-
+1            (D) Nm
+-
+2
+ 
+ 
+ 
+ 
+Q168. A 50
+-
+loop circular coil has a radius of 3cm. it is oriented so
+ 
+that the field lines of a magnetic field are       normal to the coil.
+ 
+If the 
+magnetic field is varied so that B increases from 0.10T to
+ 
+0.35T in a time of         2milliseconds.find the average induced emf
+ 
+in the coil.
+ 
+ 
+            
+(A) 170.7V      (B) 17.7V (C) 1.77V (D) 0.177V
+ 
+ 
+ 
+ 
+Q169. A coil of 50 loops is pulled in 0.02s from be
+tween the poles of
+ 
+a magnet, where its area intercepts a flux            of 3X10
+-
+4Wb, to
+ 
+
+--- page 7 ---
+a place where the intercepted flux is 0.1X10
+-
+4Wb. What is the average
+ 
+emf induced in     the coil?
+ 
+ 
+            
+(A) 0.75V        (B) 7.5V (C) 75.0V (D) 750V
+ 
+ 
+ 
+ 
+Q170.  
+           
+A copper bar 30cm long is perpendicular to a field
+ 
+of flux density 0.8Wb/m2 and moves at right angles   to the field with
+ 
+a speed of 0.5m/s.Determine the emf induced in the bar.
+ 
+ 
+            
+(A)  0.0012V     (B) 0.012V (C) 0.12V (D) 1.2V
+ 
+ 
+ 
+ 
+Q171
+. The drift velocity Vd can be expressed as
+ 
+ 
+            
+(A) Vd=I/ne      (B) Vd= J/ne (C) Vd = I/nA  (D) Vd= J/nA
+ 
+ 
+            
+where I is the current, J is current density, n is number
+ 
+density, e is electronic charge, and A is cross       sectional area.
+ 
+ 
+Q172. The negative sign in Faraday’s law of electromagnetic induction 
+indicates
+ 
+ 
+            
+(A) Induced emf (B) direction of induced current (C)
+ 
+Current (D) Faraday’s direction
+ 
+ 
+ 
+ 
+Q173. The hall coefficient for a material having number density n of
+ 
+major
+ity charge
+-
+carriers, each carrying a     charge e, is given as
+ 
+ 
+            
+(A)  RH=1/ne   (B)  RH= J/ne      (C)  RH=ne     (D) None
+ 
+ 
+ 
+ 
+Q174.  The direction of magnetic field can be determined using
+ 
+ 
+            
+(A) The right hand grip rule  (B) just the 
+electron (C)
+ 
+Maxwellian rule (D) Faraday’s direction
+ 
+ 
+ 
+ 
+  
+Q175.            Which of the following is suitable for measuring
+ 
+the quantity of charge?
+ 
+ 
+            
+(A) Ballistic Galvanometer   (B) Powerful Galvanometer (C)
+ 
+Holistic Galvanometer (D) Meter 
+Bridge
+ 
+ 
+ 
+ 
+Q176.  A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power supply. Find the current in the circuit.
+ 
+ 
+(A) 178A         (B)       224A   (C)       
+5A       (D)       6A
+ 
+Q177. A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30V, 1780 Hz power supply. Find  the phase angle between
+ 
+source voltage and current.
+ 
+(A)      
+ 
+0o            (B)       30o       (C)       90o       (D)       270o
+ 
+Q178. A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power supply. Find the power loss
+ 
+in the
+ 
+circuit.
+ 
+(A)       0W      (B)       60W    (C)       120W              (D)       180W
+ 
+Q179. A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power su
+pply. Find the voltmeter reading across
+ 
+elements of the circuit.
+ 
+ 
+(A)       30V, 13.44V,13.44V   (B)       30kV, 13.44kV,13.44V
+ 
+(C)       30V, 13.44kV,13.44kV                       (D)       30kV,
+ 
+13.44kV,13.44kV
+ 
+Q180. A series circuit connected across a 2
+00V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the current in the circuit.
+ 
+ 
+(A)       100A               (B)       20A      
+           
+(C)
+ 
+10A                 (D)       2A
+ 
+Q181. . A series circuit connected across a 200V, 60Hz line consists
+ 
+of a capacitor of capacitive reactance 30 W, a non inductive resistor
+ 
+of 44 W, and a coil of inductive reactance 90 W, having a resistance
+ 
+36 W. Determine the impedance of the circuit.
+ 
+ 
+(A)       100W               (B)       20W                 (C)
+ 
+10W                 (D)       2W
+ 
+Q182.  A series circuit connected across a 200V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, 
+a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the potential difference across the non inductive
+ 
+resistor of 44 W.
+ 
+ 
+(A)       100V               (B)       60V                 (C)
+ 
+88V           
+      
+(D)       97V
+ 
+Q183.  A series circuit connected across a 200V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the potential
+ 
+difference across the capacitor
+ 
+(A)       100V               (B)       60V                 (C)
+ 
+88V                 (D)       97V
+ 
+Q184.  A series circuit connected across a 200V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, a non 
+inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the potential difference across the coil
+ 
+ 
+(A)       194V               (B)       60V                 (C)
+ 
+180V               (D)       97V
+ 
+Q185. A series
+ 
+circuit connected across a 200V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the current across the non inductive resistor.
+ 
+ 
+(A)       100A               (B)       20A                 (C)
+ 
+10A                 (D)       2A
+ 
+Q186. A series circuit connected across a 200V, 60Hz line consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of 
+inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the impedance of the coil
+ 
+ 
+(A)       194W               (B)       60W                 (C)
+ 
+180W               (D)       97W
+ 
+Q187. An ac generator produces an output voltage ξ = 170 sin 377tV,
+ 
+whe
+re t is in seconds. What is the frequency of the ac voltage?
+ 
+(A)       60MHz                        (B)       60kHz
+ 
+(C)       60Hz                (D)       60mHz
+ 
+ 
+Q188. How fast must a 1000 loop coil, each with 20cm2 area) turn in
+ 
+the earth’s             m
+agnetic field of 0.07 G to generate a voltage
+ 
+that has a maximum value, an amplitude, of 0.50 V? Given 1G=1x10
+-
+4 
+T            (A)       576Hz              (B)       765Hz
+ 
+(C)       569Hz              (D)       596Hz
+ 
+ 
+Q189. When turning at 1500 rev/min, a 
+certain generator produces 
+100
+ 
+V. what must   be its angular speed if it to produce 120 V?
+ 
+(A)    1000 rev/min    (B)   1200 rev/min     (C)   1500 rev/min
+ 
+(D)   1800 rev/min
+ 
+Q190. A certain generator has armature resistance 0.08W and 
+develops
+ 
+an  induced 
+emf           of 120 V  when driven at its rated speed.
+ 
+What is it terminal voltage when 50 A    is being drawn from it?
+ 
+ 
+(A)       4V                   (B)       16V                 (C)
+ 
+116V               (D)       40V
+ 
+Q191. Some generators, called shunt 
+generator, use electromagnet in
+ 
+place of   permanent magnets, with the field coils for the
+ 
+electromagnets activated by the   induced voltage. The magnet coil is
+ 
+in parallel with the armature coil, it shunt          the armature. A
+ 
+certain shunt generator h
+as armature resistance 0.06 W and
+ 
+shunt resistance 100 W. What power is developed in the armature 
+when
+ 
+it          delivers 40kW at 250 V to an external circuit?
+ 
+            
+(A)    16kW        (B)    25 kW        (C)            16.5
+ 
+kW          (D)       4
+2.2kW
+ 
+Q192. Some generators, called shunt generator, use electromagnet in
+ 
+place of   permanent magnets, with the field coils for the
+ 
+electromagnets activated by the   induced voltage. The magnet coil is
+ 
+in parallel with the armature coil, it shunt         
+ 
+the armature. A
+ 
+certain shunt generator has armature resistance 0.06 W and
+ 
+shunt resistance 100 W. What current is supplied to the external
+ 
+circuit when it            delivers 40kW at 250 V to an external
+ 
+circuit?
+ 
+ 
+            
+(A)       160A               (B)       250 A
+ 
+(C)       165 A              (D)       422A
+ 
+ 
+Q193. Some generators, called shunt generator, use electromagnet in
+ 
+place of   permanent magnets, with the field coils for the
+ 
+electromagnets activated by
+ 
+the   induced voltage. The magnet coil is
+ 
+in parallel with the armature coil, it shunt          the armature. A
+ 
+certain shunt generator has armature resistance 0.06 W and
+ 
+shunt resistance 100 W. What is the field current, when it
+ 
+delivers 40kW at         
+250V to an external circuit?
+ 
+ 
+            
+(A)       1.60A              (B)       2.50 A
+ 
+(C)       1.65 A             (D)       4.22A
+ 
+ 
+
+--- page 8 ---
+Q194. Some generators, called shunt generator, use electromagnet in
+ 
+place of   permanent magnets, with the field coils for
+ 
+the
+ 
+electromagnets activated by the   induced voltage. The magnet coil is
+ 
+in parallel with the armature coil, it shunt          the armature. A
+ 
+certain shunt generator has armature resistance 0.06 W and
+ 
+shunt resistance 100 W. What is the total induced em
+f, when it
+ 
+delivers 40kW at            250V to an external circuit?
+ 
+            
+(A)       260V               (B)       250 V
+ 
+(C)       265 V              (D)       422V
+ 
+Q195. A certain 0.25 hp motor has a resistance of 0.50W. Assume the
+ 
+motor to be        
+ 
+100% efficient, with input = output and 1hp =
+ 
+746W. How much current does   it draw on 110Vs when its output is
+ 
+0.25hp?
+ 
+            
+(A)       1.695 A           (B)       2.695 A
+ 
+(C)       3.695 A           (D)     1.165 A
+ 
+Q196. A certain 0.25 hp
+ 
+motor has a resistance of 0.50W. Assume the
+ 
+motor to be         100% efficient, with input = output and 1hp =
+ 
+746W. What is its back emf on   110V when its output is 0.25hp?
+ 
+            
+(A)       109 V  (B)       209 V  (C)       309 V  (D)
+ 
+0.8 V
+ 
+ 
+Q197. D
+etermine the separate  effects on the induced  emf of a
+ 
+generator if the flux per            is doubled.
+ 
+            
+(A)       Same    (B)       Doubled           (C)
+ 
+Three times       (D)       Four Time
+ 
+Q198. Determine the separate  effects on the induce
+d  emf of a
+ 
+generator if the speed of           the armature is doubled.
+ 
+ 
+            
+(A)       Same    (B)       Doubled           (C)
+ 
+Three times       (D)       Four Time
+ 
+Q199.  The emf induced in the armature of a shunt generator is 596 V.
+ 
+The armature
+   
+resistance is 0.1W. Compute the terminal voltage when
+ 
+the armature current is        460 A. The field resistance is 110 W.
+ 
+            
+(A)       550 V   (B)       5 V       (C)   455V        (D)  250V
+ 
+ 
+Q200. The emf
+ 
+induced in the armature of a shunt generator is 596 V.
+ 
+The armature    resistance is 0.1W and the armature current is 460 A.
+ 
+If the field resistance is     110 W, determine the field current.
+ 
+ 
+            
+(A)       550 A   (B)       5 A       (C) 455A    
+      
+(D)   250 A
+ 
+ 
+ 
+ 
+Q201. The emf induced in the armature of a shunt generator is 596 V.
+ 
+The armature    resistance is 0.1W and the armature current is 460 A.
+ 
+If the field resistance is     110 W, determine the
+ 
+current delivered to the external circuit.
+ 
+ 
+            
+(A)       550 A   (B)       5 A       (C)   455 A       (D)   250 A
+ 
+Q202. The emf induced in the armature of a shunt generator is 596 V.
+ 
+The armature    resistance is 0.1W and the armature current is 460 A.
+ 
+If the field resistance is     110 W,
+ 
+determine the             power
+ 
+delivered to the external circuit.
+ 
+ 
+            
+(A)       550 KW            (B)       5 KW    (C)   455KW
+ 
+   
+(D)   250 KW
+ 
+ 
+Q203. A generator has an armature with 500 loops, which cut a flux of
+ 
+8mWb during    each rotation. 
+Compute the back emf it develops 
+when
+ 
+run as a motor at 1500 rpm
+ 
+            
+(A)       100V   (B)       100V              (C)
+ 
+100V               (D)       100V
+ 
+ 
+Q204.  A shunt has a field resistance of 200Ω and an armature
+ 
+resistance of 0.5 Ω and is       
+   
+connected to 120V mains. The motor
+ 
+draws a current of 4.6 A when running at      full speed. What current
+ 
+will be drawn by the motor if the speed is reduced to 90   percent of
+ 
+full speed by application of a load?
+ 
+ 
+            
+(A)       20.2A              (B)       22.2A
+ 
+(C) 25.2A        (D)       28.2A
+ 
+Q205.  A shunt motor develops 80N.m torque when the flux density in
+ 
+the air gap is      1Wb/m2 and the armature current is 15A. What is
+ 
+the torque when the flux   den
+sity is 1.3 Wb/m2  and the armature
+ 
+current is 18A?
+ 
+ 
+            
+(A)   145 N.m    (B)   125 N.m                (C)   165
+ 
+N.m            (D)   155 N.m
+ 
+Q206. A shunt  motor has armature resistance 0.20Ω and field
+ 
+resistance 150 Ω and     draws 30 A when conn
+ected  to a 120V supply
+ 
+line. Determine the field current.
+ 
+ 
+(A)      0.80A.                         (B)       114.2A       (C)
+ 
+       
+3.33A  (D)    29.2 A
+ 
+Q207. A shunt  motor has armature resistance 0.20Ω and field
+ 
+resistance 150 Ω and     draws 30 A when
+ 
+connected  to a 120V supply
+ 
+line. Determine the armature         current.
+ 
+ 
+(A)      0.80A.                         (B)       114.2A       (C)
+ 
+       
+3.33A  (D)    29.2 A
+ 
+ 
+Q208. A shunt  motor has armature resistance 0.20Ω and field
+ 
+resistance 150 Ω and   
+  
+draws 30 A when connected  to a 120V supply
+ 
+line. Determine the back emf         developed within the armature.
+ 
+ 
+(A)      0.80V.                         (B)       114.2V       (C)
+ 
+       
+3.33V  (D)    29.2 V
+ 
+Q209. A shunt  motor has armature resistance 
+0.20Ω and field
+ 
+resistance 150 Ω and     draws 30 A when connected  to a 120V supply
+ 
+line. Determine the mechanical      power developed within the
+ 
+armature.
+ 
+(A)      0.80KW.   (B) 114.2KW       (C)        3.33KW          (D)    29.2 KW
+ 
+ 
+Q210. A shunt  mot
+or has armature resistance 0.20Ω and field
+ 
+resistance 150 Ω and     draws 30 A when connected  to a 120V supply
+ 
+line. Determine the electrical         efficiency of the machine.
+ 
+ 
+(A)      92.5%.             (B)       94.2%       (C)  96.2%  (D)    99.2 %
+ 
+Q
+211. A shunt motor has a speed of 900 rpm when it is connected to
+ 
+120V mains and delivering 12hp. The total losses are 1048W. Compute
+ 
+the power input.
+ 
+ 
+            
+(A)       10kW  (B)       83.3 kW          (C)       93 kW
+ 
+            
+(D) 900W
+ 
+Q212. A shun
+t motor has a speed of 900 rpm when it is connected to
+ 
+120V mains and delivering 12hp. The total losses are 1048W. Compute
+ 
+the line current.
+ 
+ 
+            
+(A)       10A     (B)       83.3A              (C)
+ 
+93 A                (D)       12A
+ 
+Q214. A shunt mot
+or has a speed of 900 rpm when it is connected to
+ 
+120V mains and delivering 12hp. The total losses are 1048W. Compute
+ 
+the motor torque.
+ 
+ 
+            
+(A)       10 N.m            (B)       83.3 N.m         (C)
+ 
+      
+93 N.m            (D) 900 N.m
+ 
+Q215. A 
+shunt is connected to a 110V line. When the armature 
+generates
+ 
+a back emf of 104V, the armature current is 15A. Compute the 
+armature
+ 
+resistance.         
+ 
+            
+(A)       0.1Ω                (B)       0.8 Ω
+ 
+(C)       0.9 Ω               (D)       0.4 
+Ω
+ 
+Q216   A  sh.unt dynamo has an armature resistance of 0.12 Ω. If  it
+ 
+is  connected across          220V  main and is running as a motor,
+ 
+what is the induced, back emf when the       armature current is 50 A?
+ 
+           
+(A)       214 V                    
+      
+(B)       226V
+ 
+(C)      220V               (D)       260V
+ 
+Q217. A  sh.unt dynamo has an armature resistance of 0.12 Ω If  it is
+ 
+connected across            220V  main and this machine is running as
+ 
+a generator, what is the     induced emf      when t
+he armature is
+ 
+delivering 50 A at 220V to the shunt field and           external
+ 
+circuit?            (A)       214 V                          (B)       226V
+ 
+(C)     220V               (D)       260V
+ 
+Q218. A shunt motor with armature resistance 0.08Ω is con
+nected to
+ 
+120V mains. With          50A in the armature what is the back emf?  (A)       
+116V      (B)    5.8V                (C)
+ 
+130V   (D)       58V
+ 
+Q219. A shunt motor with armature resistance 0.08Ω is connected to
+ 
+120V mains. With          50A in the armature what are the back emf
+ 
+and the mechanical power developed within the armature?
+ 
+ 
+            
+(A)       116kW                        (B)       5.8kW
+ 
+        
+(C)       130kW                        (D)       58kW
+ 
+ 
+ 
+ 
+Q220. The active length of each armature conductor of a motor is 
+30cm
+ 
+and the            conductors are in a field of 0.40 Wb/m2. A current
+ 
+of 15A flows in each             conductor. Determine the force acting
+ 
+on each conductor
+ 
+ 
+ 
+ 
+            
+(A)       1
+.8N    (B)      0.8N    (C)       2.8N    (D)       3.8N
+ 
+ 
+Q221. A 120V generator is run by a windmill that has blades 2m long.
+ 
+The wind        moving at 12m/s is slowed to 7m/s after passing the
+ 
+windmill. The density of air    is 1.29kg/m3. If the system h
+as no
+ 
+losses, what is the largest current generator can             produce?
+ 
+Take into account of how much energy the wind loses per second.
+ 
+ 
+            
+(A)       770A   (B)       77A     (C)       7.7A    (D)       0.77A
+ 
+ 
+
+--- page 9 ---
+Q222.   A 75 kW, 230 V shunt gen
+erator has a generated emf o 243.5 
+V.
+ 
+If the field current is 12.5A as rated output what is the armature
+ 
+resistance?
+ 
+ 
+             
+(A)      0.04 Ω (B)      0.4 Ω   (C)       4 Ω      (D)       40 Ω
+ 
+Q223. A steady current of 2A in a coil of 400 turns cause 
+a flux of
+ 
+10
+-
+4 Wb to link the    loops of the coil. Compute the inductance of
+ 
+the coil if the current         is stopped in     0.08s.
+ 
+ 
+            
+(A)       0.5H                (B)       0.02H
+ 
+(C)       0.04H              (D)       0.4H
+ 
+Q224. A steady 
+current of 2A in a coil of 400 turns cause a flux of
+ 
+10
+-
+4 Wb to link the    loops of the coil. Compute the energy stored in
+ 
+the coil if the current is stooped in 0.08s..
+ 
+ 
+            
+(A)       0.5J      (B)       0.02J    (C)       0.04J
+ 
+(D)       0.4J
+ 
+Q22
+5. A steady current of 2A in a coil of 400 turns cause a flux of
+ 
+10
+-
+4 Wb to link the    loops of the coil. Compute the average back emf
+ 
+induced in the coil if the current          is stooped in 0.08s.
+ 
+            
+(A)       0.5V    (B)       0.02V  (C)     
+  
+0.04V  (D)       0.4V
+ 
+Q226.  In a shunt motor, the permanent magnet is replaced by an
+ 
+electromagnet           activated by a field coil that shunt the
+ 
+armature. The shunt motor shown has       armature resistance 0.05 W
+ 
+and is connected to 120 V mains.  
+What is the    armature current at
+ 
+the starting instant, i.e., before the armature develops any
+ 
+  
+back emf?
+ 
+ 
+            
+(A)       2400A             (B)       240A   (C)       24A
+ 
+    
+(D) 2.4A
+ 
+ 
+Q227. In a shunt motor, the permanent magnet is replaced by an
+ 
+electromagnet            activated by a field coil that shunt the
+ 
+armature. The shunt motor shown has       armature resistance 0.05 W
+ 
+and is connected to 120 V mains. What starting             rheostat
+ 
+resistance R, in series with the armature, will 
+limit the starting
+ 
+current             to 60 A?
+ 
+ 
+            
+(A)       1.95W              (B)       19.5W
+ 
+(C)       2.95W              (D)       29.5W
+ 
+ 
+Q228. In a shunt motor, the permanent magnet is replaced by an
+ 
+electromagnet            activated by a 
+field coil that shunt the
+ 
+armature. The shunt motor shown has       armature resistance 0.05 W
+ 
+and is connected to 120 V mains. With no starting         resistance,
+ 
+what back emf is generated when the armature current is 20 A?
+ 
+ 
+            
+(A)       119V  
+             
+(B)       121V
+ 
+(C)       120V               (D)       125V
+ 
+ 
+Q229. In a shunt motor, the permanent magnet is replaced by an
+ 
+electromagnet            activated by a field coil that shunt the
+ 
+armature. The shunt motor shown has       armature res
+istance 0.05 W
+ 
+and is connected to 120 V mains. If this machine          were running
+ 
+as a generator, what would be the total induced emf developed by   
+the
+ 
+armature when the armature is delivering 20 A at 120 V to the shunt
+ 
+field          and external cir
+cuit?
+ 
+ 
+            
+(A)       119V               (B)       121V
+ 
+(C)       120V               (D)       125V
+ 
+ 
+Q230. A dynamo, generator, delivers 30 A at 120 V to an external
+ 
+circuit when operating         at 1200 rpm. What torque is required to
+ 
+drive the ge
+nerator at this speed if the          total power losses
+ 
+are 400 W?
+ 
+ 
+                
+(A)   3..18N .m        (B)      3.38N .m         (C)
+ 
+   
+31.8N .m         (D) 33.8N .m
+ 
+ 
+Q231.  A motor armature develops a torque of 100 N.m When it draws 
+40A
+ 
+from the 
+line. Determine the torque developed if the armature current
+ 
+is increased to 70 A   and the magnetic field strength  is reduced to
+ 
+80 percents of its initial value.
+ 
+ 
+            
+(A)       110N               (B)       120N   (C)
+ 
+130N               (D)      
+140N
+ 
+ 
+Q232.  A motor has back emf 110V and armature current 90 A when
+ 
+running 1500rpm.           Determine the power.
+ 
+ 
+            
+(A)       9.9W  (B)       99W    (C) 990W        (D)       9900W
+ 
+ 
+Q233. A motor has back emf 110V and armature current 90 A w
+hen
+ 
+running 1500rpm.           Determine the torque develop within the
+ 
+armature.
+ 
+ 
+            
+(A)         6.3N.m          (B)         1.6N.m
+ 
+(C)   16.3N.m      (D)      63.0N.m
+ 
+ 
+ 
+ 
+Q234. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150
+W. It is            connected across 120 V mains and its
+ 
+generating a back emf of 115 V. compute       the armature current of
+ 
+the motor.
+ 
+ 
+            
+(A)       20A     (B)       8A       (C)       2.8A    (D)
+ 
+      
+80.8A
+ 
+ 
+Q235. The shunt motor has 
+armature resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute       the  field current
+ 
+of the motor.
+ 
+ 
+            
+(A)       20A     (B)       0.8A    (C)       2A       (
+D)       80A
+ 
+ 
+Q236.  The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It is           connected across 120 V mains and its
+ 
+generating a back emf of 115 V. compute       the total currents taken
+ 
+by the motor.
+ 
+ 
+            
+(A)       2
+0.8A  (B)       80.2A  (C)       12.8A  (D)       8.08A
+ 
+ 
+ 
+ 
+Q237. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute       the total power
+ 
+t
+aken by the motor, when only heat losses in the armature and
+ 
+field are considered.
+ 
+ 
+            
+(A)       2496W                        (B)       2400W
+ 
+                   
+(C)       2800W                        (D)
+ 
+1500W
+ 
+ 
+Q238. The shunt motor has armature 
+resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute                  the power
+ 
+lost in heat in the armature.
+ 
+ 
+            
+(A)       100W  (B)       96W    (C)       10W 
+   
+(D)       9.6W
+ 
+ 
+Q239. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute       the power lost in
+ 
+heat in  field circuits
+ 
+ 
+            
+(A
+)       100W  (B)       96W    (C)       10W    (D)       9.6W
+ 
+ 
+Q240. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute       the total po
+wer
+ 
+lost. When only heat             losses in the armature and field are
+ 
+           
+considered.
+ 
+ 
+            
+(A)       101W  (B)       196W  (C)       110W  (D)       19.6W
+ 
+ 
+Q241. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It
+ 
+is             connected across 120 V mains and
+ 
+its generating a back emf of 115 V. compute       the total power
+ 
+taken by the motor, when only heat losses in the armature and
+ 
+field are considered.
+ 
+ 
+            
+(A)       2496W                        (B)       2400W
+ 
+                   
+(C)       2800W                        (D)
+ 
+2300W
+ 
+ 
+ 
+ 
+Q242. The shunt motor has armature resistance 0.25Ω and field
+ 
+resistance 150W. It is             connected across 120 
+V mains and
+ 
+its generating a back emf of 115 V. compute       the electrical
+ 
+efficiency of this machine, when only heat losses in the armature
+ 
+and field are considered.
+ 
+ 
+            
+(A)       92.1%              (B)       82.1%
+ 
+(C)      72.1%             
+(D) 62.1%
+ 
+ 
+ 
+ 
+Q243. When a long iron
+-
+core solenoid connected across a 6V battery,
+ 
+the current rises to 0.63 of its maximum value after a time of 0.75 s.
+ 
+The experiment is then           repeated with the iron core removed.
+ 
+Now the time required to reach 0.6
+3 of the             maximum is
+ 
+
+--- page 10 ---
+0.0025s. Calculate the relative permeability of the iron if the
+ 
+     
+maximum current is 0.5A
+ 
+ 
+            
+(A)       300                  (B) 0.03           (C)
+ 
+630      (D)       0.63
+ 
+ 
+ 
+ 
+Q244. When a long iron
+-
+core solenoid 
+connected across a 6V battery,
+ 
+the current rises to 0.63 of its maximum value after a time of 0.75 s.
+ 
+The experiment is then           repeated with the iron core removed.
+ 
+Now the time required to reach 0.63 of the             maximum is
+ 
+0.0025s. Calculate
+ 
+the inductance L for the air core solenoid if the
+ 
+    
+maximum current is 0.5A
+ 
+ 
+            
+(A)       300 H               (B) 0.03H         (C)
+ 
+630 H   (D)       0.63 H
+ 
+ 
+ 
+ 
+Q245. A charged capacitor is connected across a 10kW resistor and
+ 
+allowed to dischar
+ge. The potential difference across the capacitor
+ 
+drops to 0.37 of its            original value after a time of 7s.
+ 
+What is the capacitance of the capacitor?
+ 
+ 
+            
+(A)       200mF             (B)       500mF
+ 
+(C)      700mF              (D)       90
+0mF
+ 
+ 
+Q246. A series circuit consisting of an uncharged 2mF capacitor and a
+ 
+10 MW resistor             is connected across a 100 V power source.
+ 
+What is the current in the circuit             after one time
+ 
+constant.
+ 
+ 
+            
+(A)       3.7mA   (B)      126mA              (C)1mA
+ 
+      
+(D) 180mA
+ 
+ 
+Q247. A series circuit consisting of an uncharged 2mF capacitor and a
+ 
+10 MW resistor             is connected across a 100 V power source.
+ 
+What is the charge on the capacitor
+          
+after one time constant.
+ 
+ 
+            
+(A)       3.7mC   (B)      126mC              (C)1mC
+ 
+      
+(D) 180mC
+ 
+ 
+ 
+ 
+Q248. A series circuit consisting of an uncharged 2mF capacitor and a
+ 
+10 MW resistor             is connected across a 100 V power sourc
+e.
+ 
+What is the current in the circuit             when the capacitor has
+ 
+acquired 90 percent of its final charges?
+ 
+ 
+            
+(A)       3.7mA   (B)      126mA              (C)
+ 
+1mA                  (D) 180mA
+ 
+ 
+ 
+ 
+Q249. A series circuit consisting of an unch
+arged 2mF capacitor and a
+ 
+10 MW resistor             is connected across a 100 V power source.
+ 
+What is the charge on the capacitor          when the capacitor has
+ 
+acquired 90 percent of its final charges?
+ 
+ 
+            
+(A)       3.7mC   (B)      126mC              (C)1mC
+ 
+      
+(D) 180mC
+ 
+ 
+Q250.  The iron core of a solenoid has a length of 40 cm and a cross
+ 
+section of 5.0cm2,   and is wound with 10 turns of wire per cm of
+ 
+length. Compute the inductance of      
+       
+the solenoid, assuming
+ 
+the relative permeability of the iron to be constant at     500.
+ 
+ 
+            
+(A)       1.26 mH          (B)       12.6 mH          (C)
+ 
+    
+126 mH           (D) 1260 mH
+ 
+ 
+Q251. A step
+-
+up transformer is used on a 120V line to fu
+rnish 1800V.
+ 
+The primary has            100 turns. How many turns are on the
+ 
+secondary?
+ 
+ 
+            
+(A)       1200turns         (B)       1400turns
+ 
+(C)       1500turns         (D)       1800turns
+ 
+ 
+Q252. A coil of 0.48 H carries a current of 5 A. Compute t
+he energy
+ 
+stored in it.         Ans.
+ 
+ 
+            
+(A)       60J  (B)            6J         (C)       0.6J
+ 
+  
+(D)       66.6J
+ 
+ 
+Q253. Two neighboring coils, A and B, have 300 and 600 turns
+ 
+respectively. A current   of 1.5 A in A causes 1.2x10
+-
+4 Wb to pass
+ 
+thr
+ough A and 0.9x10
+-
+4 Wb to pass         through B. Determine the
+ 
+self
+-
+inductance of A.
+ 
+ 
+             
+(A)      2.4 mH            (B)      24 mH             (C)
+ 
+     
+36 mH            (D) 0.27V
+ 
+ 
+ 
+ 
+Q254. Two neighboring coils, A and B, have 300 and 600 turns
+ 
+respectively. A current   of 1.5 A in A causes 1.2x10
+-
+4 Wb to pass
+ 
+through A and 0.9x10
+-
+4 Wb to pass         through B. Determine the
+ 
+mutual inductance of A and B.
+ 
+ 
+            
+(A)       2.4       (B)      24 mH             (C)      36
+ 
+mH            (D) 0.
+27V
+ 
+ 
+Q255. Two neighboring coils, A and B, have 300 and 600 turns
+ 
+respectively. A current   of 1.5 A in A causes 1.2x10
+-
+4 Wb to pass
+ 
+through A and 0.9x10
+-
+4 Wb to pass         through B. Determine the
+ 
+average induced emf in B when the current in A is       
+interrupted in
+ 
+0.2 s.
+ 
+ 
+            
+(A)       2.4       (B)      24 mH             (C)      36
+ 
+mH            (D) 0.27V
+ 
+ 
+ 
+ 
+Q256. A coil of inductance 0.2 H and 1.0W resistance is connected to a
+ 
+90 V source. At what rate will the current in the coil grow at t
+he
+ 
+instant the coil is connected to        the source?
+ 
+ 
+            
+(A) 45.0 A/s    (B) 15.0 A/s    (C) 450 A/s     (D) 150 A/s
+ 
+ 
+ 
+ 
+Q257.  A coil of inductance 0.2 H and 1.0W resistance is connected to
+ 
+a 90 V source. At what rate will the current in the 
+coil grow at the
+ 
+instant the current reaches two
+-
+     
+third of its maximum value?
+ 
+ 
+            
+(A) 45.0 A/s    (B) 15.0 A/s    (C) 450 A/s     (D) 150 A/s
+ 
+ 
+Q258. The mutual inductance between the primary and secondary of a
+ 
+transformer is   0.3H. Compute the induced emf in the secondary 
+when
+ 
+the primary current   changes at the rate of 4 A/s.
+ 
+ 
+            
+(A)       1.12 V             (B)       1.02 V
+ 
+(C)       1.20 V              (D) 10.2 V
+ 
+ 
+Q259.  A steady current of 2.5A cr
+eates a flux of 1.4x10
+-
+4 Wb in a
+ 
+coil of 500 turns.           What is the inductance of the coil?
+ 
+ 
+            
+(A)       12.8 mH          (B)      2.18 mH          (C)
+ 
+   
+28 mH     (D)  21.8 mH
+ 
+ 
+Q260.  A 2mF capacitor sis charged through a 30 MW resistor b
+y a 45 
+V
+ 
+battery. Find       the time constant
+ 
+ 
+            
+(A)       30s       (B)       60s       (C)       90s
+ 
+(D)       120s
+ 
+ 
+Q261. A 2mF capacitor sis charged through a 30 MW resistor by a 45 V
+ 
+battery. Find        the charge on the capacitor both 83 
+s after the
+ 
+charging process starts.
+ 
+ 
+            
+(A)       37mC    (B)       67mC    (C)       97mC    (D)
+ 
+     
+127mC
+ 
+ 
+Q262. . A 2mF capacitor sis charged through a 30 MW resistor by a 45 
+V
+ 
+battery. Find      the current through the resistor, both 83 s af
+ter
+ 
+the charging process starts.
+ 
+ 
+            
+(A)       376nA  (B)       676nA  (C)       976nA  (D)       1276nA
+ 
+ 
+ 
+ 
+Q263   When the current in a certain coil is changing at a rate of 3
+ 
+A/s, it is found that            an emf of 7mV is induced in a nearby
+ 
+coil. What is the mutual inductance of the     combination?
+ 
+ 
+             
+(A)      12.33mH          (B) 2.33mH                  (C)
+ 
+      
+22.33mH          (D) 42.33mH
+ 
+ 
+Q264. A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac 
+line. The reactance of the capacitor is 40 W.
+ 
+Determine the impedance of the circuit.
+ 
+ 
+            
+(A)       60 W.   (B)       50 W.   (C)       40 W.   (D) 30 W.
+ 
+ 
+
+--- page 11 ---
+Q265. A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac 
+line. The reactance of the capacitor is 40 W.
+ 
+Determine the current in the     circuit
+ 
+ 
+(A)      5.5A    (B)       4.4A    (C)       3.5A    (D)       2.5A
+ 
+ 
+Q266. A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac line. The r
+eactance of the capacitor is 40 W.
+ 
+Determine the phase angle between      the current and the supply
+ 
+voltage.
+ 
+ 
+            
+(A)       
+-
+83o       (B)       
+-
+53o     (C)       
+-
+33o     (D) 
+-
+63o
+ 
+ 
+Q267. A coil having inductance 0.14H and resistance 12 W is 
+conn
+ected
+ 
+across a 110V,             25Hz line. Compute the inductance of the
+ 
+coil.
+ 
+ 
+            
+(A)       22.0W (B)       25.1W  (C)       27.2W (D)       29.3W
+ 
+ 
+Q268. A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             
+25Hz line. Compute the current in the coil.
+ 
+ 
+            
+(A)       5.5A    (B)       4.4A    (C)       3.5A    (D)       2.5A
+ 
+ 
+Q269. A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the impedance
+ 
+of the
+ 
+circuit.
+ 
+ 
+            
+(A)       22.0W (B)       25.1W  (C)       27.2W (D)       29.3W
+ 
+ 
+Q270. A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the phase angle between
+ 
+the current and the 
+supply voltage.
+ 
+ 
+            
+(A)       18.3o     (B)       61.3o    (C)       33o       (D) 63o
+ 
+ 
+Q271. A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the power loss in the
+ 
+coil.
+ 
+ 
+            
+(A
+)       48W    (B)       23W    (C)       248W  (D) 230W
+ 
+ 
+Q272. A 120V ac voltage source is connected across a pure 0.70 H
+ 
+inductor. Find the             current through the inductor if the
+ 
+frequency of the source is 60Hz.
+ 
+ 
+            
+(A)       2.5A    (B
+)       0.25A  (C)       4.55A  (D)       0.455A
+ 
+ 
+Q273. A 120V ac voltage source is connected across a pure 0.70 H
+ 
+inductor. Find the             current through the inductor if the
+ 
+frequency of the source is 60kHz.
+ 
+ 
+            
+(A)       2.5mA  (B)       
+0.25mA            (C)
+ 
+4.55mA            (D)       0.455mA
+ 
+ 
+Q274. A 120V ac voltage source is connected across a pure 0.70 H
+ 
+inductor. Find the             inductance of the inductor if the
+ 
+frequency of the source is 60Hz.
+ 
+ 
+            
+(A)       2.64x105Ω       (B)       2.64x104Ω       (C)
+ 
+   
+2.64x103Ω       (D) 2.64x102Ω
+ 
+ 
+Q275. A 120V ac voltage source is connected across a pure 0.70 H
+ 
+inductor. Find the             inductance of the inductor if the
+ 
+frequency of the source 
+is 60kHz.
+ 
+ 
+            
+(A)       2.64x105Ω       (B)       2.64x104Ω       (C)
+ 
+   
+2.64x103Ω       (D) 2.64x102Ω
+ 
+ 
+ 
+ 
+Q276. A 120V ac voltage source is connected across a pure 0.70 H
+ 
+inductor. What     is the power loss in the inductor?
+ 
+ 
+            
+(A)      
+ 
+0W      (B)       10W    (C)       0.5W   (D)       5W
+ 
+ 
+ 
+ 
+Q277.  A coil has inductances of 1.5H and a resistance of 0.6W. If the
+ 
+coil is suddenly     connected across a 12 V battery, find the time
+ 
+required for the current to rise to     0.63 of its final 
+value.
+ 
+ 
+            
+(A)       2.5s      (B)       25s       (C)       3.5s
+ 
+(D)       35s
+ 
+ 
+ 
+ 
+Q278. A coil has inductances of 1.5H and a resistance of 0.6W. If the
+ 
+coil is suddenly      connected across a 12 V battery. What will be
+ 
+final current through the 
+coil?
+ 
+ 
+            
+(A)       0.2A    (B)       2A       (C)       20A     (D)
+ 
+      
+200A
+ 
+ 
+Q279.  A voltage v=(60V) sin 120pt is applied across a 20 W resistor.
+ 
+What will an ac        ammeter in series with the resistor read?
+ 
+ 
+            
+(A)       21.2A  (B)       22A      (C)       2.12A
+ 
+       
+(D)       60A
+ 
+ 
+Q280. A voltage v=(60V) sin 120pt is applied across a 20 W resistor.
+ 
+What will voltage      across the resistor be?
+ 
+ 
+            
+(A)       14.4V  (B)       42.4V  (C)    
+   
+32.4V  (D)       22.4V
+ 
+ 
+Q281. A 40 W resistor is connected across a 15V variable
+-
+frequency
+ 
+electronic oscillator.           Find the current through the resistor
+ 
+when the frequency is 100Hz.
+ 
+ 
+            
+(A)       375A   (B)       37.5A              (C)
+ 
+3.75A              (D)       0.375A
+ 
+ 
+Q282. A 40 W resistor is connected across a 15V variable
+-
+frequency
+ 
+electronic oscillator.           Find the current through the resistor
+ 
+when the frequency is 100 kHz.
+ 
+ 
+            
+(A)       375A   (B)       37.5A              (C)
+ 
+3.75A              (D)       0.375A
+ 
+ 
+Q283. A 2mH inductor is connected across a 15V variable
+-
+frequency
+ 
+electronic oscillator. Find the current through the inductor when the
+ 
+frequency is 100Hz.
+ 
+ 
+             
+(A)      11.9A   (B)       11.9mA            (C)
+ 
+1.19A   (D)       1.19mA
+ 
+ 
+Q284. A 2mH inductor is connected across a 15V variable
+-
+frequency
+ 
+electronic   oscillator. Find the current through the inductor when
+ 
+the frequency is 100 kHz.
+ 
+ 
+       
+     
+(A)       11.9A   (B)       11.9mA            (C)
+ 
+1.19A   (D)       1.19mA
+ 
+ 
+Q285. A 0.3 mF capacitor is connected across a 15V variable
+-
+frequency
+ 
+electronic           oscillator. Find the current through the
+ 
+capacitor when the frequency is 100Hz.
+ 
+ 
+   
+         
+(A)       2.83A   (B)       2.83mA            (C)
+ 
+28.3A   (D)       28.3mA
+ 
+ 
+Q286. A 0.3 mF capacitor is connected across a 15V variable
+-
+frequency
+ 
+electronic           oscillator. Find the current through the
+ 
+capacitor when the frequency is 100 
+kHz.
+ 
+ 
+            
+(A)       2.83A   (B)       2.83mA            (C)
+ 
+28.3A   (D)       28.3mA
+ 
+ 
+Q287.  A voltmeter reads 80 V when it is connected across the
+ 
+terminals of a sinusoidal            power source with f=1000Hz. Write
+ 
+the equation for the instanta
+neous voltage           provided by the
+ 
+source.
+ 
+ 
+            
+(A) V= (133 V) sin 1000pt for t in seconds
+ 
+ 
+            
+(B) V= (133 V) sin 2000pt for t in seconds
+ 
+ 
+            
+(C) V= (80 V) sin 1000pt for t in seconds
+ 
+ 
+            
+(D) V= (80 V) sin 2000pt for
+ 
+t in seconds
+ 
+ 
+ 
+ 
+Q288.  An ac current in a 10 W resistance produces heat at the rate
+ 
+360W. Determine the        effective values of the current.
+ 
+ 
+             
+(A)      6A       (B)       60V     (C)       6mA     (D)
+ 
+      
+60mV
+ 
+ 
+Q289. An ac
+ 
+current in a 10 W resistance produces heat at the rate
+ 
+360W. Determine the         effective values of the  voltage.
+ 
+ 
+             
+(A)      6A       (B)       60V     (C)       6mA     (D)
+ 
+
+--- page 12 ---
+      
+60mV
+ 
+ 
+ 
+ 
+Q290.  A coil has resistance 20 W and inductance 0.3
+5H. Compute its
+ 
+reactance and its            impedance to an alternating current of 25
+ 
+cycles/s.
+ 
+ 
+            
+(A)       55 W    (B)      58.5 W (C)      5.5 W   (D) 5.85 W
+ 
+ 
+ 
+ 
+Q291. A coil has resistance 20 W and inductance 0.35H. Compute its
+ 
+reactance and 
+its             impedance to an alternating current of
+ 
+25 cycles/s.
+ 
+ 
+            
+(A)       55 W    (B)      58.5 W (C)      5.5 W   (D) 5.85 W
+ 
+ 
+Q292. Calculate the resonant frequency of a circuit of negligible
+ 
+resistance containing an        inductance of 
+40mH and a capacitance
+ 
+of 600pf.
+ 
+ 
+            
+(A)       32.5 kHz.         (B)       325kHz.
+ 
+(C)       32.5Hz.             (D) 325Hz.
+ 
+ 
+Q293.  A transformer used on a 120V line delivers 2A at 900V. what
+ 
+current is drawn    from the line? Assume 100 percent 
+efficiency.
+ 
+ 
+            
+(A)       4A       (B)       40A     (C)       1.5A    (D)       15A
+ 
+ 
+Q294.  A step
+-
+down transformer operates on a 2.5 KV line and supplies
+ 
+a load with 80 A.            the ratio of the primary winding to the
+ 
+secondary winding is 2
+0:1 Assuming 100   efficiency, determine the
+ 
+secondary voltage V2, the primary current 1I, and the         power
+ 
+output P2.
+ 
+ 
+            
+(A)       125V, 40A       (B)       12.5V, 4A        (C)
+ 
+    
+125V, 4A         (D)       1.25V, 4A
+ 
+ 
+Q295. A step
+-
+down tr
+ansformer operates on a 2.5 KV line and supplies 
+a
+ 
+load with 80 A.            the ratio of the primary winding to the
+ 
+secondary winding is 20:1 Assuming 100   efficiency, determine the
+ 
+secondary voltage V2, the primary current 1I, and the         power
+ 
+out
+put P2.
+ 
+ 
+            
+(A)       1kW    (B)       10kW  (C)       1W      (D)       10W
+ 
+ 
+ 
+ 
+Q296. A series circuit consisting of a 100W noninductive resistor, a
+ 
+coil of 0.10 H inductance           and negligible resistance, and a
+ 
+20 mF capacitor is connected 
+across a 110 V, 60 Hz            power
+ 
+source Find the impedance of the circuit.
+ 
+ 
+            
+(A)       37.7Ω              (B)       138Ω
+ 
+(C)      132.7Ω                        (D)      137.7Ω
+ 
+ 
+ 
+ 
+Q297.  A series circuit consisting of a 100W noninductive re
+sistor, a
+ 
+coil of 0.10 H   inductance and negligible resistance, and a 20 mF
+ 
+capacitor is connected across a 110       V, 60 Hz power source; find
+ 
+the current.
+ 
+ 
+            
+(A)       7A       (B)       9A       (C)       0.79A  (D)
+ 
+      
+0.97A
+ 
+ 
+ 
+ 
+Q298. A series circuit consisting of a 100W noninductive resistor, a
+ 
+coil of 0.10 H inductance           and negligible resistance, and a
+ 
+20 mF capacitor is connected across a 110 V, 60 Hz            power
+ 
+source Find the phase angle between the current an
+d the source 
+voltage
+ 
+ 
+             
+(A)      55o         (B)       
+-
+55o     (C)       
+-
+43.5o
+ 
+(D)       
+-
+73.5o
+ 
+ 
+ 
+ 
+Q299. A series circuit consisting of a 100W noninductive resistor, a
+ 
+coil of 0.10 H inductance           and negligible resistance, and a
+ 
+20 mF 
+capacitor is connected across a 110 V, 60 Hz            power
+ 
+source Find the voltmeter readings across the noninductive resistor.
+ 
+ 
+            
+(A)       79V     (B)       105V   (C)       30V     (D)       138V
+ 
+ 
+ 
+ 
+Q300. A series circuit consisting of a 10
+0W noninductive resistor, a
+ 
+coil of 0.10 H inductance           and negligible resistance, and a
+ 
+20 mF capacitor is connected across a 110 V, 60 Hz            power
+ 
+source Find the voltmeter readings across the inductor.
+ 
+ 
+            
+(A)       79V     (B) 
+      
+105V   (C)       30V     (D)       138V
+ 
+ 
+ 
+ 
+Q301A series circuit consisting of a 100W noninductive resistor, a
+ 
+coil of 0.10 H inductance             and negligible resistance, and a
+ 
+20 mF capacitor is connected across a 110 V, 60 Hz            power
+ 
+s
+ource Find the voltmeter readings across the capacitor.
+ 
+ 
+            
+(A)       79V     (B)       105V   (C)       30V     (D)       138V
+ 
+ 
+SOLUTIONS
+ 
+ 
+1.                  C
+ 
+2.                  A
+ 
+3.                  C
+ 
+4.                  A
+ 
+5.                 
+ 
+A
+ 
+6.                  C
+ 
+7.                  B
+ 
+8.                  B
+ 
+9.                  D
+ 
+10.              C
+ 
+71.              A
+ 
+72.     
+         
+D
+ 
+73.              C
+ 
+74.              A
+ 
+75.              D
+ 
+76.              B
+ 
+77.              A
+ 
+78.              C
+ 
+79.              B
+ 
+80.              A
+ 
+141.   A
+ 
+142.   B
+ 
+143.   A
+ 
+144.   A
+ 
+145.   A
+ 
+146.   B
+ 
+147.   D
+ 
+148.   D
+ 
+149.   C
+ 
+150.   C
+ 
+211. A
+ 
+212. B
+ 
+214.C
+ 
+215. D
+ 
+216 A
+ 
+217.B
+ 
+218. A
+ 
+219.B
+ 
+221.B
+ 
+2
+22. A
+ 
+11.              C
+ 
+12.              B
+ 
+13.              B
+ 
+14.              B
+ 
+15.              B
+ 
+16.              A
+ 
+17.              B
+ 
+18.          
+    
+B
+ 
+19.              A
+ 
+20.              D
+ 
+21.              B
+ 
+22.              A
+ 
+23.              A
+ 
+24.              C
+ 
+25.              B
+ 
+26.              C
+ 
+27.              A
+ 
+28.              D
+ 
+29.              C
+ 
+30.              D
+ 
+31.              B
+ 
+32.
+              
+D
+ 
+33.              B
+ 
+34.              D
+ 
+35.              B
+ 
+36.              B
+ 
+37.              D
+ 
+38.              B
+ 
+39.              B
+ 
+40.              C
+ 
+41.              A
+ 
+42.              C
+ 
+43.              A
+ 
+ 
+44.              C
+ 
+45.        
+      
+B
+ 
+46.              B
+ 
+47.              C
+ 
+48.              D
+ 
+49.              D
+ 
+50.              B
+ 
+51.              B
+ 
+52.              D
+ 
+53.              C
+ 
+54.              C
+ 
+55.              B
+ 
+56.              D
+ 
+57.              A
+ 
+58.              B
+ 
+59.              D
+ 
+60.              D
+ 
+61.              D
+ 
+62.              A
+ 
+63.              A
+ 
+64.              A
+ 
+65.              D
+ 
+66.              C
+ 
+67.              B
+ 
+68.              C
+ 
+81.              B
+ 
+82.              B
+ 
+83.              C
+ 
+84.              D
+ 
+85.              
+A
+ 
+86.              C
+ 
+87.              D
+ 
+88.              A
+ 
+89.              C
+ 
+90.              D
+ 
+91.              D
+ 
+92.              B
+ 
+93.              B
+ 
+94.              D
+ 
+95.              D
+ 
+96.              B
+ 
+97.              D
+ 
+98.              B
+ 
+99.    
+          
+A
+ 
+100.          C
+ 
+101.          A
+ 
+102.          A
+ 
+03.          A
+ 
+04.          D
+ 
+05.          D
+ 
+06.          B
+ 
+07.          D
+ 
+08.          D
+ 
+09.          B
+ 
+10.          B
+ 
+11.          D
+ 
+12.          B
+ 
+13.          A
+ 
+14.          D
+ 
+15.          B
+ 
+16.          B
+ 
+17.          B
+ 
+18.          D
+ 
+19.          D
+ 
+20.          B
+ 
+21.          A
+ 
+22.          B
+ 
+23.          D
+ 
+27.    D
+ 
+24.          B
+ 
+25.          A
+ 
+26.     B
+ 
+27.    D
+ 
+28.    C
+ 
+29.    B
+ 
+30.   D
+ 
+131.   B
+ 
+132.   C
+ 
+133.   B
+ 
+134.   B
+ 
+135.   A
+ 
+136.   
+A
+ 
+137.   D
+ 
+138.   A
+ 
+151.   B
+ 
+152.   D
+ 
+153.   D
+ 
+154.   B
+ 
+155.   A
+ 
+156.   B
+ 
+157.   D
+ 
+158.   B
+ 
+159.  A
+ 
+160.  C
+ 
+161.  D
+ 
+162.  D
+ 
+163.  D
+ 
+164.  B
+ 
+165.  A
+ 
+166.  C
+ 
+167.  A
+ 
+168.  B
+ 
+169.  A
+ 
+170.  C
+ 
+171.  B
+ 
+172.  B
+ 
+173.  A
+ 
+174.  A
+ 
+175.  A
+ 
+176. D
+ 
+177. A
+ 
+178. D
+ 
+179. C
+ 
+180.D
+ 
+181.A
+ 
+182.C
+ 
+183.B
+ 
+184.A
+ 
+185.D
+ 
+186.D
+ 
+187. C
+ 
+188. C
+ 
+189. D
+ 
+191.D
+ 
+192. A
+ 
+193. B
+ 
+194.A
+ 
+195. A
+ 
+196. A
+ 
+197. B
+ 
+198. B
+ 
+199.A
+ 
+200. B
+ 
+201.C
+ 
+202. D
+ 
+203. 
+B
+ 
+204.D
+ 
+05.B
+ 
+206.A
+ 
+207. D
+ 
+208. B
+ 
+209.C
+ 
+210.A
+ 
+2
+2
+3. B
+ 
+224. C
+ 
+225.A
+ 
+226. A
+ 
+227. A
+ 
+228. A
+ 
+229.B
+ 
+230. C
+ 
+231.D
+ 
+232.D
+ 
+233.D
+ 
+234.A
+ 
+235. B
+ 
+236. A
+ 
+237. A
+ 
+238. A
+ 
+239 .B
+ 
+240. B
+ 
+241. D
+ 
+242.A
+ 
+243. A
+ 
+244. B
+ 
+245.C
+ 
+246. A
+ 
+247. B
+ 
+248. C
+ 
+249. D
+ 
+250.     C
+ 
+251. C
+ 
+252. B
+ 
+253.B
+ 
+254. C
+ 
+255.D
+ 
+256.     C
+ 
+257.     D
+ 
+258.C
+ 
+259.     C
+ 
+260.B
+ 
+261. B
+ 
+262.A
+ 
+263      B
+ 
+264.B
+ 
+265.B
+ 
+266. B
+ 
+267.A
+ 
+268.B
+ 
+269. B
+ 
+270.B
+ 
+271 D
+ 
+272. D
+ 
+273.D
+ 
+274. D
+ 
+275. A
+ 
+276. A
+ 
+277.     A
+ 
+278.C
+ 
+279.C
+ 
+280. B
+ 
+ 
+
+--- page 13 ---
+69.              D
+ 
+70.              D
+ 
+ 
+139.   A
+ 
+140.  C
+ 
+ 
+281.D
+ 
+282. D
+ 
+283.A
+ 
+284.B
+ 
+285B
+ 
+286 A
+ 
+287.B
+ 
+288.A
+ 
+289.B
+ 
+290.A
+ 
+291. A
+ 
+292.A
+ 
+293.D
+ 
+294.C
+ 
+295.B
+ 
+296.B
+ 
+297.C
+ 
+298.C
+ 
+299.A
+ 
+300.C
+ 
+301B
+ 
+ 
+1.
+ 
+Which of these is not correct as a basic property of
+ 
+electric charges?
+ 
+(a)        Total charges in an insulated system 
+is invariable
+ 
+(b)        A charged body is electrically unstable
+ 
+(c)        A charged body has equal number of positive and negative 
+charges
+ 
+(d)        Positively charged body is deficient of electrons
+ 
+ 
+2.
+ 
+When two identically charged bodies suspended freely 
+by
+ 
+thread of equal length repel each other all of these forces are acting
+ 
+on one of then except:
+ 
+ 
+(a) Tension   (b) Gravitational pull    
+(c) Coulomb attraction force   
+ 
+(d)
+ 
+Repulsive force
+ 
+ 
+ 
+ 
+3.
+ 
+Two capacitors 0.2mF and 0.4mF are connected in 
+series to a
+ 
+supply of 10V. Calculate the energy stored in the field within the
+ 
+dielectrics of the capacitors
+ 
+ 
+(a) 6.7X10
+-
+5J
+   
+(b) 14.2X10
+-
+5J  (c) 26.3X10
+-
+5J  (d)    9.8X10
+-
+5J
+ 
+ 
+4.
+ 
+What area of the plate of parallel
+-
+plate capacitor gives
+ 
+1mF, if the plate’s separation is 0
+.001m and permittivity of the
+ 
+dielectric used is 8.85x10
+-
+12?
+ 
+ 
+(a)        9.13x10
+-
+3m2      
+(b)    113 m2 
+    
+(C) 6.6X10
+-
+3   (d) 21 m2
+ 
+ 
+ 
+ 
+5.
+ 
+The inverse of constant of proportionality in ohm’s 
+law for
+ 
+metallic conductors can be called:
+ 
+ 
+(a)   Inductance   
+(b)  
+  
+Conductance 
+  
+(c)   Reactance    (d) Remittance
+ 
+ 
+ 
+ 
+6.
+ 
+One major difference between Ohm metallic 
+conductors and
+ 
+semi conductors is:
+ 
+ 
+(a)        Temperature increase increases the conductivity of 
+semiconductor
+ 
+ 
+(b)        Temperature increase makes valence 
+electrons to fall to
+ 
+ground state in semiconductor
+ 
+ 
+(c)        Temperature increase reduces the speed of the conducting
+ 
+electrons in the semi conductor.
+ 
+ 
+(d)        Temperature increase ejects the valence electrons in
+ 
+metals.
+ 
+ 
+ 
+7.
+ 
+Conductivity of metal conduc
+tor does not depend on 
+one of
+ 
+the following:
+ 
+ 
+            
+(a) Permeability   
+         
+(b) Temperature           (c)
+ 
+Length         (d) Cross section area
+ 
+ 
+ 
+ 
+8.
+ 
+The diameter of a 5 m long constantan wire is 0.1mm.
+ 
+Calculate its conductivity if
+ 
+ 
+            
+Its
+ 
+resistance per unit length is 2 Ω/m.
+ 
+ 
+            
+(a) 1.5X106/ Ω m  (b) 99x10
+-
+9/ Ω m     
+(c) 6.4x107/ Ω m
+ 
+(d) 5.5x10
+-
+7/ Ω m
+ 
+ 
+ 
+9.
+ 
+A 500
+-
+watt boiling ring was used to raise the 
+temperature of
+ 
+200g of a liquid by 250K within 2 seconds. What is the specific heat
+ 
+capacity of the liquid?
+ 
+ 
+(a) 2.0x102 J/KgK
+   
+(b) 6.3x10
+-
+3 J/KgK    (c) 4.41x104 J/KgK    (d) 
+1.333x105 J/KgK
+ 
+ 
+ 
+10.
+ 
+One of the following cannot be a unit of electrical 
+potential
+ 
+ 
+(a) Joule per Coulomb    (b) Volt     
+(c) Watt per coulomb
+    
+(d) Newton 
+meter
+ 
+pe
+r Coulomb
+ 
+ 
+ 
+11.
+ 
+Which of the following is the correct statement for
+ 
+Kirchoff’s rule for current at a junction of circuit network?
+ 
+ 
+            
+(a)        Algebraic sum of current at a junction is zero
+ 
+ 
+            
+(b)        Algebraic sum of current flowing in
+to a
+ 
+junction is equal to that, leaving                          that
+ 
+junction
+ 
+ 
+            
+(c)        Algebraic sum of current at a junction is constant
+ 
+ 
+            
+(d)        (a) and (b) are correct
+ 
+ 
+12.
+ 
+All of these are the uses of potentiometer with 
+exception of:
+ 
+ 
+ 
+ 
+            
+(a)        Comparison of emf  of  two cells
+ 
+ 
+            
+(b)        Comparison of capacitance of two capacitors
+ 
+ 
+            
+(c)        Measurement of internal resistance of a cell
+ 
+ 
+            
+(d)        Measurement of small c
+urrent
+ 
+ 
+ 
+ 
+13.
+ 
+Which of the following is a necessary condition for 
+working
+ 
+potentiometer?
+ 
+ 
+ 
+ 
+            
+(a)        Positive terminals of the driver and test cells
+ 
+must be connected to a common point
+ 
+ 
+(b)               emf of driver cell must always be greater 
+than of
+ 
+the test cell
+ 
+ 
+            
+(c)        When galvanometer is balanced no current could
+ 
+flow in the potentiometer
+ 
+ 
+           
+ 
+(d)        (a),     (b),    and    (c)   are correct
+ 
+ 
+ 
+14.
+ 
+In electromagnetism one of the following is not 
+among the
+ 
+three 
+entities that are mutually dependent:
+ 
+ 
+ 
+ 
+            
+(a)        Current   
+ 
+(b)   Charges 
+   
+(c)    Motion
+ 
+(d)   Magnetic  field
+ 
+ 
+ 
+15.
+ 
+The magnitude of the electromagnetic force produced 
+when a
+ 
+
+--- page 14 ---
+current carrying    conductor is in a magnetic         field is not
+ 
+increased by:
+ 
+ 
+            
+(a)        Thickness of the conductor
+ 
+ 
+            
+(b)        Length of the conductor
+ 
+ 
+            
+(c)        Magnetic field strength
+ 
+ 
+            
+(d)        Magnitude of sine of the angle made by the
+ 
+conductor with the field.
+ 
+ 
+ 
+16.
+ 
+What angle will the current carrying conductor laying 
+in a
+ 
+magnetic field make for the electromagnetic force F it experience to
+ 
+be a minimum?
+ 
+ 
+ 
+            
+(a)    90
+0
+      
+(b)    180
+0
+     
+(c)     0
+0
+  
+  
+(d)     
+-
+60
+0
+ 
+ 
+ 
+17.
+ 
+What is the magnetic flux density B at 2m from a 
+straignt
+ 
+wire in vacuum            carrying 3A current?                  (μo
+ 
+=    4n  x   10
+-
+7 H/m)
+ 
+ 
+ 
+ 
+(a)   5 x   10
+-
+7 T     
+(b)   3 x   10
+-
+7 T
+     
+(c)   6 x10
+-
+7 T    
+ 
+(d)   2 x   10
+-
+7 T
+ 
+ 
+ 
+18.
+ 
+Electromagnetic i
+nduction is a process of converting:
+ 
+ 
+ 
+            
+(a)        Electrical energy to potential energy
+ 
+ 
+            
+(b)        Mechanical energy to electronic energy
+ 
+ 
+           
+ 
+(c)        Kinetic energy to electrical energy
+ 
+ 
+            
+(d)        Mechanical energy to light energy
+ 
+ 
+ 
+19.
+ 
+Motion of the magnetic flux during induction can be 
+achieved
+ 
+in any of the          following ways:
+ 
+ 
+ 
+            
+(i)    Dynamo effect   (ii) Sliding effect   (iii)
+ 
+Transformer effect.
+ 
+ 
+ 
+          
+  
+(a)    I only   (b)   II only    (c)   I and II only    
+ 
+(d)
+ 
+I and III only
+ 
+ 
+ 
+20.
+ 
+Major similarity between self inductance and mutual
+ 
+inductance is that:
+ 
+ 
+ 
+ 
+            
+(a)        They are both measured in Teslas
+ 
+ 
+            
+(b)        They are both produce
+d when current change at
+ 
+the rate of 1A per second
+ 
+ 
+            
+(c)        They both oppose the current producing them
+ 
+ 
+            
+(d)        They are both measured in Henry
+ 
+ 
+ 
+ 
+21.
+ 
+Static electricity is the study of the energy associated
+ 
+with electrons:
+ 
+ 
+ 
+ 
+            
+(a)        In translational motion
+ 
+ 
+            
+(b)        In vibrational motion
+ 
+ 
+            
+(c)        At rest
+ 
+ 
+            
+(d)        In charged bodies
+ 
+ 
+ 
+22.
+ 
+According to its definition the unit of the emf of a cell 
+can be
+ 
+ 
+ 
+            
+(a)     
+Joule/Kelvin     
+(b)   Joule/coulomb 
+    
+(c)
+ 
+Joule/second   (d)  volt/second
+ 
+ 
+ 
+23.
+ 
+A major difference between electric current and 
+voltage
+ 
+(potential difference) is:
+ 
+ 
+ 
+(a)        Current is time rate of flow of charges while voltage is a
+ 
+measure of energy     
+   
+required to move a charge within a given
+ 
+place.
+ 
+ 
+            
+(b)        Current can be measured in Coulomb/second
+ 
+voltage is Joule/Coulomb
+ 
+ 
+            
+(c)        Current is point phenomenon while voltage is a
+ 
+gap phenomenon
+ 
+ 
+           
+ 
+(d)        All 
+above are correct.
+ 
+ 
+ 
+ 
+24.
+ 
+The volume control in a radiowave receiver is an 
+example of:
+ 
+ 
+            
+(a) Air capacitor    
+(b) Potentiometer
+    
+(c) Resistor   (d) Inductor 
+ф
+ 
+ 
+ 
+ 
+25.
+ 
+Which of these is/are sample(s) unit (s) of capacitance 
+of a
+ 
+capacitor?
+ 
+ 
+            
+(a)    Picofarad     (b) Coulomb/volt     (c) Joule/metre     
+(d) a
+ 
+and b are correct
+ 
+ 
+ 
+26.
+ 
+Which of the following statement is wrong about self 
+induced/back emf?
+ 
+ 
+            
+(a)        It reduces the efficiency of the current that
+ 
+produced it.
+ 
+ 
+ 
+           
+(b)        It is induced as a result of variation in
+ 
+magnetic field caused by varying
+ 
+electric current.
+ 
+ 
+            
+(c)        It opposes the applied emf
+ 
+ 
+            
+(d)        All above are wrong about self induced/back emf.
+ 
+ 
+ 
+27.
+ 
+Ferromagnetic m
+aterials are materials which can be 
+permanently
+ 
+magnetized.
+ 
+ 
+            
+(A)       When the material is doped with positive materials
+ 
+ 
+            
+(B)       When the material is doped with negative materials
+ 
+ 
+            
+(C)       When an internal magnetic field is applied to
+ 
+the material.
+ 
+ 
+            
+(D)      When an external magnetic field is applied to the 
+material.
+ 
+ 
+ 
+28.
+ 
+If the temperature of a ferromagnetic material is 
+raised past
+ 
+the Curie temperature,      
+                                       
+the
+ 
+material abruptly loses its permanent magnetisation and becomes
+ 
+ 
+            
+(A) Paramagnetic 
+         
+(B) Electromagnetic
+ 
+    
+(C) Diamagnetic                       (D) Curiemagnetic
+ 
+ 
+ 
+29.
+ 
+Which of the following state
+ments is correct about
+ 
+Paramagnetic Materials?
+ 
+ 
+            
+(A) Paramagnetic materials are attracted toward magnets,
+ 
+but do not become    permanently magnetised.
+           
+(B)
+ 
+Paramagnetic materials are attracted toward      magnets, and become
+ 
+permanently
+magnetised.             (C)            Paramagnetic
+ 
+
+--- page 15 ---
+materials are repelled from magnets, and do not become permanently
+ 
+magnetised.          (D) None
+ 
+ 
+ 
+30.
+ 
+Which of the following statement is correct about 
+Diamagnetic materials?
+ 
+ 
+            
+(A)       
+Diamagnetic materials are repelled by magnets,
+ 
+but do not become        permanently magnetised.
+ 
+(B) Paramagnetic materials are attracted           toward magnets, and
+ 
+become permanently magnetised.              (C)
+ 
+Diamagnetic materials are attracted towar
+d magnets, but do not 
+become
+ 
+permanentlymagnetised            (D) None
+ 
+ 
+ 
+31.
+ 
+Which of the following statement is incorrect about 
+Remanent Magnetism?
+ 
+ 
+            
+(A) Remanent Magnetism is the magnetisation remaining
+ 
+after the removal of an             external
+ly applied field   (B)
+ 
+Remanent Magnetism is exhibited by ferromagnetic materials.
+ 
+                                                                
+(C) If
+ 
+the external field is reduced more, the         remanentmagnetisation
+ 
+will be removed                 
+                              
+ 
+(D)
+ 
+Remanent Magnetism is not exhibited by ferromagnetic materials.
+ 
+ 
+ 
+32.
+ 
+Which of the following statement is correct about 
+hysteresis?
+ 
+ 
+            
+(A)  As the external magnetic field is increased, the
+ 
+induced magnetization also
+ 
+decreases.
+ 
+                           
+(B) The induced magnetisation is eventually
+ 
+lost
+ 
+                                        
+ 
+(C) As the external magnetic
+ 
+field is increased, the induced magnetization also increases.
+ 
+                          
+(D) All
+ 
+ 
+33.
+ 
+The lack of retraceability is known as
+ 
+ 
+            
+(A)       Magnetisation      
+(B)    Hysteresis 
+    
+(C)
+ 
+Remanence         (D)  Coercive force
+ 
+ 
+ 
+34.
+ 
+Given that B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is             empty and B
+M is the
+ 
+additional flux density set up by the material of the core. A
+ 
+material with B < Bo  is known as
+ 
+ 
+            
+(A) Paramagnetic material         (B) Electromagnetic
+ 
+material     
+(C) Diamagnetic material
+ 
+             
+(D) ferromagnetic material
+ 
+ 
+ 
+35.
+ 
+Give
+n that B is the resultant flux density, B
+o
+ 
+is the flux
+ 
+density when the toroid is             empty and B
+m
+ 
+is the
+ 
+additional flux density set up by the material of the core. The
+ 
+correct relation is given by?
+ 
+ 
+                 
+(A) B 
+o
+ 
+= B
+M
+ 
++ B         (B) B + B
+o
+ 
+=  B
+M
+ 
+(C)       B = B
+o
+ 
+= B
+M
+ 
+ 
+                
+ 
+(D)   B = B
+o
+ 
++  B
+M
+ 
+ 
+36.
+ 
+These materials and their alloys are termed 
+ferromagnetic
+ 
+materials except
+ 
+ 
+            
+(A) Iron            (B) cobalt         (C) nickel        
+(D) None
+ 
+ 
+ 
+37.
+ 
+Given that
+ 
+B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the material of the core. A material with B >Bo  is
+ 
+known as
+ 
+ 
+            
+(A) Paramagnetic material 
+        
+(B) Electroma
+gnetic
+ 
+material
+ 
+                          
+(C) Diamagnetic material           (D)
+ 
+ferromagnetic material
+ 
+ 
+ 
+38.
+ 
+Given that B is the resultant flux density, Bo is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the m
+aterial of the core. The ratio B/Bo  is known
+ 
+as
+ 
+ 
+            
+(A) Magnetic susceptibility        (B)       Absolute
+ 
+permeability
+ 
+                
+ 
+(C)   Relative permeability
+     
+(D)       Unity
+ 
+permeability
+ 
+ 
+ 
+39.
+ 
+Given that B is the resultant flux density, Bo 
+is the flux
+ 
+density when the toroid is empty and BM is the      additional flux
+ 
+density set up by the material of the core. The ratio BM /Bo  is known
+ 
+as
+ 
+ 
+           
+ 
+(A) Magnetic susceptibility 
+       
+(B)       Absolute
+ 
+permeability
+ 
+                 
+(C)  
+ 
+Relative permeability     (D)       Unity
+ 
+permeability
+ 
+ 
+ 
+ 
+40.
+ 
+From the Absolute permeability, μ,  can be defined as
+ 
+ 
+             
+(A)      μ
+o
+ 
+/μ
+r
+   
+(B)       μ
+r
+ 
+/μ
+o
+              
+(C)
+ 
+μ/μ
+r
+      
+(D)       μ
+r
+μ
+o
+ 
+ 
+ 
+ 
+41.
+ 
+From the curve, Points c and f represent
+ 
+ 
+       
+     
+(A)       Current     
+(B) Permanent magnetism
+         
+(C)
+ 
+hysteresis loss         (D) maximum
+ 
+ 
+ 
+42.
+ 
+From the curve, Point b represents
+ 
+ 
+ 
+            
+(A)       Saturation
+   
+(B) Coercivity  (C) Remanence
+ 
+(D) Magnetic susceptibility
+ 
+ 
+ 
+43.
+ 
+From the curve, ac is a
+ 
+measure of the
+ 
+ 
+ 
+             
+(A)      Saturation   (B) Coercivity      
+(C) Remanence
+ 
+(D) Magnetic susceptibility
+ 
+ 
+ 
+44.
+ 
+From the curve, ac is a measure of the
+ 
+ 
+ 
+(A)      Saturation   
+(B) Coercivity
+      
+(C) Remanence   (D)
+ 
+Magnetic susceptibility
+ 
+ 
+ 
+ 
+ 
+ 
+45.
+ 
+The cur
+ve between points "a" and "b” in figure1 is 
+called
+ 
+ 
+            
+(A) The magnetisation curve.
+     
+(B) The remanent
+ 
+magnetisation curve  (C) the external magnetization field        (D)
+ 
+The coercive magnetisation curve
+ 
+ 
+ 
+46.
+ 
+In hysteresis, if the external 
+magnetic field is reduced 
+the
+ 
+material retains a certain permanent magnetisation             termed
+ 
+theremanentmagnetisation.
+ 
+ 
+            
+(A)       The induced magnetisation also is increased.
+ 
+(B) The induced magnetisation also is reduced, but it         
+    
+does
+ 
+not follow the original curve.     
+    
+(C)  The induced magnetisation
+ 
+also is reduced, and it will follow the             original curve.
+ 
+(D)  The induced magnetisation will reach saturation.
+ 
+ 
+ 
+47.
+ 
+Which of the following statement is incorrect about 
+t
+he
+ 
+current in hysteresis loop?
+ 
+ 
+ 
+            
+(A) current is increased from a to b       
+(B) current is
+ 
+increased from e to f 
+       
+(C)       current is reduced to zero
+ 
+from b to c       (D) current is increased from f to b
+ 
+ 
+ 
+48.
+ 
+Which of the following does no
+t correctly describe a 
+conductive
+ 
+solid metal?
+ 
+ 
+
+--- page 16 ---
+            
+(A) It contains a large population of mobile, or free,
+ 
+electrons.   (B)  The electrons are bound to the metal
+ 
+lattice but not to any individual atom. (C) The electrons move about
+ 
+randomly due to thermal energy      
+(D)             Thermal energy, on
+ 
+the average, causes the current within the metal to flow when 
+external
+ 
+field is not applied.
+ 
+ 
+ 
+49.
+ 
+The correct unit of electric current is?
+ 
+ 
+            
+(A)       Coulomb per second 
+   
+(B) 
+      
+Coulomb
+-
+second
+ 
+ 
+            
+(C)       Volt per coulomb          (D)       Volt 
+-
+ 
+coulomb
+ 
+ 
+ 
+50.
+ 
+Which of the following does not correctly describe the 
+Current density?
+ 
+ 
+            
+(A)       Current density is a measure of the density of
+ 
+an electric curre
+nt.        (B)     It is defined as a vector
+ 
+whose magnitude is the electric current per cross
+-
+sectional area.
+ 
+                
+(C)    Current density is measured in
+ 
+amperes per  meter.
+   
+(D)    Current density is measured in Coulomb
+ 
+per second per square 
+meter.
+ 
+ 
+ 
+51.
+ 
+Which of the following does not correctly describe 
+semiconductor?
+ 
+ 
+            
+(A) A semiconductor allows an electric current to flow
+ 
+very strongly in one direction
+ 
+ 
+            
+(B) A semiconductor allows an electric current to flow
+ 
+very weakly in
+ 
+the opposite direction
+ 
+ 
+            
+(C) The direction in which a semiconductor allows the
+ 
+forward current to flow depends on whether it is a p
+-
+      
+type
+ 
+semiconductor or an n
+-
+type semiconductor.
+ 
+ 
+          
+  
+(D)The direction in which a semiconductor allo
+ws the
+ 
+forward current to flow does not depend on whether it     is a p
+-
+type
+ 
+semiconductor or an n
+-
+type semiconductor.
+ 
+ 
+ 
+ 
+52.
+ 
+Which of the following does not correctly describe 
+semiconductor?
+ 
+ 
+            
+(A) The amounts of current which flow in each direction
+ 
+depend mainly on the amount of the voltage applied.  
+   
+(B) The
+ 
+forward resistance is relatively low. (C) The amounts of current which
+ 
+flow in each direction depend            mainly on the forward and the
+ 
+reverse resistance. (D)The amounts of current whi
+ch flow in each
+ 
+direction             depend partly on the amount of the voltage
+ 
+applied but mainly on the forward and the reverse resistance.
+ 
+ 
+ 
+53.
+ 
+Which of the following does not correctly describe 
+semiconductor?
+ 
+ 
+            
+(A) The forward resistance is relatively low       (B) The
+ 
+reverse resistance is always very high    
+(C) like a
+ 
+conductor, the flow of current through a semiconductor is not the 
+same
+ 
+amount of current whichever way  the  voltage is applied.
+ 
+   
+  
+(D) The amounts of current which flow in each direction depend
+ 
+partly on the amount    of the voltage applied but mainly on the
+ 
+forward and the reverse resistance.
+ 
+ 
+ 
+ 
+54.
+ 
+Which of the following statement is not true?
+ 
+ 
+            
+(A)       Conductors allow e
+lectrons to pass through them
+ 
+easily because of their low resistance.
+ 
+             
+(B) Insulators do not allow electrons to pass through
+ 
+them because of their high resistance
+ 
+ 
+            
+(C) Insulators do not allow electrons to pass through them
+ 
+because t
+heir atoms hold the electrons strongly.
+ 
+            
+(D) None
+ 
+ 
+ 
+55.
+ 
+The potential difference applied to the armature of a 
+motor
+ 
+is 12 volts.  If the current and resistance of the armature are 0.4 A
+ 
+and 5 ohms respectively.   Calculate the back emf
+ 
+in the winding.
+ 
+ 
+(A)  10 volts 
+    
+(B)     12 volts    (C)     15 volts     (D)     5 volts.
+ 
+ 
+ 
+56.
+ 
+The units of conductance G of a device is?
+ 
+ 
+             
+(A) Mho          
+(B) Siemens
+      
+(C) Ohms         (D)       None
+ 
+ 
+ 
+57.
+ 
+From the usual symbols, the unit of
+ 
+conductivity σ of a 
+device
+ 
+is?
+ 
+ 
+            
+(A)       Ω
+-
+1 m          (B)            Ω m
+-
+1
+ 
+(C)       Ω m                 
+(D)       Ω
+-
+1m
+-
+1
+ 
+ 
+ 
+58.
+ 
+From the usual symbols, the unit of conductivity σ of a 
+device
+ 
+is?
+ 
+ 
+            
+(A)       Ω
+-
+1 S          
+(B)        
+    
+S m
+-
+1
+ 
+  
+(C)       S m                  (D)       S Ω
+ 
+ 
+ 
+ 
+59.
+ 
+From the usual symbols, the units of conductance G of 
+a device is?
+ 
+ 
+            
+(A)       S 
+               
+(B)            S m
+-
+1
+ 
+    
+(C)       S m                  
+ 
+(D)       S Ω
+ 
+ 
+ 
+60.
+ 
+The moving coil 
+galvanometer that has a coil of N 
+turns each
+ 
+of area A and       carrying I, experiences a             torque T
+ 
+when its plane is in the field B. Which equation            best
+ 
+described the torque T experience when the             plane is
+ 
+parallel to the
+ 
+field?
+ 
+ 
+           
+ 
+(A)       T = NIAB 
+  
+(B)  T = NABθ    (C)  T = NIBθ
+ 
+     
+(D)  T = NIAθ
+ 
+ 
+ 
+61.
+ 
+The moving coil galvanometer that has a coil of N 
+turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in the field B.
+ 
+Which equation            best defined
+ 
+the current sensitivity S, when other             parameters have
+ 
+their usual       meanings?
+ 
+ 
+            
+(A)       S = θ/I 
+  
+(B)  S = θ/Q  (C)  S = Q/θ    (D)  S =
+ 
+BAN/cR
+ 
+ 
+ 
+62.
+ 
+The moving coil galvanometer that has a c
+oil of N 
+turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in the field B. Which equation            does not
+ 
+defined the voltage sensitivity Sv, when             other parameters
+ 
+have their usual           
+meanings?
+ 
+ 
+            
+(A)       Sv = θ/IR   (B)  Sv = S/R          (C)  Sv =
+ 
+BAN/cR       
+(D)  Sv = R/θ
+ 
+ 
+ 
+63.
+ 
+The moving coil galvanometer that has a coil of N 
+turns each of
+ 
+area A and        carrying I, experiences a             torque T when
+ 
+its plane is in
+ 
+the field B. Which equation            best defined
+ 
+the charge sensitivity Sq, when other             parameters have
+ 
+their usual       meanings?
+ 
+ 
+            
+(A)       Sq = θ/IR   (B)   Sq = θ/I          (C)  Sq =
+ 
+BAN/cR       
+(D)  Sq = θ/Q
+ 
+ 
+ 
+ 
+64.
+ 
+Dead
+-
+beat 
+movement occurs when
+ 
+ 
+         
+(A) the galvanometer is free        
+ 
+(B)       the
+ 
+galvanometer is critically damped
+ 
+ 
+         
+(C) the galvanometer is steady     (D)       the galvanometer
+ 
+
+--- page 17 ---
+is electromagnetic
+ 
+ 
+ 
+65.
+ 
+Which of the following statement is not true of
+ 
+the 
+ballistic
+ 
+galvanometer?
+ 
+ 
+             
+(A)      the kinetic energy is used to the rotate the
+ 
+coil
+ 
+(B)       the             kinetic energy is converted to the potential
+ 
+energy stored in the system   (C)      the potential energy stored
+ 
+in the system pr
+ovides the restoring torque            
+(D)
+ 
+the kinetic energy of the system  is used to heat the coil
+ 
+                                            
+ 
+  
+ 
+66.
+ 
+Which of the following statement is not true of the 
+dynamo?
+ 
+ 
+             
+(A)      Dynamo can be shunt
+-
+wou
+nd    (B)       Dynamo
+ 
+can be series
+-
+wound  (C)      Dynamo can      be compound
+-
+wound
+ 
+(D)       Dynamo can be slip
+-
+ring
+-
+ 
+wound
+ 
+ 
+ 
+67.
+ 
+Which of the following statement is not true?
+ 
+ 
+            
+(A)   Alternating current is one in which magnitude and
+ 
+direction v
+ary periodically        
+(B)   Direct current is       one
+ 
+in which magnitude and direction vary periodically
+ 
+(C)   Electromotive force is one in which magnitude and direction can
+ 
+vary periodically        (D)  Alternating current gives the value of
+ 
+magnetic
+ 
+fields      that vary in magnitude and direction periodically
+ 
+ 
+ 
+68.
+ 
+Which of the following statement is not true of 
+Rectification?
+ 
+ 
+             
+(A) Rectification is the process by which one converts
+ 
+a.c to d.c           
+(B) Rectification is the process by wh
+ich
+ 
+one converts d.c to a.c 
+ 
+(C) Rectifier impedes the flow of current
+ 
+in one direction more than in the reverse             direction
+ 
+   
+(D)When a sinusoidal waveform is input to a rectifier, a half
+-
+wave
+ 
+output is produced.
+ 
+ 
+ 
+ 
+69.
+ 
+An external magnetic field c
+an be supplied by any of 
+the
+ 
+following except
+ 
+ 
+            
+(A) An electromagnet   (B)       solenoid            (C)
+ 
+Another permanent magnet  
+ 
+(D) None
+ 
+ 
+ 
+70.
+ 
+An electric heater is labeled 240V ac, 1000W.   What is 
+the
+ 
+peak current in the heater when connected 
+to      a 240V ac supply.
+ 
+ 
+(A)             4.17A              
+(B)      5.89A
+   
+(C)    2.95A
+ 
+(D)    8.34A
+ 
+ 
+ 
+ 
+71.
+ 
+Calculate the electromotive force induced in a copper 
+rod of
+ 
+length 6cm rotating at 2 rev/sec in a uniform             magnetic
+ 
+field B of 0.02 
+Tesla.
+ 
+ 
+(A)   4.52 x 10
+-
+4 volts
+    
+(B)     3.50 x 10
+-
+4 volts   (C)   2.0 x 10
+-
+4
+ 
+volts  (D)    6.0 x 10
+-
+4 volts
+ 
+ 
+ 
+72.
+ 
+Calculate the peak value of the emf induced in a 
+circular
+ 
+coil of 1000 turns of radius 4cm rotating at 1800       rpm about an
+ 
+axis in its own 
+plane at right angles to a magnetic field of flux
+ 
+density 0.03T.
+ 
+ 
+(A)    30.62 volts    (B)       20.26  volts  (C)    25.02  volts  
+(D)
+ 
+28.43  volts.
+ 
+ 
+ 
+73.
+ 
+A domestic ac source has a peak value of 325v.  What 
+is the
+ 
+rms 
+ 
+current in a 100w light bulb?
+ 
+ 
+(A)    
+ 
+0.31A          
+(B)     0.44A 
+   
+(C)   0.22A      (D)   0.62A
+ 
+ 
+ 
+ 
+74.
+ 
+A 2kΩvariable resistor is connected across a 10v 
+supply.
+ 
+What is the potential difference between the             sliding
+ 
+contact and the negative side of the supply when the slider is 2/3 
+way
+ 
+long?
+ 
+ 
+(A)    3.3v              
+(B)     6.7v  
+     
+(C)   1.6v         (D)   8.4v
+ 
+ 
+ 
+75.
+ 
+A flat circular coil with 40 loops of wire has a diameter 
+of 32
+ 
+cm. What current must flow in its wire to   produce a field of 3
+ 
+X10
+-
+4Wb/m2 at its Centre?
+ 
+ 
+(A) 1.29A    
+    
+(B)   1.09A  (C)   1.19A 
+ 
+(D)   1.9A
+ 
+ 
+ 
+ 
+76.
+ 
+An air core solenoid with 2000 loops is 60cm long and 
+has a
+ 
+diameter of 2 cm . If a current of 5A is sent             through it,
+ 
+what will be the flux density within it?
+ 
+ 
+(A)  0.21T        (B)   0.12T  (C)   1.0
+2T  
+(D)    0.021T
+ 
+ 
+ 
+77.
+ 
+The net charge on an n
+-
+type semiconductor is
+ 
+ 
+(A) Positive            
+(B)   negative
+    
+(C)       Zero     (D)       Minus
+ 
+ 
+ 
+ 
+78.
+ 
+An example of trivalent element used for doping of
+ 
+semiconductor is
+ 
+ 
+(A) Phosphoric       (B)     Silicon   (C)       Germanium       
+(D)   Boron
+ 
+ 
+ 
+ 
+79.
+ 
+The Resistivity of a semiconductor with increasing 
+temperature
+ 
+ 
+(A) Increases          (B)       Remain constant         
+  
+(C)
+ 
+Decreases   
+         
+(D)   Doubles
+ 
+ 
+ 
+80.
+ 
+A domestic a
+c source has a peak value of 325v.  What 
+is the
+ 
+rms current in a 100w light bulb?
+ 
+ 
+(A)     0.31A        
+  
+(B)     0.44A 
+   
+(C)   0.22A      (D)   0.62A
+ 
+ 
+ 
+81.
+ 
+Which of these cannot be utilized with a variable 
+resistor
+ 
+ 
+(A)  Volume control   (B)    Dimmers on li
+ght switches (C)   Thermostat
+ 
+(D)   None of the above
+ 
+ 
+ 
+82.
+ 
+Which of these is the impedance for an inductor 
+–
+ 
+Resistor
+ 
+circuit in series?
+ 
+ 
+ 
+83.
+ 
+An electric heater is labeled 240V ac, 1000W.   What is 
+the
+ 
+peak current in the heater when                             
+connected
+ 
+to a 240V ac supply.
+ 
+ 
+(A)             4.17A              
+(B)      5.89A
+   
+(C)    2.95A
+ 
+(D)    8.34A
+ 
+ 
+ 
+ 
+84.
+ 
+The device used in converting mechanical power into
+ 
+electrical power is called
+ 
+ 
+                  
+(A)  Dynamo
+    
+(B)      Lever    (C)    Armat
+ure
+ 
+(D)    Motor
+ 
+ 
+85.
+ 
+Calculate the peak value of the emf induced in a
+ 
+circular coil of 1000 turns of radius 4cm rotating at
+ 
+           
+1800 rpm about an axis in its own plane at right angles to
+ 
+a magnetic field of flux density 0.03T.
+ 
+ 
+
+--- page 18 ---
+ 
+ 
+(A)    30.62 volts    
+(B)       20.26  volts  (C)    25.02  volts  
+(D)
+ 
+28.43  volts.
+ 
+ 
+86.
+ 
+Which of the following is suitable for measuring
+ 
+the quantity of charge?
+ 
+ 
+(A) Ballistic Galvanometer
+    
+(B)   Powerful Galvanometer (C)
+ 
+Holistic Galvanometer (D)   Meter Bridge
+ 
+ 
+ 
+ 
+87.
+ 
+A particular
+ 
+component of the direct current 
+generator that
+ 
+maintains the direction of the generated emf in the circuit is the
+ 
+ 
+ 
+ 
+(A)   Commutator 
+  
+(B)       Slip ring            (C)       Armature
+ 
+       
+(D)       Rectangular coil
+ 
+ 
+ 
+88.
+ 
+The direction of magnetic field c
+an determined using
+ 
+ 
+(A) The right hand grip rule
+  
+(B)   just the electron (C)   Maxwellian
+ 
+rule (D)   Faraday’s direction
+ 
+ 
+ 
+89.
+ 
+The negative sign in Faraday’s law of electromagnetic 
+induction indicates
+ 
+ 
+(A) Induced emf   
+(B)   direction of induced current
+    
+(C)   Current     
+(D)
+ 
+Faraday’s direction
+ 
+ 
+ 
+90.
+ 
+In an a.c generator the magnitude of the emf 
+generated increases with
+ 
+ 
+ 
+i)                    Increase in the strength of the magnet
+ 
+ 
+ii)                   Decrease in the rate of change of the flux
+ 
+ 
+iii)    
+             
+Increase in the number of turns of the coil
+ 
+ 
+iv)                 Increase in area of the coil
+ 
+ 
+ 
+Which of the state is correct.
+ 
+ 
+ 
+(A)  i,   ii,   and   iii    
+(B)     i,  iii  and  iv
+   
+(C)    ii,
+ 
+iii  and  iv   (D)    i   and  iii
+ 
+ 
+ 
+ 
+91.
+ 
+The induc
+ed emf generated in an alternator is such
+ 
+in a direction as to oppose the motion producing it.  This statement
+ 
+is
+ 
+ 
+ 
+(A)              Right hand grip rule       (B)   Faraday’s law
+ 
+(C)        Fleming’s law     
+(D)   Lenz’s law
+ 
+ 
+ 
+92.
+ 
+Which of the following does 
+not correctly describe the
+ 
+conventional current?
+ 
+ 
+            
+(A) Electric charge moves from the positive side of the
+ 
+power source to the negative.
+ 
+ 
+            
+(B) A flow of positive charge gives the same electric
+ 
+current as an opposite flow of negative c
+harge.
+ 
+ 
+            
+(C) The opposite flows of opposite charges contribute to a
+ 
+single electric current.
+ 
+ 
+            
+(D) None
+ 
+ 
+ 
+93.
+ 
+Which of the following statement is not true?
+ 
+ 
+            
+(A) In solid metals such as wires, the positive charge
+ 
+carriers are i
+mmobile.
+ 
+ 
+            
+(B) In solid metals such as wires, the positive charge
+ 
+carriers are mobile.
+ 
+ 
+            
+(C)   Because the electron carries negative charge, the
+ 
+electron motion in a metal is in the direction opposite to that of
+ 
+conventional (or 
+electric) current.
+ 
+ 
+            
+(D) In solid metals such as wires, only the negatively
+ 
+charged electrons flow.
+ 
+ 
+ 
+94.
+ 
+Which of the following does not have a mobile charge 
+carrier?
+ 
+ 
+             
+(A)      Metals   
+(B)       Insulators
+    
+(C)  Semiconductors   (D)
+  
+None
+ 
+ 
+ 
+95.
+ 
+Which of the following does not have a charge carrier?
+ 
+ 
+            
+(A)       Metals    (B)     Insulators   (C)
+ 
+Semiconductors      
+(D)           None
+ 
+ 
+ 
+96.
+ 
+A flat circular coil with 40 loops of wire has a diameter 
+of 32
+ 
+cm. What current must flow in
+ 
+its wire to produce a field of 3
+ 
+X10
+-
+4Wb/m2 at its Centre?
+ 
+ 
+(A) 1.29A        
+(B)   1.09A 
+   
+(C)   1.19A  (D)   1.9A
+ 
+ 
+ 
+97.
+ 
+An air core solenoid with 2000 loops is 60cm long and 
+has a
+ 
+diameter of 2 cm . If a current of 5A is sent through it, what will be
+ 
+the 
+flux density within it?
+ 
+ 
+(A)  0.21T        (B)   0.12T  (C)   1.02T  
+(D)    0.021T
+ 
+ 
+ 
+ 
+98.
+ 
+Two long parallel wires X and Y are 10cm apart and 
+carry
+ 
+currents 6A and 4A respectively. Find the force on a 1m length of wire
+ 
+Y if the currents are in the same directio
+n.
+ 
+ 
+(A)  48μN attractive force.
+   
+(B)   4.8N attractive force.   (C)   48μN
+ 
+repulsive force (D)   4.8N repulsive force
+ 
+ 
+99.
+ 
+Three long, straight, parallel wires X,Y and Z carry 
+currents
+ 
++30A,
+-
+10A and +20A respectively, Where XY is 3cm apart and YZ is 
+5cm
+ 
+apart
+ 
+and +/ 
+–
+ 
+indicates their directions. Find the force on a 25cm
+ 
+length of wire Y.
+ 
+ 
+(A) 3.3mN       (B)   2.3mN (C)   1.3mN 
+(D)   0.3mN
+ 
+ 
+ 
+100.
+ 
+Two long parallel wires X and Y are 10cm apart and
+ 
+carry currents 6A and 4A respectively. Find the             force on 
+a
+ 
+1m length of wire Y if the currents are in the opposite direction.
+ 
+ 
+(A)  48μN attractive force. (B)   4.8N attractive force.   
+(C)   48μN
+ 
+repulsive force
+   
+(D)   4.8N repulsive force
+ 
+ 
+ 
+ 
+101.
+ 
+What is the value of B in air at a point 5 cm from a 
+long
+ 
+straight 
+wire carrying a current of 15A?
+ 
+ 
+            
+(A) 6X10
+-
+2T     (B) 6X10
+-
+4T    (C) 6X10
+-
+1T    
+(D) 6X10
+-
+5T
+ 
+ 
+ 
+102.
+ 
+An air core solenoid with 2000 loops is 60cm long and 
+has a
+ 
+diameter of 2 cm . If a current of 5A is sent through it, what will be
+ 
+the flux density wit
+hin it?
+ 
+ 
+(A) 0.21T         (B) 0.12T  (C) 1.02T  
+(D)  0.021T
+ 
+ 
+ 
+ 
+ 
+103.
+ 
+Which of the following is correct?
+ 
+ 
+            
+(A) 1Wb=1NmA         
+(B) 1Wb=1Vs
+   
+(C) 1Wb=1Nm
+-
+1A
+-
+1 (D) 
+1Wb=1NAm
+-
+1
+ 
+ 
+
+--- page 19 ---
+ 
+104.
+ 
+We can define the unit of magnetic flux density as
+ 
+ 
+             
+(A) tesla 
+        
+(B) weber          (C) NA
+-
+1            (D) Nm
+-
+2
+ 
+ 
+105.
+ 
+A copper bar 30cm long is perpendicular to a field
+ 
+of flux density 0.8Wb/m2 and moves at right angles   to the field with
+ 
+a speed of 0.5m/s.Determine the emf induced in the bar.
+ 
+ 
+          
+  
+(A)  0.0012V     (B) 0.012V      
+(C) 0.12V
+     
+(D) 1.2V
+ 
+ 
+106.
+ 
+Which of the following is suitable for measuring
+ 
+the quantity of charge?
+ 
+ 
+            
+(A) Ballistic Galvanometer 
+    
+(B)   Galvanometer    (C) Holistic 
+Galvanometer      (D) Meter Bridge
+ 
+ 
+ 
+ 
+107.
+ 
+A 5 W r
+esistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power supply. Find the current in the circuit.
+ 
+ 
+(A) 178A         (B)       224A   (C)       5A      
+ 
+(D)       6A
+ 
+ 
+ 
+ 
+108.
+ 
+A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30V, 1780 Hz power supply. Find  the phase angle between
+ 
+source voltage and current.
+ 
+ 
+ 
+(A)       0
+0
+            
+(B)       30
+0
+       
+(C)       90
+0
+       
+(D)       270
+0
+ 
+ 
+ 
+ 
+109.
+ 
+A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power supply. Find the power loss in th
+e
+ 
+circuit.
+ 
+ 
+(A)       0W      (B)       60W    (C)       120W             
+ 
+(D)       180W
+ 
+ 
+ 
+ 
+110.
+ 
+A 5 W resistance is in a series circuit with a 0.2 H pure
+ 
+inductance and a 40 nF pure capacitance. The combination is placed
+ 
+across a 30v, 1780 Hz power supply. Fi
+nd the voltmeter reading across
+ 
+elements of the circuit.
+ 
+ 
+ 
+ 
+(A)       30V, 13.44V,13.44V   (B)       30kV, 13.44kV,13.44V
+ 
+ 
+(C)       30V, 13.44kV,13.44kV 
+                      
+(D)       30kV,
+ 
+13.44kV,13.44kV
+ 
+ 
+ 
+ 
+111.
+ 
+A series circuit connected across a 200V, 
+60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the current in the circuit.
+ 
+ 
+(A)       100A               (B)       20A           
+      
+(C)
+ 
+10A                
+ 
+(D)       2A
+ 
+ 
+ 
+ 
+112.
+ 
+A series circuit connected across a 200V, 60Hz line 
+consists
+ 
+of a capacitor of capacitive reactance 30 W, a non inductive resistor
+ 
+of 44 W, and a coil of inductive reactance 90 W, having a resistance
+ 
+36 W. Dete
+rmine the impedance of the circuit.
+ 
+ 
+(A)       100W          
+     
+(B)       20W                 (C)
+ 
+10W                 (D)       2W
+ 
+ 
+ 
+ 
+113.
+ 
+A series circuit connected across a 200V, 60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductiv
+e resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the potential difference across the non inductive
+ 
+resistor of 44 W.
+ 
+ 
+(A)       100V               (B)       60V           
+ 
+(C)  88V 
+                
+(D)       97V
+ 
+ 
+ 
+ 
+114.
+ 
+A series circuit connected across a 200V, 60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the pot
+ential difference across the capacitor
+ 
+ 
+(A)       100V              
+ 
+(B)       60V
+                 
+(C)
+ 
+88V                 (D)       97V
+ 
+ 
+ 
+ 
+115.
+ 
+A series circuit connected across a 200V, 60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non indu
+ctive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the potential difference across the coil
+ 
+ 
+(A)       194V      
+         
+(B)       60V                 (C)
+ 
+180V               (D)       97V
+ 
+ 
+ 
+ 
+116.
+ 
+A series 
+circuit connected across a 200V, 60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of inductive reactance 90 W, having a resistance 36
+ 
+W. Determine the current across the non inductive resistor.
+ 
+ 
+(
+A)       100A               (B)       20A                 (C) 10A                
+ 
+(D)       2A
+ 
+ 
+ 
+ 
+117.
+ 
+A series circuit connected across a 200V, 60Hz line 
+consists of
+ 
+a capacitor of capacitive reactance 30 W, a non inductive resistor of
+ 
+44 W, and a coil of indu
+ctive reactance 90 W, having a resistance 36
+ 
+W. Determine the impedance of the coil
+ 
+ 
+(A)       194W               (B)       60W                 (C)
+ 
+180W               
+(D)       97W
+ 
+ 
+118.
+ 
+When turning at 1500 rev/min, a certain generator 
+produces 100
+ 
+V. what mus
+t   be its angular speed if it to produce 120 V?
+ 
+ 
+(A)    1000 rev/min    (B)   1200 rev/min     (C)   1500 rev/min
+ 
+(D)   1800 rev/min
+ 
+ 
+119.
+ 
+A shunt is connected to a 110V line. When the 
+armature generates
+ 
+a back emf of 104V, the armature current is 15A. Compute
+ 
+the 
+armature
+ 
+resistance.       
+ 
+ 
+ 
+            
+(A)       0.1Ω                (B)       0.8 Ω
+ 
+(C)       0.9 Ω              
+ 
+(D)       0.4 Ω
+ 
+ 
+ 
+ 
+120.
+ 
+A  shunt dynamo has an armature resistance of 0.12 
+Ω. If  it
+ 
+is  connected across          220V  main and is 
+running as a motor,
+ 
+what is the induced, back emf when the       armature current is 50 A?
+ 
+ 
+            
+(A)       214 V     
+                     
+(B)       226V
+ 
+(C)      220V               (D)       260V
+ 
+ 
+ 
+ 
+121.
+ 
+A  shunt dynamo has an armature resistance of 0.12
+ 
+Ω 
+If  it is
+ 
+connected across            220V  main and this machine is running as
+ 
+a generator, what is the     induced emf      when the armature is
+ 
+delivering 50 A at 220V to the shunt field and           external
+ 
+circuit?
+ 
+ 
+            
+(A)       214 V   
+    
+  
+(B)       226V       
+(C)     220V               (D)       
+260V
+ 
+
+--- page 20 ---
+ 
+ 
+ 
+122.
+ 
+A shunt motor with armature resistance 0.08Ω is 
+connected to
+ 
+120V mains. With          50A in the armature what is the back emf?
+ 
+ 
+            
+(A)       116V
+      
+(B)    5.8V                (C)
+ 
+130V   (D)       58V
+ 
+ 
+ 
+ 
+123.
+ 
+A shunt motor with armature resistance 0.08Ω is 
+connected to
+ 
+120V mains. With          50A in the armature what are the back emf
+ 
+and the mechanical power developed within the armature?
+ 
+ 
+         
+   
+(A)       116kW                        
+(B)       5.8kW
+ 
+        
+(C)       130kW                        (D)       58kW
+ 
+ 
+ 
+124.
+ 
+In a shunt motor, the permanent magnet is replaced 
+by an
+ 
+electromagnet           activated by a field coil that shunt the
+ 
+armature. Th
+e shunt motor shown has       armature resistance 0.05 W
+ 
+and is connected to 120 V mains.  What is the    armature current at
+ 
+the starting instant, i.e., before the armature develops any
+ 
+backemf?
+ 
+ 
+            
+(A)       2400A  
+           
+(B)       240A   (C)       24A
+ 
+    
+(D) 2.4A
+ 
+ 
+125.
+ 
+In a shunt motor, the permanent magnet is replaced 
+by an
+ 
+electromagnet            activated by a field coil that shunt the
+ 
+armature. The shunt motor shown has       armature resistance 0.05 W
+ 
+and is 
+connected to 120 V mains. With no starting         resistance,
+ 
+what back emf is generated when the armature current is 20 A?
+ 
+ 
+           
+ 
+(A)       119V  
+             
+(B)       121V
+ 
+(C)       120V               (D)       125V
+ 
+ 
+126.
+ 
+A motor has back emf 110V and
+ 
+armature current 90 
+A when
+ 
+running 1500rpm.           Determine the power.
+ 
+ 
+            
+(A)       9.9W  (B)       99W    (C) 990W       
+ 
+(D)       9900W
+ 
+ 
+ 
+127.
+ 
+A step
+-
+up transformer is used on a 120V line to furnish 
+1800V.
+ 
+The primary has            100 turns.
+ 
+How many turns are on the
+ 
+secondary?
+ 
+ 
+            
+(A)       1200turns         (B)       1400turns
+ 
+(C)       1500turns
+         
+(D)       1800turns
+ 
+ 
+ 
+128.
+ 
+A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac line. The reactance of th
+e capacitor is 40 W.
+ 
+Determine the impedance of the circuit.
+ 
+ 
+            
+(A)       60 W.   
+(B)       50 W.
+   
+(C)       40 W.   (D) 30 W.
+ 
+ 
+ 
+129.
+ 
+A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac line. The reactance of the 
+capacitor is 40 W.
+ 
+Determine the current in the     circuit
+ 
+ 
+(A)      5.5A    
+(B)       4.4A
+    
+(C)       3.5A    (D)       2.5A
+ 
+ 
+ 
+130.
+ 
+A capacitor is in series with a resistance of 30 W and is
+ 
+connected to a 220 V ac line. The reactance of the capacitor is 40 
+W.
+ 
+Determine the phase angle between      the current and the supply
+ 
+voltage.
+ 
+ 
+            
+(A)       
+-
+83
+0
+      
+(B)       
+-
+53
+0
+    
+(C)       
+-
+33
+0 
+    
+(D) 
+-
+63
+0
+ 
+ 
+ 
+131.
+ 
+A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz l
+ine. Compute the current in the coil.
+ 
+ 
+            
+(A)       5.5A   
+ 
+(B)       4.4A
+    
+(C)       3.5A    (D)       2.5A
+ 
+ 
+132.
+ 
+A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the impedance of the
+ 
+circuit.
+ 
+ 
+            
+(A)       22.0W   
+(B)       25.1W
+  
+(C)       27.2W (D)       29.3W
+ 
+ 
+ 
+133.
+ 
+A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the phase angle between
+ 
+the current and the supply volt
+age.
+ 
+ 
+            
+(A)       18.3
+0
+     
+(B)       61.3
+0
+    
+(C)       33
+0
+       
+(D) 63
+0
+ 
+ 
+ 
+134.
+ 
+A coil having inductance 0.14H and resistance 12 W is 
+connected
+ 
+across a 110V,             25Hz line. Compute the power loss in the
+ 
+coil.
+ 
+ 
+            
+(A)       48W    (
+B)       23W    (C)       248W    
+(D) 230W
+ 
+ 
+ 
+135.
+ 
+A 120V ac voltage source is connected across a pure 
+0.70 H
+ 
+inductor. Find the             current through the inductor if the
+ 
+frequency of the source is 60Hz.
+ 
+ 
+            
+(A)       2.5A    (B)       0.25A  (C) 
+      
+4.55A  
+(D)       0.455A
+ 
+ 
+ 
+136.
+ 
+A 120V ac voltage source is connected across a pure 
+0.70 H
+ 
+inductor. Find the             current through the inductor if the
+ 
+frequency of the source is 60kHz.
+ 
+ 
+            
+(A)       2.5mA  (B)       0.25mA            (C)
+ 
+4.55mA            
+(D)       0.455mA
+ 
+ 
+ 
+137.
+ 
+A 2mH inductor is connected across a 15V variable
+-
+frequency
+ 
+electronic oscillator. Find the current 
+through the inductor when the
+ 
+frequency is 100Hz.
+ 
+ 
+             
+(A)      11.9A
+   
+(B)       11.9mA            (C)
+ 
+1.19A
+   
+(D)       1.19mA
+ 
+ 
+138.
+ 
+A 0.3 mF capacitor is connected across a 15V variable
+-
+frequency
+ 
+electronic           oscillator. Find the current through the
+ 
+capacitor when the frequency is 100Hz.
+ 
+ 
+            
+(A)       2.83A  
+ 
+(B)       2.83mA 
+           
+(C)
+ 
+28.3A  
+ 
+(D)       28.3mA
+ 
+ 
+139.
+ 
+Calculate the resonant frequency of a circuit of 
+negligible
+ 
+resistance containing an        inductance of 40mH and a capacitance
+ 
+of 600pf.
+ 
+ 
+            
+(A)       32.5 kHz.
+         
+(B)       325kHz.
+ 
+(C)       32.5Hz.             (D) 325Hz
+.
+ 
+ 

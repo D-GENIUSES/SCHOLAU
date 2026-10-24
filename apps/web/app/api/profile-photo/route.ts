@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRequestSupabase } from "@/lib/supabase/request";
-
 export const runtime = "nodejs";
 export async function GET(request: NextRequest) {
   const headers = { "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff", "Cross-Origin-Resource-Policy": "same-origin" };

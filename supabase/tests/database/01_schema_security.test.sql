@@ -17,7 +17,7 @@ select is(
 select is(
   (select count(*)::integer from pg_class c join pg_namespace n on n.oid = c.relnamespace
    where c.relkind in ('r', 'p') and n.nspname = 'private'),
-  25, 'private schema includes confidential reviews, managed accounts, profile photos and push delivery');
+  32, 'private schema includes confidential reviews, managed accounts, photos, push delivery, materials and registration records');
 
 select ok(not has_schema_privilege('anon', 'private', 'usage'), 'anon has no usage on private');
 select ok(not has_schema_privilege('authenticated', 'private', 'usage'), 'authenticated has no usage on private');
@@ -63,14 +63,15 @@ select ok(not has_function_privilege('authenticated',
 select is(
   (select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and has_function_privilege('anon', p.oid, 'EXECUTE')
-     and p.proname like '%\_v1'),
-  0, 'anon cannot execute any public RPC');
+     and p.proname like '%\_v1'
+     and p.proname not in ('is_username_available_v1', 'suggest_usernames_v1', 'get_registration_legal_status_v1', 'get_registration_options_v1')),
+  0, 'anon can execute only the explicitly public registration RPCs');
 
 select is(
   (select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and has_function_privilege('authenticated', p.oid, 'EXECUTE')
-     and p.proname not like '%\_v1'),
-  0, 'authenticated can execute only *_v1 RPCs in public');
+     and p.proname !~ '_v[0-9]+$'),
+  0, 'authenticated can execute only versioned RPCs in public');
 
 select ok(has_function_privilege('authenticated', 'public.submit_attempt_v1(uuid,jsonb,uuid)', 'EXECUTE'),
   'authenticated can execute public RPCs');

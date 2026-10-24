@@ -4,6 +4,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+\ir ../helpers/legal-fixtures.inc
 
 create function pg_temp.new_user(p_name text) returns uuid language plpgsql as $$
 declare v uuid := gen_random_uuid();
@@ -155,7 +156,7 @@ select ok(position('correct_option' in current_setting('t.fb')::jsonb::text) = 0
 reset role;
 select pg_temp.login(current_setting('t.a')::uuid);
 select is((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'result', 'win', 'A won');
-select is(((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'xp_awarded')::integer, 7,
+select is(((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'xp_awarded')::integer, 22,
   'accuracy plus win bonus applies independently of legacy learning counters');
 select is(jsonb_array_length((public.get_my_battles_v1()) -> 'items'), 1, 'battle history lists the battle');
 reset role;
@@ -248,7 +249,7 @@ select pg_temp.shift_battle(current_setting('t.b4')::uuid, interval '300 seconds
 select ok((private.run_sweep() ->> 'battles_advanced')::integer >= 1, 'sweep advances overdue battles');
 select is((select state from public.battles where id = current_setting('t.b4')::uuid), 'finished', 'worker finalized battle with both clients closed');
 select is((select result_kind from public.battles where id = current_setting('t.b4')::uuid), 'draw', 'equal accuracy is a draw (D05)');
-select is((select sum(amount)::integer from public.points_ledger where source_id = current_setting('t.b4')::uuid), 4, 'zero-correct draw awards 2 XP to each');
+select is((select sum(amount)::integer from public.points_ledger where source_id = current_setting('t.b4')::uuid), 0, 'zero-correct draw awards no XP to either player');
 select ok((select count(*) from private.outbox where topic = 'battle:' || current_setting('t.b4')) >= 1, 'state changes enqueued to the outbox');
 select ok(not exists (select 1 from private.outbox where position('correct' in safe_payload::text) > 0), 'outbox payloads are redacted');
 

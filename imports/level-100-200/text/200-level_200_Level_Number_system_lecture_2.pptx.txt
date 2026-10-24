@@ -1,0 +1,443 @@
+
+
+--- slide 1 ---
+Numbering Systems
+Alamu Femi O PhD
+
+
+--- slide 2 ---
+We have discussed how computers remember numbers using transistors, tiny devices that act like switches with only two positions, on or off. 
+A single transistor, therefore, can only remember one of two possible numbers, a “one” or a “zero”.
+This isn't useful for anything more complex than controlling a light bulb, so for larger values, transistors are grouped together so that their combination of ones and zeros can be used to represent larger numbers.
+It is therefore important to discusses some of the methods that are used to represent numbers with groups of transistors or bits.
+
+
+--- slide 3 ---
+Unsigned Binary Counting
+The simplest form of numeric representation with bits is unsigned binary. 
+When we count upward through the positive integers using decimal, we start with a “0” in the one's place and increment that value until we reach the upper limit of a single digit, i.e., 9. 
+At that point, we've run out of the "symbols" we use to count, and we need to increment the next digit, the ten's place. 
+We then reset the one's place to zero, and start the cycle again.
+Since computers do not have an infinite number of transistors, the number of digits that can be used to represent a number is limited.
+Counting in Decimal
+
+
+--- slide 4 ---
+The Figure below  shows that when counting in binary, we run out of symbols quickly requiring the addition of another "place“ after only the second increment.
+Counting in Binary
+
+
+--- slide 5 ---
+If we were counting using four bits, then the sequence would look like: 
+0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001,
+1010, 1011, 1100, 1101, 1110, and 1111. 
+Notice that when restricted to four bits, we reach our limit at 1111, which happens to be the fifteenth value. 
+It should also be noted that we ended up with 2 x 2 x 2 x 2 = 16 different values. 
+With two symbols for each bit, we have 2n possible combinations of symbols where n represents the number of bits.
+
+
+--- slide 6 ---
+In binary, the rightmost place is considered the ones place just like decimal. 
+The next place is incremented after the ones place reaches 1. This means that the second place in binary represents the value after 1, i.e., a decimal 2. 
+The third place is incremented after a 1 is in both the ones place and the twos place, i.e., we've counted to a decimal 3.
+Therefore, the third place represents a decimal 4. 
+Continuing this process shows us that each place in binary represents a successive power of two.
+
+
+--- slide 7 ---
+The Figure below uses 5 bits to count up to a decimal 17. Examine each row where a single one is present in the binary number. This reveals what that position represents. 
+For example, a binary 01000 is shown to be equivalent to a decimal 8. Therefore, the fourth bit position from the right is the 8’s position.
+Binary-Decimal Equivalents from 0 to 17
+
+
+--- slide 8 ---
+The information above helps us develop a method for converting unsigned binary numbers to decimal and back to unsigned binary.
+This gives us a method for indicating which representation is being used when writing a number down on paper. 
+For example, does the number 100 represent a decimal value or a binary value? 
+Since binary is base-2 and decimal is base-10, a subscript "2" is placed at the end of all binary numbers and a subscript "10" is placed at the end of all decimal numbers. 
+This means a binary 100 should be written as 1002 and a decimal 100 should be written as 10010.
+
+
+--- slide 9 ---
+Binary Terminology
+When writing values in decimal, it is common to separate the places or positions of large numbers in groups of three digits separated by commas. 
+For example, 34532374510 is typically written 345,323,74510 showing that there are 345 millions, 323 thousands, and 745 ones. 
+This practice makes it easier to read and comprehend the magnitude of the numbers.
+Binary numbers are also divided into components depending on their application. Each binary grouping has been given a name.
+
+
+--- slide 10 ---
+To begin with, a single place or position in a binary number is called a bit, short for binary digit. For example, the binary number 01102 is made up of four bits. 
+The rightmost bit, the one that represents the ones place, is called the Least Significant Bit or LSB. 
+The leftmost bit, the one that represents the highest power of two for that number, is called the Most Significant Bit or MSB. 
+Note that the MSB represents a bit position. It doesn't mean that a '1' must exist in that position.
+
+
+--- slide 11 ---
+The next four terms describe how bits might be grouped together.
+• Nibble – A four bit binary number
+• Byte –    A unit of storage for a single character, typically an 	    	       eight bit (2 nibble) binary number (short for binary term)
+• Word –  Typically a sixteen bit (2 byte) binary number
+• Double Word – A thirty-two bit (2 word) binary number
+The following are some examples of each type of binary number.
+Bit 				12
+Nibble 			10102
+Byte 				101001012
+Word 				10100101111100002
+Double Word 		101001011111000011001110111011012
+
+
+--- slide 12 ---
+Unsigned Binary to Decimal Conversion
+Each place or position in a binary number corresponds to a specific power of 2 starting with the rightmost bit which represents 20=1. 
+It is through this organization of the bits that we will convert binary numbers to their decimal equivalent. 
+The Figure  below shows the bit positions and the corresponding powers of two for each bit in positions 0 through 7.
+Values Represented By Each of the First 8 Bit Positions
+
+
+--- slide 13 ---
+To begin converting an unsigned binary number to decimal, identify each bit position that contains a 1. 
+It is important to note that we number the bit positions starting with 0 identifying the rightmost bit.
+Next, add the powers of 2 for each position containing a 1. This sum is the decimal equivalent of the binary value. 
+Sample Conversion of 101101002 to Decimal
+
+
+--- slide 14 ---
+This brings up an important issue when representing numbers with a computer. Note that when a computer stores a number, it uses a limited number of transistors. 
+If, for example, we are limited to eight transistors, each transistor storing a single bit, then we have an upper limit to the size of the decimal value we can store.
+The largest unsigned eight bit number we can store has a 1 in all eight positions, i.e., 111111112. This number cannot be incremented without forcing an overflow to the next highest bit. 
+Therefore, the largest decimal value that 8 bits can represent in unsigned binary is the sum of all powers of two from 0 to 7.
+111111112 = 27 + 26 + 25 + 24 + 23 + 22 + 21 + 20
+= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1
+= 25510
+
+
+--- slide 15 ---
+If you add one to this value, the result is 256 which is 28, the power of two for the next bit position. This makes sense because if you add 1 to 111111112, then beginning with the first column, 1 is added to 1 giving us a result of 0 with a 1 carry to the next column. 
+This propagates to the MSB where a final carry is passed to the ninth bit.
+The final value is then 1000000002 = 25610. 
+111111112 + 1 = 1000000002 = 25610 = 28
+Therefore, the maximum value that can be represented with 8 bits in unsigned binary is 28 – 1 = 255.
+It turns out that the same result is found for any number of bits. The maximum value that can be represented with n bits in unsigned binary is 2n – 1.
+
+
+--- slide 16 ---
+
+
+--- slide 17 ---
+Binary Numbers
+Hexadecimal Numbers
+Base Conversions
+Integer Storage Sizes
+Binary and Hexadecimal Addition
+Signed Integers and 2's Complement Notation
+Binary and Hexadecimal subtraction
+Carry and Overflow
+Character Storage
+
+
+--- slide 18 ---
+# Binary Numbers
+Digits are 1 and 0
+1 = true
+0 = false
+MSB – most significant bit
+LSB – least significant bit
+Bit numbering:
+
+
+--- slide 19 ---
+# Binary Numbers
+Each digit (bit) is either 1 or 0
+Each bit represents a power of 2:
+Every binary number is a sum of powers of 2
+
+
+--- slide 20 ---
+# Converting Binary to Decimal
+Weighted positional notation shows how to calculate the decimal value of each binary bit:
+Decimal = (dn-1  2n-1) + (dn-2  2n-2) + ... + (d1  21) + (d0  20)
+d = binary digit
+binary 00001001 = decimal 9:
+	(1  23) + (1  20) = 9
+
+
+--- slide 21 ---
+# Convert Unsigned Decimal to Binary
+Repeatedly divide the decimal integer by 2. Each remainder is a binary digit in the translated value:
+37 = 100101
+
+
+--- slide 22 ---
+# Hexadecimal Integers
+Binary values are represented in hexadecimal.
+
+
+--- slide 23 ---
+# Converting Binary to Hexadecimal
+Each hexadecimal digit corresponds to 4 binary bits.
+Example: Translate the binary integer 000101101010011110010100 to  hexadecimal:
+
+
+--- slide 24 ---
+# Converting Hexadecimal to Decimal
+Multiply each digit by its corresponding power of 16:
+	Decimal = (d3  163) + (d2  162) + (d1  161) + (d0  160)
+	d = hexadecimal digit
+Examples:
+Hex 1234 = (1  163) + (2  162) + (3  161) + (4  160) =
+	Decimal 4,660 
+Hex 3BA4 = (3  163) + (11 * 162) + (10  161) + (4  160) =
+	Decimal 15,268
+
+
+--- slide 25 ---
+# Converting Decimal to Hexadecimal
+Decimal 422 = 1A6 hexadecimal
+Repeatedly divide the decimal integer by 16. Each remainder is a hex digit in the translated value:
+
+
+--- slide 26 ---
+# Integer Storage Sizes
+Class work 
+What is the largest unsigned integer that may be stored in 20 bits?
+Standard sizes:
+
+
+--- slide 27 ---
+Binary Math and Signed Representations
+Alamu Femi O. PhD 
+
+
+--- slide 28 ---
+# Binary Addition
+Start with the least significant bit (rightmost bit)
+Add each pair of bits
+Include the carry in the addition, if present
+
+
+--- slide 29 ---
+# Hexadecimal Addition
+Divide the sum of two digits by the number base (16). The quotient becomes the carry value, and the remainder is the sum digit.
+Important skill: Programmers frequently add and subtract the addresses of variables and instructions.
+
+
+--- slide 30 ---
+# Signed Integers
+Several ways to represent a signed number
+Sign-Magnitude
+Biased
+1's complement
+2's complement
+Divide the range of values into 2 equal parts
+First part corresponds to the positive numbers (≥ 0)
+Second part correspond to the negative numbers (< 0)
+Focus will be on the 2's complement representation
+Has many advantages over other representations
+Used widely in processors to represent signed integers
+
+
+--- slide 31 ---
+# Two's Complement Representation
+Positive numbers
+Signed value = Unsigned value
+Negative numbers
+Signed value = Unsigned value – 2n
+n = number of bits
+Negative weight for MSB
+Another way to obtain the signed value is to assign a negative weight to most-significant bit
+= -128 + 32 + 16 + 4 = -76
+
+
+--- slide 32 ---
+# Forming the Two's Complement
+Sum of an integer and its 2's complement must be zero:
+00100100 + 11011100 = 00000000 (8-bit sum)  Ignore Carry
+The easiest way to obtain the 2's complement of a binary number is by starting at the LSB, leaving all the 0's unchanged, look for the first occurrence of a 1. Leave this 1 unchanged and complement all the bits after it.
+
+
+--- slide 33 ---
+# Sign Bit
+Highest bit indicates the sign. 1 = negative, 0 = positive
+If highest digit of a hexadecimal is > 7, the value is negative
+Examples: 8A and C5 are negative bytes
+A21F and 9D03 are negative words
+B1C42A00 is a negative double-word
+
+
+--- slide 34 ---
+# Sign Extension
+Step 1: Move the number into the lower-significant bits
+Step 2: Fill all the remaining higher bits with the sign bit
+This will ensure that both magnitude and sign are correct
+Examples
+Sign-Extend 10110011 to 16 bits
+Sign-Extend 01100010 to 16 bits
+Infinite 0's can be added to the left of a positive number
+Infinite 1's can be added to the left of a negative number
+
+
+--- slide 35 ---
+# Two's Complement of a Hexadecimal
+To form the two's complement of a hexadecimal
+Subtract each hexadecimal digit from 15
+Add 1
+Examples:	    15 15 15 15
+2's complement of  6   A    3     D = 95C2 + 1 = 95C3
+2's complement of 92F0 = 6D0F + 1 = 6D10
+2's complement of FFFF = 0000 + 1 = 0001
+No need to convert hexadecimal to binary
+
+
+--- slide 36 ---
+# Binary Subtraction
+When subtracting A – B, convert B to its 2's complement
+Add A to (–B)
+	 0 0 0 0 1 1 0 0	0 0 0 0 1 1 0 0
+	 0 0 0 0 0 0 1 0	1  1  1 1 1 1  1 0  (2's complement)
+	 0 0 0 0 1 0 1 0	0 0 0 0 1 0 1 0  (same result)
+Carry is ignored, because
+Negative number is sign-extended with 1's
+You can imagine infinite 1's to the left of a negative number
+Adding the carry to the extended 1's produces extended zeros
+Practice: Subtract 00100101 from 01101001.
+–
++
+
+
+--- slide 37 ---
+# Hexadecimal Subtraction
+When a borrow is required from the digit to the left, add 16 (decimal) to the current digit's value
+Last Carry is ignored
+Practice: The address of var1 is 00400B20. The address of the next variable after var1 is 0040A06C. How many bytes are used by var1?
+
+
+--- slide 38 ---
+# Ranges of Signed Integers
+The unsigned range is divided into two signed ranges for positive and negative numbers
+Practice: What is the range of signed values that may be stored in 20 bits?
+
+
+--- slide 39 ---
+# Carry and Overflow
+Carry is important when …
+Adding or subtracting unsigned integers
+Indicates that the unsigned sum is out of range
+Either < 0 or >maximum unsigned n-bit value
+Overflow is important when …
+Adding or subtracting signed integers
+Indicates that the signed sum is out of range
+Overflow occurs when
+Adding two positive numbers and the sum is negative
+Adding two negative numbers and the sum is positive
+Can happen because of the fixed number of sum bits
+
+
+--- slide 40 ---
+# Carry and Overflow Examples
+We can have carry without overflow and vice-versa
+Four cases are possible
+
+
+--- slide 41 ---
+# Character Storage
+Character sets
+Standard ASCII: 7-bit character codes (0 – 127)
+Extended ASCII: 8-bit character codes (0 – 255)
+Unicode: 16-bit character codes (0 – 65,535)
+Unicode standard represents a universal character set
+Defines codes for characters used in all major languages
+Used in Windows-XP: each character is encoded as 16 bits
+UTF-8: variable-length encoding used in HTML
+Encodes all Unicode characters
+Uses 1 byte for ASCII, but multiple bytes for other characters
+Null-terminated String
+Array of characters followed by a NULL character
+
+
+--- slide 42 ---
+# Printable ASCII Codes
+Examples:
+ASCII code for space character = 20 (hex) = 32 (decimal)
+ASCII code for 'L' = 4C (hex) = 76 (decimal)
+ASCII code for 'a' = 61 (hex) = 97 (decimal)
+
+
+--- slide 43 ---
+# Control Characters
+The first 32 characters of ASCII table are used for control
+Control character codes = 00 to 1F (hex)
+Not shown in previous slide
+Examples of Control Characters
+Character 0 is the NULL character  used to terminate a string
+Character 9 is the Horizontal Tab (HT) character
+Character 0A (hex) = 10 (decimal) is the Line Feed (LF)
+Character 0D (hex) = 13 (decimal) is the Carriage Return (CR)
+The LF and CR characters are used together
+They advance the cursor to the beginning of next line
+One control character appears at end of ASCII table
+Character 7F (hex) is the Delete (DEL) character
+
+
+--- slide 44 ---
+# Terminology for Data Representation
+Binary Integer
+Integer stored in memory in its binary format
+Ready to be used in binary calculations
+ASCII Digit String
+A string of ASCII digits, such as "123"
+ASCII binary
+String of binary digits: "01010101"
+ASCII decimal
+String of decimal digits: "6517"
+ASCII hexadecimal
+String of hexadecimal digits: "9C7B"
+
+
+--- slide 45 ---
+Gray Codes
+The use of binary counting sequences is common in digital applications. For example, an n-bit binary value can be used to identify the position of a rotating shaft as being within one of 2n different arcs.
+As the shaft turns, a sensor can detect which of the shaft's arcs it is aligned with by reading a digital value and associating it with a specific arc. By remembering the previous position and timing the changes between positions, a processor can also compute speed and direction.
+The figure below shows how a shaft's position might be divided into eight arcs using three bits. This would allow a processor to determine theshaft's position to within 360o/8 = 45o.
+
+
+--- slide 46 ---
+Eight Binary Values Identifying Rotating Shaft Position
+
+
+--- slide 47 ---
+One type of shaft position sensor uses a disk mounted to the shaft with slots cut into the disk at different radii representing different bits.
+Light sources are placed on one side of the disk while sensors on the other side of the disk detect when a hole is present, i.e., the sensor is receiving light.
+It is possible to read the sensor at the instant when more than one gap is opening or closing between its light source and sensor. When this happens, some of the bit changes may be detected while others are not. If this happens, an erroneous measurement may occur.
+For example, if the shaft shown above turns clockwise toward position 1012 = 5, but at the instant when the sensor is read, only the first bit change is detected, then the value read will be 1112 = 7 indicating counter-clockwise rotation.
+To solve this problem, alternate counting sequences referred to as the Gray code are used; These sequences have only one bit change between values.
+
+
+--- slide 48 ---
+For example, the values assigned to the arcs of the above shaft could follow the sequence 000, 001, 011, 010, 110, 111, 101, 100. This sequence is not correct numerically, but as the shaft turns, only one bit will change as the shaft turns from one position to the next.
+There is an algorithm to convert an n-bit unsigned binary value to its corresponding n-bit Gray code. 
+Begin by adding a 0 to the most significant end of the unsigned binary value. There should now be n boundaries between the n+1 bits. 
+For each boundary, write a 0 if the adjacent bits are the same and a 1 if the adjacent bits are different. 
+The resulting value is the corresponding n-bit Gray code value.
+
+
+--- slide 49 ---
+Example convert the 6 bit value 1000112 to Gray code
+
+
+--- slide 50 ---
+Derivation of the Four-Bit Gray Code
+
+
+--- slide 51 ---
+Assignment 
+1. Create the 5-bit Gray code sequence
+2. Convert the following numbers to hexadecimal.
+a) 10101111001011000112
+b) 100101010010011010012
+c) 011011010010100110012
+d) 101011001000102
+
+
+--- slide 52 ---
+Thank you for listening 

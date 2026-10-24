@@ -1,0 +1,123 @@
+[Normal] NAME: MUOKA JUDE CHUKWUDI.
+[Normal] MATRIC NO: 24/1164
+[Normal] DEPT: COMPUTER SCIENCE
+[Normal] COURSE TITLE: ENTREPRENEURSHIP AND INNOVATION
+[Normal] COURSE CODE: ENT 211
+[Normal] LECTURER: MR OGINNI
+[Normal] ASSIGNMENT TITLE
+[Normal] Various forms of business organization
+[Normal] .Meaning of Business Organization
+[Normal] A business organization is an establishment formed by individuals or groups to carry out commercial, industrial, or professional activities with the aim of earning profits or achieving specific objectives.
+[Normal] The form of business organization determines how ownership, control, profit, risk, and legal responsibilities are shared.
+[List Paragraph] Sole Proprietorship(One-Man Business)
+[List Paragraph] Definition:
+[List Paragraph] A sole proprietorship is a business owned, controlled, and managed by one person who provides the capital, takes all decisions, enjoys all profits, and bear all losses.
+[List Paragraph]          .Features:
+[List Paragraph] .Owned by one individual.
+[List Paragraph] .Easy to form and dissolve.
+[List Paragraph] .Profits and losses belong entirely to the owner.
+[List Paragraph] .Decision-making is quick and flexible. 
+[List Paragraph]         .Advantages:
+[List Paragraph] . Ease of formation and closure – few legal formalities.
+[List Paragraph] . Direct motivation – the owner enjoys all profits.
+[List Paragraph] .Quick decision-making – no need to consult others.
+[List Paragraph] . Flexibility – easy to change the line of business.
+[List Paragraph]           .Disadvantages:
+[List Paragraph] ✅ Limited capital – financing depends on the owner’s resources.
+[List Paragraph] ✅ Unlimited liability – owner’s personal assets are at risk.
+[List Paragraph] ✅ Business continuity problem – death or illness may end the business.
+[List Paragraph]     Examples:
+[List Paragraph] . Tailors, barbers, small shop owners, artisans, roadside food vendors, etc.
+[List Paragraph] PARTNERSHIP
+[List Paragraph] Definition:
+[Normal] A partnership is a business owned and operated by two or more people (usually between 2 & 20) who contribute capital and share profits, losses, and management responsibilities according to an agreed partnership deed.
+[List Paragraph] ✅ Features:
+[List Paragraph] Formed by an agreement (verbal or written, usually a partnership deed).
+[List Paragraph] Ownership between 2 and 20 people (in some countries, 2 to 10 for banking).
+[List Paragraph] Lack of separate legal existence from the owners.
+[List Paragraph] Types of Partners:
+[List Paragraph] ✅ Active Partner – takes part in management.
+[List Paragraph] ✅ Sleeping Partner – invest capital but doesn’t manage.
+[List Paragraph] ✅ Minor partner – under 18, admitted to benefits of partnership
+[List Paragraph]       . Advantages:
+[List Paragraph] More capital than sole proprietorship
+[List Paragraph] Shared responsibilities and risks.
+[List Paragraph] Ease of formation and operation.
+[List Paragraph] Combined talents and skills.
+[List Paragraph]        . Disadvantages:
+[List Paragraph] Unlimited liability (for general partners).
+[List Paragraph] Death and withdrawal of partner may dissolve the firm.
+[List Paragraph] Lack of public confidence due to secrecy.
+[List Paragraph] .Examples:
+[List Paragraph] .Law firms, accounting firms, medical practices, small-scale construction companies.
+[List Paragraph] Joint-Stock Company (Limited Liability Company)
+[List Paragraph] . Definition:
+[List Paragraph] A joint-stock company is a business organization with legal existence separate from its owners, whose capital is divided into shares transferable by shareholders.
+[List Paragraph]      ✅ Features:
+[List Paragraph] Separate legal entity.
+[List Paragraph] Ownership by shareholders.
+[List Paragraph] Subject to company law and public disclosure.
+[List Paragraph] Managed by a board of directors.
+[List Paragraph] ✅ Advantages:
+[List Paragraph] Large capital can be raised from many investors.
+[List Paragraph] Better management through specialization.
+[List Paragraph] Limited liability encourages investment.
+[List Paragraph] ✅ Disadvantages:
+[List Paragraph] Complex and costly formation process.
+[List Paragraph] Possible separation of ownership and control (leading to conflict).
+[List Paragraph] Lack of secrecy in operations.
+[List Paragraph] Examples:
+[List Paragraph] .Dangote Cement Plc, Nestle Nigeria Plc, MTN Nigeria Communication Plc.
+[List Paragraph] Cooperative Society
+[List Paragraph] Definition:
+[List Paragraph] A cooperative society is a voluntary association of people with common interests who contribute resources to meet their mutual economic, social, or cultural needs through a jointly owned enterprise.
+[List Paragraph] ✅ Features:
+[List Paragraph] . Voluntary membership.
+[List Paragraph] . Surplus distributed based on patronage, not capital.
+[List Paragraph] . Democratic control (“one man, one vote”).
+[List Paragraph] ✅ Advantages:
+[List Paragraph] . Encourages savings and cooperation.
+[List Paragraph] . Democratic decision-making.
+[List Paragraph] . Improves members’ welfare.
+[List Paragraph] ✅ Disadvantages:
+[List Paragraph] . Poor management (often voluntary or inexperienced).
+[List Paragraph] . Risk of corruption or mismanagement by officials.
+[List Paragraph] . Slow decision-making.
+[List Paragraph] Public Enterprises (state-owned enterprises).
+[List Paragraph] Definition:
+[List Paragraph] Public enterprises are businesses owned, financed, and managed by the government to provide essential goods or services that may not be profitable for private individuals.
+[List Paragraph] ✅ Features:
+[List Paragraph] . Owned by the government.
+[List Paragraph] .Managed by boards appointed by the state.
+[List Paragraph] . Funded through public revenue.
+[List Paragraph] . Subject to political control.
+[List Paragraph] ✅Advantages
+[List Paragraph] .provision of essential services (electricity, transport. water).
+[List Paragraph] .Large capital investment possible through government funding.
+[List Paragraph] .Prevents exploitation of consumers.
+[List Paragraph] ✅Disadvantages
+[List Paragraph] Bureaucratic inefficiency.
+[List Paragraph] Lack of profit motive leads to waste.
+[List Paragraph] Slow decision-making process.
+[List Paragraph] ✅Examples:
+[List Paragraph] . Nigerian Railway Corporation, NNPC ltd, Federal Airports Authority of Nigeria.
+[List Paragraph] JOINT VENTURE
+Definition:
+[List Paragraph] A joint venture is a temporary or permanent business arrangement where two or more parties combine resources to undertake a specific project while maintaining their separate legal identities.
+[List Paragraph] ✅ Features:
+[List Paragraph] . Shared ownership and control.
+[List Paragraph] . Joint investment of capital and skills.
+[List Paragraph] . Usually for a specific project or period.
+[List Paragraph] ✅Advantages
+[List Paragraph] Combines strengths of partners.
+[List Paragraph] Shares risks and costs.
+[List Paragraph] Facilitates technology and knowledge transfer.
+[Normal] ✅Disadvantages
+[List Paragraph] Potential for conflict over control or profits.
+[List Paragraph] Cultural and management differences.
+[List Paragraph] Complex agreements.
+[List Paragraph] ✅Examples:
+[List Paragraph] . NLNG (Nigeria National Gas), a joint venture between NNPC and international oil companies.
+[List Paragraph] FRANCHISE
+[List Paragraph] Definition:
+[List Paragraph] A franchise is a business arrangement where one party ()

@@ -12,11 +12,13 @@ next-env.d.ts
 
 # turbo
 .turbo/
+.netlify/
+.vercel/
 
 # env
-.env
-.env*.local
+.env*
 !.env.example
+!.env.*.example
 
 # supabase local state
 supabase/.temp/
@@ -33,5 +35,18 @@ Thumbs.db
 .idea/
 coverage/
 
-# local course-import working files (source zips and prepared drafts)
-imports/
+# local tooling
+__pycache__/
+*.py[cod]
+.venv/
+playwright-report/
+test-results/
+
+# Private course source binaries are provisioned locally or uploaded to the private R2 bucket.
+apps/web/private/course-materials/
+
+# Private generated course synchronization bundles and results
+.content-sync/
+.security-verification/
+.legal-verification/
+.vercel

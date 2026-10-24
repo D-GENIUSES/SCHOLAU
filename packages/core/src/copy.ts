@@ -3,7 +3,7 @@ export const COPY = {
   tagline: "Study. Compete. Rise.",
   battle: {
     unlimited: "Unlimited battles | Earn XP for accuracy and results.",
-    rewards: "2 XP per correct answer · Win bonus +5 · Draw bonus +2",
+    rewards: "2 XP per correct answer for both players · Win bonus +20 · No draw bonus",
     rewardsNote: "XP applies to your first 10 completed matches daily, at most 2 against the same opponent. Resets at midnight Africa/Lagos.",
     format: "5–30 questions · reading time, then 5–15 seconds to answer · accuracy only — equal scores draw.",
     noOpponent: "No opponent found yet.",

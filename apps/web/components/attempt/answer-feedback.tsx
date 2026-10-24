@@ -18,10 +18,12 @@ export function AnswerFeedback({
   correct,
   explanation,
   className,
+  animate = false,
 }: {
   correct: boolean;
   explanation: string | null | undefined;
   className?: string;
+  animate?: boolean;
 }) {
   return (
     <div
@@ -32,7 +34,7 @@ export function AnswerFeedback({
       )}
     >
       <p className={cn("inline-flex items-center gap-2 font-bold", correct ? "text-success" : "text-danger")}>
-        {correct ? <CheckCircle2 className="size-5" aria-hidden /> : <XCircle className="size-5" aria-hidden />}
+        {correct ? <span className={animate ? "answer-correct-tick" : undefined} aria-hidden><CheckCircle2 className="size-5" /></span> : <XCircle className="size-5" aria-hidden />}
         {correct ? "Correct" : "Incorrect"}
       </p>
       {explanation ? (

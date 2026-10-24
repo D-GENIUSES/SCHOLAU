@@ -1,0 +1,256 @@
+
+
+--- slide 1 ---
+# 
+Digital Logic Design 
+IFT 211 
+Alamu F.O. Ph.D.
+
+
+--- slide 2 ---
+Administration of the course:
+The students are expected to attend all classes. An official written document stating why you are absent from any class or test if per chance you are absent from the class. Hence a notice of such absences should be submitted in writing in advance. An excused absence requires a written testament of illness or other catastrophe from a physician or other official duly certified by UNILAG health center.
+Grading:  
+Grading will be based on class work, quizzes, Exams, Special Assignments/Design Projects and the Final Examination according to the following scheme:
+Continuous assessment			30%
+Examinations					70%
+Total                                                       100%
+
+
+--- slide 3 ---
+
+
+--- slide 4 ---
+
+
+--- slide 5 ---
+Introduction 
+Should computer science students Worry About Hardware?
+Some students of computer and information sciences look at computer hardware the same way many drivers look at their cars: the use of a car doesn't require the knowledge of how to build one.
+Knowing how to design and build a computer may not be vital to the computer professional.
+ But it goes a long way toward improving their skills, i.e., making them better drivers. 
+For anyone going into a career involving computer programming, computer system design, or the installation and maintenance of computer systems, the principles of computer organization provide tools to create better designs. 
+
+
+--- slide 6 ---
+These include:
+System design tools – The same design theories used at the lowest level of system design are also applied at higher levels. For example, the same methods a circuit board designer uses to create the interface between a processor and its memory chips are used to design the addressing scheme of an IP network.
+• Software design tools – The same procedures used to optimize digital circuits can be used for the logic portions of software. Complex blocks of if-statements, for example, can be simplified or made to run faster using these tools.
+• Improved troubleshooting skills – A clear understanding of the inner workings of a computer gives the technician servicing it the tools to isolate a problem quicker and with greater accuracy.
+
+
+--- slide 7 ---
+• Interconnectivity – Hardware is needed to connect the real world to a computer's inputs and outputs. Writing software to control a system such as an automotive air bag could produce catastrophic results without a clear understanding of the architecture and hardware of a microprocessor.
+• Marketability – Embedded system design puts microprocessors into task-specific applications such as manufacturing, communications, and automotive control. As processors become cheaper and more powerful, the same tools used for desktop software design are being applied to embedded system design. 
+ This means that the software engineer with experience in hardware design has a significant advantage over hardware engineers in this market.
+
+
+--- slide 8 ---
+Non-Digital Signals
+The real world is analog. What does that mean? An analog value is equivalent to a floating-point number with an infinite number of places to the right of the decimal point. 
+For example, temperatures do not take on distinct values such as 75°, 76°, 77°, 78°, etc. They take values like 75.434535... 
+In fact, between the temperatures 75.435° and75.436°, there are an infinite number of possible values. 
+A man doesn’t weigh exactly 99kg. Add an atom, and his weight changes.
+When values such as temperature or weight change over time, they follow what is called a continuous curve. 
+Between any two values on the curve, an infinite number of values take place over an infinite number of points in time.
+
+
+--- slide 9 ---
+It is sufficient to say that analog values represent a continuous signal with infinitesimal resolution.
+Continuous Analog Signal with Infinite Resolution
+
+
+--- slide 10 ---
+Digital Signals
+There is such a thing as an analog computer, a computer that processes information using analog levels of electricity or the positions of mechanical devices. 
+The overwhelming majority of today’s computers do not do this, however. 
+Instead, they represent an analog value by converting it to a number with a fixed resolution, i.e., a fixed number of digits to the right of the decimal point. 
+This measurement is referred to as a digital value. 
+If the value is changing with respect to time, then a sequence of measurements can be taken, the period between the measurements typically remaining fixed.
+
+
+--- slide 11 ---
+Sample of Discrete Measurements Taken Every 0.1 Sec
+
+
+--- slide 12 ---
+Since computers look at the world with a fixed resolution in both time and magnitude, when the computer records an analog signal such as the sound waves from music, it does it by taking a sequence of snapshots.
+For example assume an analog "real world" signal such as a sound wave.
+The computer can only measure the signal at intervals. 
+Each measurement is called a sample. 
+The rate at which these samples are taken is called the sampling rate
+The X's in the Figure below represent these measurements.
+
+
+--- slide 13 ---
+Samples Taken of an Analog Signal
+
+
+--- slide 14 ---
+Two problems arise from this process: information can be lost between the measurements and information can be lost due to the rounding of the measurement. 
+First, if the sampling rate is too slow, then some details of the signal may be missed.
+Slow Sampling Rate Missed an Anomaly
+
+
+--- slide 15 ---
+Second, if the computer does not record with enough accuracy (i.e., enough digits after the decimal point) an error may be introduced between the actual measurement and the recorded value.
+Poor Resolution Resulting in an Inaccurate Measurement
+These effects can be reduced by increasing the resolution of the
+measurement and increasing the sampling rate.
+
+
+--- slide 16 ---
+Conversion Systems
+The typical system used to convert an external condition such as pressure, temperature, or light intensity to a format usable by a digital system is shown in the block diagram in Figure below 
+Block Diagram of a System to Capture Analog Data
+
+
+--- slide 17 ---
+The interface between the external condition and the electronics of the system is the sensor. This device converts the environmental conditions into a signal readable by analog electronics. 
+Often, this signal is weak and is easily distorted by noise. Therefore, the output of the sensor is usually amplified and cleaned up before being converted to digital values by the Analog-to-Digital Converter (ADC).
+Continuous operation of this system results in a sequence of digital measurements or samples that are stored in the computer where it can be viewed much like the table of numbers in a spreadsheet.
+There are benefits to using data in a digital format rather than analog. First, if an analog signal is transmitted over long distances, noise attaches itself to the signal. 
+To keep the signal strong enough to reach its destination, it must be amplified. All of the noise that attached itself to the signal, however, is amplified along with the original signal resulting in distortion.
+
+
+--- slide 18 ---
+Noise cannot attach itself to a digital signal. Once an analog signal has been converted to a sequence of numbers, the signal’s characteristics remain the same as long as the numbers don't change.
+Therefore, digital systems such as the contemporary long-distance phone system do not suffer from degradation over long distances.
+A second benefit is that once a signal is turned into a sequence of numbers, mathematical algorithms can be used to operate on the data.
+Disciplines such as Digital Signal Processing (DSP) and the study of wavelets allow for much more accurate processing of signals than analog systems were ever able to achieve.
+A sequence of digital numbers can also be stored more compactly than an analog signal. The data compression behind the MP3 technology is not remotely possible with analog technology. 
+
+
+--- slide 19 ---
+In addition, supplementary data can be stored along with the samples for information such as digital watermarking for security or codes for error checking or error correction.
+These advantages come at a price, however, if the samples are taken too slowly, details of the analog input are missed.
+If the resolution of the samples is not fine enough, the signal may not be precisely represented with the digital values. 
+Last of all, additional hardware is required to convert the signal from analog to digital.
+
+
+--- slide 20 ---
+Representation of Digital Signals
+Digital systems do not store numbers the way humans do. A human can remember the number 4.5 and understand that it represents a quantity. 
+The digital system does not have this capability. Instead, digital systems work with numbers using millions of tiny switches called transistors. 
+Each transistor can remember only one of two possible values, on or off. This is referred to as a binary system.
+The values represented by the transistors of a binary system can be interpreted as needed by the application.
+ On and off can just as easily mean 1 or 0, yes or no, true or false, up or down, or high or low. At this point, it is immaterial what the two values represent. What matters is that there are only two possible values per transistor. 
+
+
+--- slide 21 ---
+The complexity of the computer comes in how the millions of transistors are designed to work together. For the purpose of this discussion, the two values of a transistor will be referred to as logic 1 and logic 0.
+Assume we are recording the binary values present on a single wire controlling a light bulb.
+Excluding lights controlled by dimmer switches, a light bulb circuit is a binary system; the light is either on or off, a logic 1 or a logic 0 respectively. 
+Over time, the state of the light bulb changes following the position of the switch. The top portion of  the Figure below  represents the waveform of the binary signal controlling the light bulb based on the changes in the switch position shown in the lower half of the figure.
+
+
+--- slide 22 ---
+Representation of a Single Binary Signal
+
+
+--- slide 23 ---
+This representation is much like a mathematical x-y plot where the x-axis represents time and the y-axis identifies either logic 1 or 0.
+Sometimes, two or more binary lines are grouped together to perform a single function. For example, the overall lighting in a room may be controlled by three different switches controlling independent banks of lights. 
+This circumstance may be represented with a diagram such as the one shown in Figure below
+Representation of Multiple Digital Signals
+
+
+--- slide 24 ---
+Types of Digital Signals
+Edges
+A single binary signal can have one of two possible transitions as shown in Figure below. The first one, a transition from a logic 0 to a logic 1, is called a rising edge transition. The second one, a transition from a logic 1 to a logic 0 is called a falling edge transition.
+Pulses
+A binary pulse occurs when a signal changes from one value to the other for a short period, then returns to its original value. Examples of this type of signal might be the power-on or reset buttons on a computer (momentarily pressed, then released) or the button used to initialize synchronization between a PDA and a computer
+
+
+--- slide 25 ---
+Digital Transition Definitions
+
+
+--- slide 26 ---
+There are two types of pulses. The first is called a positive-going pulse, and it has an idle state of logic 0 with a short pulse to logic 1.
+The other one, a negative-going pulse, has an idle state of logic 1 with a short pulse to logic 0. Both of these signals are shown in Figure the figure below 
+Pulse Waveforms
+
+
+--- slide 27 ---
+Non-Periodic Pulse Trains
+Some digital signals such as the data wires of an Ethernet link or the data and address lines of a memory interface do not have a characteristic pattern in their changes between logic 1 and logic 0.
+These are called non-periodic pulse trains.
+Non-Periodic Pulse Train
+
+
+--- slide 28 ---
+Periodic Pulse Trains
+Some signals act as the heartbeat to a digital system. For example, a signal might tell a system, "Every 1/100th of a second, you need to ____." 
+The output from a car's processor to control the engine's spark plug is such a signal. These signals are referred to as periodic pulse trains. Like the drum beat to a song, a periodic pulse train is meant to synchronize events or keep processes moving.
+The defining characteristic of this type of waveform is that all measurements between any two subsequent, identical parts of the waveform produce the same value. 
+This value is referred to as the period, T, and it has units of seconds/cycle (read seconds per cycle).
+The figure below  identifies the measurement of a period in a typical periodic Pulse Train
+
+
+--- slide 29 ---
+Periodic Pulse Train
+
+
+--- slide 30 ---
+The measurement of the period does not fully describe a periodic pulse train, however; a second measurement, the width of the pulse, tw, is needed. 
+For example, the two signals in the Figure below have the same period. Their pulse widths, however, are not the same.
+In signal a, tw is about one-fourth of the signal's period while tw of signal b is about one half of the signal's period.
+Periodic Pulse Train with Different Pulse Widths
+
+
+--- slide 31 ---
+The units of tw is seconds. Its value will always be greater than zero and less than the period. A tw of zero implies the signal has no pulses, and if tw equalled the period, then the signal would never go low.
+ It is also common to represent the rate of the pulses in a periodic pulse train with the inverse measurement of the period. This measurement, called the frequency of the periodic pulse train has units of cycles/second, otherwise known as Hertz (Hz).
+To determine the frequency of a periodic pulse train from the period, invert the measurement for the period.
+
+
+--- slide 32 ---
+Example
+If it takes 0.1 seconds for a periodic pulse train to make a complete cycle or period, what is that waveform's frequency?
+Solution
+
+
+--- slide 33 ---
+Example
+If a computer’s system clock is 2 Gigahertz (2,000,000,000 Hz), what is the duration of its system clock’s period?
+Solution
+Using the appropriate  formulae gives us the equation used to determine the period from the frequency.
+Substituting 2,000,000,000 Hz for the frequency in this new equation gives us the following solution.
+Period = 0.0000000005 seconds = 0.5 nanoseconds
+
+
+--- slide 34 ---
+Pulse-Width Modulation
+The last measurement of a periodic waveform is the duty cycle. The duty cycle represents the percentage of time that a periodic signal is a logic '1'. For example, the Figure below represents a periodic pulse train where tw is about one-quarter or 25% of the duration of the period.
+Therefore, the duty cycle of this signal is 25%.
+Periodic Pulse Train with 25% Duty Cycle
+
+
+--- slide 35 ---
+Equation below  represents the formula used to calculate the duty cycle where both tw and T have units of seconds
+Since the range of tw is from 0 to T, then the duty cycle has a range from 0% (a constant logic 0) to 100% (a constant logic 1).
+
+
+--- slide 36 ---
+Unit Prefixes
+You may have noticed that in some of our examples, a prefix was used with the units of seconds or Hertz. 
+This is done to reduce the number of leading zeros between a decimal point and a magnitude or to reduce the number of trailing zeros in a very large magnitude.
+A prefix replaces a power of 10 multiplier. For example, the measurement 5,000 hertz is equivalent to 5 x 103 hertz. 
+The multiplier 103 can be replaced with the prefix "kilo" giving us 5 kilohertz. Each prefix has a single-letter abbreviation that can be used with the abbreviation of the units. For example, to use kilo with the abbreviation Hz, the single letter "k" would be used giving us kHz.
+Throughout this lecture, many prefixes will be used to describe the measurements being discussed. These are presented in the table below. Note that there are prefixes well beyond those presented in this table.
+
+
+--- slide 37 ---
+
+
+--- slide 38 ---
+ Thank you for listening 
+
+
+--- slide 39 ---
+Assignment 
+Name the three parts of the system used to input an analog signal into a digital system and describe their purpose.
+Name four benefits of a digital system over an analog system.
+Name three drawbacks of a digital system over an analog system.

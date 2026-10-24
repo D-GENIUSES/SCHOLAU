@@ -41,7 +41,7 @@ export default function StudyPage() {
     return (
       <>
         {header}
-        <LoadingState label="Loading your courses…" />
+        <LoadingState variant="courses" label="Loading your courses…" />
       </>
     );
   }

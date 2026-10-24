@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, staging]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, types and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      TURBO_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_APP_BUILD: '1'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - name: Set up pnpm from packageManager
+        uses: pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996 # v6
+        with:
+          run_install: false
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Verify splash and installed-app updates
+        run: node scripts/check-splash.mjs && node --test scripts/splash-update.test.mjs scripts/launch-session.test.mjs scripts/push-sw.test.mjs
+      - name: Lint
+        run: pnpm lint
+      - name: Verify authentication and request origin guards
+        run: node --test apps/web/components/auth/google-callback.test.mjs apps/web/lib/utils.test.mjs apps/web/lib/supabase/request-auth.test.mjs apps/web/lib/security-auth.test.mjs
+      - name: Verify streak celebration eligibility
+        run: node apps/web/tests/streak-feedback.mjs
+      - name: Check types
+        run: pnpm typecheck
+      - name: Build
+        run: pnpm build

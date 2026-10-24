@@ -41,5 +41,5 @@ export default function AttemptPage() {
       />
     );
   }
-  return <LoadingState label="Loading your attempt…" />;
+  return <LoadingState variant="question" label="Loading your attempt…" />;
 }

@@ -12,5 +12,5 @@ export default async function AdminUsersPage() {
   if (!session.profile.roles.includes("admin")) return null;
   const { error } = await (await getServerSupabase()).rpc("admin_user_creation_access_v1");
   const enabled = !error && Boolean(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY);
-  return <><PageHeader eyebrow="Administration" title="Users" description="Manage registered students and lecturers, account access and teaching assignments." /><AdminUserDirectory creationEnabled={enabled} /></>;
+  return <><PageHeader eyebrow="Administration" title="Users" description="Manage users, add XP points, control account access and assign teaching courses." /><AdminUserDirectory creationEnabled={enabled} /></>;
 }

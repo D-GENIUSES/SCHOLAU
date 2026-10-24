@@ -1,5 +1,5 @@
-import { RouteSkeleton } from "@/components/ui/skeletons";
+import { LoadingState } from "@/components/ui/states";
 
-export default function StudentLoading() {
-  return <RouteSkeleton />;
+export default function Loading() {
+  return <LoadingState variant="list" />;
 }

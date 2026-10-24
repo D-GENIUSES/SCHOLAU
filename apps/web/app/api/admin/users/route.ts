@@ -3,13 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { adminUserSchema } from "@/lib/admin-users-schema";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { SUPABASE_URL } from "@/lib/env";
+import { isSameOriginRequest } from "@/lib/supabase/request-auth";
+import { readPhotoBody } from "@/lib/profile-photo-server";
 
 export const runtime = "nodejs";
 const reply = (message: string, status: number) => NextResponse.json({ message }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(request: NextRequest) {
   // Cookie-authenticated mutations must come from this application's origin.
-  if (request.headers.get("origin") !== request.nextUrl.origin) return reply("Request origin is not allowed.", 403);
+  if (!isSameOriginRequest(request)) return reply("Request origin is not allowed.", 403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Use JSON for this request.", 415);
   if (Number(request.headers.get("content-length")) > 8192) return reply("Request is too large.", 413);
   try {
@@ -20,8 +22,7 @@ export async function POST(request: NextRequest) {
     const { data: access, error: accessError } = await client.rpc("admin_user_creation_access_v1");
     if (accessError) return reply("User creation is unavailable or administrator access is required.", 403);
     if (access?.actor_id !== auth.user.id) return reply("Administrator access required.", 403);
-    const body = await request.text();
-    if (body.length > 8192) return reply("Request is too large.", 413);
+    const body = (await readPhotoBody(request, 8192)).toString("utf8");
     let raw: unknown;
     try { raw = JSON.parse(body); } catch { return reply("Invalid JSON.", 400); }
     const parsed = adminUserSchema.safeParse(raw);
@@ -43,7 +44,8 @@ export async function POST(request: NextRequest) {
     }
     if (!data.user) return reply("Account creation could not be confirmed. Check before retrying.", 502);
     return NextResponse.json({ user: { id: data.user.id, email, displayName, role } }, { status: 201, headers: { "Cache-Control": "no-store" } });
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === "BODY_TOO_LARGE") return reply("Request is too large.", 413);
     // Never log request bodies, credentials, or raw Auth errors.
     return reply("Account creation could not be confirmed. Check before retrying.", 503);
   }

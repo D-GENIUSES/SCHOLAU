@@ -3,7 +3,7 @@ create extension if not exists pgtap with schema extensions;
 select no_plan();
 create function pg_temp.public_user(p_name text) returns uuid language plpgsql as $$
 declare uid uuid:=gen_random_uuid(); begin
-  insert into auth.users(id,email,created_at,raw_user_meta_data) values(uid,uid::text||'@public-profile.test',now(),jsonb_build_object('display_name',p_name)); return uid;
+  insert into auth.users(id,email,created_at,raw_user_meta_data) values(uid,uid::text||'@public-profile.test',now(),jsonb_build_object('display_name',p_name,'signup_kind','student','terms_accepted',true,'terms_version','2026-10-19-draft-1','privacy_version','2026-10-19-draft-1','age_declaration','adult')); return uid;
 end $$;
 create function pg_temp.public_login(uid uuid) returns void language plpgsql as $$ begin
   perform set_config('request.jwt.claim.sub',uid::text,true);

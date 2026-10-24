@@ -1,0 +1,417 @@
+
+
+--- page 1 ---
+CYB 203: CYBERCRIME, LAW AND             
+COUNTERMEASURES 
+COURSE CONTENT 
+The course covers: 
+• General introduction to cybercrime.  
+• Definition of cybercrime.  
+• Types and categories of cybercrime and threats to the national critical 
+infrastructure.  
+• Investigation process and procedure for cybercrime. Strategies of 
+cybercrime perpetrators. 
+• Possible ways of curbing/preventing them.  
+• Technical aspects of computer cybercrime investigation.  
+• Concepts, trends, and methods in computer and network forensics 
+investigations.  
+• Skill and knowledge in digital evidence collection and evaluation. 
+• Policies, legal issues, international jurisdiction, and privacy issues. 
+• Introduction to cyber law and countermeasures. 
+• Cyber law application at the international and national levels with 
+examples from European, North American, South American, and Asian 
+countries.  
+• The cyber law framework in Nigeria.  
+• Challenges and opportunities for cyber law and countermeasure 
+enforcement in Nigeria. 
+ 
+LESSON1: Understanding the crime 
+Modules 1 to 5: cybercrime, types, perpetrators, social engineering and critical infrastructure. 
+LESSON2: Investigating the crime 
+Modules 6 to 9: investigation, computer forensics, network forensics, digital evidence and 
+chain of custody. 
+LESSON3: Understanding the law 
+Modules 10 to 15: policies, privacy, jurisdiction, international cyber law and Nigerian cyber 
+law. 
+
+--- page 2 ---
+LESSON4: Preventing the crime 
+Modules 16 to 20: countermeasures, university security, ethics, Nigerian challenges and 
+opportunities. 
+Relationship between crime → investigation → law → prevention, rather than treating the 
+course as a collection of unrelated topics. 
+LESSON 1: UNDERSTANDING THE 
+CRIME 
+1 Introduction to cybercrime 
+Computers, mobile devices, and the Internet have transformed how people communicate, 
+learn, conduct business, store information, and access government services. 
+However, the same technologies that create opportunities can also be abused. 
+A person can use a computer to steal information, deceive another person, damage computer 
+systems, distribute malicious software, commit financial fraud or interfere with important 
+services. 
+These unlawful activities are generally described as cybercrime. 
+Cybercrime is therefore not simply "crime on the Internet." It covers a broad range of 
+criminal activities involving computers, networks, digital devices, information systems or 
+electronic data. 
+2 Why should students study cybercrime? 
+A Computer Science graduate may eventually work as: 
+• A software developer 
+• Network administrator 
+• System administrator 
+• Database administrator 
+• Cybersecurity analyst 
+• Digital forensic examiner 
+• IT auditor 
+• Security consultant 
+• ICT manager 
+• Incident response analyst 
+• Academic or researcher 
+In each of these professions, the individual may encounter cybercrime. 
+For example, a system administrator may discover that an employee's account has been used 
+to access confidential information. A cybersecurity analyst may detect suspicious network 
+
+--- page 3 ---
+traffic. A digital forensic examiner may be asked to examine a laptop involved in a criminal 
+investigation. 
+Therefore, students need both technical knowledge and legal awareness. 
+ 
+3 Cybercrime as a technological and social 
+problem 
+Cybercrime should not be viewed only as a technical problem. 
+It involves: 
+Technology + People + Money + Law + Society 
+For example, phishing involves technology, but the attack's success may depend on human 
+trust. 
+A criminal may create a convincing message claiming: 
+"Your university account will be disabled unless you verify your account." 
+The victim may click the link and unknowingly provide information. 
+The technology facilitates the crime, but human behaviour contributes to its success. 
+ 
+4 Basic characteristics of cybercrime 
+Cybercrime often has the following characteristics: 
+1. Borderless nature 
+The offender may be in one country, the victim in another country, and the relevant server in 
+a third country. 
+2. Speed 
+Digital information can be copied and transmitted extremely quickly. 
+3. Anonymity 
+Criminals may attempt to hide their identities using fake accounts, compromised systems or 
+other techniques. 
+
+--- page 4 ---
+4. Scalability 
+One malicious message can potentially reach thousands of people. 
+5. Dependence on evidence 
+Digital evidence can be fragile and can change quickly. 
+6. Technical complexity 
+Investigators may need specialist knowledge of computers, networks, cloud systems, 
+databases and mobile devices. 
+ 
+CLASSROOM DISCUSSION 
+Ask students: 
+Question: Is cybercrime a new type of crime or an old type of crime using new technology? 
+Expected discussion: 
+Many crimes existed before computers. Fraud, theft, impersonation, and extortion, for 
+example, are not new. Technology has changed how these crimes can be committed, 
+increased their speed, and expanded their geographical reach. 
+ 
+LESSON 2: DEFINITION AND 
+CONCEPT OF CYBERCRIME 
+1 Definition 
+Cybercrime can be defined generally as: 
+Any unlawful activity in which a computer, computer system, network, digital device or 
+digital information is used as a tool, target, environment or source of evidence. 
+A computer is just the physical electronic device, while a computer system is the complete 
+combination of that hardware, software, and users working together to perform tasks 
+This definition is useful because computers can play different roles in crime. 
+ 
+
+--- page 5 ---
+2 Computer as the target 
+Here, the computer system itself is attacked. 
+Examples include: 
+• Unauthorised access 
+• Malware infection 
+• Data destruction 
+• Denial of service 
+• System sabotage 
+Example 
+An attacker gains unauthorised access to a university server and deletes student records. 
+The server is the target. 
+ 
+3 Computer as the tool 
+Here, the computer is used to commit another crime. 
+Examples: 
+Definitions of Cyber Terms 
+• Online fraud: A crime where a person lies or hides facts online to get money or data 
+from you, or uses any deceptive scheme using the Internet to trick victims out of 
+money, property, or sensitive data. 
+• Identity theft: Stealing someone's private personal information, like a name or 
+account number, to pretend to be them for money or illegal acts. 
+• Phishing: Sending fake emails or messages that look real to trick people into giving 
+away passwords or bank details. 
+• Cyberstalking: Using the internet, email, or social media to harass, track, or scare a 
+specific person repeatedly. 
+• Online impersonation: Pretending to be another real person online—often by 
+creating fake social media profiles—to trick others or damage that person's reputation. 
+Example 
+A criminal uses email to impersonate a university bursar and deceive an employee into 
+sending money to a fraudulent account. 
+The computer is being used as a tool. 
+ 
+
+--- page 6 ---
+4 Computer as evidence 
+Sometimes the computer itself is not the victim. 
+Instead, it contains evidence. 
+For example: 
+A suspect may use a computer to communicate with another person. Investigators may later 
+recover relevant emails, documents, messages, or transaction records. 
+The computer becomes a source of evidence. 
+ 
+5 Categories of cybercrime 
+Cybercrime can be classified in several ways. 
+1: Crimes against individuals 
+Examples: 
+• Identity theft 
+• Cyberstalking 
+• Online harassment 
+• Phishing 
+• Account compromise 
+• Online impersonation 
+2: Crimes against organisations 
+Examples: 
+• Corporate data theft 
+• Ransomware 
+• Insider attacks 
+• Website compromise 
+• Intellectual property theft 
+3: Crimes against government 
+Examples: 
+• Attacks against government websites 
+• Espionage 
+
+--- page 7 ---
+• Theft of government information 
+• Disruption of government services 
+4: Crimes against society 
+Examples: 
+• Large scale online fraud 
+• Distribution of illegal content 
+• Coordinated misinformation campaigns 
+• Attacks affecting public services 
+ 
+LESSON 3: TYPES OF CYBERCRIME 
+1 Unauthorised access 
+Unauthorised access occurs when a person accesses a computer system, account or network 
+without lawful permission. 
+Example 
+A student obtains another student's password and logs into the student's university portal. 
+Discussion 
+Even if the student does not steal anything, unauthorised access may still be unlawful. 
+ 
+2 Phishing 
+Phishing involves attempts to deceive individuals into revealing sensitive information. 
+Typical targets include: 
+• Passwords 
+• Banking information 
+• Login credentials 
+• Personal information 
+Practical example 
+A student receives: 
+
+--- page 8 ---
+"Your student portal account requires immediate verification." 
+The message contains a fraudulent link. 
+The student enters a username and password. 
+The criminal receives the information. 
+Prevention 
+Students should: 
+• Verify the sender 
+• Avoid suspicious links 
+• Check website addresses carefully 
+• Use multifactor authentication 
+• Report suspicious messages 
+ 
+3 Identity theft 
+Identity theft involves using another person's identifying information without lawful 
+authority. 
+Information may include: 
+• Name 
+• Identification details 
+• Account information 
+• Login credentials 
+• Personal documents 
+ 
+4 Online financial fraud 
+This includes schemes designed to unlawfully obtain money through electronic 
+communication or digital platforms. 
+Examples include: 
+• Fake investment schemes 
+• Payment fraud 
+• Business email compromise 
+• Impersonation scams 
+• Fraudulent online transactions 
+
+--- page 9 ---
+ 
+5 Malware 
+Malware means malicious software. 
+Examples include: 
+• Viruses 
+• Worms 
+• Trojans 
+• Ransomware 
+• Spyware 
+• Some forms of malicious scripts 
+Ransomware 
+Ransomware can prevent an organisation from accessing its files and demand payment. 
+Classroom example 
+Suppose a university department suddenly discovers that important administrative files 
+cannot be opened. 
+Students should ask: 
+1. What happened? 
+2. What evidence should be preserved? 
+3. Should the affected computer immediately be reformatted? 
+4. Who should be notified? 
+5. What backups are available? 
+ 
+6 Denial of Service 
+A denial of service attack attempts to make a service unavailable to legitimate users. 
+A distributed denial of service attack uses multiple systems or sources. 
+Example 
+A university website becomes unavailable during registration because it is receiving an 
+abnormal volume of requests. 
+ 
+
+--- page 10 ---
+7 Cyberstalking and online harassment 
+Technology can be misused to repeatedly intimidate, threaten or harass another person. 
+Universities should have policies for reporting such incidents. 
+ 
+8 Intellectual property crime 
+Digital technology makes it easy to copy and distribute: 
+• Software 
+• Books 
+• Videos 
+• Research materials 
+• Music 
+• Databases 
+Students should understand that easy copying does not automatically make copying lawful. 
+ 
+9 Insider threats 
+An insider threat occurs when someone with legitimate access misuses that access. 
+Example: 
+An employee with authorised access to student records copies confidential information and 
+gives it to an unauthorised person. 
+This demonstrates an important principle: 
+Authorised access does not mean unlimited authority. 
+ 
+LESSON 4: THREATS TO NATIONAL 
+CRITICAL INFRASTRUCTURE 
+1 Meaning of critical infrastructure 
+
+--- page 11 ---
+Critical infrastructure refers to systems and services that are essential to the functioning of a 
+country or society. 
+Examples can include: 
+• Electricity 
+• Telecommunications 
+• Banking and financial services 
+• Transportation 
+• Healthcare 
+• Government services 
+• Water systems 
+• Emergency services 
+• Major information and communication systems 
+ 
+2 Why critical infrastructure is attractive to 
+attackers 
+An attack against a critical service may affect many people simultaneously. 
+For example: 
+If a hospital's information system becomes unavailable, patient care may be affected. 
+If a major financial system is disrupted, businesses and citizens may experience serious 
+consequences. 
+ 
+3 Types of threats 
+Cyber espionage 
+Unauthorised collection of sensitive information. 
+Sabotage 
+Intentional disruption or destruction of systems. 
+Ransomware 
+Malicious software that disrupts access to data or systems. 
+Distributed denial of service 
+
+--- page 12 ---
+Attempts to overwhelm online services. 
+Supply chain compromise 
+An attacker compromises a supplier or third party to gain access to the final organisation. 
+ 
+CLASS ACTIVITY 
+Divide the class into groups. 
+Assign each group one sector: 
+1. Banking 
+2. Healthcare 
+3. Electricity 
+4. University 
+5. Telecommunications 
+Ask each group to identify: 
+• Three important systems 
+• Three possible cyber threats 
+• Possible consequences 
+• Five preventive measures 
+ 
+LESSON 5: CYBERCRIME 
+PERPETRATORS AND THEIR 
+STRATEGIES 
+1 Who commits cybercrime? 
+Cybercrime perpetrators can include: 
+• Individuals 
+• Organised criminal groups 
+• Disgruntled insiders 
+• Fraud networks 
+• Ideologically motivated groups 
+• State associated actors 
+• Opportunistic criminals 
+
+--- page 13 ---
+It is important not to assume that all cybercriminals have the same motivation. 
+ 
+2 Common motivations 
+Financial gain 
+The offender wants money. 
+Revenge 
+The offender wants to harm an organisation or individual. 
+Espionage 
+The objective is to obtain information. 
+Political or ideological objectives 
+The offender wants to promote a particular cause. 
+Recognition 
+Some offenders may seek reputation within an online criminal community. 
+ 
+3 Common social engineering strategies 
+Cybercrime frequently exploits human psychology. 
+Common techniques include: 
+Urgency 
+"You must act immediately." 
+Fear 
+"Your account will be closed." 
+Authority 
+"I am calling from the bank." 
+Curiosity 
+
+--- page 14 ---
+"See the attached document." 
+Reward 
+"You have won a prize." 
+ 
+PRACTICAL CLASSROOM EXERCISE 
+Give students this scenario: 
+A staff member receives an email apparently from the university administrator requesting 
+confidential information urgently. 
+Ask: 
+1. What warning signs should the staff member look for? 
+2. How should the request be verified? 
+3. What should the staff member do if the message appears fraudulent? 
+4. What evidence should be preserved? 
+ 

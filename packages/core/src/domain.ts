@@ -48,6 +48,8 @@ export type LessonBlock =
   | { type: "list"; items: string[]; ordered?: boolean }
   | { type: "image"; path: string; alt: string; caption?: string }
   | { type: "callout"; text: string; tone?: "info" | "tip" | "warning" | "example"; title?: string }
+  /** Low-stakes self-check. Answers are visible in lesson data; no XP or assessment credit. */
+  | { type: "checkpoint"; question: string; options: string[]; correct_index: number; explanation: string }
   | { type: "code"; code: string; language?: string };
 
 export const LIVE_BATTLE_STATES: readonly BattleState[] = ["waiting", "ready", "countdown", "active"];

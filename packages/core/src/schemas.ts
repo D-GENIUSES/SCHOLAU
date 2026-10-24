@@ -31,12 +31,21 @@ const universitySlugs = new Set<string>(NIGERIAN_UNIVERSITIES.map((university) =
 const academicName = (label: string) => z.string().trim().min(2, `Enter your ${label}.`).max(200, "Use 200 characters or fewer.")
   .refine((value) => !/[<>]/.test(value), "Remove the < and > characters.");
 
+const requiredId = (label: string) => z.string().uuid(`Choose your ${label}.`);
+export const academicProfileSchema = z.object({
+  universityId: requiredId("university"), facultyId: requiredId("faculty"),
+  departmentId: requiredId("department"), levelId: requiredId("level"),
+  academicPeriodId: requiredId("academic period"), semesterId: requiredId("semester"),
+});
+export type AcademicProfileInput = z.infer<typeof academicProfileSchema>;
+
 /** Self-reported signup details. Course enrollment still uses validated catalog IDs. */
 export const registrationAcademicSchema = z.object({
   universitySlug: z.string().refine((value) => universitySlugs.has(value), "Choose a university from the list."),
   faculty: academicName("faculty"),
   department: academicName("department"),
   currentSemester: z.enum(["first", "second", "third"], { message: "Choose your current semester." }),
+  catalogProfile: academicProfileSchema.optional(),
 });
 export type RegistrationAcademicInput = z.infer<typeof registrationAcademicSchema>;
 
@@ -55,17 +64,6 @@ export const resetPasswordSchema = z
   .refine((v) => v.password === v.confirm, { message: "Passwords don't match.", path: ["confirm"] });
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 
-const requiredId = (label: string) => z.string().uuid(`Choose your ${label}.`);
-
-export const academicProfileSchema = z.object({
-  universityId: requiredId("university"),
-  facultyId: requiredId("faculty"),
-  departmentId: requiredId("department"),
-  levelId: requiredId("level"),
-  academicPeriodId: requiredId("academic period"),
-  semesterId: requiredId("semester"),
-});
-export type AcademicProfileInput = z.infer<typeof academicProfileSchema>;
 
 /** Order matters: changing a field resets every descendant. */
 export const ACADEMIC_FIELD_ORDER = [
