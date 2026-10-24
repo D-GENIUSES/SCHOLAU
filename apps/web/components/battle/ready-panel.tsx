@@ -29,7 +29,7 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
             <ReadyRow key={p.seat} participant={p} />
           ))}
         </ul>
-        <CountdownBar remainingMs={remaining} totalMs={Math.max(10_000, remaining)} label="Time left to get ready" warnBelowMs={3000} />
+        <CountdownBar remainingMs={remaining} totalMs={Math.max(30_000, remaining)} label="Time left to get ready" warnBelowMs={3000} />
         <p className="text-sm text-ink-muted">If both players aren&apos;t ready in time, the battle is cancelled with no XP.</p>
         <BattleRulesList />
         <InlineError error={ready.error} />

@@ -212,7 +212,7 @@ reset role;
 select pg_temp.login(current_setting('t.b')::uuid);
 select set_config('t.b3', (public.join_queue_v1(current_setting('t.off')::uuid, gen_random_uuid())) ->> 'battle_id', true) is not null as setup;
 reset role;
-select pg_temp.shift_battle(current_setting('t.b3')::uuid, interval '11 seconds');
+select pg_temp.shift_battle(current_setting('t.b3')::uuid, interval '31 seconds');
 select pg_temp.login(current_setting('t.b')::uuid);
 select is((public.get_battle_state_v1(current_setting('t.b3')::uuid)) ->> 'cancel_reason', 'ready_timeout', 'ready window expiry cancels');
 select throws_ok($$select public.ready_battle_v1(current_setting('t.b3')::uuid, gen_random_uuid())$$, 'PT409', 'DEADLINE_PASSED',

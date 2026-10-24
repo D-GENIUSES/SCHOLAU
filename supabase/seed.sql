@@ -26,7 +26,7 @@ on conflict (code, version) do nothing;
 
 insert into public.battle_rules (id, version, round_count, seconds_per_round, ready_seconds, countdown_seconds,
                                  queue_seconds, invite_seconds, win_xp, draw_xp, loss_xp, published_at)
-values ('40000000-0000-4000-8000-000000000001', 1, 5, 20, 10, 5, 60, 300, 25, 10, 5, '2026-01-01T00:00:00Z')
+values ('40000000-0000-4000-8000-000000000001', 1, 5, 20, 30, 5, 60, 300, 25, 10, 5, '2026-01-01T00:00:00Z')
 on conflict (version) do nothing;
 
 insert into public.app_config (platform, minimum_build, minimum_api_version, maintenance, message, feature_flags) values
