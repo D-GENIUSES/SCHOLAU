@@ -21,10 +21,10 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
   const target = internalTarget(item.safe_target);
   const content = (
     <>
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white"><Bell className="size-4" aria-hidden /></span>
-      <span className="min-w-0 flex-1">
-        <span className={cn("block truncate text-sm text-ink", unread && "font-semibold")}>{item.body}</span>
-        <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-xs text-ink-muted">
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white"><Bell className="size-3.5" aria-hidden /></span>
+      <span className="min-w-0 flex-1 md:flex md:items-center md:gap-3">
+        <span className={cn("block truncate text-sm text-ink md:flex-1", unread && "font-semibold")}>{item.body}</span>
+        <time dateTime={item.created_at} title={formatDateTime(item.created_at)} className="text-xs text-ink-muted md:shrink-0">
           {formatRelative(item.created_at)}
         </time>
       </span>
@@ -32,7 +32,7 @@ function NotificationItem({ item, onOpen }: { item: Notification; onOpen: (item:
       {target ? <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden /> : null}
     </>
   );
-  const className = cn("flex w-full items-center gap-2.5 px-3 py-2 text-left", unread && "border-l-2 border-blue-600 bg-blue-50");
+  const className = cn("flex w-full items-center gap-2 px-3 py-1.5 text-left", unread && "border-l-2 border-blue-600 bg-blue-50");
 
   if (!target && !unread) return <div className={className}>{content}</div>;
   return (
