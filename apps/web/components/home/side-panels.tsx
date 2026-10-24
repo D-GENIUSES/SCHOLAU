@@ -5,8 +5,6 @@ import { COPY, formatStreak, formatXp } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/misc";
-import { StreakShare } from "@/components/home/streak-share";
-
 export function StatsPanel({ summary }: { summary: Pick<HomeSummary, "streak" | "xp_total"> }) {
   return (
     <section aria-label="Your progress" className="home-stats">
