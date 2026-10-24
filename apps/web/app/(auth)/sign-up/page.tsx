@@ -29,7 +29,7 @@ export default async function SignUpPage({ searchParams }: { searchParams: Searc
       </Link>
       <Link href="/sign-up?role=lecturer" className="auth-role-option auth-role-lecturer">
         <span className="auth-role-art" aria-hidden="true">
-          <Image src="/illustrations/signup-lecturer.jpg" alt="" fill sizes="(max-width: 639px) 40vw, 190px" priority />
+          <Image src="/illustrations/signup-lecturer-portrait.jpg" alt="" fill sizes="(max-width: 639px) 40vw, 190px" priority />
           <span className="auth-role-art-badge"><Presentation size={17} strokeWidth={1.8} /></span>
         </span>
         <span className="auth-role-copy"><span className="auth-role-eyebrow">TEACH &amp; CONTRIBUTE</span><span className="auth-role-title">Lecturer</span><span className="auth-role-description">Share your teaching details for an access review.</span><span className="auth-role-action">Apply for lecturer access <ArrowUpRight size={16} aria-hidden="true" /></span></span>
