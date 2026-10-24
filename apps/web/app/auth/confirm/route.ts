@@ -21,7 +21,7 @@ function redirect(request: NextRequest, path: string) {
 
 function escapeHtml(value: string) {
   const entities: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
-  return value.replace(/[&<>"']/g, (character) => entities[character]);
+  return value.replace(/[&<>"']/g, (character) => entities[character] ?? character);
 }
 
 /**
