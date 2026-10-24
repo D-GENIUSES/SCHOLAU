@@ -500,9 +500,19 @@
 }
 
 /* First-lesson reward: brief feedback that leaves the lesson and navigation usable. */
-.header-streak { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 44px; height: 44px; padding: 0 6px; border-radius: 10px; background: transparent; color: var(--color-chrome-icon-muted); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.header-streak { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 44px; height: 44px; padding: 0 6px; border: 0; border-radius: 10px; background: transparent; color: var(--color-chrome-icon-muted); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; cursor: pointer; transition: background-color 150ms, color 150ms; }
+.header-streak:hover { background: #eef2f7; color: var(--color-ink); }
+.header-streak:active { background: #e4eaf0; }
 .header-streak[data-active=true] { color: var(--color-ink); }
 .header-streak[data-active=true] .streak-count { color: var(--color-ink); }
+.streak-info-dialog { max-width: 22rem; align-items: center; gap: 10px; padding-top: 22px; }
+.streak-info-hero { display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; background: #fff4e8; }
+.streak-info-title { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 !important; text-align: center; }
+.streak-info-count { font-size: clamp(40px, 12vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; color: var(--color-brand-primary); font-variant-numeric: tabular-nums; }
+.streak-info-label { font-size: 1rem; font-weight: 600; color: var(--color-brand-primary); }
+.streak-info-stats { display: grid; width: 100%; gap: 8px; margin: 0; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 14px; background: #f8fafc; text-align: center; }
+.streak-info-stats dt { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-ink-muted); }
+.streak-info-stats dd { margin: 4px 0 0; font-size: 15px; font-weight: 700; color: var(--color-ink); font-variant-numeric: tabular-nums; }
 .streak-count { animation: streak-count-enter 220ms ease-out; }
 .first-lesson-celebration { position: fixed; z-index: 45; top: calc(76px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; width: max-content; max-width: calc(100vw - 32px); padding: 14px 20px 14px 14px; border: 1px solid #f4d6ba; border-radius: 20px; background: #fffaf5; box-shadow: 0 8px 32px #70370814; pointer-events: none; animation: first-lesson-toast 3200ms ease both; }
 .first-lesson-celebration strong { display: block; color: var(--color-ink); font-size: 14px; font-weight: 650; }

@@ -7,16 +7,17 @@ import { LegalLinks } from "@/components/legal-links";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { isActive, studentNav } from "./nav-items";
+import type { Streak } from "@scholau/api";
 import { StreakBadge } from "./streak-badge";
 
 export function ShellFrame({ children, pathname = "/home", displayName = "", unread = 0, isAdmin = false, guest = false, avatarPath = null, streak }: {
-  children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: { current: number; active_today: boolean };
+  children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: Streak;
 }) {
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Your learning space";
   const account = guest ? <Button asChild size="sm" ><Link href="/sign-in">Sign in</Link></Button> : <>
     <Link href="/people" className="notification-button" aria-label="Find people"><Search className="size-5" aria-hidden /></Link>
-    {streak ? <StreakBadge current={streak.current} activeToday={streak.active_today} /> : null}
+    {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
       <Bell className="size-5" aria-hidden />
       {unread > 0 ? <span aria-hidden className="notification-badge">{unread > 9 ? "9+" : unread}</span> : null}
