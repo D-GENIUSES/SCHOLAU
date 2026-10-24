@@ -51,7 +51,7 @@ export function MaterialUploadPage({
     })();
   }, []);
 
-  const pollJob = useCallback(async (id: string) => {
+  const pollJob = useCallback(async function pollJob(id: string) {
     const res = await fetch(`/api/material-ingestion?jobId=${encodeURIComponent(id)}`, { credentials: "same-origin" });
     if (!res.ok) return;
     const body = await res.json();
