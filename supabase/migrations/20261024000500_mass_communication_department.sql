@@ -1,5 +1,5 @@
 -- Mass Communication under Faculty of Business and Social Sciences (registration catalogue).
--- Curriculum rows can be added in a follow-up migration when a verified course list is available.
+-- Full handbook curriculum is seeded in 20261024000600_mass_communication_catalogue.sql.
 insert into public.departments(university_id,faculty_id,name,active)
 select u.id,f.id,'Mass Communication',true
 from public.universities u
