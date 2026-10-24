@@ -24,11 +24,14 @@ export function AcademicSelect({
   onChange,
   onBlur,
   selectRef,
+  filterable,
 }: {
   id: string;
   label: string;
   /** Plural noun for the filter label, e.g. "universities". */
   noun: string;
+  /** When false, never show the search filter (sign-up study step). */
+  filterable?: boolean;
   hint?: string;
   error?: string;
   options: AcademicOption[];
@@ -39,7 +42,7 @@ export function AcademicSelect({
   selectRef?: React.Ref<HTMLSelectElement>;
 }) {
   const [filter, setFilter] = React.useState("");
-  const searchable = noun !== "departments" && options.length > SEARCH_THRESHOLD;
+  const searchable = filterable !== false && noun !== "departments" && options.length > SEARCH_THRESHOLD;
   const query = filter.trim().toLowerCase();
   const visible = searchable && query ? options.filter((o) => o.value === value || o.label.toLowerCase().includes(query)) : options;
 
