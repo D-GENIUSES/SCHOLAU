@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Search, Shuffle, UserRound } from "lucide-react";
+import { ArrowRight, Search, Shuffle, Swords, UserRound, Zap } from "lucide-react";
 import type { FriendPerson, HomeSummary } from "@scholau/api";
 import { useBattleSetup, useCreateDirectBattle, useFriends, useJoinQueue, useSearchFriends } from "@scholau/api/react";
 import { Alert } from "@/components/ui/alert";
@@ -50,14 +50,14 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
     ? normalizedInput === query ? search.data?.people ?? [] : []
     : normalizedInput.length === 0 ? friends.data?.people.filter(p => p.state === "accepted") ?? [] : [];
   return <Card className="battle-setup-card">
-    <CardHeader><CardTitle>Create a battle</CardTitle><CardDescription>Choose your subjects, then find your opponent.</CardDescription></CardHeader>
+    <CardHeader className="battle-setup-heading"><span className="battle-section-icon"><Swords size={20} aria-hidden /></span><div><CardTitle>Create your next challenge</CardTitle><CardDescription>Pick a subject. Find your rival. You’re on.</CardDescription></div></CardHeader>
     <CardContent className="battle-setup-fields flex flex-col gap-4">
       <div className="battle-setup-subjects">
       {setup.isPending ? <LoadingState label="Loading your subjects…" /> : null}
       <InlineError error={setup.error} />
       {setup.isSuccess && !courses.length ? <Alert title="No battle subjects yet">Your enrolled subjects will appear here when battle questions are published.</Alert> : null}
       <fieldset disabled={busy} className="battle-course-picker">
-        <legend className="mb-2 text-sm font-semibold">1. Choose subjects <span className="font-normal text-ink-muted">· {selected.length}/3 selected</span></legend>
+        <legend className="mb-2 text-sm font-semibold"><span className="battle-step">1</span> Choose subjects <span className="font-normal text-ink-muted">· {selected.length}/3 selected</span></legend>
         {courses.map(course => <label key={course.offering_id} className="flex items-center gap-3 rounded-xl border border-line p-3">
           <input type="checkbox" checked={selected.includes(course.offering_id)} disabled={!selected.includes(course.offering_id) && selected.length >= 3} onChange={() => toggle(course.offering_id)} className="size-4 accent-brand-primary" />
           <span className="min-w-0 flex-1 text-sm"><strong>{course.code}</strong><span className="block text-xs text-ink-muted">{course.title}</span></span>
@@ -66,10 +66,10 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
       </div>
       <div className="battle-setup-opponent">
       <fieldset disabled={busy} className="battle-mode-picker">
-        <legend className="mb-2 text-sm font-semibold">2. Find an opponent</legend>
-        <div className="grid grid-cols-2 gap-2">{([{value:"random",label:"Random match",Icon:Shuffle},{value:"direct",label:"Challenge someone",Icon:UserRound}] as const).map(({value,label,Icon}) => <label key={value} className="battle-mode-option">
+        <legend className="mb-2 text-sm font-semibold"><span className="battle-step">2</span> Choose your match</legend>
+        <div className="grid grid-cols-2 gap-2">{([{value:"random",label:"Quick match",description:"Find a random rival",Icon:Shuffle},{value:"direct",label:"Challenge someone",description:"Pick your opponent",Icon:UserRound}] as const).map(({value,label,description,Icon}) => <label key={value} className="battle-mode-option">
           <input type="radio" name="battle-mode" value={value} checked={mode === value} onChange={() => { setMode(value); clearError(); }} />
-          <Icon className="size-4 shrink-0" aria-hidden /><span>{label}</span>
+          <Icon className="size-5 shrink-0" aria-hidden /><span><strong>{label}</strong><small>{description}</small></span>
         </label>)}</div>
       </fieldset>
       {mode === "direct" ? <div className="battle-opponent-search">
@@ -87,13 +87,13 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
         </div>
         {opponent ? <div aria-live="polite"><p className="text-sm">Challenging <strong>@{opponent.username}</strong></p>{shared.isPending ? <p className="text-xs text-ink-muted">Checking shared subjects…</p> : null}<InlineError error={shared.error} />{shared.isSuccess && !compatible ? <p className="text-sm text-warning">This learner is not enrolled in all your selected subjects. Update your subjects or choose another opponent.</p> : null}</div> : null}
         <label className="text-sm font-semibold">Questions<NativeSelect value={questionCount} disabled={busy} onChange={e => { setQuestionCount(Number(e.target.value)); clearError(); }}>{[5,10,15,20,25,30].map(n => <option key={n} value={n}>{n} questions</option>)}</NativeSelect></label>
-      </div> : <p className="text-sm text-ink-muted">A quick match with another learner · 5 questions. {scope.length > 1 ? "Choose one subject for random matchmaking, or challenge someone across up to three subjects." : "Choose one subject to join the matchmaking queue."}</p>}
+      </div> : <p className="battle-match-note"><Zap size={18} aria-hidden /><span><strong>Five questions. Bring your best.</strong> {scope.length > 1 ? "Choose one subject for random matchmaking, or challenge someone across up to three subjects." : "Choose one subject to join the matchmaking queue."}</span></p>}
       </div>
       {setup.isSuccess && scope.length > 0 && !available ? <Alert title="More questions needed">Choose another subject or a smaller question set.</Alert> : null}
       <Button className="battle-create-button" disabled={busy || !ready} loading={busy} onClick={() => {
         if (mode === "random") queue.mutate({offeringId:selected[0]!},{onSuccess:ack => router.push(ack.battle_id ? `/battles/${ack.battle_id}` : "/battles/queue")});
         else if (opponent) direct.mutate({offeringId:selected[0]!,offeringIds:selected,questionCount,friendId:opponent.user_id},{onSuccess:battle => router.push(`/battles/${battle.battle_id}`)});
-      }}>{mode === "random" ? "Find a match" : "Send challenge"}</Button>
+      }}>{mode === "random" ? "Find my match" : "Send challenge"}<ArrowRight size={18} aria-hidden /></Button>
       <BattleActionError error={direct.error ?? queue.error} />
     </CardContent>
   </Card>;

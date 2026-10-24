@@ -1,0 +1,8 @@
+.battle-rule-list { display: grid; gap: 10px; padding: 0; list-style: none; }
+.battle-rule-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid #dce7f7; border-radius: 12px; background: #fff; min-width: 0; }
+.battle-rule-icon { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 10px; background: #edf4ff; color: #0759d5; }
+.battle-rule-item > div { min-width: 0; }
+.battle-rule-item .battle-rule-title { margin: 0 0 5px; color: #183559; font-size: 12px; font-weight: 750; line-height: 1.5; }
+.battle-rule-item .battle-rule-copy { margin: 0; font-size: 12px; line-height: 1.65; color: #5b6b80; }
+.battle-rule-warning { background: #fff8ed; border-color: #f0ddba; }
+.battle-rule-warning .battle-rule-icon { background: #ffedcc; color: #925c0b; }

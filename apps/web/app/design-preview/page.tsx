@@ -15,6 +15,7 @@ import { LessonListPreview } from "@/components/lesson/lesson-list-preview";
 export default async function DesignPreview({ searchParams }: { searchParams: Promise<{ state?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
+  if (state === "battle-friends") return <BattleLobbyPreview showFriendActions />;
   if (state === "battle-lobby") return <BattleLobbyPreview />;
   if (state === "public-profile") return <PublicProfilePreview />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
