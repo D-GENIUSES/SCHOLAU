@@ -669,23 +669,16 @@ export interface BattleParticipant {
 
 
 export interface BattleCurrentQuestion {
-
   answer_format?: "standard" | "worked_solution";
-
   duration_seconds?: number;
   reading_at?: string;
   course_code?: string;
-
   position: number;
-
   prompt: string;
-
+  options: (AttemptOption & { steps?: string[] })[];
+  opened_at: IsoDateTime;
+  deadline: IsoDateTime;
   my_option_id: Uuid | null;
-
-  my_is_correct: boolean;
-
-  opponent_is_correct: boolean;
-
 }
 
 export interface BattleRound {

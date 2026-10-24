@@ -67,7 +67,7 @@ function PlayerSide({ participant, align }: { participant: BattleParticipant | u
   const score = participant?.correct_count ?? 0;
   return (
     <div className={cn("flex min-w-0 flex-1 items-center gap-3", align === "right" && "flex-row-reverse text-right")}>
-      {participant?.user_id ? <Link href={`/people/${participant.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${name}'s public profile`}><Avatar name={name} path={participant.avatar_path} size={64} /></Link> : <Avatar name={name} size={64} />}
+      {participant?.user_id ? <Link href={`/people/${participant.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${name}'s public profile`}><Avatar name={name} path={participant.avatar_path} size={56} /></Link> : <Avatar name={name} size={56} />}
       <div className="min-w-0">
         <p className="truncate text-[13px] font-medium text-[#8b9caf]">{participant?.user_id ? <Link href={`/people/${participant.user_id}`} className="hover:underline">{playerHandle(participant.display_name)}</Link> : playerHandle(name)}</p>
         <p className="mt-0.5 text-[30px] font-extrabold leading-none tracking-[-0.04em] text-[#0875e4] tabular-nums">{score}</p>

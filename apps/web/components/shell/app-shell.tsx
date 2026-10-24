@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useHomeSummary, useProfile } from "@scholau/api/react";
+import { useHomeSummary, useProfile, useUserSignals } from "@scholau/api/react";
 import { ShellFrame } from "./shell-frame";
 import { BattleChallengeAlert } from "@/components/battle/battle-challenge-alert";
 export function AppShell({ children, userId, isAdmin }: { children: ReactNode; userId: string; isAdmin: boolean }) {
