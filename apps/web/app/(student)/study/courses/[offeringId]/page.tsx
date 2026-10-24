@@ -18,10 +18,10 @@ const GROUPS: { kind: AssessmentKind; title: string; description: string }[] = [
   { kind: "mock", title: "Mock exams", description: "Exam-style sets; results after you submit." },
 ];
 
-function BackToStudy() {
+function BackToHome() {
   return (
-    <Link href="/study" className="mb-4 inline-flex min-h-11 items-center gap-1 font-semibold text-brand-primary hover:underline">
-      <ArrowLeft className="size-4" aria-hidden /> Study
+    <Link href="/home" className="mb-4 inline-flex min-h-11 items-center gap-1 font-semibold text-brand-primary hover:underline">
+      <ArrowLeft className="size-4" aria-hidden /> Home
     </Link>
   );
 }
@@ -37,7 +37,7 @@ export default function CourseOverviewPage() {
     if (isApiError(overview.error, "NOT_ENROLLED")) {
       return (
         <>
-          <BackToStudy />
+          <BackToHome />
           <EmptyState
             title="Enroll to open this course"
             description="You need to be enrolled to see lessons, assessments and your progress."
@@ -61,13 +61,13 @@ export default function CourseOverviewPage() {
     if (isApiError(overview.error, "CONTENT_UNAVAILABLE")) {
       return (
         <>
-          <BackToStudy />
+          <BackToHome />
           <EmptyState
             title={COPY.empty.contentRemoved}
             description="This course isn't available right now. Please check back later."
             action={
               <Button asChild>
-                <Link href="/study">Back to Study</Link>
+                <Link href="/home">Back to Home</Link>
               </Button>
             }
           />
@@ -76,7 +76,7 @@ export default function CourseOverviewPage() {
     }
     return (
       <>
-        <BackToStudy />
+        <BackToHome />
         <ErrorState error={overview.error} onRetry={() => void overview.refetch()} />
       </>
     );
@@ -84,7 +84,7 @@ export default function CourseOverviewPage() {
 
   return (
     <>
-      <BackToStudy />
+      <BackToHome />
       <LoadingState variant="course" label="Loading course…" />
     </>
   );
@@ -94,7 +94,7 @@ function Overview({ data }: { data: CourseOverview }) {
   const { progress } = data;
   return (
     <>
-      <BackToStudy />
+      <BackToHome />
       <PageHeader
         eyebrow={data.course.code}
         title={data.course.title}

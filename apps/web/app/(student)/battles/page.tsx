@@ -52,7 +52,7 @@ function Lobby() {
               description="Battles use questions from your enrolled courses."
               action={
                 <Button asChild>
-                  <Link href="/study">Browse courses</Link>
+                  <Link href="/home">Browse courses</Link>
                 </Button>
               }
             />

@@ -37,7 +37,7 @@ function AssessmentIntro() {
         description="Open assessments from a course page in Study."
         action={
           <Button asChild>
-            <Link href="/study">Go to Study</Link>
+            <Link href="/home">Go to Home</Link>
           </Button>
         }
       />
@@ -71,7 +71,7 @@ function AssessmentIntro() {
             title={COPY.empty.contentRemoved}
             action={
               <Button asChild>
-                <Link href="/study">Back to Study</Link>
+                <Link href="/home">Back to Home</Link>
               </Button>
             }
           />

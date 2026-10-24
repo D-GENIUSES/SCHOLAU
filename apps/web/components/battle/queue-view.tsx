@@ -72,7 +72,7 @@ export function NoOpponent({ onRetry, retrying, canRetry }: { onRetry: () => voi
           </Button>
         )}
         <Button asChild variant="outline">
-          <Link href="/study">Continue studying</Link>
+          <Link href="/home">Continue learning</Link>
         </Button>
       </CardFooter>
     </Card>

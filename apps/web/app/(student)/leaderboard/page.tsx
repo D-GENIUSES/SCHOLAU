@@ -8,6 +8,7 @@ import { formatDateTime, type LeaderboardScope } from "@scholau/core";
 import { LeaderboardChrome } from "@/components/leaderboard/leaderboard-chrome";
 import { LeaderboardList } from "@/components/leaderboard/leaderboard-list";
 import { MyPositionCard } from "@/components/leaderboard/my-position-card";
+import { LeaderboardScopeSwitch } from "@/components/leaderboard/leaderboard-scope-switch";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
@@ -18,52 +19,88 @@ export default function LeaderboardPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
-      <LeaderboardChrome scope={scope} onScopeChange={setScope} />
-      <ScopeBoard key={scope} scope={scope} scopeLabel={scopeLabel} />
+      <LeaderboardChrome />
+      <ScopeBoard key={scope} scope={scope} scopeLabel={scopeLabel} onScopeChange={setScope} />
     </div>
   );
 }
 
-function ScopeBoard({ scope, scopeLabel }: { scope: LeaderboardScope; scopeLabel: string }) {
+function ScopeBoard({
+  scope,
+  scopeLabel,
+  onScopeChange,
+}: {
+  scope: LeaderboardScope;
+  scopeLabel: string;
+  onScopeChange: (scope: LeaderboardScope) => void;
+}) {
   const board = useLeaderboard(scope);
   const pages = board.data?.pages ?? [];
   const first = pages[0];
   const rows = pages.flatMap((p) => p.rows);
+  const scopeBar = <LeaderboardScopeSwitch scope={scope} onScopeChange={onScopeChange} />;
 
-  if (board.isPending) return <LoadingState variant="leaderboard" label="Loading leaderboard…" />;
+  if (board.isPending) {
+    return (
+      <div className="leaderboard-panel">
+        {scopeBar}
+        <div className="p-5">
+          <LoadingState variant="leaderboard" label="Loading leaderboard…" />
+        </div>
+      </div>
+    );
+  }
 
   if (!first) {
     if (isApiError(board.error, "INVALID_PROFILE")) {
       return (
-        <Alert
-          tone="info"
-          title="Set your academic profile to see your faculty ranking"
-          action={
-            <Button asChild size="sm">
-              <Link href="/profile">Go to profile</Link>
-            </Button>
-          }
-        >
-          The faculty leaderboard uses the faculty in your academic profile. You can still view the global leaderboard.
-        </Alert>
+        <div className="leaderboard-panel">
+          {scopeBar}
+          <div className="p-4">
+            <Alert
+              tone="info"
+              title="Set your academic profile to see your faculty ranking"
+              action={
+                <Button asChild size="sm">
+                  <Link href="/profile">Go to profile</Link>
+                </Button>
+              }
+            >
+              The faculty leaderboard uses the faculty in your academic profile. Switch to Global to see all students.
+            </Alert>
+          </div>
+        </div>
       );
     }
-    return <ErrorState error={board.error} onRetry={() => void board.refetch()} />;
+    return (
+      <div className="leaderboard-panel">
+        {scopeBar}
+        <div className="p-4">
+          <ErrorState error={board.error} onRetry={() => void board.refetch()} />
+        </div>
+      </div>
+    );
   }
 
   return (
     <section aria-label={`${scopeLabel} leaderboard`} className="flex flex-col gap-4">
       {rows.length === 0 ? (
-        <EmptyState
-          title="No rankings yet"
-          description="Complete lessons, assessments and battles to earn XP and appear here."
-        />
+        <div className="leaderboard-panel">
+          {scopeBar}
+          <div className="p-4">
+            <EmptyState
+              title="No rankings yet"
+              description="Complete lessons, assessments and battles to earn XP and appear here."
+            />
+          </div>
+        </div>
       ) : (
         <>
           <LeaderboardList
             rows={rows}
             label={`${scopeLabel} leaderboard`}
             updatedAt={`Updated ${formatDateTime(first.as_of)}`}
+            scopeBar={scopeBar}
             positionBar={<MyPositionCard me={first.me} scopeLabel={scopeLabel} variant="compact" />}
           />
           {board.isFetchNextPageError ? <InlineError error={board.error} /> : null}

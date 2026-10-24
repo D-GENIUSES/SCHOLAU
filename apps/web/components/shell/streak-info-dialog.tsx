@@ -78,7 +78,7 @@ export function StreakBadge({ streak }: { streak: Streak }) {
             </dl>
             <div className="flex w-full flex-wrap items-center justify-center gap-2">
               <Button asChild className="min-w-[10rem] flex-1">
-                <Link href="/study" onClick={closeDialog}>
+                <Link href="/home" onClick={closeDialog}>
                   {current > 0 && !activeToday ? "Keep streak going" : "Start learning"}
                 </Link>
               </Button>

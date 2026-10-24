@@ -20,7 +20,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "battle-lobby") return <BattleLobbyPreview />;
   if (state === "public-profile") return <PublicProfilePreview />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
-  if (state === "lessons") return <ShellFrame pathname="/study" displayName="Learner"><LessonListPreview /></ShellFrame>;
+  if (state === "lessons") return <ShellFrame pathname="/home" displayName="Learner"><LessonListPreview /></ShellFrame>;
   if (state === "social") {
     return (
       <ShellFrame pathname="/social" displayName="Learner">

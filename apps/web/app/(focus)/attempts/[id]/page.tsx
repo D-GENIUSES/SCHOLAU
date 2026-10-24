@@ -35,7 +35,7 @@ export default function AttemptPage() {
         onRetry={() => void refetch()}
         action={
           <Button asChild variant="outline">
-            <Link href="/study">Back to Study</Link>
+            <Link href="/home">Back to Home</Link>
           </Button>
         }
       />

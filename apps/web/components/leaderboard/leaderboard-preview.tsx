@@ -6,6 +6,7 @@ import { formatDateTime } from "@scholau/core";
 import { LeaderboardChrome } from "./leaderboard-chrome";
 import { LeaderboardList } from "./leaderboard-list";
 import { MyPositionCard } from "./my-position-card";
+import { LeaderboardScopeSwitch } from "./leaderboard-scope-switch";
 
 const rows: LeaderboardRow[] = [
   { rank: 1, user_id: "preview-1", display_name: "campus_scholar", avatar_path: null, xp_total: 1280, is_me: false, faculty_name: "Faculty of Science", level_label: "300 Level" },
@@ -25,11 +26,12 @@ export function LeaderboardPreview() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
       <p className="text-xs text-ink-muted">Development preview · compact header layout</p>
-      <LeaderboardChrome scope={scope} onScopeChange={setScope} />
+      <LeaderboardChrome />
       <LeaderboardList
         rows={rows}
         label={`${scopeLabel} leaderboard`}
         updatedAt={`Updated ${asOf}`}
+        scopeBar={<LeaderboardScopeSwitch scope={scope} onScopeChange={setScope} />}
         positionBar={<MyPositionCard me={{ rank: 3, xp_total: 1050 }} scopeLabel={scopeLabel} variant="compact" />}
       />
     </div>

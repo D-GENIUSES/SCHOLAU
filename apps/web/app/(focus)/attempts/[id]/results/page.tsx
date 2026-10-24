@@ -32,7 +32,7 @@ export default function AttemptResultsPage() {
           onRetry={() => void attempt.refetch()}
           action={
             <Button asChild variant="outline">
-              <Link href="/study">Back to Study</Link>
+              <Link href="/home">Back to Home</Link>
             </Button>
           }
         />

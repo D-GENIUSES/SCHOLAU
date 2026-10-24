@@ -37,8 +37,8 @@ export function ContinueLearningCard({ item, firstLesson, course, href, preview 
           <p className="spotlight-time">{pluralize(item.estimated_minutes, "minute")}{preview ? " · No account needed" : item.kind === "resume" ? " · In progress" : ""}</p>
         ) : null}
         <Button asChild className="self-start">
-          <Link href={href ?? (item ? `/study/lessons/${item.lesson_id}` : "/study")}>
-            {preview ? "Start learning" : !item ? "Go to Study" : firstLesson ? "Start lesson" : item.kind === "resume" ? "Continue lesson" : "Start next lesson"}
+          <Link href={href ?? (item ? `/study/lessons/${item.lesson_id}` : "/home")}>
+            {preview ? "Start learning" : !item ? "Go to Home" : firstLesson ? "Start lesson" : item.kind === "resume" ? "Continue lesson" : "Start next lesson"}
           </Link>
         </Button>
       </div>
@@ -47,7 +47,7 @@ export function ContinueLearningCard({ item, firstLesson, course, href, preview 
 }
 
 export function QuickActions({ offeringId, guest = false }: { offeringId?: string; guest?: boolean }) {
-  const base = offeringId ? `/study/courses/${offeringId}` : "/study";
+  const base = offeringId ? `/study/courses/${offeringId}` : "/home";
   const actions = [
     { label: "Practice test", description: "Questions with feedback", href: guest ? "/home?view=practice" : `${base}${offeringId ? "#practice" : ""}` },
     { label: "Mock exam", description: "Timed assessment", href: guest ? "/home?view=mock" : `${base}${offeringId ? "#mock" : ""}` },
@@ -86,7 +86,7 @@ export function HowItWorks({ guest = false }: { guest?: boolean }) {
 export function CourseProgressList({ courses }: { courses: HomeSummary["enrolled_courses"] }) {
   return (
     <section aria-labelledby="courses-title">
-      <div className="section-heading"><h2 id="courses-title">Your courses</h2><Link href="/study">View all <ChevronRight className="size-4" aria-hidden /></Link></div>
+      <div className="section-heading"><h2 id="courses-title">Your courses</h2><Link href="/home">View all <ChevronRight className="size-4" aria-hidden /></Link></div>
       <ul className="course-list enrolled-course-grid">
         {courses.slice(0, 2).map((course) => {
           const percent = course.lessons_total > 0 ? Math.round(100 * course.lessons_completed / course.lessons_total) : 0;

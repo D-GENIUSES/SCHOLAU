@@ -41,7 +41,7 @@ export default function LessonPage() {
             }
             action={
               <Button asChild>
-                <Link href="/study">Back to Study</Link>
+                <Link href="/home">Back to Home</Link>
               </Button>
             }
           />
@@ -115,8 +115,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
           <li>
-            <Link href="/study" className="font-semibold text-brand-primary hover:underline">
-              Study
+            <Link href="/home" className="font-semibold text-brand-primary hover:underline">
+              Home
             </Link>
           </li>
           <li aria-hidden>

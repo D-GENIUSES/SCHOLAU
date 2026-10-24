@@ -32,7 +32,7 @@ function ModuleTrack({
           const isContinue = continueLessonId === lesson.lesson_id;
           const state = lesson.state;
           return (
-            <li key={lesson.lesson_id}>
+            <li key={lesson.lesson_id} data-continue={isContinue || undefined}>
               <Link
                 href={`/study/lessons/${lesson.lesson_id}`}
                 className="home-map-node"

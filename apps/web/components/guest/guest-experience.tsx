@@ -4,7 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode } from "react";
-import { ContinueLearningCard, HowItWorks } from "@/components/home/learning-panels";
+import { ContinueLearningCard } from "@/components/home/learning-panels";
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { Button } from "@/components/ui/button";
 import { sampleCourses, starterLesson } from "./guest-content";
@@ -14,26 +14,19 @@ const MaterialQuiz = dynamic(() => import("./material-quiz").then((module) => mo
   loading: () => <p role="status" className="text-sm text-ink-muted">Loading practice questions…</p>,
 });
 
-const VIEWS = ["home", "study", "social", "battles", "leaderboard", "profile", "lesson", "practice", "mock"] as const;
+const VIEWS = ["home", "social", "battles", "leaderboard", "profile", "lesson", "practice", "mock"] as const;
 type View = typeof VIEWS[number];
 
 export function GuestExperience() {
   const params = useSearchParams();
   const requested = params.get("view");
-  const view: View = VIEWS.find((option) => option === requested) ?? "home";
-  const pathname =
-    view === "lesson" || view === "practice" || view === "mock"
-      ? "/study"
-      : view === "study"
-        ? "/home"
-        : `/${view}`;
+  const view: View =
+    requested === "study" ? "home" : (VIEWS.find((option) => option === requested) ?? "home");
+  const pathname = view === "lesson" || view === "practice" || view === "mock" ? "/home" : `/${view}`;
   let content: ReactNode;
 
   switch (view) {
     case "home": content = <GuestHome />; break;
-    case "study":
-      content = <><GuestHeader title="Study" description="Read a sample lesson or take a general knowledge test." /><SampleCourses /><div className="mt-6"><HowItWorks guest /></div></>;
-      break;
     case "social":
       content = (
         <>
@@ -45,7 +38,7 @@ export function GuestExperience() {
     case "lesson": content = <GuestLesson />; break;
     case "practice": content = <MaterialQuiz />; break;
     case "battles": content = <GuestBattles />; break;
-    case "mock": content = <AccountPrompt title="Mock exams" description="Sign in to try timed assessments and track your results." next="/study" />; break;
+    case "mock": content = <AccountPrompt title="Mock exams" description="Sign in to try timed assessments and track your results." next="/home" />; break;
     case "leaderboard": content = <AccountPrompt title="Leaderboard" description="Join ScholAu to earn 10 welcome XP and see where you rank on the leaderboard." next="/leaderboard" />; break;
     case "profile": content = <AccountPrompt title="Your profile" description="Sign in to view your progress and account details." next="/profile" />; break;
   }
@@ -59,7 +52,7 @@ function GuestHeader({ title, description }: { title: string; description: strin
 
 function GuestHome() {
   const actions = [
-    { label: "Sample courses", href: "/home?view=study" },
+    { label: "Sample courses", href: "/home#sample-courses" },
     { label: "Practice", href: "/home?view=practice" },
     { label: "Quiz battles", href: "/home?view=battles" },
     { label: "Leaderboard", href: "/home?view=leaderboard" },
@@ -75,10 +68,10 @@ function GuestHome() {
 
 function SampleCourses({ compact = false }: { compact?: boolean }) {
   return (
-    <section aria-labelledby="sample-courses-title">
+    <section id="sample-courses" aria-labelledby="sample-courses-title">
       <div className="section-heading">
         <h2 id="sample-courses-title">{compact ? "Sample lessons" : "General knowledge"}</h2>
-        {compact ? <Link href="/home?view=study">View all <ChevronRight className="size-4" aria-hidden /></Link> : <span className="text-xs text-ink-muted">Free samples</span>}
+        {compact ? <Link href="/home#sample-courses">View all <ChevronRight className="size-4" aria-hidden /></Link> : <span className="text-xs text-ink-muted">Free samples</span>}
       </div>
       <ul className="course-list sample-course-grid">
         {(compact ? sampleCourses.slice(0, 2) : sampleCourses).map((course, index) => (

@@ -64,7 +64,7 @@ function ActivityCards() {
             <div className="min-w-0 flex-1"><p className="font-semibold">{activityNames[item.activity] ?? "Learning activity"}</p><p className="mt-0.5 break-words text-xs text-ink-muted">{item.reason}</p><p className="mt-1 text-xs text-ink-muted">{formatDate(item.date)}</p></div>
             <span className="shrink-0 text-sm font-semibold text-brand-primary">{formatXpDelta(item.amount)}</span>
           </li>;
-        })}</ul> : <div className="py-5"><p className="font-semibold">No activity yet</p><p className="mt-1 text-sm text-ink-muted">Complete a knowledge check to start a history.</p><Button asChild variant="link" className="mt-3"><Link href="/study">Go to Study <ChevronRight className="size-4" aria-hidden /></Link></Button></div>}
+        })}</ul> : <div className="py-5"><p className="font-semibold">No activity yet</p><p className="mt-1 text-sm text-ink-muted">Complete a knowledge check to start a history.</p><Button asChild variant="link" className="mt-3"><Link href="/home">Go to Home <ChevronRight className="size-4" aria-hidden /></Link></Button></div>}
       </CardContent>
     </Card>
   </>;

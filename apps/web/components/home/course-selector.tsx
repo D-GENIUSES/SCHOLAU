@@ -54,7 +54,7 @@ export function CourseSelector({
         aria-haspopup="listbox"
         onClick={() => onOpenChange(!open)}
       >
-        <List className="size-4 shrink-0 opacity-70" aria-hidden />
+        <List className="size-4 shrink-0 text-brand-primary" aria-hidden />
         <span className="course-selector-label">
           <span className="course-selector-code">{selected.code}</span>
           <span className="course-selector-title">{selected.title}</span>

@@ -4,27 +4,25 @@ import type { LeaderboardRow } from "@scholau/api";
 import { formatNumber, formatXp } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-
-const podiumMedals: Record<number, { symbol: string; label: string }> = {
-  1: { symbol: "🥇", label: "Gold medal" },
-  2: { symbol: "🥈", label: "Silver medal" },
-  3: { symbol: "🥉", label: "Bronze medal" },
-};
+import { PodiumMedal, podiumMedalLabel } from "./podium-medal";
 
 /** Server positions include registration-time tie breaking; never sort a single page locally. */
 export function LeaderboardList({
   rows,
   label,
   updatedAt,
+  scopeBar,
   positionBar,
 }: {
   rows: LeaderboardRow[];
   label: string;
   updatedAt?: string;
+  scopeBar?: ReactNode;
   positionBar?: ReactNode;
 }) {
   return (
     <div className="leaderboard-panel">
+    {scopeBar}
     {positionBar}
     <div className="leaderboard-columns" aria-hidden>
       <span>Rank</span>
@@ -43,7 +41,8 @@ export function LeaderboardList({
 }
 
 function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
-  const medal = podiumMedals[row.rank];
+  const medalLabel = podiumMedalLabel(row.rank);
+  const podiumPlace = row.rank === 1 || row.rank === 2 || row.rank === 3 ? row.rank : null;
   return (
     <div
       className={cn(
@@ -53,15 +52,13 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
       data-podium={row.rank <= 3 ? row.rank : undefined}
       aria-current={row.is_me ? "true" : undefined}
     >
-      <span className="leaderboard-rank" title={medal?.label}>
-        {medal ? (
+      <span className={cn("leaderboard-rank", podiumPlace && "leaderboard-rank-medal")} title={medalLabel}>
+        {podiumPlace ? (
           <>
             <span className="sr-only">
-              Rank {formatNumber(row.rank)} · {medal.label}
+              Rank {formatNumber(row.rank)} · {medalLabel}
             </span>
-            <span aria-hidden className="text-[23px] leading-none">
-              {medal.symbol}
-            </span>
+            <PodiumMedal place={podiumPlace} />
           </>
         ) : (
           <>

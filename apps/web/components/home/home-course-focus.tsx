@@ -56,7 +56,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         description="Select a course from your assignments to start learning."
         action={
           <Button asChild variant="outline">
-            <Link href="/study">Go to Study</Link>
+            <Link href="/home">Go to Home</Link>
           </Button>
         }
       />
@@ -76,6 +76,19 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         <h1>{enrolled.title}</h1>
         <p>{enrolled.code}</p>
       </header>
+      {continueLessonId && summary.continue_learning ? (
+        <section className="home-continue-banner" aria-label="Continue learning">
+          <div className="home-continue-banner-copy">
+            <p className="home-continue-banner-label">Up next</p>
+            <p className="home-continue-banner-title">{summary.continue_learning.title}</p>
+          </div>
+          <Button asChild size="sm">
+            <Link href={`/study/lessons/${continueLessonId}`}>
+              {summary.continue_learning.kind === "resume" ? "Continue lesson" : "Start lesson"}
+            </Link>
+          </Button>
+        </section>
+      ) : null}
       {!isPreviewOffering && overviewQuery.isError ? (
         <ErrorState error={overviewQuery.error} onRetry={() => void overviewQuery.refetch()} />
       ) : (

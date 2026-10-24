@@ -58,7 +58,7 @@ export function BattleActionError({ error, className }: { error: unknown; classN
         title="Enroll in this course first"
         action={
           <Button asChild size="sm" variant="secondary">
-            <Link href="/study">Go to study</Link>
+            <Link href="/home">Go to Home</Link>
           </Button>
         }
       >
