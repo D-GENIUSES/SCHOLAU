@@ -474,6 +474,33 @@ export function useAdminLessonVersions(status?: string | null) {
   return useQuery({ queryKey: qk.admin.lessons(status), queryFn: () => api.admin.listLessonVersions(status), retry: shouldRetry });
 }
 
+export function useMaterialIngestionJob(jobId: string | null) {
+  return useQuery({
+    queryKey: qk.materialIngestion(jobId),
+    enabled: Boolean(jobId),
+    retry: shouldRetry,
+    refetchInterval: (query) => {
+      const status = (query.state.data as T.MaterialIngestionJobStatus | undefined)?.status;
+      return status === "pending" || status === "processing" ? 3000 : false;
+    },
+    queryFn: async () => {
+      const res = await fetch(`/api/material-ingestion?jobId=${encodeURIComponent(jobId!)}`, { credentials: "same-origin" });
+      if (!res.ok) throw new ScholauApiError({ code: "NETWORK", message: "Could not load ingestion job.", retryable: true });
+      return (await res.json()) as T.MaterialIngestionJobStatus;
+    },
+  });
+}
+
+export function useAdminIngestionEvidence(sourceReference: string | null | undefined) {
+  const api = useScholauApi();
+  return useQuery({
+    queryKey: qk.admin.ingestionEvidence(sourceReference ?? ""),
+    queryFn: () => api.admin.getIngestionEvidence(sourceReference!),
+    enabled: Boolean(sourceReference?.includes("SHA-256")),
+    retry: shouldRetry,
+  });
+}
+
 export function useAdminQuestionVersions(status?: string | null) {
   const api = useScholauApi();
   return useQuery({ queryKey: qk.admin.questions(status), queryFn: () => api.admin.listQuestionVersions(status), retry: shouldRetry });

@@ -3,7 +3,7 @@
 import { CheckCircle2, X } from "lucide-react";
 import { type ReactNode, useEffect, useRef } from "react";
 import type { AdminAssessmentVersionRow, AdminLessonVersionRow } from "@scholau/api";
-import { useAdminQuestion } from "@scholau/api/react";
+import { useAdminIngestionEvidence, useAdminQuestion } from "@scholau/api/react";
 import { ASSESSMENT_KIND_LABEL, type ContentStatus, formatDateTime, formatDuration } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -25,9 +25,55 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function SourceReference({ value }: { value: string | null }) {
-  if (value && value.trim()) return <>{value}</>;
-  return <span className="font-semibold text-danger">Missing — required before publishing</span>;
+function parseSourceSha(value: string | null): string | null {
+  if (!value) return null;
+  const m = value.match(/SHA-256 ([a-f0-9]{12})/i);
+  return m?.[1] ?? null;
+}
+
+function SourceReference({ value, courseId }: { value: string | null; courseId?: string | null }) {
+  if (!value?.trim()) return <span className="font-semibold text-danger">Missing — required before publishing</span>;
+  const shaPrefix = parseSourceSha(value);
+  const fullShaMatch = value.match(/SHA-256 ([a-f0-9]{64})/i);
+  const sha256 = fullShaMatch?.[1] ?? null;
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="text-sm">{value}</p>
+      {shaPrefix ? (
+        <span className="inline-flex w-fit items-center rounded-pill bg-brand-primary/10 px-2 py-0.5 text-xs font-semibold text-brand-primary">
+          Gemini ingestion
+        </span>
+      ) : null}
+      {courseId && sha256 ? (
+        <a
+          className="text-sm font-semibold text-brand-primary underline"
+          href={`/api/admin/course-material?courseId=${encodeURIComponent(courseId)}&sha256=${encodeURIComponent(sha256)}`}
+        >
+          Download source file (R2)
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+function IngestionEvidenceList({ sourceReference }: { sourceReference: string | null }) {
+  const evidence = useAdminIngestionEvidence(sourceReference);
+  if (!sourceReference?.includes("SHA-256")) return null;
+  if (evidence.isPending) return <p className="text-sm text-ink-muted">Loading ingestion evidence…</p>;
+  if (evidence.isError || !evidence.data?.items?.length) return null;
+  return (
+    <section aria-label="Ingestion evidence" className="rounded-control border border-line bg-surface-page p-4">
+      <h3 className="mb-2 text-sm font-semibold text-ink-muted">Ingestion evidence</h3>
+      <ul className="flex flex-col gap-2 text-sm">
+        {evidence.data.items.slice(0, 5).map((item, i) => (
+          <li key={`${item.job_id}-${i}`} className="rounded-control border border-line bg-surface-card p-2">
+            {item.logical_key ? <p className="font-mono text-xs text-ink-muted">{item.logical_key}</p> : null}
+            {item.source_text ? <p className="mt-1 whitespace-pre-line">{item.source_text}</p> : null}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 function Reviewer({ id }: { id: string | null }) {
@@ -101,7 +147,7 @@ export function LessonDetail({ row, onClose, onDone }: { row: AdminLessonVersion
         <Detail label="Objective">{row.objective}</Detail>
         <Detail label="Estimated time">{row.estimated_minutes} min</Detail>
         <Detail label="Source reference">
-          <SourceReference value={row.source_reference} />
+          <SourceReference value={row.source_reference} courseId={row.lesson?.course_id} />
         </Detail>
         <Detail label="Reviewer">
           <Reviewer id={row.reviewed_by} />
@@ -115,12 +161,26 @@ export function LessonDetail({ row, onClose, onDone }: { row: AdminLessonVersion
           <CopyableId id={row.lesson_id} />
         </Detail>
       </dl>
+      {row.flashcards && row.flashcards.length > 0 ? (
+        <section aria-label="Flashcard preview" className="rounded-control border border-line bg-surface-page p-4">
+          <h3 className="mb-3 text-sm font-semibold text-ink-muted">Smart flashcards ({row.flashcards.length})</h3>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {row.flashcards.slice(0, 8).map((card, i) => (
+              <li key={i} className="rounded-control border border-line bg-surface-card p-3 text-sm">
+                <p className="font-semibold">{card.front}</p>
+                <p className="mt-1 text-ink-muted">{card.back}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       <section aria-label="Content preview" className="rounded-control border border-line bg-surface-page p-4">
-        <h3 className="mb-3 text-sm font-semibold text-ink-muted">Content preview (text only)</h3>
+        <h3 className="mb-3 text-sm font-semibold text-ink-muted">Content preview (Study layout)</h3>
         <div className="max-w-reading">
           <BlockPreview blocks={row.blocks} />
         </div>
       </section>
+      <IngestionEvidenceList sourceReference={row.source_reference} />
     </DetailShell>
   );
 }
@@ -169,8 +229,22 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
         <p className="mt-1 text-lg whitespace-pre-line">{d.prompt}</p>
       </div>
       <div>
-        <h3 className="text-sm font-semibold text-ink-muted">Options</h3>
-        <p className="text-sm text-ink-muted">{d.answer_format === "worked_solution" ? "Worked solutions" : "Standard options"} · {d.battle_reading_seconds ?? d.suggested_reading_seconds ?? "Auto"} seconds to read · {d.battle_seconds ?? d.suggested_answer_seconds ?? "Auto"} seconds to answer</p>
+        <h3 className="text-sm font-semibold text-ink-muted">{d.answer_format === "fill_in_gap" ? "Fill-in-the-gap" : "Options"}</h3>
+        <p className="text-sm text-ink-muted">
+          {d.answer_format === "worked_solution" ? "Worked solutions" : d.answer_format === "fill_in_gap" ? "Voice/text gap answer" : "Standard options"} ·{" "}
+          {d.battle_reading_seconds ?? d.suggested_reading_seconds ?? "Auto"} seconds to read · {d.battle_seconds ?? d.suggested_answer_seconds ?? "Auto"} seconds to answer
+        </p>
+        {d.answer_format === "fill_in_gap" ? (
+          <ul className="mt-2 flex flex-col gap-2">
+            {(d.gap_answers ?? []).map((gap, gi) => (
+              <li key={gi} className="rounded-control border border-line bg-surface-card p-3 text-sm">
+                <p className="font-semibold">Accepted answers</p>
+                <p>{(gap.accepted_answers ?? []).join(", ")}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <>
         {d.correct_option_id === null ? (
           <Alert tone="error" title="No answer key" className="mt-2">
             This version has no correct option recorded. It can&apos;t be published.
@@ -203,14 +277,17 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
             );
           })}
         </ul>
+          </>
+        )}
       </div>
+      <IngestionEvidenceList sourceReference={d.source_reference} />
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">Explanation</h3>
         <p className="mt-1 whitespace-pre-line">{d.explanation || <span className="text-danger">Missing</span>}</p>
       </div>
       <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Detail label="Source reference">
-          <SourceReference value={d.source_reference} />
+          <SourceReference value={d.source_reference} courseId={d.course_id} />
         </Detail>
         <Detail label="Reviewer">
           <Reviewer id={d.reviewed_by} />

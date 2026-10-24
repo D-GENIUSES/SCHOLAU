@@ -344,6 +344,8 @@ export interface Lesson extends Envelope {
 
   blocks: LessonBlock[];
 
+  flashcards?: { front: string; back: string; tag?: string }[];
+
   previous_lesson_id: Uuid | null;
 
   next_lesson_id: Uuid | null;
@@ -669,7 +671,7 @@ export interface BattleParticipant {
 
 
 export interface BattleCurrentQuestion {
-  answer_format?: "standard" | "worked_solution";
+  answer_format?: "standard" | "worked_solution" | "fill_in_gap";
   duration_seconds?: number;
   reading_at?: string;
   course_code?: string;
@@ -679,6 +681,7 @@ export interface BattleCurrentQuestion {
   opened_at: IsoDateTime;
   deadline: IsoDateTime;
   my_option_id: Uuid | null;
+  my_text_answer?: string | null;
 }
 
 export interface BattleRound {
@@ -804,7 +807,9 @@ export interface BattleAnswerAck extends Envelope {
 
   already_answered?: boolean;
 
-  option_id: Uuid;
+  option_id: Uuid | null;
+
+  text_answer?: string | null;
 
   received_at: IsoDateTime;
 
@@ -964,7 +969,7 @@ export interface RetireResult extends Envelope {
 
 
 export interface AdminQuestion extends Envelope {
-  answer_format: "standard" | "worked_solution";
+  answer_format: "standard" | "worked_solution" | "fill_in_gap";
   battle_seconds: number | null;
   battle_reading_seconds?: number | null;
   suggested_answer_seconds?: number;
@@ -1001,8 +1006,30 @@ export interface AdminQuestion extends Envelope {
 
   correct_option_id: Uuid | null;
 
+  gap_answers?: { index?: number; accepted_answers: string[] }[] | null;
+
   explanation: string | null;
 
+}
+
+export interface MaterialIngestionJobStatus {
+  id: string;
+  status: string;
+  filename?: string;
+  sha256?: string;
+  stats?: Record<string, unknown>;
+  error?: string | null;
+  duplicate_file?: boolean;
+  job_id?: string;
+  message?: string;
+}
+
+export interface IngestionEvidenceItem {
+  content_fingerprint: string;
+  logical_key: string | null;
+  source_text: string | null;
+  created_at: string;
+  job_id: string;
 }
 
 
@@ -1161,6 +1188,8 @@ export interface AdminLessonVersionRow {
 
   blocks: LessonBlock[];
 
+  flashcards?: { front: string; back: string; tag?: string }[];
+
   estimated_minutes: number;
 
   status: ContentStatus;
@@ -1172,6 +1201,8 @@ export interface AdminLessonVersionRow {
   published_at: IsoDateTime | null;
 
   created_at: IsoDateTime;
+
+  lesson?: { course_id: Uuid };
 
 }
 

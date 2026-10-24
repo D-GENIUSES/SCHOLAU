@@ -113,8 +113,14 @@ select is(jsonb_array_length(current_setting('t.s1')::jsonb -> 'current_question
 select ok(not jsonb_path_exists(current_setting('t.s1')::jsonb, '$.participants[*] ? (@.correct_count != null)')
   and position('correct_option_id' in current_setting('t.s1'))=0, 'state payload hides correctness and keys during play');
 
-select is((public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, '00000000-0000-4000-8000-00000000d101')) ->> 'accepted',
-  'true', 'answer acknowledged');
+select is((select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+  where n.nspname = 'public' and p.proname = 'submit_battle_answer_v1'), 1, 'battle answers have one callable signature');
+select ok(has_function_privilege('authenticated', 'public.submit_battle_answer_v1(uuid,integer,uuid,uuid,text)', 'execute'),
+  'players can submit battle answers');
+select ok(not has_function_privilege('anon', 'public.submit_battle_answer_v1(uuid,integer,uuid,uuid,text)', 'execute'),
+  'guests cannot submit battle answers');
+select is((public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, '00000000-0000-4000-8000-00000000d101', null)) ->> 'accepted',
+  'true', 'multiple-choice answer with an empty text field is recorded');
 select ok(position('correct' in (public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid,
   '00000000-0000-4000-8000-00000000d101'))::text) = 0, 'acknowledgement does not reveal correctness');
 select is((public.submit_battle_answer_v1(current_setting('t.b1')::uuid, 1, current_setting('t.q1_ok')::uuid, '00000000-0000-4000-8000-00000000d101')) ->> 'accepted',

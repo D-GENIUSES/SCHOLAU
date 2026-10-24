@@ -16,6 +16,7 @@ export const qk = {
   battles: () => ["scholau", "battles"] as const,
   leaderboard: (scope: LeaderboardScope) => ["scholau", "leaderboard", scope] as const,
   appConfig: () => ["scholau", "app-config"] as const,
+  materialIngestion: (jobId?: string | null) => ["scholau", "material-ingestion", jobId ?? "none"] as const,
   admin: {
     all: ["scholau", "admin"] as const,
     counts: () => ["scholau", "admin", "counts"] as const,
@@ -25,6 +26,7 @@ export const qk = {
     questions: (status?: string | null) => ["scholau", "admin", "questions", status ?? "all"] as const,
     assessments: (status?: string | null) => ["scholau", "admin", "assessments", status ?? "all"] as const,
     question: (id: string) => ["scholau", "admin", "question", id] as const,
+    ingestionEvidence: (sourceRef: string) => ["scholau", "admin", "ingestion-evidence", sourceRef] as const,
     battles: (state?: string | null) => ["scholau", "admin", "battles", state ?? "all"] as const,
     entitlements: () => ["scholau", "admin", "entitlements"] as const,
     audit: (entityType?: string | null) => ["scholau", "admin", "audit", entityType ?? "all"] as const,

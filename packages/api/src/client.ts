@@ -210,11 +210,12 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     readyBattle: (a: Keyed<{ battleId: string }>) =>
       rpc<T.BattleState_>("ready_battle_v1", { p_battle_id: a.battleId, p_request_key: a.requestKey }),
     getBattleState: (battleId: string) => rpc<T.BattleState_>("get_battle_state_v1", { p_battle_id: battleId }),
-    submitBattleAnswer: (a: Keyed<{ battleId: string; position: number; optionId: string }>) =>
+    submitBattleAnswer: (a: Keyed<{ battleId: string; position: number; optionId?: string | null; textAnswer?: string | null }>) =>
       rpc<T.BattleAnswerAck>("submit_battle_answer_v1", {
         p_battle_id: a.battleId,
         p_position: a.position,
-        p_option_id: a.optionId,
+        p_option_id: a.optionId ?? null,
+        p_text_answer: a.textAnswer ?? null,
         p_request_key: a.requestKey,
       }),
     forfeitBattle: (a: Keyed<{ battleId: string }>) =>
@@ -381,12 +382,16 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       listLessonVersions: (status?: string | null) => {
         let q = supabase
           .from("lesson_versions")
-          .select("id, lesson_id, version, title, objective, blocks, estimated_minutes, status, source_reference, reviewed_by, published_at, created_at")
+          .select(
+            "id, lesson_id, version, title, objective, blocks, flashcards, estimated_minutes, status, source_reference, reviewed_by, published_at, created_at, lesson:lessons(course_id)",
+          )
           .order("created_at", { ascending: false })
           .limit(100);
         if (status) q = q.eq("status", status);
         return select<T.AdminLessonVersionRow[]>(q);
       },
+      getIngestionEvidence: (sourceReference: string) =>
+        rpc<{ items: T.IngestionEvidenceItem[] }>("admin_get_ingestion_evidence_v1", { p_source_reference: sourceReference }),
       listQuestionVersions: (status?: string | null) => {
         let q = supabase
           .from("question_versions")

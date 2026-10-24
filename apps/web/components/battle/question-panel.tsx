@@ -4,6 +4,7 @@ import { InlineSkeleton } from "@/components/ui/misc";
 import { Clock, WifiOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { type Battle, type BattleCurrentQuestion, isApiError } from "@scholau/api";
+import { normalizeGapAnswer } from "@scholau/core";
 import { useSubmitBattleAnswer } from "@scholau/api/react";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import { LiveRegion } from "@/components/ui/misc";
 import { InlineError } from "@/components/ui/states";
 import { useServerCountdown } from "@/lib/hooks";
 import { BattleAnswerOptions } from "./answer-options";
+import { BattleGapAnswer } from "./gap-answer";
 import { totalWindowMs } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
 import { BattleCourseStrip, BattleRoundProgress, BattleTimer } from "./arena";
@@ -33,6 +35,8 @@ export function QuestionPanel({
   const readingRemaining = useServerCountdown(question.opened_at);
   const reading = readingRemaining > 0;
   const [selected, setSelected] = useState<string | null>(question.my_option_id);
+  const [gapText, setGapText] = useState(question.my_text_answer ?? "");
+  const isGap = question.answer_format === "fill_in_gap";
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -41,10 +45,11 @@ export function QuestionPanel({
 
   const ack = submit.data && submit.data.position === question.position ? submit.data : null;
   const lockedOption = ack?.option_id ?? question.my_option_id;
+  const lockedGap = ack?.text_answer ?? question.my_text_answer;
   const shown = lockedOption ?? selected;
 
   let status: AnswerStatus = "idle";
-  if (lockedOption) status = "received";
+  if (lockedOption || (isGap && lockedGap)) status = "received";
   else if (submit.isPending) status = "sending";
   else if (isApiError(submit.error, "NETWORK")) status = "unsent";
   else if (isApiError(submit.error, "DEADLINE_PASSED")) status = "time_up";
@@ -52,9 +57,15 @@ export function QuestionPanel({
   else if (selected) status = "selected";
 
   const optionsLocked = reading || remaining <= 0 || status === "received" || status === "sending" || status === "unsent" || status === "time_up";
+  const canSubmitGap = isGap && gapText.trim().length > 0;
   const keptEarlier = Boolean(ack?.already_answered && selected && ack.option_id !== selected);
 
   const send = () => {
+    if (isGap) {
+      if (!canSubmitGap) return;
+      submit.mutate({ battleId: battle.battle_id, position: question.position, textAnswer: normalizeGapAnswer(gapText) });
+      return;
+    }
     if (!selected) return;
     submit.mutate({ battleId: battle.battle_id, position: question.position, optionId: selected });
   };
@@ -75,7 +86,11 @@ export function QuestionPanel({
           <BattleTimer remainingMs={reading ? readingRemaining : remaining} totalMs={reading ? totalWindowMs(question.reading_at, question.opened_at, 3000) : totalWindowMs(question.opened_at, question.deadline, 5000)} reading={reading} />
         </div>
 
-        <BattleAnswerOptions question={question} selected={shown} disabled={optionsLocked} received={status === "received"} onSelect={setSelected} />
+        {isGap ? (
+          <BattleGapAnswer question={question} value={gapText} disabled={optionsLocked} onChange={setGapText} />
+        ) : (
+          <BattleAnswerOptions question={question} selected={shown} disabled={optionsLocked} received={status === "received"} onSelect={setSelected} />
+        )}
 
         <StatusLine status={status} />
         {keptEarlier ? <p className="text-sm text-ink-muted">Your first answer for this question was kept.</p> : null}
@@ -89,7 +104,7 @@ export function QuestionPanel({
               Retry sending answer
             </Button>
           ) : (
-            <Button size="lg" block onClick={send} disabled={reading || !selected || remaining <= 0} loading={status === "sending"}>
+            <Button size="lg" block onClick={send} disabled={reading || remaining <= 0 || (isGap ? !canSubmitGap : !selected)} loading={status === "sending"}>
               Submit answer
             </Button>
           )}

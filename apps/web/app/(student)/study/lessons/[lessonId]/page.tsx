@@ -70,7 +70,17 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const [streakCelebration, setStreakCelebration] = useState<{ days: number; localDate: string; previousDays: number } | null>(null);
   const [deckFinished, setDeckFinished] = useState(false);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
-  const examCards = useMemo(() => buildExamFlashcards(lesson), [lesson]);
+  const examCards = useMemo(() => {
+    if (lesson.flashcards?.length) {
+      return lesson.flashcards.map((card, index) => ({
+        id: `${lesson.lesson_id}-fc-${index}`,
+        front: card.front,
+        back: card.back,
+        tag: (card.tag as "focus" | "section" | "tip" | "checkpoint" | "diagram" | "recap" | undefined) ?? "section",
+      }));
+    }
+    return buildExamFlashcards(lesson);
+  }, [lesson]);
 
   const { mutate: startMutate } = start;
   const startedFor = useRef<string | null>(null);

@@ -34,6 +34,8 @@ export type ReportState = "open" | "triaged" | "resolved" | "dismissed";
 
 export type ActivityKind = "lesson_completed" | "assessment_completed" | "battle_completed";
 
+export type BattleAnswerFormat = "standard" | "worked_solution" | "fill_in_gap";
+
 export type AdminEntityType =
   | "lesson_version"
   | "question_version"
