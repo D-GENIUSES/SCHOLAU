@@ -10,8 +10,8 @@ assert(gate.includes('data-scholau-splash="blue-orbit"') && gate.includes('backg
 assert(read("lib/launch-session.mjs").includes("scholau.launch.session"), "Launch identity must remain stable across future releases.");
 assert(read("app/layout.tsx").includes("__html: LAUNCH_BOOTSTRAP"), "Launch must be decided before first paint, not after hydration.");
 assert(read("components/shell/splash.module.css").includes('html[data-scholau-launch="cold"]'), "Warm navigations must never paint the splash.");
-assert(gate.includes('/brand/splash-bounce-hq.mp4'), "The supplied splash video must be used.");
-assert(fs.existsSync(path.join(web, "public/brand/splash-bounce-hq.mp4")));
+assert(gate.includes('/brand/splash-bounce-smooth.mp4'), "The supplied splash video must be used.");
+assert(fs.existsSync(path.join(web, "public/brand/splash-bounce-smooth.mp4")));
 const manifest = read("app/manifest.ts");
 assert(manifest.includes('start_url: "/home"') && manifest.includes('scope: "/"'), "Preserve the installed app identity.");
 assert.equal((manifest.match(/app-white-on-blue-v1/g) || []).length, 4, "Manifest must reference only the blue launch assets.");
