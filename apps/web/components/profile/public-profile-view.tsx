@@ -19,9 +19,9 @@ const badgeNames: Record<string, string> = {
   exam_ready: "Exam ready", long_term_recall: "Long-term recall",
 };
 
-export function PeopleSearch() {
-  const [input, setInput] = useState("");
-  const [query, setQuery] = useState("");
+export function PeopleSearch({ initialQuery = "" }: { initialQuery?: string }) {
+  const [input, setInput] = useState(initialQuery);
+  const [query, setQuery] = useState(initialQuery.trim().replace(/^@/, ""));
   const results = useSearchFriends(query);
   return <div className="public-profile-page">
     <header className="public-profile-page-head"><h1>Find people</h1><p>Search by name or username.</p></header>

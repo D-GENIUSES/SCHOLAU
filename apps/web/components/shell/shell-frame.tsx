@@ -17,15 +17,16 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Home";
   const account = guest ? <Button asChild size="sm" ><Link href="/sign-up">Sign in</Link></Button> : <>
-    <Link href="/people" className="notification-button" aria-label="Find people"><AppSearchIcon size={20} /></Link>
+    <form action="/people" method="get" role="search" aria-label="Find people" className="header-search">
+      <button type="submit" aria-label="Search people"><AppSearchIcon size={16} /></button>
+      <input type="search" name="q" aria-label="Search people by name or username" placeholder="Find people" minLength={3} maxLength={60} required autoComplete="off" />
+    </form>
     {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
       <AppBellIcon size={20} />
       {unread > 0 ? <span aria-hidden className="notification-badge">{unread > 9 ? "9+" : unread}</span> : null}
     </Link>
-    <Link href="/profile" className="header-profile-link" aria-label={`${displayName || "Your"} profile`}>
-      <Avatar name={displayName} path={avatarPath} size={40} variant="profile" />
-    </Link>
+
   </>;
   return <div className="student-shell">
     <aside className="desktop-sidebar"><Link href={destination("/home")} aria-label="ScholAu home" className="sidebar-logo"><Logo /></Link>
