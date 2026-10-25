@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     // Browser extensions may add attributes to <html> before React hydrates.
     <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#ffffff" }}>
       <head>
-        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#f3f7fc!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
+        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#ffffff!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
         <script dangerouslySetInnerHTML={{ __html: LAUNCH_BOOTSTRAP }} />
       </head>
       <body>

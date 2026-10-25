@@ -5,15 +5,12 @@
   display: none;
   place-items: center;
   overflow: hidden;
-  background: #f3f7fc;
+  background: #ffffff;
 }
 :global(html[data-scholau-launch="cold"]) .screen { display: grid; }
 .video { display: block; width: 100%; height: 100%; object-fit: contain; }
 
 @media (min-width: 768px) and (min-aspect-ratio: 1/1) {
-  .screen {
-    background-image: radial-gradient(ellipse at center, #f3f7fc 35%, #eaf1fa 100%) !important;
-  }
   .video {
     width: clamp(420px, 46vw, 640px);
     max-width: 90vw;
@@ -21,6 +18,5 @@
     max-height: 90dvh;
     aspect-ratio: 1;
     object-fit: contain;
-    mask-image: radial-gradient(ellipse closest-side, #000 85%, transparent 100%);
   }
 }
