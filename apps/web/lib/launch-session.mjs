@@ -13,7 +13,7 @@ export const LAUNCH_BOOTSTRAP = String.raw`(()=>{
   }
   root.dataset.scholauLaunch=returning||seen?"warm":"cold";
   const finish=()=>{root.dataset.scholauLaunch="warm";};
-  if(root.dataset.scholauLaunch==="cold") setTimeout(finish,3000);
+  if(root.dataset.scholauLaunch==="cold") setTimeout(finish,8000);
   addEventListener("pageshow",event=>{if(event.persisted)finish();});
   addEventListener("pagehide",finish);
 })();`;

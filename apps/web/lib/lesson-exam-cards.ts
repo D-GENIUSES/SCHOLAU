@@ -37,7 +37,7 @@ function examPromptForHeading(title: string, level?: 2 | 3 | 4): string {
   if (/^(list|types of|steps|features)/.test(lower)) return `List: ${t}`;
   if (/^(compare|difference|vs\.?)/.test(lower)) return `Compare / contrast: ${t}`;
   if (level === 4) return `Recall: ${t}`;
-  return `Explain for exams: ${t}`;
+  return t;
 }
 
 function isSectionBreak(block: LessonBlock): boolean {
@@ -72,29 +72,22 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
     i += 1;
   }
   const joined = lines.join("\n\n");
-  const back = joined
-    ? `In exams, expect clear points on this topic:\n\n${joined}`
-    : "Review the lesson notes and be ready to define key terms from this section.";
+  const back = joined;
   return { text: truncate(back), nextIndex: i };
-}
-
-function headingTitles(blocks: LessonBlock[]): string[] {
-  return blocks.filter((b): b is Extract<LessonBlock, { type: "heading" }> => b.type === "heading").map((b) => b.text.trim());
 }
 
 export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard[] {
   const cards: ExamFlashcard[] = [];
   const { blocks, title, objective, lesson_id: lessonId } = lesson;
 
-  const gist = objective.trim() || firstParagraph(blocks) || "Know the main ideas and how they might appear in short-answer or MCQ questions.";
-  cards.push({
+  const gist = objective.trim() || firstParagraph(blocks);
+  if (gist) cards.push({
     id: `${lessonId}-focus`,
-    front: `Exam focus: ${title}`,
-    back: truncate(gist.startsWith("In exams") ? gist : `In exams, focus on:\n\n${gist}`),
+    front: title,
+    back: truncate(gist),
     tag: "focus",
   });
 
-  const headings = headingTitles(blocks);
   let index = 0;
   while (index < blocks.length) {
     const block = blocks[index];
@@ -104,26 +97,13 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     }
     if (block.type === "heading") {
       const { text, nextIndex } = collectSectionBody(blocks, index + 1);
-      cards.push({
+      if (text) cards.push({
         id: `${lessonId}-h-${index}`,
         front: examPromptForHeading(block.text, block.level),
         back: text,
         tag: "section",
       });
       index = nextIndex;
-      continue;
-    }
-    if (block.type === "callout") {
-      const tone = block.tone ?? "info";
-      if (tone === "tip" || tone === "warning") {
-        cards.push({
-          id: `${lessonId}-callout-${index}`,
-          front: tone === "warning" ? "Exam warning" : "Exam tip",
-          back: truncate(block.title ? `${block.title}\n\n${block.text}` : block.text),
-          tag: "tip",
-        });
-      }
-      index += 1;
       continue;
     }
     if (block.type === "checkpoint") {
@@ -141,7 +121,7 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
       cards.push({
         id: `${lessonId}-img-${index}`,
         front: block.caption?.trim() || `Diagram: ${block.alt}`,
-        back: truncate(`Refer to this diagram in exams: ${block.alt}`),
+        back: truncate(block.caption?.trim() || block.alt),
         tag: "diagram",
         imagePath: block.path,
         imageAlt: block.alt,
@@ -149,18 +129,11 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
       index += 1;
       continue;
     }
+    if (block.type === "paragraph" && !blocks.some((item) => item.type === "heading") && block.text.trim()) {
+      cards.push({ id: `${lessonId}-p-${index}`, front: title, back: truncate(block.text), tag: "section" });
+    }
     index += 1;
   }
 
-  if (headings.length > 0) {
-    const bullets = headings.slice(0, 5).map((h, i) => `${i + 1}. ${h}`);
-    cards.push({
-      id: `${lessonId}-recap`,
-      front: "Quick recap before you close the book",
-      back: truncate(`Make sure you can explain each of these without notes:\n\n${bullets.join("\n")}`),
-      tag: "recap",
-    });
-  }
-
-  return cards;
+  return cards.filter((card, index) => card.back.trim() && cards.findIndex((other) => other.back === card.back) === index);
 }

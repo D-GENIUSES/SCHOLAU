@@ -960,3 +960,18 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 .flashcard-score-row > * { flex: 1; min-width: 120px; }
 .flashcard-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 4px; border-top: 1px solid var(--color-line); }
 .flashcard-deck-done { font-size: 12px; font-weight: 600; color: var(--color-success); }
+
+/* Compact lesson flashcards. */
+.flashcard-deck { gap: 10px; max-width: 560px; margin: 8px auto 16px; }
+.flashcard-deck-meta { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.flashcard-deck-dots { flex-wrap: nowrap; overflow: hidden; max-width: 70%; }
+.flashcard-dot { width: 5px; height: 5px; flex-shrink: 0; }
+.flashcard-scene, .flashcard-inner { min-height: 220px; }
+.flashcard-face { padding: 20px; border-radius: 18px; box-shadow: 0 4px 18px #142b4810; background: #fff; }
+.flashcard-front { justify-content: center; }
+.flashcard-front .flashcard-text { flex: 0; margin-block: auto; font-size: 19px; line-height: 1.4; }
+.flashcard-back .flashcard-text { font-size: 14px; line-height: 1.6; }
+.flashcard-tag { padding: 3px 8px; font-size: 10px; letter-spacing: .02em; text-transform: none; }
+.flashcard-nav { padding-top: 0; border-top: 0; }
+.flashcard-scene:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 4px; border-radius: 18px; }
+@media (prefers-reduced-motion: reduce) { .flashcard-inner { transition: none; } }
