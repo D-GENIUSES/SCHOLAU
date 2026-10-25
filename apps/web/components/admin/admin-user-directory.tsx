@@ -6,6 +6,7 @@ import type { LecturerOffering } from "@scholau/core";
 import { adminUsersApi, userManagementError, type ManagedUser } from "@/lib/admin-users-api";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { useUserInsights } from "@/lib/admin-insights";
 import { AdminCreateUser } from "./admin-create-user";
 import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
@@ -30,6 +31,9 @@ function roleLabel(user: ManagedUser) {
 
 export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boolean }) {
   const [items, setItems] = useState<ManagedUser[]>([]);
+  const insights = useUserInsights(items.map(user => user.id));
+  const [infoId, setInfoId] = useState<string | null>(null);
+  const info = insights.data?.items.find(user => user.id === infoId);
   const [total, setTotal] = useState(0);
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
@@ -121,6 +125,9 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
   const filtered = available.filter(o => `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()));
 
   return <>
+    <div className="mb-4 grid grid-cols-2 gap-2"><div className="rounded-control border border-line bg-surface-card p-3"><p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">Total users</p><p className="mt-1 text-2xl font-bold tabular-nums" aria-label={`Total users: ${insights.data?.total_users ?? "unavailable"}`}>{insights.data?.total_users ?? "—"}</p></div><div className="rounded-control border border-line bg-surface-card p-3"><p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">Online on this page</p><p className="mt-1 flex items-center gap-2 text-2xl font-bold tabular-nums"><span className="size-2 rounded-full bg-green-500" aria-hidden />{insights.isError ? "—" : insights.data?.items.filter(user => user.online).length ?? "—"}</p></div></div><p className="mb-3 text-xs text-ink-muted">Today&apos;s activity resets at midnight WAT. Online status refreshes every 15 seconds.</p>
+    {insights.isError && <Alert tone="warning">Activity and online status are unavailable. <Button variant="ghost" onClick={() => void insights.refetch()}>Retry</Button></Alert>}
+    <Dialog open={Boolean(infoId)} onOpenChange={open => {if (!open) setInfoId(null);}}><DialogContent className="max-w-lg"><DialogTitle>{items.find(user => user.id === infoId)?.display_name || "User information"}</DialogTitle><DialogDescription>Academic details and today&apos;s activity. Resets at midnight WAT.</DialogDescription>{info ? <><dl className="grid grid-cols-2 gap-3 text-sm">{[["Department",info.department],["Faculty",info.faculty],["Level",info.level],["Status",info.online ? "Online" : "Offline"]].map(([label,value]) => <div key={label}><dt className="text-ink-muted">{label}</dt><dd>{value || "Not provided"}</dd></div>)}</dl><h3 className="text-sm font-semibold">Today · {info.events.length} {info.events.length === 1 ? "activity" : "activities"}</h3><ul className="max-h-72 overflow-y-auto divide-y divide-line">{info.events.map(event => <li key={event.id} className="flex justify-between gap-3 py-2 text-sm"><span>{event.label}</span><time className="shrink-0 text-xs text-ink-muted">{new Date(event.at).toLocaleTimeString("en-GB",{timeZone:"Africa/Lagos",hour:"2-digit",minute:"2-digit"})}</time></li>)}</ul>{!info.events.length && <p className="text-sm text-ink-muted">No activity today.</p>}</> : <p className="text-sm">{insights.isError ? "Unable to load user activity." : "Loading information..."}</p>}</DialogContent></Dialog>
     <details className="mb-4 rounded-control border border-line bg-surface-card p-3 shadow-card">
       <summary className="cursor-pointer text-sm font-semibold">Add a student or lecturer</summary>
       <div className="mt-3 border-t border-line pt-3">
@@ -134,20 +141,22 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       </Alert>
     ) : null}
     <form
-      className="mb-4 flex flex-wrap items-end gap-2 rounded-control border border-line bg-surface-page/70 p-3"
+      className="admin-filter-form mb-4 flex flex-wrap items-end gap-2 rounded-control border border-line bg-surface-page/70 p-3"
       onSubmit={event => { event.preventDefault(); setQuery(search.trim()); setPage(0); }}
     >
       <Field id="users-search" label="Search users"><Input value={search} maxLength={200} placeholder="Name or email" onChange={e => setSearch(e.target.value)} /></Field>
-      <Field id="users-type" label="Account type"><NativeSelect value={category} onChange={e => { setCategory(e.target.value); setPage(0); }}><option value="">All users</option><option value="student">Students</option><option value="lecturer">Lecturers and applicants</option><option value="other">Other accounts</option></NativeSelect></Field>
-      <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All statuses</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
+      <Field id="users-type" label="Account type"><NativeSelect value={category} onChange={e => { setCategory(e.target.value); setPage(0); }}><option value="">All</option><option value="student">Students</option><option value="lecturer">Lecturers</option><option value="other">Other</option></NativeSelect></Field>
+      <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
       <Button type="submit" variant="outline">Search</Button><Button variant="ghost" onClick={() => void load()}>Refresh</Button>
     </form>
     {loading ? <LoadingState variant="table" label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
       { key: "name", header: "User", cell: user => <div className="flex items-center gap-3"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0"><p>{user.display_name || "No profile name"}</p><p className="break-all text-xs font-normal text-ink-muted">{user.email || "No email"}</p></div></div> },
       { key: "type", header: "Account type", cell: user => <>{roleLabel(user)}{user.roles.includes("admin") && <Badge tone="brand">Admin</Badge>}</> },
+      { key: "today", header: "Today", cell: user => <Button variant="ghost" size="sm" onClick={() => setInfoId(user.id)}>{insights.isError ? "Unavailable" : `${insights.data?.items.find(item => item.id === user.id)?.events.length ?? "—"} ${insights.data?.items.find(item => item.id === user.id)?.events.length === 1 ? "activity" : "activities"}`}</Button> },
+      { key: "online", header: "Online", cell: user => { const insight = insights.isError ? undefined : insights.data?.items.find(item => item.id === user.id); return <span className="inline-flex items-center gap-1.5 text-xs"><span aria-hidden className={`size-2 rounded-full ${insight?.online ? "bg-green-500" : "bg-gray-300"}`} />{insight ? insight.online ? "Online" : "Offline" : "Unknown"}</span>; } },
       { key: "registered", header: "Registered", cell: user => date(user.registered_at) },
       { key: "status", header: "Status", cell: user => <><Badge tone={user.deactivated_at ? "warning" : "success"}>{user.deactivated_at ? "Frozen" : "Active"}</Badge>{user.application_status && <p className="mt-1 text-xs text-ink-muted">Application: {user.application_status.replaceAll("_", " ")}</p>}</> },
-      { key: "action", header: "Actions", action: true, cell: user => <Button variant="outline" size="sm" onClick={() => void manage(user.id)}>Manage</Button> },
+      { key: "action", header: "Actions", action: true, cell: user => <div className="flex gap-1"><Button variant="ghost" size="sm" aria-label={`Information for ${user.display_name || "user"}`} onClick={() => setInfoId(user.id)}>Info</Button><Button variant="outline" size="sm" onClick={() => void manage(user.id)}>Manage</Button></div> },
     ]} /> : <EmptyState title="No users found" description="Try a different name, email or filter." />}
     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
       <p className="text-ink-muted">{total} users · Page {page + 1} of {Math.max(1, Math.ceil(total / 20))}</p>

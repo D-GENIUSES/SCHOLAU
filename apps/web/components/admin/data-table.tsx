@@ -60,25 +60,25 @@ export function DataTable<T>({
         </table>
       </div>
 
-      <ul className="flex flex-col gap-3 md:hidden" aria-label={caption}>
+      <ul className="flex flex-col gap-2 md:hidden" aria-label={caption}>
         {rows.map((row) => (
           <li
             key={rowKey(row)}
             className={cn(
-              "min-w-0 rounded-card border bg-surface-card p-4 shadow-card",
+              "min-w-0 rounded-card border bg-surface-card p-3 shadow-card",
               isSelected?.(row) ? "border-brand-primary" : "border-line",
             )}
           >
-            <dl className="flex flex-col gap-2">
-              {dataCols.map((c) => (
-                <div key={c.key} className="min-w-0">
-                  <dt className="text-sm text-ink-muted">{c.header}</dt>
-                  <dd className="break-words">{c.cell(row)}</dd>
+            <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5">
+              {dataCols.map((c, index) => (
+                <div key={c.key} className={cn("min-w-0", index === 0 && "col-span-2 border-b border-line pb-2")}>
+                  <dt className={cn("mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-muted", index === 0 && "sr-only")}>{c.header}</dt>
+                  <dd className="break-words text-xs leading-relaxed">{c.cell(row)}</dd>
                 </div>
               ))}
             </dl>
             {actionCols.length > 0 ? (
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="admin-row-actions mt-2.5 flex flex-wrap gap-2 border-t border-line pt-2.5">
                 {actionCols.map((c) => (
                   <div key={c.key}>{c.cell(row)}</div>
                 ))}

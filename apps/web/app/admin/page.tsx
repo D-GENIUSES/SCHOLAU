@@ -10,6 +10,7 @@ import {
   UserPlus,
 } from "lucide-react";
 import Link from "next/link";
+import { useUserInsights } from "@/lib/admin-insights";
 import { useAdminCounts } from "@scholau/api/react";
 import { formatNumber } from "@scholau/core";
 import { AdminErrorState, AdminPageHeader } from "@/components/admin/shared";
@@ -73,18 +74,20 @@ const STEPS = [
 
 export default function AdminOverviewPage() {
   const counts = useAdminCounts();
+  const users = useUserInsights([]);
 
   return (
     <>
-      <AdminPageHeader title="Dashboard" description="Pipeline health, shortcuts, and content workflow." />
+      <AdminPageHeader title="Dashboard" description="Your community, content, and daily operations in one place." />
 
+      <Link href="/admin/users" className="mb-4 flex items-center justify-between gap-3 rounded-card border border-brand-primary/15 bg-surface-tint p-4"><div><p className="text-xs font-semibold text-brand-primary">Registered users</p><p className="mt-1 text-3xl font-bold tabular-nums">{users.isError ? "Unavailable" : users.data?.total_users ?? "—"}</p></div><span className="inline-flex items-center gap-2 text-xs font-semibold text-brand-primary">View users <ArrowRight className="size-4" aria-hidden /></span></Link>
       <section aria-label="Quick links" className="mb-5">
-        <ul className="flex flex-wrap gap-2">
+        <ul className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
           {QUICK_LINKS.map(({ href, label, icon: Icon }) => (
             <li key={href}>
               <Link
                 href={href}
-                className="inline-flex min-h-8 items-center gap-1.5 rounded-pill border border-line bg-surface-card px-2.5 text-xs font-semibold text-ink-muted shadow-card transition hover:border-brand-primary hover:text-brand-primary"
+                className="flex min-h-11 items-center gap-2 rounded-control border border-line bg-surface-card px-3 py-2 text-xs font-semibold text-ink-muted shadow-card transition hover:border-brand-primary hover:text-brand-primary"
               >
                 <Icon className="size-3.5" aria-hidden />
                 {label}
@@ -159,7 +162,7 @@ export default function AdminOverviewPage() {
         )}
       </section>
 
-      <Card className="shadow-card">
+      <details className="rounded-card border border-line bg-surface-card p-3"><summary className="cursor-pointer text-sm font-semibold">Content publishing guide</summary><Card className="mt-3 border-0 shadow-none">
         <CardHeader className="space-y-1 px-4 py-3 sm:px-5">
           <CardTitle className="text-base">Content workflow</CardTitle>
           <CardDescription className="text-xs sm:text-sm">
@@ -192,7 +195,7 @@ export default function AdminOverviewPage() {
             </Link>
           </p>
         </CardContent>
-      </Card>
+      </Card></details>
     </>
   );
 }
