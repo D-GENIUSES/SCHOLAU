@@ -5,6 +5,7 @@ import ts from "typescript";
 import { NextRequest, NextResponse } from "next/server.js";
 import { safeNext } from "./utils.ts";
 import { createRequestAuthenticator } from "./supabase/request-auth.ts";
+import { chosenElectives, electiveGroups } from "./course-electives.ts";
 
 function load(file, mocks) {
   const source = readFileSync(new URL(file, import.meta.url), "utf8");
@@ -92,11 +93,14 @@ test("account destination uses database roles and honors blocked accounts", asyn
   let roles = ["student"];
   let failure;
   let onboarding = false;
+  let academic;
+  let offerings = [];
   const { accountDestination } = load("./auth-destination.ts", {
     "server-only": {},
     "@scholau/api": { isApiError: (error, code) => error.code === code },
     "@scholau/core": { readRegistrationAcademic: () => null },
-    "@/lib/supabase/server": { getServerApi: async () => ({ getMyProfile: async () => { if (failure) throw { code: failure, field_errors: { registration_required: true } }; return { roles, needs_onboarding: onboarding }; } }), getServerSupabase: async () => ({ auth: { getClaims: async () => ({ data: { claims: {} } }) } }) },
+    "@/lib/supabase/server": { getServerApi: async () => ({ getMyProfile: async () => { if (failure) throw { code: failure, field_errors: { registration_required: true } }; return { roles, needs_onboarding: onboarding, academic }; }, getCatalog: async () => ({ offerings }) }), getServerSupabase: async () => ({ auth: { getClaims: async () => ({ data: { claims: {} } }) } }) },
+    "@/lib/course-electives": { chosenElectives, electiveGroups },
     "@/lib/lecturer-api": { lecturerApi: () => ({ mine: async () => ({ application: { status: "pending" } }) }) },
   });
   for (const [value, destination] of [[["admin", "student"], "/admin"], [["lecturer"], "/lecturer"], [["student"], "/home"], [[], "/lecturer/application"]]) {
@@ -113,4 +117,10 @@ test("account destination uses database roles and honors blocked accounts", asyn
   roles = ["student"];
   onboarding = true;
   assert.equal(await accountDestination(), "/onboarding");
+  onboarding = false;
+  academic = { department: { name: "Law" } };
+  offerings = [1, 2, 3].map((id) => ({ offering_id: String(id), elective_group: "Law 500", elective_selection_count: 2, enrolled: id === 1 }));
+  assert.equal(await accountDestination(), "/onboarding/courses");
+  offerings[1].enrolled = true;
+  assert.equal(await accountDestination(), "/home");
 });
