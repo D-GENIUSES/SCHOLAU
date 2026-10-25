@@ -54,12 +54,13 @@ export function SignUpForm() {
       setStep("account");
       return;
     }
+    const destination = values.department.trim().toLowerCase() === "law" ? "/onboarding/courses" : "/home";
     const { data, error: authError } = await getBrowserSupabase().auth.signUp({
       email: values.email,
       password: values.password,
       options: {
         data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values), ...legal.metadata() },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/home`,
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${destination}`,
       },
     });
     if (authError) {
@@ -72,7 +73,7 @@ export function SignUpForm() {
       return;
     }
     analytics.track({ name: "signup_completed" });
-    setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? "/home" : `/verify?email=${encodeURIComponent(values.email)}` });
+    setCompletion({ owner: data.user?.id ?? null, hasSession: Boolean(data.session), destination: data.session ? destination : `/verify?email=${encodeURIComponent(values.email)}` });
     } catch {
       setError("Registration could not be confirmed. Check your email or try signing in before retrying.");
     }

@@ -10,7 +10,7 @@ export function SignupNotifications({ destination }: {
 }) {
   const router = useRouter();
   return <>
-    <AuthHeading title="Your account is ready" description="Continue to Home. If email confirmation is required, confirm your email first." />
+    <AuthHeading title="Your account is ready" description="Continue to get started. If email confirmation is required, confirm your email first." />
     <Button block onClick={() => { router.replace(destination); router.refresh(); }}>Continue</Button>
   </>;
 }

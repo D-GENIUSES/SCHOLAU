@@ -180,6 +180,8 @@ export interface CourseRef {
 
 export interface CatalogOffering {
 
+  elective_selection_count?: number | null;
+
   unit_count?: number | null;
 
   requirement_status?: "C" | "R" | "E" | null;

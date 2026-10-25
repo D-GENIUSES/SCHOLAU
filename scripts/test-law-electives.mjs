@@ -1,0 +1,81 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
+const runtime = createRequire(resolve(process.env.LEGAL_TEST_RUNTIME ?? '../.legal-test-runtime', 'package.json'));
+const { PGlite } = runtime('@electric-sql/pglite');
+const db = new PGlite();
+const migration = await readFile('supabase/migrations/20261028002000_law_elective_selection_rules.sql', 'utf8');
+const q = async (sql, args = []) => (await db.query(sql, args)).rows;
+await db.exec(`
+create role anon; create role authenticated; create schema private;
+create table universities(id uuid primary key default gen_random_uuid(),slug text);
+create table departments(id uuid primary key default gen_random_uuid(),university_id uuid,name text,active boolean default true);
+create table levels(id uuid primary key default gen_random_uuid(),university_id uuid,sort_order int,active boolean default true);
+create table semesters(id uuid primary key default gen_random_uuid(),sort_order int);
+create table profiles(id uuid primary key,university_id uuid,department_id uuid,level_id uuid,semester_id uuid);
+create table courses(id uuid primary key default gen_random_uuid(),code text unique,title text,description text,active boolean default true);
+create table curriculum_courses(course_id uuid,department_id uuid,level_id uuid,semester_number int,requirement_status text,elective_group text,source_reference text,active boolean default true,position int);
+create table course_offerings(id uuid primary key default gen_random_uuid(),course_id uuid,university_id uuid,department_id uuid,level_id uuid,semester_id uuid,status text,unit_count int,requirement_status text,lecture_hours int,practical_hours int,elective_group text);
+create table enrollments(user_id uuid,offering_id uuid,enrolled_at timestamptz default now(),ended_at timestamptz,request_key uuid,unique(user_id,offering_id));
+create table lessons(id uuid,course_id uuid);
+create table lesson_versions(lesson_id uuid,status text);
+create table lesson_progress(user_id uuid,lesson_id uuid,state text);
+create function private.require_user() returns uuid language sql as $$select current_setting('test.user')::uuid$$;
+create function private.assert_client_supported() returns void language sql as $$select$$;
+create function private.require_request_key(uuid) returns void language plpgsql as $$begin if $1 is null then raise exception 'Request key required'; end if; end$$;
+create function private.raise_error(text,text default null) returns void language plpgsql as $$begin raise exception '%: %',$1,$2; end$$;
+create function private.envelope(jsonb,uuid default null) returns jsonb language sql as $$select $1$$;
+insert into universities(slug) values('adeleke-university-ede-osun-state');
+insert into departments(university_id,name) select id,'Law' from universities;
+insert into levels(university_id,sort_order) select u.id,n from universities u cross join unnest(array[200,300,400,500]) n;
+insert into semesters(sort_order) values(1),(2);
+insert into courses(code,title) select code,code from unnest(array['PUL 231','AUE-LAW 201','PPL 321','PUL 321','PUL 421','PPL 441','PUL 541','PUL 521','PPL 521']) code;
+insert into curriculum_courses select c.id,d.id,l.id,1,'E',null,'Test source',true,1 from courses c cross join departments d join levels l on l.sort_order=case when c.code in('PUL 231','AUE-LAW 201') then 200 when c.code in('PPL 321','PUL 321') then 300 when c.code in('PUL 421','PPL 441') then 400 else 500 end;
+insert into course_offerings(course_id,university_id,department_id,level_id,semester_id,status,requirement_status) select cc.course_id,d.university_id,cc.department_id,cc.level_id,s.id,'published','E' from curriculum_courses cc join departments d on d.id=cc.department_id cross join semesters s where s.sort_order=1;
+`);
+await db.exec('begin;'+migration+'commit;');
+assert.equal((await q('select count(*)::int n from private.elective_selection_rules'))[0].n,4);
+for (const [level,limit] of [[200,1],[300,1],[400,1],[500,2]]) {
+ const user=crypto.randomUUID();
+ await db.query('insert into profiles select $1,u.id,d.id,l.id,s.id from universities u cross join departments d join levels l on l.sort_order=$2 cross join semesters s where s.sort_order=1',[user,level]);
+ await db.query("select set_config('test.user',$1,false)",[user]);
+ const catalog=(await q('select public.get_catalog_v1() data'))[0].data.offerings;
+ assert.equal(catalog.length,level===500?3:2);
+ assert.ok(catalog.every(o=>o.elective_selection_count===limit && !o.enrolled && o.requirement_status==='E'));
+ for (let i=0;i<limit;i++) await db.query('select public.enroll_course_v1($1,$2)',[catalog[i].offering_id,crypto.randomUUID()]);
+ // Replaying an enrolled course stays idempotent even when the group is full.
+ await db.query('select public.enroll_course_v1($1,$2)',[catalog[0].offering_id,crypto.randomUUID()]);
+ await assert.rejects(db.query('select public.enroll_course_v1($1,$2)',[catalog[limit].offering_id,crypto.randomUUID()]),/VALIDATION_FAILED/);
+ assert.equal((await q('select count(*)::int n from enrollments where user_id=$1 and ended_at is null',[user]))[0].n,limit);
+ // Ending a choice frees exactly one slot, including after a partial save.
+ await db.query('update enrollments set ended_at=now() where user_id=$1 and offering_id=$2',[user,catalog[0].offering_id]);
+ await db.query('select public.enroll_course_v1($1,$2)',[catalog[limit].offering_id,crypto.randomUUID()]);
+ assert.equal((await q('select count(*)::int n from enrollments where user_id=$1 and ended_at is null',[user]))[0].n,limit);
+}
+// Existing groups keep their select-one behavior without a new rule.
+await db.exec("update course_offerings set elective_group='Legacy electives' where level_id=(select id from levels where sort_order=500)");
+const legacy=(await q('select public.get_catalog_v1() data'))[0].data.offerings;
+assert.ok(legacy.every(o=>o.elective_selection_count===null));
+await assert.rejects(db.query('select public.enroll_course_v1($1,$2)',[legacy.find(o=>!o.enrolled).offering_id,crypto.randomUUID()]),/VALIDATION_FAILED/);
+await db.close();
+
+const ts = createRequire(resolve('apps/web/package.json'))('typescript');
+const source = await readFile('apps/web/lib/course-electives.ts','utf8');
+const js = ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {toggleElective,electiveGroups,chosenElectives}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+const offerings=[1,2,3].map(i=>({offering_id:String(i),elective_group:'Law 500',elective_selection_count:2,enrolled:false}));
+let selected=toggleElective(offerings,new Set(),'1',true);
+selected=toggleElective(offerings,selected,'2',true);
+assert.equal(selected.size,2);
+assert.deepEqual([...toggleElective(offerings,selected,'3',true)],['1','2']);
+selected=toggleElective(offerings,selected,'1',false);
+selected=toggleElective(offerings,selected,'3',true);
+assert.deepEqual([...selected],['2','3']);
+offerings[0].enrolled=true;
+assert.equal(chosenElectives(offerings,new Set(['2'])),2);
+assert.equal(toggleElective(offerings,new Set(['2']),'3',true).size,1);
+assert.equal(electiveGroups(offerings)[0].count,2);
+const single=offerings.map(o=>({...o,enrolled:false,elective_selection_count:1}));
+assert.deepEqual([...toggleElective(single,new Set(['1']),'2',true)],['2']);
+console.log('Passed: Law 200/300/400 select-one, 500 select-two, catalog metadata, limits, replay, freed slots, legacy groups and picker selection.');
