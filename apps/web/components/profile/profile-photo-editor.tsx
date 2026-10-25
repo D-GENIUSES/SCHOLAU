@@ -18,7 +18,7 @@ type Crop = { zoom: number; panX: number; panY: number };
 const centered: Crop = { zoom: 1, panX: 0, panY: 0 };
 const clamp = (value: number) => Math.max(-1, Math.min(1, value));
 
-export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | "display_name" | "avatar_path"> }) {
+export function ProfilePhotoEditor({ profile, onboarding = false, onInteractionChange }: { profile: Pick<Profile, "id" | "display_name" | "avatar_path">; onboarding?: boolean; onInteractionChange?: (active: boolean) => void }) {
   const router = useRouter();
   const cache = useQueryClient();
   const input = useRef<HTMLInputElement>(null);
@@ -37,6 +37,7 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
   const selectedPreset = avatarPresetIndex(path);
   const hasPhoto = Boolean(path?.startsWith("avatars/"));
   const draftUrl = draft?.url;
+  useEffect(() => { onInteractionChange?.(busy || preparing || Boolean(draft) || removing); }, [busy, preparing, draft, removing, onInteractionChange]);
   useEffect(() => () => { if (draftUrl) URL.revokeObjectURL(draftUrl); }, [draftUrl]);
   useEffect(() => () => { generation.current++; }, []);
 
@@ -109,7 +110,7 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
   const imageHeight = draft ? draft.height / Math.min(draft.width, draft.height) * crop.zoom : 1;
 
   return <section aria-label="Profile picture" className="flex flex-col gap-4">
-    <div className="avatar-picker-current"><Avatar name={profile.display_name} path={path} size={72} /><div><p className="font-semibold">Your profile picture</p><p className="text-sm text-ink-muted">Pick an avatar or upload a photo.</p></div></div>
+    <div className="avatar-picker-current"><Avatar name={profile.display_name} path={path} size={72} /><div><p className="font-semibold">{onboarding ? (hasPhoto ? "Your photo" : `${AVATAR_PRESETS[selectedPreset ?? 0]?.name ?? "Your"} avatar`) : "Your profile picture"}</p><p className="text-sm text-ink-muted">{onboarding ? "You can change this anytime." : "Pick an avatar or upload a photo."}</p></div></div>
     <fieldset className="avatar-picker" disabled={busy || preparing || Boolean(draft)} aria-busy={busy}>
       <legend className="sr-only">Choose an avatar</legend>
       <div className="avatar-picker-grid">{AVATAR_PRESETS.map(preset => <button type="button" key={preset.id} className="avatar-picker-option" data-selected={selectedPreset === preset.id} aria-label={`${preset.name} avatar`} aria-pressed={selectedPreset === preset.id} onClick={() => void selectAvatar(preset.id)}>

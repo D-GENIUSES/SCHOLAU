@@ -1042,3 +1042,12 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 .avatar-picker-upload { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--color-line); }
 .avatar-picker-upload > p { flex-basis: 100%; font-size: 11px; color: var(--color-ink-muted); }
 @container (min-width: 440px) { .avatar-picker-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+.avatar-welcome-dialog { gap: 18px; width: min(440px, calc(100vw - 24px)); padding: 22px; border-radius: 22px; }
+.avatar-welcome-heading { display: flex; flex-direction: column; gap: 7px; }
+.avatar-welcome-heading h2 { padding-right: 0; font-size: 24px; font-weight: 750; letter-spacing: -.03em; }
+.avatar-welcome-heading p { font-size: 13px; line-height: 1.5; }
+.avatar-welcome-eyebrow { color: var(--color-brand-primary); font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+.avatar-welcome-footer { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.avatar-welcome-footer > p { font-size: 12px; color: var(--color-danger); }
+@media (max-width: 359px) { .avatar-welcome-dialog { padding: 16px; gap: 14px; } }
