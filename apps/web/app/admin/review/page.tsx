@@ -8,6 +8,7 @@ import { useAdminAssessmentVersions, useAdminLessonVersions, useAdminQuestionVer
 import { ASSESSMENT_KIND_LABEL, type ContentStatus, formatDateTime, formatDuration } from "@scholau/core";
 import { type Column, DataTable } from "@/components/admin/data-table";
 import { AssessmentDetail, LessonDetail, QuestionDetail } from "@/components/admin/review-details";
+import { PublishAllButton } from "@/components/admin/publish-actions";
 import { AdminErrorState, AdminPageHeader, CONTENT_STATUSES, FilterSelect, humanize, StatusBadge } from "@/components/admin/shared";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -89,6 +90,11 @@ function LessonsTab({ status, selectedId, onSelect, onDone }: TabProps) {
         return (
           <>
             {selected ? <LessonDetail row={selected} onClose={() => onSelect(null)} onDone={onDone} /> : null}
+            {status === "draft" ? (
+              <div className="mb-4 flex justify-end">
+                <PublishAllButton entityType="lesson_version" ids={rows.map((r) => r.id)} noun="lesson versions" onDone={onDone} />
+              </div>
+            ) : null}
             <DataTable
               caption={`${humanize(status)} lesson versions`}
               columns={columns}
@@ -136,6 +142,11 @@ function QuestionsTab({ status, selectedId, onSelect, onDone }: TabProps) {
         return (
           <>
             {selectedId ? <QuestionDetail id={selectedId} onClose={() => onSelect(null)} onDone={onDone} /> : null}
+            {status === "draft" ? (
+              <div className="mb-4 flex justify-end">
+                <PublishAllButton entityType="question_version" ids={rows.map((r) => r.id)} noun="question versions" onDone={onDone} />
+              </div>
+            ) : null}
             <DataTable
               caption={`${humanize(status)} question versions`}
               columns={columns}
@@ -179,6 +190,11 @@ function AssessmentsTab({ status, selectedId, onSelect, onDone }: TabProps) {
         return (
           <>
             {selected ? <AssessmentDetail row={selected} onClose={() => onSelect(null)} onDone={onDone} /> : null}
+            {status === "draft" ? (
+              <div className="mb-4 flex justify-end">
+                <PublishAllButton entityType="assessment_version" ids={rows.map((r) => r.id)} noun="assessment versions" onDone={onDone} />
+              </div>
+            ) : null}
             <DataTable
               caption={`${humanize(status)} assessment versions`}
               columns={columns}

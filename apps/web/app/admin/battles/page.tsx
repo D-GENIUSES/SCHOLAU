@@ -1,5 +1,6 @@
 "use client";
 
+import { useBattleInsights } from "@/lib/admin-insights";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Ban } from "lucide-react";
 import { useId, useState } from "react";
@@ -13,7 +14,7 @@ import { AdminErrorState, CopyableId, FilterSelect, humanize, MutationError, Rea
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ConfirmDialog } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription, ConfirmDialog } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
 import { Input, Textarea } from "@/components/ui/input";
 import { AdminPageHeader } from "@/components/admin/shared";
@@ -136,50 +137,26 @@ function VoidAttemptForm({ onDone }: { onDone: (r: CorrectResultResult) => void 
 }
 
 export default function AdminBattlesPage() {
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("finished");
   const query = useAdminBattles(filter === "all" ? null : filter);
   const correct = useAdminCorrectResult();
+  const insights = useBattleInsights(query.data?.map(battle => battle.id) ?? []);
+  const [details, setDetails] = useState<AdminBattleRow | null>(null);
+  const detail = insights.data?.items.find(item => item.id === details?.id);
   const [target, setTarget] = useState<{ battle: AdminBattleRow; key: string } | null>(null);
   const [result, setResult] = useState<CorrectResultResult | null>(null);
 
   const columns: Column<AdminBattleRow>[] = [
-    { key: "id", header: "Battle", cell: (r) => <CopyableId id={r.id} short /> },
-    { key: "mode", header: "Mode", cell: (r) => humanize(r.mode) },
-    { key: "state", header: "State", cell: (r) => <BattleStateBadge state={r.state} /> },
-    { key: "result", header: "Result", cell: (r) => humanize(r.result_kind) },
-    { key: "cancel", header: "Cancel reason", cell: (r) => humanize(r.cancel_reason) },
-    { key: "created", header: "Created", cell: (r) => formatDateTime(r.created_at) },
-    { key: "finalized", header: "Finalized", cell: (r) => (r.finalized_at ? formatDateTime(r.finalized_at) : "—") },
-    {
-      key: "actions",
-      header: "Actions",
-      action: true,
-      cell: (r) =>
-        r.state === "finished" ? (
-          <Button
-            size="sm"
-            variant="danger-outline"
-            onClick={() => {
-              correct.reset();
-              setTarget({ battle: r, key: newRequestKey() });
-            }}
-            aria-label={`Void result of battle ${r.id.slice(0, 8)}`}
-          >
-            Void result
-          </Button>
-        ) : (
-          <span className="text-sm text-ink-muted">—</span>
-        ),
-    },
+    { key: "players", header: "Match", cell: r => {const match = insights.data?.items.find(item => item.id === r.id); return <div><p className="font-semibold">{match?.players.map(player => player.name).join(" vs ") || "Players unavailable"}{match?.players.length === 1 ? " vs Awaiting opponent" : ""}</p><p className="text-xs text-ink-muted">{match?.course ?? "Battle"} · {humanize(r.mode)}</p></div>;} },
+    { key: "score", header: "Score", cell: r => {const match = insights.data?.items.find(item => item.id === r.id);return <span className="font-bold tabular-nums">{match?.players.map(player => player.score ?? "—").join(" : ") || "—"}</span>;} },
+    { key: "state", header: "Status", cell: r => <BattleStateBadge state={r.state} /> },
+    { key: "created", header: "Date", cell: r => formatDateTime(r.finalized_at ?? r.created_at) },
+    { key: "info", header: "Information", action: true, cell: r => <Button variant="outline" size="sm" onClick={() => setDetails(r)}>More information</Button> },
   ];
 
   return (
     <>
       <AdminPageHeader title="Battles" description="Inspect recent battles and correct results." />
-      <Alert tone="info" className="mb-6">
-        {VOID_EXPLANATION}
-      </Alert>
-
       <div role="status" aria-live="polite">
         {result ? (
           <div className="mb-6">
@@ -192,6 +169,7 @@ export default function AdminBattlesPage() {
         <FilterSelect label="State" value={filter} onChange={setFilter} options={FILTERS} />
       </div>
 
+      {insights.isError && <Alert tone="warning">Player names and scores could not be loaded. <Button variant="ghost" onClick={() => void insights.refetch()}>Retry</Button></Alert>}
       <section aria-label="Battles" className="mb-10">
         {query.isPending ? (
           <LoadingState label="Loading battles…" />
@@ -207,7 +185,8 @@ export default function AdminBattlesPage() {
         )}
       </section>
 
-      <VoidAttemptForm onDone={setResult} />
+      <details className="rounded-control border border-line p-3"><summary className="cursor-pointer text-sm font-semibold">Assessment corrections</summary><div className="mt-3"><VoidAttemptForm onDone={setResult} /></div></details>
+      <Dialog open={Boolean(details)} onOpenChange={open => {if(!open) setDetails(null);}}><DialogContent className="max-w-lg"><DialogTitle>Battle information</DialogTitle><DialogDescription>{detail?.players.map(player => player.name).join(" vs ") || "Match details"}</DialogDescription>{details && <><dl className="grid grid-cols-2 gap-3 text-sm"><div><dt className="text-ink-muted">Course</dt><dd>{detail?.course ?? "—"}</dd></div><div><dt className="text-ink-muted">Rounds</dt><dd>{detail?.rounds ?? "—"}</dd></div><div><dt className="text-ink-muted">Result</dt><dd>{humanize(details.result_kind)}</dd></div><div><dt className="text-ink-muted">Status</dt><dd>{humanize(details.state)}</dd></div></dl>{detail?.players.map(player => <p key={player.id} className="flex justify-between gap-2 border-t border-line py-2 text-sm"><span>{player.name}{detail.winner_id === player.id ? " · Winner" : ""}{player.forfeited ? " · Forfeited" : ""}</span><strong>{player.score ?? "—"} correct</strong></p>)}<details className="text-xs"><summary className="cursor-pointer">Technical details</summary><div className="mt-2 space-y-2"><CopyableId id={details.id}/><p>Created: {formatDateTime(details.created_at)}</p><p>Finalized: {details.finalized_at ? formatDateTime(details.finalized_at) : "Pending"}</p><p>Cancel reason: {humanize(details.cancel_reason)}</p></div></details>{details.state === "finished" && <Button size="sm" variant="danger-outline" onClick={() => { correct.reset(); setTarget({battle:details,key:newRequestKey()}); setDetails(null); }}>Void result</Button>}</>}</DialogContent></Dialog>
 
       {target ? (
         <ReasonDialog

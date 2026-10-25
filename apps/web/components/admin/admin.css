@@ -1,0 +1,14 @@
+.admin-workspace { overflow-wrap: anywhere; }
+.admin-workspace main, .admin-workspace form, .admin-workspace fieldset { min-width: 0; }
+.admin-workspace input:not([type="checkbox"]):not([type="radio"]),
+.admin-workspace select, .admin-workspace textarea { max-width: 100%; min-width: 0; }
+.admin-mobile-nav { padding-bottom: max(.5rem, env(safe-area-inset-bottom)); }
+@media (max-width: 639px) {
+  .admin-workspace .admin-filter-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
+  .admin-workspace .admin-filter-form > :first-child { grid-column: 1 / -1; }
+  .admin-workspace .admin-filter-form input, .admin-workspace .admin-filter-form select { width: 100%; }
+  .admin-workspace .admin-filter-form select { padding-left: .625rem; padding-right: 1.5rem; background-position: right .375rem center; }
+  .admin-workspace .admin-filter-form button { min-height: 2.75rem; }
+  .admin-workspace .admin-row-actions button, .admin-workspace .admin-row-actions a { min-height: 2.5rem; }
+  .admin-menu { max-height: calc(100dvh - 2rem); }
+}

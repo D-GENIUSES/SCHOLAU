@@ -1,0 +1,149 @@
+{
+  "reviewed_topics": [
+    {
+      "course": "COS 201",
+      "photo": 1,
+      "topic": "Java declarations, identifiers and evaluation",
+      "reviewed_explanation": "A Java variable declaration supplies a type and a valid identifier. int x = 5, y = 10; declares and initialises two integers; the paper’s int x, y = 5, 10; is malformed and cannot be executed literally. Assignment operators such as += and *= update the left operand; = assigns, while == compares and yields a boolean. Prefix ++x increments before its value is used; postfix x++ uses the old value and then increments. Java evaluates operands left to right. Identifiers can include letters, digits after the first character, underscore and dollar signs, but cannot be keywords, start with digits, or contain hyphens and #. double and long are invalid identifiers because they are keywords. Boolean is not the primitive boolean keyword. String literals use double quotes and char literals use single quotes.",
+      "worked_example": "Starting independently with int x = 2: x++ + x evaluates as 2 + 3 = 5 and leaves x at 3. Starting again with x = 2: ++x + x evaluates as 3 + 3 = 6. With int x = 5, y = 10, x += y leaves x = 15, and independently x *= y leaves x = 50.",
+      "source_issue": "Do not silently run a malformed declaration. State corrected initial values and whether each expression starts from a fresh state."
+    },
+    {
+      "course": "COS 201",
+      "photo": 6,
+      "topic": "Programming paradigms, Java strings and numeric types",
+      "reviewed_explanation": "Declarative programming expresses the desired result rather than a detailed control-flow procedure; SQL is a common example. Logic programming represents facts and rules that can be queried. Object-oriented encapsulation packages related state and operations and controls access to representation; inheritance can reuse existing code. Java strings are immutable objects. Their length is found using length(), and toLowerCase() returns a lower-case string. substring(begin,end) includes begin and excludes end. Strings can be concatenated with + or concat(). Java numeric division depends on operand types: dividing an int by a double produces floating-point division. Primitive double occupies more storage than byte, float or long in the choices on the paper.",
+      "worked_example": "For String s = \"hello world\";, s.substring(0,5) is \"hello\". With int a = 5; double b = 10.0;, a / b is 0.5. The SQL query SELECT * FROM employees WHERE salary > 5000 describes the required rows and is declarative.",
+      "source_issue": "The paper repeats the declarative-language stem for one question whose options discuss unrelated features. That ambiguous item is not used as a scored question."
+    },
+    {
+      "course": "COS 201",
+      "photo": 8,
+      "topic": "Java program repair, casting and flowcharts",
+      "reviewed_explanation": "A Java entry point is public static void main(String[] args). A class body and method body need matching braces, and System.out.println uses correctly capitalised identifiers, parentheses, a valid string literal and a semicolon. The photographed snippets contain errors in these areas; copy the intended message into a valid statement rather than interpreting broken syntax as executable code. A double-to-int cast truncates toward zero. Names can be combined using string concatenation, and the escape sequence \\t inserts a tab. A flowchart for gravitational force should input G, m1, m2 and distance r, reject r = 0, compute F = G*m1*m2/(r*r), and output F. Use positive distance in the physical model. For swapping variables, a temporary variable is clear and avoids the overflow risks of arithmetic swap tricks.",
+      "worked_example": "A valid fragment is: int x = 5; int y = 3*x; int temp = x; x = y; y = temp; System.out.println(x + \" \" + y);. It prints 15 5. Separately, casting 5.8 to int gives 5. A complete main signature is public static void main(String[] args).",
+      "source_issue": "Do not use integer division when a decimal quotient is required, or put curly quotation marks into Java string literals."
+    },
+    {
+      "course": "CSC 203",
+      "photo": 2,
+      "topic": "Set-counting and finite functions from the discrete-structures quiz",
+      "reviewed_explanation": "The photographed CSC 232 quiz is Discrete Structures, matching the catalogue’s CSC 203 course. Of 50 students, 28 take CSC 232, 22 take CSC 201 and 12 take both. Only the first class has 28 − 12 = 16; only the second has 22 − 12 = 10; the union has 28 + 22 − 12 = 38; and 50 − 38 = 12 take neither. A finite function’s domain is the specified input set; its range is the outputs it actually produces. The codomain is part of a function’s definition and cannot in general be recovered from a formula alone. The paper does not specify a codomain for f(x) = x² + 2x − 1, so any particular codomain used in an exercise must be declared as an assumption.",
+      "worked_example": "For D = {−2, −1, 0, 1, 2}, evaluating f(x) = x² + 2x − 1 gives respectively −1, −2, −1, 2, 7. The range is {−2, −1, 2, 7}. One valid explicitly chosen codomain is the integers; another is a stated set containing all these outputs.",
+      "source_issue": "Do not mistake range for a uniquely determined codomain, and do not count the class overlap twice."
+    },
+    {
+      "course": "SEN 201",
+      "photo": 10,
+      "topic": "SDLC, software processes and products",
+      "reviewed_explanation": "Software engineering applies systematic engineering methods to developing and maintaining software. A process is an organised set of activities, while a product is an outcome of those activities. SDLC phases commonly include planning, requirements analysis, design, implementation, testing, deployment and maintenance. Project scope, estimates, risk assessment and a project plan guide planning. API and database design usually belong to design; implementing business logic and exception handling belongs to implementation; writing tests and evaluating results belongs to testing; installation and production setup belong to deployment; bug fixes and software updates belong to maintenance. Documentation supports several phases and is not exclusive to one. A software product is a software artefact supplied to users; a software service is a capability or activity delivered to a customer, often using software.",
+      "worked_example": "For a hostel food-delivery app: identify users and scope, elicit requirements, design its API and data model, implement the order logic, test it, deploy it and maintain it. A scheduling application is a product; maintaining a client’s scheduling system is a service.",
+      "source_issue": "Phase names can vary by lifecycle model. When an activity spans phases, state its context instead of treating one mapping as universal."
+    },
+    {
+      "course": "SEN 201",
+      "photo": 10,
+      "topic": "Requirements, UML and testing",
+      "reviewed_explanation": "Functional requirements describe what a system does; non-functional requirements constrain qualities such as performance, security, reliability, usability and availability. For hostel food delivery, placing an order, viewing a menu and tracking delivery are functions, while a response-time target or access-control requirement constrains quality. Elicitation techniques include interviews, questionnaires, observation and workshops. A use-case diagram shows actors and interactions; a class diagram models static structure; an activity diagram models workflow; a sequence diagram models interactions over time. A specification describes required behaviour and constraints. Design specifies the solution’s structure and interfaces; architecture concerns its major elements, relationships and guiding decisions. Testing checks behaviour and seeks defects; acceptance testing evaluates whether stakeholder acceptance criteria are met.",
+      "worked_example": "An acceptance test could require a student to place an order and receive confirmation. Alpha testing is commonly performed in a controlled developer-associated environment; beta testing exposes a prerelease product to external users in realistic use.",
+      "source_issue": "An IDE is a development environment, not a UML diagram. Do not confuse stakeholder needs with a particular implementation choice."
+    },
+    {
+      "course": "SEN 201",
+      "photo": 11,
+      "topic": "Feasibility, engineering roles and quality",
+      "reviewed_explanation": "A feasibility study checks whether a proposed system is worth pursuing and practical within its constraints. Technical feasibility considers skills and technology; economic feasibility compares costs and benefits; operational feasibility considers whether people and processes can use the solution; schedule feasibility checks the time available; legal feasibility checks applicable obligations. Software engineers analyse requirements, design systems, implement and test software, maintain it, communicate with stakeholders and manage change. Important qualities include analytical thinking, communication, collaboration, attention to detail, ethical judgment and willingness to learn. Applying software engineering helps manage complexity, deliver quality and maintain software within resource constraints.",
+      "worked_example": "For a food-delivery system, ask whether the team can build it (technical), whether expected benefits justify costs (economic), and whether hostel users and staff can operate it successfully (operational). A deadline before an event also raises schedule feasibility.",
+      "source_issue": "Feasibility evaluates an actual proposal and its constraints; it is not a promise that no risk or maintenance will remain."
+    },
+    {
+      "course": "CYB 201",
+      "photo": 12,
+      "topic": "Security goals, risk, least privilege and response",
+      "reviewed_explanation": "Confidentiality protects information from unauthorised disclosure; integrity protects it from improper alteration; availability supports timely access to services and information. A threat is a potential cause of harm, a vulnerability is a weakness, and risk concerns the likelihood and impact of harm when threats exploit vulnerabilities. An unpatched public-facing service is a vulnerability, a malicious attacker is a threat actor, and the possible loss from exploitation contributes to risk. Least privilege gives people and processes only the permissions required for their tasks. A security incident requires preparation, detection and analysis, containment, eradication, recovery and lessons learned. The historical ARPANET was an early packet-switched network; its first four sites were UCLA, Stanford Research Institute, UC Santa Barbara and the University of Utah, not four universities in the strict sense.",
+      "worked_example": "A compromised account that can only read its own records has a smaller permission scope than an administrator account. After a suspected compromise, preserve evidence, analyse it, contain the intrusion, remove its cause and restore service safely before reviewing lessons.",
+      "source_issue": "Threat, vulnerability and risk are related but not interchangeable. Do not grant administrator access simply because it is convenient."
+    },
+    {
+      "course": "CYB 201",
+      "photo": 4,
+      "topic": "Network models, firewalls and common threats",
+      "reviewed_explanation": "The seven OSI layers are Physical, Data Link, Network, Transport, Session, Presentation and Application. The TCP/IP model commonly groups networking into Link, Internet, Transport and Application layers. Firewalls enforce traffic policy; network firewalls often sit at boundaries, while host firewalls protect individual systems. A firewall does not make vulnerable applications automatically safe. Phishing uses deceptive messages or sites to induce harmful actions, and a distributed denial-of-service attack uses multiple sources to overwhelm a target’s capacity. Wireless technologies include Wi-Fi, Bluetooth and cellular networking; they differ in scope, radio operation and intended use. Network weaknesses include insecure configuration, unpatched systems and weak authentication.",
+      "worked_example": "For a public web service, a boundary firewall can allow required web traffic and deny unrelated inbound connections, while a host firewall restricts services on the server. Patching and application controls are still required.",
+      "source_issue": "Do not treat all traffic as safe merely because it crossed a firewall, or confuse a security protocol with an OSI layer."
+    },
+    {
+      "course": "CYB 201",
+      "photo": 12,
+      "topic": "Cryptography, authentication and wireless security",
+      "reviewed_explanation": "Symmetric cryptography uses a shared secret key; asymmetric cryptography uses a related public/private key pair. Hashing produces a digest and is not reversible encryption. Encryption supports confidentiality, while authentication verifies an asserted identity; they are different functions. Authentication factors include knowledge, possession and inherence, such as a passphrase, a hardware token and a fingerprint. Combining independent factor types gives stronger multi-factor authentication than repeating one type. Passive attacks observe communications; active attacks alter, inject or disrupt them. WEP is an obsolete wireless security scheme with serious weaknesses; WPA and WPA2 were later improvements, and WPA2 commonly uses AES-based CCMP. A man-in-the-middle adversary intercepts communications between parties; spoofing impersonates an identity.",
+      "worked_example": "A password plus a physical security key combines knowledge and possession. Two passwords are still both knowledge factors. For passive monitoring, an attacker observes traffic; modifying the messages makes the attack active.",
+      "source_issue": "A hash is not encrypted plaintext that can be decrypted. Historical wireless schemes should be compared without recommending obsolete WEP for deployment."
+    },
+    {
+      "course": "IFT 212",
+      "photo": 3,
+      "topic": "Performance and the stored-program computer",
+      "reviewed_explanation": "For the same workload, performance is inversely related to execution time. If machine A finishes in 5 seconds and B in 6, A is faster by a factor of 6/5 = 1.2, or 20% greater performance. Equivalently A takes about 16.7% less time than B; those percentages use different denominators. A stored-program computer stores executable instructions in memory so the processor can fetch, decode and execute them. In the classic von Neumann model, instructions and data share the memory system. Integrated-circuit advances increase integration and can affect processor speed, power and cost. RAM is working storage with latency and capacity trade-offs; disks provide persistent storage with different latency and throughput characteristics.",
+      "worked_example": "For a fixed program, performance(A)/performance(B) = time(B)/time(A) = 6/5 = 1.2. Do not divide 5 by 6 and call the result A’s speed advantage. Discuss hardware trends in terms of measurable latency, bandwidth, capacity, power and cost.",
+      "source_issue": "A 20% performance increase and a 20% time reduction are not the same numerical statement."
+    },
+    {
+      "course": "IFT 212",
+      "photo": 3,
+      "topic": "CPU registers and bitwise operations",
+      "reviewed_explanation": "A program counter holds the location of the next instruction to fetch, subject to the architecture’s sequencing rules. An interrupt address register is architecture-specific and stores an interrupt-related address; exact roles should be tied to the machine’s stated design instead of assumed to be universal. For a bitwise expression A XOR B OR (A AND B), each operation is applied to corresponding bits. XOR produces 1 when the bits differ, AND when both are 1, and OR when at least one is 1. Therefore (A XOR B) OR (A AND B) equals A OR B for each bit. A generic assembly sequence loads the operands, calculates XOR and AND into temporaries, and ORs those temporary results. Specific instruction mnemonics depend on the chosen instruction set.",
+      "worked_example": "For A = 1010₂ and B = 1100₂, XOR gives 0110₂, AND gives 1000₂, and ORing these gives 1110₂. Directly A OR B also gives 1110₂. Pseudocode: T1 ← A XOR B; T2 ← A AND B; RESULT ← T1 OR T2.",
+      "source_issue": "Do not present architecture-dependent pseudo-assembly as executable code for an unspecified processor."
+    },
+    {
+      "course": "INS 204",
+      "photo": 3,
+      "topic": "Feasibility, fact-finding and information-system components",
+      "reviewed_explanation": "Systems analysis studies an organisation’s needs and processes before specifying a solution. A feasibility analysis identifies whether a proposal is technically possible, economically worthwhile, operationally acceptable, schedulable and legally appropriate; it also exposes risks and informs a proceed, revise or stop decision. Fact-finding methods include interviews, questionnaires, observation and examination of existing documents or records. Each method has strengths and limitations, so findings should be cross-checked. A common five-part information-system model includes hardware, software, data, people and procedures. Networks may be discussed separately in other models; state the model when listing components.",
+      "worked_example": "To investigate a hostel ordering process, interview staff, survey students, observe order handling and inspect order records. Compare the findings before deciding the requirements. Hardware runs the system, software implements behaviour, data records orders, people use and support it, and procedures govern its operation.",
+      "source_issue": "Do not confuse a feasibility objective with a fact-finding method. Different textbooks group information-system components differently."
+    },
+    {
+      "course": "IFT 211",
+      "photo": 16,
+      "topic": "Number representation, BCD and two’s complement",
+      "reviewed_explanation": "A positional number system uses a base, a digit set and place values. Binary, octal, decimal and hexadecimal use bases 2, 8, 10 and 16. Convert to decimal by adding each digit times its place value; fractional binary positions use 1/2, 1/4 and so on. BCD encodes each decimal digit independently in four binary bits, so 347 is 0011 0100 0111, not the ordinary binary representation of 347. In signed magnitude the first bit is a sign and the remaining bits encode magnitude: 11001100₂ represents −76 in eight-bit signed magnitude. Fixed-width two’s complement is formed by inverting all bits and adding one, retaining that width.",
+      "worked_example": "In eight bits, complement 11100111₂ by inverting to 00011000₂ and adding 1, obtaining 00011001₂. For 23.25₁₀, 23 = 16 + 4 + 2 + 1 gives 10111₂ and 0.25 gives .01₂, so the result is 10111.01₂. Also 85₁₀ = 1010101₂.",
+      "source_issue": "Keep the specified width for complements. Do not treat handwritten markings as the answer key, or decode BCD as one ordinary binary integer."
+    },
+    {
+      "course": "IFT 211",
+      "photo": 15,
+      "topic": "Boolean algebra, truth tables and simplification",
+      "reviewed_explanation": "Boolean algebra uses variables with values 0 or 1 and operations AND, OR and NOT. In Boolean notation juxtaposition denotes AND, + denotes OR, and a prime denotes NOT. Useful laws include identity, complement, absorption and De Morgan’s laws. De Morgan states NOT(A AND B) = NOT A OR NOT B and NOT(A OR B) = NOT A AND NOT B. For the paper’s expression ¬P ∧ (P → Q), substitute P → Q ≡ ¬P ∨ Q and apply absorption, obtaining ¬P. A truth table should enumerate TT, TF, FT and FF. For F = A′B + BC + ABC, BC absorbs ABC, leaving A′B + BC = B(A′ + C).",
+      "worked_example": "For ¬P ∧ (P → Q): with P,Q = T,T the result is F; T,F gives F; F,T gives T; and F,F gives T. It therefore has exactly the same truth values as ¬P. For F = A′B + BC + ABC, first use BC + ABC = BC, then factor B.",
+      "source_issue": "Some photographed formula lines are too faint to read reliably. Only clearly identifiable expressions are used; no missing prime or symbol is guessed."
+    },
+    {
+      "course": "IFT 211",
+      "photo": 15,
+      "topic": "Logic gates and integrated circuits",
+      "reviewed_explanation": "Logic gates implement Boolean operations in digital circuits. The basic AND, OR and NOT gates correspond to conjunction, disjunction and inversion. For two inputs, AND outputs 1 only for 11; OR outputs 0 only for 00; NOT reverses its single input. Digital integrated circuits implement discrete logic functions; analogue integrated circuits process continuous signals, with an operational amplifier being a familiar example. A conjunction can be represented as A ∧ B or AB. To verify a Boolean identity, compare the output of its two sides for every input assignment, rather than testing only one convenient case.",
+      "worked_example": "An AND gate with inputs 1 and 0 outputs 0; an OR gate with the same inputs outputs 1. To verify De Morgan for two inputs, build all four input rows and compare NOT(A AND B) with NOT A OR NOT B; the outputs agree on every row.",
+      "source_issue": "One matching input row does not prove an identity. Do not confuse Boolean OR (+) with ordinary integer addition."
+    }
+  ],
+  "duplicate_photos": {
+    "7": 10,
+    "9": 11,
+    "13": 12,
+    "14": 1
+  },
+  "course_aliases": {
+    "CSC 201": "COS 201",
+    "CSC 232": "CSC 203",
+    "AUE-CSC202 / INS204": "INS 204"
+  },
+  "held_items": [
+    "Java declaration int x, y = 5, 10 is malformed; corrected assumptions are stated explicitly.",
+    "The repeated declarative-language stem in photo 6 question 2 does not match its answer options.",
+    "The codomain of the discrete-structures function is not stated on photo 2.",
+    "Unclear Boolean formula lines and ambiguous photographed increment chains were not guessed."
+  ]
+}

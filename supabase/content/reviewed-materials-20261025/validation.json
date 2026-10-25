@@ -1,0 +1,21 @@
+{
+  "lessons": 26,
+  "flashcards": 164,
+  "new_questions": 226,
+  "new_learning_questions": 114,
+  "new_battle_questions": 112,
+  "courses": [
+    "AUE-GST 201",
+    "COS 201",
+    "CSC 203",
+    "CYB 201",
+    "IFT 211",
+    "IFT 212",
+    "INS 204",
+    "SEN 201"
+  ],
+  "retired_placeholder_drafts": 9,
+  "distinct_photos": 12,
+  "duplicate_photos": 4,
+  "reused_philosophy_learning_questions": 44
+}

@@ -235,6 +235,13 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
           {d.battle_reading_seconds ?? d.suggested_reading_seconds ?? "Auto"} seconds to read · {d.battle_seconds ?? d.suggested_answer_seconds ?? "Auto"} seconds to answer
         </p>
         {d.answer_format === "fill_in_gap" ? (
+          <>
+        {(d.gap_answers ?? []).length === 0 ||
+        !(d.gap_answers ?? []).some((gap) => (gap.accepted_answers ?? []).length > 0) ? (
+          <Alert tone="error" title="No gap answer key" className="mt-2">
+            This version needs at least one gap with accepted answers before it can be published.
+          </Alert>
+        ) : null}
           <ul className="mt-2 flex flex-col gap-2">
             {(d.gap_answers ?? []).map((gap, gi) => (
               <li key={gi} className="rounded-control border border-line bg-surface-card p-3 text-sm">
@@ -243,6 +250,7 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
               </li>
             ))}
           </ul>
+          </>
         ) : (
           <>
         {d.correct_option_id === null ? (
