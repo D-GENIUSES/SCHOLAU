@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildExamFlashcards } from "./lesson-exam-cards.ts";
+import { buildExamFlashcards, lessonCardText } from "./lesson-exam-cards.ts";
 
 test("buildExamFlashcards maps lesson content without filler cards", () => {
   const cards = buildExamFlashcards({
@@ -32,4 +32,11 @@ test("buildExamFlashcards returns no generic cards when lesson content is empty"
     blocks: [],
   });
   assert.equal(cards.length, 0);
+});
+
+test("older saved cards use lesson wording across subjects", () => {
+  assert.equal(lessonCardText("Exam focus: Differentiation"), "Differentiation");
+  assert.equal(lessonCardText("Explain for exams: Philosophy"), "Philosophy");
+  assert.equal(lessonCardText("In exams, focus on:\n\nDerivatives"), "Derivatives");
+  assert.equal(lessonCardText("Calculate the rate of change"), "Calculate the rate of change");
 });

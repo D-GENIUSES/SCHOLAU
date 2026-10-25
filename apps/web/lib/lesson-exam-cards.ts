@@ -137,3 +137,12 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
 
   return cards.filter((card, index) => card.back.trim() && cards.findIndex((other) => other.back === card.back) === index);
 }
+
+/** Keep older saved cards consistent with the lesson wording. */
+export function lessonCardText(text: string): string {
+  return text
+    .replace(/^Exam focus\s*:\s*/i, "")
+    .replace(/^Explain for exams\s*:\s*/i, "")
+    .replace(/^In exams, (?:focus on|expect clear points on this topic)\s*:\s*/i, "")
+    .trim();
+}

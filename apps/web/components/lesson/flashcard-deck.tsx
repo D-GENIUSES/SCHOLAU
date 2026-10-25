@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
-import type { ExamFlashcard } from "@/lib/lesson-exam-cards";
+import { lessonCardText, type ExamFlashcard } from "@/lib/lesson-exam-cards";
 import { cn } from "@/lib/utils";
 
 type FlashcardDeckProps = {
@@ -91,11 +91,11 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         <div className="flashcard-inner">
           <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
             {card.tag ? <span className="flashcard-tag">{tagLabel(card.tag)}</span> : null}
-            <p className="flashcard-text">{card.front}</p>
+            <p className="flashcard-text">{lessonCardText(card.front)}</p>
             <span className="flashcard-hint">Tap to flip</span>
           </div>
           <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-            <p className="flashcard-text whitespace-pre-line">{card.back}</p>
+            <p className="flashcard-text whitespace-pre-line">{lessonCardText(card.back)}</p>
             {card.imagePath ? <FlashcardImage path={card.imagePath} alt={card.imageAlt ?? "Lesson diagram"} /> : null}
           </div>
         </div>
