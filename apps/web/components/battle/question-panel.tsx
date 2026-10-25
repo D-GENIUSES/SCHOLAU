@@ -16,7 +16,8 @@ import { BattleAnswerOptions } from "./answer-options";
 import { BattleGapAnswer } from "./gap-answer";
 import { totalWindowMs } from "./countdown";
 import { useRefetchWhenDue } from "./hooks";
-import { BattleCourseStrip, BattleRoundProgress, BattleTimer } from "./arena";
+import { BattleRoundProgress, BattleTimer } from "./arena";
+import "./battle-arena.css";
 
 type AnswerStatus = "idle" | "selected" | "sending" | "received" | "unsent" | "time_up" | "error";
 
@@ -71,17 +72,16 @@ export function QuestionPanel({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="battle-question-flow flex min-w-0 flex-col gap-2">
       <BattleRoundProgress count={battle.round_count} position={question.position} answered={battle.my_answered_positions} />
-      <BattleCourseStrip code={question.course_code ?? battle.course?.code} title={battle.courses?.find((c) => c.code === question.course_code)?.title ?? battle.course?.title} />
-      <Card className="overflow-hidden rounded-2xl border-brand-primary/25 shadow-none">
-      <CardContent className="flex flex-col gap-4 pt-4 sm:pt-5">
+      <Card className="battle-question-card rounded-2xl border-brand-primary/20 shadow-none">
+      <CardContent className="flex flex-col gap-3 p-3 sm:p-5">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h2 ref={headingRef} tabIndex={-1} className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted focus:outline-none">
-              Question {String(question.position).padStart(2, "0")}
+              {question.course_code ?? battle.course?.code ?? "Battle question"}
             </h2>
-            <p className="mt-1 text-xs text-ink-muted" role="status">{reading ? `Read first - ${question.duration_seconds ?? 5}s to answer next` : "Choose one answer before time runs out."}</p>
+            <p className="mt-1 text-xs text-ink-muted" role="status">{reading ? `Reading time · then ${question.duration_seconds ?? 5}s to answer` : "Answer now · select, then submit"}</p>
           </div>
           <BattleTimer remainingMs={reading ? readingRemaining : remaining} totalMs={reading ? totalWindowMs(question.reading_at, question.opened_at, 3000) : totalWindowMs(question.opened_at, question.deadline, 5000)} reading={reading} />
         </div>
@@ -98,14 +98,14 @@ export function QuestionPanel({
         <LiveRegion>{STATUS_ANNOUNCEMENT[status]}</LiveRegion>
       </CardContent>
       {status === "received" || status === "time_up" ? null : (
-        <CardFooter>
+        <CardFooter className="battle-submit-bar">
           {status === "unsent" ? (
             <Button size="lg" block onClick={submit.retryLast}>
               Retry sending answer
             </Button>
           ) : (
             <Button size="lg" block onClick={send} disabled={reading || remaining <= 0 || (isGap ? !canSubmitGap : !selected)} loading={status === "sending"}>
-              Submit answer
+              {reading ? "Read the question first" : selected || (isGap && canSubmitGap) ? "Submit answer" : "Select an answer"}
             </Button>
           )}
         </CardFooter>
