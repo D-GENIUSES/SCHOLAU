@@ -1,7 +1,7 @@
 "use client";
 
 
-import { ArrowLeft, Check, LogOut, RefreshCw } from "lucide-react";
+import { Check, RefreshCw, Swords } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode, Ref } from "react";
 import type { Battle, BattleParticipant } from "@scholau/api";
@@ -10,7 +10,6 @@ import { Alert } from "@/components/ui/alert";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/ui/dialog";
-import { Logo } from "@/components/logo";
 import { InlineError } from "@/components/ui/states";
 import { cn } from "@/lib/utils";
 
@@ -29,28 +28,30 @@ const ACCENT = "#0875e4";
 export function BattleTopBar({
   battle,
   live,
-  onLeave,
 }: {
   battle: Battle | undefined;
   live: boolean;
   onLeave: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between gap-3">
-      <div className="min-w-0">
-        <p className="text-xl font-bold tracking-tight sm:text-2xl">{battle?.state === "active" ? "Live battle" : "Battle"}</p>
-        {battle ? <p className="flex items-center gap-1.5 text-xs font-medium text-ink-muted">{battle.state === "active" ? <span className="size-1.5 rounded-full bg-success" aria-hidden /> : null}{STATE_LABEL[battle.state]}</p> : null}
+    <div className="flex min-w-0 items-center justify-between gap-3 py-1">
+      <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-primary/10 text-brand-primary">
+          <Swords className="size-5" strokeWidth={1.8} aria-hidden />
+        </span>
+        <p className="text-xl font-bold tracking-tight text-ink sm:text-2xl">Battle arena</p>
       </div>
-      {live ? (
-        <div className="flex items-center gap-2.5">
-          <h1 className="text-[28px] font-extrabold tracking-[-0.03em] text-ink">Live battle</h1>
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#179a45]">
-            <span className="size-2 rounded-full bg-[#22c55e]" aria-hidden />
-            Live
-          </span>
-        </div>
-      ) : battle ? (
-        <p className="sr-only">{STATE_LABEL[battle.state]}</p>
+      {battle ? (
+        <span
+          role="status"
+          className={cn(
+            "inline-flex max-w-[42%] shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold",
+            live ? "bg-success/10 text-success" : "bg-surface-page text-ink-muted",
+          )}
+        >
+          {live ? <span className="size-1.5 shrink-0 rounded-full bg-current" aria-hidden /> : null}
+          <span>{battle.state === "active" ? "Live" : STATE_LABEL[battle.state]}</span>
+        </span>
       ) : null}
     </div>
   );
