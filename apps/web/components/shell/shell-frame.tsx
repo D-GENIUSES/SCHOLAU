@@ -1,5 +1,5 @@
 import { ChevronRight, Shield } from "lucide-react";
-import { AppBellIcon, AppSearchIcon } from "@/components/icons/app-chrome-icons";
+import { AppBellIcon } from "@/components/icons/app-chrome-icons";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { isActive, studentNav } from "./nav-items";
 import type { Streak } from "@scholau/api";
 import { StreakBadge } from "./streak-badge";
+import { NavbarPeopleSearch } from "./people-search";
 
 export function ShellFrame({ children, pathname = "/home", displayName = "", unread = 0, isAdmin = false, guest = false, avatarPath = null, streak }: {
   children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: Streak;
@@ -17,10 +18,7 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Home";
   const account = guest ? <Button asChild size="sm" ><Link href="/sign-up">Sign in</Link></Button> : <>
-    <form action="/people" method="get" role="search" aria-label="Find people" className="header-search">
-      <button type="submit" aria-label="Search people"><AppSearchIcon size={16} /></button>
-      <input type="search" name="q" aria-label="Search people by name or username" placeholder="Find people" minLength={3} maxLength={60} required autoComplete="off" />
-    </form>
+    <NavbarPeopleSearch />
     {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
       <AppBellIcon size={20} />

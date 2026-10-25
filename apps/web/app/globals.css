@@ -995,3 +995,35 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 .flashcard-nav { padding-top: 0; border-top: 0; }
 .flashcard-scene:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 4px; border-radius: 18px; }
 @media (prefers-reduced-motion: reduce) { .flashcard-inner { transition: none; } }
+
+/* Live people search: a focused search view on phones and a panel on desktop. */
+.header-search-trigger { gap: 8px; padding: 0 12px; text-align: left; cursor: pointer; font: inherit; font-size: 13px; }
+.header-search-trigger > svg { flex-shrink: 0; }
+.header-search-trigger > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.people-search-overlay { position: fixed; inset: 0; z-index: 60; background: #142b4840; }
+.people-search-panel { position: fixed; top: max(16px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 61; display: flex; flex-direction: column; width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: hidden; border: 1px solid var(--color-line); border-radius: 18px; background: #fff; box-shadow: 0 16px 50px #142b4826; color: var(--color-ink); }
+.people-search-toolbar { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding: 12px; border-bottom: 1px solid var(--color-line); }
+.people-search-icon-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: var(--color-ink-muted); cursor: pointer; }
+.people-search-icon-button:hover { background: #edf3fa; }
+.people-search-field { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; padding-left: 12px; border: 1px solid #d5deea; border-radius: 999px; background: #f6f8fb; color: var(--color-ink-muted); }
+.people-search-field:focus-within { border-color: var(--color-brand-primary); }
+.people-search-field > svg { flex-shrink: 0; }
+.people-search-field input { min-width: 0; width: 100%; height: 40px; padding: 0 10px 0 0; border: 0; outline: 0; background: transparent; color: var(--color-ink); font: inherit; font-size: 16px; }
+.people-search-field input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.people-search-content { flex: 1; min-height: 100px; overflow-y: auto; overscroll-behavior: contain; padding: 8px 12px; }
+.people-search-section-head { display: flex; align-items: center; justify-content: space-between; padding: 8px; font-size: 13px; }
+.people-search-section-head h2 { font-weight: 700; }
+.people-search-section-head button { min-height: 36px; padding: 0 4px; color: var(--color-brand-primary); font-size: 12px; cursor: pointer; }
+.people-search-list { margin: 0; padding: 0; list-style: none; }
+.people-search-result { display: flex; align-items: center; gap: 12px; width: 100%; min-width: 0; min-height: 54px; padding: 8px; border: 0; border-radius: 10px; background: transparent; color: inherit; text-align: left; text-decoration: none; font-size: 14px; cursor: pointer; }
+.people-search-result:hover, .people-search-result:focus-visible { background: #f0f5fc; }
+.people-search-result > svg { flex-shrink: 0; color: var(--color-ink-muted); }
+.people-search-result > span:not([aria-hidden]) { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.people-search-person strong, .people-search-person small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.people-search-person strong { font-size: 14px; font-weight: 650; }
+.people-search-person small { margin-top: 3px; font-size: 12px; color: var(--color-ink-muted); }
+.people-search-message { padding: 18px 8px; font-size: 13px; color: var(--color-ink-muted); }
+.people-search-all { display: block; flex-shrink: 0; width: 100%; min-height: 48px; padding: 12px; border: 0; border-top: 1px solid var(--color-line); background: #fff; color: var(--color-brand-primary); font-size: 13px; font-weight: 650; text-align: center; cursor: pointer; }
+@media (max-width: 767px) {
+  .people-search-panel { inset: 0; transform: none; width: 100%; max-height: none; height: 100dvh; border: 0; border-radius: 0; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); box-shadow: none; }
+}

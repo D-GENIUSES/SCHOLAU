@@ -15,6 +15,7 @@ export function PublicProfilePreview() {
     let people: FriendPerson[] = [];
     return {
       getPublicProfile: async () => ({ server_time: stamp, id: "sample-learner", display_name: "Amara Okafor", username: "amara", avatar_path: null, joined_at: "2026-09-10T12:00:00Z", university: "Adeleke University", faculty: "Science", department: "Computer Science", level: "200 Level", xp_total: 1240, badges: ["first_steps", "perfect_practice", "topic_mastered"] }),
+      searchFriends: async (query: string) => ({ server_time: stamp, people: "amara okafor".includes(query.toLowerCase()) ? [{ user_id: "sample-learner", display_name: "Amara Okafor", username: "amara", avatar_path: null, state: null, incoming: false }] : [] }),
       getMyProfile: async () => ({ server_time: stamp, id: "sample-viewer" }),
       getFriends: async () => ({ server_time: stamp, username: "learner", people: [...people] }),
       friendAction: async ({ userId, action }: { userId: string; action: FriendAction }) => {
