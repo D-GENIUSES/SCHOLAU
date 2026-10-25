@@ -24,20 +24,15 @@ function truncate(text: string, max = MAX_BACK_CHARS): string {
   return `${trimmed.slice(0, max - 1).trimEnd()}…`;
 }
 
-function firstParagraph(blocks: LessonBlock[]): string | null {
-  for (const block of blocks) {
-    if (block.type === "paragraph" && block.text.trim()) return block.text.trim();
-  }
-  return null;
+function isEditorialText(text: string): boolean {
+  return /handwritten key|prompts? the key|these prompts are visible|study prompts?|not scored|keyed (?:definition|answer)|answer key/i.test(text);
 }
 
-function examPromptForHeading(title: string, level?: 2 | 3 | 4): string {
-  const t = title.trim();
-  const lower = t.toLowerCase();
-  if (/^(list|types of|steps|features)/.test(lower)) return `List: ${t}`;
-  if (/^(compare|difference|vs\.?)/.test(lower)) return `Compare / contrast: ${t}`;
-  if (level === 4) return `Recall: ${t}`;
-  return t;
+function questionForHeading(heading: string, lessonTitle: string): string {
+  const generic = /^(understand the idea|key points|recap|summary|overview|introduction)$/i;
+  const topic = (generic.test(heading.trim()) ? lessonTitle : heading).trim().replace(/[.:?]+$/, "");
+  if (heading.trim().endsWith("?")) return heading.trim();
+  return `How would you explain ${topic}?`;
 }
 
 function isSectionBreak(block: LessonBlock): boolean {
@@ -55,15 +50,15 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
   while (i < blocks.length) {
     const block = blocks[i];
     if (!block || isSectionBreak(block)) break;
-    if (block.type === "paragraph" && block.text.trim()) {
+    if (block.type === "paragraph" && block.text.trim() && !isEditorialText(block.text) && !/^[^?]+\?\s*$/.test(block.text)) {
       lines.push(block.text.trim());
     }
     if (block.type === "list") {
       block.items.forEach((item, idx) => {
-        lines.push(block.ordered ? `${idx + 1}. ${item}` : `• ${item}`);
+        if (!isEditorialText(item) && !item.trim().endsWith("?")) lines.push(block.ordered ? `${idx + 1}. ${item}` : `• ${item}`);
       });
     }
-    if (block.type === "callout" && block.text.trim()) {
+    if (block.type === "callout" && block.text.trim() && !isEditorialText(block.text)) {
       lines.push(block.text.trim());
     }
     if (block.type === "code" && block.code.trim()) {
@@ -78,15 +73,7 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
 
 export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard[] {
   const cards: ExamFlashcard[] = [];
-  const { blocks, title, objective, lesson_id: lessonId } = lesson;
-
-  const gist = objective.trim() || firstParagraph(blocks);
-  if (gist) cards.push({
-    id: `${lessonId}-focus`,
-    front: title,
-    back: truncate(gist),
-    tag: "focus",
-  });
+  const { blocks, title, lesson_id: lessonId } = lesson;
 
   let index = 0;
   while (index < blocks.length) {
@@ -97,9 +84,9 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     }
     if (block.type === "heading") {
       const { text, nextIndex } = collectSectionBody(blocks, index + 1);
-      if (text) cards.push({
+      if (text && !isEditorialText(block.text)) cards.push({
         id: `${lessonId}-h-${index}`,
-        front: examPromptForHeading(block.text, block.level),
+        front: questionForHeading(block.text, title),
         back: text,
         tag: "section",
       });
@@ -108,29 +95,17 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     }
     if (block.type === "checkpoint") {
       const answer = block.options[block.correct_index] ?? "";
-      cards.push({
+      if (answer.trim() && !isEditorialText(block.question)) cards.push({
         id: `${lessonId}-cp-${index}`,
         front: block.question,
-        back: truncate(`Answer: ${answer}\n\n${block.explanation}`),
+        back: answer.trim(),
         tag: "checkpoint",
       });
       index += 1;
       continue;
     }
-    if (block.type === "image") {
-      cards.push({
-        id: `${lessonId}-img-${index}`,
-        front: block.caption?.trim() || `Diagram: ${block.alt}`,
-        back: truncate(block.caption?.trim() || block.alt),
-        tag: "diagram",
-        imagePath: block.path,
-        imageAlt: block.alt,
-      });
-      index += 1;
-      continue;
-    }
-    if (block.type === "paragraph" && !blocks.some((item) => item.type === "heading") && block.text.trim()) {
-      cards.push({ id: `${lessonId}-p-${index}`, front: title, back: truncate(block.text), tag: "section" });
+    if (block.type === "paragraph" && !blocks.some((item) => item.type === "heading") && block.text.trim() && !isEditorialText(block.text) && !block.text.trim().endsWith("?")) {
+      cards.push({ id: `${lessonId}-p-${index}`, front: questionForHeading(title, title), back: truncate(block.text), tag: "section" });
     }
     index += 1;
   }

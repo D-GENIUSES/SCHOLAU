@@ -1,10 +1,8 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/misc";
 import { lessonCardText, type ExamFlashcard } from "@/lib/lesson-exam-cards";
 import { cn } from "@/lib/utils";
 
@@ -90,13 +88,10 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       >
         <div className="flashcard-inner">
           <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
-            {card.tag ? <span className="flashcard-tag">{tagLabel(card.tag)}</span> : null}
             <p className="flashcard-text">{lessonCardText(card.front)}</p>
-            <span className="flashcard-hint">Tap to flip</span>
           </div>
           <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
             <p className="flashcard-text whitespace-pre-line">{lessonCardText(card.back)}</p>
-            {card.imagePath ? <FlashcardImage path={card.imagePath} alt={card.imageAlt ?? "Lesson diagram"} /> : null}
           </div>
         </div>
       </button>
@@ -116,47 +111,5 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       </nav>
 
     </div>
-  );
-}
-
-function tagLabel(tag: NonNullable<ExamFlashcard["tag"]>): string {
-  switch (tag) {
-    case "focus":
-      return "Key points";
-    case "section":
-      return "Lesson";
-    case "tip":
-      return "Tip";
-    case "checkpoint":
-      return "Practice Q";
-    case "diagram":
-      return "Diagram";
-    case "recap":
-      return "Recap";
-    default:
-      return "Card";
-  }
-}
-
-function FlashcardImage({ path, alt }: { path: string; alt: string }) {
-  const signed = useQuery({
-    queryKey: ["scholau", "lesson-asset", path],
-    queryFn: async () => {
-      const response = await fetch(`/api/lesson-assets?path=${encodeURIComponent(path)}`, { cache: "no-store", credentials: "same-origin" });
-      if (!response.ok) throw new Error("Image unavailable");
-      const data: { signedUrl?: string } = await response.json();
-      if (!data.signedUrl) throw new Error("Image unavailable");
-      return data.signedUrl;
-    },
-    staleTime: 50 * 60_000,
-    retry: 1,
-  });
-
-  if (signed.isPending) return <Skeleton className="mt-3 aspect-video w-full max-h-40" />;
-  if (signed.isError || !signed.data) return null;
-
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={signed.data} alt={alt} className="flashcard-diagram mt-3 max-h-40 w-full rounded-control border border-line object-contain" loading="lazy" />
   );
 }
