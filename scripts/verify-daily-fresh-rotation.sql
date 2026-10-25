@@ -47,7 +47,13 @@ where e.user_id=(select user_id from test_daily_user) and e.ended_at is null on 
 select pg_temp.assert_daily(private.prepare_daily_questions(((current_date+102)+time '12:00') at time zone 'Africa/Lagos')=0,'exhausted pool is silent');
 select pg_temp.assert_daily(private.prepare_daily_questions(((current_date+102)+time '20:00') at time zone 'Africa/Lagos')=0,'no fourth slot');
 -- A final one-question pool produces a single fresh item, then remains silent.
-create temp table test_last_question as select question_id from private.daily_question_history where user_id=(select user_id from test_daily_user) order by first_sent_at,question_id limit 1;
+create temp table test_last_question as
+select h.question_id from private.daily_question_history h
+join public.questions q on q.id=h.question_id and q.pool='learning'
+join public.question_versions v on v.question_id=q.id and v.status='published'
+where h.user_id=(select user_id from test_daily_user)
+and exists(select 1 from public.assessment_questions aq join public.assessment_versions av on av.id=aq.assessment_version_id and av.status='published' where aq.question_version_id=v.id)
+order by h.first_sent_at,h.question_id limit 1;
 delete from private.daily_question_history where user_id=(select user_id from test_daily_user) and question_id in(select question_id from test_last_question);
 select pg_temp.assert_daily(private.prepare_daily_questions(((current_date+103)+time '08:00') at time zone 'Africa/Lagos')=1,'one fresh item remains');
 select pg_temp.assert_daily((select jsonb_array_length(context->'question_ids')=1 from public.notifications where user_id=(select user_id from test_daily_user) and context->>'date'=(current_date+103)::text and context->>'slot'='0'),'small pool is not padded with repeats');

@@ -17,12 +17,14 @@ export function DataTable<T>({
   rows,
   rowKey,
   isSelected,
+  mobileCard,
 }: {
   caption: string;
   columns: Column<T>[];
   rows: readonly T[];
   rowKey: (row: T) => string;
   isSelected?: (row: T) => boolean;
+  mobileCard?: (row: T) => ReactNode;
 }) {
   const dataCols = columns.filter((c) => !c.action);
   const actionCols = columns.filter((c) => c.action);
@@ -65,10 +67,11 @@ export function DataTable<T>({
           <li
             key={rowKey(row)}
             className={cn(
-              "min-w-0 rounded-card border bg-surface-card p-3 shadow-card",
+              mobileCard ? "min-w-0 rounded-xl border bg-surface-card p-2.5" : "min-w-0 rounded-card border bg-surface-card p-3 shadow-card",
               isSelected?.(row) ? "border-brand-primary" : "border-line",
             )}
           >
+            {mobileCard ? mobileCard(row) : <>
             <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5">
               {dataCols.map((c, index) => (
                 <div key={c.key} className={cn("min-w-0", index === 0 && "col-span-2 border-b border-line pb-2")}>
@@ -84,6 +87,7 @@ export function DataTable<T>({
                 ))}
               </div>
             ) : null}
+            </>}
           </li>
         ))}
       </ul>

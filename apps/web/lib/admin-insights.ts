@@ -34,3 +34,16 @@ export function useBattleInsights(ids: string[]) {
 
 }
 
+
+export type OnlineUser = { id: string; email: string | null; display_name: string | null; avatar_path: string | null; seen_at: string };
+export function useOnlineUsers(page = 0) {
+  return useQuery({
+    queryKey: ["admin-online-users", page],
+    queryFn: async () => {
+      const { data, error } = await getBrowserSupabase().rpc("admin_online_users_v1", { p_offset: page * 50, p_limit: 50 });
+      if (error) throw error;
+      return data as { items: OnlineUser[]; total: number; total_users: number; active_window_seconds: number };
+    },
+    refetchInterval: 15000,
+  });
+}
