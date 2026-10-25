@@ -12,7 +12,7 @@
 
 @media (min-width: 768px) and (min-aspect-ratio: 1/1) {
   .screen {
-    background: radial-gradient(ellipse at center, #f3f7fc 35%, #eaf1fa 100%);
+    background-image: radial-gradient(ellipse at center, #f3f7fc 35%, #eaf1fa 100%) !important;
   }
   .video {
     width: clamp(420px, 46vw, 640px);
