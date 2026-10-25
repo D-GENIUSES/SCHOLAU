@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { Check, Upload } from "lucide-react";
+import { AVATAR_PRESETS, avatarPresetIndex } from "@/lib/avatar-presets";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
@@ -32,6 +34,8 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
   const [notice, setNotice] = useState<string | null>(null);
   const [saved, setSaved] = useState<{ base: string | null; path: string | null } | null>(null);
   const path = saved?.base === profile.avatar_path ? saved.path : profile.avatar_path;
+  const selectedPreset = avatarPresetIndex(path);
+  const hasPhoto = Boolean(path?.startsWith("avatars/"));
   const draftUrl = draft?.url;
   useEffect(() => () => { if (draftUrl) URL.revokeObjectURL(draftUrl); }, [draftUrl]);
   useEffect(() => () => { generation.current++; }, []);
@@ -58,6 +62,29 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
     } finally { if (generation.current === gen) setPreparing(false); }
   }
 
+  function applyAvatar(avatarPath: string | null) {
+    setSaved({ base: profile.avatar_path, path: avatarPath });
+    cache.setQueryData<Profile>(["scholau", "profile"], current => current ? { ...current, avatar_path: avatarPath } : current);
+    for (const key of ["profile", "leaderboard", "battle", "admin", "social", "public-profile"]) {
+      void cache.invalidateQueries({ queryKey: ["scholau", key] });
+    }
+    router.refresh();
+  }
+
+  async function selectAvatar(index: number) {
+    if (locked.current || preparing || draft || index === selectedPreset) return;
+    locked.current = true; setBusy(true); setError(null); setNotice(null);
+    try {
+      const response = await fetch("/api/account/photo", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ avatarIndex: index, expectedPath: path }) });
+      const result = await response.json();
+      if (!response.ok) { setError(result.message || "Your avatar could not be saved."); return; }
+      if (avatarPresetIndex(result.avatarPath) === null) throw new Error("INVALID_RESPONSE");
+      applyAvatar(result.avatarPath);
+      setNotice("Avatar saved.");
+    } catch { setError("Your avatar could not be saved. Please try again."); }
+    finally { locked.current = false; setBusy(false); }
+  }
+
   async function save(remove = false) {
     if (locked.current || (!remove && !draft)) return;
     locked.current = true; setBusy(true); setError(null); setNotice(null);
@@ -72,14 +99,8 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
       const result = await response.json();
       if (!response.ok) { setError(result.message || "Your photo could not be saved. Please try again."); return; }
       if (result.avatarPath !== null && typeof result.avatarPath !== "string") throw new Error("INVALID_RESPONSE");
-      setSaved({ base: profile.avatar_path, path: result.avatarPath }); setDraft(null); setRemoving(false);
-      cache.setQueryData<Profile>(["scholau", "profile"], current => current ? { ...current, avatar_path: result.avatarPath } : current);
-      void cache.invalidateQueries({ queryKey: ["scholau", "profile"] });
-      void cache.invalidateQueries({ queryKey: ["scholau", "leaderboard"] });
-      void cache.invalidateQueries({ queryKey: ["scholau", "battle"] });
-      void cache.invalidateQueries({ queryKey: ["scholau", "admin"] });
-      setNotice(remove ? "Profile photo removed." : "Profile photo updated.");
-      router.refresh();
+      applyAvatar(result.avatarPath); setDraft(null); setRemoving(false);
+      setNotice(remove ? "Photo removed. Your avatar is restored." : "Profile photo updated.");
     } catch { setError("The change could not be confirmed. Reload your profile before retrying."); }
     finally { locked.current = false; setBusy(false); }
   }
@@ -87,10 +108,18 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
   const imageWidth = draft ? draft.width / Math.min(draft.width, draft.height) * crop.zoom : 1;
   const imageHeight = draft ? draft.height / Math.min(draft.width, draft.height) * crop.zoom : 1;
 
-  return <section aria-label="Profile photo" className="flex flex-col gap-4">
-    <div className="flex flex-wrap items-center gap-4"><Avatar name={profile.display_name} path={path} size={96} /><div className="min-w-0"><p className="font-semibold">Profile photo</p><p className="mt-1 text-sm text-ink-muted">JPG, PNG or WebP · Up to 5 MB</p><p className="mt-1 text-xs text-ink-muted">Saved as a square 512 × 512 image and displayed in a circle.</p></div></div>
+  return <section aria-label="Profile picture" className="flex flex-col gap-4">
+    <div className="avatar-picker-current"><Avatar name={profile.display_name} path={path} size={72} /><div><p className="font-semibold">Your profile picture</p><p className="text-sm text-ink-muted">Pick an avatar or upload a photo.</p></div></div>
+    <fieldset className="avatar-picker" disabled={busy || preparing || Boolean(draft)} aria-busy={busy}>
+      <legend className="sr-only">Choose an avatar</legend>
+      <div className="avatar-picker-grid">{AVATAR_PRESETS.map(preset => <button type="button" key={preset.id} className="avatar-picker-option" data-selected={selectedPreset === preset.id} aria-label={`${preset.name} avatar`} aria-pressed={selectedPreset === preset.id} onClick={() => void selectAvatar(preset.id)}>
+        <Avatar name={preset.name} path={preset.path} size={56} />
+        <span>{preset.name}</span>
+        {selectedPreset === preset.id ? <span className="avatar-picker-check" aria-hidden="true"><Check size={11} strokeWidth={3} /></span> : null}
+      </button>)}</div>
+    </fieldset>
     <input ref={input} id={`photo-file-${profile.id}`} type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" aria-label="Choose profile photo" tabIndex={-1} onChange={event => { const file = event.currentTarget.files?.[0]; event.currentTarget.value = ""; void choose(file); }} />
-    <div className="flex flex-wrap gap-2"><Button variant="outline" loading={preparing} disabled={busy} onClick={() => input.current?.click()}>{path ? "Change photo" : "Upload photo"}</Button>{path && <Button variant="ghost" disabled={busy || preparing} onClick={() => { setError(null); setRemoving(true); }}>Remove photo</Button>}</div>
+    <div className="avatar-picker-upload"><Button variant="outline" loading={preparing} disabled={busy} onClick={() => input.current?.click()}><Upload size={16} aria-hidden="true" />{hasPhoto ? "Change photo" : "Upload photo"}</Button>{hasPhoto ? <Button variant="ghost" disabled={busy || preparing} onClick={() => { setError(null); setRemoving(true); }}>Remove photo</Button> : null}<p>JPG, PNG or WebP · Up to 5 MB</p></div>
     {error && !draft && !removing && <Alert tone="error" role="alert">{error}</Alert>}
     {notice && <Alert tone="success" role="status">{notice}</Alert>}
 
@@ -117,7 +146,7 @@ export function ProfilePhotoEditor({ profile }: { profile: Pick<Profile, "id" | 
         <div className="flex flex-wrap justify-end gap-2"><Button variant="outline" disabled={busy} onClick={() => { setDraft(null); setError(null); }}>Cancel</Button><Button loading={busy} onClick={() => void save()}>Save photo</Button></div>
       </DialogContent>
     </Dialog>
-    <ConfirmDialog open={removing} onOpenChange={open => { if (!locked.current) { setRemoving(open); setError(null); } }} title="Remove profile photo?" description="Your initials will be displayed instead. You can upload another photo later." confirmLabel="Remove photo" destructive loading={busy} onConfirm={() => void save(true)}>
+    <ConfirmDialog open={removing} onOpenChange={open => { if (!locked.current) { setRemoving(open); setError(null); } }} title="Remove profile photo?" description="Your selected avatar will be restored. You can upload another photo later." confirmLabel="Remove photo" destructive loading={busy} onConfirm={() => void save(true)}>
       {error && <Alert tone="error" role="alert">{error}</Alert>}
     </ConfirmDialog>
   </section>;

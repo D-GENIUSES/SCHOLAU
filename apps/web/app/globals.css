@@ -1027,3 +1027,18 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 @media (max-width: 767px) {
   .people-search-panel { inset: 0; transform: none; width: 100%; max-height: none; height: 100dvh; border: 0; border-radius: 0; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); box-shadow: none; }
 }
+
+.avatar-picker-current { display: flex; align-items: center; gap: 14px; }
+.avatar-picker-current > div { min-width: 0; }
+.avatar-picker-current p + p { margin-top: 4px; font-size: 12px; }
+.avatar-picker { min-width: 0; margin: 0; padding: 0; border: 0; container-type: inline-size; }
+.avatar-picker-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.avatar-picker-option { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-width: 0; padding: 10px 4px; border: 1px solid var(--color-line); border-radius: 14px; background: #fff; color: var(--color-ink-muted); font-size: 11px; font-weight: 600; cursor: pointer; transition: border-color 150ms, background-color 150ms; }
+.avatar-picker-option:hover { border-color: #8ab9ef; background: #f7faff; }
+.avatar-picker-option[data-selected=true] { border-color: var(--color-brand-primary); background: #eef5ff; color: var(--color-brand-primary); box-shadow: 0 0 0 1px var(--color-brand-primary); }
+.avatar-picker-option:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 3px; }
+.avatar-picker:disabled .avatar-picker-option { cursor: wait; opacity: .65; }
+.avatar-picker-check { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 17px; height: 17px; border: 2px solid #fff; border-radius: 50%; background: var(--color-brand-primary); color: #fff; }
+.avatar-picker-upload { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--color-line); }
+.avatar-picker-upload > p { flex-basis: 100%; font-size: 11px; color: var(--color-ink-muted); }
+@container (min-width: 440px) { .avatar-picker-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
