@@ -1,0 +1,121 @@
+[
+  {
+    "course_code": "AUE-GST 201",
+    "sha256": "05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4",
+    "object_key": "course-materials/05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4.pdf",
+    "filename": "philosophy 6-10.pdf",
+    "bytes": 106083
+  },
+  {
+    "course_code": "CSC 203",
+    "sha256": "b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432",
+    "object_key": "course-materials/b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432.txt",
+    "filename": "CSC 203 - Discrete Structures lessons 1-5.txt",
+    "bytes": 8562
+  },
+  {
+    "course_code": "COS 201",
+    "sha256": "823926c77e7deb6a77f2d648a9240ab5487165959a34a7b94c0775008aeb0cee",
+    "object_key": "course-materials/823926c77e7deb6a77f2d648a9240ab5487165959a34a7b94c0775008aeb0cee.jpg",
+    "filename": "COS 201 - supplied paper photo 1.jpg",
+    "bytes": 72247
+  },
+  {
+    "course_code": "CSC 203",
+    "sha256": "3146fe12bfcb3d170cfb96f9ead9e315c94dba9772f52cc0cb6f11bd0e21573a",
+    "object_key": "course-materials/3146fe12bfcb3d170cfb96f9ead9e315c94dba9772f52cc0cb6f11bd0e21573a.jpg",
+    "filename": "CSC 203 - supplied paper photo 2.jpg",
+    "bytes": 61561
+  },
+  {
+    "course_code": "SEN 201",
+    "sha256": "e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b",
+    "object_key": "course-materials/e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b.jpg",
+    "filename": "SEN 201 - supplied paper photo 3.jpg",
+    "bytes": 70955
+  },
+  {
+    "course_code": "CYB 201",
+    "sha256": "e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b",
+    "object_key": "course-materials/e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b.jpg",
+    "filename": "CYB 201 - supplied paper photo 3.jpg",
+    "bytes": 70955
+  },
+  {
+    "course_code": "IFT 212",
+    "sha256": "e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b",
+    "object_key": "course-materials/e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b.jpg",
+    "filename": "IFT 212 - supplied paper photo 3.jpg",
+    "bytes": 70955
+  },
+  {
+    "course_code": "INS 204",
+    "sha256": "e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b",
+    "object_key": "course-materials/e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b.jpg",
+    "filename": "INS 204 - supplied paper photo 3.jpg",
+    "bytes": 70955
+  },
+  {
+    "course_code": "CYB 201",
+    "sha256": "119c9dfa2ba2d363e147557a7d894bfe9c2a831e43613e94993e2c2e20e8b81b",
+    "object_key": "course-materials/119c9dfa2ba2d363e147557a7d894bfe9c2a831e43613e94993e2c2e20e8b81b.jpg",
+    "filename": "CYB 201 - supplied paper photo 4.jpg",
+    "bytes": 56988
+  },
+  {
+    "course_code": "SEN 201",
+    "sha256": "d8afdf0885d35f5b5fc0035ad506525e74323fc15ef214bb39fe90933e5fe231",
+    "object_key": "course-materials/d8afdf0885d35f5b5fc0035ad506525e74323fc15ef214bb39fe90933e5fe231.jpg",
+    "filename": "SEN 201 - supplied paper photo 5.jpg",
+    "bytes": 50829
+  },
+  {
+    "course_code": "COS 201",
+    "sha256": "0ddec95c2c4048ef8e307abe08dfae931c61009ccba55e39c258a6c0d50e970c",
+    "object_key": "course-materials/0ddec95c2c4048ef8e307abe08dfae931c61009ccba55e39c258a6c0d50e970c.jpg",
+    "filename": "COS 201 - supplied paper photo 6.jpg",
+    "bytes": 73083
+  },
+  {
+    "course_code": "COS 201",
+    "sha256": "154729d6087f8caf24b4544e60204161082059cb7a22eefb85e47126d705325c",
+    "object_key": "course-materials/154729d6087f8caf24b4544e60204161082059cb7a22eefb85e47126d705325c.jpg",
+    "filename": "COS 201 - supplied paper photo 8.jpg",
+    "bytes": 60059
+  },
+  {
+    "course_code": "SEN 201",
+    "sha256": "9fe400b4c14505c025a738ed6fa9a8066f65a4a7afd67e38f3d7e1ddf048f31f",
+    "object_key": "course-materials/9fe400b4c14505c025a738ed6fa9a8066f65a4a7afd67e38f3d7e1ddf048f31f.jpg",
+    "filename": "SEN 201 - supplied paper photo 10.jpg",
+    "bytes": 68177
+  },
+  {
+    "course_code": "SEN 201",
+    "sha256": "4eee7e3965e391fcfa697fcc9a10219a4006ba0ea3eee14a97f8a14d2b304f78",
+    "object_key": "course-materials/4eee7e3965e391fcfa697fcc9a10219a4006ba0ea3eee14a97f8a14d2b304f78.jpg",
+    "filename": "SEN 201 - supplied paper photo 11.jpg",
+    "bytes": 51256
+  },
+  {
+    "course_code": "CYB 201",
+    "sha256": "b863060e16cacfdfe3bd696fa226c90ab2a9406e44abbc29196a2c32e6dfacad",
+    "object_key": "course-materials/b863060e16cacfdfe3bd696fa226c90ab2a9406e44abbc29196a2c32e6dfacad.jpg",
+    "filename": "CYB 201 - supplied paper photo 12.jpg",
+    "bytes": 54952
+  },
+  {
+    "course_code": "IFT 211",
+    "sha256": "276b2b0e4007553011a4f48b89fc7da81f5060724fab8f680e661d51f9fc4023",
+    "object_key": "course-materials/276b2b0e4007553011a4f48b89fc7da81f5060724fab8f680e661d51f9fc4023.jpg",
+    "filename": "IFT 211 - supplied paper photo 15.jpg",
+    "bytes": 46288
+  },
+  {
+    "course_code": "IFT 211",
+    "sha256": "b1b52d27992c7ff887769f431866f8e7e28a86df5f2304cb4de4f13666838422",
+    "object_key": "course-materials/b1b52d27992c7ff887769f431866f8e7e28a86df5f2304cb4de4f13666838422.jpg",
+    "filename": "IFT 211 - supplied paper photo 16.jpg",
+    "bytes": 43301
+  }
+]

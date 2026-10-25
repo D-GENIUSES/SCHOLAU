@@ -1,0 +1,2591 @@
+[
+  {
+    "course_code": "CSC 203",
+    "module_position": 2,
+    "module_title": "Discrete Structures — Lessons 1–5",
+    "lesson_position": 1,
+    "title": "Propositional logic",
+    "objective": "Identify propositions, evaluate connectives and truth tables, and apply logical equivalences.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Statements with truth values"
+      },
+      {
+        "type": "paragraph",
+        "text": "Logic studies correct reasoning. A proposition is a declarative statement with a definite truth value: true or false. A false statement such as 10 < 4 is still a proposition. Commands and questions are not propositions. A simple proposition states one basic claim; a compound proposition combines claims using logical connectives. Logic supports programming conditions, digital circuits, database queries and software verification."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Connectives"
+      },
+      {
+        "type": "paragraph",
+        "text": "Negation ¬p reverses the truth value of p. Conjunction p ∧ q is true only when both inputs are true. Inclusive disjunction p ∨ q is true when either input or both inputs are true. A conditional p → q is false only when p is true and q is false. A biconditional p ↔ q is true when p and q have the same truth value. These are truth-functional definitions; an ordinary-language causal relationship should not be inferred from a material implication alone."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Truth tables and classifications"
+      },
+      {
+        "type": "paragraph",
+        "text": "A truth table considers every assignment of truth values. There are 2^n assignments for n distinct propositions: four rows for two propositions and eight for three. A tautology is true on every row, a contradiction is false on every row, and a contingency is true on some rows and false on others. Thus p ∨ ¬p is a tautology, p ∧ ¬p is a contradiction, and p itself is contingent."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Equivalence laws"
+      },
+      {
+        "type": "paragraph",
+        "text": "Logical equivalence means that two expressions agree on every truth-table row. Double negation gives ¬¬p ≡ p. De Morgan’s laws are ¬(p ∧ q) ≡ ¬p ∨ ¬q and ¬(p ∨ q) ≡ ¬p ∧ ¬q. The identity laws are p ∧ T ≡ p and p ∨ F ≡ p. The domination laws are p ∨ T ≡ T and p ∧ F ≡ F."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "Let p be true and q false. Then ¬p is false, p ∧ q is false, p ∨ q is true, p → q is false, and p ↔ q is false. To check ¬p ∨ q, first negate p, obtaining false, and then evaluate false OR false: false. This agrees with p → q on that row."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Do not treat OR as exclusive unless stated. An implication with a false antecedent is true in its truth table; it does not establish a real-world cause."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "10 is less than 4.. A false declarative statement still has a definite truth value. When both p and q are true. Conjunction requires both components to be true. T. Inclusive disjunction needs at least one true component."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which sentence is a proposition?",
+        "options": [
+          "10 is less than 4.",
+          "Close the door.",
+          "What is your name?",
+          "Please submit your work."
+        ],
+        "correct_index": 0,
+        "explanation": "A false declarative statement still has a definite truth value."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which sentence is a proposition?",
+        "back": "10 is less than 4.. A false declarative statement still has a definite truth value.",
+        "tag": "section"
+      },
+      {
+        "front": "When is p ∧ q true?",
+        "back": "When both p and q are true. Conjunction requires both components to be true.",
+        "tag": "section"
+      },
+      {
+        "front": "For p = T and q = F, what is p ∨ q?",
+        "back": "T. Inclusive disjunction needs at least one true component.",
+        "tag": "section"
+      },
+      {
+        "front": "Which assignment makes p → q false?",
+        "back": "p = T, q = F. Only a true antecedent and false consequent falsify a conditional.",
+        "tag": "section"
+      },
+      {
+        "front": "When is p ↔ q true?",
+        "back": "When their truth values agree. The biconditional is true for TT and FF.",
+        "tag": "section"
+      },
+      {
+        "front": "How many rows does a truth table for three propositions need?",
+        "back": "8. There are 2^3 = 8 assignments.",
+        "tag": "section"
+      },
+      {
+        "front": "How is p ∨ ¬p classified?",
+        "back": "Tautology. Excluded middle is true for either possible truth value of p.",
+        "tag": "section"
+      },
+      {
+        "front": "How is p ∧ ¬p classified?",
+        "back": "Contradiction. A proposition and its negation cannot both be true.",
+        "tag": "section"
+      },
+      {
+        "front": "Which expression is equivalent to ¬(p ∧ q)?",
+        "back": "¬p ∨ ¬q. De Morgan’s law reverses AND to OR and negates both components.",
+        "tag": "section"
+      },
+      {
+        "front": "Which identity holds for every proposition p?",
+        "back": "p ∨ F ≡ p. False contributes no true case to an inclusive disjunction.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "CSC 203 supplied notes, lesson 1 [SHA-256 b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432]",
+    "logical_key": "source20261025-1"
+  },
+  {
+    "course_code": "CSC 203",
+    "module_position": 2,
+    "module_title": "Discrete Structures — Lessons 1–5",
+    "lesson_position": 2,
+    "title": "Predicate logic",
+    "objective": "Evaluate predicates over a stated domain and translate or negate quantified statements.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Predicates and substitution"
+      },
+      {
+        "type": "paragraph",
+        "text": "A predicate contains one or more variables. The open statement P(x): x > 5 does not yet assert a definite proposition until x is assigned or quantified over a specified domain. Substitution makes P(8) true and P(3) false. The domain of discourse states which values are being considered and can change whether a quantified claim is true."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Universal and existential claims"
+      },
+      {
+        "type": "paragraph",
+        "text": "The universal quantifier ∀ means for every element in the domain. The existential quantifier ∃ means for at least one element. For D = {2, 6, 9} and P(x): x > 5, ∀x P(x) is false because 2 is a counterexample, while ∃x P(x) is true because 6 and 9 are witnesses. One witness proves an existential claim; a universal claim must hold throughout the domain."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Negation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Negating a quantified statement switches its quantifier and negates its predicate: ¬∀x P(x) ≡ ∃x ¬P(x), and ¬∃x P(x) ≡ ∀x ¬P(x). Therefore not all students passed means that at least one student did not pass. It does not say that nobody passed. Nobody passed means every student failed to pass, not merely that one failed."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "Let S(x) mean x submitted the assignment, with the domain restricted to students in the class. The statement not all students submitted becomes ¬∀x S(x), equivalent to ∃x ¬S(x). A single student who did not submit is a witness to the negated universal claim."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Always specify the domain. Do not turn not everyone into no one; those claims have different strengths."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "True. Substitute 8: 8 > 5 is true. False. 3 is not greater than 5. For every element. The universal quantifier ranges over all members of the stated domain."
+      },
+      {
+        "type": "checkpoint",
+        "question": "For P(x): x > 5, what is P(8)?",
+        "options": [
+          "True",
+          "False",
+          "Undefined after substitution",
+          "Both true and false"
+        ],
+        "correct_index": 0,
+        "explanation": "Substitute 8: 8 > 5 is true."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "For P(x): x > 5, what is P(8)?",
+        "back": "True. Substitute 8: 8 > 5 is true.",
+        "tag": "section"
+      },
+      {
+        "front": "For P(x): x > 5, what is P(3)?",
+        "back": "False. 3 is not greater than 5.",
+        "tag": "section"
+      },
+      {
+        "front": "What does ∀ mean?",
+        "back": "For every element. The universal quantifier ranges over all members of the stated domain.",
+        "tag": "section"
+      },
+      {
+        "front": "What does ∃ mean?",
+        "back": "There is at least one. Existence requires one or more witnesses, not exactly one.",
+        "tag": "section"
+      },
+      {
+        "front": "What is equivalent to ¬∀x P(x)?",
+        "back": "∃x ¬P(x). Negation changes universal to existential and negates the predicate.",
+        "tag": "section"
+      },
+      {
+        "front": "What is equivalent to ¬∃x P(x)?",
+        "back": "∀x ¬P(x). No witness exists precisely when every domain member fails the predicate.",
+        "tag": "section"
+      },
+      {
+        "front": "What does not all students submitted imply?",
+        "back": "At least one student did not submit. A negated universal requires a counterexample; it does not exclude successful submissions.",
+        "tag": "section"
+      },
+      {
+        "front": "For D = {2, 6, 9}, which value disproves ∀x(x > 5)?",
+        "back": "2. 2 belongs to D and does not exceed 5.",
+        "tag": "section"
+      },
+      {
+        "front": "For D = {2, 6, 9}, which value witnesses ∃x(x > 5)?",
+        "back": "6. 6 is in the domain and satisfies x > 5.",
+        "tag": "section"
+      },
+      {
+        "front": "Why must a quantified statement specify its domain?",
+        "back": "Its truth depends on which objects are considered. Restricting the domain changes the elements over which a quantifier ranges.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "CSC 203 supplied notes, lesson 2 [SHA-256 b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432]",
+    "logical_key": "source20261025-2"
+  },
+  {
+    "course_code": "CSC 203",
+    "module_position": 2,
+    "module_title": "Discrete Structures — Lessons 1–5",
+    "lesson_position": 3,
+    "title": "Sets and set operations",
+    "objective": "Recognise sets and subsets, evaluate set operations, and use inclusion-exclusion.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Elements and kinds of sets"
+      },
+      {
+        "type": "paragraph",
+        "text": "A set is a well-defined collection of distinct objects. Writing 2 ∈ A means 2 belongs to A; 2 ∉ A means it does not. Repeating an element does not create another distinct member. The empty set ∅ has no elements, a singleton has one, a finite set has a finite number, and an infinite set has infinitely many. The lecture uses N = {1, 2, 3, ...} for the natural numbers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Subsets and operations"
+      },
+      {
+        "type": "paragraph",
+        "text": "A ⊆ B means every member of A is also a member of B. The union A ∪ B contains members of either set, including their overlap. The intersection A ∩ B contains only shared members. A − B contains members of A that do not belong to B, so direction matters. Relative to a universal set U, the complement Aᶜ is U − A. A universal set must be specified before a complement is calculated."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Counting without double-counting"
+      },
+      {
+        "type": "paragraph",
+        "text": "For two finite sets, |A ∪ B| = |A| + |B| − |A ∩ B|. Adding the two set sizes counts each shared element twice, so the intersection is subtracted once. If 30 students know Java, 25 know Python and 10 know both, 45 know at least one language. Exactly 20 know only Java and 15 know only Python. This information alone does not determine how many know neither language because the class size was not given."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For A = {1, 2, 3}, B = {3, 4}, and U = {1, 2, 3, 4, 5}: A ∪ B = {1, 2, 3, 4}; A ∩ B = {3}; A − B = {1, 2}; B − A = {4}; and Aᶜ = {4, 5}. List each result once and check membership against the definition."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Union includes the overlap; difference is directional; a complement depends on its universal set."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "A well-defined collection of distinct objects. A set is defined by membership and contains distinct elements. 1. A singleton has exactly one element. Every member of A belongs to B. The subset condition checks every member of A against B."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is a set?",
+        "options": [
+          "A well-defined collection of distinct objects",
+          "An ordered list allowing repeated entries",
+          "A sentence without a truth value",
+          "A mapping with exactly two outputs"
+        ],
+        "correct_index": 0,
+        "explanation": "A set is defined by membership and contains distinct elements."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "What is a set?",
+        "back": "A well-defined collection of distinct objects. A set is defined by membership and contains distinct elements.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the cardinality of {7}?",
+        "back": "1. A singleton has exactly one element.",
+        "tag": "section"
+      },
+      {
+        "front": "What does A ⊆ B mean?",
+        "back": "Every member of A belongs to B. The subset condition checks every member of A against B.",
+        "tag": "section"
+      },
+      {
+        "front": "For A = {1, 2, 3} and B = {3, 4}, what is A ∪ B?",
+        "back": "{1, 2, 3, 4}. Union contains all distinct members of either set.",
+        "tag": "section"
+      },
+      {
+        "front": "For A = {1, 2, 3} and B = {3, 4}, what is A ∩ B?",
+        "back": "{3}. Only 3 belongs to both sets.",
+        "tag": "section"
+      },
+      {
+        "front": "For A = {1, 2, 3} and B = {3, 4}, what is A − B?",
+        "back": "{1, 2}. Remove from A the members also in B.",
+        "tag": "section"
+      },
+      {
+        "front": "If U = {1, 2, 3, 4, 5} and A = {1, 2, 3}, what is Aᶜ?",
+        "back": "{4, 5}. The complement contains the members of U outside A.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the empty set?",
+        "back": "A set with no elements. ∅ has cardinality zero; {0} has cardinality one.",
+        "tag": "section"
+      },
+      {
+        "front": "If |J| = 30, |P| = 25 and |J ∩ P| = 10, what is |J ∪ P|?",
+        "back": "45. Use 30 + 25 − 10 = 45 to count the overlap once.",
+        "tag": "section"
+      },
+      {
+        "front": "With 30 Java users and 10 users of both languages, how many use only Java?",
+        "back": "20. Subtract the overlap from the Java set: 30 − 10 = 20.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "CSC 203 supplied notes, lesson 3 [SHA-256 b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432]",
+    "logical_key": "source20261025-3"
+  },
+  {
+    "course_code": "CSC 203",
+    "module_position": 2,
+    "module_title": "Discrete Structures — Lessons 1–5",
+    "lesson_position": 4,
+    "title": "Functions",
+    "objective": "Distinguish domain and codomain, test the function condition, and recognise injective, surjective and bijective mappings.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A mapping with one output per input"
+      },
+      {
+        "type": "paragraph",
+        "text": "A mathematical function f: A → B assigns exactly one element of B to every element of A. A is its domain and B is its codomain. Every domain element needs an output, and one input cannot be assigned two different outputs. Two different inputs may share one output and still define a function. The range consists of the outputs actually attained and can be a proper subset of the codomain."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Injective, surjective and bijective"
+      },
+      {
+        "type": "paragraph",
+        "text": "A one-to-one or injective function sends distinct inputs to distinct outputs. An onto or surjective function reaches every member of its codomain. A bijection has both properties: each codomain element has exactly one preimage, so its inverse maps the codomain back to the domain as a function. Surjectivity cannot be judged from a formula without specifying the codomain."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A computing connection"
+      },
+      {
+        "type": "paragraph",
+        "text": "A grade calculation takes a score as input and returns a grade. Such a mapping can be many-to-one, since several scores may receive the same grade. It is still a function if every allowed score receives exactly one grade. Programming routines are related to this idea, but can have side effects; the mathematical definition is the one used for these exercises."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "Let A = {1, 2}, B = {a, b}, and f(1) = a, f(2) = b. The mapping is a function because each input has one output. It is injective because the outputs differ and surjective because both a and b are reached. Therefore it is bijective, with f⁻¹(a) = 1 and f⁻¹(b) = 2."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Many-to-one mappings can be functions. Reaching every value in the range is automatic; being onto requires reaching every value in the stated codomain."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "The domain. A contains the allowed inputs. The codomain. The codomain contains the permitted outputs, whether or not all are reached. It has exactly one output. The function condition requires existence and uniqueness of each input’s image."
+      },
+      {
+        "type": "checkpoint",
+        "question": "In f: A → B, what is A?",
+        "options": [
+          "The domain",
+          "The codomain",
+          "The inverse",
+          "The common ratio"
+        ],
+        "correct_index": 0,
+        "explanation": "A contains the allowed inputs."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "In f: A → B, what is A?",
+        "back": "The domain. A contains the allowed inputs.",
+        "tag": "section"
+      },
+      {
+        "front": "In f: A → B, what is B?",
+        "back": "The codomain. The codomain contains the permitted outputs, whether or not all are reached.",
+        "tag": "section"
+      },
+      {
+        "front": "What must hold for every input of a function?",
+        "back": "It has exactly one output. The function condition requires existence and uniqueness of each input’s image.",
+        "tag": "section"
+      },
+      {
+        "front": "Can two inputs of a function share one output?",
+        "back": "Yes, unless injectivity is required. The function condition allows a many-to-one mapping.",
+        "tag": "section"
+      },
+      {
+        "front": "What characterises an injective function?",
+        "back": "Distinct inputs have distinct outputs. Injectivity means one-to-one.",
+        "tag": "section"
+      },
+      {
+        "front": "What characterises a surjective function?",
+        "back": "Every codomain element has a preimage. Surjectivity is the onto condition.",
+        "tag": "section"
+      },
+      {
+        "front": "What characterises a bijection?",
+        "back": "It is injective and surjective. A bijection is both one-to-one and onto.",
+        "tag": "section"
+      },
+      {
+        "front": "When does f: A → B have an inverse function B → A?",
+        "back": "When f is bijective. Each output must have exactly one preimage.",
+        "tag": "section"
+      },
+      {
+        "front": "A = {1, 2}, B = {a, b}, f(1) = a and f(2) = a. Which description is correct?",
+        "back": "A function that is neither injective nor surjective. Each input has one output, but outputs coincide and b is not reached.",
+        "tag": "section"
+      },
+      {
+        "front": "Why is score → grade often many-to-one?",
+        "back": "Several scores can receive the same grade. Different scores may map to a shared grade while still having unique outputs.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "CSC 203 supplied notes, lesson 4 [SHA-256 b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432]",
+    "logical_key": "source20261025-4"
+  },
+  {
+    "course_code": "CSC 203",
+    "module_position": 2,
+    "module_title": "Discrete Structures — Lessons 1–5",
+    "lesson_position": 5,
+    "title": "Sequences and summation",
+    "objective": "Find terms of arithmetic and geometric sequences and evaluate finite sums.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ordered terms"
+      },
+      {
+        "type": "paragraph",
+        "text": "A sequence is an ordered list of numbers. Its nth term aₙ specifies the value at position n. In these notes positions begin at n = 1, so aₙ = 2n gives 2, 4, 6, 8, 10, ... . The order of terms matters, unlike ordinary set membership."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Arithmetic sequences"
+      },
+      {
+        "type": "paragraph",
+        "text": "An arithmetic sequence has a constant difference d between consecutive terms. Its nth term is aₙ = a₁ + (n − 1)d. In 3, 7, 11, 15, ... , the first term is 3 and d = 4. The fifth term is 3 + (5 − 1) × 4 = 19. Using n instead of n − 1 counts one extra step from the first term."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Geometric sequences"
+      },
+      {
+        "type": "paragraph",
+        "text": "A geometric sequence has a constant ratio r between consecutive terms. Its nth term is aₙ = a₁r^(n − 1). In 2, 6, 18, 54, ... , a₁ = 2 and r = 3. The fifth term is 2 × 3^4 = 162. To distinguish the two sequence types, compare successive differences and successive ratios instead of assuming a pattern from one pair."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sigma notation"
+      },
+      {
+        "type": "paragraph",
+        "text": "The symbol Σ means summation. In Σ from i = 1 to 5 of i, the index takes the values 1, 2, 3, 4, 5 and the terms are added, giving 15. The formula 1 + 2 + ... + n = n(n + 1)/2 applies to the first n positive integers. A term formula finds one term; a summation adds several terms. They answer different questions."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For 3, 7, 11, 15, ... , a₁ = 3 and d = 4, so a₆ = 3 + 5 × 4 = 23. For 2, 6, 18, 54, ... , a₄ = 2 × 3^3 = 54. Separately, Σ from i = 1 to 5 of i is 1 + 2 + 3 + 4 + 5 = 15."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Use n − 1 in the nth-term formulas when indexing starts at 1. Do not confuse a term with the sum of terms."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "Its entries are ordered. A sequence assigns an order or index to its terms. 10. Substitute n = 5: 2 × 5 = 10. 4. Each term increases by 4."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What distinguishes a sequence from a set?",
+        "options": [
+          "Its entries are ordered",
+          "It can never contain repeated numbers",
+          "It always has finitely many entries",
+          "It has no positions"
+        ],
+        "correct_index": 0,
+        "explanation": "A sequence assigns an order or index to its terms."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "What distinguishes a sequence from a set?",
+        "back": "Its entries are ordered. A sequence assigns an order or index to its terms.",
+        "tag": "section"
+      },
+      {
+        "front": "If aₙ = 2n with n starting at 1, what is a₅?",
+        "back": "10. Substitute n = 5: 2 × 5 = 10.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the common difference of 3, 7, 11, 15, ... ?",
+        "back": "4. Each term increases by 4.",
+        "tag": "section"
+      },
+      {
+        "front": "Which formula gives an arithmetic sequence’s nth term?",
+        "back": "a₁ + (n − 1)d. There are n − 1 equal differences between the first and nth terms.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the fifth term of 3, 7, 11, 15, ... ?",
+        "back": "19. 3 + (5 − 1) × 4 = 19.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the common ratio of 2, 6, 18, 54, ... ?",
+        "back": "3. Divide consecutive terms: 6/2 = 18/6 = 3.",
+        "tag": "section"
+      },
+      {
+        "front": "Which formula gives a geometric sequence’s nth term?",
+        "back": "a₁r^(n − 1). The first term is multiplied by the ratio n − 1 times.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the fifth term of 2, 6, 18, 54, ... ?",
+        "back": "162. 2 × 3^4 = 162.",
+        "tag": "section"
+      },
+      {
+        "front": "What is Σ from i = 1 to 5 of i?",
+        "back": "15. 1 + 2 + 3 + 4 + 5 = 15.",
+        "tag": "section"
+      },
+      {
+        "front": "Which formula sums the first n positive integers?",
+        "back": "n(n + 1)/2. Pairing the first and last integers gives n(n + 1)/2.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "CSC 203 supplied notes, lesson 5 [SHA-256 b507716caa72d025e8a16c12adf64101c9eba05c5f2d1f76e6fb44ad50d35432]",
+    "logical_key": "source20261025-5"
+  },
+  {
+    "course_code": "AUE-GST 201",
+    "module_position": 2,
+    "module_title": "Philosophy — Chapters 6–10",
+    "lesson_position": 1,
+    "title": "Seventh-day Adventist philosophy of education",
+    "objective": "Explain the chapter’s main ideas, distinguish its key terms, and apply them to an educational example.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Purpose and foundations"
+      },
+      {
+        "type": "paragraph",
+        "text": "In the supplied chapter, Seventh-day Adventist education is Christ-centred and has a redemptive purpose: leading people toward God and restoring the image of God in human life. Education and redemption are described as closely united. The chapter locates the tradition’s historical roots in the Millerite movement and the Great Disappointment of 1844, and identifies biblical principles and Ellen G. White’s writings as central educational influences."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Knowledge and integration"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chapter presents Scripture and divine revelation as foundational sources of knowledge. Biblical integration means interpreting learning through this worldview across subjects, rather than merely adding a Bible class to an otherwise separate curriculum. The unity of truth is the belief that truth ultimately has one divine source. These statements describe the Adventist perspective taught by the handout, not a premise every philosophical school shares."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Whole-person development and service"
+      },
+      {
+        "type": "paragraph",
+        "text": "Education addresses spiritual, intellectual, physical, emotional, moral, social and practical development. The chapter links healthful living and useful work with education, and emphasises community service as an expression of faith. Learning is intended to produce independent thinkers rather than passive reflectors of a teacher’s opinions. Parents, pastors and teachers share responsibility. The stated horizon includes service in this life and the life to come."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A class studies a community problem, evaluates possible responses, carries out a service project and reflects on its ethical purpose. Intellectual inquiry, practical action, social responsibility and spiritual reflection work together instead of being treated as unrelated activities."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Christ-centred education does not mean memorisation without thought. Do not repeat the handout’s undated school-count figures as current statistics."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Millerite movement and Great Disappointment of 1844 Leading people back to God and restoring God’s image in them Christ-centered"
+      },
+      {
+        "type": "checkpoint",
+        "question": "The historical roots of SDA education can be traced back to:",
+        "options": [
+          "The Millerite movement and Great Disappointment of 1844",
+          "The Protestant Reformation of the 16th century",
+          "The Catholic educational reforms of the 19th century",
+          "The Enlightenment period in Europe"
+        ],
+        "correct_index": 0,
+        "explanation": "The supplied chapter identifies The Millerite movement and Great Disappointment of 1844."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "The historical roots of SDA education can be traced back to:",
+        "back": "The Millerite movement and Great Disappointment of 1844",
+        "tag": "section"
+      },
+      {
+        "front": "Ellen G. White viewed the primary aim of Adventist education as:",
+        "back": "Leading people back to God and restoring God’s image in them",
+        "tag": "section"
+      },
+      {
+        "front": "The SDA philosophy of education is fundamentally:",
+        "back": "Christ-centered",
+        "tag": "section"
+      },
+      {
+        "front": "The SDA epistemology is rooted in:",
+        "back": "Biblical authority and divine revelation",
+        "tag": "section"
+      },
+      {
+        "front": "A key characteristic of SDA education is developing students who are:",
+        "back": "Thinkers rather than mere reflectors of others’ thoughts",
+        "tag": "section"
+      },
+      {
+        "front": "Biblical integration in SDA education means:",
+        "back": "Viewing all knowledge through the lens of Scripture",
+        "tag": "section"
+      },
+      {
+        "front": "Wholistic development in SDA education encompasses:",
+        "back": "Physical, intellectual, emotional, and spiritual dimensions",
+        "tag": "section"
+      },
+      {
+        "front": "Service-oriented education in SDA philosophy emphasizes:",
+        "back": "Community service as fundamental Christian expression",
+        "tag": "section"
+      },
+      {
+        "front": "SDA education prepares students for service:",
+        "back": "Both in this world and the world to come",
+        "tag": "section"
+      },
+      {
+        "front": "SDA education involves partnership between:",
+        "back": "Parents, pastors, and teachers",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "philosophy 6-10.pdf, chapter 6 [SHA-256 05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4]",
+    "logical_key": "source20261025-1"
+  },
+  {
+    "course_code": "AUE-GST 201",
+    "module_position": 2,
+    "module_title": "Philosophy — Chapters 6–10",
+    "lesson_position": 2,
+    "title": "The strength of wholistic education",
+    "objective": "Explain the chapter’s main ideas, distinguish its key terms, and apply them to an educational example.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Head, heart and hand"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wholistic education develops the whole person. The chapter uses head, heart and hand to connect thought, character and practical competence. Head education cultivates mental faculties and thinking. Heart education concerns the convictions and values that guide thought and action. Hand education develops practical skills, manual work and useful service. None of the three substitutes for the others."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A lifelong and restorative purpose"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ellen G. White’s educational account concerns the whole being and the whole period of existence. Within this Christian framework, education seeks to restore the image of God and to direct body, mind and soul toward loving service. The chapter associates human development with increasing capacity, while interpreting the Fall as damaging human faculties and making restoration necessary."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Learning through responsibility"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chapter uses tending the Garden of Eden as an illustration of meaningful work, and refers to Moses’ Egyptian education as an example of broad preparation. Its educational lesson is that intellectual development should be joined with character and practical ability. Learners should become thoughtful agents who can respond responsibly to circumstances, rather than merely repeat what others think."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A student analyses a plan for a school garden (head), considers fairness and care for others (heart), and helps cultivate it (hand). The complete activity develops more than recall of facts."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Heart education is an ethical and spiritual metaphor in these notes, not a lesson in heart anatomy. Wholistic education does not mean neglecting scholarship."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "Intellectual, emotional, physical, and spiritual dimensions Head, heart, and hand Mental faculties and thinking power"
+      },
+      {
+        "type": "checkpoint",
+        "question": "Wholistic education emphasizes the development of:",
+        "options": [
+          "Intellectual, emotional, physical, and spiritual dimensions",
+          "Intellectual abilities only",
+          "Vocational and technical skills primarily",
+          "Social and political awareness exclusively"
+        ],
+        "correct_index": 0,
+        "explanation": "The supplied chapter identifies Intellectual, emotional, physical, and spiritual dimensions."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Wholistic education emphasizes the development of:",
+        "back": "Intellectual, emotional, physical, and spiritual dimensions",
+        "tag": "section"
+      },
+      {
+        "front": "The Seventh-day Adventist Church conceptualizes wholistic education as education of the:",
+        "back": "Head, heart, and hand",
+        "tag": "section"
+      },
+      {
+        "front": "Education of the “Head” primarily focuses on:",
+        "back": "Mental faculties and thinking power",
+        "tag": "section"
+      },
+      {
+        "front": "Education of the “Heart” is described as:",
+        "back": "The citadel of thoughts and actions",
+        "tag": "section"
+      },
+      {
+        "front": "Education of the “Hand” symbolizes:",
+        "back": "Practical skills and manual labor",
+        "tag": "section"
+      },
+      {
+        "front": "The first divine assignment involving manual labor was:",
+        "back": "Dressing and keeping the Garden of Eden",
+        "tag": "section"
+      },
+      {
+        "front": "According to Ellen White, true education has to do with:",
+        "back": "The whole being and whole period of existence",
+        "tag": "section"
+      },
+      {
+        "front": "The great object of education and life is:",
+        "back": "Restoring God’s image in humanity",
+        "tag": "section"
+      },
+      {
+        "front": "The law of love calls for devotion of:",
+        "back": "Body, mind, and soul to God’s service",
+        "tag": "section"
+      },
+      {
+        "front": "True education should train youth to be:",
+        "back": "Thinkers and masters of circumstances",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "philosophy 6-10.pdf, chapter 7 [SHA-256 05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4]",
+    "logical_key": "source20261025-2"
+  },
+  {
+    "course_code": "AUE-GST 201",
+    "module_position": 2,
+    "module_title": "Philosophy — Chapters 6–10",
+    "lesson_position": 3,
+    "title": "Christian curriculum design and instruction",
+    "objective": "Explain the chapter’s main ideas, distinguish its key terms, and apply them to an educational example.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Curriculum as whole-person formation"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chapter describes Christian education as the harmonious development of physical, mental and spiritual powers. It treats God and Christ as the ultimate source of wisdom within its faith framework. Its curriculum illustrations connect intellectual learning with moral responsibility, practical activity and spiritual formation."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Educational settings in the handout"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Eden illustration presents God as teacher and nature as a lesson book, with obedience, tending the garden, naming creatures and studying creation as elements of learning. The Israelite model emphasises parents’ educational responsibility, instruction in God’s law and useful work. The Schools of the Prophets are associated with Samuel, Elijah and Elisha and with practical preparation as well as religious instruction."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Teaching and discernment"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Deuteronomy discussion says teachers should first internalise what they teach and then teach diligently. Diligence means sustained effort and commitment, not occasional instruction. Faith-and-learning integration depends on a teacher’s lived relationship with the beliefs being taught. Critical thinking involves reasoning, analysis, evaluation and the development of ideas; blind acceptance is not critical thinking. Discernment involves judging well. The handout’s FIRE acronym is Focus, Identify, Reframe, Exchange."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A teacher first understands a principle, relates it to a real situation, asks learners to compare reasons, and follows through with practical work. Learners explain why their response is appropriate rather than accepting it only because the teacher said so."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Integration is more than placing a religious quotation next to an unrelated task. Diligence does not require assuming that a teacher is personally perfect."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "The harmonious development of physical, mental, and spiritual powers God and Jesus Christ God as Teacher and nature as lesson book"
+      },
+      {
+        "type": "checkpoint",
+        "question": "Christian education is described as:",
+        "options": [
+          "The harmonious development of physical, mental, and spiritual powers",
+          "Acquiring specific skills only",
+          "Preparation for professional life exclusively",
+          "Theological training for clergy"
+        ],
+        "correct_index": 0,
+        "explanation": "The supplied chapter identifies The harmonious development of physical, mental, and spiritual powers."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Christian education is described as:",
+        "back": "The harmonious development of physical, mental, and spiritual powers",
+        "tag": "section"
+      },
+      {
+        "front": "The ultimate source of wisdom and knowledge in Christian education is:",
+        "back": "God and Jesus Christ",
+        "tag": "section"
+      },
+      {
+        "front": "The Edenic school established by God featured:",
+        "back": "God as Teacher and nature as lesson book",
+        "tag": "section"
+      },
+      {
+        "front": "Manual labor in the Eden curriculum involved:",
+        "back": "Dressing and keeping the garden",
+        "tag": "section"
+      },
+      {
+        "front": "The School of Israel emphasized:",
+        "back": "Parental responsibility in education",
+        "tag": "section"
+      },
+      {
+        "front": "The primary strategy for integrating faith and learning requires:",
+        "back": "Personal love relationship with God",
+        "tag": "section"
+      },
+      {
+        "front": "According to Deuteronomy, God’s words must first be:",
+        "back": "Internalized in the teacher’s heart",
+        "tag": "section"
+      },
+      {
+        "front": "Teaching “diligently” involves:",
+        "back": "Effort, perseverance, and commitment to excellence",
+        "tag": "section"
+      },
+      {
+        "front": "Critical thinking in education involves all EXCEPT:",
+        "back": "Blind acceptance of authority",
+        "tag": "section"
+      },
+      {
+        "front": "Discernment is described as:",
+        "back": "The ability to obtain sharp perceptions or judge well",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "philosophy 6-10.pdf, chapter 8 [SHA-256 05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4]",
+    "logical_key": "source20261025-3"
+  },
+  {
+    "course_code": "AUE-GST 201",
+    "module_position": 2,
+    "module_title": "Philosophy — Chapters 6–10",
+    "lesson_position": 4,
+    "title": "Truth and knowledge theories",
+    "objective": "Explain the chapter’s main ideas, distinguish its key terms, and apply them to an educational example.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What epistemology asks"
+      },
+      {
+        "type": "paragraph",
+        "text": "Epistemology studies the nature, sources and scope of knowledge. The chapter distinguishes practical know-how, sensory or empirical knowledge, reasoned understanding and intuitive insight. Rationalism emphasises reason and deduction; empiricism emphasises observation and experience. The scientific-method sequence in the notes is observation, hypothesis, experiment and analysis. Skeptical positions question whether particular knowledge claims, or knowledge more generally, can be justified."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Three accounts of truth"
+      },
+      {
+        "type": "paragraph",
+        "text": "Correspondence connects a true statement with the actual state of affairs. Coherence evaluates how a claim fits consistently within a body of judgments. Pragmatic accounts emphasise the role of inquiry and practical consequences. Compare their criteria carefully: merely finding a belief comforting does not establish correspondence, and popularity alone is not a sufficient reason to accept a claim."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Logic and relevance"
+      },
+      {
+        "type": "paragraph",
+        "text": "A conjunction is true only when both components are true, whereas an inclusive disjunction is false only when both are false. The law of non-contradiction rules out a proposition and its negation both being true at the same time and in the same respect. Ad hominem targets the person instead of the argument. Ad populum substitutes popularity for adequate reasons. Ad baculum relies on force or threats. Ignoratio elenchi misses the relevant conclusion."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "To assess the claim that a classroom window is open, inspect the window: this illustrates correspondence. If someone rejects the claim only by insulting the speaker, the response does not evaluate the evidence and illustrates an ad hominem diversion."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Do not equate knowing how to perform a skill with merely knowing a definition. Identify the reason offered by an argument rather than its popularity or emotional force."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "The nature and scope of knowledge Agreement between statement and actual state of affairs Logical consistency with other judgments"
+      },
+      {
+        "type": "checkpoint",
+        "question": "Epistemology is the branch of philosophy that studies:",
+        "options": [
+          "The nature and scope of knowledge",
+          "The nature of reality and existence",
+          "Moral values and ethical principles",
+          "Political systems and governance"
+        ],
+        "correct_index": 0,
+        "explanation": "The supplied chapter identifies The nature and scope of knowledge."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Epistemology is the branch of philosophy that studies:",
+        "back": "The nature and scope of knowledge",
+        "tag": "section"
+      },
+      {
+        "front": "The correspondence theory of truth states that truth is:",
+        "back": "Agreement between statement and actual state of affairs",
+        "tag": "section"
+      },
+      {
+        "front": "The coherence theory of truth evaluates truth based on:",
+        "back": "Logical consistency with other judgments",
+        "tag": "section"
+      },
+      {
+        "front": "The pragmatic theory of truth emphasizes:",
+        "back": "What works out in practice with satisfactory results",
+        "tag": "section"
+      },
+      {
+        "front": "Rationalism emphasizes knowledge acquisition through:",
+        "back": "Logical reasoning and deduction",
+        "tag": "section"
+      },
+      {
+        "front": "Empiricism asserts that all learning should come from:",
+        "back": "Observations and experiences",
+        "tag": "section"
+      },
+      {
+        "front": "The law of non-contradiction states that:",
+        "back": "Contradictory statements cannot both be true",
+        "tag": "section"
+      },
+      {
+        "front": "Knowledge-how refers to:",
+        "back": "Possession of practical skills",
+        "tag": "section"
+      },
+      {
+        "front": "Argumentum ad hominem involves:",
+        "back": "Attack on the person rather than argument",
+        "tag": "section"
+      },
+      {
+        "front": "Argumentum ad baculum uses:",
+        "back": "Force or threat of force",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "philosophy 6-10.pdf, chapter 9 [SHA-256 05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4]",
+    "logical_key": "source20261025-4"
+  },
+  {
+    "course_code": "AUE-GST 201",
+    "module_position": 2,
+    "module_title": "Philosophy — Chapters 6–10",
+    "lesson_position": 5,
+    "title": "Traditional schools of philosophy and education",
+    "objective": "Explain the chapter’s main ideas, distinguish its key terms, and apply them to an educational example.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Idealist approaches"
+      },
+      {
+        "type": "paragraph",
+        "text": "The handout introduces idealism through an emphasis on mind or spirit and associates idealist education with intellectual and moral development. Plato’s cave depicts movement from ignorance toward understanding. Descartes’ cogito means I think, therefore I am. Berkeley is associated with the formula to be is to be perceived. These thinkers differ substantially; a chapter grouping does not make their systems identical."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Kant and an important terminology correction"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kant distinguishes objects as they appear under the conditions of our experience from things considered independently of those conditions. The appropriate introductory terms are phenomena and noumena, or phenomenal and noumenal. The handout’s word nominal in this comparison is a terminology error; it should not be learned as a synonym for noumenal."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Realist inquiry and faith and reason"
+      },
+      {
+        "type": "paragraph",
+        "text": "Realism affirms a reality independent of our perceptions. The chapter associates Aristotle with form and matter, Aquinas with Aristotelian philosophy and Christian theology, Bacon with inductive inquiry from observations, Locke with the blank-slate image, and Whitehead with living ideas connected to experience. These comparisons help explain why educational approaches give different roles to observation, reasoning, practice and values."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Scholastic and Neo-Scholastic contexts"
+      },
+      {
+        "type": "paragraph",
+        "text": "The handout connects the Scholastic tradition with Aquinas, reason and faith, and enduring truth and value. Medieval Aristotelian scholarship and the later Neo-Scholastic revival should not be collapsed into the same historical event: Neo-Scholasticism is a later revival of medieval Scholastic thought. Evaluate an educational approach by what it contributes to inquiry and formation, while examining its limitations rather than assuming its labels settle every question."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A realist lesson might ask students to examine an object, record observations and defend an explanation with evidence. An idealist emphasis might direct attention to the ideas and moral judgments involved. Comparing the aims and methods clarifies the difference without reducing either approach to rote slogans."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Avoid this mistake",
+        "text": "Use noumenal, not nominal, in the Kant comparison. Treat broad school labels as introductory comparisons rather than complete accounts of individual philosophers."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mental or spiritual in nature Journey from ignorance to knowledge I think therefore I am"
+      },
+      {
+        "type": "checkpoint",
+        "question": "Idealism posits that reality is fundamentally:",
+        "options": [
+          "Mental or spiritual in nature",
+          "Material and physical",
+          "Socially constructed",
+          "Scientifically measurable only"
+        ],
+        "correct_index": 0,
+        "explanation": "The supplied chapter identifies Mental or spiritual in nature."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Idealism posits that reality is fundamentally:",
+        "back": "Mental or spiritual in nature",
+        "tag": "section"
+      },
+      {
+        "front": "Plato’s “Allegory of the Cave” illustrates:",
+        "back": "Journey from ignorance to knowledge",
+        "tag": "section"
+      },
+      {
+        "front": "Descartes’ famous principle “Cogito ergo sum” means:",
+        "back": "I think therefore I am",
+        "tag": "section"
+      },
+      {
+        "front": "Berkeley’s subjective idealism argued that:",
+        "back": "To be is to be perceived",
+        "tag": "section"
+      },
+      {
+        "front": "Idealism in education emphasizes:",
+        "back": "Mind-centered learning and moral development",
+        "tag": "section"
+      },
+      {
+        "front": "Realism asserts that reality exists:",
+        "back": "Independently of human perception",
+        "tag": "section"
+      },
+      {
+        "front": "Thomas Aquinas integrated:",
+        "back": "Aristotelian philosophy with Christian theology",
+        "tag": "section"
+      },
+      {
+        "front": "Francis Bacon advocated for:",
+        "back": "Inductive approach starting with observables",
+        "tag": "section"
+      },
+      {
+        "front": "John Locke’s concept of “tabula rasa” means:",
+        "back": "Blank slate mind at birth",
+        "tag": "section"
+      },
+      {
+        "front": "Alfred North Whitehead emphasized education with:",
+        "back": "”Living ideas” relevant to learners’ experiences",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "philosophy 6-10.pdf, chapter 10 [SHA-256 05f45b10bf43fa16b051a2b4a71e50a7eb1c98d9bfaaa0f3e2606e1a4a7ffad4]",
+    "logical_key": "source20261025-5"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Java declarations, identifiers and evaluation",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "A Java variable declaration supplies a type and a valid identifier. int x = 5, y = 10; declares and initialises two integers; the paper’s int x, y = 5, 10; is malformed and cannot be executed literally. Assignment operators such as += and *= update the left operand; = assigns, while == compares and yields a boolean. Prefix ++x increments before its value is used; postfix x++ uses the old value and then increments. Java evaluates operands left to right. Identifiers can include letters, digits after the first character, underscore and dollar signs, but cannot be keywords, start with digits, or contain hyphens and #. double and long are invalid identifiers because they are keywords. Boolean is not the primitive boolean keyword. String literals use double quotes and char literals use single quotes."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "Starting independently with int x = 2: x++ + x evaluates as 2 + 3 = 5 and leaves x at 3. Starting again with x = 2: ++x + x evaluates as 3 + 3 = 6. With int x = 5, y = 10, x += y leaves x = 15, and independently x *= y leaves x = 50."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not silently run a malformed declaration. State corrected initial values and whether each expression starts from a fresh state."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Postfix contributes 2, increments x to 3, and the second operand contributes 3.",
+          "Prefix changes x to 3 before both operands are evaluated.",
+          "Dollar signs are permitted; a hyphen, a keyword and # are not valid here.",
+          "Compound multiplication assigns 5 × 10 = 50 to x."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Starting with int x = 2, what is the value of x++ + x?",
+        "options": [
+          "5",
+          "4",
+          "6",
+          "7"
+        ],
+        "correct_index": 0,
+        "explanation": "Postfix contributes 2, increments x to 3, and the second operand contributes 3."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Starting with int x = 2, what is the value of x++ + x?",
+        "back": "5. Postfix contributes 2, increments x to 3, and the second operand contributes 3.",
+        "tag": "section"
+      },
+      {
+        "front": "Starting with int x = 2, what is the value of ++x + x?",
+        "back": "6. Prefix changes x to 3 before both operands are evaluated.",
+        "tag": "section"
+      },
+      {
+        "front": "Which is a valid Java identifier?",
+        "back": "$money$. Dollar signs are permitted; a hyphen, a keyword and # are not valid here.",
+        "tag": "section"
+      },
+      {
+        "front": "With int x = 5, y = 10, what is x after x *= y?",
+        "back": "50. Compound multiplication assigns 5 × 10 = 50 to x.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 1, Java declarations, identifiers and evaluation [SHA-256 823926c77e7deb6a77f2d648a9240ab5487165959a34a7b94c0775008aeb0cee]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 2,
+    "title": "Programming paradigms, Java strings and numeric types",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Declarative programming expresses the desired result rather than a detailed control-flow procedure; SQL is a common example. Logic programming represents facts and rules that can be queried. Object-oriented encapsulation packages related state and operations and controls access to representation; inheritance can reuse existing code. Java strings are immutable objects. Their length is found using length(), and toLowerCase() returns a lower-case string. substring(begin,end) includes begin and excludes end. Strings can be concatenated with + or concat(). Java numeric division depends on operand types: dividing an int by a double produces floating-point division. Primitive double occupies more storage than byte, float or long in the choices on the paper."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For String s = \"hello world\";, s.substring(0,5) is \"hello\". With int a = 5; double b = 10.0;, a / b is 0.5. The SQL query SELECT * FROM employees WHERE salary > 5000 describes the required rows and is declarative."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "The paper repeats the declarative-language stem for one question whose options discuss unrelated features. That ambiguous item is not used as a scored question."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The substring begins at index 0 and stops before index 5.",
+          "String.length() returns the number of UTF-16 code units.",
+          "A double operand makes this floating-point division.",
+          "SQL specifies the rows wanted without describing an iteration algorithm."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "For String s = \"hello world\", what does s.substring(0,5) return?",
+        "options": [
+          "hello",
+          "world",
+          "hello world",
+          "An index error"
+        ],
+        "correct_index": 0,
+        "explanation": "The substring begins at index 0 and stops before index 5."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "For String s = \"hello world\", what does s.substring(0,5) return?",
+        "back": "hello. The substring begins at index 0 and stops before index 5.",
+        "tag": "section"
+      },
+      {
+        "front": "Which Java method returns a string’s length?",
+        "back": "length(). String.length() returns the number of UTF-16 code units.",
+        "tag": "section"
+      },
+      {
+        "front": "With int a = 5 and double b = 10.0, what is a / b?",
+        "back": "0.5. A double operand makes this floating-point division.",
+        "tag": "section"
+      },
+      {
+        "front": "Which paradigm describes SELECT * FROM employees WHERE salary > 5000?",
+        "back": "Declarative. SQL specifies the rows wanted without describing an iteration algorithm.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 6, Programming paradigms, Java strings and numeric types [SHA-256 0ddec95c2c4048ef8e307abe08dfae931c61009ccba55e39c258a6c0d50e970c]",
+    "logical_key": "photo20261025-2"
+  },
+  {
+    "course_code": "COS 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 3,
+    "title": "Java program repair, casting and flowcharts",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "A Java entry point is public static void main(String[] args). A class body and method body need matching braces, and System.out.println uses correctly capitalised identifiers, parentheses, a valid string literal and a semicolon. The photographed snippets contain errors in these areas; copy the intended message into a valid statement rather than interpreting broken syntax as executable code. A double-to-int cast truncates toward zero. Names can be combined using string concatenation, and the escape sequence \\t inserts a tab. A flowchart for gravitational force should input G, m1, m2 and distance r, reject r = 0, compute F = G*m1*m2/(r*r), and output F. Use positive distance in the physical model. For swapping variables, a temporary variable is clear and avoids the overflow risks of arithmetic swap tricks."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A valid fragment is: int x = 5; int y = 3*x; int temp = x; x = y; y = temp; System.out.println(x + \" \" + y);. It prints 15 5. Separately, casting 5.8 to int gives 5. A complete main signature is public static void main(String[] args)."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not use integer division when a decimal quotient is required, or put curly quotation marks into Java string literals."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The standard entry point is public static void main with a String array parameter.",
+          "A narrowing cast from double to int truncates the fractional part.",
+          "The tab escape uses a backslash followed by t.",
+          "A zero distance would put zero in the denominator."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which is a valid Java entry-point signature?",
+        "options": [
+          "public static void main(String[] args)",
+          "public void static main(String args)",
+          "public class main(String args)",
+          "public static main(String[] args)"
+        ],
+        "correct_index": 0,
+        "explanation": "The standard entry point is public static void main with a String array parameter."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which is a valid Java entry-point signature?",
+        "back": "public static void main(String[] args). The standard entry point is public static void main with a String array parameter.",
+        "tag": "section"
+      },
+      {
+        "front": "What does (int)5.8 evaluate to in Java?",
+        "back": "5. A narrowing cast from double to int truncates the fractional part.",
+        "tag": "section"
+      },
+      {
+        "front": "Which escape sequence inserts a tab in a Java string?",
+        "back": "\\t. The tab escape uses a backslash followed by t.",
+        "tag": "section"
+      },
+      {
+        "front": "In F = G*m1*m2/(r*r), which input requires a nonzero check?",
+        "back": "r. A zero distance would put zero in the denominator.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 8, Java program repair, casting and flowcharts [SHA-256 154729d6087f8caf24b4544e60204161082059cb7a22eefb85e47126d705325c]",
+    "logical_key": "photo20261025-3"
+  },
+  {
+    "course_code": "CSC 203",
+    "module_position": 3,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Set-counting and finite functions from the discrete-structures quiz",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "The photographed CSC 232 quiz is Discrete Structures, matching the catalogue’s CSC 203 course. Of 50 students, 28 take CSC 232, 22 take CSC 201 and 12 take both. Only the first class has 28 − 12 = 16; only the second has 22 − 12 = 10; the union has 28 + 22 − 12 = 38; and 50 − 38 = 12 take neither. A finite function’s domain is the specified input set; its range is the outputs it actually produces. The codomain is part of a function’s definition and cannot in general be recovered from a formula alone. The paper does not specify a codomain for f(x) = x² + 2x − 1, so any particular codomain used in an exercise must be declared as an assumption."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For D = {−2, −1, 0, 1, 2}, evaluating f(x) = x² + 2x − 1 gives respectively −1, −2, −1, 2, 7. The range is {−2, −1, 2, 7}. One valid explicitly chosen codomain is the integers; another is a stated set containing all these outputs."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not mistake range for a uniquely determined codomain, and do not count the class overlap twice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Only A is 28 − 12 = 16.",
+          "The union is 28 + 22 − 12 = 38, leaving 50 − 38 = 12.",
+          "Substitute −1: 1 − 2 − 1 = −2.",
+          "Evaluate every domain input and remove repeated outputs."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Of 50 students, 28 take A, 22 take B and 12 take both. How many take only A?",
+        "options": [
+          "16",
+          "28",
+          "40",
+          "12"
+        ],
+        "correct_index": 0,
+        "explanation": "Only A is 28 − 12 = 16."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Of 50 students, 28 take A, 22 take B and 12 take both. How many take only A?",
+        "back": "16. Only A is 28 − 12 = 16.",
+        "tag": "section"
+      },
+      {
+        "front": "For the same counts, how many take neither class?",
+        "back": "12. The union is 28 + 22 − 12 = 38, leaving 50 − 38 = 12.",
+        "tag": "section"
+      },
+      {
+        "front": "For f(x) = x² + 2x − 1, what is f(−1)?",
+        "back": "−2. Substitute −1: 1 − 2 − 1 = −2.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the range over {−2, −1, 0, 1, 2}?",
+        "back": "{−2, −1, 2, 7}. Evaluate every domain input and remove repeated outputs.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 2, Set-counting and finite functions from the discrete-structures quiz [SHA-256 3146fe12bfcb3d170cfb96f9ead9e315c94dba9772f52cc0cb6f11bd0e21573a]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "SDLC, software processes and products",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Software engineering applies systematic engineering methods to developing and maintaining software. A process is an organised set of activities, while a product is an outcome of those activities. SDLC phases commonly include planning, requirements analysis, design, implementation, testing, deployment and maintenance. Project scope, estimates, risk assessment and a project plan guide planning. API and database design usually belong to design; implementing business logic and exception handling belongs to implementation; writing tests and evaluating results belongs to testing; installation and production setup belong to deployment; bug fixes and software updates belong to maintenance. Documentation supports several phases and is not exclusive to one. A software product is a software artefact supplied to users; a software service is a capability or activity delivered to a customer, often using software."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For a hostel food-delivery app: identify users and scope, elicit requirements, design its API and data model, implement the order logic, test it, deploy it and maintain it. A scheduling application is a product; maintaining a client’s scheduling system is a service."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Phase names can vary by lifecycle model. When an activity spans phases, state its context instead of treating one mapping as universal."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Implementation turns the design into executable code.",
+          "Deployment installs and releases the system into its operating environment.",
+          "A process activity produces an outcome or product.",
+          "A patch repairs or updates released software."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which phase primarily contains writing application business logic?",
+        "options": [
+          "Implementation",
+          "Requirements elicitation",
+          "Feasibility study only",
+          "Retirement"
+        ],
+        "correct_index": 0,
+        "explanation": "Implementation turns the design into executable code."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which phase primarily contains writing application business logic?",
+        "back": "Implementation. Implementation turns the design into executable code.",
+        "tag": "section"
+      },
+      {
+        "front": "In an SDLC, making a completed system available in production is primarily what?",
+        "back": "Deployment. Deployment installs and releases the system into its operating environment.",
+        "tag": "section"
+      },
+      {
+        "front": "What is an outcome of a software process activity called?",
+        "back": "A product. A process activity produces an outcome or product.",
+        "tag": "section"
+      },
+      {
+        "front": "Repairing a released software vulnerability is commonly called what?",
+        "back": "Patching. A patch repairs or updates released software.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 10, SDLC, software processes and products [SHA-256 9fe400b4c14505c025a738ed6fa9a8066f65a4a7afd67e38f3d7e1ddf048f31f]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 2,
+    "title": "Requirements, UML and testing",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Functional requirements describe what a system does; non-functional requirements constrain qualities such as performance, security, reliability, usability and availability. For hostel food delivery, placing an order, viewing a menu and tracking delivery are functions, while a response-time target or access-control requirement constrains quality. Elicitation techniques include interviews, questionnaires, observation and workshops. A use-case diagram shows actors and interactions; a class diagram models static structure; an activity diagram models workflow; a sequence diagram models interactions over time. A specification describes required behaviour and constraints. Design specifies the solution’s structure and interfaces; architecture concerns its major elements, relationships and guiding decisions. Testing checks behaviour and seeks defects; acceptance testing evaluates whether stakeholder acceptance criteria are met."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "An acceptance test could require a student to place an order and receive confirmation. Alpha testing is commonly performed in a controlled developer-associated environment; beta testing exposes a prerelease product to external users in realistic use."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "An IDE is a development environment, not a UML diagram. Do not confuse stakeholder needs with a particular implementation choice."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Placing an order is a capability or function of the system.",
+          "Interviews are a standard elicitation technique.",
+          "Use cases capture interactions between actors and a system.",
+          "Acceptance testing evaluates agreed stakeholder criteria."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which is a functional requirement for food delivery?",
+        "options": [
+          "A student can place an order",
+          "Responses complete within a stated latency target",
+          "Passwords are stored with a suitable password hash",
+          "The service meets an availability target"
+        ],
+        "correct_index": 0,
+        "explanation": "Placing an order is a capability or function of the system."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which is a functional requirement for food delivery?",
+        "back": "A student can place an order. Placing an order is a capability or function of the system.",
+        "tag": "section"
+      },
+      {
+        "front": "Which technique directly gathers stakeholder needs?",
+        "back": "Interviewing users. Interviews are a standard elicitation technique.",
+        "tag": "section"
+      },
+      {
+        "front": "Which UML diagram focuses on actors and their goals?",
+        "back": "Use-case diagram. Use cases capture interactions between actors and a system.",
+        "tag": "section"
+      },
+      {
+        "front": "Which testing checks whether a delivered system meets agreed user needs?",
+        "back": "Acceptance testing. Acceptance testing evaluates agreed stakeholder criteria.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 10, Requirements, UML and testing [SHA-256 9fe400b4c14505c025a738ed6fa9a8066f65a4a7afd67e38f3d7e1ddf048f31f]",
+    "logical_key": "photo20261025-2"
+  },
+  {
+    "course_code": "SEN 201",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 3,
+    "title": "Feasibility, engineering roles and quality",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "A feasibility study checks whether a proposed system is worth pursuing and practical within its constraints. Technical feasibility considers skills and technology; economic feasibility compares costs and benefits; operational feasibility considers whether people and processes can use the solution; schedule feasibility checks the time available; legal feasibility checks applicable obligations. Software engineers analyse requirements, design systems, implement and test software, maintain it, communicate with stakeholders and manage change. Important qualities include analytical thinking, communication, collaboration, attention to detail, ethical judgment and willingness to learn. Applying software engineering helps manage complexity, deliver quality and maintain software within resource constraints."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For a food-delivery system, ask whether the team can build it (technical), whether expected benefits justify costs (economic), and whether hostel users and staff can operate it successfully (operational). A deadline before an event also raises schedule feasibility."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Feasibility evaluates an actual proposal and its constraints; it is not a promise that no risk or maintenance will remain."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Economic feasibility concerns financial viability.",
+          "Technical feasibility checks the means to build and run the system.",
+          "Operational feasibility considers how the solution will work in practice.",
+          "Testing and maintenance are essential engineering activities."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which feasibility dimension compares costs with benefits?",
+        "options": [
+          "Economic",
+          "Technical only",
+          "Operational only",
+          "Lexical"
+        ],
+        "correct_index": 0,
+        "explanation": "Economic feasibility concerns financial viability."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which feasibility dimension compares costs with benefits?",
+        "back": "Economic. Economic feasibility concerns financial viability.",
+        "tag": "section"
+      },
+      {
+        "front": "Which feasibility dimension asks whether available technology and skills are adequate?",
+        "back": "Technical. Technical feasibility checks the means to build and run the system.",
+        "tag": "section"
+      },
+      {
+        "front": "Which feasibility dimension concerns fit with users and working processes?",
+        "back": "Operational. Operational feasibility considers how the solution will work in practice.",
+        "tag": "section"
+      },
+      {
+        "front": "Which is a core software-engineering responsibility?",
+        "back": "Testing and maintaining software. Testing and maintenance are essential engineering activities.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 11, Feasibility, engineering roles and quality [SHA-256 4eee7e3965e391fcfa697fcc9a10219a4006ba0ea3eee14a97f8a14d2b304f78]",
+    "logical_key": "photo20261025-3"
+  },
+  {
+    "course_code": "CYB 201",
+    "module_position": 1,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Security goals, risk, least privilege and response",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Confidentiality protects information from unauthorised disclosure; integrity protects it from improper alteration; availability supports timely access to services and information. A threat is a potential cause of harm, a vulnerability is a weakness, and risk concerns the likelihood and impact of harm when threats exploit vulnerabilities. An unpatched public-facing service is a vulnerability, a malicious attacker is a threat actor, and the possible loss from exploitation contributes to risk. Least privilege gives people and processes only the permissions required for their tasks. A security incident requires preparation, detection and analysis, containment, eradication, recovery and lessons learned. The historical ARPANET was an early packet-switched network; its first four sites were UCLA, Stanford Research Institute, UC Santa Barbara and the University of Utah, not four universities in the strict sense."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A compromised account that can only read its own records has a smaller permission scope than an administrator account. After a suspected compromise, preserve evidence, analyse it, contain the intrusion, remove its cause and restore service safely before reviewing lessons."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Threat, vulnerability and risk are related but not interchangeable. Do not grant administrator access simply because it is convenient."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Confidentiality concerns limiting information disclosure.",
+          "A vulnerability is a weakness that could be exploited.",
+          "Least privilege limits authority to necessary functions.",
+          "SRI was a research institute; it should not be confused with Stanford University."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which security goal is most directly harmed by unauthorised disclosure?",
+        "options": [
+          "Confidentiality",
+          "Availability only",
+          "Usability only",
+          "Compression"
+        ],
+        "correct_index": 0,
+        "explanation": "Confidentiality concerns limiting information disclosure."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which security goal is most directly harmed by unauthorised disclosure?",
+        "back": "Confidentiality. Confidentiality concerns limiting information disclosure.",
+        "tag": "section"
+      },
+      {
+        "front": "An unpatched software defect is best classified as what?",
+        "back": "A vulnerability. A vulnerability is a weakness that could be exploited.",
+        "tag": "section"
+      },
+      {
+        "front": "Which practice implements least privilege?",
+        "back": "Grant only permissions required for the task. Least privilege limits authority to necessary functions.",
+        "tag": "section"
+      },
+      {
+        "front": "Which initial ARPANET site was not a university?",
+        "back": "Stanford Research Institute. SRI was a research institute; it should not be confused with Stanford University.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 12, Security goals, risk, least privilege and response [SHA-256 b863060e16cacfdfe3bd696fa226c90ab2a9406e44abbc29196a2c32e6dfacad]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "CYB 201",
+    "module_position": 1,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 2,
+    "title": "Network models, firewalls and common threats",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "The seven OSI layers are Physical, Data Link, Network, Transport, Session, Presentation and Application. The TCP/IP model commonly groups networking into Link, Internet, Transport and Application layers. Firewalls enforce traffic policy; network firewalls often sit at boundaries, while host firewalls protect individual systems. A firewall does not make vulnerable applications automatically safe. Phishing uses deceptive messages or sites to induce harmful actions, and a distributed denial-of-service attack uses multiple sources to overwhelm a target’s capacity. Wireless technologies include Wi-Fi, Bluetooth and cellular networking; they differ in scope, radio operation and intended use. Network weaknesses include insecure configuration, unpatched systems and weak authentication."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For a public web service, a boundary firewall can allow required web traffic and deny unrelated inbound connections, while a host firewall restricts services on the server. Patching and application controls are still required."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not treat all traffic as safe merely because it crossed a firewall, or confuse a security protocol with an OSI layer."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The Network layer supports logical addressing and routing.",
+          "Application is the seventh OSI layer.",
+          "A firewall allows or blocks traffic according to policy.",
+          "Distributed sources can overload a service and impair availability."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which OSI layer provides routing between networks?",
+        "options": [
+          "Network",
+          "Physical",
+          "Presentation",
+          "Session"
+        ],
+        "correct_index": 0,
+        "explanation": "The Network layer supports logical addressing and routing."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which OSI layer provides routing between networks?",
+        "back": "Network. The Network layer supports logical addressing and routing.",
+        "tag": "section"
+      },
+      {
+        "front": "Which is the application-side top layer of OSI?",
+        "back": "Application. Application is the seventh OSI layer.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the primary function of a firewall?",
+        "back": "Enforce traffic rules. A firewall allows or blocks traffic according to policy.",
+        "tag": "section"
+      },
+      {
+        "front": "What characterises a distributed denial-of-service attack?",
+        "back": "Multiple sources overwhelm a target’s resources. Distributed sources can overload a service and impair availability.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 4, Network models, firewalls and common threats [SHA-256 119c9dfa2ba2d363e147557a7d894bfe9c2a831e43613e94993e2c2e20e8b81b]",
+    "logical_key": "photo20261025-2"
+  },
+  {
+    "course_code": "CYB 201",
+    "module_position": 1,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 3,
+    "title": "Cryptography, authentication and wireless security",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Symmetric cryptography uses a shared secret key; asymmetric cryptography uses a related public/private key pair. Hashing produces a digest and is not reversible encryption. Encryption supports confidentiality, while authentication verifies an asserted identity; they are different functions. Authentication factors include knowledge, possession and inherence, such as a passphrase, a hardware token and a fingerprint. Combining independent factor types gives stronger multi-factor authentication than repeating one type. Passive attacks observe communications; active attacks alter, inject or disrupt them. WEP is an obsolete wireless security scheme with serious weaknesses; WPA and WPA2 were later improvements, and WPA2 commonly uses AES-based CCMP. A man-in-the-middle adversary intercepts communications between parties; spoofing impersonates an identity."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "A password plus a physical security key combines knowledge and possession. Two passwords are still both knowledge factors. For passive monitoring, an attacker observes traffic; modifying the messages makes the attack active."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "A hash is not encrypted plaintext that can be decrypted. Historical wireless schemes should be compared without recommending obsolete WEP for deployment."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Asymmetric systems use mathematically related public and private keys.",
+          "A cryptographic hash maps data to a digest; it is not reversible encryption.",
+          "The password is knowledge; the security key is possession.",
+          "An active attacker modifies, injects or disrupts communications."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which key arrangement is characteristic of asymmetric cryptography?",
+        "options": [
+          "A public/private key pair",
+          "One shared key only",
+          "No keys for any operation",
+          "Two identical public keys"
+        ],
+        "correct_index": 0,
+        "explanation": "Asymmetric systems use mathematically related public and private keys."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which key arrangement is characteristic of asymmetric cryptography?",
+        "back": "A public/private key pair. Asymmetric systems use mathematically related public and private keys.",
+        "tag": "section"
+      },
+      {
+        "front": "Which operation produces a digest rather than reversible ciphertext?",
+        "back": "Hashing. A cryptographic hash maps data to a digest; it is not reversible encryption.",
+        "tag": "section"
+      },
+      {
+        "front": "Which pairing combines two authentication factor types?",
+        "back": "A password and a physical security key. The password is knowledge; the security key is possession.",
+        "tag": "section"
+      },
+      {
+        "front": "Which action makes network monitoring an active attack?",
+        "back": "Altering intercepted messages. An active attacker modifies, injects or disrupts communications.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 12, Cryptography, authentication and wireless security [SHA-256 b863060e16cacfdfe3bd696fa226c90ab2a9406e44abbc29196a2c32e6dfacad]",
+    "logical_key": "photo20261025-3"
+  },
+  {
+    "course_code": "IFT 212",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Performance and the stored-program computer",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "For the same workload, performance is inversely related to execution time. If machine A finishes in 5 seconds and B in 6, A is faster by a factor of 6/5 = 1.2, or 20% greater performance. Equivalently A takes about 16.7% less time than B; those percentages use different denominators. A stored-program computer stores executable instructions in memory so the processor can fetch, decode and execute them. In the classic von Neumann model, instructions and data share the memory system. Integrated-circuit advances increase integration and can affect processor speed, power and cost. RAM is working storage with latency and capacity trade-offs; disks provide persistent storage with different latency and throughput characteristics."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For a fixed program, performance(A)/performance(B) = time(B)/time(A) = 6/5 = 1.2. Do not divide 5 by 6 and call the result A’s speed advantage. Discuss hardware trends in terms of measurable latency, bandwidth, capacity, power and cost."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "A 20% performance increase and a 20% time reduction are not the same numerical statement."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "For equal work, the ratio is 6/5 = 1.2.",
+          "The processor fetches stored instructions from memory.",
+          "Latency is elapsed delay associated with an operation.",
+          "The stored-program organisation keeps data and instructions in memory."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "A runs a workload in 5 s and B in 6 s. What is A’s performance relative to B?",
+        "options": [
+          "1.2 times B",
+          "0.833 times B",
+          "6 times B",
+          "5 times B"
+        ],
+        "correct_index": 0,
+        "explanation": "For equal work, the ratio is 6/5 = 1.2."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "A runs a workload in 5 s and B in 6 s. What is A’s performance relative to B?",
+        "back": "1.2 times B. For equal work, the ratio is 6/5 = 1.2.",
+        "tag": "section"
+      },
+      {
+        "front": "In a stored-program computer, where are instructions kept before execution?",
+        "back": "Memory. The processor fetches stored instructions from memory.",
+        "tag": "section"
+      },
+      {
+        "front": "Which metric expresses delay before a storage response?",
+        "back": "Latency. Latency is elapsed delay associated with an operation.",
+        "tag": "section"
+      },
+      {
+        "front": "What is a key feature of a classic von Neumann memory organisation?",
+        "back": "Instructions and data share a memory system. The stored-program organisation keeps data and instructions in memory.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 3, Performance and the stored-program computer [SHA-256 e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "IFT 212",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 2,
+    "title": "CPU registers and bitwise operations",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "A program counter holds the location of the next instruction to fetch, subject to the architecture’s sequencing rules. An interrupt address register is architecture-specific and stores an interrupt-related address; exact roles should be tied to the machine’s stated design instead of assumed to be universal. For a bitwise expression A XOR B OR (A AND B), each operation is applied to corresponding bits. XOR produces 1 when the bits differ, AND when both are 1, and OR when at least one is 1. Therefore (A XOR B) OR (A AND B) equals A OR B for each bit. A generic assembly sequence loads the operands, calculates XOR and AND into temporaries, and ORs those temporary results. Specific instruction mnemonics depend on the chosen instruction set."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For A = 1010₂ and B = 1100₂, XOR gives 0110₂, AND gives 1000₂, and ORing these gives 1110₂. Directly A OR B also gives 1110₂. Pseudocode: T1 ← A XOR B; T2 ← A AND B; RESULT ← T1 OR T2."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not present architecture-dependent pseudo-assembly as executable code for an unspecified processor."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The program counter supports instruction sequencing.",
+          "XOR marks bit positions where the operands differ.",
+          "Only the leading bit is 1 in both operands.",
+          "The differing-bit and shared-1 cases together are exactly the OR cases."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "What does the program counter normally identify?",
+        "options": [
+          "The next instruction’s location",
+          "A user’s password",
+          "The total number of printed pages",
+          "The current monitor colour"
+        ],
+        "correct_index": 0,
+        "explanation": "The program counter supports instruction sequencing."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "What does the program counter normally identify?",
+        "back": "The next instruction’s location. The program counter supports instruction sequencing.",
+        "tag": "section"
+      },
+      {
+        "front": "What is 1010₂ XOR 1100₂?",
+        "back": "0110₂. XOR marks bit positions where the operands differ.",
+        "tag": "section"
+      },
+      {
+        "front": "What is 1010₂ AND 1100₂?",
+        "back": "1000₂. Only the leading bit is 1 in both operands.",
+        "tag": "section"
+      },
+      {
+        "front": "Which expression equals (A XOR B) OR (A AND B)?",
+        "back": "A OR B. The differing-bit and shared-1 cases together are exactly the OR cases.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 3, CPU registers and bitwise operations [SHA-256 e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b]",
+    "logical_key": "photo20261025-2"
+  },
+  {
+    "course_code": "INS 204",
+    "module_position": 1,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Feasibility, fact-finding and information-system components",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Systems analysis studies an organisation’s needs and processes before specifying a solution. A feasibility analysis identifies whether a proposal is technically possible, economically worthwhile, operationally acceptable, schedulable and legally appropriate; it also exposes risks and informs a proceed, revise or stop decision. Fact-finding methods include interviews, questionnaires, observation and examination of existing documents or records. Each method has strengths and limitations, so findings should be cross-checked. A common five-part information-system model includes hardware, software, data, people and procedures. Networks may be discussed separately in other models; state the model when listing components."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "To investigate a hostel ordering process, interview staff, survey students, observe order handling and inspect order records. Compare the findings before deciding the requirements. Hardware runs the system, software implements behaviour, data records orders, people use and support it, and procedures govern its operation."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Do not confuse a feasibility objective with a fact-finding method. Different textbooks group information-system components differently."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Observation examines the process directly.",
+          "Questionnaires can collect comparable responses at scale.",
+          "This model includes technical, human and procedural components.",
+          "Feasibility weighs constraints and likely benefits before commitment."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which method obtains information by watching work as it occurs?",
+        "options": [
+          "Observation",
+          "Guessing requirements",
+          "Compilation",
+          "Indexing code"
+        ],
+        "correct_index": 0,
+        "explanation": "Observation examines the process directly."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which method obtains information by watching work as it occurs?",
+        "back": "Observation. Observation examines the process directly.",
+        "tag": "section"
+      },
+      {
+        "front": "Which method is suited to collecting structured responses from many users?",
+        "back": "Questionnaire. Questionnaires can collect comparable responses at scale.",
+        "tag": "section"
+      },
+      {
+        "front": "Which list gives the stated five-component information-system model?",
+        "back": "Hardware, software, data, people, procedures. This model includes technical, human and procedural components.",
+        "tag": "section"
+      },
+      {
+        "front": "What is a key purpose of feasibility analysis?",
+        "back": "Inform whether a proposal is practical and worthwhile. Feasibility weighs constraints and likely benefits before commitment.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 3, Feasibility, fact-finding and information-system components [SHA-256 e3cd4d32d884c1a25da9cede5a7cb281ee503f622f25fad26bb5f35e508ce57b]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "IFT 211",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 1,
+    "title": "Number representation, BCD and two’s complement",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "A positional number system uses a base, a digit set and place values. Binary, octal, decimal and hexadecimal use bases 2, 8, 10 and 16. Convert to decimal by adding each digit times its place value; fractional binary positions use 1/2, 1/4 and so on. BCD encodes each decimal digit independently in four binary bits, so 347 is 0011 0100 0111, not the ordinary binary representation of 347. In signed magnitude the first bit is a sign and the remaining bits encode magnitude: 11001100₂ represents −76 in eight-bit signed magnitude. Fixed-width two’s complement is formed by inverting all bits and adding one, retaining that width."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "In eight bits, complement 11100111₂ by inverting to 00011000₂ and adding 1, obtaining 00011001₂. For 23.25₁₀, 23 = 16 + 4 + 2 + 1 gives 10111₂ and 0.25 gives .01₂, so the result is 10111.01₂. Also 85₁₀ = 1010101₂."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Keep the specified width for complements. Do not treat handwritten markings as the answer key, or decode BCD as one ordinary binary integer."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Invert the bits to 00011000 and add one.",
+          "Encode 3, 4 and 7 separately as 0011, 0100 and 0111.",
+          "The sign bit is 1; magnitude 1001100₂ is 64 + 8 + 4 = 76.",
+          "23 is 10111₂ and one quarter is .01₂."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the eight-bit two’s complement of 11100111₂?",
+        "options": [
+          "00011001₂",
+          "00011000₂",
+          "11100110₂",
+          "00011010₂"
+        ],
+        "correct_index": 0,
+        "explanation": "Invert the bits to 00011000 and add one."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "What is the eight-bit two’s complement of 11100111₂?",
+        "back": "00011001₂. Invert the bits to 00011000 and add one.",
+        "tag": "section"
+      },
+      {
+        "front": "What is 347₁₀ in BCD?",
+        "back": "0011 0100 0111. Encode 3, 4 and 7 separately as 0011, 0100 and 0111.",
+        "tag": "section"
+      },
+      {
+        "front": "What does eight-bit signed-magnitude 11001100₂ represent?",
+        "back": "−76. The sign bit is 1; magnitude 1001100₂ is 64 + 8 + 4 = 76.",
+        "tag": "section"
+      },
+      {
+        "front": "What is 23.25₁₀ in binary?",
+        "back": "10111.01₂. 23 is 10111₂ and one quarter is .01₂.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 16, Number representation, BCD and two’s complement [SHA-256 b1b52d27992c7ff887769f431866f8e7e28a86df5f2304cb4de4f13666838422]",
+    "logical_key": "photo20261025-1"
+  },
+  {
+    "course_code": "IFT 211",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 2,
+    "title": "Boolean algebra, truth tables and simplification",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Boolean algebra uses variables with values 0 or 1 and operations AND, OR and NOT. In Boolean notation juxtaposition denotes AND, + denotes OR, and a prime denotes NOT. Useful laws include identity, complement, absorption and De Morgan’s laws. De Morgan states NOT(A AND B) = NOT A OR NOT B and NOT(A OR B) = NOT A AND NOT B. For the paper’s expression ¬P ∧ (P → Q), substitute P → Q ≡ ¬P ∨ Q and apply absorption, obtaining ¬P. A truth table should enumerate TT, TF, FT and FF. For F = A′B + BC + ABC, BC absorbs ABC, leaving A′B + BC = B(A′ + C)."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "For ¬P ∧ (P → Q): with P,Q = T,T the result is F; T,F gives F; F,T gives T; and F,F gives T. It therefore has exactly the same truth values as ¬P. For F = A′B + BC + ABC, first use BC + ABC = BC, then factor B."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "Some photographed formula lines are too faint to read reliably. Only clearly identifiable expressions are used; no missing prime or symbol is guessed."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "De Morgan switches AND to OR and complements the operands.",
+          "Replace implication with ¬P ∨ Q, then use X ∧ (X ∨ Y) = X.",
+          "When BC is 1, OR with ABC adds no new true case.",
+          "At least one of a Boolean variable and its complement is 1."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which expression is equivalent to NOT(A AND B)?",
+        "options": [
+          "NOT A OR NOT B",
+          "NOT A AND NOT B",
+          "A OR B",
+          "A AND B"
+        ],
+        "correct_index": 0,
+        "explanation": "De Morgan switches AND to OR and complements the operands."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which expression is equivalent to NOT(A AND B)?",
+        "back": "NOT A OR NOT B. De Morgan switches AND to OR and complements the operands.",
+        "tag": "section"
+      },
+      {
+        "front": "Simplify ¬P ∧ (P → Q).",
+        "back": "¬P. Replace implication with ¬P ∨ Q, then use X ∧ (X ∨ Y) = X.",
+        "tag": "section"
+      },
+      {
+        "front": "Simplify BC + ABC in Boolean algebra.",
+        "back": "BC. When BC is 1, OR with ABC adds no new true case.",
+        "tag": "section"
+      },
+      {
+        "front": "Which fact follows from the complement law?",
+        "back": "A + A′ = 1. At least one of a Boolean variable and its complement is 1.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 15, Boolean algebra, truth tables and simplification [SHA-256 276b2b0e4007553011a4f48b89fc7da81f5060724fab8f680e661d51f9fc4023]",
+    "logical_key": "photo20261025-2"
+  },
+  {
+    "course_code": "IFT 211",
+    "module_position": 2,
+    "module_title": "Reviewed past-paper applications",
+    "lesson_position": 3,
+    "title": "Logic gates and integrated circuits",
+    "objective": "Apply the photographed paper’s concepts and independently check its examples.",
+    "estimated_minutes": 6,
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Understand the ideas"
+      },
+      {
+        "type": "paragraph",
+        "text": "Logic gates implement Boolean operations in digital circuits. The basic AND, OR and NOT gates correspond to conjunction, disjunction and inversion. For two inputs, AND outputs 1 only for 11; OR outputs 0 only for 00; NOT reverses its single input. Digital integrated circuits implement discrete logic functions; analogue integrated circuits process continuous signals, with an operational amplifier being a familiar example. A conjunction can be represented as A ∧ B or AB. To verify a Boolean identity, compare the output of its two sides for every input assignment, rather than testing only one convenient case."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work through an example",
+        "text": "An AND gate with inputs 1 and 0 outputs 0; an OR gate with the same inputs outputs 1. To verify De Morgan for two inputs, build all four input rows and compare NOT(A AND B) with NOT A OR NOT B; the outputs agree on every row."
+      },
+      {
+        "type": "callout",
+        "tone": "warning",
+        "title": "Read the source carefully",
+        "text": "One matching input row does not prove an identity. Do not confuse Boolean OR (+) with ordinary integer addition."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "What to remember"
+      },
+      {
+        "type": "list",
+        "items": [
+          "AND implements Boolean conjunction.",
+          "NOT is Boolean inversion.",
+          "An operational amplifier processes continuously varying signal values.",
+          "The expressions must agree for every possible input combination."
+        ]
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which gate outputs 1 only when both inputs are 1?",
+        "options": [
+          "AND",
+          "OR",
+          "NOT",
+          "A buffer with one input"
+        ],
+        "correct_index": 0,
+        "explanation": "AND implements Boolean conjunction."
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Which gate outputs 1 only when both inputs are 1?",
+        "back": "AND. AND implements Boolean conjunction.",
+        "tag": "section"
+      },
+      {
+        "front": "Which gate reverses a single binary input?",
+        "back": "NOT. NOT is Boolean inversion.",
+        "tag": "section"
+      },
+      {
+        "front": "Which is an example of an analogue integrated circuit?",
+        "back": "An operational amplifier. An operational amplifier processes continuously varying signal values.",
+        "tag": "section"
+      },
+      {
+        "front": "How is a two-variable Boolean identity verified by truth table?",
+        "back": "Compare both expressions on all four assignments. The expressions must agree for every possible input combination.",
+        "tag": "section"
+      }
+    ],
+    "source_reference": "Supplied examination photo 15, Logic gates and integrated circuits [SHA-256 276b2b0e4007553011a4f48b89fc7da81f5060724fab8f680e661d51f9fc4023]",
+    "logical_key": "photo20261025-3"
+  }
+]
