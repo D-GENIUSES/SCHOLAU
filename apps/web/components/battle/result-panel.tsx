@@ -41,6 +41,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
           {battle.courses?.length ? <p className="text-ink-muted">{battle.courses.map((c) => c.code).join(" + ")}</p> : battle.course ? <p className="text-ink-muted">{battle.course.code} — {battle.course.title}</p> : null}
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
+          {!voided && battle.result_kind === "forfeit" ? <p className="text-center font-medium text-ink-muted">{me?.forfeited ? "You forfeited. Your opponent wins." : "Your opponent forfeited. You win."}</p> : null}
           {voided ? (
             <Alert tone="warning" title="Voided by an administrator">
               This result was voided by an administrator; XP was reversed.
@@ -84,7 +85,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
         </section>
       ) : null}
       <XpProgressCard compact />
-      {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify.</p> : null}
+      {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">{battle.result_kind === "forfeit" ? "No XP is awarded for forfeited battles." : "No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify."}</p> : null}
       {battle.rounds && battle.rounds.length > 0 ? (
         <section aria-labelledby="rounds-heading" className="flex flex-col gap-3">
           <h2 id="rounds-heading" className="text-xl font-bold">

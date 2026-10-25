@@ -2,7 +2,7 @@
 
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { isApiError, qk } from "@scholau/api";
 import { useBattleSignals, useBattleState, useForfeitBattle } from "@scholau/api/react";
@@ -22,7 +22,6 @@ import { useOnline } from "@/lib/hooks";
 
 export default function BattlePage() {
   const { id } = useParams<{ id: string }>();
-  const router = useRouter();
   const qc = useQueryClient();
   const analytics = useAnalytics();
   const status = useBattleSignals(id);
@@ -67,7 +66,7 @@ export default function BattlePage() {
       {
         onSuccess: () => {
           setLeaveOpen(false);
-          router.push("/battles");
+          void refetch();
         },
       },
     );

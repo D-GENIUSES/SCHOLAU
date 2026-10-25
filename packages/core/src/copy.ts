@@ -10,7 +10,7 @@ export const COPY = {
     reconnecting: "Reconnecting. The round timer continues.",
     finalizing: "Your battle has ended. Results are being finalized.",
     leaveWarning:
-      "If you leave before the battle starts, it is cancelled with no XP for either player. If you forfeit after it starts, the match is cancelled and nobody earns XP. Closing the tab or losing connection does not forfeit — the match continues and is graded at the scheduled end.",
+      "Forfeiting ends the battle immediately and your opponent wins. No XP is awarded for a forfeited battle. Closing the tab or losing connection does not forfeit.",
     timerRule: "Answers received after this timer ends will not count.",
   },
   learning: {
