@@ -28,8 +28,8 @@ export function buildCanonicalBlocks(input: {
 
 export function defaultFlashcards(title: string, objective: string, summary: string): IngestionFlashcard[] {
   return [
-    { front: `Exam focus: ${title}`, back: objective, tag: "focus" },
-    { front: "What to remember", back: summary, tag: "recap" },
+    { front: title, back: objective, tag: "focus" },
+    { front: "Key points", back: summary, tag: "recap" },
   ];
 }
 

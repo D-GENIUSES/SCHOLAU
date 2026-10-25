@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildExamFlashcards } from "./lesson-exam-cards.ts";
+import { buildExamFlashcards, lessonCardText } from "./lesson-exam-cards.ts";
 
-test("buildExamFlashcards maps headings, checkpoints, and recap", () => {
+test("buildExamFlashcards maps lesson content without filler cards", () => {
   const cards = buildExamFlashcards({
     lesson_id: "lesson-1",
     title: "Introduction to Philosophy",
@@ -16,21 +16,27 @@ test("buildExamFlashcards maps headings, checkpoints, and recap", () => {
     ],
   });
 
-  assert.ok(cards.length >= 4);
+  assert.equal(cards.length, 3);
   assert.equal(cards[0].tag, "focus");
-  assert.match(cards[0].front, /Exam focus/);
+  assert.equal(cards[0].front, "Introduction to Philosophy");
   assert.equal(cards.some((c) => c.tag === "checkpoint" && c.front.includes("Philosophy primarily")), true);
-  assert.equal(cards.some((c) => c.tag === "section" && c.front.includes("Explain for exams")), true);
-  assert.equal(cards.some((c) => c.tag === "recap"), true);
+  assert.equal(cards.some((c) => c.tag === "section" && c.front === "What is philosophy?"), true);
+  assert.equal(cards.some((c) => c.tag === "recap"), false);
 });
 
-test("buildExamFlashcards returns focus card only when blocks empty", () => {
+test("buildExamFlashcards returns no generic cards when lesson content is empty", () => {
   const cards = buildExamFlashcards({
     lesson_id: "empty",
     title: "Empty lesson",
     objective: "",
     blocks: [],
   });
-  assert.equal(cards.length, 1);
-  assert.equal(cards[0].tag, "focus");
+  assert.equal(cards.length, 0);
+});
+
+test("older saved cards use lesson wording across subjects", () => {
+  assert.equal(lessonCardText("Exam focus: Differentiation"), "Differentiation");
+  assert.equal(lessonCardText("Explain for exams: Philosophy"), "Philosophy");
+  assert.equal(lessonCardText("In exams, focus on:\n\nDerivatives"), "Derivatives");
+  assert.equal(lessonCardText("Calculate the rate of change"), "Calculate the rate of change");
 });

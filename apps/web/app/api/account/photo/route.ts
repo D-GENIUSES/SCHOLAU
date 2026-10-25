@@ -60,3 +60,23 @@ async function change(request: NextRequest, remove: boolean) {
 }
 export async function POST(request: NextRequest) { return change(request, false); }
 export async function DELETE(request: NextRequest) { return change(request, true); }
+
+/** Choose a built-in avatar using the signed-in user's own database permissions. */
+export async function PATCH(request: NextRequest) {
+  if (!allowRequestWrite(request)) return reply("Request origin is not allowed.", 403);
+  try {
+    if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Invalid request.", 415);
+    const body = JSON.parse((await readPhotoBody(request, 2048)).toString("utf8"));
+    if (!body || !Number.isInteger(body.avatarIndex) || body.avatarIndex < 0 || body.avatarIndex > 5 || (body.expectedPath !== null && typeof body.expectedPath !== "string") || (typeof body.expectedPath === "string" && body.expectedPath.length > 300)) return reply("Choose one of the six avatars.", 400);
+    const client = await getRequestSupabase(request);
+    const { data: auth, error: authError } = await client.auth.getUser();
+    if (authError || !auth.user) return reply("Sign in to change your avatar.", 401);
+    const { data, error } = await client.rpc("set_profile_avatar_v1", { p_avatar_index: body.avatarIndex, p_expected_path: body.expectedPath });
+    if (error) return reply(error.message === "STALE_REVISION" ? "Your avatar changed elsewhere. Reload your profile and try again." : "Your avatar could not be saved.", error.message === "STALE_REVISION" ? 409 : 400);
+    return NextResponse.json({ avatarPath: data.avatar_path }, { headers: { "Cache-Control": "no-store" } });
+  } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_BEARER_TOKEN") return reply("Sign in to continue.", 401);
+    if (error instanceof SyntaxError || (error instanceof Error && error.message === "BODY_TOO_LARGE")) return reply("Invalid request.", 400);
+    return reply("Your avatar could not be saved. Please try again.", 503);
+  }
+}

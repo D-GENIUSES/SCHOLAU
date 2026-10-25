@@ -13,8 +13,8 @@ function start({type="navigate",stored={},blocked=false,referrer=""}={}) {
  });
  return {root,stored,timers,listeners};
 }
-test("a fresh session paints the blue launch and marks it seen before hydration",()=>{
- const f=start();assert.equal(f.root.dataset.scholauLaunch,"cold");assert.equal(f.stored["scholau.launch.session"],"active");assert.equal(f.timers[0].ms,3000);
+test("a fresh session paints the video launch with a playback fallback and marks it seen before hydration",()=>{
+ const f=start();assert.equal(f.root.dataset.scholauLaunch,"cold");assert.equal(f.stored["scholau.launch.session"],"active");assert.equal(f.timers[0].ms,8000);
  f.timers[0].fn();assert.equal(f.root.dataset.scholauLaunch,"warm");
 });
 for(const type of ["reload","back_forward"])test(type+" never paints splash even with empty storage",()=>{
@@ -37,3 +37,4 @@ test("page transitions and back-forward cache restoration cannot replay the spla
  const f=start();f.listeners.pagehide();assert.equal(f.root.dataset.scholauLaunch,"warm");
  f.root.dataset.scholauLaunch="cold";f.listeners.pageshow({persisted:true});assert.equal(f.root.dataset.scholauLaunch,"warm");
 });
+

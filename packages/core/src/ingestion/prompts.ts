@@ -17,7 +17,7 @@ export function buildIngestionSystemPrompt(input: {
   "objective": string,
   "module_title": string,
   "blocks": canonical lesson — heading "Understand the idea", paragraph (80+ chars), example callout, warning callout, heading "What to remember", summary paragraph, checkpoint with 4 options,
-  "flashcards": 8-12 cards { front, back, tag? } — one idea per card, backs under 520 chars, exam-focused,
+  "flashcards": cards { front, back, tag? } — concise lesson questions and key points, one idea per card, backs under 520 chars; only meaningful content directly related to this lesson and subject; no generic study advice, exam-focus labels, filler, or duplicates; use tag focus for key points and section for lesson concepts,
   "learning_questions": MCQ review questions with 4 options,
   "battle_questions": mix answer_format standard (4 MCQ), worked_solution (4 options with steps[]), fill_in_gap (gaps[].accepted_answers with aliases for voice)
 }

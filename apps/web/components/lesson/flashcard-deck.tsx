@@ -1,11 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
-import type { ExamFlashcard } from "@/lib/lesson-exam-cards";
+import { lessonCardText, type ExamFlashcard } from "@/lib/lesson-exam-cards";
 import { cn } from "@/lib/utils";
 
 type FlashcardDeckProps = {
@@ -22,7 +22,6 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
 
   const total = cards.length;
   const card = cards[index];
-  const atLast = index >= total - 1;
 
   const goTo = useCallback(
     (next: number) => {
@@ -40,14 +39,6 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
   );
 
   const flip = useCallback(() => setFlipped((v) => !v), []);
-
-  const advance = useCallback(() => {
-    if (!flipped) {
-      setFlipped(true);
-      return;
-    }
-    if (index < total - 1) goTo(index + 1);
-  }, [flipped, goTo, index, total]);
 
   useEffect(() => {
     const node = rootRef.current;
@@ -75,13 +66,12 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
 
   if (!card) return null;
 
-  const allVisited = visited.size >= total;
 
   return (
     <div ref={rootRef} className="flashcard-deck" tabIndex={-1}>
       <div className="flashcard-deck-meta">
         <p className="flashcard-deck-count" aria-live="polite">
-          Card {index + 1} of {total}
+          {index + 1} / {total}
         </p>
         <ul className="flashcard-deck-dots" aria-hidden>
           {cards.map((c, i) => (
@@ -95,16 +85,17 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         className={cn("flashcard-scene", flipped && "is-flipped")}
         onClick={flip}
         aria-pressed={flipped}
+        aria-label={flipped ? "Show question" : "Show answer"}
         aria-describedby={liveId}
       >
         <div className="flashcard-inner">
-          <div className="flashcard-face flashcard-front">
+          <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
             {card.tag ? <span className="flashcard-tag">{tagLabel(card.tag)}</span> : null}
-            <p className="flashcard-text">{card.front}</p>
-            <span className="flashcard-hint">Tap or press Space to reveal</span>
+            <p className="flashcard-text">{lessonCardText(card.front)}</p>
+            <span className="flashcard-hint">Tap to flip</span>
           </div>
-          <div className="flashcard-face flashcard-back">
-            <p className="flashcard-text whitespace-pre-line">{card.back}</p>
+          <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
+            <p className="flashcard-text whitespace-pre-line">{lessonCardText(card.back)}</p>
             {card.imagePath ? <FlashcardImage path={card.imagePath} alt={card.imageAlt ?? "Lesson diagram"} /> : null}
           </div>
         </div>
@@ -114,40 +105,16 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         {flipped ? "Answer side showing" : "Question side showing"}
       </p>
 
-      {flipped ? (
-        <div className="flashcard-score-row">
-          <Button type="button" variant="outline" onClick={advance} disabled={atLast}>
-            Need review
-          </Button>
-          <Button type="button" onClick={advance} disabled={atLast}>
-            Got it
-          </Button>
-        </div>
-      ) : (
-        <div className="flashcard-score-row">
-          <Button type="button" variant="secondary" onClick={flip}>
-            Show answer
-          </Button>
-        </div>
-      )}
-
       <nav className="flashcard-nav" aria-label="Card navigation">
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index - 1)} disabled={index === 0}>
           <ArrowLeft className="size-4" aria-hidden /> Previous
         </Button>
-        <Button type="button" variant="ghost" size="sm" onClick={() => setFlipped(false)} aria-label="Reset flip">
-          <RotateCcw className="size-4" aria-hidden />
-        </Button>
+        <Button type="button" variant="ghost" size="sm" onClick={flip}>{flipped ? "Question" : "Reveal"}</Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
           Next <ArrowRight className="size-4" aria-hidden />
         </Button>
       </nav>
 
-      {allVisited ? (
-        <p className="flashcard-deck-done" role="status">
-          You&apos;ve seen every card in this deck.
-        </p>
-      ) : null}
     </div>
   );
 }
@@ -155,9 +122,9 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
 function tagLabel(tag: NonNullable<ExamFlashcard["tag"]>): string {
   switch (tag) {
     case "focus":
-      return "Exam focus";
+      return "Key points";
     case "section":
-      return "Topic";
+      return "Lesson";
     case "tip":
       return "Tip";
     case "checkpoint":

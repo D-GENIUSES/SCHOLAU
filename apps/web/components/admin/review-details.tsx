@@ -5,6 +5,8 @@ import { type ReactNode, useEffect, useRef } from "react";
 import type { AdminAssessmentVersionRow, AdminLessonVersionRow } from "@scholau/api";
 import { useAdminIngestionEvidence, useAdminQuestion } from "@scholau/api/react";
 import { ASSESSMENT_KIND_LABEL, type ContentStatus, formatDateTime, formatDuration } from "@scholau/core";
+import { FlashcardDeck } from "@/components/lesson/flashcard-deck";
+import type { ExamFlashcard } from "@/lib/lesson-exam-cards";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -163,15 +165,13 @@ export function LessonDetail({ row, onClose, onDone }: { row: AdminLessonVersion
       </dl>
       {row.flashcards && row.flashcards.length > 0 ? (
         <section aria-label="Flashcard preview" className="rounded-control border border-line bg-surface-page p-4">
-          <h3 className="mb-3 text-sm font-semibold text-ink-muted">Smart flashcards ({row.flashcards.length})</h3>
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {row.flashcards.slice(0, 8).map((card, i) => (
-              <li key={i} className="rounded-control border border-line bg-surface-card p-3 text-sm">
-                <p className="font-semibold">{card.front}</p>
-                <p className="mt-1 text-ink-muted">{card.back}</p>
-              </li>
-            ))}
-          </ul>
+          <h3 className="mb-3 text-sm font-semibold text-ink-muted">Flashcards</h3>
+          <FlashcardDeck key={row.id} cards={row.flashcards.map((card, index) => ({
+            id: `${row.id}-fc-${index}`,
+            front: card.front,
+            back: card.back,
+            tag: (card.tag as ExamFlashcard["tag"]) ?? "section",
+          }))} />
         </section>
       ) : null}
       <section aria-label="Content preview" className="rounded-control border border-line bg-surface-page p-4">

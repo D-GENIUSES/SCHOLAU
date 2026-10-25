@@ -19,9 +19,9 @@ const badgeNames: Record<string, string> = {
   exam_ready: "Exam ready", long_term_recall: "Long-term recall",
 };
 
-export function PeopleSearch() {
-  const [input, setInput] = useState("");
-  const [query, setQuery] = useState("");
+export function PeopleSearch({ initialQuery = "" }: { initialQuery?: string }) {
+  const [input, setInput] = useState(initialQuery);
+  const [query, setQuery] = useState(initialQuery.trim().replace(/^@/, ""));
   const results = useSearchFriends(query);
   return <div className="public-profile-page">
     <header className="public-profile-page-head"><h1>Find people</h1><p>Search by name or username.</p></header>
@@ -86,14 +86,14 @@ export function PublicProfileContent({ profile: p, actions }: { profile: PublicP
       <section className="public-profile-hero">
         {eyebrow ? <p className="profile-identity-eyebrow">{eyebrow}</p> : null}
         <div className="public-profile-hero-row">
-          <Avatar name={p.display_name} path={p.avatar_path} size={72} publicProfile variant="profile" />
+          <Avatar name={p.display_name} path={p.avatar_path} size={56} publicProfile variant="profile" />
           <div className="public-profile-hero-copy">
             <h1>{p.display_name}</h1>
             {p.username ? <p className="public-profile-username">@{p.username}</p> : null}
-            {p.university ? <p className="public-profile-university">{p.university}</p> : null}
           </div>
-          {actions ? <div className="public-profile-actions">{actions}</div> : null}
         </div>
+        {p.university ? <p className="public-profile-university">{p.university}</p> : null}
+        {actions ? <div className="public-profile-actions">{actions}</div> : null}
         <div role="group" aria-label="Profile sections" className="public-profile-tabs">
           {(["progress", "about"] as const).map((value) => (
             <button
@@ -141,7 +141,7 @@ export function PublicProfileContent({ profile: p, actions }: { profile: PublicP
                 </div>
                 <div>
                   <strong>{p.badges.length}</strong>
-                  <p>Badges earned</p>
+                  <p>Badges</p>
                 </div>
               </div>
             </div>

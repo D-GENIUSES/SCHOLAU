@@ -5,6 +5,7 @@ import { Bell, PlusSquare, Share, X } from "lucide-react";
 import { useNotificationSettings } from "@scholau/api/react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { AvatarWelcome } from "@/components/profile/avatar-welcome";
 import { useInstallPrompt } from "@/components/shell/install-prompt-provider";
 import { enableBrowserPush, readPushDevice } from "@/lib/push-browser";
 
@@ -16,6 +17,7 @@ export function HomePrompts({ owner }: { owner: string }) {
   const device = useInstallPrompt();
   const settings = useNotificationSettings();
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [notificationsResolved, setNotificationsResolved] = useState(false);
   const [installDismissed, setInstallDismissed] = useState(true);
   const [instructionsOpen, setInstructionsOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -25,7 +27,7 @@ export function HomePrompts({ owner }: { owner: string }) {
   const needsIosInstall = device.ios && !device.installed;
 
   useEffect(() => {
-    if (!device.ready) return;
+    if (!device.ready || settings.isPending) return;
     let active = true;
     const timer = window.setTimeout(() => {
       if (!active) return;
@@ -33,14 +35,16 @@ export function HomePrompts({ owner }: { owner: string }) {
       const supportsPush = window.isSecureContext && "Notification" in window && "PushManager" in window && "serviceWorker" in navigator;
       const denied = "Notification" in window && Notification.permission === "denied";
       const enabled = readPushDevice()?.owner === owner && "Notification" in window && Notification.permission === "granted";
-      setNotificationsOpen(!readChoice(notificationKey) && !denied && !enabled && (needsIosInstall || supportsPush));
+      const shouldAsk = Boolean(settings.data?.push_available) && !readChoice(notificationKey) && !denied && !enabled && (needsIosInstall || supportsPush);
+      setNotificationsOpen(shouldAsk);
+      setNotificationsResolved(!shouldAsk);
     }, 0);
-    const enabled = () => { remember(notificationKey); setNotificationsOpen(false); };
+    const enabled = () => { remember(notificationKey); setNotificationsOpen(false); setNotificationsResolved(true); };
     window.addEventListener("scholau-push-consent", enabled);
     return () => { active = false; window.clearTimeout(timer); window.removeEventListener("scholau-push-consent", enabled); };
-  }, [device.ready, installKey, needsIosInstall, notificationKey, owner]);
+  }, [device.ready, installKey, needsIosInstall, notificationKey, owner, settings.isPending, settings.data?.push_available]);
 
-  function dismissNotifications() { remember(notificationKey); setNotificationsOpen(false); }
+  function dismissNotifications() { remember(notificationKey); setNotificationsOpen(false); setNotificationsResolved(true); }
   async function enable() {
     if (busy || !settings.data) return;
     setBusy(true); setMessage("");
@@ -49,6 +53,7 @@ export function HomePrompts({ owner }: { owner: string }) {
       // No network calls before this: Safari requires the permission request during the tap.
       await enableBrowserPush(settings.data.vapid_public_key, owner);
       setNotificationsOpen(false);
+      setNotificationsResolved(true);
       await settings.refetch();
     } catch (error) { setMessage(error instanceof Error ? error.message : "Notifications could not be enabled. You can try again in notification settings."); }
     finally { setBusy(false); }
@@ -61,6 +66,7 @@ export function HomePrompts({ owner }: { owner: string }) {
   }
   const showInstall = device.ready && !device.installed && !installDismissed && (device.ios || device.available);
   return <>
+    <AvatarWelcome owner={owner} ready={notificationsResolved && !notificationsOpen && !instructionsOpen && !busy} />
     {showInstall ? <aside aria-label="Install ScholAu" className="mb-5 grid grid-cols-[minmax(0,1fr)_32px] items-center gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-4">
       <div className="min-w-0 flex-1"><h2 className="text-sm font-bold">Install ScholAu</h2><p className="mt-1 text-xs leading-relaxed text-ink-muted">Add ScholAu to your Home Screen.</p></div>
       <Button size="sm" className="col-start-1 row-start-2 justify-self-start" onClick={() => void install()}>{needsIosInstall ? "Add to Home Screen" : "Install"}</Button>

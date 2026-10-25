@@ -1,5 +1,5 @@
 import { ChevronRight, Shield } from "lucide-react";
-import { AppBellIcon, AppSearchIcon } from "@/components/icons/app-chrome-icons";
+import { AppBellIcon } from "@/components/icons/app-chrome-icons";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { isActive, studentNav } from "./nav-items";
 import type { Streak } from "@scholau/api";
 import { StreakBadge } from "./streak-badge";
+import { NavbarPeopleSearch } from "./people-search";
 
 export function ShellFrame({ children, pathname = "/home", displayName = "", unread = 0, isAdmin = false, guest = false, avatarPath = null, streak }: {
   children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: Streak;
@@ -17,15 +18,13 @@ export function ShellFrame({ children, pathname = "/home", displayName = "", unr
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Home";
   const account = guest ? <Button asChild size="sm" ><Link href="/sign-up">Sign in</Link></Button> : <>
-    <Link href="/people" className="notification-button" aria-label="Find people"><AppSearchIcon size={20} /></Link>
+    <NavbarPeopleSearch />
     {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>
       <AppBellIcon size={20} />
       {unread > 0 ? <span aria-hidden className="notification-badge">{unread > 9 ? "9+" : unread}</span> : null}
     </Link>
-    <Link href="/profile" className="header-profile-link" aria-label={`${displayName || "Your"} profile`}>
-      <Avatar name={displayName} path={avatarPath} size={40} variant="profile" />
-    </Link>
+
   </>;
   return <div className="student-shell">
     <aside className="desktop-sidebar"><Link href={destination("/home")} aria-label="ScholAu home" className="sidebar-logo"><Logo /></Link>
