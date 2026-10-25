@@ -15,7 +15,7 @@ assert(fs.existsSync(path.join(web, "public/brand/splash-bounce-hq.mp4")));
 const manifest = read("app/manifest.ts");
 assert(manifest.includes('start_url: "/home"') && manifest.includes('scope: "/"'), "Preserve the installed app identity.");
 assert.equal((manifest.match(/app-white-on-blue-v1/g) || []).length, 4, "Manifest must reference only the blue launch assets.");
-assert(manifest.includes('background_color: "#0866e8"') && manifest.includes('theme_color: "#FFFFFF"'));
+assert(manifest.includes('background_color: "#FFFFFF"') && manifest.includes('theme_color: "#FFFFFF"'));
 assert.equal((read("app/layout.tsx").match(/<SplashGate>/g) || []).length, 1, "Exactly one app splash gate.");
 for (const [oldName, newName] of [["pwa-icon-192.png","app-white-on-blue-v1-192.png"],["pwa-icon-512.png","app-white-on-blue-v1-512.png"],["pwa-maskable-512.png","app-white-on-blue-v1-maskable-512.png"]]) {
  assert.deepEqual(fs.readFileSync(path.join(web,"public/icons",oldName)),fs.readFileSync(path.join(web,"public/icons",newName)), "Old installation URLs must serve the blue artwork: " + oldName);
