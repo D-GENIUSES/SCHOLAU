@@ -40,7 +40,7 @@ export function StreakBadge({ streak }: { streak: Streak }) {
         aria-expanded={open}
         onClick={() => setOpen(true)}
       >
-        <StreakFlame active={activeToday} size={22} />
+        <StreakFlame active={activeToday} size={26} />
         <span key={current} className="streak-count">
           {current}
         </span>
@@ -60,7 +60,7 @@ export function StreakBadge({ streak }: { streak: Streak }) {
         ) : (
           <>
             <div className="streak-info-hero" aria-hidden="true">
-              <StreakFlame active={activeToday || current > 0} size={72} />
+              <StreakFlame active={activeToday || current > 0} size={80} />
             </div>
             <DialogTitle className="streak-info-title">
               <span className="streak-info-count">{formatNumber(current)}</span>
