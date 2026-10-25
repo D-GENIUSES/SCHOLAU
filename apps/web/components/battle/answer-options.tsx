@@ -3,7 +3,7 @@
 import type { BattleCurrentQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
 
-export function BattleAnswerOptions({ question, selected, disabled, received, onSelect, labelledBy }: {
+export function BattleAnswerOptions({ question, selected, disabled, received, onSelect }: {
   question: BattleCurrentQuestion;
   selected: string | null;
   disabled: boolean;
@@ -13,13 +13,13 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
 }) {
   const worked = question.answer_format === "worked_solution";
   return (
-    <fieldset disabled={disabled} className="min-w-0">
-      <legend className="mb-4 w-full whitespace-pre-wrap break-words text-center text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
+    <fieldset disabled={disabled} className="min-w-0" aria-describedby={disabled && !received ? "battle-answer-phase" : undefined}>
+      <legend className="mb-3 w-full whitespace-pre-wrap break-words text-left text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
+      <p id="battle-answer-phase" className="sr-only">{received ? "Answer received" : disabled ? "Answers are locked during reading or after the deadline." : "Choose an answer, then submit."}</p>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
-      <div className={worked ? "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
         {question.options.map((option, index) => {
           const checked = selected === option.id;
-          const letter = String.fromCharCode(65 + index);
           return (
             <label key={option.id} className={cn(
               "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
@@ -49,14 +49,3 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
   );
 }
 
-function ChoiceRadio({ checked, className }: { checked: boolean; className?: string }) {
-  return (
-    <span className={cn(
-      "flex size-5 shrink-0 items-center justify-center rounded-full border-2",
-      checked ? "border-[#0875e4] bg-[#0875e4]" : "border-[#d3dbe4] bg-white",
-      className,
-    )} aria-hidden>
-      {checked ? <span className="size-2 rounded-full bg-white" /> : null}
-    </span>
-  );
-}

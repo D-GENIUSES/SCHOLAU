@@ -9,4 +9,4 @@ export * from "./analytics";
 export * from "./nigerian-universities";
 export * from "./registration";
 export * from "./lecturer-registration";
-export * from "./ingestion";
+export { normalizeGapAnswer } from "./ingestion/normalize-gap";

@@ -8,7 +8,7 @@ import {
   type BattleMix,
   type IngestionLesson,
   type IngestionQuestion,
-} from "@scholau/core";
+} from "@scholau/core/ingestion";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getCourseMaterialBytes, verifyCourseMaterialObject } from "@/lib/r2-storage";
 

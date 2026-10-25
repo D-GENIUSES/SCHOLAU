@@ -115,3 +115,6 @@
   .battle-friends-summary small { font-size: 11px; }
   .battle-history-heading p { font-size: 11px; }
 }
+
+.battle-setup-summary { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; padding:10px 12px; border-radius:10px; background:#f3f7fc; font-size:12px; color:#52647a; }
+.battle-setup-summary strong { color:#16365e; }

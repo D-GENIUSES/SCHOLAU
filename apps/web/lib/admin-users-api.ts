@@ -4,6 +4,7 @@ export type UserCategory = "student" | "lecturer" | "other";
 export type UserAssignment = { id: string; code: string; title: string; status: string };
 export type ManagedUser = {
  avatar_path: string | null;
+ online?: boolean;
  id: string; email: string | null; display_name: string | null; registered_at: string | null;
  last_sign_in_at: string | null; email_verified: boolean; deactivated_at: string | null;
  updated_at: string | null; has_profile: boolean; category: UserCategory; roles: string[];

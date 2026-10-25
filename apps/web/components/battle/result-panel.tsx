@@ -31,6 +31,9 @@ export function ResultPanel({ battle }: { battle: Battle }) {
   const result = battle.outcome && battle.outcome.result !== "cancelled" ? battle.outcome.result : null;
   const headline = voided ? { text: "Result voided" } : result ? HEADLINE[result] : null;
 
+  const [missedOnly, setMissedOnly] = useState(false);
+  const missedCount = battle.rounds?.filter(round => !round.my_is_correct).length ?? 0;
+  const visibleRounds = missedOnly ? battle.rounds?.filter(round => !round.my_is_correct) : battle.rounds;
   return (
     <div className="flex flex-col gap-6">
       <Card>
@@ -88,11 +91,12 @@ export function ResultPanel({ battle }: { battle: Battle }) {
       {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">{battle.result_kind === "forfeit" ? "No XP is awarded for forfeited battles." : "No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify."}</p> : null}
       {battle.rounds && battle.rounds.length > 0 ? (
         <section aria-labelledby="rounds-heading" className="flex flex-col gap-3">
-          <h2 id="rounds-heading" className="text-xl font-bold">
-            Round by round
-          </h2>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="rounds-heading" className="text-xl font-bold">{missedOnly ? "Missed questions" : "Round by round"}</h2>
+            {missedCount > 0 ? <Button variant="outline" size="sm" aria-pressed={missedOnly} onClick={() => setMissedOnly(value => !value)}>{missedOnly ? "Show all questions" : `Review missed (${missedCount})`}</Button> : null}
+          </div>
           <ol className="flex flex-col gap-2">
-            {battle.rounds.map((r) => (
+            {visibleRounds?.map((r) => (
               <RoundRow key={r.position} round={r} battleId={battle.battle_id} />
             ))}
           </ol>
