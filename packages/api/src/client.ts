@@ -209,6 +209,7 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     getMyLiveBattle: () => rpc<T.LiveBattle>("get_my_live_battle_v1"),
     readyBattle: (a: Keyed<{ battleId: string }>) =>
       rpc<T.BattleState_>("ready_battle_v1", { p_battle_id: a.battleId, p_request_key: a.requestKey }),
+    getBattleCorrection: (args: { battleId: string; position: number }) => rpc<T.BattleCorrection>("get_battle_correction_v1", { p_battle_id: args.battleId, p_position: args.position }),
     getBattleState: (battleId: string) => rpc<T.BattleState_>("get_battle_state_v1", { p_battle_id: battleId }),
     submitBattleAnswer: (a: Keyed<{ battleId: string; position: number; optionId?: string | null; textAnswer?: string | null }>) =>
       rpc<T.BattleAnswerAck>("submit_battle_answer_v1", {

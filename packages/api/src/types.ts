@@ -684,7 +684,17 @@ export interface BattleCurrentQuestion {
   my_text_answer?: string | null;
 }
 
+export interface BattleCorrection extends Envelope {
+  position: number;
+  answer_format: "standard" | "worked_solution" | "fill_in_gap";
+  my_answer: string | null;
+  correct_answer: string | null;
+  steps: string[];
+  explanation: string | null;
+}
+
 export interface BattleRound {
+  my_text_answer?: string | null;
   course_code?: string;
   position: number;
   prompt: string;

@@ -1,10 +1,12 @@
 "use client";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 
-import { CheckCircle2, MinusCircle, XCircle } from "lucide-react";
+import { BookOpen, CheckCircle2, ChevronUp, MinusCircle, XCircle } from "lucide-react";
 import Link from "next/link";
+import { useId, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import type { Battle, BattleRound } from "@scholau/api";
-import { useProfile } from "@scholau/api/react";
+import { useProfile, useScholauApi } from "@scholau/api/react";
 import { formatXp, formatXpDelta } from "@scholau/core";
 import { ReportDialog } from "@/components/report-dialog";
 import { Alert } from "@/components/ui/alert";
@@ -20,7 +22,7 @@ const HEADLINE = {
   draw: { text: "Draw" },
 } as const;
 
-/** finished / voided result. Never shows answer keys or the opponent's choices. */
+/** Finished / voided results; corrections reveal only the viewer's own answer. */
 export function ResultPanel({ battle }: { battle: Battle }) {
   const profile = useProfile();
   const me = battle.participants.find((p) => p.is_me);
@@ -90,7 +92,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
           </h2>
           <ol className="flex flex-col gap-2">
             {battle.rounds.map((r) => (
-              <RoundRow key={r.position} round={r} />
+              <RoundRow key={r.position} round={r} battleId={battle.battle_id} />
             ))}
           </ol>
         </section>
@@ -112,8 +114,18 @@ function ScoreBox({ label, value, total }: { label: string; value: number | null
   );
 }
 
-function RoundRow({ round }: { round: BattleRound }) {
-  const mine = round.my_option_id === null ? "none" : round.my_is_correct ? "correct" : "incorrect";
+export function RoundRow({ round, battleId }: { round: BattleRound; battleId: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const id = useId();
+  const api = useScholauApi();
+  const correction = useQuery({
+    queryKey: ["scholau", "battle", "correction", battleId, round.position],
+    queryFn: () => api.getBattleCorrection({ battleId, position: round.position }),
+    enabled: expanded,
+    staleTime: Infinity,
+    retry: 1,
+  });
+  const mine = round.my_is_correct ? "correct" : round.my_option_id !== null || round.my_text_answer ? "incorrect" : "none";
   return (
     <li className="flex flex-col gap-2 rounded-card border border-line bg-surface-card p-4">
       <p className="text-sm font-semibold text-ink-muted">Question {round.position}{round.course_code ? ` · ${round.course_code}` : ""}</p>
@@ -126,6 +138,18 @@ function RoundRow({ round }: { round: BattleRound }) {
           Opponent: <Mark kind={round.opponent_is_correct ? "correct" : "incorrect"} />
         </span>
       </div>
+      <Button type="button" variant="ghost" size="sm" className="self-start px-0 text-brand-primary" aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(value => !value)}>
+        {expanded ? <ChevronUp className="size-4" aria-hidden /> : <BookOpen className="size-4" aria-hidden />}
+        {expanded ? "Hide answer" : "View answer"}
+      </Button>
+      {expanded ? <div id={id} className="battle-correction">
+        {correction.isPending ? <p role="status" className="text-sm text-ink-muted">Loading answer…</p> : correction.isError ? <div><p role="alert" className="text-sm text-ink-muted">Couldn’t load this answer.</p><Button type="button" variant="link" size="sm" onClick={() => void correction.refetch()}>Try again</Button></div> : <>
+          <div><p className="battle-correction-label">Your answer</p><p className="whitespace-pre-wrap break-words text-sm">{correction.data.my_answer ?? "No answer submitted"}</p></div>
+          <div><p className="battle-correction-label">Correct answer</p><p className="whitespace-pre-wrap break-words text-sm font-semibold">{correction.data.correct_answer ?? "Answer unavailable"}</p></div>
+          {correction.data.steps?.length ? <ol className="list-decimal space-y-1 pl-5 text-sm">{correction.data.steps.map((step, index) => <li key={index} className="whitespace-pre-wrap break-words">{step}</li>)}</ol> : null}
+          <div><p className="battle-correction-label">Explanation</p><p className="whitespace-pre-wrap break-words text-sm leading-relaxed">{correction.data.explanation || "An explanation hasn’t been added for this question yet."}</p></div>
+        </>}
+      </div> : null}
     </li>
   );
 }
