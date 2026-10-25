@@ -1,7 +1,7 @@
 "use client";
 
 
-import { Check, RefreshCw, Swords } from "lucide-react";
+import { Check, Flag, RefreshCw, Swords } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode, Ref } from "react";
 import type { Battle, BattleParticipant } from "@scholau/api";
@@ -28,6 +28,7 @@ const ACCENT = "#0875e4";
 export function BattleTopBar({
   battle,
   live,
+  onLeave,
 }: {
   battle: Battle | undefined;
   live: boolean;
@@ -36,16 +37,16 @@ export function BattleTopBar({
   return (
     <div className="flex min-w-0 items-center justify-between gap-3 py-1">
       <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-primary/10 text-brand-primary">
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-brand-primary/10 text-brand-primary sm:size-10">
           <Swords className="size-5" strokeWidth={1.8} aria-hidden />
         </span>
-        <p className="text-xl font-bold tracking-tight text-ink sm:text-2xl">Battle arena</p>
-      </div>
-      {battle ? (
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+          <p className="text-base font-bold tracking-tight text-ink sm:text-2xl">Battle arena</p>
+          {battle ? (
         <span
           role="status"
           className={cn(
-            "inline-flex max-w-[42%] shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold",
+            "inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-semibold",
             live ? "bg-success/10 text-success" : "bg-surface-page text-ink-muted",
           )}
         >
@@ -53,6 +54,11 @@ export function BattleTopBar({
           <span>{battle.state === "active" ? "Live" : STATE_LABEL[battle.state]}</span>
         </span>
       ) : null}
+        </div>
+      </div>
+      {live && battle && battle.participants.length === 2 ? <Button size="sm" variant="danger-outline" className="px-3" onClick={onLeave}>
+        <Flag className="size-4" aria-hidden />Forfeit
+      </Button> : null}
     </div>
   );
 }
@@ -268,9 +274,9 @@ export function LeaveBattleDialog({
     <ConfirmDialog
       open={open}
       onOpenChange={onOpenChange}
-      title="Leave this battle?"
+      title="Forfeit this battle?"
       description={COPY.battle.leaveWarning}
-      confirmLabel={loading ? "Leaving…" : "Leave battle"}
+      confirmLabel={loading ? "Forfeiting…" : "Forfeit battle"}
       cancelLabel="Stay"
       onConfirm={onConfirm}
       destructive
