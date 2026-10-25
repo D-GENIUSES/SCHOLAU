@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 
 import { Check, Flag, RefreshCw, Swords } from "lucide-react";
 import Link from "next/link";
@@ -245,7 +247,7 @@ export function LiveBattleBoard({
           tabIndex={-1}
           className="mt-3 whitespace-pre-wrap text-center text-[26px] font-extrabold leading-[1.25] tracking-[-0.03em] text-ink focus:outline-none"
         >
-          {prompt}
+          <MathText text={prompt} />
         </h2>
         <div className="mt-5 flex justify-center">
           <CountdownRing remainingMs={remainingMs} totalMs={totalMs} />

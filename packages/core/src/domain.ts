@@ -45,6 +45,11 @@ export type AdminEntityType =
 
 /** Structured lesson blocks (server-validated; rendered only from these allowed types). */
 export type LessonBlock =
+  | { type: "equation"; expression: string; reading?: string }
+  | { type: "worked_example"; title: string; problem: string;
+      steps: { calculation: string; explanation: string; reading?: string }[];
+      answer: string; answer_reading?: string;
+      check?: { calculation: string; explanation: string; reading?: string } }
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string; level?: 2 | 3 | 4 }
   | { type: "list"; items: string[]; ordered?: boolean }

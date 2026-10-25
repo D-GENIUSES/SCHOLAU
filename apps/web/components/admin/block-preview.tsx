@@ -1,3 +1,6 @@
+import { Equation, MathText } from "@/components/math/math-text";
+import { WorkedExample } from "@/components/math/worked-example";
+import type { LessonBlock } from "@scholau/core";
 import { AlertTriangle, ImageIcon } from "lucide-react";
 
 type RawBlock = Record<string, unknown>;
@@ -17,22 +20,30 @@ function Unsupported({ reason }: { reason: string }) {
 
 function Block({ block }: { block: RawBlock }) {
   switch (block.type) {
+    case "equation":
+      return <Equation expression={str(block.expression)} reading={str(block.reading) || undefined} display />;
+    case "worked_example": {
+      if (!str(block.title) || !str(block.problem) || !str(block.answer) || !Array.isArray(block.steps) || !block.steps.length || block.steps.some(s => !s || typeof s !== "object" || !str(s.calculation) || !str(s.explanation)) || (block.check !== undefined && (!block.check || typeof block.check !== "object" || !("calculation" in block.check) || !("explanation" in block.check) || !str(block.check.calculation) || !str(block.check.explanation)))) {
+        return <Unsupported reason="Worked example needs a title, problem, calculation and explanation for each step, and final answer." />;
+      }
+      return <WorkedExample block={block as Extract<LessonBlock, { type: "worked_example" }>} />;
+    }
     case "paragraph":
-      return <p className="whitespace-pre-line">{str(block.text)}</p>;
+      return <p className="whitespace-pre-line"><MathText text={str(block.text)} /></p>;
     case "checkpoint": {
       const options = Array.isArray(block.options) ? block.options.map(str) : [];
       return <aside className="rounded-control border border-line bg-surface-page p-4">
-        <p className="font-semibold">Knowledge check: {str(block.question)}</p>
-        <ol className="my-2 list-decimal pl-6">{options.map((option, i) => <li key={i}>{option}{i === block.correct_index ? " (correct)" : ""}</li>)}</ol>
-        <p>{str(block.explanation)}</p>
+        <p className="font-semibold">Knowledge check: <MathText text={str(block.question)} /></p>
+        <ol className="my-2 list-decimal pl-6">{options.map((option, i) => <li key={i}><MathText text={option} />{i === block.correct_index ? " (correct)" : ""}</li>)}</ol>
+        <p><MathText text={str(block.explanation)} /></p>
       </aside>;
     }
     case "heading": {
       const level = block.level === 3 ? 3 : block.level === 4 ? 4 : 2;
       const text = str(block.text);
-      if (level === 2) return <h3 className="text-lg font-bold">{text}</h3>;
-      if (level === 3) return <h4 className="text-base font-bold">{text}</h4>;
-      return <h5 className="text-base font-semibold">{text}</h5>;
+      if (level === 2) return <h3 className="text-lg font-bold"><MathText text={text} /></h3>;
+      if (level === 3) return <h4 className="text-base font-bold"><MathText text={text} /></h4>;
+      return <h5 className="text-base font-semibold"><MathText text={text} /></h5>;
     }
     case "list": {
       const items = Array.isArray(block.items) ? block.items.map(str) : [];
@@ -40,7 +51,7 @@ function Block({ block }: { block: RawBlock }) {
       return (
         <Tag className={block.ordered ? "list-decimal space-y-1 pl-6" : "list-disc space-y-1 pl-6"}>
           {items.map((item, i) => (
-            <li key={i}>{item}</li>
+            <li key={i}><MathText text={item} /></li>
           ))}
         </Tag>
       );
@@ -66,7 +77,7 @@ function Block({ block }: { block: RawBlock }) {
             {CALLOUT_LABEL[tone] ?? "Note"}
             {str(block.title) ? `: ${str(block.title)}` : ""}
           </p>
-          <p className="whitespace-pre-line">{str(block.text)}</p>
+          <p className="whitespace-pre-line"><MathText text={str(block.text)} /></p>
         </aside>
       );
     }

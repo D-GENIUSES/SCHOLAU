@@ -1,3 +1,4 @@
+import { MathText } from "@/components/math/math-text";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
@@ -40,7 +41,7 @@ export function AnswerFeedback({
       {explanation ? (
         <div className="text-ink">
           <p className="text-sm font-semibold">Explanation</p>
-          <p className="whitespace-pre-line">{explanation}</p>
+          <p className="whitespace-pre-line"><MathText text={explanation} /></p>
         </div>
       ) : null}
     </div>

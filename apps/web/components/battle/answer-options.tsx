@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import type { BattleCurrentQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
 
@@ -13,13 +15,13 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
 }) {
   const worked = question.answer_format === "worked_solution";
   return (
-    <fieldset disabled={disabled} className="min-w-0">
-      <legend className="mb-4 w-full whitespace-pre-wrap break-words text-center text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
+    <fieldset disabled={disabled} className="min-w-0" aria-labelledby={labelledBy}>
+      <legend className="mb-4 w-full whitespace-pre-wrap break-words text-center text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl"><MathText text={question.prompt} /></legend>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
-      <div className={worked ? "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
+      <div className={worked ? "grid grid-cols-1 gap-2 md:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:gap-3"}>
         {question.options.map((option, index) => {
           const checked = selected === option.id;
-          const letter = String.fromCharCode(65 + index);
+
           return (
             <label key={option.id} className={cn(
               "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
@@ -34,11 +36,11 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-3 break-words">
                 {worked && option.steps?.length ? (
-                  <span className="flex flex-col gap-2 font-mono text-xs leading-relaxed sm:text-sm">
-                    {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap">{step}</span>)}
+                  <span className="flex flex-col gap-2 text-sm leading-relaxed sm:text-sm">
+                    {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap"><MathText text={step} /></span>)}
                   </span>
                 ) : null}
-                <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}>{option.body}</span>
+                <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}><MathText text={option.body} /></span>
               </span>
               {checked ? <span className="sr-only">{received ? "Answer received" : "Selected"}</span> : null}
             </label>
@@ -46,17 +48,5 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
         })}
       </div>
     </fieldset>
-  );
-}
-
-function ChoiceRadio({ checked, className }: { checked: boolean; className?: string }) {
-  return (
-    <span className={cn(
-      "flex size-5 shrink-0 items-center justify-center rounded-full border-2",
-      checked ? "border-[#0875e4] bg-[#0875e4]" : "border-[#d3dbe4] bg-white",
-      className,
-    )} aria-hidden>
-      {checked ? <span className="size-2 rounded-full bg-white" /> : null}
-    </span>
   );
 }

@@ -649,10 +649,10 @@
       "f(x) is never defined at zero",
       "f(x) = x for all x",
       "f(-x) = -f(x) always",
-      "f(-x) = f(x)"
+      "\\(f(-x) = f(x)\\)"
     ],
     "correct": 3,
-    "explanation": "An even function is unchanged when the sign of its input is reversed.",
+    "explanation": "\\[f(-x)=(-x)^2\\]\nReplace every occurrence of x with the whole expression minus x.\n\n\\[(-x)^2=(-x)(-x)=x^2\\]\nSquaring multiplies the expression by itself. Two negative factors give a positive product.\n\n\\[f(-x)=x^2=f(x)\\]\nThe output is unchanged for every real input, so the function is even.\n\n\\[f(-3)=9=f(3)\\]\nThis pair illustrates the symbolic proof; it is not a substitute for that proof.",
     "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1"
   },
   {
@@ -664,11 +664,11 @@
     "options": [
       "f(-x) = f(x) always",
       "f(x) must be constant and nonzero",
-      "f(-x) = -f(x)",
+      "\\(f(-x) = -f(x)\\)",
       "f(x) is always positive"
     ],
     "correct": 2,
-    "explanation": "Odd functions change sign when their input changes sign.",
+    "explanation": "\\[f(-x)=(-x)^3\\]\nSubstitute minus x for the input, keeping its sign inside the power.\n\n\\[(-x)^3=(-x)(-x)(-x)=-x^3\\]\nTwo negative factors first give a positive product; multiplying by the third gives a negative product.\n\n\\[f(-x)=-x^3=-f(x)\\]\nThe output has the opposite sign of the original output for every real x.\n\n\\[f(-2)=-8=-f(2)\\]\nThe numerical check agrees with the identity.",
     "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1"
   },
   {
@@ -684,7 +684,7 @@
       "6"
     ],
     "correct": 1,
-    "explanation": "A polynomial is continuous; substituting x = 3 gives 7.",
+    "explanation": "\\[\\lim_{x\\to3}(2x+1)=2(3)+1\\]\nThis is a polynomial, so continuity allows us to replace x by three.\n\n\\[2(3)+1=6+1\\]\nCarry out the multiplication first.\n\n\\[6+1=7\\]\nAdd the remaining terms.\n\n\\[f(2.99)=6.98,\\qquad f(3.01)=7.02\\]\nInputs just below and above three give outputs close to seven.",
     "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 11"
   },
   {
@@ -695,12 +695,12 @@
     "prompt": "What is the derivative of x squared?",
     "options": [
       "x cubed",
-      "x",
-      "2x",
+      "\\(x\\)",
+      "\\(2x\\)",
       "2"
     ],
     "correct": 2,
-    "explanation": "The power rule gives d(x^2)/dx = 2x.",
+    "explanation": "\\[\\frac{d}{dx}x^n=nx^{n-1}\\]\nUse the power rule for this polynomial power; n denotes its exponent.\n\n\\[f\\prime(x)=2x^{2-1}\\]\nHere n is two. Multiply by two and subtract one from the exponent.\n\n\\[f\\prime(x)=2x^1=2x\\]\nAn exponent of one leaves x unchanged.\n\n\\[\\frac{(x+h)^2-x^2}{h}=2x+h\\ \\longrightarrow\\ 2x\\]\nFor nonzero h the difference quotient simplifies to two x plus h; letting h approach zero confirms the rule.",
     "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 5"
   },
   {
@@ -713,10 +713,10 @@
       "1",
       "7",
       "0",
-      "7x"
+      "\\(7x\\)"
     ],
     "correct": 2,
-    "explanation": "A constant does not change with x, so its derivative is zero.",
+    "explanation": "\\[f(x+h)-f(x)=7-7=0\\]\nBoth outputs equal seven, so their difference is zero.\n\n\\[\\frac{f(x+h)-f(x)}{h}=\\frac0h=0\\quad(h\\ne0)\\]\nFor any nonzero input change, dividing the zero output change gives zero.\n\n\\[f\\prime(x)=\\lim_{h\\to0}0=0\\]\nThe quotient stays zero as the input change approaches zero.\n\n\\[f(2)=7,\\qquad f(5)=7\\]\nDifferent inputs produce no output change, agreeing with zero slope.",
     "sourceReference": "God_s_plan_MTH_102_practice_question (1).pdf, page 23"
   },
   {

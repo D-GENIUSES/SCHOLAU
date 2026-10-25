@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import { ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -78,15 +80,15 @@ export function MaterialQuiz() {
       <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-ink-muted"><span>Question {index + 1} of {quiz.length}</span><span>{q.courseCode} · Untimed</span></div>
       <Progress value={100 * (index + (checked ? 1 : 0)) / quiz.length} label="Quiz progress" />
       <fieldset disabled={checked}>
-        <legend className="practice-question">{q.prompt}</legend>
+        <legend className="practice-question"><MathText text={q.prompt} /></legend>
         <div className="practice-options">{q.options.map((option, i) => <label key={option} className={`practice-option${selected === i ? " selected" : ""}${checked && i === q.correct ? " correct" : checked && selected === i ? " incorrect" : ""}`}>
           <input type="radio" name={`material-question-${q.id}`} checked={selected === i} onChange={() => setSelected(i)} />
-          <span className="min-w-0 break-words">{option}</span>{checked && i === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : null}
+          <span className="min-w-0 break-words"><MathText text={option} /></span>{checked && i === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : null}
         </label>)}</div>
       </fieldset>
       {checked ? <div className={`practice-feedback ${selected === q.correct ? "correct" : "incorrect"}`} role="status">
         {selected === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : <XCircle className="size-5 shrink-0" aria-hidden />}
-        <div className="min-w-0"><strong>{selected === q.correct ? "Correct" : "Incorrect"}</strong><p>{q.explanation}</p><p className="mt-2 break-words text-xs">Source: {q.sourceReference}</p></div>
+        <div className="min-w-0"><strong>{selected === q.correct ? "Correct" : "Incorrect"}</strong><p><MathText text={q.explanation} /></p><p className="mt-2 break-words text-xs">Source: {q.sourceReference}</p></div>
       </div> : null}
       <Button onClick={checked ? next : check} disabled={!checked && selected === null} className="self-start">{checked ? index === quiz.length - 1 ? "See results" : "Next question" : "Check answer"}</Button>
     </div> : null}

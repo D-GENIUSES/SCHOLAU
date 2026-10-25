@@ -1,0 +1,192 @@
+{
+  "lessons": [
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-mth-101",
+      "title": "Indices and changes of base",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-expanded-mth-101-logarithms",
+      "title": "Logarithms and domain checks",
+      "source_reference": "MTH 101.pdf, PDF pages 4 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-expanded-mth-101-surds",
+      "title": "Surds conjugates and radical equations",
+      "source_reference": "MTH 101.pdf, PDF pages 3, 5 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-expanded-mth-101-quadratics",
+      "title": "Quadratic roots and inequalities",
+      "source_reference": "MTH 101.pdf, PDF pages 7 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-expanded-mth-101-sequences",
+      "title": "Arithmetic and geometric progressions",
+      "source_reference": "MTH 101.pdf, PDF pages 6, 8 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "course": "MTH 101",
+      "logical_key": "midsem-20261022-expanded-mth-101-counting",
+      "title": "Permutations combinations and repeated letters",
+      "source_reference": "MTH 101.pdf, PDF pages 9, 10, 11 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "course": "MTH 102",
+      "logical_key": "au-materials-20261018-mth-102-l-001",
+      "title": "Test an even function",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "course": "MTH 102",
+      "logical_key": "au-materials-20261018-mth-102-l-002",
+      "title": "Test an odd function",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "course": "MTH 102",
+      "logical_key": "au-materials-20261018-mth-102-l-003",
+      "title": "Evaluate a polynomial limit",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 11 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "course": "MTH 102",
+      "logical_key": "au-materials-20261018-mth-102-l-004",
+      "title": "Differentiate a power",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 5 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "course": "MTH 102",
+      "logical_key": "au-materials-20261018-mth-102-l-005",
+      "title": "Explain the constant rule",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 23 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-01",
+      "title": "Standard antiderivatives",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 2 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-02",
+      "title": "Integration by substitution",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 2,3 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-03",
+      "title": "Integration by parts",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 4 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-04",
+      "title": "Repeated integration by parts",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 5 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-05",
+      "title": "Cyclic integration by parts",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 5,6 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-06",
+      "title": "Partial fractions with distinct linear factors",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 7,8,9 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-07",
+      "title": "Repeated factors and irreducible quadratics",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 9,10,11,12 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-08",
+      "title": "Reduction formulas for exponential integrals",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 13,14 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-09",
+      "title": "Reduction formulas for trigonometric products",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 14,15,16 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-10",
+      "title": "Partial derivatives: hold other variables fixed",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 17 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-11",
+      "title": "Sum, product and quotient rules for partial derivatives",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 18,19 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-12",
+      "title": "Chain rule and second partial derivatives",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 20 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-13",
+      "title": "Implicit differentiation of related variables",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 21,22 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-14",
+      "title": "Maclaurin series and binomial expansion",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 23,24,25,26,27 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-15",
+      "title": "Maclaurin expansion of sine",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 26,27 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-16",
+      "title": "Taylor expansion about a nonzero point",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 28,29,30 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-17",
+      "title": "Stationary points and the second derivative test",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 31 [SHA-256 fd67e026e92b]"
+    },
+    {
+      "course": "MTH 201",
+      "logical_key": "added-20261020-mth-201-18",
+      "title": "Inflection points require a change of concavity",
+      "source_reference": "MTH 201 Note .pdf, PDF pages 32,33,34 [SHA-256 fd67e026e92b]"
+    }
+  ],
+  "counts": {
+    "MTH 101": {
+      "lessons": 6,
+      "questions": 30
+    },
+    "MTH 102": {
+      "lessons": 5,
+      "questions": 10
+    },
+    "MTH 201": {
+      "lessons": 18,
+      "questions": 138
+    }
+  }
+}
