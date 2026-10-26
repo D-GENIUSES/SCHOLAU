@@ -16,7 +16,7 @@ Lessons follow foundations and symbols → concept → worked example → guided
 
 1. Install locked dependencies and run `node scripts/test-maths.cjs`. Optional `PGLITE_MODULE` enables migration/validator checks; optional `PLAYWRIGHT_MODULE` enables browser checks after a production build. `BROWSER_CHANNEL` defaults to `msedge`; screenshots go to ignored `.maths-verification/`.
 2. With Python and SymPy, run `python scripts/check-maths-answers.py` for independent mathematical checks.
-3. Deploy the web renderer before publishing new block types. Apply migration `20261029000200_explanatory_maths.sql`; it extends validation and the existing teaching-example check without changing publication permissions.
+3. Deploy the web renderer before publishing new block types. Apply migration `20261029001200_explanatory_maths.sql`; it extends validation and the existing teaching-example check without changing publication permissions.
 4. At `/admin/content-sync`, dry-run each course JSON bundle and review the report. Synchronise as drafts, review the rendered lessons, then publish using the existing admin workflow. This requires administrator access and the existing private source objects in R2.
 
 A code push does not apply the database migration or publish these bundles. The bundled guest MTH 102 explanations take effect with the web deployment. No live student attempts or answer keys are rewritten by the code change.

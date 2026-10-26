@@ -96,7 +96,7 @@ async function main() {
       // verify the migration's replacement without connecting to hosted data.
       await db.exec(`create function public.admin_sync_course_materials_v1(p_bundle jsonb, p_dry_run boolean default true, p_publish boolean default false)
         returns boolean language sql as $$ select exists(select 1 from jsonb_array_elements(p_bundle->'blocks') b where b->>'type'='callout' and b->>'tone'='example') $$;`);
-      await db.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261029000200_explanatory_maths.sql'), 'utf8'));
+      await db.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261029001200_explanatory_maths.sql'), 'utf8'));
       for (const block of [worked, { type: 'callout', tone: 'example', text: 'Legacy example' }]) {
         const result = await db.query('select public.admin_sync_course_materials_v1($1::jsonb) as accepted', [JSON.stringify({ blocks: [block] })]);
         assert.equal(result.rows[0].accepted, true);
