@@ -115,7 +115,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
     ? `/study/assessments/${lesson.review.assessment_version_id}?offering=${lesson.offering_id}`
     : null;
   const hasBlockContent = lesson.blocks.length > 0;
-  const canMarkComplete = isCompleted || deckFinished || alreadyCompleted;
+  const hasStructuredMaths = lesson.blocks.some(block => block.type === "worked_example" || block.type === "equation");
+  const canMarkComplete = isCompleted || deckFinished || alreadyCompleted || hasStructuredMaths;
 
   return (
     <article className="mx-auto flex max-w-reading flex-col">
@@ -173,7 +174,16 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
       </div>
 
       {hasBlockContent ? (
-        <>
+        hasStructuredMaths ? <>
+          <LessonBlocks blocks={lesson.blocks} />
+          {examCards.length ? <details className="mt-6 rounded-control border border-line bg-surface-page">
+            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">Revise with flashcards</summary>
+            <div className="border-t border-line px-4 py-4">
+              <FlashcardDeck cards={examCards} />
+            </div>
+          </details> : null}
+          <p className="mt-4 text-sm text-ink-muted">Read each section and try the practice checks before marking this lesson as complete.</p>
+        </> : <>
           <FlashcardDeck cards={examCards} onLastCardReached={() => setDeckFinished(true)} />
           <details className="mt-2 rounded-control border border-line bg-surface-page">
             <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">View original notes</summary>
