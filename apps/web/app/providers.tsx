@@ -5,6 +5,7 @@ import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-qu
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { createScholauApi, isApiError } from "@scholau/api";
 import { ScholauApiProvider } from "@scholau/api/react";
+import { UserPresence } from "@/components/shell/user-presence";
 import { AppUpdates } from "@/components/shell/app-updates";
 import { NotificationSound } from "@/components/notifications/notification-sound";
 import { InstallPromptProvider } from "@/components/shell/install-prompt-provider";
@@ -51,7 +52,7 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <InstallPromptProvider><AnalyticsProvider><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
+        <InstallPromptProvider><AnalyticsProvider><UserPresence /><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./ingestion": "./src/ingestion/index.ts"
   },
   "scripts": {
     "lint": "tsc --noEmit -p tsconfig.json",

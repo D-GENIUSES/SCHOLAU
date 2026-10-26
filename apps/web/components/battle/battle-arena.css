@@ -1,0 +1,11 @@
+/* Keep the question readable and submission reachable on narrow/short screens. */
+.battle-question-flow { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+.battle-question-card { overflow: visible; }
+.battle-question-card .battle-submit-bar {
+  position: sticky; bottom: 0; z-index: 10; padding: 12px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: var(--color-surface-card, white); border-top: 1px solid var(--color-line, #e2e8f0);
+  border-radius: 0 0 16px 16px; box-shadow: 0 -6px 18px #12304a08;
+}
+.battle-question-card label { scroll-margin-bottom: 110px; }
+@media (min-width: 640px) { .battle-question-card .battle-submit-bar { padding-inline:20px; } }

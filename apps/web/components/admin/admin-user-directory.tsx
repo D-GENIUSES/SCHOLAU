@@ -6,7 +6,7 @@ import type { LecturerOffering } from "@scholau/core";
 import { adminUsersApi, userManagementError, type ManagedUser } from "@/lib/admin-users-api";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
-import { useUserInsights } from "@/lib/admin-insights";
+import { useOnlineUsers, useUserInsights } from "@/lib/admin-insights";
 import { AdminCreateUser } from "./admin-create-user";
 import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
@@ -30,6 +30,9 @@ function roleLabel(user: ManagedUser) {
 }
 
 export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boolean }) {
+  const [onlineOpen, setOnlineOpen] = useState(false);
+  const [onlinePage, setOnlinePage] = useState(0);
+  const onlineUsers = useOnlineUsers(onlinePage);
   const [items, setItems] = useState<ManagedUser[]>([]);
   const insights = useUserInsights(items.map(user => user.id));
   const [infoId, setInfoId] = useState<string | null>(null);
@@ -61,9 +64,9 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
   const detailGeneration = useRef(0);
   const requestKey = useRef<string | null>(null);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (quiet = false) => {
     const gen = ++generation.current;
-    setLoading(true); setError(null);
+    if (!quiet) { setLoading(true); setError(null); }
     try {
       const result = await adminUsersApi.list(category, status, query, page * 20);
       if (generation.current !== gen) return;
@@ -79,6 +82,10 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
     void Promise.resolve().then(() => { if (active) void load(); });
     return () => { active = false; invalidateLoad(); };
   }, [load, invalidateLoad]);
+  useEffect(() => {
+    const timer = window.setInterval(() => { if (document.visibilityState === "visible") void load(true); }, 15000);
+    return () => window.clearInterval(timer);
+  }, [load]);
   useEffect(() => () => { detailGeneration.current++; }, []);
 
   async function manage(id: string) {
@@ -125,7 +132,21 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
   const filtered = available.filter(o => `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()));
 
   return <>
-    <div className="mb-4 grid grid-cols-2 gap-2"><div className="rounded-control border border-line bg-surface-card p-3"><p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">Total users</p><p className="mt-1 text-2xl font-bold tabular-nums" aria-label={`Total users: ${insights.data?.total_users ?? "unavailable"}`}>{insights.data?.total_users ?? "—"}</p></div><div className="rounded-control border border-line bg-surface-card p-3"><p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">Online on this page</p><p className="mt-1 flex items-center gap-2 text-2xl font-bold tabular-nums"><span className="size-2 rounded-full bg-green-500" aria-hidden />{insights.isError ? "—" : insights.data?.items.filter(user => user.online).length ?? "—"}</p></div></div><p className="mb-3 text-xs text-ink-muted">Today&apos;s activity resets at midnight WAT. Online status refreshes every 15 seconds.</p>
+    <div className="mb-2 grid grid-cols-2 gap-2">
+      <div className="rounded-xl border border-line bg-surface-card px-3 py-2"><p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">Total users</p><p className="text-xl font-bold tabular-nums">{onlineUsers.data?.total_users ?? insights.data?.total_users ?? "—"}</p></div>
+      <button type="button" className="rounded-xl border border-line bg-surface-card px-3 py-2 text-left hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary" aria-haspopup="dialog" aria-expanded={onlineOpen} onClick={() => { setOnlinePage(0); setOnlineOpen(true); }}>
+        <span className="block text-[10px] font-bold uppercase tracking-wide text-ink-muted">Online in app</span>
+        <span className="flex items-center justify-between gap-2"><span className="flex items-center gap-2 text-xl font-bold tabular-nums"><span className="size-2 rounded-full bg-green-500" aria-hidden />{onlineUsers.isError ? "—" : onlineUsers.data?.total ?? "—"}</span><span className="text-xs text-brand-primary">View ›</span></span>
+      </button>
+    </div>
+    <p className="mb-3 text-[11px] text-ink-muted">Online users appear first. Active anywhere in the app within 90 seconds; refreshes every 15 seconds.</p>
+    <Dialog open={onlineOpen} onOpenChange={setOnlineOpen}><DialogContent className="max-w-md"><DialogTitle>Online in the app · {onlineUsers.data?.total ?? "—"}</DialogTitle><DialogDescription>Users active anywhere in ScholAu within the last 90 seconds, across all directory pages.</DialogDescription>
+      {onlineUsers.isError ? <Alert tone="warning">Could not load online users. <Button variant="ghost" onClick={() => void onlineUsers.refetch()}>Retry</Button></Alert> : onlineUsers.isPending ? <p role="status">Loading online users…</p> : <>
+        <ul className="max-h-[55dvh] overflow-y-auto divide-y divide-line">{onlineUsers.data.items.map(user => <li key={user.id} className="flex items-center gap-2 py-2"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold">{user.display_name || "User"}</p><p className="truncate text-xs text-ink-muted">{user.email}</p></div><Button variant="ghost" size="sm" onClick={() => { setOnlineOpen(false); void manage(user.id); }}>Manage</Button></li>)}</ul>
+        {!onlineUsers.data.items.length ? <p className="text-sm text-ink-muted">No users are currently active.</p> : null}
+        {onlineUsers.data.total > 50 ? <div className="flex justify-between"><Button size="sm" variant="outline" disabled={onlinePage === 0} onClick={() => setOnlinePage(value => value - 1)}>Previous</Button><Button size="sm" variant="outline" disabled={(onlinePage + 1) * 50 >= onlineUsers.data.total} onClick={() => setOnlinePage(value => value + 1)}>Next</Button></div> : null}
+      </>}
+    </DialogContent></Dialog>
     {insights.isError && <Alert tone="warning">Activity and online status are unavailable. <Button variant="ghost" onClick={() => void insights.refetch()}>Retry</Button></Alert>}
     <Dialog open={Boolean(infoId)} onOpenChange={open => {if (!open) setInfoId(null);}}><DialogContent className="max-w-lg"><DialogTitle>{items.find(user => user.id === infoId)?.display_name || "User information"}</DialogTitle><DialogDescription>Academic details and today&apos;s activity. Resets at midnight WAT.</DialogDescription>{info ? <><dl className="grid grid-cols-2 gap-3 text-sm">{[["Department",info.department],["Faculty",info.faculty],["Level",info.level],["Status",info.online ? "Online" : "Offline"]].map(([label,value]) => <div key={label}><dt className="text-ink-muted">{label}</dt><dd>{value || "Not provided"}</dd></div>)}</dl><h3 className="text-sm font-semibold">Today · {info.events.length} {info.events.length === 1 ? "activity" : "activities"}</h3><ul className="max-h-72 overflow-y-auto divide-y divide-line">{info.events.map(event => <li key={event.id} className="flex justify-between gap-3 py-2 text-sm"><span>{event.label}</span><time className="shrink-0 text-xs text-ink-muted">{new Date(event.at).toLocaleTimeString("en-GB",{timeZone:"Africa/Lagos",hour:"2-digit",minute:"2-digit"})}</time></li>)}</ul>{!info.events.length && <p className="text-sm text-ink-muted">No activity today.</p>}</> : <p className="text-sm">{insights.isError ? "Unable to load user activity." : "Loading information..."}</p>}</DialogContent></Dialog>
     <details className="mb-4 rounded-control border border-line bg-surface-card p-3 shadow-card">
@@ -149,11 +170,15 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
       <Field id="users-status" label="Account status"><NativeSelect value={status} onChange={e => { setStatus(e.target.value); setPage(0); }}><option value="">All</option><option value="active">Active</option><option value="frozen">Frozen</option></NativeSelect></Field>
       <Button type="submit" variant="outline">Search</Button><Button variant="ghost" onClick={() => void load()}>Refresh</Button>
     </form>
-    {loading ? <LoadingState variant="table" label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} columns={[
+    {loading ? <LoadingState variant="table" label="Loading registered users..." /> : error ? null : items.length ? <DataTable caption="Registered users" rows={items} rowKey={user => user.id} mobileCard={user => <>
+      <div className="flex items-center gap-2"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold">{user.display_name || "No profile name"}</p><p className="truncate text-[11px] text-ink-muted">{user.email || "No email"}</p></div><span className={`shrink-0 text-[11px] ${user.online ? "text-success" : "text-ink-muted"}`}>{user.online ? "● Online" : "Offline"}</span></div>
+      <div className="mt-1 flex items-center justify-between gap-2"><p className="text-[11px] text-ink-muted">{roleLabel(user)} · {user.deactivated_at ? "Frozen" : "Active"}{user.application_status ? ` · ${user.application_status.replaceAll("_", " ")}` : ""}</p></div>
+      <div className="mt-1.5 flex items-center justify-between gap-2 border-t border-line pt-1.5"><Button variant="ghost" size="sm" className="px-2" aria-label={`Information and activity for ${user.display_name || "user"}`} onClick={() => setInfoId(user.id)}>Today: {insights.isError ? "—" : insights.data?.items.find(item => item.id === user.id)?.events.length ?? "—"} · Info</Button><Button variant="outline" size="sm" onClick={() => void manage(user.id)}>Manage</Button></div>
+    </>} columns={[
       { key: "name", header: "User", cell: user => <div className="flex items-center gap-3"><Avatar name={user.display_name || "User"} path={user.avatar_path} size={32} /><div className="min-w-0"><p>{user.display_name || "No profile name"}</p><p className="break-all text-xs font-normal text-ink-muted">{user.email || "No email"}</p></div></div> },
       { key: "type", header: "Account type", cell: user => <>{roleLabel(user)}{user.roles.includes("admin") && <Badge tone="brand">Admin</Badge>}</> },
       { key: "today", header: "Today", cell: user => <Button variant="ghost" size="sm" onClick={() => setInfoId(user.id)}>{insights.isError ? "Unavailable" : `${insights.data?.items.find(item => item.id === user.id)?.events.length ?? "—"} ${insights.data?.items.find(item => item.id === user.id)?.events.length === 1 ? "activity" : "activities"}`}</Button> },
-      { key: "online", header: "Online", cell: user => { const insight = insights.isError ? undefined : insights.data?.items.find(item => item.id === user.id); return <span className="inline-flex items-center gap-1.5 text-xs"><span aria-hidden className={`size-2 rounded-full ${insight?.online ? "bg-green-500" : "bg-gray-300"}`} />{insight ? insight.online ? "Online" : "Offline" : "Unknown"}</span>; } },
+      { key: "online", header: "Online", cell: user => { const insight = typeof user.online === "boolean" ? { online: user.online } : undefined; return <span className="inline-flex items-center gap-1.5 text-xs"><span aria-hidden className={`size-2 rounded-full ${insight?.online ? "bg-green-500" : "bg-gray-300"}`} />{insight ? insight.online ? "Online" : "Offline" : "Unknown"}</span>; } },
       { key: "registered", header: "Registered", cell: user => date(user.registered_at) },
       { key: "status", header: "Status", cell: user => <><Badge tone={user.deactivated_at ? "warning" : "success"}>{user.deactivated_at ? "Frozen" : "Active"}</Badge>{user.application_status && <p className="mt-1 text-xs text-ink-muted">Application: {user.application_status.replaceAll("_", " ")}</p>}</> },
       { key: "action", header: "Actions", action: true, cell: user => <div className="flex gap-1"><Button variant="ghost" size="sm" aria-label={`Information for ${user.display_name || "user"}`} onClick={() => setInfoId(user.id)}>Info</Button><Button variant="outline" size="sm" onClick={() => void manage(user.id)}>Manage</Button></div> },

@@ -13,7 +13,7 @@ const noRefetch = () => undefined;
 /** Local-only visual fixture: uses the live question UI and never submits an answer. */
 export function ArenaPreview() {
   const [battle, setBattle] = useState<Battle | null>(null);
-  function start(worked = false) {
+  function start(worked = false, long = false) {
     const now = Date.now();
     setBattle({
       battle_id: "visual-preview", mode: "direct", state: "active", revision: now,
@@ -29,8 +29,13 @@ export function ArenaPreview() {
         position: 2, course_code: "PHY 101", answer_format: worked ? "worked_solution" : "standard",
         duration_seconds: worked ? 15 : 10, reading_at: new Date(now).toISOString(),
         opened_at: new Date(now + 3000).toISOString(), deadline: new Date(now + (worked ? 18000 : 13000)).toISOString(), my_option_id: null,
-        prompt: worked ? "A 2 kg object accelerates at 3 m/s². What force acts on it?" : "Which quantity is measured in newtons?",
-        options: worked ? [
+        prompt: long ? "How many categories are under the cognitive domain, and what are they?" : worked ? "A 2 kg object accelerates at 3 m/s². What force acts on it?" : "Which quantity is measured in newtons?",
+        options: long ? [
+          { id: "affective", body: "Five: receiving, responding, valuing, organisation and characterisation" },
+          { id: "psychomotor", body: "Six: perception, set, guided response, mechanism, adaptation and origination" },
+          { id: "domains", body: "Three: cognitive, affective and psychomotor" },
+          { id: "cognitive", body: "Six: knowledge, comprehension, application, analysis, synthesis and evaluation" },
+        ] : worked ? [
           { id: "force", steps: ["F = ma", "F = 2 × 3"], body: "6 N" },
           { id: "energy", steps: ["F = m ÷ a", "F = 2 ÷ 3"], body: "0.67 N" },
           { id: "power", steps: ["F = m + a", "F = 2 + 3"], body: "5 N" },
@@ -41,7 +46,7 @@ export function ArenaPreview() {
     });
   }
   return <FocusShell><div className="flex flex-col gap-4">
-    <div className="flex flex-wrap gap-2"><Button size="sm" variant="outline" onClick={() => start()}>Preview question</Button><Button size="sm" variant="outline" onClick={() => start(true)}>Preview calculation</Button><span className="self-center text-xs text-ink-muted">Local preview · sample data</span></div>
+    <div className="flex flex-wrap gap-2"><Button size="sm" variant="outline" onClick={() => start()}>Preview question</Button><Button size="sm" variant="outline" onClick={() => start(true)}>Preview calculation</Button><Button size="sm" variant="outline" onClick={() => start(false, true)}>Preview long options</Button><span className="self-center text-xs text-ink-muted">Local preview · sample data</span></div>
     {battle?.current_question ? <><BattleTopBar battle={battle} live onLeave={() => setBattle(null)} /><BattleScoreboard battle={battle} /><QuestionPanel key={battle.revision} battle={battle} question={battle.current_question} refetch={noRefetch} /></> : <p className="text-ink-muted">Choose a sample to preview the battle arena.</p>}
   </div></FocusShell>;
 }

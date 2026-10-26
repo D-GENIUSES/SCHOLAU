@@ -22,7 +22,7 @@ function ok(msg) {
 
 async function testGemini() {
   if (!geminiKey) {
-    fail("GEMINI_API_KEY not set — ingestion will use stub only.");
+    fail("GEMINI_API_KEY not set — source extraction will fail without importing drafts.");
     return;
   }
   const { GoogleGenAI } = await import("@google/genai");
