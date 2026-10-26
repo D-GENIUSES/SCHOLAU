@@ -95,13 +95,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
       .then((res) => {
         setAnimatedQuestion(qv);
         setChecked((prev) => ({ ...prev, [qv]: res }));
-        const idx = current.options.findIndex((o) => o.id === res.correct_option_id);
-        const correct = current.options[idx];
-        setAnnouncement(
-          res.is_correct
-            ? `Correct. ${res.explanation}`
-            : `Incorrect. The correct answer is ${String.fromCharCode(65 + idx)}${correct ? `: ${correct.body}` : ""}. ${res.explanation}`,
-        );
+        setAnnouncement(res.is_correct ? "Correct. Read the explanation below." : "Incorrect. Read the correct answer and explanation below.");
       })
       .catch((err: unknown) => {
         setErrors((prev) => ({ ...prev, [qv]: err }));

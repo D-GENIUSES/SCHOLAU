@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-const lessonBlockSchema = z.discriminatedUnion("type", [
+const mathsString = z.string().trim().min(1).max(4000);
+const workedStepSchema = z.object({ calculation: mathsString, explanation: mathsString, reading: mathsString.optional() });
+
+export const lessonBlockSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("equation"), expression: mathsString, reading: mathsString.optional() }),
+  z.object({ type: z.literal("worked_example"), title: mathsString, problem: mathsString,
+    steps: z.array(workedStepSchema).min(1).max(30), answer: mathsString,
+    answer_reading: mathsString.optional(), check: workedStepSchema.optional() }),
   z.object({ type: z.literal("heading"), level: z.union([z.literal(2), z.literal(3), z.literal(4)]).optional(), text: z.string().min(1) }),
   z.object({ type: z.literal("paragraph"), text: z.string().min(1) }),
   z.object({

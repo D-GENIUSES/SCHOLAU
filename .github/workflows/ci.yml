@@ -46,6 +46,8 @@ jobs:
         run: node --test apps/web/components/auth/google-callback.test.mjs apps/web/lib/utils.test.mjs apps/web/lib/supabase/request-auth.test.mjs apps/web/lib/security-auth.test.mjs
       - name: Verify streak celebration eligibility
         run: node apps/web/tests/streak-feedback.mjs
+      - name: Verify maths notation and teaching content
+        run: node scripts/test-maths.cjs
       - name: Check types
         run: pnpm typecheck
       - name: Build

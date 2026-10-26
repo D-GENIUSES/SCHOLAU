@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import { CheckCircle2, XCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import type { AttemptOption } from "@scholau/api";
@@ -66,7 +68,7 @@ export function QuestionOptions({
                 {String.fromCharCode(65 + i)}
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <span className="whitespace-pre-line break-words">{o.body}</span>
+                <span className="whitespace-pre-line break-words"><MathText text={o.body} /></span>
                 {isCorrect ? (
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-success">
                     <CheckCircle2 className="size-4" aria-hidden /> Correct answer

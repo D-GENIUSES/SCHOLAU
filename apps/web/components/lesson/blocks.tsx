@@ -1,5 +1,8 @@
 "use client";
 
+import { Equation, MathText } from "@/components/math/math-text";
+import { WorkedExample } from "@/components/math/worked-example";
+
 import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, ImageOff, Info, Lightbulb, NotebookPen } from "lucide-react";
 import { useId, useState } from "react";
@@ -29,18 +32,22 @@ export function LessonBlocks({ blocks }: { blocks: LessonBlock[] }) {
 
 function Block({ block }: { block: LessonBlock }) {
   switch (block.type) {
+    case "equation":
+      return <Equation expression={block.expression} reading={block.reading} display />;
+    case "worked_example":
+      return <WorkedExample block={block} />;
     case "paragraph":
-      return <p className="whitespace-pre-line">{block.text}</p>;
+      return <p className="whitespace-pre-line"><MathText text={block.text} /></p>;
     case "checkpoint":
       return <LessonCheckpoint key={JSON.stringify(block)} block={block} />;
     case "heading": {
       const level = block.level ?? 2;
-      if (level === 4) return <h4 className="mt-2 text-lg font-bold">{block.text}</h4>;
-      if (level === 3) return <h3 className="mt-3 text-xl font-bold">{block.text}</h3>;
-      return <h2 className="mt-4 text-2xl font-bold">{block.text}</h2>;
+      if (level === 4) return <h4 className="mt-2 text-lg font-bold"><MathText text={block.text} /></h4>;
+      if (level === 3) return <h3 className="mt-3 text-xl font-bold"><MathText text={block.text} /></h3>;
+      return <h2 className="mt-4 text-2xl font-bold"><MathText text={block.text} /></h2>;
     }
     case "list": {
-      const items = block.items.map((item, i) => <li key={i}>{item}</li>);
+      const items = block.items.map((item, i) => <li key={i}><MathText text={item} /></li>);
       return block.ordered ? (
         <ol className="flex list-decimal flex-col gap-1 pl-6">{items}</ol>
       ) : (
@@ -57,7 +64,7 @@ function Block({ block }: { block: LessonBlock }) {
           <Icon className={cn("mt-0.5 size-5 shrink-0", tone.iconClass)} aria-hidden />
           <div className="flex min-w-0 flex-col gap-1">
             <p className="font-semibold">{block.title ? `${tone.label}: ${block.title}` : tone.label}</p>
-            <p className="whitespace-pre-line">{block.text}</p>
+            <p className="whitespace-pre-line"><MathText text={block.text} /></p>
           </div>
         </aside>
       );
@@ -89,11 +96,11 @@ function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "chec
   const correct = selected === block.correct_index;
   return <div className="rounded-control border border-line bg-surface-page p-5">
     <fieldset disabled={checked} aria-describedby={`${id}-note`}>
-      <legend className="mb-3 font-bold">Check your understanding: {block.question}</legend>
+      <legend className="mb-3 font-bold">Check your understanding: <MathText text={block.question} /></legend>
       <div className="flex flex-col gap-2">
         {block.options.map((option, index) => <label key={index} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-control border border-line bg-surface-card p-3">
           <input type="radio" name={id} checked={selected === index} onChange={() => setSelected(index)} />
-          <span>{option}</span>
+          <span><MathText text={option} /></span>
         </label>)}
       </div>
     </fieldset>
@@ -101,8 +108,8 @@ function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "chec
     {!checked ? <Button className="mt-3" disabled={selected === null} onClick={() => setChecked(true)}>Check answer</Button> : null}
     <div aria-live="polite" role="status" className="mt-3">
       {checked ? <><p className="font-bold">{correct ? "Correct." : "Not quite."}</p>
-        <p className="mt-2">{block.explanation}</p>
-        {!correct ? <><p className="mt-2">Correct answer: {block.options[block.correct_index]}</p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
+        <p className="mt-2"><MathText text={block.explanation} /></p>
+        {!correct ? <><p className="mt-2">Correct answer: <MathText text={block.options[block.correct_index] ?? "Unavailable"} /></p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
       </> : null}
     </div>
   </div>;

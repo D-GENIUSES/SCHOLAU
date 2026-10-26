@@ -1,4 +1,5 @@
 "use client";
+import { MathText } from "@/components/math/math-text";
 
 import { CheckCircle2, X } from "lucide-react";
 import { type ReactNode, useEffect, useRef } from "react";
@@ -226,7 +227,7 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
     >
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">Prompt</h3>
-        <p className="mt-1 text-lg whitespace-pre-line">{d.prompt}</p>
+        <p className="mt-1 text-lg whitespace-pre-line"><MathText text={d.prompt} /></p>
       </div>
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">{d.answer_format === "fill_in_gap" ? "Fill-in-the-gap" : "Options"}</h3>
@@ -265,8 +266,8 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
                   {o.label}
                 </span>
                 <span className="min-w-0 flex-1 whitespace-pre-line">
-                  {o.steps?.map((step, index) => <span key={index} className="mb-2 block font-mono text-sm">{step}</span>)}
-                  <strong>{o.body}</strong>
+                  {o.steps?.map((step, index) => <span key={index} className="mb-2 block font-mono text-sm"><MathText text={step} /></span>)}
+                  <strong><MathText text={o.body} /></strong>
                 </span>
                 {correct ? (
                   <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-success">
@@ -283,7 +284,7 @@ export function QuestionDetail({ id, onClose, onDone }: { id: string; onClose: (
       <IngestionEvidenceList sourceReference={d.source_reference} />
       <div>
         <h3 className="text-sm font-semibold text-ink-muted">Explanation</h3>
-        <p className="mt-1 whitespace-pre-line">{d.explanation || <span className="text-danger">Missing</span>}</p>
+        <p className="mt-1 whitespace-pre-line">{d.explanation ? <MathText text={d.explanation} /> : <span className="text-danger">Missing</span>}</p>
       </div>
       <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Detail label="Source reference">

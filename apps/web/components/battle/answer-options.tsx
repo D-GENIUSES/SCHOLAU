@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import type { BattleCurrentQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
 
@@ -14,10 +16,10 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
   const worked = question.answer_format === "worked_solution";
   return (
     <fieldset disabled={disabled} className="min-w-0" aria-describedby={disabled && !received ? "battle-answer-phase" : undefined}>
-      <legend className="mb-3 w-full whitespace-pre-wrap break-words text-left text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl">{question.prompt}</legend>
+      <legend className="mb-3 w-full whitespace-pre-wrap break-words text-left text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl"><MathText text={question.prompt} /></legend>
       <p id="battle-answer-phase" className="sr-only">{received ? "Answer received" : disabled ? "Answers are locked during reading or after the deadline." : "Choose an answer, then submit."}</p>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
+      <div className={worked ? "grid grid-cols-1 gap-2 md:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3"}>
         {question.options.map((option, index) => {
           const checked = selected === option.id;
           return (
@@ -34,11 +36,11 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-3 break-words">
                 {worked && option.steps?.length ? (
-                  <span className="flex flex-col gap-2 font-mono text-xs leading-relaxed sm:text-sm">
-                    {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap">{step}</span>)}
+                  <span className="flex flex-col gap-2 text-sm leading-relaxed sm:text-sm">
+                    {option.steps.map((step, i) => <span key={i} className="whitespace-pre-wrap"><MathText text={step} /></span>)}
                   </span>
                 ) : null}
-                <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}>{option.body}</span>
+                <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}><MathText text={option.body} /></span>
               </span>
               {checked ? <span className="sr-only">{received ? "Answer received" : "Selected"}</span> : null}
             </label>

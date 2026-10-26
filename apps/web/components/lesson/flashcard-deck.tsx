@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -88,10 +90,10 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       >
         <div className="flashcard-inner">
           <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
-            <p className="flashcard-text">{lessonCardText(card.front)}</p>
+            <p className="flashcard-text"><MathText text={lessonCardText(card.front)} /></p>
           </div>
           <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-            <p className="flashcard-text whitespace-pre-line">{lessonCardText(card.back)}</p>
+            <p className="flashcard-text whitespace-pre-line"><MathText text={lessonCardText(card.back)} /></p>
           </div>
         </div>
       </button>

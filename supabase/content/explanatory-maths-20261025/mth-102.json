@@ -1,0 +1,895 @@
+{
+  "course_code": "MTH 102",
+  "materials": [
+    {
+      "sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "object_key": "course-materials/f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2.pdf",
+      "filename": "God_s_plan_MTH_102_practice_question (1).pdf",
+      "bytes": 409426
+    }
+  ],
+  "lessons": [
+    {
+      "logical_key": "au-materials-20261018-mth-102-l-001",
+      "source_sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "title": "Test an even function",
+      "objective": "Explain the method, justify each calculation step, and check the result: test an even function.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A function assigns an output to an input. An even function gives the same output when the input changes sign, throughout a domain symmetric about zero."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Substitute the entire negative input inside brackets; checking one input pair alone does not prove the identity."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Test whether \\(f(x)=x^2\\) is even.",
+          "steps": [
+            {
+              "calculation": "f(-x)=(-x)^2",
+              "explanation": "Replace every occurrence of x with the whole expression minus x."
+            },
+            {
+              "calculation": "(-x)^2=(-x)(-x)=x^2",
+              "explanation": "Squaring multiplies the expression by itself. Two negative factors give a positive product."
+            },
+            {
+              "calculation": "f(-x)=x^2=f(x)",
+              "explanation": "The output is unchanged for every real input, so the function is even."
+            }
+          ],
+          "answer": "f\\text{ is even}",
+          "check": {
+            "calculation": "f(-3)=9=f(3)",
+            "explanation": "This pair illustrates the symbolic proof; it is not a substitute for that proof."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Which relation defines an even function?",
+          "options": [
+            "f(x) is never defined at zero",
+            "f(x) = x for all x",
+            "f(-x) = -f(x) always",
+            "\\(f(-x) = f(x)\\)"
+          ],
+          "correct_index": 3,
+          "explanation": "\\[f(-x)=(-x)^2\\]\nReplace every occurrence of x with the whole expression minus x.\n\n\\[(-x)^2=(-x)(-x)=x^2\\]\nSquaring multiplies the expression by itself. Two negative factors give a positive product.\n\n\\[f(-x)=x^2=f(x)\\]\nThe output is unchanged for every real input, so the function is even.\n\n\\[f(-3)=9=f(3)\\]\nThis pair illustrates the symbolic proof; it is not a substitute for that proof."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test whether \\(g(x)=x^2+2\\) is even. Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[g(-x)=x^2+2=g(x)\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Substitute the entire negative input inside brackets; checking one input pair alone does not prove the identity."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "An even function is not defined by producing even integers."
+        }
+      ],
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "logical_key": "au-materials-20261018-mth-102-l-002",
+      "source_sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "title": "Test an odd function",
+      "objective": "Explain the method, justify each calculation step, and check the result: test an odd function.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "An odd function changes the sign of its output when its input changes sign. This identity must hold throughout a domain symmetric about zero."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep the negative input in brackets before applying the exponent."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Test whether \\(f(x)=x^3\\) is odd.",
+          "steps": [
+            {
+              "calculation": "f(-x)=(-x)^3",
+              "explanation": "Substitute minus x for the input, keeping its sign inside the power."
+            },
+            {
+              "calculation": "(-x)^3=(-x)(-x)(-x)=-x^3",
+              "explanation": "Two negative factors first give a positive product; multiplying by the third gives a negative product."
+            },
+            {
+              "calculation": "f(-x)=-x^3=-f(x)",
+              "explanation": "The output has the opposite sign of the original output for every real x."
+            }
+          ],
+          "answer": "f\\text{ is odd}",
+          "check": {
+            "calculation": "f(-2)=-8=-f(2)",
+            "explanation": "The numerical check agrees with the identity."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Which relation defines an odd function?",
+          "options": [
+            "f(-x) = f(x) always",
+            "f(x) must be constant and nonzero",
+            "\\(f(-x) = -f(x)\\)",
+            "f(x) is always positive"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[f(-x)=(-x)^3\\]\nSubstitute minus x for the input, keeping its sign inside the power.\n\n\\[(-x)^3=(-x)(-x)(-x)=-x^3\\]\nTwo negative factors first give a positive product; multiplying by the third gives a negative product.\n\n\\[f(-x)=-x^3=-f(x)\\]\nThe output has the opposite sign of the original output for every real x.\n\n\\[f(-2)=-8=-f(2)\\]\nThe numerical check agrees with the identity."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test whether \\(g(x)=3x\\) is odd. Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[g(-x)=-3x=-g(x)\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep the negative input in brackets before applying the exponent."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "An odd function is not defined by producing odd integers."
+        }
+      ],
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "logical_key": "au-materials-20261018-mth-102-l-003",
+      "source_sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "title": "Evaluate a polynomial limit",
+      "objective": "Explain the method, justify each calculation step, and check the result: evaluate a polynomial limit.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A limit describes the output approached as the input approaches a point. A polynomial is continuous, so its limit at a real point equals its value there."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Establish that substitution is valid before substituting."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Find \\(\\lim_{x\\to3}(2x+1)\\).",
+          "steps": [
+            {
+              "calculation": "\\lim_{x\\to3}(2x+1)=2(3)+1",
+              "explanation": "This is a polynomial, so continuity allows us to replace x by three."
+            },
+            {
+              "calculation": "2(3)+1=6+1",
+              "explanation": "Carry out the multiplication first."
+            },
+            {
+              "calculation": "6+1=7",
+              "explanation": "Add the remaining terms."
+            }
+          ],
+          "answer": "7",
+          "check": {
+            "calculation": "f(2.99)=6.98,\\qquad f(3.01)=7.02",
+            "explanation": "Inputs just below and above three give outputs close to seven."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "What is the limit of 2x + 1 as x approaches 3?",
+          "options": [
+            "1",
+            "7",
+            "3",
+            "6"
+          ],
+          "correct_index": 1,
+          "explanation": "\\[\\lim_{x\\to3}(2x+1)=2(3)+1\\]\nThis is a polynomial, so continuity allows us to replace x by three.\n\n\\[2(3)+1=6+1\\]\nCarry out the multiplication first.\n\n\\[6+1=7\\]\nAdd the remaining terms.\n\n\\[f(2.99)=6.98,\\qquad f(3.01)=7.02\\]\nInputs just below and above three give outputs close to seven."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Find \\(\\lim_{x\\to2}(2x+1)\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[5\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Establish that substitution is valid before substituting."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "Do not assume direct substitution resolves every limit without considering the expression."
+        }
+      ],
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 11 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "logical_key": "au-materials-20261018-mth-102-l-004",
+      "source_sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "title": "Differentiate a power",
+      "objective": "Explain the method, justify each calculation step, and check the result: differentiate a power.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A derivative measures local rate of change. In the power rule, multiply by the old exponent and then reduce that exponent by one."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "The notation \\(f\\prime(x)\\) means the derivative of f; the exponent on x is not the coefficient in front of it."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Differentiate \\(f(x)=x^2\\).",
+          "steps": [
+            {
+              "calculation": "\\frac{d}{dx}x^n=nx^{n-1}",
+              "explanation": "Use the power rule for this polynomial power; n denotes its exponent."
+            },
+            {
+              "calculation": "f\\prime(x)=2x^{2-1}",
+              "explanation": "Here n is two. Multiply by two and subtract one from the exponent."
+            },
+            {
+              "calculation": "f\\prime(x)=2x^1=2x",
+              "explanation": "An exponent of one leaves x unchanged."
+            }
+          ],
+          "answer": "f\\prime(x)=2x",
+          "check": {
+            "calculation": "\\frac{(x+h)^2-x^2}{h}=2x+h\\ \\longrightarrow\\ 2x",
+            "explanation": "For nonzero h the difference quotient simplifies to two x plus h; letting h approach zero confirms the rule."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "What is the derivative of x squared?",
+          "options": [
+            "x cubed",
+            "\\(x\\)",
+            "\\(2x\\)",
+            "2"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[\\frac{d}{dx}x^n=nx^{n-1}\\]\nUse the power rule for this polynomial power; n denotes its exponent.\n\n\\[f\\prime(x)=2x^{2-1}\\]\nHere n is two. Multiply by two and subtract one from the exponent.\n\n\\[f\\prime(x)=2x^1=2x\\]\nAn exponent of one leaves x unchanged.\n\n\\[\\frac{(x+h)^2-x^2}{h}=2x+h\\ \\longrightarrow\\ 2x\\]\nFor nonzero h the difference quotient simplifies to two x plus h; letting h approach zero confirms the rule."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Differentiate \\(x^3\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[3x^2\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "The notation \\(f\\prime(x)\\) means the derivative of f; the exponent on x is not the coefficient in front of it."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "The derivative of x² is not x or 2 alone; both coefficient and remaining power matter."
+        }
+      ],
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 5 [source SHA-256 f6eb3c8b1e77]"
+    },
+    {
+      "logical_key": "au-materials-20261018-mth-102-l-005",
+      "source_sha256": "f6eb3c8b1e77dfd01246b17a8f185c1563d4903fe53e37c9f86bdd38beb9fcc2",
+      "title": "Explain the constant rule",
+      "objective": "Explain the method, justify each calculation step, and check the result: explain the constant rule.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A constant function has the same output at every input. Its output change is zero even when the input changes."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "A derivative divides output change by input change, then takes a limit as the input change approaches zero."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Differentiate \\(f(x)=7\\).",
+          "steps": [
+            {
+              "calculation": "f(x+h)-f(x)=7-7=0",
+              "explanation": "Both outputs equal seven, so their difference is zero."
+            },
+            {
+              "calculation": "\\frac{f(x+h)-f(x)}{h}=\\frac0h=0\\quad(h\\ne0)",
+              "explanation": "For any nonzero input change, dividing the zero output change gives zero."
+            },
+            {
+              "calculation": "f\\prime(x)=\\lim_{h\\to0}0=0",
+              "explanation": "The quotient stays zero as the input change approaches zero."
+            }
+          ],
+          "answer": "f\\prime(x)=0",
+          "check": {
+            "calculation": "f(2)=7,\\qquad f(5)=7",
+            "explanation": "Different inputs produce no output change, agreeing with zero slope."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "What is the derivative of the constant 7?",
+          "options": [
+            "1",
+            "7",
+            "0",
+            "\\(7x\\)"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[f(x+h)-f(x)=7-7=0\\]\nBoth outputs equal seven, so their difference is zero.\n\n\\[\\frac{f(x+h)-f(x)}{h}=\\frac0h=0\\quad(h\\ne0)\\]\nFor any nonzero input change, dividing the zero output change gives zero.\n\n\\[f\\prime(x)=\\lim_{h\\to0}0=0\\]\nThe quotient stays zero as the input change approaches zero.\n\n\\[f(2)=7,\\qquad f(5)=7\\]\nDifferent inputs produce no output change, agreeing with zero slope."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Differentiate the constant function \\(g(x)=-4\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[g\\prime(x)=0\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "A derivative divides output change by input change, then takes a limit as the input change approaches zero."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "A constant's derivative is zero, not the original constant."
+        }
+      ],
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 23 [source SHA-256 f6eb3c8b1e77]"
+    }
+  ],
+  "questions": [
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-l-001",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Which relation defines an even function?",
+      "options": [
+        {
+          "label": "A",
+          "body": "f(x) is never defined at zero"
+        },
+        {
+          "label": "B",
+          "body": "f(x) = x for all x"
+        },
+        {
+          "label": "C",
+          "body": "f(-x) = -f(x) always"
+        },
+        {
+          "label": "D",
+          "body": "\\(f(-x) = f(x)\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[f(-x)=(-x)^2\\]\nReplace every occurrence of x with the whole expression minus x.\n\n\\[(-x)^2=(-x)(-x)=x^2\\]\nSquaring multiplies the expression by itself. Two negative factors give a positive product.\n\n\\[f(-x)=x^2=f(x)\\]\nThe output is unchanged for every real input, so the function is even.\n\n\\[f(-3)=9=f(3)\\]\nThis pair illustrates the symbolic proof; it is not a substitute for that proof.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard"
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-l-002",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Which relation defines an odd function?",
+      "options": [
+        {
+          "label": "A",
+          "body": "f(-x) = f(x) always"
+        },
+        {
+          "label": "B",
+          "body": "f(x) must be constant and nonzero"
+        },
+        {
+          "label": "C",
+          "body": "\\(f(-x) = -f(x)\\)"
+        },
+        {
+          "label": "D",
+          "body": "f(x) is always positive"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[f(-x)=(-x)^3\\]\nSubstitute minus x for the input, keeping its sign inside the power.\n\n\\[(-x)^3=(-x)(-x)(-x)=-x^3\\]\nTwo negative factors first give a positive product; multiplying by the third gives a negative product.\n\n\\[f(-x)=-x^3=-f(x)\\]\nThe output has the opposite sign of the original output for every real x.\n\n\\[f(-2)=-8=-f(2)\\]\nThe numerical check agrees with the identity.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard"
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-l-003",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "What is the limit of 2x + 1 as x approaches 3?",
+      "options": [
+        {
+          "label": "A",
+          "body": "1"
+        },
+        {
+          "label": "B",
+          "body": "7"
+        },
+        {
+          "label": "C",
+          "body": "3"
+        },
+        {
+          "label": "D",
+          "body": "6"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[\\lim_{x\\to3}(2x+1)=2(3)+1\\]\nThis is a polynomial, so continuity allows us to replace x by three.\n\n\\[2(3)+1=6+1\\]\nCarry out the multiplication first.\n\n\\[6+1=7\\]\nAdd the remaining terms.\n\n\\[f(2.99)=6.98,\\qquad f(3.01)=7.02\\]\nInputs just below and above three give outputs close to seven.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 11 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard"
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-l-004",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "What is the derivative of x squared?",
+      "options": [
+        {
+          "label": "A",
+          "body": "x cubed"
+        },
+        {
+          "label": "B",
+          "body": "\\(x\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(2x\\)"
+        },
+        {
+          "label": "D",
+          "body": "2"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[\\frac{d}{dx}x^n=nx^{n-1}\\]\nUse the power rule for this polynomial power; n denotes its exponent.\n\n\\[f\\prime(x)=2x^{2-1}\\]\nHere n is two. Multiply by two and subtract one from the exponent.\n\n\\[f\\prime(x)=2x^1=2x\\]\nAn exponent of one leaves x unchanged.\n\n\\[\\frac{(x+h)^2-x^2}{h}=2x+h\\ \\longrightarrow\\ 2x\\]\nFor nonzero h the difference quotient simplifies to two x plus h; letting h approach zero confirms the rule.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 5 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard"
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-l-005",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "What is the derivative of the constant 7?",
+      "options": [
+        {
+          "label": "A",
+          "body": "1"
+        },
+        {
+          "label": "B",
+          "body": "7"
+        },
+        {
+          "label": "C",
+          "body": "0"
+        },
+        {
+          "label": "D",
+          "body": "\\(7x\\)"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[f(x+h)-f(x)=7-7=0\\]\nBoth outputs equal seven, so their difference is zero.\n\n\\[\\frac{f(x+h)-f(x)}{h}=\\frac0h=0\\quad(h\\ne0)\\]\nFor any nonzero input change, dividing the zero output change gives zero.\n\n\\[f\\prime(x)=\\lim_{h\\to0}0=0\\]\nThe quotient stays zero as the input change approaches zero.\n\n\\[f(2)=7,\\qquad f(5)=7\\]\nDifferent inputs produce no output change, agreeing with zero slope.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 23 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard"
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-b-001",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "For f(x) = x + 2, what is f(3)?",
+      "options": [
+        {
+          "label": "A",
+          "body": "5"
+        },
+        {
+          "label": "B",
+          "body": "6"
+        },
+        {
+          "label": "C",
+          "body": "9"
+        },
+        {
+          "label": "D",
+          "body": "1"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[f(3)=3+2\\]\nReplace the input x by three in the given function.\n\n\\[3+2=5\\]\nAdd to obtain the output.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 9 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard",
+      "battle_seconds": 8,
+      "battle_reading_seconds": 3
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-b-002",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Which function is even?",
+      "options": [
+        {
+          "label": "A",
+          "body": "f(x) = x squared"
+        },
+        {
+          "label": "B",
+          "body": "\\(f(x) = x\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(f(x) = x + 1\\)"
+        },
+        {
+          "label": "D",
+          "body": "f(x) = x cubed"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[f(-x)=(-x)^2\\]\nReplace every occurrence of x with the whole expression minus x.\n\n\\[(-x)^2=(-x)(-x)=x^2\\]\nSquaring multiplies the expression by itself. Two negative factors give a positive product.\n\n\\[f(-x)=x^2=f(x)\\]\nThe output is unchanged for every real input, so the function is even.\n\n\\[f(-3)=9=f(3)\\]\nThis pair illustrates the symbolic proof; it is not a substitute for that proof.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard",
+      "battle_seconds": 8,
+      "battle_reading_seconds": 3
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-b-003",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Which function is odd?",
+      "options": [
+        {
+          "label": "A",
+          "body": "f(x) = x cubed"
+        },
+        {
+          "label": "B",
+          "body": "\\(f(x) = 2\\)"
+        },
+        {
+          "label": "C",
+          "body": "f(x) = x squared"
+        },
+        {
+          "label": "D",
+          "body": "f(x) = x squared + 1"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[f(-x)=(-x)^3\\]\nSubstitute minus x for the input, keeping its sign inside the power.\n\n\\[(-x)^3=(-x)(-x)(-x)=-x^3\\]\nTwo negative factors first give a positive product; multiplying by the third gives a negative product.\n\n\\[f(-x)=-x^3=-f(x)\\]\nThe output has the opposite sign of the original output for every real x.\n\n\\[f(-2)=-8=-f(2)\\]\nThe numerical check agrees with the identity.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 1 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard",
+      "battle_seconds": 8,
+      "battle_reading_seconds": 3
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-b-004",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "For a function continuous at x = a, the limit as x approaches a equals what?",
+      "options": [
+        {
+          "label": "A",
+          "body": "Always infinity"
+        },
+        {
+          "label": "B",
+          "body": "\\(f(a)\\)"
+        },
+        {
+          "label": "C",
+          "body": "Always zero"
+        },
+        {
+          "label": "D",
+          "body": "Always one"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[\\lim_{x\\to a}f(x)=f(a)\\]\nContinuity at a means the approached value exists and equals the function value at a. This equality is precisely the condition needed to substitute directly.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 18 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard",
+      "battle_seconds": 8,
+      "battle_reading_seconds": 4
+    },
+    {
+      "course_code": "MTH 102",
+      "logical_question_key": "au-materials-20261018-mth-102-b-005",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "What is the derivative of 3x?",
+      "options": [
+        {
+          "label": "A",
+          "body": "3"
+        },
+        {
+          "label": "B",
+          "body": "0"
+        },
+        {
+          "label": "C",
+          "body": "\\(x\\)"
+        },
+        {
+          "label": "D",
+          "body": "3x squared"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[\\frac{d}{dx}(3x)=3\\frac{d}{dx}x\\]\nA constant multiplier stays outside the derivative.\n\n\\[\\frac{d}{dx}x=1\\]\nThe function x changes one unit for each unit increase of its input.\n\n\\[3\\cdot1=3\\]\nMultiply the constant by the derivative.",
+      "source_reference": "God_s_plan_MTH_102_practice_question (1).pdf, page 15 [source SHA-256 f6eb3c8b1e77]",
+      "answer_format": "standard",
+      "battle_seconds": 8,
+      "battle_reading_seconds": 3
+    }
+  ]
+}

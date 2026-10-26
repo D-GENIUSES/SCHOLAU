@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "@/components/math/math-text";
+
 import { Mic, MicOff } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -63,7 +65,7 @@ export function BattleGapAnswer({
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="whitespace-pre-wrap text-center text-lg font-bold leading-snug">{question.prompt}</p>
+      <p className="whitespace-pre-wrap text-center text-lg font-bold leading-snug"><MathText text={question.prompt} /></p>
       <Field id="battle-gap-answer" label="Your answer">
         <Textarea
           id="battle-gap-answer"
