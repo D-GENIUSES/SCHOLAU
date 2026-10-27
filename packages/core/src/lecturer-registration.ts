@@ -18,6 +18,8 @@ export interface LecturerApplication extends LecturerApplicationInput {
   created_at: string; updated_at: string; reviewed_at: string | null;
   institutional_profile_url: string;
   assigned_offering_ids: string[];
+  /** Administrator-only preview. Approval recomputes it in the database. */
+  course_assignment_plan?: { offering_ids: string[]; unmatched_requests: string[] };
   history: { action: string; applicant_message: string; created_at: string; internal_note?: string; actor_id?: string | null }[];
 }
 export interface LecturerOffering {

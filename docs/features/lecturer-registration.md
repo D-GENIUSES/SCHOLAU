@@ -17,7 +17,7 @@ New lecturer signups create an Auth account, a base profile with immutable regis
 
 Pending, changes-requested and rejected applicants receive neither student nor lecturer roles, student enrollments, welcome XP, nor a public student leaderboard entry. Choosing a role in metadata cannot grant privileges. Existing users are not reclassified and no XP or enrollment backfill is performed.
 
-Only an administrator can approve, request changes or reject a pending application. Approval requires confirmed email; decision, lecturer role, optional assignments, notification, review history and audit record commit in one transaction. Published, valid offerings are checked on the server. Lecturers may be approved with no courses and assigned courses later.
+Only an administrator can approve, request changes or reject a pending application. Approval requires confirmed email; decision, lecturer role, matching requested courses plus any administrator-selected offerings, notification, review history and audit record commit in one transaction. Published, valid offerings are checked on the server. Entries without a unique published match are flagged for manual assignment or requested corrections; an administrator can still approve access and assign these later.
 
 Changes and rejection require an applicant-visible reason. Only changes-requested applications can be edited and resubmitted by their owner. Rejected applications are read-only in this version. Request keys and revisions protect against retries and concurrent review; callers must refresh stale records. Internal notes exist only in the private review table and are omitted from applicant RPC responses.
 
@@ -56,3 +56,11 @@ The workspace contains the regression runner and browser tests. Database regress
 Browser contract tests against the actual Next.js app intercept test signup responses so no live users or emails are created. They verify account choices, fail-closed readiness, lecturer metadata, unchanged student signup metadata, lecturer-specific verification copy, protected routes and mobile layouts. The prototype has additional full application/correction/approval/rejection tests and retains its original challenge-flow regression suite.
 
 No feature can be marked remotely active based on local checks alone: verify the registered migration, feature flag and remote RPC grants after deployment.
+
+## Automatic course assignment on approval
+
+Migration `20261029001400_lecturer_approval_course_assignments.sql` makes approval assign requested courses automatically. The private assignment resolver matches exact course codes (including the dropdown’s code/title lines) within one uniquely matched active university, faculty and department, and includes all matching active published offerings across levels and semesters. Duplicate requests are deduplicated. Existing application text works without a backfill. No existing approved lecturer is changed by this migration.
+
+The administrator detail response includes an optional `course_assignment_plan` with `offering_ids` and `unmatched_requests`. The screen marks matched offerings as automatically assigned, allows additional manual choices, and warns before approving unmatched entries. Approval recomputes its own plan in the database; a client cannot suppress the matched assignments. Role, assignments, decision, audit and notification remain atomic and idempotent. Administrators can edit assignments normally after approval.
+
+Run `node scripts/test-lecturer-approval-database.mjs` and `node scripts/test-lecturer-approval-browser.mjs`. The database runner uses the actual foundational and lecturer registration migrations in isolated PostgreSQL; the browser runner uses the actual admin component with mocked applications and the last production-build CSS. No production approvals or messages are issued by either runner.
