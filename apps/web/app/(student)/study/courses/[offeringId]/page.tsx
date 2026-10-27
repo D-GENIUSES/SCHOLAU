@@ -110,6 +110,7 @@ function Overview({ data }: { data: CourseOverview }) {
         }
       />
 
+      <div className="mb-4"><Button asChild variant="secondary"><Link href={`/courses/${data.offering_id}/challenges`}>Course challenges</Link></Button></div>
       {data.unit_count != null ? <p className="mb-4 text-sm text-ink-muted">{pluralize(data.unit_count, "unit")} · Status {data.requirement_status}</p> : null}
       {progress.lessons_total === 0 ? <p className="mb-4 text-ink-muted">Content coming soon. Published lessons and assessments will appear here when ready.</p> : null}
       {data.lecture_hours != null || data.practical_hours != null ? <p className="mb-4 text-sm text-ink-muted">Lecture hours: {data.lecture_hours ?? "Not provided"} · Practical hours: {data.practical_hours ?? "Not provided"}</p> : null}

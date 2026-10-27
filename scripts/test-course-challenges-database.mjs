@@ -1,0 +1,97 @@
+import assert from "node:assert/strict";
+import { createChallengeTestDatabase } from "./lib/course-challenge-test-db.mjs";
+const { db, id, query, login, lecturer, students, offering, otherOffering, bankVersion } = await createChallengeTestDatabase();
+let checks=0;
+try {
+  const challenge=id(300), scheduled=id(301), cancelled=id(302), draftId=id(303);
+  const own={prompt:'What is 2 + 2?',options:['3','4','5','6'],correct:1,explanation:'Two plus two equals four.'};
+  const data={title:'Course challenge',instructions:'Answer carefully.',duration_minutes:15,questions:[own]};
+  const rpc=async(name,args=[],params=[]) => (await query(`select public.${name}(${params.length?params.join(','):args.map((_,i)=>'$'+(i+1)).join(',')}) as value`,args))[0].value;
+  const save=(cid,revision=0,body=data,oid=offering)=>rpc('save_course_challenge_v1',[cid,oid,revision,body]);
+  const detail=(cid=challenge,uid=null)=>rpc('get_course_challenge_v1',[cid,uid]);
+  const join=(cid=challenge)=>rpc('join_course_challenge_v1',[cid]);
+  const answer=(q,o,rev,cid=challenge)=>rpc('answer_course_challenge_v1',[cid,q,o,rev]);
+  const roster=(cid=challenge,search='',offset=0)=>rpc('course_challenge_roster_v1',[offering,cid,search,offset]);
+  const eq=(actual,expected)=>{assert.deepEqual(actual,expected);checks++;};
+  const reject=async(fn,regex)=>{await assert.rejects(fn,regex);checks++;};
+  await login(lecturer.uid);
+  const bank=await rpc('challenge_question_bank_v1',[offering,'Bank',0]);eq(bank.items.length,1);eq(bank.items[0].correct,1);
+  eq((await rpc('challenge_question_bank_v1',[offering,'no match',0])).items.length,0);
+  eq((await rpc('challenge_question_bank_v1',[offering,'',20])).items.length,0);
+  const bankDraft=id(320);
+  const canonical=await save(bankDraft,0,{...data,questions:[{...bank.items[0],correct:3,prompt:'Tampered'}]});
+  eq(canonical.questions[0].correct,1);eq(canonical.questions[0].prompt,'Bank: 1 + 1?');
+  await reject(()=>save(id(321),0,{...data,questions:[bank.items[0],bank.items[0]]}),/VALIDATION_FAILED/);
+  await db.exec('reset role');await db.exec('set session_replication_role=replica');await db.query("update public.question_versions set prompt='Edited bank question' where id=$1",[bankVersion]);await db.exec('set session_replication_role=origin');
+  await login(lecturer.uid);await rpc('publish_course_challenge_v1',[bankDraft,1,null]);
+  await db.exec('reset role');eq((await query("select questions->0->>'prompt' value from private.course_challenges where id=$1",[bankDraft]))[0].value,'Bank: 1 + 1?');
+  await login(students[0]);await reject(()=>rpc('challenge_question_bank_v1',[offering,'',0]),/FORBIDDEN/);
+  await login(lecturer.uid);
+  let r=await save(challenge);eq(r.challenge.state,'draft');
+  eq((await detail()).questions[0].correct,1);
+  await reject(()=>save(challenge),/STALE_REVISION/);
+  await reject(()=>save(id(305),0,{...data,duration_minutes:181}),/VALIDATION_FAILED/);
+  await reject(()=>save(id(306),0,{...data,questions:[{...own,options:['A','A','B','C']}]}),/VALIDATION_FAILED/);
+  await reject(()=>save(id(307),0,data,otherOffering),/FORBIDDEN/);
+  eq((await roster(null)).items.length,3);
+  await login(students[0]); await reject(()=>detail(),/FORBIDDEN/);await reject(()=>save(draftId),/FORBIDDEN/);
+  await login(lecturer.uid);
+  await save(scheduled);await rpc('publish_course_challenge_v1',[scheduled,1,'2099-01-01T10:00:00+01:00']);
+  eq((await detail(scheduled)).challenge.state,'upcoming');
+  eq(new Date((await detail(scheduled)).challenge.starts_at).toISOString(),'2099-01-01T09:00:00.000Z');
+  await login(students[0]);eq((await detail(scheduled)).questions,[]);await reject(()=>join(scheduled),/INVALID_STATE/);
+  await login(lecturer.uid);
+  await save(cancelled);await rpc('publish_course_challenge_v1',[cancelled,1,null]);await rpc('cancel_course_challenge_v1',[cancelled]);
+  eq((await detail(cancelled)).challenge.state,'cancelled');
+  await save(draftId,0,{...data,questions:[]});await reject(()=>rpc('publish_course_challenge_v1',[draftId,1,null]),/VALIDATION_FAILED/);
+  r=await rpc('publish_course_challenge_v1',[challenge,1,null]);eq(r.challenge.state,'active');
+  await rpc('publish_course_challenge_v1',[challenge,1,null]);
+  await db.exec('reset role');
+  eq((await query("select count(*)::int n from public.notifications where event_key like $1",[`course-challenge:${challenge}:%`]))[0].n,3);
+  await login(lecturer.uid);await reject(()=>save(challenge,2),/INVALID_STATE/);
+  await login(students[3]);await reject(()=>join(),/FORBIDDEN/);await reject(()=>detail(),/FORBIDDEN/);await reject(()=>roster(),/FORBIDDEN/);
+  await login(students[0]);eq((await detail()).questions,[]);await reject(()=>join(cancelled),/INVALID_STATE/);
+  r=await join();eq(r.questions[0].correct,undefined);eq(r.questions[0].explanation,undefined);eq(r.attempt.revision,1);
+  eq((await join()).attempt.revision,1);
+  await reject(()=>answer(1,1,1),/VALIDATION_FAILED/);await reject(()=>answer(0,4,1),/VALIDATION_FAILED/);
+  r=await answer(0,1,1);eq(r.attempt.answers,{'0':1});eq(r.attempt.score,null);
+  eq((await answer(0,1,1)).attempt.revision,2); // ambiguous retry doesn't create a second write
+  await reject(()=>answer(0,2,1),/STALE_REVISION/);
+  await reject(()=>detail(challenge,students[1]),/FORBIDDEN/);
+  await reject(()=>roster(),/FORBIDDEN/);
+  r=await rpc('submit_course_challenge_v1',[challenge,2]);eq(Boolean(r.attempt.submitted_at),true);eq(r.attempt.score,null);
+  eq((await rpc('submit_course_challenge_v1',[challenge,2])).attempt.submitted_at,r.attempt.submitted_at);
+  await reject(()=>answer(0,2,3),/DEADLINE_PASSED/);
+  await login(students[1]);await join();await answer(0,1,1); // unfinished, finalized at deadline
+  await login(lecturer.uid);r=await roster();eq(r.items.filter(x=>x.status==='not_participated').length,1);eq(r.items.every(x=>x.score===null&&x.rank===null),true);
+  await db.exec('reset role');
+  await db.query("update private.course_challenges set starts_at=now()-interval '15 minutes',ends_at=now()-interval '1 second' where id=$1",[challenge]);
+  await db.query("update private.course_challenge_attempts set submitted_at=now()-interval '2 minutes' where challenge_id=$1 and user_id=$2",[challenge,students[0]]);
+  await login(students[1]);r=await detail();eq(r.challenge.state,'finished');eq(r.attempt.score,1);eq(r.questions[0].correct,1);eq(r.attempt.submitted_at,r.challenge.ends_at);
+  r=await roster();eq(r.items.length,2);eq(r.items[0].rank,1);eq(r.items[1].rank,2);
+  await login(students[0]);r=await roster();eq(r.items[1].name.startsWith('Participant '),true);eq(r.items[1].user_id,null);
+  await reject(()=>answer(0,2,3),/DEADLINE_PASSED/);await reject(()=>join(),/INVALID_STATE/);
+  await login(lecturer.uid);r=await roster();eq(r.items.length,3);eq(r.items[1].name,'Student 2');eq(r.items[2].rank,null);
+  eq((await detail(challenge,students[1])).attempt.score,1);
+  await reject(()=>rpc('cancel_course_challenge_v1',[challenge]),/INVALID_STATE/);
+  // Exact ties share a rank; scores take precedence over speed.
+  await db.exec('reset role');
+  await db.query('update private.course_challenge_attempts set submitted_at=(select ends_at from private.course_challenges where id=$1) where challenge_id=$1',[challenge]);
+  await login(students[0]);r=await roster();eq(r.items.map(x=>x.rank),[1,1]);
+  await db.exec('reset role');await db.query("update private.course_challenge_attempts set answers='{}',submitted_at=(select starts_at from private.course_challenges where id=$1) where challenge_id=$1 and user_id=$2",[challenge,students[1]]);
+  await login(students[0]);eq((await roster()).items[0].is_me,true);
+  // Historical attempt remains available after enrollment ends.
+  await db.exec('reset role');await db.query('update public.enrollments set ended_at=now() where user_id=$1',[students[0]]);
+  await login(students[0]);eq((await detail()).attempt.score,1);eq((await rpc('list_course_challenges_v1',[offering,0])).items.length,1);
+  await login(lecturer.uid);eq((await roster(challenge,'Student 2')).items.length,1);eq((await roster(challenge,'',20)).items.length,0);
+  // Removing assignment immediately revokes teacher access.
+  await db.exec('reset role');await db.query('delete from public.lecturer_course_assignments where user_id=$1',[lecturer.uid]);
+  await login(lecturer.uid);await reject(()=>detail(),/FORBIDDEN/);await reject(()=>roster(),/FORBIDDEN/);
+  // Grants and RLS: no direct keys, writes or anonymous RPC access.
+  await db.exec('reset role');
+  eq((await query("select bool_and(relrowsecurity) value from pg_class c join pg_namespace n on n.oid=c.relnamespace where c.relkind='r' and n.nspname='private' and c.relname like 'course_challenge%'"))[0].value,true);
+  eq((await query("select has_table_privilege('authenticated','private.course_challenges','SELECT') value"))[0].value,false);
+  eq((await query("select has_function_privilege('anon','public.get_course_challenge_v1(uuid,uuid)','EXECUTE') value"))[0].value,false);
+  eq((await query("select has_function_privilege('authenticated','private.challenge_score(jsonb,jsonb)','EXECUTE') value"))[0].value,false);
+  console.log(JSON.stringify({checks}));
+} catch (e) { console.error(e.message, e.where ?? "", e.query ?? ""); process.exitCode=1; } finally { await db.close(); }
