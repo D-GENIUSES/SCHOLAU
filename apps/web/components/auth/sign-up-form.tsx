@@ -19,9 +19,10 @@ import { UniversitySelect } from "./university-select";
 import { RegistrationStudyFields } from "./registration-study-fields";
 import { suggestUsernames, UsernameSuggestions } from "./username-suggestions";
 import { RegistrationLegal, useRegistrationLegal } from "./registration-legal";
-import { GoogleSignIn } from "./google-sign-in";
+import { authHref, type AuthContext } from "./auth-navigation";
+import { safeNext } from "@/lib/utils";
 
-export function SignUpForm() {
+export function SignUpForm({ next, context }: { next?: string; context?: AuthContext }) {
   const legal = useRegistrationLegal();
   const analytics = useAnalytics();
   const [step, setStep] = useState<"account" | "studies">("account");
@@ -54,13 +55,13 @@ export function SignUpForm() {
       setStep("account");
       return;
     }
-    const destination = values.department.trim().toLowerCase() === "law" ? "/onboarding/courses" : "/home";
+    const destination = values.department.trim().toLowerCase() === "law" ? "/onboarding/courses" : safeNext(next, "/home");
     const { data, error: authError } = await getBrowserSupabase().auth.signUp({
       email: values.email,
       password: values.password,
       options: {
         data: { username: values.username, display_name: values.username, ...registrationAcademicMetadata(values), ...legal.metadata() },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=${destination}`,
+        emailRedirectTo: `${window.location.origin}/auth/callback?${new URLSearchParams({ next: destination })}`,
       },
     });
     if (authError) {
@@ -85,7 +86,6 @@ export function SignUpForm() {
     <AuthSteps current={step === "account" ? 0 : 1} labels={["Account", "Study details"]} />
     <AuthHeading title={step === "account" ? "Create your account" : "Your study details"}
       description={step === "account" ? "Choose a username, then enter your email and a password." : "We use these details to find your course assignments."} />
-    {step === "account" ? <div className="mb-4"><GoogleSignIn disabled={isSubmitting} /></div> : null}
     <form noValidate className="auth-form" onSubmit={(event) => {
       if (step === "account") { event.preventDefault(); void nextStep(); }
       else void createAccount(event);
@@ -120,7 +120,7 @@ export function SignUpForm() {
         <Button type="submit" block loading={isSubmitting}>Create account</Button>
         <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => { setError(null); setStep("account"); }}>Back</Button>
       </>}
-      <p className="text-center text-sm text-ink-muted">Already have an account? <Link href="/sign-in" className="font-semibold text-brand-primary underline-offset-4 hover:underline">Sign in</Link></p>
+      <p className="text-center text-sm text-ink-muted">Already have an account? <Link href={authHref("/sign-in", context)} className="font-semibold text-brand-primary underline-offset-4 hover:underline">Sign in</Link></p>
     </form>
   </>;
 }

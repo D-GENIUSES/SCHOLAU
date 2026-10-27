@@ -12,6 +12,7 @@ import { InstallPromptProvider } from "@/components/shell/install-prompt-provide
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { AuthReturnTiming } from "@/components/auth/auth-return-timing";
 
 export function Providers({ children, appVersion }: { children: ReactNode; appVersion: string }) {
   const router = useRouter();
@@ -52,7 +53,7 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <InstallPromptProvider><AnalyticsProvider><UserPresence /><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
+        <InstallPromptProvider><AnalyticsProvider><AuthReturnTiming /><UserPresence /><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

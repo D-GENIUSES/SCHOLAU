@@ -97,9 +97,10 @@ test("account destination uses database roles and honors blocked accounts", asyn
   let offerings = [];
   const { accountDestination } = load("./auth-destination.ts", {
     "server-only": {},
-    "@scholau/api": { isApiError: (error, code) => error.code === code },
-    "@scholau/core": { readRegistrationAcademic: () => null },
-    "@/lib/supabase/server": { getServerApi: async () => ({ getMyProfile: async () => { if (failure) throw { code: failure, field_errors: { registration_required: true } }; return { roles, needs_onboarding: onboarding, academic }; }, getCatalog: async () => ({ offerings }) }), getServerSupabase: async () => ({ auth: { getClaims: async () => ({ data: { claims: {} } }) } }) },
+    "@scholau/api": { isApiError: (error, code) => error.code === code, createScholauApi: () => ({ getMyProfile: async () => { if (failure) throw { code: failure, field_errors: { registration_required: true } }; return { roles, needs_onboarding: onboarding, academic }; }, getCatalog: async () => ({ offerings }) }) },
+    "@scholau/core": { readRegistrationAcademic: () => null, ServerClock: class {} },
+    "@/lib/utils": { safeNext },
+    "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { getClaims: async () => ({ data: { claims: {} } }) } }) },
     "@/lib/course-electives": { chosenElectives, electiveGroups },
     "@/lib/lecturer-api": { lecturerApi: () => ({ mine: async () => ({ application: { status: "pending" } }) }) },
   });
@@ -115,8 +116,10 @@ test("account destination uses database roles and honors blocked accounts", asyn
   assert.equal(await accountDestination(), "/complete-registration");
   failure = undefined;
   roles = ["student"];
+  assert.equal(await accountDestination("/study?semester=1#lessons"), "/study?semester=1#lessons");
+  for (const next of ["/auth/continue", "//evil.example", "/sign-in"]) assert.equal(await accountDestination(next), "/home");
   onboarding = true;
-  assert.equal(await accountDestination(), "/onboarding");
+  assert.equal(await accountDestination("/study"), "/onboarding");
   onboarding = false;
   academic = { department: { name: "Law" } };
   offerings = [1, 2, 3].map((id) => ({ offering_id: String(id), elective_group: "Law 500", elective_selection_count: 2, enrolled: id === 1 }));
