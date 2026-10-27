@@ -51,3 +51,5 @@ apps/web/private/course-materials/
 .legal-verification/
 .vercel
 .maths-verification/
+
+.lecturer-verification/

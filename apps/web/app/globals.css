@@ -475,8 +475,15 @@
 .auth-steps li { border-top: 3px solid var(--color-line); padding-top: 10px; font-size: 13px; color: #465c72; }
 .auth-steps li[aria-current=step] { border-color: #0066d6; color: #0059bc; font-weight: 650; }
 .auth-steps li[data-complete=true] { border-color: #6d8eaf; }
-.lecturer-fields { display: grid; gap: 20px; min-width: 0; }
+.lecturer-fields { display: grid; gap: 12px; min-width: 0; }
 .lecturer-fields > div { min-width: 0; }
+.lecturer-course-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.lecturer-course-chips li { display: flex; align-items: center; min-width: 0; max-width: 100%; border: 1px solid var(--color-line); border-radius: 10px; background: var(--color-surface-page); padding-left: 10px; font-size: 12px; }
+.lecturer-course-chips li span { min-width: 0; overflow-wrap: anywhere; }
+.lecturer-course-chips button { flex-shrink: 0; min-width: 44px; min-height: 44px; border-radius: 10px; font-size: 20px; }
+.lecturer-course-chips button:focus-visible, .lecturer-verification summary:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 2px; }
+.lecturer-verification { min-width: 0; border-top: 1px solid var(--color-line); }
+.lecturer-verification summary { min-height: 44px; padding-block: 12px; font-size: 13px; font-weight: 600; cursor: pointer; overflow-wrap: anywhere; }
 .lecturer-application-page { max-width: 1120px; margin: 0 auto; }
 .application-layout { display: grid; gap: 24px; }
 .application-layout > * { min-width: 0; }

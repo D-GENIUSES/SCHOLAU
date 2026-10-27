@@ -43,6 +43,14 @@ Existing student-versus-student battles remain separate. The richer lecturer tea
 
 ## Verification
 
+### Linked academic selectors
+
+Lecturer signup and requested corrections share searchable university → faculty → department → course selectors. Course requests support multiple courses across levels and semesters, with removable selections. Changing a parent clears its descendants; going back to account details preserves the teaching form. Each selector supports “Not listed” with required manual details. Manual parents do not expose unrelated catalogue choices. Existing application text is preserved verbatim until explicitly edited. Optional verification fields are collapsed by default and open when invalid.
+
+`get_registration_options_v1` supplies public faculties and departments. Apply `20261029001300_lecturer_registration_courses.sql` before releasing the selector to enable `get_lecturer_registration_courses_v1(p_university_id, p_faculty_id, p_department_id)` for anonymous and authenticated callers. This read-only function returns distinct active course IDs, codes and titles from active curriculum rows or published offerings, validates the complete academic hierarchy, and exposes no applicant or assignment data. A missing lookup shows retry and manual-entry options. Application submissions retain their existing string fields; no application backfill is needed and course requests do not assign teaching access.
+
+Run `node scripts/test-lecturer-catalogue-database.mjs` for isolated PostgreSQL tests, and `node scripts/test-lecturer-signup-browser.mjs` against a local preview on port 3147 with test Supabase URL `http://127.0.0.1:54321`. `node scripts/test-lecturer-corrections-browser.mjs` exercises the actual correction panel in a local harness, checking legacy text and resubmission. Browser requests are intercepted; no real accounts or verification emails are created. Override the preview with `LECTURER_TEST_ORIGIN` or the Playwright/PGlite package directory with `LECTURER_TEST_RUNTIME`.
+
 The workspace contains the regression runner and browser tests. Database regression runs all migrations and the existing security, identity, content, assessments, XP, battles, curriculum and erasure tests, plus lecturer application scenarios in an isolated PGlite PostgreSQL runtime.
 
 Browser contract tests against the actual Next.js app intercept test signup responses so no live users or emails are created. They verify account choices, fail-closed readiness, lecturer metadata, unchanged student signup metadata, lecturer-specific verification copy, protected routes and mobile layouts. The prototype has additional full application/correction/approval/rejection tests and retains its original challenge-flow regression suite.

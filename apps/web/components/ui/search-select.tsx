@@ -9,19 +9,20 @@ import { cn } from "@/lib/utils";
 export interface SearchOption { value: string; label: string; searchTerms?: string }
 type Props = Pick<InputHTMLAttributes<HTMLInputElement>, "id" | "placeholder" | "aria-describedby" | "aria-invalid" | "disabled"> & {
   id: string; options: readonly SearchOption[]; value: string; onChange: (value: string) => void;
-  onBlur?: () => void; emptyMessage?: string;
+  onBlur?: () => void; emptyMessage?: string; fallbackOption?: SearchOption;
 };
 
 /** One control and a bounded overlay, with keyboard selection and screen-reader labels. */
 export const SearchSelect = forwardRef<HTMLInputElement, Props>(function SearchSelect({
-  id, options, value, onChange, onBlur, emptyMessage = "No matches found.", ...props
+  id, options, value, onChange, onBlur, emptyMessage = "No matches found.", fallbackOption, ...props
 }, ref) {
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState<string | null>(null);
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLUListElement>(null);
-  const selected = options.find((option) => option.value === value);
-  const visible = filterAcademicOptions(options, draft ?? "");
+  const selected = options.find((option) => option.value === value) ?? (fallbackOption?.value === value ? fallbackOption : undefined);
+  const matches = filterAcademicOptions(options, draft ?? "");
+  const visible = fallbackOption ? [...matches, fallbackOption] : matches;
   const index = Math.min(active, Math.max(0, visible.length - 1));
   const choose = (option: SearchOption) => { onChange(option.value); setDraft(null); setOpen(false); };
   const move = (next: number) => {
