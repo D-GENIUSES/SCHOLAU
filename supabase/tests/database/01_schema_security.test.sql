@@ -64,7 +64,7 @@ select is(
   (select count(*)::integer from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and has_function_privilege('anon', p.oid, 'EXECUTE')
      and p.proname like '%\_v1'
-     and p.proname not in ('is_username_available_v1', 'suggest_usernames_v1', 'get_registration_legal_status_v1', 'get_registration_options_v1')),
+     and p.proname not in ('is_username_available_v1', 'suggest_usernames_v1', 'get_registration_legal_status_v1', 'get_registration_options_v1', 'get_lecturer_registration_courses_v1')),
   0, 'anon can execute only the explicitly public registration RPCs');
 
 select is(

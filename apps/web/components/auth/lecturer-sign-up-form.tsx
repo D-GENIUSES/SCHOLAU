@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Fragment, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { lecturerSignUpSchema, type LecturerSignUpInput } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
@@ -45,7 +45,7 @@ export function LecturerSignUpForm() {
     <AuthSteps current={step} labels={["Account", "Teaching details"]} />
     <AuthHeading title={step === 0 ? "Apply as a lecturer" : "Your teaching details"} description={step === 0 ? "Create your sign-in details, then tell us about your teaching role." : "An administrator will review your affiliation and requested courses."} />
     
-    <form noValidate className="auth-form" onSubmit={event => {
+    <FormProvider {...form}><form noValidate className="auth-form" onSubmit={event => {
       if (step === 0) { event.preventDefault(); const legalError = legal.validate(); if (legalError) { setError(legalError); return; } setError(null); void form.trigger(["email", "password"], { shouldFocus: true }).then(valid => { if (valid) setStep(1); }); }
       else void submit(event);
     }}>
@@ -56,13 +56,16 @@ export function LecturerSignUpForm() {
       <p className="auth-form-note">After submission, confirm your email and wait for administrator approval. Confirming your email does not grant lecturer access.</p>
       <RegistrationLegal legal={legal} />
       <Button block type="submit" disabled={legal.loading}>Continue</Button>
-      </Fragment> : <Fragment key="teaching">
-      <LecturerApplicationFields register={form.register} errors={form.formState.errors} />
+      </Fragment> : null}
+      <div hidden={step !== 1}>
+      <LecturerApplicationFields />
+      <div className="mt-4 grid gap-3">
       <p className="text-sm text-ink-muted">Your acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> applies to this application. Read the <Link href="/privacy" className="underline">Privacy Policy</Link>. Administrators review your details.</p>
       <Button block type="submit" loading={form.formState.isSubmitting}>Submit lecturer application</Button>
       <Button type="button" variant="ghost" disabled={form.formState.isSubmitting} onClick={() => { setError(null); setStep(0); }}>Back to account details</Button>
-      </Fragment>}
+      </div>
+      </div>
       <p className="text-center text-sm">Already applied? <Link href="/sign-in" className="text-brand-primary underline">Sign in to check your application</Link></p>
-    </form>
+    </form></FormProvider>
   </>;
 }
