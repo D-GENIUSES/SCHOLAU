@@ -188,7 +188,7 @@ export function useCompleteLesson({ firstLessonCelebrationMs = 0 }: { firstLesso
         void invalidate(qc, qk.home(), qk.profile());
       };
       void invalidate(qc, ["scholau", "lesson"], ["scholau", "course"], qk.catalog());
-      if (result.first_lesson_completed && !result.already_completed && firstLessonCelebrationMs > 0) {
+      if ((result.streak_advanced || result.first_lesson_completed) && !result.already_completed && firstLessonCelebrationMs > 0) {
         // Cache refresh must still run if the learner navigates away during the animation.
         setTimeout(refreshProgress, firstLessonCelebrationMs);
       } else refreshProgress();

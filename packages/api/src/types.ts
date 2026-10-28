@@ -382,6 +382,9 @@ export interface CompleteLessonResult extends LessonProgressResult {
 
   first_lesson_completed?: boolean;
 
+  /** True when this completion is the learner's first activity today. */
+  streak_advanced?: boolean;
+
   xp_awarded: number;
 
   xp_capped: boolean;
