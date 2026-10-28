@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { HomeSummary } from "@scholau/api";
 import { useCourseOverview } from "@scholau/api/react";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import {
@@ -73,8 +74,17 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         onSelect={selectOffering}
       />
       <header className="home-course-heading">
-        <h1>{enrolled.title}</h1>
-        <p>{enrolled.code}</p>
+        <div>
+          <h1>{enrolled.title}</h1>
+          <p>{enrolled.code}</p>
+        </div>
+        {overview && overview.assessments.length > 0 ? (
+          <Button asChild variant="secondary" size="sm" className="w-full sm:w-auto">
+            <Link href={`/study/courses/${overview.offering_id}#practice`}>
+              Open assessments <ChevronRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
+        ) : null}
       </header>
       {continueLessonId && summary.continue_learning ? (
         <section className="home-continue-banner" aria-label="Continue learning">

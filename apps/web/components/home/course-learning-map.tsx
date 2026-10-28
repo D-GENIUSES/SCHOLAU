@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Check, ChevronRight, Clock } from "lucide-react";
 import type { CourseModule, CourseOverview } from "@scholau/api";
-import { pluralize } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { EmptyState, LoadingState } from "@/components/ui/states";
 import { Progress } from "@/components/ui/misc";
@@ -100,14 +99,6 @@ export function CourseLearningMap({
       {modules.map((module, index) => (
         <ModuleTrack key={module.id} module={module} moduleIndex={index} continueLessonId={continueLessonId} />
       ))}
-      {overview.assessments.length > 0 ? (
-        <footer className="home-map-footer">
-          <p>{pluralize(overview.assessments.length, "assessment")} · review, practice & mock exams</p>
-          <Link href={`/study/courses/${overview.offering_id}#practice`} className="home-map-footer-link">
-            Open assessments <ChevronRight className="size-3.5" aria-hidden />
-          </Link>
-        </footer>
-      ) : null}
     </div>
   );
 }
