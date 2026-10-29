@@ -1,0 +1,2769 @@
+{
+  "course_code": "MTH 101",
+  "materials": [
+    {
+      "sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "object_key": "course-materials/1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2.pdf",
+      "filename": "MTH 101.pdf",
+      "bytes": 379669
+    }
+  ],
+  "lessons": [
+    {
+      "logical_key": "midsem-20261022-mth-101",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Indices and changes of base",
+      "objective": "Explain the method, justify each calculation step, and check the result: indices and changes of base.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "An exponent tells you how many copies of a base are multiplied. A negative exponent means a reciprocal, not a negative number."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write both bases using the same positive base before comparing exponents."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Express \\(4^x\\) as a power of \\(\\frac12\\).",
+          "steps": [
+            {
+              "calculation": "4=2^2,\\qquad \\frac12=2^{-1}",
+              "explanation": "Four is two multiplied by two. One half is the reciprocal of two."
+            },
+            {
+              "calculation": "4^x=(2^2)^x=2^{2x}",
+              "explanation": "A power raised to a power multiplies the exponents."
+            },
+            {
+              "calculation": "\\left(\\frac12\\right)^k=(2^{-1})^k=2^{-k}",
+              "explanation": "Call the exponent we need k; the same power rule makes its exponent in base two equal to minus k."
+            },
+            {
+              "calculation": "-k=2x\\quad\\Longrightarrow\\quad k=-2x",
+              "explanation": "Equal powers of base two have equal exponents. Multiply both sides by minus one to find k."
+            }
+          ],
+          "answer": "4^x=\\left(\\frac12\\right)^{-2x}",
+          "check": {
+            "calculation": "x=1:\\quad 4=\\left(\\frac12\\right)^{-2}",
+            "explanation": "This numerical check agrees; the algebra above proves the identity for every real x."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Express 4^x as a power of 1/2.",
+          "options": [
+            "\\((1/2)^{-x}\\)",
+            "\\((1/2)^{2x}\\)",
+            "\\((1/2)^{-2x}\\)",
+            "\\((1/2)^{x/2}\\)"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[4=2^2,\\qquad \\frac12=2^{-1}\\]\nFour is two multiplied by two. One half is the reciprocal of two.\n\n\\[4^x=(2^2)^x=2^{2x}\\]\nA power raised to a power multiplies the exponents.\n\n\\[\\left(\\frac12\\right)^k=(2^{-1})^k=2^{-k}\\]\nCall the exponent we need k; the same power rule makes its exponent in base two equal to minus k.\n\n\\[-k=2x\\quad\\Longrightarrow\\quad k=-2x\\]\nEqual powers of base two have equal exponents. Multiply both sides by minus one to find k.\n\n\\[x=1:\\quad 4=\\left(\\frac12\\right)^{-2}\\]\nThis numerical check agrees; the algebra above proves the identity for every real x."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Express \\(8^x\\) using base \\(\\frac12\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[\\left(\\frac12\\right)^{-3x}\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write both bases using the same positive base before comparing exponents."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Check this",
+          "text": "Do not add indices when the bases differ, and do not copy circled answers without working the algebra."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "logical_key": "midsem-20261022-expanded-mth-101-logarithms",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Logarithms and domain checks",
+      "objective": "Explain the method, justify each calculation step, and check the result: logarithms and domain checks.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A logarithm asks which exponent produces a number. The base must be positive and different from one, and the argument must be positive."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Rewrite a logarithmic equation as an exponential equation, then check its original domain."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Solve \\(\\log_2(x-1)=3\\).",
+          "steps": [
+            {
+              "calculation": "x-1>0\\quad\\Longrightarrow\\quad x>1",
+              "explanation": "The argument of a real logarithm must be positive. Record this restriction first."
+            },
+            {
+              "calculation": "x-1=2^3",
+              "explanation": "Logarithm base two equal to three means its argument equals two raised to three."
+            },
+            {
+              "calculation": "x-1=8",
+              "explanation": "Multiply three copies of two to evaluate the power."
+            },
+            {
+              "calculation": "x=8+1=9",
+              "explanation": "Add one to both sides to isolate x."
+            }
+          ],
+          "answer": "x=9",
+          "check": {
+            "calculation": "\\log_2(9-1)=\\log_2 8=3",
+            "explanation": "Nine satisfies the domain restriction and the original equation."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Evaluate \\(\\log_2(32)\\).",
+          "options": [
+            "64",
+            "2",
+            "5",
+            "16"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[\\log_2(32)=k\\iff2^k=32\\]\nA logarithm asks for the exponent that produces its argument.\n\n\\[2^5=32\\Rightarrow k=5\\]\nFive factors of two multiply to thirty-two."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Solve \\(\\log_2(x-1)=2\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[x=5\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Rewrite a logarithmic equation as an exponential equation, then check its original domain."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "log(a + b) is generally not log(a) + log(b). Check positivity before accepting roots."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, PDF pages 4 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "logical_key": "midsem-20261022-expanded-mth-101-surds",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Surds conjugates and radical equations",
+      "objective": "Explain the method, justify each calculation step, and check the result: surds conjugates and radical equations.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "The square-root symbol means the nonnegative principal root. Conjugates differ only in the sign between their two terms."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Multiplying a fraction by the same nonzero expression on top and bottom keeps its value unchanged."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Rationalise \\(\\frac{1}{\\sqrt3+\\sqrt2}\\).",
+          "steps": [
+            {
+              "calculation": "\\frac{1}{\\sqrt3+\\sqrt2}\\times\\frac{\\sqrt3-\\sqrt2}{\\sqrt3-\\sqrt2}",
+              "explanation": "Multiply by one, written using the conjugate. The conjugate is nonzero because the two roots differ."
+            },
+            {
+              "calculation": "\\frac{\\sqrt3-\\sqrt2}{(\\sqrt3)^2-(\\sqrt2)^2}",
+              "explanation": "The cross terms cancel by the difference-of-two-squares identity."
+            },
+            {
+              "calculation": "\\frac{\\sqrt3-\\sqrt2}{3-2}=\\sqrt3-\\sqrt2",
+              "explanation": "Square each root and simplify the denominator to one."
+            }
+          ],
+          "answer": "\\sqrt3-\\sqrt2",
+          "check": {
+            "calculation": "(\\sqrt3+\\sqrt2)(\\sqrt3-\\sqrt2)=1",
+            "explanation": "Multiplying the proposed answer by the original denominator gives the original numerator."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Simplify \\(\\sqrt{50}\\).",
+          "options": [
+            "5",
+            "\\(2\\sqrt{5}\\)",
+            "\\(25\\sqrt{2}\\)",
+            "\\(5\\sqrt{2}\\)"
+          ],
+          "correct_index": 3,
+          "explanation": "\\[50=25\\cdot2\\]\nSeparate out the largest perfect-square factor.\n\n\\[\\sqrt{50}=\\sqrt{25}\\sqrt2\\]\nThe factors are nonnegative, so the square root of their product splits.\n\n\\[\\sqrt{25}\\sqrt2=5\\sqrt2\\]\nThe principal square root of twenty-five is five."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Simplify \\(\\sqrt{50}\\). Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[5\\sqrt2\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Multiplying a fraction by the same nonzero expression on top and bottom keeps its value unchanged."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "sqrt(a - b) does not generally equal sqrt(a) - sqrt(b). A squared solution must still satisfy the unsquared equation."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, PDF pages 3, 5 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "logical_key": "midsem-20261022-expanded-mth-101-quadratics",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Quadratic roots and inequalities",
+      "objective": "Explain the method, justify each calculation step, and check the result: quadratic roots and inequalities.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A quadratic contains a squared variable and has a nonzero coefficient on that squared term. A strict inequality excludes points where the expression equals zero."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Factor the expression, find its zeros, then test the sign on each interval."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Solve \\(3x^2-4x-4<0\\).",
+          "steps": [
+            {
+              "calculation": "3x^2-4x-4=(3x+2)(x-2)",
+              "explanation": "Expanding the right side gives the original quadratic: the middle terms are minus six x plus two x."
+            },
+            {
+              "calculation": "3x+2=0\\Rightarrow x=-\\frac23,\\qquad x-2=0\\Rightarrow x=2",
+              "explanation": "Each zero splits the number line into intervals with constant signs for the factors."
+            },
+            {
+              "calculation": "x=-1:\\quad(-1)(-3)>0",
+              "explanation": "To the left of both zeros, both factors are negative, so their product is positive."
+            },
+            {
+              "calculation": "x=0:\\quad(2)(-2)<0",
+              "explanation": "Between the zeros the factors have opposite signs, so the product is negative."
+            },
+            {
+              "calculation": "x=3:\\quad(11)(1)>0",
+              "explanation": "To the right of both zeros both factors are positive. Only the middle interval works."
+            }
+          ],
+          "answer": "-\\frac23<x<2",
+          "check": {
+            "calculation": "x=0:\\quad 3(0)^2-4(0)-4=-4<0",
+            "explanation": "Zero is inside the interval. The endpoints are excluded because the inequality is strict."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "For 3x^2 - 6x + 4 = 0, what is the sum of its roots?",
+          "options": [
+            "\\(\\frac{4}{3}\\)",
+            "\\(\\frac{-4}{3}\\)",
+            "2",
+            "\\(-2\\)"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[a=3,\\quad b=-6,\\quad c=4\\]\nRead the coefficients from the quadratic, including the negative sign on b.\n\n\\[\\alpha+\\beta=-\\frac ba=-\\frac{-6}{3}=2\\]\nUse the sum-of-roots identity. The roots here are complex, but the identity still holds."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Find the sum of the roots of \\(3x^2-6x+4=0\\), allowing complex roots. Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[-\\frac{-6}{3}=2\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Factor the expression, find its zeros, then test the sign on each interval."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "If the question says negative, exclude the roots. Do not copy an inclusive inequality from a marked answer."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, PDF pages 7 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "logical_key": "midsem-20261022-expanded-mth-101-sequences",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Arithmetic and geometric progressions",
+      "objective": "Explain the method, justify each calculation step, and check the result: arithmetic and geometric progressions.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "An arithmetic progression adds the same difference each time. Its nth term is a single term, while a sum adds several terms together."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Count the number of jumps from the first term: reaching term n takes n minus one jumps."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "Find the tenth term and the sum of the first ten terms of 2, 5, 8, ….",
+          "steps": [
+            {
+              "calculation": "a=2,\\qquad d=5-2=3",
+              "explanation": "The first term is two. The difference between consecutive terms is three."
+            },
+            {
+              "calculation": "a_{10}=a+(10-1)d=2+9(3)",
+              "explanation": "There are nine equal jumps between the first and tenth terms."
+            },
+            {
+              "calculation": "a_{10}=2+27=29",
+              "explanation": "Multiply before adding to get the tenth term."
+            },
+            {
+              "calculation": "S_{10}=\\frac{10}{2}(2+29)=5(31)=155",
+              "explanation": "For an arithmetic progression the sum equals the number of terms times the average of the first and last terms."
+            }
+          ],
+          "answer": "a_{10}=29,\\qquad S_{10}=155",
+          "check": {
+            "calculation": "2,5,8,11,14,17,20,23,26,29",
+            "explanation": "Listing the ten terms confirms the last term; five pairs each add to thirty-one, giving one hundred and fifty-five."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "Find the tenth term of the AP 2, 5, 8, ... .",
+          "options": [
+            "30",
+            "32",
+            "29",
+            "27"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[a=2,\\qquad d=5-2=3\\]\nThe first term is two. The difference between consecutive terms is three.\n\n\\[a_{10}=a+(10-1)d=2+9(3)\\]\nThere are nine equal jumps between the first and tenth terms.\n\n\\[a_{10}=2+27=29\\]\nMultiply before adding to get the tenth term.\n\n\\[S_{10}=\\frac{10}{2}(2+29)=5(31)=155\\]\nFor an arithmetic progression the sum equals the number of terms times the average of the first and last terms.\n\n\\[2,5,8,11,14,17,20,23,26,29\\]\nListing the ten terms confirms the last term; five pairs each add to thirty-one, giving one hundred and fifty-five."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Find the fifth term of the same progression. Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[a_5=2+4(3)=14\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Count the number of jumps from the first term: reaching term n takes n minus one jumps."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "The nth term is not the sum of the first n terms. Distinguish a constant difference from a constant ratio."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, PDF pages 6, 8 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    },
+    {
+      "logical_key": "midsem-20261022-expanded-mth-101-counting",
+      "source_sha256": "1d088427541563540a480587829257adcb53672350fea552f6ca60029c4d05a2",
+      "title": "Permutations combinations and repeated letters",
+      "objective": "Explain the method, justify each calculation step, and check the result: permutations combinations and repeated letters.",
+      "estimated_minutes": 8,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Foundations and symbols"
+        },
+        {
+          "type": "paragraph",
+          "text": "A factorial multiplies the positive integers up to its argument. Identical letters cannot be distinguished, so exchanging identical copies does not create a new arrangement."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "Count all arrangements, then divide by the arrangements of each group of identical objects."
+        },
+        {
+          "type": "heading",
+          "text": "Worked example"
+        },
+        {
+          "type": "worked_example",
+          "title": "Work through the calculation",
+          "problem": "How many distinct arrangements use all the letters of ADELEKE?",
+          "steps": [
+            {
+              "calculation": "n=7,\\qquad n_E=3",
+              "explanation": "There are seven letters, including three identical copies of E."
+            },
+            {
+              "calculation": "7!=7\\cdot6\\cdot5\\cdot4\\cdot3\\cdot2\\cdot1=5040",
+              "explanation": "This counts arrangements if every copy were distinguishable."
+            },
+            {
+              "calculation": "3!=3\\cdot2\\cdot1=6",
+              "explanation": "Every distinct arrangement was counted six times by exchanging the three copies of E."
+            },
+            {
+              "calculation": "\\frac{7!}{3!}=\\frac{5040}{6}=840",
+              "explanation": "Divide out the repeated counting."
+            }
+          ],
+          "answer": "840",
+          "check": {
+            "calculation": "840\\times6=5040",
+            "explanation": "Restoring the six indistinguishable exchanges recovers the original count."
+          }
+        },
+        {
+          "type": "heading",
+          "text": "Guided practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before calculating, identify the rule and any domain restrictions. Follow the same steps as the example, and explain why each operation is valid."
+        },
+        {
+          "type": "checkpoint",
+          "question": "How many distinct arrangements of all the letters of ADELEKE are there?",
+          "options": [
+            "5040",
+            "420",
+            "840",
+            "210"
+          ],
+          "correct_index": 2,
+          "explanation": "\\[n=7,\\qquad n_E=3\\]\nThere are seven letters, including three identical copies of E.\n\n\\[7!=7\\cdot6\\cdot5\\cdot4\\cdot3\\cdot2\\cdot1=5040\\]\nThis counts arrangements if every copy were distinguishable.\n\n\\[3!=3\\cdot2\\cdot1=6\\]\nEvery distinct arrangement was counted six times by exchanging the three copies of E.\n\n\\[\\frac{7!}{3!}=\\frac{5040}{6}=840\\]\nDivide out the repeated counting.\n\n\\[840\\times6=5040\\]\nRestoring the six indistinguishable exchanges recovers the original count."
+        },
+        {
+          "type": "heading",
+          "text": "Independent practice"
+        },
+        {
+          "type": "paragraph",
+          "text": "How many distinct arrangements use all the letters of EEL? Write the intermediate calculations on separate lines, explain your choices, and check your answer before reading the answer below."
+        },
+        {
+          "type": "callout",
+          "tone": "tip",
+          "title": "How to check your work",
+          "text": "Compare the result with the original question. For an antiderivative, differentiate it; for an equation, substitute it back. Check signs, brackets, domains, and any constants."
+        },
+        {
+          "type": "callout",
+          "tone": "example",
+          "title": "Independent practice answer",
+          "text": "\\[\\frac{3!}{2!}=3\\]"
+        },
+        {
+          "type": "heading",
+          "text": "Recap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Count all arrangements, then divide by the arrangements of each group of identical objects."
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Avoid this mistake",
+          "text": "Do not use nPr for an unordered committee. An answer printed or circled in the source still needs independent calculation."
+        }
+      ],
+      "source_reference": "MTH 101.pdf, PDF pages 9, 10, 11 [source SHA-256 1d0884275415]; reviewed and corrected exercises"
+    }
+  ],
+  "questions": [
+    {
+      "logical_question_key": "midsem-20261022-mth-101-learning",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Express 4^x as a power of 1/2.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\((1/2)^{-x}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\((1/2)^{2x}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\((1/2)^{-2x}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\((1/2)^{x/2}\\)"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[4=2^2,\\qquad \\frac12=2^{-1}\\]\nFour is two multiplied by two. One half is the reciprocal of two.\n\n\\[4^x=(2^2)^x=2^{2x}\\]\nA power raised to a power multiplies the exponents.\n\n\\[\\left(\\frac12\\right)^k=(2^{-1})^k=2^{-k}\\]\nCall the exponent we need k; the same power rule makes its exponent in base two equal to minus k.\n\n\\[-k=2x\\quad\\Longrightarrow\\quad k=-2x\\]\nEqual powers of base two have equal exponents. Multiply both sides by minus one to find k.\n\n\\[x=1:\\quad 4=\\left(\\frac12\\right)^{-2}\\]\nThis numerical check agrees; the algebra above proves the identity for every real x.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "logical_question_key": "midsem-20261022-mth-101-battle",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "prompt": "Simplify 2^3 multiplied by 2^4.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(4^{7}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(2^{7}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(2^{12}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(2^{1}\\)"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[2^3\\cdot2^4=2^{3+4}\\]\nMultiplying powers of the same base joins their factors, so add the exponents.\n\n\\[2^{3+4}=2^7\\]\nAdd three and four.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-learning-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Simplify 3^2 multiplied by 3^4.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(6^{6}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(3^{8}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(3^{2}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(3^{6}\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[3^2\\cdot3^4=3^{2+4}\\]\nBoth powers use base three, so multiplication adds their exponents.\n\n\\[3^{2+4}=3^6\\]\nAdd two and four.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-learning-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Simplify 5^7 divided by 5^3.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(5^{21}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(5^{10}\\)"
+        },
+        {
+          "label": "C",
+          "body": "1"
+        },
+        {
+          "label": "D",
+          "body": "\\(5^{4}\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[\\frac{5^7}{5^3}=5^{7-3}\\]\nThe denominator cancels three factors of five from the numerator.\n\n\\[5^{7-3}=5^4\\]\nSubtract the denominator exponent from the numerator exponent.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-learning-3",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Simplify (2^3)^2.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(4^{5}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(2^{6}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(2^{9}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(2^{5}\\)"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[(2^3)^2=2^{3\\cdot2}\\]\nA power of a power repeats the complete group of factors, so multiply exponents.\n\n\\[2^{3\\cdot2}=2^6\\]\nThree times two equals six.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-learning-4",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Evaluate 2^(-3).",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(\\frac{1}{8}\\)"
+        },
+        {
+          "label": "B",
+          "body": "8"
+        },
+        {
+          "label": "C",
+          "body": "\\(-8\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(\\frac{-1}{8}\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[2^{-3}=\\frac1{2^3}\\]\nA negative exponent takes the reciprocal; it does not make the value negative.\n\n\\[2^3=2\\cdot2\\cdot2=8\\]\nEvaluate the positive power.\n\n\\[2^{-3}=\\frac18\\]\nPlace that value in the denominator.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-battle-5",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "For a nonzero base a, what is a^0?",
+      "options": [
+        {
+          "label": "A",
+          "body": "1"
+        },
+        {
+          "label": "B",
+          "body": "\\(a\\)"
+        },
+        {
+          "label": "C",
+          "body": "0"
+        },
+        {
+          "label": "D",
+          "body": "\\(-1\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[\\frac{a^m}{a^m}=1\\quad(a\\ne0)\\]\nA nonzero number divided by itself is one.\n\n\\[\\frac{a^m}{a^m}=a^{m-m}=a^0\\]\nThe quotient law also expresses this same value as a to the power zero.\n\n\\[a^0=1\\]\nEquate the two descriptions of the same quotient.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-battle-6",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Write 8^x as a power of 2.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(2^{8x}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(2^{3x}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(2^{x+3}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(2^{x/3}\\)"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[8=2^3\\]\nWrite eight as a power of two.\n\n\\[8^x=(2^3)^x=2^{3x}\\]\nApply the power-of-a-power rule by multiplying the exponents.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-battle-7",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Write 9^x as a power of 1/3.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\((1/3)^{x/2}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\((1/3)^{2x}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\((1/3)^{-x}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\((1/3)^{-2x}\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[9^x=(3^2)^x=3^{2x}\\]\nExpress nine as a power of three.\n\n\\[\\left(\\frac13\\right)^k=3^{-k}\\]\nExpress the target base as a reciprocal power of three.\n\n\\[-k=2x\\Rightarrow k=-2x\\]\nEquate exponents in the common base and multiply by minus one.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-mth-101-battle-8",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Evaluate 16^(1/2).",
+      "options": [
+        {
+          "label": "A",
+          "body": "2"
+        },
+        {
+          "label": "B",
+          "body": "4"
+        },
+        {
+          "label": "C",
+          "body": "8"
+        },
+        {
+          "label": "D",
+          "body": "16"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[16^{1/2}=\\sqrt{16}\\]\nFor a positive base, the exponent one half means the principal square root.\n\n\\[4^2=16,\\qquad4\\ge0\\]\nFour is the nonnegative number whose square is sixteen.\n\n\\[\\sqrt{16}=4\\]\nChoose the principal, nonnegative root.",
+      "source_reference": "MTH 101.pdf, page 1 [source SHA-256 1d0884275415]"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-logarithms-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Evaluate \\(\\log_2(32)\\).",
+      "options": [
+        {
+          "label": "A",
+          "body": "64"
+        },
+        {
+          "label": "B",
+          "body": "2"
+        },
+        {
+          "label": "C",
+          "body": "5"
+        },
+        {
+          "label": "D",
+          "body": "16"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[\\log_2(32)=k\\iff2^k=32\\]\nA logarithm asks for the exponent that produces its argument.\n\n\\[2^5=32\\Rightarrow k=5\\]\nFive factors of two multiply to thirty-two.",
+      "source_reference": "MTH 101.pdf, PDF page 4 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-logarithms-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Solve \\(\\log_2(x-1)\\) = 3 over the real numbers.",
+      "options": [
+        {
+          "label": "A",
+          "body": "4"
+        },
+        {
+          "label": "B",
+          "body": "7"
+        },
+        {
+          "label": "C",
+          "body": "9"
+        },
+        {
+          "label": "D",
+          "body": "\\(-7\\)"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[x-1>0\\quad\\Longrightarrow\\quad x>1\\]\nThe argument of a real logarithm must be positive. Record this restriction first.\n\n\\[x-1=2^3\\]\nLogarithm base two equal to three means its argument equals two raised to three.\n\n\\[x-1=8\\]\nMultiply three copies of two to evaluate the power.\n\n\\[x=8+1=9\\]\nAdd one to both sides to isolate x.\n\n\\[\\log_2(9-1)=\\log_2 8=3\\]\nNine satisfies the domain restriction and the original equation.",
+      "source_reference": "MTH 101.pdf, PDF page 4 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-logarithms-3",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "For positive x and y and a valid base b, which expression equals \\(\\log_b(xy)\\)?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(log_b(x) + log_b(y)\\)"
+        },
+        {
+          "label": "B",
+          "body": "log_b(x) times log_b(y)"
+        },
+        {
+          "label": "C",
+          "body": "\\(log_b(x + y)\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(log_b(x)/log_b(y)\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[x=b^u,\\qquad y=b^v\\]\nFor a valid logarithm base and positive arguments, name the two logarithms u and v.\n\n\\[xy=b^ub^v=b^{u+v}\\]\nMultiplying powers of the same base adds their exponents.\n\n\\[\\log_b(xy)=u+v=\\log_bx+\\log_by\\]\nTaking the logarithm recovers the exponent.",
+      "source_reference": "MTH 101.pdf, PDF page 4 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-logarithms-4",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "What is the real domain of \\(\\log_{10}(x-4)\\)?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(x > 4\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(x < 4\\)"
+        },
+        {
+          "label": "C",
+          "body": "All real x"
+        },
+        {
+          "label": "D",
+          "body": "\\(x >= 4\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[x-4>0\\]\nThe argument of a real logarithm must be strictly positive.\n\n\\[x>4\\]\nAdd four to both sides. The endpoint is excluded because the logarithm of zero is undefined.",
+      "source_reference": "MTH 101.pdf, PDF page 4 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-surds-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Simplify \\(\\sqrt{50}\\).",
+      "options": [
+        {
+          "label": "A",
+          "body": "5"
+        },
+        {
+          "label": "B",
+          "body": "\\(2\\sqrt{5}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(25\\sqrt{2}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(5\\sqrt{2}\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[50=25\\cdot2\\]\nSeparate out the largest perfect-square factor.\n\n\\[\\sqrt{50}=\\sqrt{25}\\sqrt2\\]\nThe factors are nonnegative, so the square root of their product splits.\n\n\\[\\sqrt{25}\\sqrt2=5\\sqrt2\\]\nThe principal square root of twenty-five is five.",
+      "source_reference": "MTH 101.pdf, PDF page 3 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-surds-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Rationalise \\(\\frac1{\\sqrt3+\\sqrt2}\\).",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(\\frac{1}{5}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(\\sqrt{6}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(\\sqrt{3} + \\sqrt{2}\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(\\sqrt{3} - \\sqrt{2}\\)"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[\\frac{1}{\\sqrt3+\\sqrt2}\\times\\frac{\\sqrt3-\\sqrt2}{\\sqrt3-\\sqrt2}\\]\nMultiply by one, written using the conjugate. The conjugate is nonzero because the two roots differ.\n\n\\[\\frac{\\sqrt3-\\sqrt2}{(\\sqrt3)^2-(\\sqrt2)^2}\\]\nThe cross terms cancel by the difference-of-two-squares identity.\n\n\\[\\frac{\\sqrt3-\\sqrt2}{3-2}=\\sqrt3-\\sqrt2\\]\nSquare each root and simplify the denominator to one.\n\n\\[(\\sqrt3+\\sqrt2)(\\sqrt3-\\sqrt2)=1\\]\nMultiplying the proposed answer by the original denominator gives the original numerator.",
+      "source_reference": "MTH 101.pdf, PDF page 3 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-surds-3",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Simplify \\((\\sqrt5+1)(\\sqrt5-1)\\).",
+      "options": [
+        {
+          "label": "A",
+          "body": "6"
+        },
+        {
+          "label": "B",
+          "body": "4"
+        },
+        {
+          "label": "C",
+          "body": "5"
+        },
+        {
+          "label": "D",
+          "body": "\\(2\\sqrt{5}\\)"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[(\\sqrt5+1)(\\sqrt5-1)=(\\sqrt5)^2-1^2\\]\nThe middle terms cancel in a product of conjugates.\n\n\\[5-1=4\\]\nSquare the root and the constant, then subtract.",
+      "source_reference": "MTH 101.pdf, PDF page 3 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-surds-4",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Solve \\(\\sqrt{2x-1}-\\sqrt{x-1}=1\\) for real x.",
+      "options": [
+        {
+          "label": "A",
+          "body": "x = 1 only"
+        },
+        {
+          "label": "B",
+          "body": "x = -1 or x = 5"
+        },
+        {
+          "label": "C",
+          "body": "x = 1 or x = 5"
+        },
+        {
+          "label": "D",
+          "body": "x = 5 only"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[x\\ge1\\]\nBoth radical arguments must be nonnegative.\n\n\\[\\sqrt{2x-1}=1+\\sqrt{x-1}\\]\nAdd the second radical to both sides before squaring.\n\n\\[2x-1=x+2\\sqrt{x-1}\\]\nSquare both sides and expand the right side, including the cross term.\n\n\\[x-1=2\\sqrt{x-1}\\]\nSubtract x from both sides.\n\n\\[t=\\sqrt{x-1}\\ge0,\\quad t^2=2t\\]\nName the nonnegative root t; its square is x minus one.\n\n\\[t(t-2)=0\\Rightarrow t=0\\text{ or }2\\]\nMove all terms to one side and factor.\n\n\\[x=1\\text{ or }5\\]\nRecover x from x minus one equal to t squared.\n\n\\[x=1:\\ 1-0=1;\\qquad x=5:\\ 3-2=1\\]\nCheck both candidates in the unsquared equation to exclude extraneous roots.",
+      "source_reference": "MTH 101.pdf, PDF page 3 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-quadratics-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "beginner",
+      "prompt": "For 3x^2 - 6x + 4 = 0, what is the sum of its roots?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(\\frac{4}{3}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(\\frac{-4}{3}\\)"
+        },
+        {
+          "label": "C",
+          "body": "2"
+        },
+        {
+          "label": "D",
+          "body": "\\(-2\\)"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[a=3,\\quad b=-6,\\quad c=4\\]\nRead the coefficients from the quadratic, including the negative sign on b.\n\n\\[\\alpha+\\beta=-\\frac ba=-\\frac{-6}{3}=2\\]\nUse the sum-of-roots identity. The roots here are complex, but the identity still holds.",
+      "source_reference": "MTH 101.pdf, PDF page 7 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-quadratics-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Solve 3x^2 - 4x - 4 < 0 over the real numbers.",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(-2/3 < x < 2\\)"
+        },
+        {
+          "label": "B",
+          "body": "x < -2/3 or x > 2"
+        },
+        {
+          "label": "C",
+          "body": "x > 2 only"
+        },
+        {
+          "label": "D",
+          "body": "\\(-2/3 <= x <= 2\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[3x^2-4x-4=(3x+2)(x-2)\\]\nExpanding the right side gives the original quadratic: the middle terms are minus six x plus two x.\n\n\\[3x+2=0\\Rightarrow x=-\\frac23,\\qquad x-2=0\\Rightarrow x=2\\]\nEach zero splits the number line into intervals with constant signs for the factors.\n\n\\[x=-1:\\quad(-1)(-3)>0\\]\nTo the left of both zeros, both factors are negative, so their product is positive.\n\n\\[x=0:\\quad(2)(-2)<0\\]\nBetween the zeros the factors have opposite signs, so the product is negative.\n\n\\[x=3:\\quad(11)(1)>0\\]\nTo the right of both zeros both factors are positive. Only the middle interval works.\n\n\\[x=0:\\quad 3(0)^2-4(0)-4=-4<0\\]\nZero is inside the interval. The endpoints are excluded because the inequality is strict.",
+      "source_reference": "MTH 101.pdf, PDF page 7 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-quadratics-3",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "For 2x^2 + 4x - 7 = 0, what is the product of its roots?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(\\frac{7}{2}\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(\\frac{-7}{2}\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(-2\\)"
+        },
+        {
+          "label": "D",
+          "body": "2"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[a=2,\\qquad c=-7\\]\nIdentify the leading and constant coefficients.\n\n\\[\\alpha\\beta=\\frac ca=-\\frac72\\]\nThe product-of-roots identity divides the constant coefficient by the leading coefficient.",
+      "source_reference": "MTH 101.pdf, PDF page 7 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-quadratics-4",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "Which condition means a real-coefficient quadratic has two distinct real roots?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(a = 0\\)"
+        },
+        {
+          "label": "B",
+          "body": "b^2 - 4ac = 0"
+        },
+        {
+          "label": "C",
+          "body": "b^2 - 4ac < 0"
+        },
+        {
+          "label": "D",
+          "body": "b^2 - 4ac > 0"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a},\\quad a\\ne0\\]\nThe quadratic formula contains the discriminant under a square root.\n\n\\[b^2-4ac>0\\]\nA positive discriminant has two opposite, nonzero real square roots, producing two distinct real roots. Zero gives one repeated root; a negative value gives no real roots.",
+      "source_reference": "MTH 101.pdf, PDF page 7 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-sequences-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Find the tenth term of the AP 2, 5, 8, ... .",
+      "options": [
+        {
+          "label": "A",
+          "body": "30"
+        },
+        {
+          "label": "B",
+          "body": "32"
+        },
+        {
+          "label": "C",
+          "body": "29"
+        },
+        {
+          "label": "D",
+          "body": "27"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[a=2,\\qquad d=5-2=3\\]\nThe first term is two. The difference between consecutive terms is three.\n\n\\[a_{10}=a+(10-1)d=2+9(3)\\]\nThere are nine equal jumps between the first and tenth terms.\n\n\\[a_{10}=2+27=29\\]\nMultiply before adding to get the tenth term.\n\n\\[S_{10}=\\frac{10}{2}(2+29)=5(31)=155\\]\nFor an arithmetic progression the sum equals the number of terms times the average of the first and last terms.\n\n\\[2,5,8,11,14,17,20,23,26,29\\]\nListing the ten terms confirms the last term; five pairs each add to thirty-one, giving one hundred and fifty-five.",
+      "source_reference": "MTH 101.pdf, PDF page 6 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-sequences-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Find the sum of the first ten terms of the AP 2, 5, 8, ... .",
+      "options": [
+        {
+          "label": "A",
+          "body": "290"
+        },
+        {
+          "label": "B",
+          "body": "145"
+        },
+        {
+          "label": "C",
+          "body": "310"
+        },
+        {
+          "label": "D",
+          "body": "155"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[a=2,\\qquad d=5-2=3\\]\nThe first term is two. The difference between consecutive terms is three.\n\n\\[a_{10}=a+(10-1)d=2+9(3)\\]\nThere are nine equal jumps between the first and tenth terms.\n\n\\[a_{10}=2+27=29\\]\nMultiply before adding to get the tenth term.\n\n\\[S_{10}=\\frac{10}{2}(2+29)=5(31)=155\\]\nFor an arithmetic progression the sum equals the number of terms times the average of the first and last terms.\n\n\\[2,5,8,11,14,17,20,23,26,29\\]\nListing the ten terms confirms the last term; five pairs each add to thirty-one, giving one hundred and fifty-five.",
+      "source_reference": "MTH 101.pdf, PDF page 6 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-sequences-3",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "Find the fifth term of the GP 3, 6, 12, ... .",
+      "options": [
+        {
+          "label": "A",
+          "body": "48"
+        },
+        {
+          "label": "B",
+          "body": "96"
+        },
+        {
+          "label": "C",
+          "body": "15"
+        },
+        {
+          "label": "D",
+          "body": "24"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[a=3,\\qquad r=\\frac63=2\\]\nThe first term is three and the common ratio is two.\n\n\\[a_5=ar^{5-1}=3(2^4)\\]\nThe fifth term is four ratio-multiplications after the first.\n\n\\[3(16)=48\\]\nEvaluate the power before multiplying.",
+      "source_reference": "MTH 101.pdf, PDF page 6 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-sequences-4",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "beginner",
+      "prompt": "If S_n = 2n^2 - n, what is the nth term?",
+      "options": [
+        {
+          "label": "A",
+          "body": "\\(4n - 3\\)"
+        },
+        {
+          "label": "B",
+          "body": "\\(4n + 3\\)"
+        },
+        {
+          "label": "C",
+          "body": "\\(2n - 1\\)"
+        },
+        {
+          "label": "D",
+          "body": "\\(2n^{2} + n\\)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[a_n=S_n-S_{n-1}\\]\nSubtracting successive partial sums leaves only the newest term.\n\n\\[S_{n-1}=2(n-1)^2-(n-1)=2n^2-5n+3\\]\nReplace every n in the sum formula by n minus one, then expand.\n\n\\[a_n=(2n^2-n)-(2n^2-5n+3)=4n-3\\]\nDistribute the subtraction across every term and combine like terms.",
+      "source_reference": "MTH 101.pdf, PDF page 8 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-counting-1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "How many distinct arrangements of all the letters of ADELEKE are there?",
+      "options": [
+        {
+          "label": "A",
+          "body": "5040"
+        },
+        {
+          "label": "B",
+          "body": "420"
+        },
+        {
+          "label": "C",
+          "body": "840"
+        },
+        {
+          "label": "D",
+          "body": "210"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "\\[n=7,\\qquad n_E=3\\]\nThere are seven letters, including three identical copies of E.\n\n\\[7!=7\\cdot6\\cdot5\\cdot4\\cdot3\\cdot2\\cdot1=5040\\]\nThis counts arrangements if every copy were distinguishable.\n\n\\[3!=3\\cdot2\\cdot1=6\\]\nEvery distinct arrangement was counted six times by exchanging the three copies of E.\n\n\\[\\frac{7!}{3!}=\\frac{5040}{6}=840\\]\nDivide out the repeated counting.\n\n\\[840\\times6=5040\\]\nRestoring the six indistinguishable exchanges recovers the original count.",
+      "source_reference": "MTH 101.pdf, PDF page 11 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-counting-2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "How many ways can 2 bats and 3 balls be selected from 3 distinct bats and 5 distinct balls?",
+      "options": [
+        {
+          "label": "A",
+          "body": "13"
+        },
+        {
+          "label": "B",
+          "body": "30"
+        },
+        {
+          "label": "C",
+          "body": "15"
+        },
+        {
+          "label": "D",
+          "body": "60"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "\\[\\binom32=\\frac{3!}{2!1!}=3\\]\nSelect two of three distinct bats; order does not matter.\n\n\\[\\binom53=\\frac{5!}{3!2!}=10\\]\nSelect three of five distinct balls, again without ordering.\n\n\\[3\\cdot10=30\\]\nEach bat selection can accompany each ball selection, so multiply.",
+      "source_reference": "MTH 101.pdf, PDF page 11 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-counting-3",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "How many ways can a president and a secretary be chosen from 5 people if the roles must go to different people?",
+      "options": [
+        {
+          "label": "A",
+          "body": "20"
+        },
+        {
+          "label": "B",
+          "body": "5"
+        },
+        {
+          "label": "C",
+          "body": "10"
+        },
+        {
+          "label": "D",
+          "body": "25"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "\\[5\\text{ choices for president}\\]\nChoose the first office holder.\n\n\\[4\\text{ choices for secretary}\\]\nOne person is now unavailable because the office holders must differ.\n\n\\[5\\cdot4=20\\]\nThe offices are distinct, so each ordered assignment counts.",
+      "source_reference": "MTH 101.pdf, PDF page 9 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "course_code": "MTH 101",
+      "logical_question_key": "midsem-20261022-expanded-mth-101-counting-4",
+      "pool": "battle",
+      "usage": [
+        "battle"
+      ],
+      "difficulty": "intermediate",
+      "prompt": "How many committees containing 4 students and 2 teachers can be chosen from 12 students and 7 teachers?",
+      "options": [
+        {
+          "label": "A",
+          "body": "84"
+        },
+        {
+          "label": "B",
+          "body": "7051"
+        },
+        {
+          "label": "C",
+          "body": "1095"
+        },
+        {
+          "label": "D",
+          "body": "10395"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "\\[\\binom{12}{4}=\\frac{12\\cdot11\\cdot10\\cdot9}{4\\cdot3\\cdot2\\cdot1}=495\\]\nCount unordered selections of four students.\n\n\\[\\binom72=\\frac{7\\cdot6}{2}=21\\]\nCount unordered selections of two teachers.\n\n\\[495\\cdot21=10395\\]\nPair every student selection with every teacher selection.",
+      "source_reference": "MTH 101.pdf, PDF page 11 [source SHA-256 1d0884275415]; reviewed adaptation"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-01-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which is the smallest standard family containing 0?",
+      "options": [
+        {
+          "label": "A",
+          "body": "Natural numbers"
+        },
+        {
+          "label": "B",
+          "body": "Whole numbers"
+        },
+        {
+          "label": "C",
+          "body": "Irrational numbers"
+        },
+        {
+          "label": "D",
+          "body": "Negative integers"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Natural numbers in this course begin at 1, so 0 is excluded. Whole numbers are 0, 1, 2, ...; thus 0 belongs to the whole-number family. It is also an integer, rational (0/1), and real, but whole is the smallest listed family.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 1–4"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-01-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Why is -4 rational?",
+      "options": [
+        {
+          "label": "A",
+          "body": "It is positive"
+        },
+        {
+          "label": "B",
+          "body": "It has no decimal form"
+        },
+        {
+          "label": "C",
+          "body": "It equals -4/1"
+        },
+        {
+          "label": "D",
+          "body": "It is a natural number"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "The definition of rational requires a ratio of integers with nonzero denominator. Write -4 as -4/1: both -4 and 1 are integers and the denominator is not zero. Its negative sign does not make it irrational.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 1–4"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-02-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which number is irrational?",
+      "options": [
+        {
+          "label": "A",
+          "body": "√64"
+        },
+        {
+          "label": "B",
+          "body": "0.125"
+        },
+        {
+          "label": "C",
+          "body": "√2"
+        },
+        {
+          "label": "D",
+          "body": "0.666..."
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "√64 = 8, which is an integer. 0.125 = 1/8 terminates, and 0.666... = 2/3 repeats; all are rational. √2 cannot be expressed as a ratio of integers, so it is irrational.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 5–6"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-02-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Is 0.454545... rational?",
+      "options": [
+        {
+          "label": "A",
+          "body": "No; it has infinitely many digits"
+        },
+        {
+          "label": "B",
+          "body": "Yes; its repeating block makes it rational"
+        },
+        {
+          "label": "C",
+          "body": "No; only integers are rational"
+        },
+        {
+          "label": "D",
+          "body": "Yes; because it equals 0"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "The decimal repeats the block 45. Set x = 0.454545...; then 100x = 45.454545..., so 99x = 45 and x = 45/99 = 5/11. That ratio proves it is rational despite having infinitely many digits.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 5–6"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-03-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which is least: -0.75, -2/3, 0.2, 65%?",
+      "options": [
+        {
+          "label": "A",
+          "body": "-0.75"
+        },
+        {
+          "label": "B",
+          "body": "-2/3"
+        },
+        {
+          "label": "C",
+          "body": "0.2"
+        },
+        {
+          "label": "D",
+          "body": "65%"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "-2/3 ≈ -0.6667 and 65% = 0.65. Both negative values lie left of the positive values. Of the negatives, -0.75 lies farther left than -0.6667, so -0.75 is least.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 7–9"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-03-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Order 0.075, 3/4, 79% from least to greatest.",
+      "options": [
+        {
+          "label": "A",
+          "body": "79%, 3/4, 0.075"
+        },
+        {
+          "label": "B",
+          "body": "0.075, 79%, 3/4"
+        },
+        {
+          "label": "C",
+          "body": "0.075, 3/4, 79%"
+        },
+        {
+          "label": "D",
+          "body": "3/4, 0.075, 79%"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Express everything as decimals: 0.075 remains 0.075, 3/4 = 0.75, and 79% = 0.79. Comparing 0.075, 0.750, and 0.790 gives that exact increasing order.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 7–9"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-04-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which property explains 6 + 4 = 4 + 6?",
+      "options": [
+        {
+          "label": "A",
+          "body": "Associative addition"
+        },
+        {
+          "label": "B",
+          "body": "Commutative addition"
+        },
+        {
+          "label": "C",
+          "body": "Additive identity"
+        },
+        {
+          "label": "D",
+          "body": "Multiplicative identity"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "The two addends exchange positions but their grouping does not change. The commutative property states a + b = b + a, so 6 + 4 = 4 + 6 is commutative addition.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 10–11"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-04-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the additive identity?",
+      "options": [
+        {
+          "label": "A",
+          "body": "1"
+        },
+        {
+          "label": "B",
+          "body": "-1"
+        },
+        {
+          "label": "C",
+          "body": "0"
+        },
+        {
+          "label": "D",
+          "body": "Any integer"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "The additive identity e satisfies a + e = a for every real a. Zero does this because a + 0 = a; 1 instead is the multiplicative identity because a × 1 = a.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Real numbers.pdf, pages 10–11"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-05-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Evaluate 18 ÷ 3 × 2.",
+      "options": [
+        {
+          "label": "A",
+          "body": "3"
+        },
+        {
+          "label": "B",
+          "body": "12"
+        },
+        {
+          "label": "C",
+          "body": "1"
+        },
+        {
+          "label": "D",
+          "body": "18"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Division and multiplication have equal priority, so work left to right: 18 ÷ 3 = 6, then 6 × 2 = 12. Dividing by 3 × 2 as though it were grouped would answer a different expression.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 12–13"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-05-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Evaluate 5[(3 + 12) - 2(4)].",
+      "options": [
+        {
+          "label": "A",
+          "body": "35"
+        },
+        {
+          "label": "B",
+          "body": "25"
+        },
+        {
+          "label": "C",
+          "body": "7"
+        },
+        {
+          "label": "D",
+          "body": "75"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "Inside the bracket, 3 + 12 = 15 and 2(4) = 8. Subtract to obtain 15 - 8 = 7. The outside 5 then multiplies the whole bracket: 5 × 7 = 35.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 12–13"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-06-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Evaluate 5a + bc - c for a=4, b=2, c=3.",
+      "options": [
+        {
+          "label": "A",
+          "body": "20"
+        },
+        {
+          "label": "B",
+          "body": "23"
+        },
+        {
+          "label": "C",
+          "body": "26"
+        },
+        {
+          "label": "D",
+          "body": "29"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Substitute the values: 5(4) + (2)(3) - 3. Multiply first to get 20 + 6 - 3, then add and subtract from left to right: 26 - 3 = 23.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 14–17"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-06-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which expression means eight more than Rachel's score r?",
+      "options": [
+        {
+          "label": "A",
+          "body": "8r"
+        },
+        {
+          "label": "B",
+          "body": "8 - r"
+        },
+        {
+          "label": "C",
+          "body": "r + 8"
+        },
+        {
+          "label": "D",
+          "body": "r - 8"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Start with Rachel's score r. 'Eight more than' asks you to add 8 to that score, giving r + 8. Multiplication 8r means eight times her score, while subtraction makes it smaller.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 14–17"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-07-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Solve x + 4 = 17.",
+      "options": [
+        {
+          "label": "A",
+          "body": "x = 21"
+        },
+        {
+          "label": "B",
+          "body": "x = 13"
+        },
+        {
+          "label": "C",
+          "body": "x = 4"
+        },
+        {
+          "label": "D",
+          "body": "x = 17"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Subtract 4 from both sides: x + 4 - 4 = 17 - 4, so x = 13. Check in the original equation: 13 + 4 = 17, which is true.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 18–19"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-07-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Solve n/4 = 7.",
+      "options": [
+        {
+          "label": "A",
+          "body": "n = 7/4"
+        },
+        {
+          "label": "B",
+          "body": "n = 11"
+        },
+        {
+          "label": "C",
+          "body": "n = 28"
+        },
+        {
+          "label": "D",
+          "body": "n = 3"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Multiplication by 4 is the inverse of division by 4. Multiply both sides of n/4 = 7 by 4 to get n = 28. Check: 28/4 = 7, so the equation is satisfied.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 18–19"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-08-a",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Solve x - 5/6 = 7/8.",
+      "options": [
+        {
+          "label": "A",
+          "body": "x = 2/14"
+        },
+        {
+          "label": "B",
+          "body": "x = 41/24"
+        },
+        {
+          "label": "C",
+          "body": "x = 1/24"
+        },
+        {
+          "label": "D",
+          "body": "x = 12/48"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Add 5/6 to each side: x = 7/8 + 5/6. Convert to denominator 24: 7/8 = 21/24 and 5/6 = 20/24. Thus x = 41/24. Checking, 41/24 - 5/6 = 41/24 - 20/24 = 21/24 = 7/8.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 20–21"
+    },
+    {
+      "logical_question_key": "mth101-real-20261029-08-b",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Solve (-2/3)x = 5/6.",
+      "options": [
+        {
+          "label": "A",
+          "body": "x = 5/4"
+        },
+        {
+          "label": "B",
+          "body": "x = -5/4"
+        },
+        {
+          "label": "C",
+          "body": "x = -5/9"
+        },
+        {
+          "label": "D",
+          "body": "x = 5/9"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Multiply both sides by the reciprocal -3/2: x = (5/6)(-3/2) = -15/12 = -5/4. Check: (-2/3)(-5/4) = 10/12 = 5/6, so the signs and fraction are correct.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Real numbers.pdf, pages 20–21"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-01-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What must be proved first in induction starting at n=1?",
+      "options": [
+        {
+          "label": "A",
+          "body": "P(1)"
+        },
+        {
+          "label": "B",
+          "body": "P(0)"
+        },
+        {
+          "label": "C",
+          "body": "P(k+1) without an assumption"
+        },
+        {
+          "label": "D",
+          "body": "P(100)"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "The first required case is the base case P(1). Without it, the implication P(k) ⇒ P(k+1) has no starting point from which to propagate.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 41–42"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-01-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What may you assume in the induction step?",
+      "options": [
+        {
+          "label": "A",
+          "body": "P(k+1) is true"
+        },
+        {
+          "label": "B",
+          "body": "P(k) is true for an arbitrary k"
+        },
+        {
+          "label": "C",
+          "body": "Only P(2) is true"
+        },
+        {
+          "label": "D",
+          "body": "All formulas are true"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "State the induction hypothesis P(k) for an arbitrary positive integer k. Then use that assumption to derive P(k+1), rather than assuming the conclusion you are trying to prove.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 41–42"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-02-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What term is added when the sum ends at k+1 instead of k?",
+      "options": [
+        {
+          "label": "A",
+          "body": "k"
+        },
+        {
+          "label": "B",
+          "body": "k+1"
+        },
+        {
+          "label": "C",
+          "body": "2k"
+        },
+        {
+          "label": "D",
+          "body": "1"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "The sum through k+1 contains every old term 1 through k and one new last term, k+1. Thus S(k+1)=S(k)+(k+1).",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 41–42, 44"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-02-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "If S(k)=k(k+1)/2, what is S(k+1)?",
+      "options": [
+        {
+          "label": "A",
+          "body": "k(k+1)/2"
+        },
+        {
+          "label": "B",
+          "body": "(k+1)(k+2)/2"
+        },
+        {
+          "label": "C",
+          "body": "(k+1)/2"
+        },
+        {
+          "label": "D",
+          "body": "k(k+2)/2"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Add k+1 to the assumed sum: k(k+1)/2 + (k+1) = [k(k+1)+2(k+1)]/2. Factor k+1 to obtain (k+1)(k+2)/2, exactly the formula with n=k+1.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 41–42, 44"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-03-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the next odd term after 2k−1?",
+      "options": [
+        {
+          "label": "A",
+          "body": "2k"
+        },
+        {
+          "label": "B",
+          "body": "2k+1"
+        },
+        {
+          "label": "C",
+          "body": "2k+2"
+        },
+        {
+          "label": "D",
+          "body": "k+1"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Consecutive odd numbers differ by 2. Adding 2 to 2k−1 gives 2k+1; this is the term needed to pass from k odd terms to k+1 odd terms.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 42–44"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-03-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What must the square-sum proof reach at n=k+1?",
+      "options": [
+        {
+          "label": "A",
+          "body": "k(k+1)(2k+1)/6"
+        },
+        {
+          "label": "B",
+          "body": "(k+1)(k+2)(2k+3)/6"
+        },
+        {
+          "label": "C",
+          "body": "(k+1)²"
+        },
+        {
+          "label": "D",
+          "body": "(k+2)(2k+1)/6"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "Start with n(n+1)(2n+1)/6 and substitute n=k+1 everywhere. The target becomes (k+1)(k+2)(2k+3)/6. The induction algebra must simplify to this expression.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 42–44"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-04-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the added term when the sum grows from n=k to n=k+1?",
+      "options": [
+        {
+          "label": "A",
+          "body": "5^(k−1)"
+        },
+        {
+          "label": "B",
+          "body": "5^k"
+        },
+        {
+          "label": "C",
+          "body": "5^(k+1)"
+        },
+        {
+          "label": "D",
+          "body": "k+1"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "At n=k, the final term is 5^(k−1). One more term in the sequence multiplies by 5, giving 5^k. Add that to the induction hypothesis.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 44–45"
+    },
+    {
+      "logical_question_key": "mth101-induction-20261029-04-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Simplify (5^k−1)/4 + 5^k.",
+      "options": [
+        {
+          "label": "A",
+          "body": "(5^(k+1)−1)/4"
+        },
+        {
+          "label": "B",
+          "body": "(2·5^k−1)/4"
+        },
+        {
+          "label": "C",
+          "body": "5^(k+1)/4"
+        },
+        {
+          "label": "D",
+          "body": "(5^k+3)/4"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "Put both terms over 4: (5^k−1+4·5^k)/4 = (5·5^k−1)/4. Since 5·5^k=5^(k+1), the result is (5^(k+1)−1)/4.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "MATHEMATICAL INDUCTION .pdf, chapter 4, pages 41–47 [SHA-256 94d66900c938], pages 44–45"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-01-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "For Uₙ=n²+1, what is U₄?",
+      "options": [
+        {
+          "label": "A",
+          "body": "5"
+        },
+        {
+          "label": "B",
+          "body": "9"
+        },
+        {
+          "label": "C",
+          "body": "16"
+        },
+        {
+          "label": "D",
+          "body": "17"
+        }
+      ],
+      "correct_option": "D",
+      "explanation": "Replace n by 4: U₄=4²+1=16+1=17. The subscript is the position, not a multiplier.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 72–73"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-01-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is Σ from n=1 to 3 of (n²+1)?",
+      "options": [
+        {
+          "label": "A",
+          "body": "9"
+        },
+        {
+          "label": "B",
+          "body": "14"
+        },
+        {
+          "label": "C",
+          "body": "17"
+        },
+        {
+          "label": "D",
+          "body": "30"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Expand the index range: (1²+1)+(2²+1)+(3²+1)=2+5+10=17. There are three terms, corresponding to n=1, 2 and 3.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 72–73"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-02-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the sixteenth term of 2, 7, 12, …?",
+      "options": [
+        {
+          "label": "A",
+          "body": "72"
+        },
+        {
+          "label": "B",
+          "body": "77"
+        },
+        {
+          "label": "C",
+          "body": "82"
+        },
+        {
+          "label": "D",
+          "body": "87"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "The difference is 5, so U₁₆=2+(16−1)5=2+75=77. There are 15 jumps from the first term to the sixteenth.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–76"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-02-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which term of −3, 0, 3, 6, … equals 18?",
+      "options": [
+        {
+          "label": "A",
+          "body": "sixth"
+        },
+        {
+          "label": "B",
+          "body": "seventh"
+        },
+        {
+          "label": "C",
+          "body": "eighth"
+        },
+        {
+          "label": "D",
+          "body": "ninth"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Here a=−3 and d=3. Set −3+(n−1)3=18, so 3(n−1)=21, n−1=7 and n=8. Checking: −3+7·3=18.",
+      "course_code": "MTH 101",
+      "difficulty": "beginner",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–76"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-03-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Find the arithmetic mean of 8 and 18.",
+      "options": [
+        {
+          "label": "A",
+          "body": "10"
+        },
+        {
+          "label": "B",
+          "body": "12"
+        },
+        {
+          "label": "C",
+          "body": "13"
+        },
+        {
+          "label": "D",
+          "body": "26"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "The middle term must be equally far from both ends: (8+18)/2=26/2=13. Check that 13−8=5 and 18−13=5.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–77"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-03-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the sum of the first 7 terms of 1, 4, 7, …?",
+      "options": [
+        {
+          "label": "A",
+          "body": "49"
+        },
+        {
+          "label": "B",
+          "body": "63"
+        },
+        {
+          "label": "C",
+          "body": "70"
+        },
+        {
+          "label": "D",
+          "body": "77"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Here a=1, d=3, n=7. S₇=7/2[2·1+(7−1)·3]=7/2(20)=70. You can check by adding 1+4+7+10+13+16+19.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–77"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-04-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the common ratio of 4, −6, 9, …?",
+      "options": [
+        {
+          "label": "A",
+          "body": "−3/2"
+        },
+        {
+          "label": "B",
+          "body": "3/2"
+        },
+        {
+          "label": "C",
+          "body": "−2/3"
+        },
+        {
+          "label": "D",
+          "body": "2"
+        }
+      ],
+      "correct_option": "A",
+      "explanation": "Divide a term by the preceding term: −6/4=−3/2. Check the next pair: 9/(−6)=−3/2, so the ratio is consistent.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 78–81"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-04-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the sum of the first four terms 2, 4, 8, 16?",
+      "options": [
+        {
+          "label": "A",
+          "body": "16"
+        },
+        {
+          "label": "B",
+          "body": "28"
+        },
+        {
+          "label": "C",
+          "body": "30"
+        },
+        {
+          "label": "D",
+          "body": "32"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "Add directly: 2+4+8+16=30. The formula agrees: a=2, r=2, n=4 gives S₄=2(1−2⁴)/(1−2)=2(−15)/(−1)=30.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 78–81"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-05-q1",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "What is the sum to infinity of 1/2+1/4+1/8+⋯?",
+      "options": [
+        {
+          "label": "A",
+          "body": "1/2"
+        },
+        {
+          "label": "B",
+          "body": "1"
+        },
+        {
+          "label": "C",
+          "body": "2"
+        },
+        {
+          "label": "D",
+          "body": "No finite sum"
+        }
+      ],
+      "correct_option": "B",
+      "explanation": "The first term is 1/2 and ratio is 1/2. Since |r|<1, S∞=a/(1−r)=(1/2)/(1/2)=1.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 79–82"
+    },
+    {
+      "logical_question_key": "mth101-sequences-20261029-05-q2",
+      "pool": "learning",
+      "usage": [
+        "review",
+        "practice",
+        "mock"
+      ],
+      "prompt": "Which geometric series has a finite sum to infinity?",
+      "options": [
+        {
+          "label": "A",
+          "body": "3+6+12+⋯"
+        },
+        {
+          "label": "B",
+          "body": "1−2+4−⋯"
+        },
+        {
+          "label": "C",
+          "body": "4+2+1+⋯"
+        },
+        {
+          "label": "D",
+          "body": "5+5+5+⋯"
+        }
+      ],
+      "correct_option": "C",
+      "explanation": "A finite sum requires |r|<1. For 4+2+1+⋯, r=1/2, so it converges. The other ratios have magnitudes 2, 2 and 1, so their terms do not approach zero.",
+      "course_code": "MTH 101",
+      "difficulty": "intermediate",
+      "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 79–82"
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+[
+  {
+    "course_code": "MTH 101",
+    "module_title": "Sequences and Series",
+    "module_position": 6,
+    "lesson_position": 1,
+    "logical_key": "mth101-sequences-20261029-01",
+    "title": "Sequences, series and sigma notation",
+    "objective": "Recognize the pattern and explain each step in the calculation.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand it"
+      },
+      {
+        "type": "paragraph",
+        "text": "A sequence is an ordered list of terms U₁, U₂, … . A series is the sum of terms. A rule for Uₙ tells you which term appears in position n; sigma notation Σ adds the terms over a stated index range. Substitute each index separately before adding."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Step by step",
+        "problem": "Find the first three terms of Uₙ=n²+1 and evaluate Σ from n=1 to 4 of n².",
+        "steps": [
+          {
+            "calculation": "U_1=1^2+1=2",
+            "explanation": "Put n=1 into the term rule."
+          },
+          {
+            "calculation": "U_2=2^2+1=5,\\quad U_3=3^2+1=10",
+            "explanation": "Repeat for the next two positions."
+          },
+          {
+            "calculation": "\\sum_{n=1}^{4}n^2=1^2+2^2+3^2+4^2",
+            "explanation": "Expand sigma notation into its four specified terms."
+          },
+          {
+            "calculation": "1+4+9+16=30",
+            "explanation": "Add the evaluated terms."
+          }
+        ],
+        "answer": "The terms are 2, 5, 10; the sum is 30.",
+        "check": {
+          "calculation": "1+4+9+16=30",
+          "explanation": "The final calculation matches the required term or sum."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "Identify the pattern, choose the correct formula, substitute carefully, and check the answer against the first few terms before reading the feedback."
+      },
+      {
+        "type": "checkpoint",
+        "question": "For Uₙ=n²+1, what is U₄?",
+        "options": [
+          "5",
+          "9",
+          "16",
+          "17"
+        ],
+        "correct_index": 3,
+        "explanation": "Replace n by 4: U₄=4²+1=16+1=17. The subscript is the position, not a multiplier."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is Σ from n=1 to 3 of (n²+1)?",
+        "options": [
+          "9",
+          "14",
+          "17",
+          "30"
+        ],
+        "correct_index": 2,
+        "explanation": "Expand the index range: (1²+1)+(2²+1)+(3²+1)=2+5+10=17. There are three terms, corresponding to n=1, 2 and 3."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Key result",
+        "text": "The terms are 2, 5, 10; the sum is 30."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "A sequence is an ordered list of terms U₁, U₂, … . A series is the sum of terms. A rule for Uₙ tells you which term appears in position n; sigma notation Σ adds the terms over a stated index range. Substitute each index separately before adding."
+      }
+    ],
+    "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 72–73",
+    "flashcards": [
+      {
+        "front": "For Uₙ=n²+1, what is U₄?",
+        "back": "Replace n by 4: U₄=4²+1=16+1=17. The subscript is the position, not a multiplier.",
+        "tag": "section"
+      },
+      {
+        "front": "What is Σ from n=1 to 3 of (n²+1)?",
+        "back": "Expand the index range: (1²+1)+(2²+1)+(3²+1)=2+5+10=17. There are three terms, corresponding to n=1, 2 and 3.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "course_code": "MTH 101",
+    "module_title": "Sequences and Series",
+    "module_position": 6,
+    "lesson_position": 2,
+    "logical_key": "mth101-sequences-20261029-02",
+    "title": "Arithmetic sequences and nth terms",
+    "objective": "Recognize the pattern and explain each step in the calculation.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand it"
+      },
+      {
+        "type": "paragraph",
+        "text": "An arithmetic progression adds the same difference d each time. With first term a, Uₙ=a+(n−1)d. To find d, subtract adjacent terms. To find an unknown position, set the formula equal to the given term and solve for n; the position must be a positive integer."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Step by step",
+        "problem": "Find the ninth term of 2, 7, 12, 17, … .",
+        "steps": [
+          {
+            "calculation": "a=2,\\quad d=7-2=5",
+            "explanation": "Read the first term and subtract two adjacent terms."
+          },
+          {
+            "calculation": "U_n=a+(n-1)d",
+            "explanation": "Use the arithmetic nth-term formula."
+          },
+          {
+            "calculation": "U_9=2+(9-1)5",
+            "explanation": "Substitute n=9, a=2 and d=5."
+          },
+          {
+            "calculation": "U_9=2+40=42",
+            "explanation": "Calculate the eighth jump after the first term."
+          }
+        ],
+        "answer": "U₉=42.",
+        "check": {
+          "calculation": "U_9=2+40=42",
+          "explanation": "The final calculation matches the required term or sum."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "Identify the pattern, choose the correct formula, substitute carefully, and check the answer against the first few terms before reading the feedback."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the sixteenth term of 2, 7, 12, …?",
+        "options": [
+          "72",
+          "77",
+          "82",
+          "87"
+        ],
+        "correct_index": 1,
+        "explanation": "The difference is 5, so U₁₆=2+(16−1)5=2+75=77. There are 15 jumps from the first term to the sixteenth."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which term of −3, 0, 3, 6, … equals 18?",
+        "options": [
+          "sixth",
+          "seventh",
+          "eighth",
+          "ninth"
+        ],
+        "correct_index": 2,
+        "explanation": "Here a=−3 and d=3. Set −3+(n−1)3=18, so 3(n−1)=21, n−1=7 and n=8. Checking: −3+7·3=18."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Key result",
+        "text": "U₉=42."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "An arithmetic progression adds the same difference d each time. With first term a, Uₙ=a+(n−1)d. To find d, subtract adjacent terms. To find an unknown position, set the formula equal to the given term and solve for n; the position must be a positive integer."
+      }
+    ],
+    "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–76",
+    "flashcards": [
+      {
+        "front": "What is the sixteenth term of 2, 7, 12, …?",
+        "back": "The difference is 5, so U₁₆=2+(16−1)5=2+75=77. There are 15 jumps from the first term to the sixteenth.",
+        "tag": "section"
+      },
+      {
+        "front": "Which term of −3, 0, 3, 6, … equals 18?",
+        "back": "Here a=−3 and d=3. Set −3+(n−1)3=18, so 3(n−1)=21, n−1=7 and n=8. Checking: −3+7·3=18.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "course_code": "MTH 101",
+    "module_title": "Sequences and Series",
+    "module_position": 6,
+    "lesson_position": 3,
+    "logical_key": "mth101-sequences-20261029-03",
+    "title": "Arithmetic series and means",
+    "objective": "Recognize the pattern and explain each step in the calculation.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand it"
+      },
+      {
+        "type": "paragraph",
+        "text": "The sum of n terms of an arithmetic progression is Sₙ=n[2a+(n−1)d]/2, or Sₙ=n(a+L)/2 when the last term L is known. The arithmetic mean of two numbers x and y is (x+y)/2; equally spaced inserted terms make an arithmetic progression."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Step by step",
+        "problem": "Add the first seven terms of 1, 4, 7, … .",
+        "steps": [
+          {
+            "calculation": "a=1,\\quad d=4-1=3,\\quad n=7",
+            "explanation": "Identify the first term, common difference and term count."
+          },
+          {
+            "calculation": "S_n=\\frac n2[2a+(n-1)d]",
+            "explanation": "Use the arithmetic-series formula."
+          },
+          {
+            "calculation": "S_7=\\frac72[2(1)+6(3)]",
+            "explanation": "Substitute each known value before simplifying."
+          },
+          {
+            "calculation": "S_7=\\frac72(20)=70",
+            "explanation": "Evaluate the bracket, then multiply."
+          }
+        ],
+        "answer": "S₇=70.",
+        "check": {
+          "calculation": "S_7=\\frac72(20)=70",
+          "explanation": "The final calculation matches the required term or sum."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "Identify the pattern, choose the correct formula, substitute carefully, and check the answer against the first few terms before reading the feedback."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Find the arithmetic mean of 8 and 18.",
+        "options": [
+          "10",
+          "12",
+          "13",
+          "26"
+        ],
+        "correct_index": 2,
+        "explanation": "The middle term must be equally far from both ends: (8+18)/2=26/2=13. Check that 13−8=5 and 18−13=5."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the sum of the first 7 terms of 1, 4, 7, …?",
+        "options": [
+          "49",
+          "63",
+          "70",
+          "77"
+        ],
+        "correct_index": 2,
+        "explanation": "Here a=1, d=3, n=7. S₇=7/2[2·1+(7−1)·3]=7/2(20)=70. You can check by adding 1+4+7+10+13+16+19."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Key result",
+        "text": "S₇=70."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "The sum of n terms of an arithmetic progression is Sₙ=n[2a+(n−1)d]/2, or Sₙ=n(a+L)/2 when the last term L is known. The arithmetic mean of two numbers x and y is (x+y)/2; equally spaced inserted terms make an arithmetic progression."
+      }
+    ],
+    "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 74–77",
+    "flashcards": [
+      {
+        "front": "Find the arithmetic mean of 8 and 18.",
+        "back": "The middle term must be equally far from both ends: (8+18)/2=26/2=13. Check that 13−8=5 and 18−13=5.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the sum of the first 7 terms of 1, 4, 7, …?",
+        "back": "Here a=1, d=3, n=7. S₇=7/2[2·1+(7−1)·3]=7/2(20)=70. You can check by adding 1+4+7+10+13+16+19.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "course_code": "MTH 101",
+    "module_title": "Sequences and Series",
+    "module_position": 6,
+    "lesson_position": 4,
+    "logical_key": "mth101-sequences-20261029-04",
+    "title": "Geometric sequences and finite sums",
+    "objective": "Recognize the pattern and explain each step in the calculation.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand it"
+      },
+      {
+        "type": "paragraph",
+        "text": "A geometric progression multiplies by a constant ratio r. Its nth term is Uₙ=ar^(n−1), where a is first term. For r≠1, the finite sum is Sₙ=a(1−rⁿ)/(1−r). Negative ratios alternate signs; a negative term does not make the whole ratio negative unless consecutive terms have opposite signs."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Step by step",
+        "problem": "Find the sixth term of 4, −6, 9, … .",
+        "steps": [
+          {
+            "calculation": "a=4,\\quad r=\\frac{-6}{4}=-\\frac32",
+            "explanation": "Divide the second term by the first to find the ratio."
+          },
+          {
+            "calculation": "U_n=ar^{n-1}",
+            "explanation": "Use the geometric nth-term formula."
+          },
+          {
+            "calculation": "U_6=4\\left(-\\frac32\\right)^5",
+            "explanation": "There are five multiplications after the first term."
+          },
+          {
+            "calculation": "U_6=4\\left(-\\frac{243}{32}\\right)=-\\frac{243}{8}",
+            "explanation": "An odd power keeps the negative sign; simplify the fraction."
+          }
+        ],
+        "answer": "U₆=−243/8.",
+        "check": {
+          "calculation": "U_6=4\\left(-\\frac{243}{32}\\right)=-\\frac{243}{8}",
+          "explanation": "The final calculation matches the required term or sum."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "Identify the pattern, choose the correct formula, substitute carefully, and check the answer against the first few terms before reading the feedback."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the common ratio of 4, −6, 9, …?",
+        "options": [
+          "−3/2",
+          "3/2",
+          "−2/3",
+          "2"
+        ],
+        "correct_index": 0,
+        "explanation": "Divide a term by the preceding term: −6/4=−3/2. Check the next pair: 9/(−6)=−3/2, so the ratio is consistent."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the sum of the first four terms 2, 4, 8, 16?",
+        "options": [
+          "16",
+          "28",
+          "30",
+          "32"
+        ],
+        "correct_index": 2,
+        "explanation": "Add directly: 2+4+8+16=30. The formula agrees: a=2, r=2, n=4 gives S₄=2(1−2⁴)/(1−2)=2(−15)/(−1)=30."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Key result",
+        "text": "U₆=−243/8."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "A geometric progression multiplies by a constant ratio r. Its nth term is Uₙ=ar^(n−1), where a is first term. For r≠1, the finite sum is Sₙ=a(1−rⁿ)/(1−r). Negative ratios alternate signs; a negative term does not make the whole ratio negative unless consecutive terms have opposite signs."
+      }
+    ],
+    "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 78–81",
+    "flashcards": [
+      {
+        "front": "What is the common ratio of 4, −6, 9, …?",
+        "back": "Divide a term by the preceding term: −6/4=−3/2. Check the next pair: 9/(−6)=−3/2, so the ratio is consistent.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the sum of the first four terms 2, 4, 8, 16?",
+        "back": "Add directly: 2+4+8+16=30. The formula agrees: a=2, r=2, n=4 gives S₄=2(1−2⁴)/(1−2)=2(−15)/(−1)=30.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "course_code": "MTH 101",
+    "module_title": "Sequences and Series",
+    "module_position": 6,
+    "lesson_position": 5,
+    "logical_key": "mth101-sequences-20261029-05",
+    "title": "Geometric means and infinite sums",
+    "objective": "Recognize the pattern and explain each step in the calculation.",
+    "estimated_minutes": 8,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand it"
+      },
+      {
+        "type": "paragraph",
+        "text": "For three positive geometric terms x, m, y, the middle term satisfies m²=xy, so m=√(xy). An infinite geometric series has a finite sum only when |r|<1. Its terms then approach zero and S∞=a/(1−r). If |r|≥1 and a≠0, the terms do not shrink enough for the series to converge."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Step by step",
+        "problem": "Find 1/2+1/4+1/8+⋯ .",
+        "steps": [
+          {
+            "calculation": "a=\\frac12,\\quad r=\\frac{1/4}{1/2}=\\frac12",
+            "explanation": "The first term is one half and each new term halves the previous one."
+          },
+          {
+            "calculation": "|r|=\\frac12<1",
+            "explanation": "The convergence condition holds, so the infinite-sum formula applies."
+          },
+          {
+            "calculation": "S_{\\infty}=\\frac{a}{1-r}",
+            "explanation": "Use the formula for a convergent geometric series."
+          },
+          {
+            "calculation": "S_{\\infty}=\\frac{1/2}{1-1/2}=1",
+            "explanation": "Subtract in the denominator, then divide."
+          }
+        ],
+        "answer": "The infinite sum is 1.",
+        "check": {
+          "calculation": "S_{\\infty}=\\frac{1/2}{1-1/2}=1",
+          "explanation": "The final calculation matches the required term or sum."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "Identify the pattern, choose the correct formula, substitute carefully, and check the answer against the first few terms before reading the feedback."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the sum to infinity of 1/2+1/4+1/8+⋯?",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "No finite sum"
+        ],
+        "correct_index": 1,
+        "explanation": "The first term is 1/2 and ratio is 1/2. Since |r|<1, S∞=a/(1−r)=(1/2)/(1/2)=1."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which geometric series has a finite sum to infinity?",
+        "options": [
+          "3+6+12+⋯",
+          "1−2+4−⋯",
+          "4+2+1+⋯",
+          "5+5+5+⋯"
+        ],
+        "correct_index": 2,
+        "explanation": "A finite sum requires |r|<1. For 4+2+1+⋯, r=1/2, so it converges. The other ratios have magnitudes 2, 2 and 1, so their terms do not approach zero."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Key result",
+        "text": "The infinite sum is 1."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "For three positive geometric terms x, m, y, the middle term satisfies m²=xy, so m=√(xy). An infinite geometric series has a finite sum only when |r|<1. Its terms then approach zero and S∞=a/(1−r). If |r|≥1 and a≠0, the terms do not shrink enough for the series to converge."
+      }
+    ],
+    "source_reference": "Fundamental Mathematics: Algebra, chapter 7, photographed pages 72–82, supplied 29 Oct 2026, 79–82",
+    "flashcards": [
+      {
+        "front": "What is the sum to infinity of 1/2+1/4+1/8+⋯?",
+        "back": "The first term is 1/2 and ratio is 1/2. Since |r|<1, S∞=a/(1−r)=(1/2)/(1/2)=1.",
+        "tag": "section"
+      },
+      {
+        "front": "Which geometric series has a finite sum to infinity?",
+        "back": "A finite sum requires |r|<1. For 4+2+1+⋯, r=1/2, so it converges. The other ratios have magnitudes 2, 2 and 1, so their terms do not approach zero.",
+        "tag": "section"
+      }
+    ]
+  }
+]
