@@ -19,7 +19,7 @@ import { QuestionPanel } from "./question-panel";
  */
 export function PlayPhase({ battle, refetch }: { battle: Battle; refetch: () => unknown }) {
   const toEnd = useServerCountdown(battle.ends_at);
-  const toStart = useServerCountdown(battle.starts_at);
+  const toStart = useRefetchWhenDue(battle.state === "countdown" ? battle.starts_at : null, refetch);
 
   if (battle.ends_at && toEnd <= 0) return <FinalizingPanel battleId={battle.battle_id} refetch={refetch} />;
   if (battle.starts_at && toStart > 0) return <CountdownPanel remainingMs={toStart} />;

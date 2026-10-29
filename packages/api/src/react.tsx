@@ -318,7 +318,7 @@ export function useBattleSignals(battleId: string | undefined): ChannelStatus {
   useEffect(() => {
     if (!battleId) return;
     const sub = subscribeToSignals(api.supabase, topics.battle(battleId), {
-      onSignal: () => void qc.invalidateQueries({ queryKey: qk.battle(battleId) }),
+      onSignal: () => void qc.invalidateQueries({ queryKey: qk.battle(battleId) }, { cancelRefetch: false }),
       onStatus: setStatus,
     });
     return () => sub.unsubscribe();

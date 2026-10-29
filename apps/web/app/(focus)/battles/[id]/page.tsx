@@ -35,7 +35,18 @@ export default function BattlePage() {
   const battle = q.data;
   const live = battle ? isLiveBattleState(battle.state) : false;
   const { refetch: rawRefetch } = q;
-  const refetch = useCallback(() => rawRefetch(), [rawRefetch]);
+  const refetch = useCallback(() => rawRefetch({ cancelRefetch: false }), [rawRefetch]);
+
+  const [slowRequestAt, setSlowRequestAt] = useState(-1);
+  useEffect(() => {
+    if (!q.isFetching) return;
+    const timer = window.setTimeout(() => setSlowRequestAt(q.dataUpdatedAt), 2500);
+    return () => window.clearTimeout(timer);
+  }, [q.isFetching, q.dataUpdatedAt]);
+  const slowRequest = q.isFetching && slowRequestAt === q.dataUpdatedAt;
+  useEffect(() => {
+    if (online) void refetch();
+  }, [online, refetch]);
 
   const state = battle?.state;
   const result = battle?.outcome?.result;
@@ -125,7 +136,7 @@ export default function BattlePage() {
     <div className="flex flex-col gap-4">
       <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
-      {live && disconnected ? <ReconnectBanner onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
+      {live && (disconnected || q.isError || slowRequest) ? <ReconnectBanner offline={!online} delayed={!disconnected} onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
       {battle && (battle.state === "active" || battle.state === "countdown") ? <BattleScoreboard battle={battle} /> : null}
       {body}
       <LeaveBattleDialog

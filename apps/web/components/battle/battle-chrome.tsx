@@ -289,18 +289,20 @@ export function LeaveBattleDialog({
   );
 }
 
-export function ReconnectBanner({ onRefresh, refreshing }: { onRefresh: () => void; refreshing: boolean }) {
+export function ReconnectBanner({ onRefresh, refreshing, offline = false, delayed = false }: { onRefresh: () => void; refreshing: boolean; offline?: boolean; delayed?: boolean }) {
   return (
     <Alert
       tone="warning"
       role="status"
-      title={COPY.battle.reconnecting}
+      title={offline ? "Network issue: you are offline" : delayed ? "Battle updates are delayed" : COPY.battle.reconnecting}
       action={
         <Button size="sm" variant="secondary" onClick={onRefresh} loading={refreshing}>
           {refreshing ? null : <RefreshCw className="size-4" aria-hidden />}
           Refresh
         </Button>
       }
-    />
+    >
+      {offline ? "Check your connection. We will reconnect automatically." : "Reconnecting to the battle. Your connection or the server may be slow."} The battle timer continues while reconnecting.
+    </Alert>
   );
 }
