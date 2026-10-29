@@ -14,7 +14,6 @@ export function AuthMethodOptions({ mode, context }: { mode: "sign-in" | "sign-u
       <Button asChild block size="lg"><Link href={authHref(signup ? "/sign-up" : "/sign-in", context, { role: signup ? "student" : undefined, method: "email" })}><Mail aria-hidden="true" />{action} with email</Link></Button>
       <GoogleSignIn next={context.next} mode={mode} label={`${action} with Google`} />
     </div>
-    <p className="auth-method-legal">Read our <Link href="/terms">Terms of Use</Link> and <Link href="/privacy">Privacy Policy</Link>.</p>
     <p className="auth-method-switch">{signup ? "Already have an account?" : "New to ScholAu?"} <Link href={authHref(signup ? "/sign-in" : "/sign-up", context)}>{signup ? "Sign in" : "Create account"}</Link></p>
   </div>;
 }

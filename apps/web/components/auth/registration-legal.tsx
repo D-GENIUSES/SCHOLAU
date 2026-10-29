@@ -35,7 +35,7 @@ export function RegistrationLegal({ legal, showTerms = true }: { legal: ReturnTy
             <span>
               I have read and accept the{" "}
               <Link className="font-semibold underline" href="/terms" target="_blank" rel="noopener">
-                Terms of Use (draft; opens in a new tab)
+                Terms of Use
               </Link>
               .
             </span>
@@ -43,7 +43,7 @@ export function RegistrationLegal({ legal, showTerms = true }: { legal: ReturnTy
           <p className="text-sm text-ink-muted">
             Read our{" "}
             <Link className="font-semibold underline" href="/privacy" target="_blank" rel="noopener">
-              Privacy Policy (draft; opens in a new tab)
+              Privacy Policy
             </Link>{" "}
             to understand how we handle your data. Optional notifications are offered separately.
           </p>
