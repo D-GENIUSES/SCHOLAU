@@ -8,7 +8,8 @@ const PUBLIC_PATHS = ["/", "/home", "/sign-in", "/sign-up", "/verify", "/recover
 const AUTH_PAGES = ["/sign-in", "/sign-up"];
 
 function isPublic(pathname: string) {
-  return PUBLIC_PATHS.some((p) => pathname === p || (p !== "/" && pathname.startsWith(`${p}/`)));
+  return pathname === "/api/auth/google-signup-attempt"
+    || PUBLIC_PATHS.some((p) => pathname === p || (p !== "/" && pathname.startsWith(`${p}/`)));
 }
 
 /** Refreshes the Supabase session cookie and gates protected routes on authentication. */
