@@ -1,4 +1,5 @@
 -- Run inside a transaction; test addresses and all side effects are rolled back.
+begin;
 alter table private.welcome_email_events disable trigger welcome_email_send_on_insert;
 do $$
 declare uid uuid:=gen_random_uuid(); gid uuid:=gen_random_uuid(); m jsonb; admin_id uuid; r jsonb;
@@ -29,3 +30,4 @@ begin
   if not exists(select 1 from public.profiles where id=gid) or not exists(select 1 from private.pending_registrations where user_id=gid and kind='google') then raise exception 'Google flow changed'; end if;
 end $$;
 select 'PASS: pending email hidden; confirmation provisions profile and welcome once; Google unchanged' as result;
+rollback;
