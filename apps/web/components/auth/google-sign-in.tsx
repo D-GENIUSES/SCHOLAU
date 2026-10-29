@@ -43,6 +43,13 @@ export function GoogleSignIn({ next, disabled, label = "Continue with Google", m
       callback.searchParams.set("next", safeNext(next, "/auth/continue"));
       callback.searchParams.set("provider", "google");
       callback.searchParams.set("mode", mode);
+      if (mode === "sign-up") {
+        const response = await fetch("/api/auth/google-signup-attempt", { method: "POST" });
+        if (!response.ok) throw new Error("Google signup attempt unavailable");
+        const { attemptId } = await response.json() as { attemptId?: string };
+        if (!attemptId) throw new Error("Google signup attempt unavailable");
+        callback.searchParams.set("attempt", attemptId);
+      }
       const { data, error: authError } = await getBrowserSupabase().auth.signInWithOAuth({
         provider: "google",
         options: {
