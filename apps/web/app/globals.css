@@ -173,6 +173,9 @@
 .leaderboard-columns > :last-child { text-align: right; }
 .leaderboard-list { list-style: none; margin: 0; padding: 0 10px; }
 .leaderboard-list > li + li { border-top: 1px solid #e1e9f3; }
+.online-avatar { position: relative; display: inline-flex; flex: none; line-height: 0; }
+.online-avatar-dot { position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: #17b86a; box-shadow: 0 0 0 1px #148b5633; }
+.online-avatar[data-size="56"] .online-avatar-dot { width: 12px; height: 12px; right: 0; bottom: 0; }
 .leaderboard-entry { display: grid; grid-template-columns: 32px 32px minmax(0,1fr) auto; align-items: center; gap: 8px; padding: 13px 4px; border-radius: 10px; min-height: 76px; }
 .leaderboard-entry-me { background: #e7f1ff; box-shadow: inset 3px 0 #2876bf; }
 .leaderboard-rank { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 10px; color: #60758c; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }

@@ -441,6 +441,7 @@ export function useLeaderboard(scope: LeaderboardScope) {
     queryFn: ({ pageParam }) => api.getLeaderboard({ scope, cursor: pageParam, limit: 20 }),
     initialPageParam: null as string | null,
     getNextPageParam: (last: T.LeaderboardPage) => last.next_cursor ?? undefined,
+    refetchInterval: 30_000,
     retry: shouldRetry,
   });
 }
@@ -620,7 +621,7 @@ export function useStartTopicReview() {
 
 export function usePublicProfile(userId: string) {
   const api = useScholauApi();
-  return useQuery({ queryKey: ["scholau", "social", "public-profile", userId], queryFn: () => api.getPublicProfile(userId), retry: shouldRetry });
+  return useQuery({ queryKey: ["scholau", "social", "public-profile", userId], queryFn: () => api.getPublicProfile(userId), refetchInterval: 30_000, retry: shouldRetry });
 }
 
 export function useFriends() {

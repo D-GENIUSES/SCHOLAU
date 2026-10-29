@@ -8,6 +8,7 @@ import { type PublicProfile, isApiError } from "@scholau/api";
 import { useFriendAction, useFriends, useProfile, usePublicProfile, useSearchFriends } from "@scholau/api/react";
 import { formatNumber } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
+import { OnlineAvatar } from "@/components/ui/online-avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -86,7 +87,7 @@ export function PublicProfileContent({ profile: p, actions }: { profile: PublicP
       <section className="public-profile-hero">
         {eyebrow ? <p className="profile-identity-eyebrow">{eyebrow}</p> : null}
         <div className="public-profile-hero-row">
-          <Avatar name={p.display_name} path={p.avatar_path} size={56} publicProfile variant="profile" />
+          <OnlineAvatar name={p.display_name} path={p.avatar_path} size={56} online={p.online} variant="profile" />
           <div className="public-profile-hero-copy">
             <h1>{p.display_name}</h1>
             {p.username ? <p className="public-profile-username">@{p.username}</p> : null}

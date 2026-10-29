@@ -891,6 +891,7 @@ export interface LeaderboardRow {
   xp_total: number;
 
   is_me: boolean;
+  online?: boolean;
   faculty_name?: string | null;
   level_label?: string | null;
 }
@@ -1354,6 +1355,7 @@ export interface XpProgress extends Envelope {
 export type FriendAction = "request" | "accept" | "decline" | "cancel" | "remove" | "block" | "unblock";
 export interface PublicProfile extends Envelope {
   id: string; display_name: string; username: string | null; avatar_path: string | null;
+  online?: boolean;
   joined_at: string; university: string | null; faculty: string | null;
   department: string | null; level: string | null; xp_total: number | null; badges: string[];
 }
