@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import { Swords } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type NavIconProps = SVGProps<SVGSVGElement> & { className?: string };
@@ -67,27 +68,7 @@ export function NavStudyIcon({ className, ...props }: NavIconProps) {
 }
 
 export function NavBattlesIcon({ className, ...props }: NavIconProps) {
-  return (
-    <svg {...iconProps(className, props)}>
-      <path
-        d="m7.2 18.5 1.8-8.2 3.5 1.5-1.8 8.2-3.5-1.5ZM16.8 18.5l-1.8-8.2-3.5 1.5 1.8 8.2 3.5-1.5Z"
-        fill="currentColor"
-        opacity="0.35"
-      />
-      <path
-        d="m8.5 17.2 2.2-9.5 2.8 1.2-2.2 9.5-2.8-1.2ZM15.5 17.2l-2.2-9.5-2.8 1.2 2.2 9.5 2.8-1.2Z"
-        fill="currentColor"
-      />
-      <circle cx="12" cy="5.5" r="2.2" fill="currentColor" />
-      <path
-        d="M10.2 7.2 12 9l1.8-1.8"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-  );
+  return <Swords {...props} size={24} strokeWidth={1.9} className={cn("shrink-0", className)} aria-hidden />;
 }
 
 export function NavLeaderboardIcon({ className, ...props }: NavIconProps) {

@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import { Swords } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type IconProps = SVGProps<SVGSVGElement> & { className?: string; size?: number };
@@ -80,13 +81,5 @@ export function AppBookIcon({ className, size, ...props }: IconProps) {
 }
 
 export function AppSwordsIcon({ className, size, ...props }: IconProps) {
-  return (
-    <svg {...base({ className, size, ...props })}>
-      <path
-        d="m8.5 17.2 2.2-9.5 2.8 1.2-2.2 9.5-2.8-1.2ZM15.5 17.2l-2.2-9.5-2.8 1.2 2.2 9.5 2.8-1.2Z"
-        fill="currentColor"
-      />
-      <circle cx="12" cy="5.5" r="2.2" fill="currentColor" />
-    </svg>
-  );
+  return <Swords {...props} size={size ?? 24} strokeWidth={1.9} className={cn("shrink-0", className)} aria-hidden />;
 }
