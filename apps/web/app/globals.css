@@ -572,6 +572,12 @@
 .header-streak[data-active=true] .streak-count { color: var(--color-ink); }
 .streak-info-dialog { max-width: 22rem; align-items: center; gap: 10px; padding-top: 22px; }
 .streak-info-hero { display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; background: #fff4e8; }
+.streak-info-dialog[data-state="open"] .streak-info-hero { animation: streak-hero-enter 650ms ease-out both; }
+.streak-info-dialog[data-state="open"] .streak-info-hero > svg { transform-origin: 50% 85%; animation: streak-flame-enter 850ms ease-out both; }
+.streak-info-dialog[data-state="open"] .streak-info-count { animation: streak-count-enter-large 600ms 180ms ease-out both; }
+@keyframes streak-hero-enter { 0% { opacity: .35; transform: scale(.7); } 65% { opacity: 1; transform: scale(1.08); } 100% { transform: scale(1); } }
+@keyframes streak-flame-enter { 0% { transform: scale(.7) rotate(-9deg); } 55% { transform: scale(1.15) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes streak-count-enter-large { from { opacity: 0; transform: translateY(10px) scale(.88); } to { opacity: 1; transform: none; } }
 .streak-info-title { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 !important; text-align: center; }
 .streak-info-count { font-size: clamp(40px, 12vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; color: var(--color-brand-primary); font-variant-numeric: tabular-nums; }
 .streak-info-label { font-size: 1rem; font-weight: 600; color: var(--color-brand-primary); }
@@ -594,7 +600,7 @@
 @keyframes first-lesson-spark { 0% { opacity: 0; transform: translateY(0) scale(.5); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-30px) scale(.4); } }
 @keyframes streak-count-enter { from { opacity: .5; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .first-lesson-celebration, .first-lesson-fire > svg, .first-lesson-spark, .streak-count { animation: none; }
+  .first-lesson-celebration, .first-lesson-fire > svg, .first-lesson-spark, .streak-count, .streak-info-hero, .streak-info-hero > svg, .streak-info-count { animation: none !important; }
   .first-lesson-spark { display: none; }
 }
 

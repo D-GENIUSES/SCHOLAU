@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Clock, RefreshCw, Ta
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { type CompleteLessonResult, isApiError, type Lesson } from "@scholau/api";
+import { type CompleteLessonResult, isApiError, type Lesson, type Streak } from "@scholau/api";
 import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
 import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
 import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
@@ -68,6 +68,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const start = useStartLesson();
   const home = useHomeSummary();
   const [streakCelebration, setStreakCelebration] = useState<{ days: number; localDate: string; previousDays: number } | null>(null);
+  const previousStreakRef = useRef<Streak | undefined>(undefined);
+  const celebratedCompletionRef = useRef<string | null>(null);
   const [deckFinished, setDeckFinished] = useState(false);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
   const examCards = useMemo(() => {
@@ -86,6 +88,14 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const startedFor = useRef<string | null>(null);
   const alreadyCompleted = lesson.progress?.state === "completed";
   useEffect(() => {
+    const result = complete.data;
+    if (!result || celebratedCompletionRef.current === result.completed_at) return;
+    celebratedCompletionRef.current = result.completed_at;
+    if (shouldCelebrateStreak(result, previousStreakRef.current)) {
+      setStreakCelebration({ days: result.streak.current, localDate: result.streak.local_date, previousDays: result.streak.current === 1 ? 0 : previousStreakRef.current?.current ?? result.streak.current - 1 });
+    }
+  }, [complete.data]);
+  useEffect(() => {
     if (alreadyCompleted || startedFor.current === lesson.lesson_version_id) return;
     startedFor.current = lesson.lesson_version_id;
     startMutate(lesson.lesson_version_id, {
@@ -94,14 +104,11 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   }, [alreadyCompleted, lesson.lesson_version_id, startMutate, analytics]);
 
   const markComplete = (retry = false) => {
-    const previousStreak = home.data?.streak;
+    previousStreakRef.current = home.data?.streak;
     complete.mutate(
       retry && complete.variables ? complete.variables : { lessonVersionId: lesson.lesson_version_id },
       {
         onSuccess: (r) => {
-          if (shouldCelebrateStreak(r, previousStreak)) {
-            setStreakCelebration({ days: r.streak.current, localDate: r.streak.local_date, previousDays: r.streak.current === 1 ? 0 : previousStreak?.current ?? r.streak.current - 1 });
-          }
           if (!r.already_completed) analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });
         },
       },
