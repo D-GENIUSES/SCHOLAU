@@ -4,10 +4,11 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /** A layered, asymmetrical flame that remains legible at header-icon size. */
-export function StreakFlame({ active = false, className, size = 24 }: {
+export function StreakFlame({ active = false, className, size = 24, tone = "warm" }: {
   active?: boolean;
   className?: string;
   size?: number;
+  tone?: "warm" | "blue";
 }) {
   const uid = useId().replace(/:/g, "");
   const outer = `${uid}-outer`;
@@ -18,18 +19,18 @@ export function StreakFlame({ active = false, className, size = 24 }: {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
       className={cn("shrink-0", className)}
-      style={active ? { filter: "drop-shadow(0 1px 3px #ff6b2450)" } : undefined}
+      style={active ? { filter: tone === "blue" ? "drop-shadow(0 4px 12px #0866e855)" : "drop-shadow(0 1px 3px #ff6b2450)" } : undefined}
       aria-hidden="true" focusable="false">
       {active ? <>
         <defs>
           <linearGradient id={outer} x1="12" y1="1" x2="12" y2="23" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#ffcc3d" /><stop offset=".38" stopColor="#ff8c19" /><stop offset=".75" stopColor="#f44b12" /><stop offset="1" stopColor="#c92b12" />
+            <stop stopColor={tone === "blue" ? "#c7f2ff" : "#ffcc3d"} /><stop offset=".38" stopColor={tone === "blue" ? "#58c1ff" : "#ff8c19"} /><stop offset=".75" stopColor={tone === "blue" ? "#0866e8" : "#f44b12"} /><stop offset="1" stopColor={tone === "blue" ? "#1749af" : "#c92b12"} />
           </linearGradient>
           <linearGradient id={middle} x1="12" y1="8" x2="12" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#fff38a" /><stop offset=".55" stopColor="#ffc32f" /><stop offset="1" stopColor="#ff8514" />
+            <stop stopColor={tone === "blue" ? "#f7feff" : "#fff38a"} /><stop offset=".55" stopColor={tone === "blue" ? "#9ce5ff" : "#ffc32f"} /><stop offset="1" stopColor={tone === "blue" ? "#38a3ff" : "#ff8514"} />
           </linearGradient>
           <radialGradient id={core} cx="0" cy="0" r="1" gradientTransform="translate(12 18) rotate(-90) scale(7 4)" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#fffef0" /><stop offset=".5" stopColor="#fff5a4" /><stop offset="1" stopColor="#ffcd40" />
+            <stop stopColor={tone === "blue" ? "#ffffff" : "#fffef0"} /><stop offset=".5" stopColor={tone === "blue" ? "#e4faff" : "#fff5a4"} /><stop offset="1" stopColor={tone === "blue" ? "#a8e8ff" : "#ffcd40"} />
           </radialGradient>
         </defs>
         <path d={shape} fill={`url(#${outer})`} />
