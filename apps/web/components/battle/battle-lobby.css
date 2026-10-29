@@ -118,3 +118,55 @@
 
 .battle-setup-summary { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; padding:10px 12px; border-radius:10px; background:#f3f7fc; font-size:12px; color:#52647a; }
 .battle-setup-summary strong { color:#16365e; }
+
+/* Single-screen creation: neutral surfaces and a clear decision order. */
+.battle-lobby .battle-setup-card { overflow: visible; border-color: #e2e8f1; box-shadow: none; }
+.battle-setup-heading { background: white; border-radius: 20px 20px 0 0; padding: 24px; margin: 0; }
+.battle-setup-heading h2 { font-size: 20px; }
+.battle-setup-heading p { font-size: 13px; line-height: 1.6; max-width: 420px; }
+.battle-setup-fields { display: flex; flex-direction: column; gap: 28px; padding: 24px; }
+.battle-setup-mode, .battle-setup-subjects, .battle-setup-opponent { width: 100%; min-width: 0; }
+.battle-setup-fields legend, .battle-opponent-heading { font-size: 15px; font-weight: 650; line-height: 1.7; }
+.battle-setup-fields legend { margin-bottom: 12px; padding-bottom: 0; }
+.battle-step { background: #f0f4fa; color: #52647a; }
+.battle-mode-option { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 10px; min-height: 100px; padding: 16px 12px; background: #fff; }
+.battle-mode-copy { min-width: 0; }
+.battle-mode-option strong { font-size: 14px; line-height: 1.45; }
+.battle-mode-option small { font-size: 12px; line-height: 1.5; margin-top: 6px; }
+.battle-mode-option:has(input:checked) { background: #f5f9ff; box-shadow: none; border-color: #0866e8; }
+.battle-mode-indicator { flex: 0 0 16px; height: 16px; border: 1.5px solid #b5c1d1; border-radius: 50%; margin-top: 3px; }
+.battle-mode-option:has(input:checked) .battle-mode-indicator { border: 5px solid #0866e8; }
+.battle-course-picker { grid-template-columns: 1fr; max-height: 320px; gap: 8px; scroll-padding: 4px; }
+.battle-course-picker label { min-height: 64px; padding: 10px 12px; box-shadow: none; }
+.battle-course-picker label:has(input:checked) { background: #f5f9ff; box-shadow: none; }
+.battle-course-picker label strong { font-size: 14px; }
+.battle-course-picker label span span { margin-top: 2px; }
+.battle-course-availability { font-size: 11px; color: #758397; }
+.battle-opponent-search { gap: 14px; }
+.battle-opponent-heading { margin: 0 0 2px; }
+.battle-opponent-results:empty { display: none; }
+.battle-selected-opponent { padding: 12px 14px; border-left: 3px solid #0866e8; background: #f5f9ff; border-radius: 4px 10px 10px 4px; display: grid; gap: 6px; }
+.battle-question-count { display: grid; gap: 8px; }
+.battle-match-note { margin: 0; padding: 0; background: transparent; line-height: 1.6; }
+.battle-setup-footer { position: static; bottom: 0; z-index: 20; padding: 18px 24px 24px; background: #fff; border-top: 1px solid #e8edf4; border-radius: 0 0 20px 20px; display: grid; gap: 12px; }
+.battle-setup-summary { background: transparent; padding: 0; align-items: flex-start; gap: 8px; }
+.battle-setup-summary > div { display: grid; gap: 4px; min-width: 0; flex: 1; overflow-wrap: anywhere; }
+.battle-setup-summary strong { font-size: 14px; }
+.battle-summary-count { white-space: nowrap; font-size: 12px; padding-top: 2px; }
+.battle-ready-hint { font-size: 12px; line-height: 1.5; color: #607080; margin: 0; }
+.battle-create-button { min-height: 48px; }
+.battle-create-button:not(:disabled) { box-shadow: none; }
+.battle-create-button:not(:disabled):active { transform: none; box-shadow: none; }
+.battle-lobby .battle-rules-card { background: #fafbfd; border-color: #e2e8f1; box-shadow: none; }
+@media(min-width:900px) { .battle-setup-grid { grid-template-columns: minmax(0,1fr) 260px; } }
+@media(max-width:767px) {
+  .battle-setup-heading { padding: 20px 16px; }
+  .battle-setup-fields { padding: 20px 16px 24px; gap: 26px; }
+  .battle-setup-fields legend > .font-normal { display: block; margin-left: 32px; font-size: 12px; }
+  .battle-mode-option { padding: 14px 10px; }
+  .battle-mode-option strong { font-size: 13px; }
+  .battle-mode-option small { font-size: 11px; }
+  .battle-setup-footer { position: sticky; bottom: calc(65px + env(safe-area-inset-bottom)); padding: 14px 16px 16px; box-shadow: 0 -6px 16px #142b4808; }
+  .battle-setup-card:has(input[type=search]:focus) .battle-setup-footer { position: static; }
+  .battle-setup-card input, .battle-setup-card select, .battle-opponent-option { scroll-margin-block: 90px 240px; }
+}
