@@ -14,6 +14,7 @@ function idFrom(fields: Record<string, unknown> | undefined, key: string): strin
 /** Resume target for a SLOT_BUSY error (`field_errors.battle_id` / `field_errors.queue_id`). */
 export function slotBusyHref(error: unknown): string | null {
   if (!isApiError(error, "SLOT_BUSY")) return null;
+  if (error.field_errors?.opponent_status) return null;
   const battleId = idFrom(error.field_errors, "battle_id");
   if (battleId) return `/battles/${battleId}`;
   if (idFrom(error.field_errors, "queue_id")) return "/battles/queue";
@@ -23,6 +24,12 @@ export function slotBusyHref(error: unknown): string | null {
 /** Battle start/accept errors with recovery actions. */
 export function BattleActionError({ error, className }: { error: unknown; className?: string }) {
   if (!error) return null;
+  if (isApiError(error, "SLOT_BUSY") && error.field_errors?.opponent_status) {
+    return <Alert tone="warning" role="alert" className={className}
+      title={error.field_errors.opponent_status === "queue" ? "This learner is already finding an opponent" : "This learner is already in another battle"}>
+      Your challenge wasn&apos;t sent. Choose someone else or try again later.
+    </Alert>;
+  }
   if (isApiError(error, "SLOT_BUSY")) {
     const href = slotBusyHref(error) ?? "/battles";
     const toQueue = href === "/battles/queue";
