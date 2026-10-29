@@ -321,8 +321,9 @@ export function ProfileView({ registration = null, email = null }: { registratio
                       </Dialog>
                     ) : null}
                     {section === "account" ? (
-                      <div className="mt-4">
+                      <div className="mt-4 flex flex-wrap gap-3">
                         <SignOutButton variant="outline" size="md" />
+                        <AccountDeletionDialog />
                       </div>
                     ) : null}
                   </section>

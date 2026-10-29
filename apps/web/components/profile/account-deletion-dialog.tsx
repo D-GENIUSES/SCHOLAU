@@ -37,10 +37,10 @@ export function AccountDeletionDialog() {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="danger-outline">Request account deletion</Button>
+        <Button variant="danger-outline">Delete account</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogTitle>Request account deletion</DialogTitle>
+        <DialogTitle>{request.isSuccess ? "Account deletion requested" : "Delete your account?"}</DialogTitle>
         {request.isSuccess ? (
           <>
             <Alert tone="success" role="status" title="Your request was sent">
@@ -58,7 +58,7 @@ export function AccountDeletionDialog() {
         ) : (
           <>
             <DialogDescription>
-              This sends a deletion request to our support team. Your account is not deleted immediately: support handles the
+              Are you sure you want to request account deletion? Confirming sends a deletion request to our support team. Your account is not deleted immediately: support handles the
               request and will confirm with you. Deleting your account removes your profile, XP and learning and battle history.
             </DialogDescription>
             <Field id="deletion-note" label="Anything we should know?" optional hint="Please don't include passwords or other sensitive details.">
@@ -70,7 +70,7 @@ export function AccountDeletionDialog() {
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
               <Button variant="danger" loading={request.isPending} onClick={submit}>
-                Send deletion request
+                Confirm deletion request
               </Button>
             </DialogFooter>
           </>
