@@ -1,0 +1,530 @@
+[
+  {
+    "logical_question_key": "mth101-real-20261029-01-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which is the smallest standard family containing 0?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Natural numbers"
+      },
+      {
+        "label": "B",
+        "body": "Whole numbers"
+      },
+      {
+        "label": "C",
+        "body": "Irrational numbers"
+      },
+      {
+        "label": "D",
+        "body": "Negative integers"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Natural numbers in this course begin at 1, so 0 is excluded. Whole numbers are 0, 1, 2, ...; thus 0 belongs to the whole-number family. It is also an integer, rational (0/1), and real, but whole is the smallest listed family.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 1–4"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-01-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Why is -4 rational?",
+    "options": [
+      {
+        "label": "A",
+        "body": "It is positive"
+      },
+      {
+        "label": "B",
+        "body": "It has no decimal form"
+      },
+      {
+        "label": "C",
+        "body": "It equals -4/1"
+      },
+      {
+        "label": "D",
+        "body": "It is a natural number"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "The definition of rational requires a ratio of integers with nonzero denominator. Write -4 as -4/1: both -4 and 1 are integers and the denominator is not zero. Its negative sign does not make it irrational.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 1–4"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-02-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which number is irrational?",
+    "options": [
+      {
+        "label": "A",
+        "body": "√64"
+      },
+      {
+        "label": "B",
+        "body": "0.125"
+      },
+      {
+        "label": "C",
+        "body": "√2"
+      },
+      {
+        "label": "D",
+        "body": "0.666..."
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "√64 = 8, which is an integer. 0.125 = 1/8 terminates, and 0.666... = 2/3 repeats; all are rational. √2 cannot be expressed as a ratio of integers, so it is irrational.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 5–6"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-02-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Is 0.454545... rational?",
+    "options": [
+      {
+        "label": "A",
+        "body": "No; it has infinitely many digits"
+      },
+      {
+        "label": "B",
+        "body": "Yes; its repeating block makes it rational"
+      },
+      {
+        "label": "C",
+        "body": "No; only integers are rational"
+      },
+      {
+        "label": "D",
+        "body": "Yes; because it equals 0"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The decimal repeats the block 45. Set x = 0.454545...; then 100x = 45.454545..., so 99x = 45 and x = 45/99 = 5/11. That ratio proves it is rational despite having infinitely many digits.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 5–6"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-03-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which is least: -0.75, -2/3, 0.2, 65%?",
+    "options": [
+      {
+        "label": "A",
+        "body": "-0.75"
+      },
+      {
+        "label": "B",
+        "body": "-2/3"
+      },
+      {
+        "label": "C",
+        "body": "0.2"
+      },
+      {
+        "label": "D",
+        "body": "65%"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "-2/3 ≈ -0.6667 and 65% = 0.65. Both negative values lie left of the positive values. Of the negatives, -0.75 lies farther left than -0.6667, so -0.75 is least.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 7–9"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-03-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Order 0.075, 3/4, 79% from least to greatest.",
+    "options": [
+      {
+        "label": "A",
+        "body": "79%, 3/4, 0.075"
+      },
+      {
+        "label": "B",
+        "body": "0.075, 79%, 3/4"
+      },
+      {
+        "label": "C",
+        "body": "0.075, 3/4, 79%"
+      },
+      {
+        "label": "D",
+        "body": "3/4, 0.075, 79%"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Express everything as decimals: 0.075 remains 0.075, 3/4 = 0.75, and 79% = 0.79. Comparing 0.075, 0.750, and 0.790 gives that exact increasing order.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 7–9"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-04-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which property explains 6 + 4 = 4 + 6?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Associative addition"
+      },
+      {
+        "label": "B",
+        "body": "Commutative addition"
+      },
+      {
+        "label": "C",
+        "body": "Additive identity"
+      },
+      {
+        "label": "D",
+        "body": "Multiplicative identity"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The two addends exchange positions but their grouping does not change. The commutative property states a + b = b + a, so 6 + 4 = 4 + 6 is commutative addition.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 10–11"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-04-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "What is the additive identity?",
+    "options": [
+      {
+        "label": "A",
+        "body": "1"
+      },
+      {
+        "label": "B",
+        "body": "-1"
+      },
+      {
+        "label": "C",
+        "body": "0"
+      },
+      {
+        "label": "D",
+        "body": "Any integer"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "The additive identity e satisfies a + e = a for every real a. Zero does this because a + 0 = a; 1 instead is the multiplicative identity because a × 1 = a.",
+    "course_code": "MTH 101",
+    "difficulty": "beginner",
+    "source_reference": "Real numbers.pdf, pages 10–11"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-05-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Evaluate 18 ÷ 3 × 2.",
+    "options": [
+      {
+        "label": "A",
+        "body": "3"
+      },
+      {
+        "label": "B",
+        "body": "12"
+      },
+      {
+        "label": "C",
+        "body": "1"
+      },
+      {
+        "label": "D",
+        "body": "18"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Division and multiplication have equal priority, so work left to right: 18 ÷ 3 = 6, then 6 × 2 = 12. Dividing by 3 × 2 as though it were grouped would answer a different expression.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 12–13"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-05-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Evaluate 5[(3 + 12) - 2(4)].",
+    "options": [
+      {
+        "label": "A",
+        "body": "35"
+      },
+      {
+        "label": "B",
+        "body": "25"
+      },
+      {
+        "label": "C",
+        "body": "7"
+      },
+      {
+        "label": "D",
+        "body": "75"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "Inside the bracket, 3 + 12 = 15 and 2(4) = 8. Subtract to obtain 15 - 8 = 7. The outside 5 then multiplies the whole bracket: 5 × 7 = 35.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 12–13"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-06-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Evaluate 5a + bc - c for a=4, b=2, c=3.",
+    "options": [
+      {
+        "label": "A",
+        "body": "20"
+      },
+      {
+        "label": "B",
+        "body": "23"
+      },
+      {
+        "label": "C",
+        "body": "26"
+      },
+      {
+        "label": "D",
+        "body": "29"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Substitute the values: 5(4) + (2)(3) - 3. Multiply first to get 20 + 6 - 3, then add and subtract from left to right: 26 - 3 = 23.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 14–17"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-06-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which expression means eight more than Rachel's score r?",
+    "options": [
+      {
+        "label": "A",
+        "body": "8r"
+      },
+      {
+        "label": "B",
+        "body": "8 - r"
+      },
+      {
+        "label": "C",
+        "body": "r + 8"
+      },
+      {
+        "label": "D",
+        "body": "r - 8"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Start with Rachel's score r. 'Eight more than' asks you to add 8 to that score, giving r + 8. Multiplication 8r means eight times her score, while subtraction makes it smaller.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 14–17"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-07-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Solve x + 4 = 17.",
+    "options": [
+      {
+        "label": "A",
+        "body": "x = 21"
+      },
+      {
+        "label": "B",
+        "body": "x = 13"
+      },
+      {
+        "label": "C",
+        "body": "x = 4"
+      },
+      {
+        "label": "D",
+        "body": "x = 17"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Subtract 4 from both sides: x + 4 - 4 = 17 - 4, so x = 13. Check in the original equation: 13 + 4 = 17, which is true.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 18–19"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-07-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Solve n/4 = 7.",
+    "options": [
+      {
+        "label": "A",
+        "body": "n = 7/4"
+      },
+      {
+        "label": "B",
+        "body": "n = 11"
+      },
+      {
+        "label": "C",
+        "body": "n = 28"
+      },
+      {
+        "label": "D",
+        "body": "n = 3"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Multiplication by 4 is the inverse of division by 4. Multiply both sides of n/4 = 7 by 4 to get n = 28. Check: 28/4 = 7, so the equation is satisfied.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 18–19"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-08-a",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Solve x - 5/6 = 7/8.",
+    "options": [
+      {
+        "label": "A",
+        "body": "x = 2/14"
+      },
+      {
+        "label": "B",
+        "body": "x = 41/24"
+      },
+      {
+        "label": "C",
+        "body": "x = 1/24"
+      },
+      {
+        "label": "D",
+        "body": "x = 12/48"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Add 5/6 to each side: x = 7/8 + 5/6. Convert to denominator 24: 7/8 = 21/24 and 5/6 = 20/24. Thus x = 41/24. Checking, 41/24 - 5/6 = 41/24 - 20/24 = 21/24 = 7/8.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 20–21"
+  },
+  {
+    "logical_question_key": "mth101-real-20261029-08-b",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Solve (-2/3)x = 5/6.",
+    "options": [
+      {
+        "label": "A",
+        "body": "x = 5/4"
+      },
+      {
+        "label": "B",
+        "body": "x = -5/4"
+      },
+      {
+        "label": "C",
+        "body": "x = -5/9"
+      },
+      {
+        "label": "D",
+        "body": "x = 5/9"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Multiply both sides by the reciprocal -3/2: x = (5/6)(-3/2) = -15/12 = -5/4. Check: (-2/3)(-5/4) = 10/12 = 5/6, so the signs and fraction are correct.",
+    "course_code": "MTH 101",
+    "difficulty": "intermediate",
+    "source_reference": "Real numbers.pdf, pages 20–21"
+  }
+]

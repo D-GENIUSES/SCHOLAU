@@ -1,0 +1,858 @@
+[
+  {
+    "logical_key": "mth101-real-20261029-01",
+    "title": "Real-number families",
+    "objective": "Explain real-number families, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "A real number has a place on the number line. Natural numbers start at 1; whole numbers add 0; integers also include negatives. Rational numbers are ratios of integers with a nonzero denominator. Irrational numbers are real numbers that cannot be written as such a ratio. A number can belong to several nested families."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Classify -4 using the smallest standard family and every larger family it belongs to.",
+        "steps": [
+          {
+            "calculation": "-4\\in\\mathbb{Z}",
+            "explanation": "Negative whole-number opposites are integers; -4 is not a whole or natural number."
+          },
+          {
+            "calculation": "-4=\\frac{-4}{1}\\in\\mathbb{Q}",
+            "explanation": "A quotient of two integers with denominator 1 is rational."
+          },
+          {
+            "calculation": "\\mathbb{Z}\\subset\\mathbb{Q}\\subset\\mathbb{R}",
+            "explanation": "Every rational number has a position on the real number line."
+          }
+        ],
+        "answer": "-4 is an integer, a rational number, and a real number.",
+        "check": {
+          "calculation": "\\mathbb{Z}\\subset\\mathbb{Q}\\subset\\mathbb{R}",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which is the smallest standard family containing 0?",
+        "options": [
+          "Natural numbers",
+          "Whole numbers",
+          "Irrational numbers",
+          "Negative integers"
+        ],
+        "correct_index": 1,
+        "explanation": "Natural numbers in this course begin at 1, so 0 is excluded. Whole numbers are 0, 1, 2, ...; thus 0 belongs to the whole-number family. It is also an integer, rational (0/1), and real, but whole is the smallest listed family."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Why is -4 rational?",
+        "options": [
+          "It is positive",
+          "It has no decimal form",
+          "It equals -4/1",
+          "It is a natural number"
+        ],
+        "correct_index": 2,
+        "explanation": "The definition of rational requires a ratio of integers with nonzero denominator. Write -4 as -4/1: both -4 and 1 are integers and the denominator is not zero. Its negative sign does not make it irrational."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "-4 is an integer. Negative whole-number opposites are integers; -4 is not a whole or natural number.\n\n-4 = -4/1. A quotient of two integers with denominator 1 is rational.\n\nintegers ⊂ rational numbers ⊂ real numbers. Every rational number has a position on the real number line.\n\nAnswer: -4 is an integer, a rational number, and a real number."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "A real number has a place on the number line. Natural numbers start at 1; whole numbers add 0; integers also include negatives. Rational numbers are ratios of integers with a nonzero denominator. Irrational numbers are real numbers that cannot be written as such a ratio. A number can belong to several nested families."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 1–4 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 1,
+    "flashcards": [
+      {
+        "front": "Which is the smallest standard family containing 0?",
+        "back": "Natural numbers in this course begin at 1, so 0 is excluded. Whole numbers are 0, 1, 2, ...; thus 0 belongs to the whole-number family. It is also an integer, rational (0/1), and real, but whole is the smallest listed family.",
+        "tag": "section"
+      },
+      {
+        "front": "Why is -4 rational?",
+        "back": "The definition of rational requires a ratio of integers with nonzero denominator. Write -4 as -4/1: both -4 and 1 are integers and the denominator is not zero. Its negative sign does not make it irrational.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-02",
+    "title": "Rational and irrational numbers",
+    "objective": "Explain rational and irrational numbers, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rational decimal terminates or eventually repeats, because division by a nonzero integer denominator leaves only finitely many possible remainders. An irrational decimal never terminates and never becomes periodic. Roots of perfect squares are rational; roots such as √2 and √50 are irrational. A calculator's short display cannot prove irrationality."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Classify √50 and 2/3.",
+        "steps": [
+          {
+            "calculation": "\\sqrt{50}=\\sqrt{25\\cdot2}=5\\sqrt2",
+            "explanation": "Factor out the perfect square 25. Since √2 is irrational, multiplying it by nonzero rational 5 leaves it irrational."
+          },
+          {
+            "calculation": "\\frac23=0.666\\ldots",
+            "explanation": "The digit 6 repeats indefinitely; the ratio of two integers is rational by definition."
+          }
+        ],
+        "answer": "√50 is irrational; 2/3 is rational.",
+        "check": {
+          "calculation": "\\frac23=0.666\\ldots",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which number is irrational?",
+        "options": [
+          "√64",
+          "0.125",
+          "√2",
+          "0.666..."
+        ],
+        "correct_index": 2,
+        "explanation": "√64 = 8, which is an integer. 0.125 = 1/8 terminates, and 0.666... = 2/3 repeats; all are rational. √2 cannot be expressed as a ratio of integers, so it is irrational."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Is 0.454545... rational?",
+        "options": [
+          "No; it has infinitely many digits",
+          "Yes; its repeating block makes it rational",
+          "No; only integers are rational",
+          "Yes; because it equals 0"
+        ],
+        "correct_index": 1,
+        "explanation": "The decimal repeats the block 45. Set x = 0.454545...; then 100x = 45.454545..., so 99x = 45 and x = 45/99 = 5/11. That ratio proves it is rational despite having infinitely many digits."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "√50 = √(25×2) = 5√2. Factor out the perfect square 25. Since √2 is irrational, multiplying it by nonzero rational 5 leaves it irrational.\n\n2/3 = 0.666.... The digit 6 repeats indefinitely; the ratio of two integers is rational by definition.\n\nAnswer: √50 is irrational; 2/3 is rational."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rational decimal terminates or eventually repeats, because division by a nonzero integer denominator leaves only finitely many possible remainders. An irrational decimal never terminates and never becomes periodic. Roots of perfect squares are rational; roots such as √2 and √50 are irrational. A calculator's short display cannot prove irrationality."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 5–6 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 2,
+    "flashcards": [
+      {
+        "front": "Which number is irrational?",
+        "back": "√64 = 8, which is an integer. 0.125 = 1/8 terminates, and 0.666... = 2/3 repeats; all are rational. √2 cannot be expressed as a ratio of integers, so it is irrational.",
+        "tag": "section"
+      },
+      {
+        "front": "Is 0.454545... rational?",
+        "back": "The decimal repeats the block 45. Set x = 0.454545...; then 100x = 45.454545..., so 99x = 45 and x = 45/99 = 5/11. That ratio proves it is rational despite having infinitely many digits.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-03",
+    "title": "Comparing real numbers",
+    "objective": "Explain comparing real numbers, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "Convert fractions and percentages to comparable decimals, then use the number line. For positives, the larger decimal is farther right. For negatives, the one with the larger absolute size is farther left and therefore smaller. Restore the original notation in the final answer."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Order 3/4, 79%, 0.075, and 15/16 from least to greatest.",
+        "steps": [
+          {
+            "calculation": "\\frac34=0.75,\\quad79\\%=0.79",
+            "explanation": "Divide 3 by 4 and divide 79 by 100 to put both in decimal form."
+          },
+          {
+            "calculation": "\\frac{15}{16}=0.9375",
+            "explanation": "Divide numerator by denominator; 0.075 already is a decimal."
+          },
+          {
+            "calculation": "0.075<0.75<0.79<0.9375",
+            "explanation": "Align decimal places and compare from left to right."
+          }
+        ],
+        "answer": "0.075, 3/4, 79%, 15/16.",
+        "check": {
+          "calculation": "0.075<0.75<0.79<0.9375",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which is least: -0.75, -2/3, 0.2, 65%?",
+        "options": [
+          "-0.75",
+          "-2/3",
+          "0.2",
+          "65%"
+        ],
+        "correct_index": 0,
+        "explanation": "-2/3 ≈ -0.6667 and 65% = 0.65. Both negative values lie left of the positive values. Of the negatives, -0.75 lies farther left than -0.6667, so -0.75 is least."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Order 0.075, 3/4, 79% from least to greatest.",
+        "options": [
+          "79%, 3/4, 0.075",
+          "0.075, 79%, 3/4",
+          "0.075, 3/4, 79%",
+          "3/4, 0.075, 79%"
+        ],
+        "correct_index": 2,
+        "explanation": "Express everything as decimals: 0.075 remains 0.075, 3/4 = 0.75, and 79% = 0.79. Comparing 0.075, 0.750, and 0.790 gives that exact increasing order."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "3/4 = 0.75; 79% = 0.79. Divide 3 by 4 and divide 79 by 100 to put both in decimal form.\n\n15/16 = 0.9375. Divide numerator by denominator; 0.075 already is a decimal.\n\n0.075 < 0.75 < 0.79 < 0.9375. Align decimal places and compare from left to right.\n\nAnswer: 0.075, 3/4, 79%, 15/16."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "Convert fractions and percentages to comparable decimals, then use the number line. For positives, the larger decimal is farther right. For negatives, the one with the larger absolute size is farther left and therefore smaller. Restore the original notation in the final answer."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 7–9 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 3,
+    "flashcards": [
+      {
+        "front": "Which is least: -0.75, -2/3, 0.2, 65%?",
+        "back": "-2/3 ≈ -0.6667 and 65% = 0.65. Both negative values lie left of the positive values. Of the negatives, -0.75 lies farther left than -0.6667, so -0.75 is least.",
+        "tag": "section"
+      },
+      {
+        "front": "Order 0.075, 3/4, 79% from least to greatest.",
+        "back": "Express everything as decimals: 0.075 remains 0.075, 3/4 = 0.75, and 79% = 0.79. Comparing 0.075, 0.750, and 0.790 gives that exact increasing order.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-04",
+    "title": "Properties of real numbers",
+    "objective": "Explain properties of real numbers, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "Commutative laws swap the order of two terms; associative laws regroup three terms; identity laws leave a number unchanged when adding 0 or multiplying by 1. These laws apply to addition and multiplication. Subtraction and division do not generally have commutative or associative laws."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Identify the property in (2 + 3) + 4 = 2 + (3 + 4).",
+        "steps": [
+          {
+            "calculation": "(2+3)+4",
+            "explanation": "The order of the numbers is 2, 3, 4."
+          },
+          {
+            "calculation": "2+(3+4)",
+            "explanation": "The same numbers stay in the same order; only parentheses move."
+          },
+          {
+            "calculation": "(a+b)+c=a+(b+c)",
+            "explanation": "This general rule is the associative property of addition, so the given equation is an instance of it."
+          }
+        ],
+        "answer": "Associative property of addition.",
+        "check": {
+          "calculation": "(a+b)+c=a+(b+c)",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which property explains 6 + 4 = 4 + 6?",
+        "options": [
+          "Associative addition",
+          "Commutative addition",
+          "Additive identity",
+          "Multiplicative identity"
+        ],
+        "correct_index": 1,
+        "explanation": "The two addends exchange positions but their grouping does not change. The commutative property states a + b = b + a, so 6 + 4 = 4 + 6 is commutative addition."
+      },
+      {
+        "type": "checkpoint",
+        "question": "What is the additive identity?",
+        "options": [
+          "1",
+          "-1",
+          "0",
+          "Any integer"
+        ],
+        "correct_index": 2,
+        "explanation": "The additive identity e satisfies a + e = a for every real a. Zero does this because a + 0 = a; 1 instead is the multiplicative identity because a × 1 = a."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "(2 + 3) + 4. The order of the numbers is 2, 3, 4.\n\n2 + (3 + 4). The same numbers stay in the same order; only parentheses move.\n\n(a + b) + c = a + (b + c). This general rule is the associative property of addition, so the given equation is an instance of it.\n\nAnswer: Associative property of addition."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "Commutative laws swap the order of two terms; associative laws regroup three terms; identity laws leave a number unchanged when adding 0 or multiplying by 1. These laws apply to addition and multiplication. Subtraction and division do not generally have commutative or associative laws."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 10–11 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 4,
+    "flashcards": [
+      {
+        "front": "Which property explains 6 + 4 = 4 + 6?",
+        "back": "The two addends exchange positions but their grouping does not change. The commutative property states a + b = b + a, so 6 + 4 = 4 + 6 is commutative addition.",
+        "tag": "section"
+      },
+      {
+        "front": "What is the additive identity?",
+        "back": "The additive identity e satisfies a + e = a for every real a. Zero does this because a + 0 = a; 1 instead is the multiplicative identity because a × 1 = a.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-05",
+    "title": "Order of operations",
+    "objective": "Explain order of operations, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "Evaluate grouping symbols first, then powers, then multiplication and division from left to right, then addition and subtraction from left to right. Multiplication does not automatically precede division, and addition does not automatically precede subtraction. Parentheses may contain the same full order again."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Evaluate 5[(3 + 12) - 2(4)].",
+        "steps": [
+          {
+            "calculation": "3+12=15,\\quad2(4)=8",
+            "explanation": "Finish the inner sum and multiplication inside the bracket first."
+          },
+          {
+            "calculation": "5[15-8]=5[7]",
+            "explanation": "Subtract within the bracket before multiplying by the outer 5."
+          },
+          {
+            "calculation": "5\\cdot7=35",
+            "explanation": "The remaining operation gives the value."
+          }
+        ],
+        "answer": "35.",
+        "check": {
+          "calculation": "5\\cdot7=35",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Evaluate 18 ÷ 3 × 2.",
+        "options": [
+          "3",
+          "12",
+          "1",
+          "18"
+        ],
+        "correct_index": 1,
+        "explanation": "Division and multiplication have equal priority, so work left to right: 18 ÷ 3 = 6, then 6 × 2 = 12. Dividing by 3 × 2 as though it were grouped would answer a different expression."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Evaluate 5[(3 + 12) - 2(4)].",
+        "options": [
+          "35",
+          "25",
+          "7",
+          "75"
+        ],
+        "correct_index": 0,
+        "explanation": "Inside the bracket, 3 + 12 = 15 and 2(4) = 8. Subtract to obtain 15 - 8 = 7. The outside 5 then multiplies the whole bracket: 5 × 7 = 35."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "3 + 12 = 15; 2(4) = 8. Finish the inner sum and multiplication inside the bracket first.\n\n5[15 - 8] = 5[7]. Subtract within the bracket before multiplying by the outer 5.\n\n5 × 7 = 35. The remaining operation gives the value.\n\nAnswer: 35."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "Evaluate grouping symbols first, then powers, then multiplication and division from left to right, then addition and subtraction from left to right. Multiplication does not automatically precede division, and addition does not automatically precede subtraction. Parentheses may contain the same full order again."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 12–13 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 5,
+    "flashcards": [
+      {
+        "front": "Evaluate 18 ÷ 3 × 2.",
+        "back": "Division and multiplication have equal priority, so work left to right: 18 ÷ 3 = 6, then 6 × 2 = 12. Dividing by 3 × 2 as though it were grouped would answer a different expression.",
+        "tag": "section"
+      },
+      {
+        "front": "Evaluate 5[(3 + 12) - 2(4)].",
+        "back": "Inside the bracket, 3 + 12 = 15 and 2(4) = 8. Subtract to obtain 15 - 8 = 7. The outside 5 then multiplies the whole bracket: 5 × 7 = 35.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-06",
+    "title": "Variables and expressions",
+    "objective": "Explain variables and expressions, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "A variable is a letter standing for an unknown or changing quantity. A coefficient multiplies a variable: 5a means 5 × a. To evaluate an expression, substitute each supplied value, keep parentheses around negative substitutions, and apply operation order. Phrases such as 'more than' and 'less than' require attention to order."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Evaluate 5a + bc - c when a = 4, b = 2, c = 3.",
+        "steps": [
+          {
+            "calculation": "5(4)+(2)(3)-3",
+            "explanation": "Replace each variable with its stated value; adjacent symbols mean multiplication."
+          },
+          {
+            "calculation": "20+6-3",
+            "explanation": "Perform the two products before addition or subtraction."
+          },
+          {
+            "calculation": "26-3=23",
+            "explanation": "Addition and subtraction proceed left to right."
+          }
+        ],
+        "answer": "23.",
+        "check": {
+          "calculation": "26-3=23",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Evaluate 5a + bc - c for a=4, b=2, c=3.",
+        "options": [
+          "20",
+          "23",
+          "26",
+          "29"
+        ],
+        "correct_index": 1,
+        "explanation": "Substitute the values: 5(4) + (2)(3) - 3. Multiply first to get 20 + 6 - 3, then add and subtract from left to right: 26 - 3 = 23."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Which expression means eight more than Rachel's score r?",
+        "options": [
+          "8r",
+          "8 - r",
+          "r + 8",
+          "r - 8"
+        ],
+        "correct_index": 2,
+        "explanation": "Start with Rachel's score r. 'Eight more than' asks you to add 8 to that score, giving r + 8. Multiplication 8r means eight times her score, while subtraction makes it smaller."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "5(4) + (2)(3) - 3. Replace each variable with its stated value; adjacent symbols mean multiplication.\n\n20 + 6 - 3. Perform the two products before addition or subtraction.\n\n26 - 3 = 23. Addition and subtraction proceed left to right.\n\nAnswer: 23."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "A variable is a letter standing for an unknown or changing quantity. A coefficient multiplies a variable: 5a means 5 × a. To evaluate an expression, substitute each supplied value, keep parentheses around negative substitutions, and apply operation order. Phrases such as 'more than' and 'less than' require attention to order."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 14–17 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 6,
+    "flashcards": [
+      {
+        "front": "Evaluate 5a + bc - c for a=4, b=2, c=3.",
+        "back": "Substitute the values: 5(4) + (2)(3) - 3. Multiply first to get 20 + 6 - 3, then add and subtract from left to right: 26 - 3 = 23.",
+        "tag": "section"
+      },
+      {
+        "front": "Which expression means eight more than Rachel's score r?",
+        "back": "Start with Rachel's score r. 'Eight more than' asks you to add 8 to that score, giving r + 8. Multiplication 8r means eight times her score, while subtraction makes it smaller.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-07",
+    "title": "Solving one-step equations",
+    "objective": "Explain solving one-step equations, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "An equation is balanced when both sides remain equal. Use the inverse of the operation attached to the variable on both sides: undo addition with subtraction and undo multiplication with division. Always substitute the proposed solution into the original equation to check it."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Solve x + 4 = 17.",
+        "steps": [
+          {
+            "calculation": "x+4-4=17-4",
+            "explanation": "Subtract 4 from both sides, preserving equality and canceling the added 4."
+          },
+          {
+            "calculation": "x=13",
+            "explanation": "Simplify both sides after cancellation."
+          },
+          {
+            "calculation": "13+4=17",
+            "explanation": "Substitution reproduces the right side, so the solution checks."
+          }
+        ],
+        "answer": "x = 13.",
+        "check": {
+          "calculation": "13+4=17",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Solve x + 4 = 17.",
+        "options": [
+          "x = 21",
+          "x = 13",
+          "x = 4",
+          "x = 17"
+        ],
+        "correct_index": 1,
+        "explanation": "Subtract 4 from both sides: x + 4 - 4 = 17 - 4, so x = 13. Check in the original equation: 13 + 4 = 17, which is true."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Solve n/4 = 7.",
+        "options": [
+          "n = 7/4",
+          "n = 11",
+          "n = 28",
+          "n = 3"
+        ],
+        "correct_index": 2,
+        "explanation": "Multiplication by 4 is the inverse of division by 4. Multiply both sides of n/4 = 7 by 4 to get n = 28. Check: 28/4 = 7, so the equation is satisfied."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "x + 4 - 4 = 17 - 4. Subtract 4 from both sides, preserving equality and canceling the added 4.\n\nx = 13. Simplify both sides after cancellation.\n\n13 + 4 = 17. Substitution reproduces the right side, so the solution checks.\n\nAnswer: x = 13."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "An equation is balanced when both sides remain equal. Use the inverse of the operation attached to the variable on both sides: undo addition with subtraction and undo multiplication with division. Always substitute the proposed solution into the original equation to check it."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 18–19 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 7,
+    "flashcards": [
+      {
+        "front": "Solve x + 4 = 17.",
+        "back": "Subtract 4 from both sides: x + 4 - 4 = 17 - 4, so x = 13. Check in the original equation: 13 + 4 = 17, which is true.",
+        "tag": "section"
+      },
+      {
+        "front": "Solve n/4 = 7.",
+        "back": "Multiplication by 4 is the inverse of division by 4. Multiply both sides of n/4 = 7 by 4 to get n = 28. Check: 28/4 = 7, so the equation is satisfied.",
+        "tag": "section"
+      }
+    ]
+  },
+  {
+    "logical_key": "mth101-real-20261029-08",
+    "title": "Equations with rational numbers",
+    "objective": "Explain equations with rational numbers, apply the method, and justify each step.",
+    "estimated_minutes": 9,
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Understand the concept"
+      },
+      {
+        "type": "paragraph",
+        "text": "Fraction equations use the same balance rule as integer equations. Add or subtract fractions by first using a common denominator. To undo multiplication by a nonzero fraction, multiply by its reciprocal. Keep negative signs with the fraction and check the result in the original equation."
+      },
+      {
+        "type": "heading",
+        "text": "Worked example"
+      },
+      {
+        "type": "worked_example",
+        "title": "Follow every step",
+        "problem": "Solve x - 5/6 = 7/8.",
+        "steps": [
+          {
+            "calculation": "x=\\frac78+\\frac56",
+            "explanation": "Add 5/6 to both sides to isolate x."
+          },
+          {
+            "calculation": "x=\\frac{21}{24}+\\frac{20}{24}",
+            "explanation": "The least common denominator of 8 and 6 is 24; rewrite both fractions."
+          },
+          {
+            "calculation": "x=\\frac{41}{24}",
+            "explanation": "Add numerators while keeping the common denominator."
+          },
+          {
+            "calculation": "\\frac{41}{24}-\\frac{20}{24}=\\frac{21}{24}=\\frac78",
+            "explanation": "Substitute 41/24 and verify the original equation."
+          }
+        ],
+        "answer": "x = 41/24.",
+        "check": {
+          "calculation": "\\frac{41}{24}-\\frac{20}{24}=\\frac{21}{24}=\\frac78",
+          "explanation": "The final calculation agrees with the starting question. For equations, substitute the solution into the original equation."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Review the whole lesson"
+      },
+      {
+        "type": "paragraph",
+        "text": "First explain the rule in your own words. Then solve both questions without looking at the answer, and compare each intermediate step with the worked solution above."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Solve x - 5/6 = 7/8.",
+        "options": [
+          "x = 2/14",
+          "x = 41/24",
+          "x = 1/24",
+          "x = 12/48"
+        ],
+        "correct_index": 1,
+        "explanation": "Add 5/6 to each side: x = 7/8 + 5/6. Convert to denominator 24: 7/8 = 21/24 and 5/6 = 20/24. Thus x = 41/24. Checking, 41/24 - 5/6 = 41/24 - 20/24 = 21/24 = 7/8."
+      },
+      {
+        "type": "checkpoint",
+        "question": "Solve (-2/3)x = 5/6.",
+        "options": [
+          "x = 5/4",
+          "x = -5/4",
+          "x = -5/9",
+          "x = 5/9"
+        ],
+        "correct_index": 1,
+        "explanation": "Multiply both sides by the reciprocal -3/2: x = (5/6)(-3/2) = -15/12 = -5/4. Check: (-2/3)(-5/4) = 10/12 = 5/6, so the signs and fraction are correct."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Worked result",
+        "text": "x = 7/8 + 5/6. Add 5/6 to both sides to isolate x.\n\nx = 21/24 + 20/24. The least common denominator of 8 and 6 is 24; rewrite both fractions.\n\nx = 41/24. Add numerators while keeping the common denominator.\n\n41/24 - 20/24 = 21/24 = 7/8. Substitute 41/24 and verify the original equation.\n\nAnswer: x = 41/24."
+      },
+      {
+        "type": "heading",
+        "text": "Recap"
+      },
+      {
+        "type": "paragraph",
+        "text": "Fraction equations use the same balance rule as integer equations. Add or subtract fractions by first using a common denominator. To undo multiplication by a nonzero fraction, multiply by its reciprocal. Keep negative signs with the fraction and check the result in the original equation."
+      }
+    ],
+    "source_reference": "Real numbers.pdf, pages 20–21 [source SHA-256 f74bb33b8308]",
+    "course_code": "MTH 101",
+    "module_title": "Real Number System",
+    "module_position": 4,
+    "lesson_position": 8,
+    "flashcards": [
+      {
+        "front": "Solve x - 5/6 = 7/8.",
+        "back": "Add 5/6 to each side: x = 7/8 + 5/6. Convert to denominator 24: 7/8 = 21/24 and 5/6 = 20/24. Thus x = 41/24. Checking, 41/24 - 5/6 = 41/24 - 20/24 = 21/24 = 7/8.",
+        "tag": "section"
+      },
+      {
+        "front": "Solve (-2/3)x = 5/6.",
+        "back": "Multiply both sides by the reciprocal -3/2: x = (5/6)(-3/2) = -15/12 = -5/4. Check: (-2/3)(-5/4) = 10/12 = 5/6, so the signs and fraction are correct.",
+        "tag": "section"
+      }
+    ]
+  }
+]
