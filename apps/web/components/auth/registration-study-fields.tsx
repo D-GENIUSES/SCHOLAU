@@ -33,10 +33,15 @@ export function RegistrationStudyFields({ form }: { form: UseFormReturn<SignUpIn
     }, retry: false,
   });
   const data = options.data;
-  const departments = data?.departments ?? [];
+  const facultyId = data?.faculties.find(item => item.name === facultyName)?.id;
+  const departments = data?.departments.filter(item => item.faculty_id === facultyId) ?? [];
   const semesters = data?.semesters.filter(item => item.academic_period_id === selected?.academicPeriodId) ?? [];
   const errors = form.formState.errors;
-  const clearDepartment = () => { form.setValue("department", ""); form.setValue("catalogProfile", undefined); };
+  const clearDepartment = () => {
+    form.setValue("department", "");
+    form.setValue("catalogProfile", undefined);
+    form.setValue("currentSemester", "" as SignUpInput["currentSemester"]);
+  };
 
   if (options.isError) return <Alert tone="error" role="alert">Your study options could not be loaded. <Button type="button" variant="link" onClick={() => void options.refetch()}>Try again</Button></Alert>;
   return <>
@@ -54,14 +59,14 @@ export function RegistrationStudyFields({ form }: { form: UseFormReturn<SignUpIn
           onBlur={field.onBlur}
           selectRef={field.ref}
           onChange={(value) => {
+            if (value !== field.value) clearDepartment();
             field.onChange(value);
-            const department = form.getValues("department");
-            const picked = departments.find((item) => item.name === department);
-            if (picked && picked.faculty_id !== data.faculties.find((item) => item.name === value)?.id) clearDepartment();
           }}
         />
       )} />
-      <Controller control={form.control} name="department" render={({ field }) => (
+      {!facultyId ? <Field id="sign-up-department" label="Department" hint="Choose a faculty first" error={errors.department?.message}>
+        <NativeSelect disabled value=""><option value="">Choose a faculty first</option></NativeSelect>
+      </Field> : <Controller control={form.control} name="department" render={({ field }) => (
         <AcademicSelect
           id="sign-up-department"
           label="Department"
@@ -76,16 +81,14 @@ export function RegistrationStudyFields({ form }: { form: UseFormReturn<SignUpIn
           onChange={(value) => {
             field.onChange(value);
             const department = departments.find(item => item.name === value);
-            const matchedFaculty = department ? data.faculties.find(item => item.id === department.faculty_id) : undefined;
-            if (matchedFaculty) form.setValue("faculty", matchedFaculty.name, { shouldDirty: true });
-            form.setValue("catalogProfile", department && matchedFaculty ? {
-              universityId: data.university_id, facultyId: matchedFaculty.id, departmentId: department.id,
+            form.setValue("catalogProfile", department && facultyId ? {
+              universityId: data.university_id, facultyId, departmentId: department.id,
               levelId: "", academicPeriodId: data.academic_periods.length === 1 ? data.academic_periods[0]?.id ?? "" : "", semesterId: "",
             } : undefined);
             form.setValue("currentSemester", "" as SignUpInput["currentSemester"]);
           }}
         />
-      )} />
+      )} />}
     </> : <>
       <Field id="sign-up-faculty" label="Faculty" error={errors.faculty?.message}>
         <Input disabled={!universitySlug || options.isPending} autoComplete="off" placeholder="Enter your faculty" maxLength={200} {...form.register("faculty")} />
