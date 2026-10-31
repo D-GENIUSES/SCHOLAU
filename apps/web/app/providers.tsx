@@ -8,6 +8,8 @@ import { ScholauApiProvider } from "@scholau/api/react";
 import { UserPresence } from "@/components/shell/user-presence";
 import { AppUpdates } from "@/components/shell/app-updates";
 import { NotificationSound } from "@/components/notifications/notification-sound";
+import { StreakCelebrationHost } from "@/components/lesson/streak-celebration-host";
+import { installFeedbackSoundUnlock } from "@/lib/feedback-sounds";
 import { InstallPromptProvider } from "@/components/shell/install-prompt-provider";
 import { PushLifecycle } from "@/components/notifications/push-lifecycle";
 import { AnalyticsProvider } from "@/lib/analytics";
@@ -40,6 +42,10 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
   );
   const owner = useRef<string | null | undefined>(undefined);
   useEffect(() => {
+    installFeedbackSoundUnlock();
+  }, []);
+
+  useEffect(() => {
     // Query keys are shared across accounts. Never show the previous account's
     // cached profile, notifications or assessments after a session changes.
     const { data } = getBrowserSupabase().auth.onAuthStateChange((_event, session) => {
@@ -53,7 +59,7 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
   return (
     <QueryClientProvider client={queryClient}>
       <ScholauApiProvider api={api}>
-        <InstallPromptProvider><AnalyticsProvider><AuthReturnTiming /><UserPresence /><AppUpdates currentVersion={appVersion} /><NotificationSound /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
+        <InstallPromptProvider><AnalyticsProvider><AuthReturnTiming /><UserPresence /><AppUpdates currentVersion={appVersion} /><NotificationSound /><StreakCelebrationHost /><PushLifecycle />{children}</AnalyticsProvider></InstallPromptProvider>
       </ScholauApiProvider>
     </QueryClientProvider>
   );

@@ -30,7 +30,7 @@ function omit<T>(record: Record<string, T>, key: string): Record<string, T> {
 interface QuestionView {
   locked: boolean;
   selected: string | null;
-  feedback: { is_correct: boolean; correct_option_id: string; explanation: string } | null;
+  feedback: { is_correct: boolean; correct_option_id: string; explanation: string; steps?: string[] } | null;
 }
 
 /** Review: one question at a time with immediate, server-checked feedback. The first checked answer is locked. */
@@ -133,7 +133,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
           />
 
           {view.feedback ? (
-            <AnswerFeedback key={qv} correct={view.feedback.is_correct} explanation={view.feedback.explanation} animate={animatedQuestion === qv} />
+            <AnswerFeedback key={qv} correct={view.feedback.is_correct} explanation={view.feedback.explanation} steps={view.feedback.steps} animate={animatedQuestion === qv} />
           ) : view.locked ? (
             <p className="text-sm text-ink-muted">Answer locked. Feedback will be shown in your results.</p>
           ) : (

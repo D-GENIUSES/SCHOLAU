@@ -1,6 +1,7 @@
 "use client";
 
 import { MathText } from "@/components/math/math-text";
+import { briefFlashcardBack } from "@scholau/core";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
@@ -12,6 +13,19 @@ type FlashcardDeckProps = {
   cards: ExamFlashcard[];
   onLastCardReached?: () => void;
 };
+
+function FlashcardBack({ text }: { text: string }) {
+  const brief = briefFlashcardBack(text);
+  const lines = brief.split("\n").filter(Boolean);
+  if (lines.length < 2) return <p className="flashcard-text"><MathText text={brief} /></p>;
+  return (
+    <ul className="flashcard-points">
+      {lines.map((line, index) => (
+        <li key={`${index}-${line}`}><MathText text={line} /></li>
+      ))}
+    </ul>
+  );
+}
 
 export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) {
   const [index, setIndex] = useState(0);
@@ -93,7 +107,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
             <p className="flashcard-text"><MathText text={lessonCardText(card.front)} /></p>
           </div>
           <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-            <p className="flashcard-text whitespace-pre-line"><MathText text={lessonCardText(card.back)} /></p>
+            <FlashcardBack text={card.back} />
           </div>
         </div>
       </button>

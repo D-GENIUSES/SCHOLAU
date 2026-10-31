@@ -7,8 +7,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson, type Streak } from "@scholau/api";
 import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
 import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
-import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
-import { LessonBlocks } from "@/components/lesson/blocks";
+import { FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
+import { LessonStepper } from "@/components/lesson/lesson-stepper";
 import { FlashcardDeck } from "@/components/lesson/flashcard-deck";
 import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
@@ -19,6 +19,8 @@ import { Badge, PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
 import { buildExamFlashcards } from "@/lib/lesson-exam-cards";
+import { playLessonCompleteSound } from "@/lib/feedback-sounds";
+import { celebrationPayload, emitStreakCelebration } from "@/lib/streak-celebration-bus";
 import { shouldCelebrateStreak } from "@/lib/streak-celebration";
 
 export default function LessonPage() {
@@ -67,7 +69,6 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const course = useCourseOverview(lesson.offering_id);
   const start = useStartLesson();
   const home = useHomeSummary();
-  const [streakCelebration, setStreakCelebration] = useState<{ days: number; localDate: string; previousDays: number } | null>(null);
   const previousStreakRef = useRef<Streak | undefined>(undefined);
   const celebratedCompletionRef = useRef<string | null>(null);
   const [deckFinished, setDeckFinished] = useState(false);
@@ -92,7 +93,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
     if (!result || celebratedCompletionRef.current === result.completed_at) return;
     celebratedCompletionRef.current = result.completed_at;
     if (shouldCelebrateStreak(result, previousStreakRef.current)) {
-      setStreakCelebration({ days: result.streak.current, localDate: result.streak.local_date, previousDays: result.streak.current === 1 ? 0 : previousStreakRef.current?.current ?? result.streak.current - 1 });
+      emitStreakCelebration(celebrationPayload(previousStreakRef.current, result.streak));
     }
   }, [complete.data]);
   useEffect(() => {
@@ -109,7 +110,10 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
       retry && complete.variables ? complete.variables : { lessonVersionId: lesson.lesson_version_id },
       {
         onSuccess: (r) => {
-          if (!r.already_completed) analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });
+          if (!r.already_completed) {
+            analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });
+            playLessonCompleteSound();
+          }
         },
       },
     );
@@ -127,9 +131,6 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
 
   return (
     <article className="mx-auto flex max-w-reading flex-col">
-      {streakCelebration ? (
-        <FirstLessonCelebration key={streakCelebration.localDate} {...streakCelebration} />
-      ) : null}
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
           <li>
@@ -181,23 +182,16 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
       </div>
 
       {hasBlockContent ? (
-        hasStructuredMaths ? <>
-          <LessonBlocks blocks={lesson.blocks} />
-          {examCards.length ? <details className="mt-6 rounded-control border border-line bg-surface-page">
-            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">Revise with flashcards</summary>
-            <div className="border-t border-line px-4 py-4">
-              <FlashcardDeck cards={examCards} />
-            </div>
-          </details> : null}
-          <p className="mt-4 text-sm text-ink-muted">Read each section and try the practice checks before marking this lesson as complete.</p>
-        </> : <>
-          <FlashcardDeck cards={examCards} onLastCardReached={() => setDeckFinished(true)} />
-          <details className="mt-2 rounded-control border border-line bg-surface-page">
-            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">View original notes</summary>
-            <div className="border-t border-line px-4 py-4">
-              <LessonBlocks blocks={lesson.blocks} />
-            </div>
-          </details>
+        <>
+          <LessonStepper blocks={lesson.blocks} />
+          {examCards.length ? (
+            <section className="mt-8" aria-labelledby="lesson-flashcards-heading">
+              <h2 id="lesson-flashcards-heading" className="text-lg font-bold">Quick check</h2>
+              <p className="mt-1 mb-3 text-sm text-ink-muted">Each card is one short point from this lesson.</p>
+              <FlashcardDeck cards={examCards} onLastCardReached={hasStructuredMaths ? undefined : () => setDeckFinished(true)} />
+            </section>
+          ) : null}
+          <p className="mt-4 text-sm text-ink-muted">Read each section, then flip the cards before you mark this lesson complete.</p>
         </>
       ) : (
         <EmptyState title="This lesson has no content yet" description={COPY.empty.contentRemoved} />

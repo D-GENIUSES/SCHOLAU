@@ -10,4 +10,5 @@ export * from "./nigerian-universities";
 export * from "./registration";
 export * from "./lecturer-registration";
 export { normalizeGapAnswer } from "./ingestion/normalize-gap";
+export { briefFlashcardBack, solutionLines } from "./ingestion/flashcards";
 export * from "./course-challenges";

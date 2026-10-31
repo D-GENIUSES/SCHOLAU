@@ -19,14 +19,21 @@ export interface SignalSubscription {
 export function subscribeToSignals(
   supabase: AnySupabaseClient,
   topic: string,
-  handlers: { onSignal: (event: string) => void; onStatus?: (status: ChannelStatus) => void },
+  handlers: {
+    onSignal: (event: string) => void;
+    onPayload?: (event: string, payload: Record<string, unknown>) => void;
+    onStatus?: (status: ChannelStatus) => void;
+  },
 ): SignalSubscription {
   let closed = false;
   handlers.onStatus?.("connecting");
 
   const channel = supabase.channel(topic, { config: { private: true } });
-  channel.on("broadcast", { event: "*" }, (msg: { event?: string }) => {
-    if (!closed) handlers.onSignal(msg.event ?? "state");
+  channel.on("broadcast", { event: "*" }, (msg: { event?: string; payload?: Record<string, unknown> }) => {
+    if (closed) return;
+    const event = msg.event ?? "state";
+    handlers.onSignal(event);
+    if (handlers.onPayload && msg.payload) handlers.onPayload(event, msg.payload);
   });
 
   void (async () => {

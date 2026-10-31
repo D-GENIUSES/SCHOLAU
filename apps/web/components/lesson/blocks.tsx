@@ -22,7 +22,7 @@ const CALLOUT: Record<CalloutTone, { label: string; icon: typeof Info; box: stri
 
 export function LessonBlocks({ blocks }: { blocks: LessonBlock[] }) {
   return (
-    <div className="flex flex-col gap-4 text-base leading-relaxed">
+    <div className="lesson-reading">
       {blocks.map((block, i) => (
         <Block key={i} block={block} />
       ))}

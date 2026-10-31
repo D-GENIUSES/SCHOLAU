@@ -7,3 +7,4 @@ export * from "./validate-lesson";
 export * from "./schemas";
 export * from "./prompts";
 export * from "./normalize-gap";
+export * from "./flashcards";

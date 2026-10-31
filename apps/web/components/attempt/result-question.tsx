@@ -1,4 +1,5 @@
 import { MathText } from "@/components/math/math-text";
+import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 import type { AttemptQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
 import { CorrectnessBadge } from "./answer-feedback";
@@ -42,10 +43,9 @@ export function ResultQuestion({ question, total }: { question: AttemptQuestion;
           </>
         ) : null}
       </dl>
-      {fb?.explanation ? (
+      {fb ? (
         <div className="rounded-control bg-surface-page p-3">
-          <p className="text-sm font-semibold">Explanation</p>
-          <p className="whitespace-pre-line"><MathText text={fb.explanation} /></p>
+          <SolutionWalkthrough explanation={fb.explanation} steps={fb.steps} />
         </div>
       ) : null}
       {!fb ? <p className="text-sm text-ink-muted">Answer details aren&apos;t available for this result.</p> : null}

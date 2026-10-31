@@ -1,8 +1,9 @@
 import type { BattleMix, GeminiConceptResult } from "./types";
 import { parseGeminiConceptResult } from "./schemas";
 import { buildIngestionSystemPrompt } from "./prompts";
+import { briefFlashcardBack } from "./flashcards";
 import { dedupeFlashcardsByFront } from "./normalize-gap";
-import { validateTeachingLessonBlocks } from "./validate-lesson";
+import { validateIngestionBattleQuestions, validateTeachingLessonBlocks } from "./validate-lesson";
 
 export type GeminiGenerateInput = {
   courseCode: string;
@@ -44,7 +45,10 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     const text = response.text?.trim();
     if (!text) throw new Error("Empty Gemini response");
     const parsed = parseGeminiConceptResult(JSON.parse(text));
-    const errors = validateTeachingLessonBlocks(parsed.blocks);
+    const errors = [
+      ...validateTeachingLessonBlocks(parsed.blocks, { courseCode: input.courseCode }),
+      ...validateIngestionBattleQuestions(parsed.battle_questions),
+    ];
     if (errors.length || !parsed.flashcards.length || !parsed.learning_questions.length || !parsed.battle_questions.length) {
       throw new Error("Source generation did not return a complete teaching lesson and study sets.");
     }
@@ -56,10 +60,9 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     if ([...parsed.learning_questions, ...parsed.battle_questions].some(q => placeholders.includes(q.prompt.trim()))) {
       throw new Error("Source generation returned placeholder questions.");
     }
-    return {
-      ...parsed,
-      flashcards: dedupeFlashcardsByFront(parsed.flashcards),
-    } as GeminiConceptResult;
+    const flashcards = dedupeFlashcardsByFront(parsed.flashcards.map((card) => ({ ...card, back: briefFlashcardBack(card.back) })).filter((card) => card.back.length > 0));
+    if (!flashcards.length) throw new Error("Source generation did not return usable flashcards.");
+    return { ...parsed, flashcards } as GeminiConceptResult;
   } catch (cause) {
     throw new Error("MATERIAL_GENERATION_FAILED: no drafts were imported. Check the model configuration and retry the source.", { cause });
   }

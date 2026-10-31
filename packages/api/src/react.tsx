@@ -423,6 +423,11 @@ export function useForfeitBattle() {
   });
 }
 
+export function useSendBattleReaction() {
+  const api = useScholauApi();
+  return useKeyedMutation(api.sendBattleReaction);
+}
+
 export function useBattleHistory() {
   const api = useScholauApi();
   return useInfiniteQuery({

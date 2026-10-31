@@ -1,6 +1,7 @@
 "use client";
 
 import { MathText } from "@/components/math/math-text";
+import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 
 import { BookOpen, CheckCircle2, ChevronUp, MinusCircle, XCircle } from "lucide-react";
@@ -153,8 +154,7 @@ export function RoundRow({ round, battleId }: { round: BattleRound; battleId: st
         {correction.isPending ? <p role="status" className="text-sm text-ink-muted">Loading answer…</p> : correction.isError ? <div><p role="alert" className="text-sm text-ink-muted">Couldn’t load this answer.</p><Button type="button" variant="link" size="sm" onClick={() => void correction.refetch()}>Try again</Button></div> : <>
           <div><p className="battle-correction-label">Your answer</p><p className="whitespace-pre-wrap break-words text-sm"><MathText text={correction.data.my_answer ?? "No answer submitted"} /></p></div>
           <div><p className="battle-correction-label">Correct answer</p><p className="whitespace-pre-wrap break-words text-sm font-semibold"><MathText text={correction.data.correct_answer ?? "Answer unavailable"} /></p></div>
-          {correction.data.steps?.length ? <ol className="list-decimal space-y-1 pl-5 text-sm">{correction.data.steps.map((step, index) => <li key={index} className="whitespace-pre-wrap break-words"><MathText text={step} /></li>)}</ol> : null}
-          <div><p className="battle-correction-label">Explanation</p><p className="whitespace-pre-wrap break-words text-sm leading-relaxed"><MathText text={correction.data.explanation || "An explanation hasn’t been added for this question yet."} /></p></div>
+          <SolutionWalkthrough steps={correction.data.steps} explanation={correction.data.explanation || "An explanation hasn’t been added for this question yet."} />
         </>}
       </div> : null}
     </li>

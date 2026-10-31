@@ -1,6 +1,7 @@
 "use client";
 
 import { MathText } from "@/components/math/math-text";
+import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 
 import { ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
@@ -88,7 +89,7 @@ export function MaterialQuiz() {
       </fieldset>
       {checked ? <div className={`practice-feedback ${selected === q.correct ? "correct" : "incorrect"}`} role="status">
         {selected === q.correct ? <CheckCircle2 className="size-5 shrink-0" aria-hidden /> : <XCircle className="size-5 shrink-0" aria-hidden />}
-        <div className="min-w-0"><strong>{selected === q.correct ? "Correct" : "Incorrect"}</strong><p><MathText text={q.explanation} /></p><p className="mt-2 break-words text-xs">Source: {q.sourceReference}</p></div>
+        <div className="min-w-0"><strong>{selected === q.correct ? "Correct" : "Incorrect"}</strong><div className="mt-1"><SolutionWalkthrough explanation={q.explanation} /></div><p className="mt-2 break-words text-xs">Source: {q.sourceReference}</p></div>
       </div> : null}
       <Button onClick={checked ? next : check} disabled={!checked && selected === null} className="self-start">{checked ? index === quiz.length - 1 ? "See results" : "Next question" : "Check answer"}</Button>
     </div> : null}

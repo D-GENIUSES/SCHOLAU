@@ -89,7 +89,7 @@ export function NotificationSettings({ owner }: { owner: string }) {
       <label className="flex items-center gap-2"><input type="checkbox" checked={sound} onChange={(event) => {
         try { localStorage.setItem("scholau.notification-sound", event.target.checked ? "on" : "off"); window.dispatchEvent(new Event("scholau-sound")); }
         catch { setMessage("Your browser could not save sound preferences. Check site storage permissions."); }
-      }} />In-app sound</label>
+      }} />In-app sound (notifications, lessons, battles)</label>
       <button type="button" className="rounded-md border border-blue-200 bg-white px-2 py-1 font-semibold" onClick={() => {
         const audio = new Audio("/sounds/scholau-notification.wav"); audio.volume = 0.35;
         void audio.play().catch(() => setMessage("Your browser could not play the preview. Check your device sound settings."));

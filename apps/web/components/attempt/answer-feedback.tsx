@@ -1,4 +1,4 @@
-import { MathText } from "@/components/math/math-text";
+import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/misc";
 import { cn } from "@/lib/utils";
@@ -18,11 +18,13 @@ export function CorrectnessBadge({ correct }: { correct: boolean }) {
 export function AnswerFeedback({
   correct,
   explanation,
+  steps,
   className,
   animate = false,
 }: {
   correct: boolean;
   explanation: string | null | undefined;
+  steps?: string[] | null;
   className?: string;
   animate?: boolean;
 }) {
@@ -38,12 +40,9 @@ export function AnswerFeedback({
         {correct ? <span className={animate ? "answer-correct-tick" : undefined} aria-hidden><CheckCircle2 className="size-5" /></span> : <XCircle className="size-5" aria-hidden />}
         {correct ? "Correct" : "Incorrect"}
       </p>
-      {explanation ? (
-        <div className="text-ink">
-          <p className="text-sm font-semibold">Explanation</p>
-          <p className="whitespace-pre-line"><MathText text={explanation} /></p>
-        </div>
-      ) : null}
+      <div className="text-ink">
+        <SolutionWalkthrough explanation={explanation} steps={steps} />
+      </div>
     </div>
   );
 }

@@ -4,10 +4,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { isApiError, qk } from "@scholau/api";
-import { useBattleSignals, useBattleState, useForfeitBattle } from "@scholau/api/react";
+import { isApiError, qk, type HomeSummary } from "@scholau/api";
+import { useBattleSignals, useBattleState, useForfeitBattle, useHomeSummary, useScholauApi } from "@scholau/api/react";
 import { isLiveBattleState } from "@scholau/core";
+import { BattleReactionBar } from "@/components/battle/battle-reaction-bar";
 import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/battle/battle-chrome";
+import { playBattleLossSound, playBattleWinSound } from "@/lib/feedback-sounds";
+import { celebrationPayload, emitStreakCelebration, streakAdvanced } from "@/lib/streak-celebration-bus";
 import { useAfter } from "@/components/battle/hooks";
 import { IntegrityGuard } from "@/components/battle/integrity-guard";
 import { BattleScoreboard } from "@/components/battle/arena";
@@ -30,7 +33,10 @@ export default function BattlePage() {
   const forfeit = useForfeitBattle();
   const graceOver = useAfter(3000);
   const [leaveOpen, setLeaveOpen] = useState(false);
-  const seen = useRef({ live: false, activated: false, completed: false });
+  const seen = useRef({ live: false, activated: false, completed: false, sounded: false });
+  const streakBeforeBattle = useRef<HomeSummary["streak"] | undefined>(undefined);
+  const home = useHomeSummary();
+  const api = useScholauApi();
 
   const battle = q.data;
   const live = battle ? isLiveBattleState(battle.state) : false;
@@ -52,7 +58,10 @@ export default function BattlePage() {
   const result = battle?.outcome?.result;
   useEffect(() => {
     if (!state) return;
-    if (isLiveBattleState(state)) seen.current.live = true;
+    if (isLiveBattleState(state)) {
+      seen.current.live = true;
+      if (!streakBeforeBattle.current && home.data?.streak) streakBeforeBattle.current = home.data.streak;
+    }
     if (state === "active" && !seen.current.activated) {
       seen.current.activated = true;
       analytics.track({ name: "battle_activated", battle_id: id });
@@ -60,6 +69,17 @@ export default function BattlePage() {
     if (state === "finished" && seen.current.live && !seen.current.completed) {
       seen.current.completed = true;
       analytics.track({ name: "battle_completed", battle_id: id, outcome: result ?? "unknown" });
+      if (!seen.current.sounded) {
+        seen.current.sounded = true;
+        if (result === "win" || result === "draw") playBattleWinSound();
+        else if (result === "loss") playBattleLossSound();
+      }
+      void api.getHomeSummary().then((summary) => {
+        qc.setQueryData(qk.home(), summary);
+        const prev = streakBeforeBattle.current ?? home.data?.streak;
+        const next = summary.streak;
+        if (streakAdvanced(prev, next)) emitStreakCelebration(celebrationPayload(prev, next));
+      }).catch(() => undefined);
     }
     if (!isLiveBattleState(state)) {
       void Promise.all([
@@ -69,7 +89,7 @@ export default function BattlePage() {
         qc.invalidateQueries({ queryKey: qk.home() }),
       ]);
     }
-  }, [state, result, id, analytics, qc]);
+  }, [state, result, id, analytics, qc, api, home.data?.streak]);
 
   const leave = () => {
     forfeit.mutate(
@@ -137,7 +157,10 @@ export default function BattlePage() {
       <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
       {live && (disconnected || q.isError || slowRequest) ? <ReconnectBanner offline={!online} delayed={!disconnected} onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
-      {battle && (battle.state === "active" || battle.state === "countdown") ? <BattleScoreboard battle={battle} /> : null}
+      {battle && (battle.state === "active" || battle.state === "countdown") ? <>
+        <BattleScoreboard battle={battle} />
+        <BattleReactionBar battle={battle} />
+      </> : null}
       {body}
       <LeaveBattleDialog
         open={leaveOpen}

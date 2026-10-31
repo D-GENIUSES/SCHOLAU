@@ -48,6 +48,7 @@ export default function ContentSyncPage() {
 
   return <>
     <AdminPageHeader title="Course materials" description="Turn source material into explained lessons, worked examples, and practice." />
+    <p className="text-sm"><a href="/admin/reteach" className="font-semibold text-brand-primary hover:underline">Re-teach from past uploads</a> to regenerate lessons with the latest step-by-step teaching rules.</p>
     <div className="flex max-w-2xl flex-col gap-5">
       <p>Upload one generated course bundle. Review the explanations, examples and practice checks below. Validate the sources, save drafts, then publish when the teaching content and assessment answers are ready.</p>
       <label className="flex flex-col gap-2 font-semibold">Course bundle (JSON)

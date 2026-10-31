@@ -421,7 +421,7 @@ export interface AttemptQuestion {
 
   saved: { option_id: Uuid; answer_revision: number; locked: boolean } | null;
 
-  feedback: { is_correct: boolean; correct_option_id: Uuid; explanation: string } | null;
+  feedback: { is_correct: boolean; correct_option_id: Uuid; explanation: string; steps?: string[] } | null;
 
 }
 
@@ -532,6 +532,8 @@ export interface ReviewCheckResult extends Envelope {
   correct_option_id: Uuid;
 
   explanation: string;
+
+  steps?: string[];
 
 }
 

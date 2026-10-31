@@ -211,6 +211,12 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       rpc<T.BattleState_>("ready_battle_v1", { p_battle_id: a.battleId, p_request_key: a.requestKey }),
     getBattleCorrection: (args: { battleId: string; position: number }) => rpc<T.BattleCorrection>("get_battle_correction_v1", { p_battle_id: args.battleId, p_position: args.position }),
     getBattleState: (battleId: string) => rpc<T.BattleState_>("get_battle_state_v1", { p_battle_id: battleId }),
+    sendBattleReaction: (a: Keyed<{ battleId: string; reaction: "laugh" | "angry" | "handshake" }>) =>
+      rpc<T.Envelope & { sent: boolean; reaction: string }>("send_battle_reaction_v1", {
+        p_battle_id: a.battleId,
+        p_reaction: a.reaction,
+        p_request_key: a.requestKey,
+      }),
     submitBattleAnswer: (a: Keyed<{ battleId: string; position: number; optionId?: string | null; textAnswer?: string | null }>) =>
       rpc<T.BattleAnswerAck>("submit_battle_answer_v1", {
         p_battle_id: a.battleId,
@@ -393,6 +399,16 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       },
       getIngestionEvidence: (sourceReference: string) =>
         rpc<{ items: T.IngestionEvidenceItem[] }>("admin_get_ingestion_evidence_v1", { p_source_reference: sourceReference }),
+      listIngestionReteach: (limit = 50) =>
+        rpc<{ items: { job_id: string; course_id: string; course_code: string; filename: string; sha256: string; succeeded_at: string }[] }>(
+          "admin_list_ingestion_reteach_v1",
+          { p_limit: limit },
+        ),
+      queueIngestionReteach: (a: Keyed<{ jobId: string }>) =>
+        rpc<{ job_id: string; status: string; force_reprocess: boolean }>("admin_queue_ingestion_reteach_v1", {
+          p_job_id: a.jobId,
+          p_request_key: a.requestKey,
+        }),
       listQuestionVersions: (status?: string | null) => {
         let q = supabase
           .from("question_versions")
