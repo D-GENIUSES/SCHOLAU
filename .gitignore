@@ -35,6 +35,11 @@ Thumbs.db
 .idea/
 coverage/
 
+# Scanned BIO 101 page renders and source PDF (large binaries; notes + JSON are kept)
+imports/bio-101/extracted/pages/
+imports/bio-101/source/
+.tmp-bio-p0.png
+
 # local tooling
 __pycache__/
 *.py[cod]
