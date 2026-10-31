@@ -17,11 +17,19 @@ type FlashcardDeckProps = {
 function FlashcardBack({ text }: { text: string }) {
   const brief = briefFlashcardBack(text);
   const lines = brief.split("\n").filter(Boolean);
-  if (lines.length < 2) return <p className="flashcard-text"><MathText text={brief} /></p>;
+  if (lines.length < 2) {
+    return (
+      <p className="flashcard-text flashcard-answer">
+        <MathText text={brief} />
+      </p>
+    );
+  }
   return (
-    <ul className="flashcard-points">
+    <ul className="flashcard-points flashcard-answer">
       {lines.map((line, index) => (
-        <li key={`${index}-${line}`}><MathText text={line} /></li>
+        <li key={`${index}-${line}`}>
+          <MathText text={line} />
+        </li>
       ))}
     </ul>
   );
@@ -104,10 +112,16 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       >
         <div className="flashcard-inner">
           <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
-            <p className="flashcard-text"><MathText text={lessonCardText(card.front)} /></p>
+            <div className="flashcard-content">
+              <p className="flashcard-text">
+                <MathText text={lessonCardText(card.front)} />
+              </p>
+            </div>
           </div>
           <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-            <FlashcardBack text={card.back} />
+            <div className="flashcard-content">
+              <FlashcardBack text={card.back} />
+            </div>
           </div>
         </div>
       </button>

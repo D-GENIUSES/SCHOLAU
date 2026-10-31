@@ -999,10 +999,9 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 .flashcard-scene.is-flipped .flashcard-inner { transform: rotateY(180deg); }
 .flashcard-face { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 20px 18px; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-surface-page); box-shadow: var(--shadow-card); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .flashcard-scene:not(.is-flipped) .flashcard-front { border-color: #b8d4f5; box-shadow: 0 0 0 1px #0066d612, var(--shadow-card); }
-.flashcard-back { transform: rotateY(180deg); overflow-y: auto; justify-content: center; align-items: center; text-align: center; }
+.flashcard-back { transform: rotateY(180deg); overflow-y: auto; }
 .flashcard-tag { align-self: flex-start; padding: 2px 8px; border-radius: 999px; background: var(--color-nav-active-bg); color: var(--color-brand-primary); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-.flashcard-text { flex: 1; font-size: 16px; font-weight: 650; line-height: 1.45; color: var(--color-ink); overflow-wrap: anywhere; }
-.flashcard-back .flashcard-text { font-size: 15px; font-weight: 500; }
+.flashcard-text { margin: 0; color: var(--color-ink); overflow-wrap: anywhere; }
 .flashcard-hint { font-size: 11px; color: var(--color-ink-muted); }
 .flashcard-score-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .flashcard-score-row > * { flex: 1; min-width: 120px; }
@@ -1016,11 +1015,19 @@ button.inbox-row.is-unread:hover { background: #eaf2fc; }
 .flashcard-dot { width: 5px; height: 5px; flex-shrink: 0; }
 .flashcard-scene, .flashcard-inner { min-height: 220px; }
 .flashcard-face { padding: 20px; border-radius: 18px; box-shadow: 0 4px 18px #142b4810; background: #fff; }
-.flashcard-front { justify-content: center; align-items: center; text-align: center; }
-.flashcard-front .flashcard-text { flex: 0; margin-block: auto; font-size: clamp(17px, 4.2vw, 21px); font-weight: 700; line-height: 1.35; text-align: center; max-width: 100%; }
-.flashcard-back .flashcard-text { flex: 0; margin-block: auto; font-size: clamp(16px, 3.8vw, 19px); font-weight: 700; line-height: 1.4; text-align: center; max-width: 100%; }
-.flashcard-points { margin: 0 auto; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; font-size: clamp(15px, 3.6vw, 18px); line-height: 1.4; font-weight: 700; text-align: center; max-width: 100%; }
+.flashcard-front,
+.flashcard-back { justify-content: center; align-items: center; text-align: center; }
+.flashcard-content { width: 100%; max-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-block: auto; }
+.flashcard-face .flashcard-text,
+.flashcard-face .flashcard-points,
+.flashcard-face .flashcard-answer,
+.flashcard-face .flashcard-answer li { font-size: clamp(17px, 4.2vw, 21px); font-weight: 700; line-height: 1.35; text-align: center; max-width: 100%; }
+.flashcard-points { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; width: 100%; }
 .flashcard-points li { max-width: 100%; }
+.flashcard-face .math-display { text-align: center; margin: 0.35rem 0; width: 100%; }
+.flashcard-face .math-display .katex-display,
+.flashcard-face .math-display .katex-display > .katex { text-align: center; }
+.flashcard-face .math-equation .katex { font-size: 1.05em; }
 .flashcard-tag { padding: 3px 8px; font-size: 10px; letter-spacing: .02em; text-transform: none; }
 .flashcard-nav { padding-top: 0; border-top: 0; }
 .flashcard-scene:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 4px; border-radius: 18px; }
