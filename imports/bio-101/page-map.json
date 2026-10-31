@@ -1,0 +1,15 @@
+{
+  "source_pdf": "BIO CH.1-7 .pdf",
+  "pdf_page_count": 63,
+  "book_page_formula": "book_page = pdf_index - 2 (for main content; pdf 003 = book 1)",
+  "chapters": [
+    { "module": 1, "title": "Introduction to Biology", "book_start": 1, "pdf_start": 3, "book_end": 6, "pdf_end": 8 },
+    { "module": 2, "title": "Living Things", "book_start": 7, "pdf_start": 9, "book_end": 12, "pdf_end": 14 },
+    { "module": 3, "title": "Classification of Living Things", "book_start": 13, "pdf_start": 15, "book_end": 19, "pdf_end": 21 },
+    { "module": 4, "title": "Cell Types and Cell Theory", "book_start": 20, "pdf_start": 22, "book_end": 30, "pdf_end": 32 },
+    { "module": 5, "title": "Activities Within the Cell", "book_start": 31, "pdf_start": 33, "book_end": 44, "pdf_end": 46 },
+    { "module": 6, "title": "Heredity", "book_start": 45, "pdf_start": 47, "book_end": 51, "pdf_end": 53 },
+    { "module": 7, "title": "Genes and Chromosomes", "book_start": 52, "pdf_start": 54, "book_end": null, "pdf_end": 63 }
+  ],
+  "notes": "Front matter in pdf 001-002; TOC on pdf 007 (book vii). End pages may include index — verify during extraction."
+}
