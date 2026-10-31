@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input, NativeSelect } from "@/components/ui/input";
 import { InlineError, LoadingState } from "@/components/ui/states";
 import { BattleActionError } from "./action-error";
+import { OpponentPickerOption, opponentBattleBusyLabel } from "./opponent-picker";
 import "./battle-lobby.css";
 
 type EnrolledCourse = HomeSummary["enrolled_courses"][number];
@@ -44,8 +45,17 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
   const clearError = () => { direct.reset(); queue.reset(); };
   const supportsCount = (n: number) => scope.length > 0 && scope.every((c, index) => c.available_questions >= Math.floor(n / scope.length) + (index < n % scope.length ? 1 : 0));
   const toggle = (id: string) => { setChosen(mode === "random" ? [id] : selected.includes(id) ? selected.filter(x => x !== id) : [...selected, id]); clearError(); };
-  const chooseOpponent = (person: FriendPerson) => { setOpponent(person); clearError(); };
-  const ready = available && compatible && (mode !== "random" || scope.length === 1);
+  const chooseOpponent = (person: FriendPerson) => {
+    if (person.battle_busy) return;
+    setOpponent(person);
+    clearError();
+  };
+  const opponentBusy = opponent?.battle_busy ?? null;
+  const ready =
+    available
+    && compatible
+    && (mode !== "random" || scope.length === 1)
+    && (mode !== "direct" || !opponentBusy);
   const searching = normalizedInput.length >= 3 && (normalizedInput !== query || search.isFetching);
   const candidates = normalizedInput.length >= 3
     ? normalizedInput === query ? search.data?.people ?? [] : []
@@ -81,17 +91,45 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
           <label className="min-w-0 flex-1 text-sm font-semibold">Opponent’s username<Input value={input} disabled={busy} onChange={e => { setInput(e.target.value); setOpponent(null); clearError(); }} placeholder="Type a username…" aria-describedby="battle-search-hint" aria-controls="battle-opponent-results" autoComplete="off" minLength={3} maxLength={60} required type="search" /></label>
           <Button type="submit" variant="outline" disabled={busy} loading={search.isFetching}><Search className="size-4" aria-hidden /><span className="sr-only">Search opponents</span></Button>
         </form>
-        <p id="battle-search-hint" className="text-xs text-ink-muted">Type 3 or more characters. Choose a learner, then send a challenge.</p>
+        <p id="battle-search-hint" className="text-xs text-ink-muted">Type 3 or more characters. Online status and busy learners are shown before you send a challenge.</p>
         <InlineError error={search.error ?? friends.error} />
         <div id="battle-opponent-results" className="battle-opponent-results max-h-52 overflow-y-auto" role="group" aria-label="Choose opponent" aria-busy={searching}>
           {searching ? <p role="status" className="text-xs text-ink-muted">Finding opponents…</p> : null}
           {normalizedInput.length === 0 && candidates.length ? <p className="text-xs font-semibold text-ink-muted">Your friends</p> : null}
           {normalizedInput.length >= 3 && candidates.length ? <p className="text-xs font-semibold text-ink-muted">Search results</p> : null}
           {normalizedInput.length === 0 && friends.isSuccess && !candidates.length ? <p className="text-sm text-ink-muted">Find a learner by username to send a challenge.</p> : null}
-          {candidates.map(person => <button type="button" key={person.user_id} disabled={busy} aria-pressed={opponent?.user_id === person.user_id} className="battle-opponent-option" onClick={() => chooseOpponent(person)}><span><strong>{person.display_name}</strong><small>@{person.username}</small></span><span className="text-xs">{opponent?.user_id === person.user_id ? "Selected" : "Choose"}</span></button>)}
+          {candidates.map((person) => (
+            <OpponentPickerOption
+              key={person.user_id}
+              person={person}
+              selected={opponent?.user_id === person.user_id}
+              disabled={busy}
+              onChoose={() => chooseOpponent(person)}
+            />
+          ))}
           {!searching && normalizedInput.length >= 3 && search.isSuccess && !candidates.length ? <p role="status" className="text-sm text-ink-muted">No opponents found. Try another username.</p> : null}
         </div>
-        {opponent ? <div className="battle-selected-opponent" aria-live="polite"><p className="text-sm">Challenging <strong>@{opponent.username}</strong></p>{shared.isPending ? <p className="text-xs text-ink-muted">Checking shared subjects…</p> : null}<InlineError error={shared.error} />{shared.isSuccess && !compatible ? <p className="text-sm text-warning">This learner is not enrolled in all your selected subjects. Update your subjects or choose another opponent.</p> : null}</div> : null}
+        {opponent ? (
+          <div className="battle-selected-opponent" aria-live="polite">
+            <p className="text-sm">
+              Challenging <strong>@{opponent.username}</strong>
+              {" · "}
+              <span className={opponent.online ? "font-semibold text-success" : "text-ink-muted"}>
+                {opponent.online ? "Online now" : "Offline"}
+              </span>
+            </p>
+            {opponentBusy ? (
+              <p className="text-sm font-semibold text-warning" role="status">
+                {opponentBattleBusyLabel(opponentBusy)} — pick someone else before sending a challenge.
+              </p>
+            ) : null}
+            {shared.isPending ? <p className="text-xs text-ink-muted">Checking shared subjects…</p> : null}
+            <InlineError error={shared.error} />
+            {shared.isSuccess && !compatible ? (
+              <p className="text-sm text-warning">This learner is not enrolled in all your selected subjects. Update your subjects or choose another opponent.</p>
+            ) : null}
+          </div>
+        ) : null}
         <label className="battle-question-count text-sm font-semibold">Match length<NativeSelect value={questionCount} disabled={busy} onChange={e => { setQuestionCount(Number(e.target.value)); clearError(); }}>{[5,10,15,20,25,30].map(n => <option key={n} value={n} disabled={!supportsCount(n)}>{n} questions{supportsCount(n) ? "" : " · not enough questions"}</option>)}</NativeSelect></label>
       </div> : <p className="battle-match-note"><span><strong>Quick matches are 5 questions.</strong> {scope.length > 1 ? "Choose one subject for random matchmaking, or challenge someone across up to three subjects." : "Choose one subject to join the matchmaking queue."}</span></p>}
       </div>
@@ -99,7 +137,7 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
       </CardContent>
       <div className="battle-setup-footer">
       <div className="battle-setup-summary" aria-live="polite"><div><strong>{mode === "random" ? "Quick match" : opponent ? `Challenge @${opponent.username}` : "Your challenge"}</strong><span>{scope.length ? scope.map(course => course.code).join(" + ") : "No subject selected"}</span></div><span className="battle-summary-count">{count} questions</span></div>
-      {!busy && !ready ? <p id="battle-ready-hint" className="battle-ready-hint" role="status">{setup.isPending ? "Loading available subjects..." : !scope.length ? "Select a subject to continue." : !available ? "Choose another subject or fewer questions." : mode === "direct" && !opponent ? "Choose an opponent to send your challenge." : shared.isPending ? "Checking shared subjects..." : shared.isError ? "Shared subjects could not be checked. Try again." : "Choose shared subjects or a different opponent."}</p> : null}
+      {!busy && !ready ? <p id="battle-ready-hint" className="battle-ready-hint" role="status">{setup.isPending ? "Loading available subjects..." : !scope.length ? "Select a subject to continue." : !available ? "Choose another subject or fewer questions." : mode === "direct" && opponentBusy ? `${opponentBattleBusyLabel(opponentBusy)}. Choose another opponent.` : mode === "direct" && !opponent ? "Choose an opponent to send your challenge." : shared.isPending ? "Checking shared subjects..." : shared.isError ? "Shared subjects could not be checked. Try again." : "Choose shared subjects or a different opponent."}</p> : null}
       <Button className="battle-create-button" aria-describedby={!busy && !ready ? "battle-ready-hint" : undefined} disabled={busy || !ready} loading={busy} onClick={() => {
         if (mode === "random") queue.mutate({offeringId:selected[0]!},{onSuccess:ack => router.push(ack.battle_id ? `/battles/${ack.battle_id}` : "/battles/queue")});
         else if (opponent) direct.mutate({offeringId:selected[0]!,offeringIds:selected,questionCount,friendId:opponent.user_id},{onSuccess:battle => router.push(`/battles/${battle.battle_id}`)});

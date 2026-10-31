@@ -5,7 +5,7 @@ import type { Battle, BattleParticipant } from "@scholau/api";
 import { useReadyBattle } from "@scholau/api/react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LiveRegion } from "@/components/ui/misc";
 import { InlineError } from "@/components/ui/states";
 import { CountdownBar } from "./countdown";
@@ -31,15 +31,9 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
         </ul>
         <CountdownBar remainingMs={remaining} totalMs={Math.max(30_000, remaining)} label="Time left to get ready" warnBelowMs={3000} />
         <p className="text-sm text-ink-muted">If both players aren&apos;t ready in time, the battle is cancelled with no XP.</p>
-        <BattleRulesList />
-        <InlineError error={ready.error} />
-        <LiveRegion>
-          {iAmReady ? (opponentReady ? "Both players are ready." : "You're ready. Waiting for your opponent.") : ""}
-        </LiveRegion>
-      </CardContent>
-      <CardFooter>
         <Button
           size="lg"
+          className="min-h-12 text-base"
           onClick={() => ready.mutate({ battleId: battle.battle_id })}
           loading={ready.isPending}
           disabled={iAmReady}
@@ -53,7 +47,17 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
             "I'm ready"
           )}
         </Button>
-      </CardFooter>
+        <InlineError error={ready.error} />
+        <LiveRegion>
+          {iAmReady ? (opponentReady ? "Both players are ready." : "You're ready. Waiting for your opponent.") : ""}
+        </LiveRegion>
+        <details className="battle-rules-details rounded-control border border-line px-3 py-2">
+          <summary className="cursor-pointer text-sm font-semibold text-ink">Battle rules</summary>
+          <div className="pt-3">
+            <BattleRulesList />
+          </div>
+        </details>
+      </CardContent>
     </Card>
   );
 }

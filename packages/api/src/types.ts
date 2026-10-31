@@ -1367,6 +1367,10 @@ export interface FriendPerson {
   user_id: string; display_name: string; username: string | null;
 
   state: "pending" | "accepted" | "blocked" | null; incoming: boolean;
+  /** Active in the app within the last ~90 seconds. */
+  online?: boolean;
+  /** Opponent cannot accept a direct challenge while busy. */
+  battle_busy?: "battle" | "queue" | null;
 
 }
 

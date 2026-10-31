@@ -157,10 +157,9 @@ export default function BattlePage() {
       <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
       {live && (disconnected || q.isError || slowRequest) ? <ReconnectBanner offline={!online} delayed={!disconnected} onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
-      {battle && (battle.state === "active" || battle.state === "countdown") ? <>
-        <BattleScoreboard battle={battle} />
-        <BattleReactionBar battle={battle} />
-      </> : null}
+      {battle && (battle.state === "ready" || battle.state === "countdown" || battle.state === "active") ? (
+        <BattleScoreboard battle={battle} footer={<BattleReactionBar battle={battle} />} />
+      ) : null}
       {body}
       <LeaveBattleDialog
         open={leaveOpen}
