@@ -1,7 +1,7 @@
 import type { BattleMix, GeminiConceptResult } from "./types";
 import { parseGeminiConceptResult } from "./schemas";
 import { buildIngestionSystemPrompt } from "./prompts";
-import { briefFlashcardBack } from "./flashcards";
+import { briefFlashcardBack, briefFlashcardFront } from "./flashcards";
 import { dedupeFlashcardsByFront } from "./normalize-gap";
 import { validateIngestionBattleQuestions, validateTeachingLessonBlocks } from "./validate-lesson";
 
@@ -60,7 +60,15 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     if ([...parsed.learning_questions, ...parsed.battle_questions].some(q => placeholders.includes(q.prompt.trim()))) {
       throw new Error("Source generation returned placeholder questions.");
     }
-    const flashcards = dedupeFlashcardsByFront(parsed.flashcards.map((card) => ({ ...card, back: briefFlashcardBack(card.back) })).filter((card) => card.back.length > 0));
+    const flashcards = dedupeFlashcardsByFront(
+      parsed.flashcards
+        .map((card) => ({
+          ...card,
+          front: briefFlashcardFront(card.front),
+          back: briefFlashcardBack(card.back),
+        }))
+        .filter((card) => card.front.length > 0 && card.back.length > 0),
+    );
     if (!flashcards.length) throw new Error("Source generation did not return usable flashcards.");
     return { ...parsed, flashcards } as GeminiConceptResult;
   } catch (cause) {

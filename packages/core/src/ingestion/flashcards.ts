@@ -1,28 +1,61 @@
-const POINT_LIMIT = 110;
-const POINT_COUNT = 3;
+const POINT_LIMIT = 78;
+const POINT_COUNT = 2;
+const BACK_TOTAL_LIMIT = 170;
+const FRONT_LIMIT = 96;
 
-function clipPoint(text: string): string {
+function clipPoint(text: string, limit = POINT_LIMIT): string {
   const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= POINT_LIMIT) return clean;
-  const cut = clean.slice(0, POINT_LIMIT - 1);
+  if (clean.length <= limit) return clean;
+  const cut = clean.slice(0, limit - 1);
   const space = cut.lastIndexOf(" ");
-  return `${(space > 60 ? cut.slice(0, space) : cut).trim()}…`;
+  return `${(space > 40 ? cut.slice(0, space) : cut).trim()}…`;
 }
 
-/** One idea, or up to three short points. Long notes and stories are not flashcards. */
-export function briefFlashcardBack(text: string): string {
-  const cleaned = text
+export function stripFlashcardPrefixes(text: string): string {
+  return text
     .replace(/^Exam focus\s*:\s*/i, "")
     .replace(/^Explain for exams\s*:\s*/i, "")
     .replace(/^In exams, (?:focus on|expect clear points on this topic)\s*:\s*/i, "")
     .trim();
+}
+
+/** Short question side — one line, fits the card. */
+export function briefFlashcardFront(text: string): string {
+  const cleaned = stripFlashcardPrefixes(text).replace(/\s+/g, " ").trim();
+  if (!cleaned) return "";
+  if (cleaned.length <= FRONT_LIMIT) return cleaned;
+  const questionMark = cleaned.indexOf("?");
+  if (questionMark >= 24 && questionMark < FRONT_LIMIT) return cleaned.slice(0, questionMark + 1);
+  const clipped = clipPoint(cleaned, FRONT_LIMIT);
+  return clipped.endsWith("?") ? clipped : `${clipped.replace(/[.…]+$/u, "")}?`;
+}
+
+/** One idea, or up to two short points. Long notes and stories are not flashcards. */
+export function briefFlashcardBack(text: string): string {
+  const cleaned = stripFlashcardPrefixes(text);
   if (!cleaned) return "";
   const pieces = cleaned
     .split(/\n+|(?:^|\s)[•]\s+/)
     .map((part) => part.replace(/^(\d+[.)]|[-*])\s+/, "").trim())
     .filter((part) => part.length > 0);
-  const source = pieces.length > 1 ? pieces : [firstSentence(cleaned.replace(/\s+/g, " "))];
-  return source.slice(0, POINT_COUNT).map(clipPoint).filter(Boolean).join("\n");
+  let source: string[];
+  if (pieces.length > 1) {
+    source = pieces;
+  } else {
+    source = [firstSentence(cleaned.replace(/\s+/g, " "))];
+  }
+  let brief = source
+    .slice(0, POINT_COUNT)
+    .map((part) => clipPoint(part))
+    .filter(Boolean)
+    .join("\n");
+  if (brief.length > BACK_TOTAL_LIMIT) {
+    brief = brief
+      .split("\n")
+      .map((line) => clipPoint(line, Math.floor(BACK_TOTAL_LIMIT / POINT_COUNT)))
+      .join("\n");
+  }
+  return brief;
 }
 
 function firstSentence(text: string): string {

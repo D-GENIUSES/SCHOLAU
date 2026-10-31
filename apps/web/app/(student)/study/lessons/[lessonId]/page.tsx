@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson, type Streak } from "@scholau/api";
 import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
-import { COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
+import { briefFlashcardBack, COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
 import { FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonStepper } from "@/components/lesson/lesson-stepper";
 import { FlashcardDeck } from "@/components/lesson/flashcard-deck";
@@ -18,7 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge, PageHeader } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
-import { buildExamFlashcards } from "@/lib/lesson-exam-cards";
+import { buildExamFlashcards, lessonCardText } from "@/lib/lesson-exam-cards";
 import { playLessonCompleteSound } from "@/lib/feedback-sounds";
 import { celebrationPayload, emitStreakCelebration } from "@/lib/streak-celebration-bus";
 import { shouldCelebrateStreak } from "@/lib/streak-celebration";
@@ -75,12 +75,14 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
   const examCards = useMemo(() => {
     if (lesson.flashcards?.length) {
-      return lesson.flashcards.map((card, index) => ({
-        id: `${lesson.lesson_id}-fc-${index}`,
-        front: card.front,
-        back: card.back,
-        tag: (card.tag as "focus" | "section" | "tip" | "checkpoint" | "diagram" | "recap" | undefined) ?? "section",
-      }));
+      return lesson.flashcards
+        .map((card, index) => ({
+          id: `${lesson.lesson_id}-fc-${index}`,
+          front: lessonCardText(card.front),
+          back: briefFlashcardBack(card.back),
+          tag: (card.tag as "focus" | "section" | "tip" | "checkpoint" | "diagram" | "recap" | undefined) ?? "section",
+        }))
+        .filter((card) => card.front && card.back);
     }
     return buildExamFlashcards(lesson);
   }, [lesson]);

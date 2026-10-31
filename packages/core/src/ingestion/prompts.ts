@@ -29,7 +29,7 @@ Include an explained checkpoint and a new independent problem with a justified s
   "objective": string,
   "module_title": string,
   "blocks": canonical lesson — heading "Understand the idea", a short explanatory paragraph (80+ chars, not a pasted page), example callout, warning callout, heading "What to remember", summary paragraph, checkpoint with 4 options,
-  "flashcards": cards { front, back, tag? } — one idea per card. Front is a short question under 90 characters. Back is one short sentence or up to three brief bullet lines, under 160 characters total. No stories, copied paragraphs, exam advice, filler, or duplicates. Use tag focus for key points and section for lesson concepts,
+  "flashcards": cards { front, back, tag? } — one idea per card. Front is a short question under 90 characters. Back is one short sentence or at most two brief bullet lines, under 140 characters total. Never paste lesson paragraphs, stories, or exam advice. Use tag focus for key points and section for lesson concepts,
   "learning_questions": MCQ review questions with 4 options. For any calculation, explanation is a step-by-step solution: each step is its own sentence naming the operation and why it is valid. Do not stop at "the correct answer is",
   "battle_questions": mix answer_format standard (4 MCQ), worked_solution (4 options, each with steps[] showing the full working and body as the final result only), fill_in_gap (gaps[].accepted_answers with aliases for voice). Calculation explanations must list every step, not only the final value
 }

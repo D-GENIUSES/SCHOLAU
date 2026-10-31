@@ -1,4 +1,4 @@
-import type { LessonBlock } from "@scholau/core";
+import { briefFlashcardBack, briefFlashcardFront, type LessonBlock } from "@scholau/core";
 
 export type ExamFlashcard = {
   id: string;
@@ -16,12 +16,8 @@ export type LessonFlashcardInput = {
   blocks: LessonBlock[];
 };
 
-const MAX_BACK_CHARS = 520;
-
-function truncate(text: string, max = MAX_BACK_CHARS): string {
-  const trimmed = text.trim();
-  if (trimmed.length <= max) return trimmed;
-  return `${trimmed.slice(0, max - 1).trimEnd()}…`;
+function briefCard(front: string, back: string): { front: string; back: string } {
+  return { front: briefFlashcardFront(front), back: briefFlashcardBack(back) };
 }
 
 function isEditorialText(text: string): boolean {
@@ -66,9 +62,8 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
     }
     i += 1;
   }
-  const joined = lines.join("\n\n");
-  const back = joined;
-  return { text: truncate(back), nextIndex: i };
+  const joined = lines.join("\n");
+  return { text: briefFlashcardBack(joined), nextIndex: i };
 }
 
 export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard[] {
@@ -84,28 +79,27 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     }
     if (block.type === "heading") {
       const { text, nextIndex } = collectSectionBody(blocks, index + 1);
-      if (text && !isEditorialText(block.text)) cards.push({
-        id: `${lessonId}-h-${index}`,
-        front: questionForHeading(block.text, title),
-        back: text,
-        tag: "section",
-      });
+      if (text && !isEditorialText(block.text)) {
+        const card = briefCard(questionForHeading(block.text, title), text);
+        if (card.back) cards.push({ id: `${lessonId}-h-${index}`, ...card, tag: "section" });
+      }
       index = nextIndex;
       continue;
     }
     if (block.type === "checkpoint") {
       const answer = block.options[block.correct_index] ?? "";
-      if (answer.trim() && !isEditorialText(block.question)) cards.push({
-        id: `${lessonId}-cp-${index}`,
-        front: block.question,
-        back: answer.trim(),
-        tag: "checkpoint",
-      });
+      if (answer.trim() && !isEditorialText(block.question)) {
+        const card = briefCard(block.question, answer.trim());
+        if (card.back) cards.push({ id: `${lessonId}-cp-${index}`, ...card, tag: "checkpoint" });
+      }
       index += 1;
       continue;
     }
     if (block.type === "paragraph" && !blocks.some((item) => item.type === "heading") && block.text.trim() && !isEditorialText(block.text) && !block.text.trim().endsWith("?")) {
-      cards.push({ id: `${lessonId}-p-${index}`, front: questionForHeading(title, title), back: truncate(block.text), tag: "section" });
+      {
+        const card = briefCard(questionForHeading(title, title), block.text);
+        if (card.back) cards.push({ id: `${lessonId}-p-${index}`, ...card, tag: "section" });
+      }
     }
     index += 1;
   }
@@ -115,9 +109,5 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
 
 /** Keep older saved cards consistent with the lesson wording. */
 export function lessonCardText(text: string): string {
-  return text
-    .replace(/^Exam focus\s*:\s*/i, "")
-    .replace(/^Explain for exams\s*:\s*/i, "")
-    .replace(/^In exams, (?:focus on|expect clear points on this topic)\s*:\s*/i, "")
-    .trim();
+  return briefFlashcardFront(text);
 }
