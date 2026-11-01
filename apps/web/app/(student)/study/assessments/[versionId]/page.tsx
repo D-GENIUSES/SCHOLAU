@@ -189,6 +189,9 @@ function Intro({ assessment: a, courseTitle }: { assessment: CourseAssessment; c
               <p>{xpRule(a)}</p>
               <p>{COPY.learning.capReset}</p>
             </Rule>
+            {a.lesson_id ? <Rule title="Harder questions">
+              <p>Advanced questions unlock after you master this lesson. Until then a quiz uses the questions already open, so it can be shorter than the full bank.</p>
+            </Rule> : null}
             <Rule title="Saving">
               Your answers are saved to the server as you go. Answers that haven&apos;t reached the server are marked “
               {COPY.learning.unsaved}”.
