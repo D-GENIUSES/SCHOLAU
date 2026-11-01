@@ -1,5 +1,10 @@
 import type { LessonBlock } from "../domain";
-import type { IngestionQuestion } from "./types";
+
+type CheckedBattleQuestion = {
+  answer_format?: string;
+  options?: readonly { label: string; steps?: readonly string[] }[];
+  correct_option?: string;
+};
 
 const PARAGRAPH_MAX = 600;
 
@@ -38,9 +43,9 @@ export function validateTeachingLessonBlocks(
 
   for (let i = 0; i < blocks.length; i += 1) {
     const block = blocks[i];
-    if (block.type !== "paragraph" || block.text.length <= PARAGRAPH_MAX) continue;
+    if (!block || block.type !== "paragraph" || block.text.length <= PARAGRAPH_MAX) continue;
     const next = blocks[i + 1];
-    const splitFollows = next && (next.type === "list" || next.type === "equation" || next.type === "worked_example");
+    const splitFollows = Boolean(next && (next.type === "list" || next.type === "equation" || next.type === "worked_example"));
     if (!splitFollows) {
       errors.push(`paragraph ${i + 1} is too long; split with headings, lists, or equations`);
     }
@@ -49,12 +54,12 @@ export function validateTeachingLessonBlocks(
   return errors;
 }
 
-export function validateIngestionBattleQuestions(questions: IngestionQuestion[]): string[] {
+export function validateIngestionBattleQuestions(questions: readonly CheckedBattleQuestion[]): string[] {
   const errors: string[] = [];
   questions.forEach((q, i) => {
-    if (q.answer_format !== "worked_solution" || !("options" in q)) return;
+    if (q.answer_format !== "worked_solution") return;
     const correct = q.correct_option?.toUpperCase();
-    const correctOpt = q.options.find((o) => o.label.toUpperCase() === correct);
+    const correctOpt = q.options?.find((o) => o.label.toUpperCase() === correct);
     if (!correctOpt?.steps?.length) {
       errors.push(`battle question ${i + 1}: correct option must include steps[]`);
     }
