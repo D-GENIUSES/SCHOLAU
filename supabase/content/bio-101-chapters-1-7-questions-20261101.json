@@ -1,0 +1,7686 @@
+[
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-001-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Biology is best defined as the scientific study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Rocks and minerals"
+      },
+      {
+        "label": "B",
+        "body": "Life"
+      },
+      {
+        "label": "C",
+        "body": "Only human disease"
+      },
+      {
+        "label": "D",
+        "body": "The weather"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes define biology as the scientific study of life, from cells to ecosystems.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1–2",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-001-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Biology is best defined as the scientific study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Rocks and minerals"
+      },
+      {
+        "label": "B",
+        "body": "Life"
+      },
+      {
+        "label": "C",
+        "body": "Only human disease"
+      },
+      {
+        "label": "D",
+        "body": "The weather"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes define biology as the scientific study of life, from cells to ecosystems.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1–2",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-002-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which scientist grouped animals by visible traits in ancient Greece?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Linnaeus"
+      },
+      {
+        "label": "B",
+        "body": "Darwin"
+      },
+      {
+        "label": "C",
+        "body": "Aristotle"
+      },
+      {
+        "label": "D",
+        "body": "Harvey"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Aristotle made an early classification of animals from what he could observe.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-002-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Which scientist grouped animals by visible traits in ancient Greece?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Linnaeus"
+      },
+      {
+        "label": "B",
+        "body": "Darwin"
+      },
+      {
+        "label": "C",
+        "body": "Aristotle"
+      },
+      {
+        "label": "D",
+        "body": "Harvey"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Aristotle made an early classification of animals from what he could observe.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-003-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "William Harvey is linked in this course to:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The naming of cells"
+      },
+      {
+        "label": "B",
+        "body": "Blood circulation"
+      },
+      {
+        "label": "C",
+        "body": "The structure of DNA"
+      },
+      {
+        "label": "D",
+        "body": "Natural selection"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Harvey showed that blood circulates through the body.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-003-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "William Harvey is linked in this course to:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The naming of cells"
+      },
+      {
+        "label": "B",
+        "body": "Blood circulation"
+      },
+      {
+        "label": "C",
+        "body": "The structure of DNA"
+      },
+      {
+        "label": "D",
+        "body": "Natural selection"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Harvey showed that blood circulates through the body.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-004-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Who introduced the two-part naming system still used to name species?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Aristotle"
+      },
+      {
+        "label": "B",
+        "body": "Carolus Linnaeus"
+      },
+      {
+        "label": "C",
+        "body": "Ibn Sina"
+      },
+      {
+        "label": "D",
+        "body": "Vesalius"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Linnaeus built the naming method used in modern classification.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-004-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Who introduced the two-part naming system still used to name species?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Aristotle"
+      },
+      {
+        "label": "B",
+        "body": "Carolus Linnaeus"
+      },
+      {
+        "label": "C",
+        "body": "Ibn Sina"
+      },
+      {
+        "label": "D",
+        "body": "Vesalius"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Linnaeus built the naming method used in modern classification.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-005-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Darwin’s main contribution named in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The microscope"
+      },
+      {
+        "label": "B",
+        "body": "Evolution by natural selection"
+      },
+      {
+        "label": "C",
+        "body": "The cell wall"
+      },
+      {
+        "label": "D",
+        "body": "Anaerobic respiration"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Darwin explained how species change by natural selection.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-005-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Darwin’s main contribution named in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The microscope"
+      },
+      {
+        "label": "B",
+        "body": "Evolution by natural selection"
+      },
+      {
+        "label": "C",
+        "body": "The cell wall"
+      },
+      {
+        "label": "D",
+        "body": "Anaerobic respiration"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Darwin explained how species change by natural selection.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-006-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Watson and Crick described:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The circulation of blood"
+      },
+      {
+        "label": "B",
+        "body": "The structure of DNA"
+      },
+      {
+        "label": "C",
+        "body": "Plant meristems"
+      },
+      {
+        "label": "D",
+        "body": "Kingdom Fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "They described the structure of DNA, a 20th-century landmark in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-006-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Watson and Crick described:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The circulation of blood"
+      },
+      {
+        "label": "B",
+        "body": "The structure of DNA"
+      },
+      {
+        "label": "C",
+        "body": "Plant meristems"
+      },
+      {
+        "label": "D",
+        "body": "Kingdom Fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "They described the structure of DNA, a 20th-century landmark in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 1",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-007-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Botany is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animals"
+      },
+      {
+        "label": "B",
+        "body": "Fossils only"
+      },
+      {
+        "label": "C",
+        "body": "Plants"
+      },
+      {
+        "label": "D",
+        "body": "The immune system"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Botany is the plant branch of biology; zoology is animals.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-007-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Botany is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animals"
+      },
+      {
+        "label": "B",
+        "body": "Fossils only"
+      },
+      {
+        "label": "C",
+        "body": "Plants"
+      },
+      {
+        "label": "D",
+        "body": "The immune system"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Botany is the plant branch of biology; zoology is animals.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-008-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Zoology is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Plants"
+      },
+      {
+        "label": "B",
+        "body": "Animals"
+      },
+      {
+        "label": "C",
+        "body": "Rocks"
+      },
+      {
+        "label": "D",
+        "body": "Weather systems"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Zoology covers the animal kingdom.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-008-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Zoology is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Plants"
+      },
+      {
+        "label": "B",
+        "body": "Animals"
+      },
+      {
+        "label": "C",
+        "body": "Rocks"
+      },
+      {
+        "label": "D",
+        "body": "Weather systems"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Zoology covers the animal kingdom.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-009-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which branch studies how organisms interact with their environment?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Anatomy"
+      },
+      {
+        "label": "B",
+        "body": "Ecology"
+      },
+      {
+        "label": "C",
+        "body": "Paleontology"
+      },
+      {
+        "label": "D",
+        "body": "Immunology"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Ecology examines organisms with each other and their surroundings.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2–3",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-009-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Which branch studies how organisms interact with their environment?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Anatomy"
+      },
+      {
+        "label": "B",
+        "body": "Ecology"
+      },
+      {
+        "label": "C",
+        "body": "Paleontology"
+      },
+      {
+        "label": "D",
+        "body": "Immunology"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Ecology examines organisms with each other and their surroundings.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 2–3",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-010-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Genetics is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only ocean animals"
+      },
+      {
+        "label": "B",
+        "body": "How traits are passed on"
+      },
+      {
+        "label": "C",
+        "body": "Rock layers"
+      },
+      {
+        "label": "D",
+        "body": "Star positions"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genetics studies heredity through genes, DNA, and chromosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 3",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-010-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Genetics is the study of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only ocean animals"
+      },
+      {
+        "label": "B",
+        "body": "How traits are passed on"
+      },
+      {
+        "label": "C",
+        "body": "Rock layers"
+      },
+      {
+        "label": "D",
+        "body": "Star positions"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genetics studies heredity through genes, DNA, and chromosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 3",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-011-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Microbiology studies:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only whales"
+      },
+      {
+        "label": "B",
+        "body": "Bacteria, archaea, protists and fungi"
+      },
+      {
+        "label": "C",
+        "body": "Only flowering plants"
+      },
+      {
+        "label": "D",
+        "body": "The whole solar system"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Microbiology is the world of microorganisms listed in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 3",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-011-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Microbiology studies:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only whales"
+      },
+      {
+        "label": "B",
+        "body": "Bacteria, archaea, protists and fungi"
+      },
+      {
+        "label": "C",
+        "body": "Only flowering plants"
+      },
+      {
+        "label": "D",
+        "body": "The whole solar system"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Microbiology is the world of microorganisms listed in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 3",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-012-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A career field listed under the scope of biology is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Astronomy of black holes"
+      },
+      {
+        "label": "B",
+        "body": "Medicine"
+      },
+      {
+        "label": "C",
+        "body": "Pure number theory"
+      },
+      {
+        "label": "D",
+        "body": "Civil court procedure"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Medicine is named first among biology career fields, with agriculture, pharmacy and others.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 6",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-012-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A career field listed under the scope of biology is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Astronomy of black holes"
+      },
+      {
+        "label": "B",
+        "body": "Medicine"
+      },
+      {
+        "label": "C",
+        "body": "Pure number theory"
+      },
+      {
+        "label": "D",
+        "body": "Civil court procedure"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Medicine is named first among biology career fields, with agriculture, pharmacy and others.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 6",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-013-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Living things are made of microscopic structures called:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Atoms only"
+      },
+      {
+        "label": "B",
+        "body": "Cells"
+      },
+      {
+        "label": "C",
+        "body": "Crystals"
+      },
+      {
+        "label": "D",
+        "body": "Sand grains"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Living things are cellular; the cell is the basic unit of life.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 7–8",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-013-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Living things are made of microscopic structures called:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Atoms only"
+      },
+      {
+        "label": "B",
+        "body": "Cells"
+      },
+      {
+        "label": "C",
+        "body": "Crystals"
+      },
+      {
+        "label": "D",
+        "body": "Sand grains"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Living things are cellular; the cell is the basic unit of life.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 7–8",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-014-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which extras distinguish a typical plant cell from an animal cell?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Flagellum, lysosome and centriole"
+      },
+      {
+        "label": "B",
+        "body": "Cell wall, chloroplast and large central vacuole"
+      },
+      {
+        "label": "C",
+        "body": "Nucleoid, pili and capsule"
+      },
+      {
+        "label": "D",
+        "body": "Gills, lungs and kidneys"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plant cells have a wall, chloroplasts and a large vacuole.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 8",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-014-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Which extras distinguish a typical plant cell from an animal cell?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Flagellum, lysosome and centriole"
+      },
+      {
+        "label": "B",
+        "body": "Cell wall, chloroplast and large central vacuole"
+      },
+      {
+        "label": "C",
+        "body": "Nucleoid, pili and capsule"
+      },
+      {
+        "label": "D",
+        "body": "Gills, lungs and kidneys"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plant cells have a wall, chloroplasts and a large vacuole.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 8",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-015-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Anabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Breaking molecules to release energy"
+      },
+      {
+        "label": "B",
+        "body": "Building complex molecules using energy"
+      },
+      {
+        "label": "C",
+        "body": "Death of an organism"
+      },
+      {
+        "label": "D",
+        "body": "A type of fossil"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Anabolism (constructive metabolism) builds complex substances from simpler ones.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 8–9",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-015-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Anabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Breaking molecules to release energy"
+      },
+      {
+        "label": "B",
+        "body": "Building complex molecules using energy"
+      },
+      {
+        "label": "C",
+        "body": "Death of an organism"
+      },
+      {
+        "label": "D",
+        "body": "A type of fossil"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Anabolism (constructive metabolism) builds complex substances from simpler ones.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 8–9",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-016-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Catabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Building proteins for storage"
+      },
+      {
+        "label": "B",
+        "body": "Breaking complex molecules and releasing energy"
+      },
+      {
+        "label": "C",
+        "body": "A kingdom of plants"
+      },
+      {
+        "label": "D",
+        "body": "A type of chromosome"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Catabolism is destructive metabolism: complex molecules are broken down, often to release energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-016-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Catabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Building proteins for storage"
+      },
+      {
+        "label": "B",
+        "body": "Breaking complex molecules and releasing energy"
+      },
+      {
+        "label": "C",
+        "body": "A kingdom of plants"
+      },
+      {
+        "label": "D",
+        "body": "A type of chromosome"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Catabolism is destructive metabolism: complex molecules are broken down, often to release energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-017-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Metabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only photosynthesis"
+      },
+      {
+        "label": "B",
+        "body": "Only excretion"
+      },
+      {
+        "label": "C",
+        "body": "Anabolism plus catabolism"
+      },
+      {
+        "label": "D",
+        "body": "A non-living process"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Metabolism collectively names both anabolic and catabolic processes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-017-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Metabolism is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only photosynthesis"
+      },
+      {
+        "label": "B",
+        "body": "Only excretion"
+      },
+      {
+        "label": "C",
+        "body": "Anabolism plus catabolism"
+      },
+      {
+        "label": "D",
+        "body": "A non-living process"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Metabolism collectively names both anabolic and catabolic processes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-018-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Organisms that manufacture their own food are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Heterotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Autotrophs"
+      },
+      {
+        "label": "C",
+        "body": "Carnivores only"
+      },
+      {
+        "label": "D",
+        "body": "Omnivores only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Autotrophs make their own food, for example green plants by photosynthesis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-018-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Organisms that manufacture their own food are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Heterotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Autotrophs"
+      },
+      {
+        "label": "C",
+        "body": "Carnivores only"
+      },
+      {
+        "label": "D",
+        "body": "Omnivores only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Autotrophs make their own food, for example green plants by photosynthesis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-019-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "In the photosynthesis equation in the notes, the sugar produced is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Ethanol"
+      },
+      {
+        "label": "B",
+        "body": "Urea"
+      },
+      {
+        "label": "C",
+        "body": "Glucose"
+      },
+      {
+        "label": "D",
+        "body": "Cellulose only"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Light and chlorophyll convert carbon dioxide and water to glucose and oxygen.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9–10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-019-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "In the photosynthesis equation in the notes, the sugar produced is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Ethanol"
+      },
+      {
+        "label": "B",
+        "body": "Urea"
+      },
+      {
+        "label": "C",
+        "body": "Glucose"
+      },
+      {
+        "label": "D",
+        "body": "Cellulose only"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Light and chlorophyll convert carbon dioxide and water to glucose and oxygen.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 9–10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-020-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The light (Hill) reaction of photosynthesis:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Needs no light"
+      },
+      {
+        "label": "B",
+        "body": "Absorbs light, splits water and makes reducing power"
+      },
+      {
+        "label": "C",
+        "body": "Is only chewing of food"
+      },
+      {
+        "label": "D",
+        "body": "Occurs only in mitochondria"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The light phase needs light: chlorophyll absorbs energy and water is split, producing NADP reducing agent and cellular energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-020-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The light (Hill) reaction of photosynthesis:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Needs no light"
+      },
+      {
+        "label": "B",
+        "body": "Absorbs light, splits water and makes reducing power"
+      },
+      {
+        "label": "C",
+        "body": "Is only chewing of food"
+      },
+      {
+        "label": "D",
+        "body": "Occurs only in mitochondria"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The light phase needs light: chlorophyll absorbs energy and water is split, producing NADP reducing agent and cellular energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-021-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The dark phase of photosynthesis mainly:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Splits water using light"
+      },
+      {
+        "label": "B",
+        "body": "Fixes carbon dioxide into organic compounds"
+      },
+      {
+        "label": "C",
+        "body": "Makes urea in the kidney"
+      },
+      {
+        "label": "D",
+        "body": "Copies DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The dark phase does not need light; it uses reducing power from the light phase to fix CO2.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-021-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The dark phase of photosynthesis mainly:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Splits water using light"
+      },
+      {
+        "label": "B",
+        "body": "Fixes carbon dioxide into organic compounds"
+      },
+      {
+        "label": "C",
+        "body": "Makes urea in the kidney"
+      },
+      {
+        "label": "D",
+        "body": "Copies DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The dark phase does not need light; it uses reducing power from the light phase to fix CO2.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-022-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Chemosynthesis uses:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Sunlight only"
+      },
+      {
+        "label": "B",
+        "body": "Chemical energy, not light, to make food"
+      },
+      {
+        "label": "C",
+        "body": "Only animal digestion"
+      },
+      {
+        "label": "D",
+        "body": "Wind energy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Colourless bacteria can make food from chemical energy such as nitrogen, sulphide or iron compounds.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-022-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Chemosynthesis uses:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Sunlight only"
+      },
+      {
+        "label": "B",
+        "body": "Chemical energy, not light, to make food"
+      },
+      {
+        "label": "C",
+        "body": "Only animal digestion"
+      },
+      {
+        "label": "D",
+        "body": "Wind energy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Colourless bacteria can make food from chemical energy such as nitrogen, sulphide or iron compounds.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-023-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Herbivores, carnivores and omnivores are all:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Autotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Consumers (heterotrophs)"
+      },
+      {
+        "label": "C",
+        "body": "Prokaryotes"
+      },
+      {
+        "label": "D",
+        "body": "Fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heterotrophs must obtain energy by eating; the three consumer types are named in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-023-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Herbivores, carnivores and omnivores are all:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Autotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Consumers (heterotrophs)"
+      },
+      {
+        "label": "C",
+        "body": "Prokaryotes"
+      },
+      {
+        "label": "D",
+        "body": "Fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heterotrophs must obtain energy by eating; the three consumer types are named in the notes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-024-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Aerobic respiration takes place:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Without oxygen"
+      },
+      {
+        "label": "B",
+        "body": "In the presence of oxygen"
+      },
+      {
+        "label": "C",
+        "body": "Only in dead cells"
+      },
+      {
+        "label": "D",
+        "body": "Only in viruses"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Aerobic respiration uses oxygen; glucose plus oxygen yields carbon dioxide, water and ATP.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-024-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Aerobic respiration takes place:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Without oxygen"
+      },
+      {
+        "label": "B",
+        "body": "In the presence of oxygen"
+      },
+      {
+        "label": "C",
+        "body": "Only in dead cells"
+      },
+      {
+        "label": "D",
+        "body": "Only in viruses"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Aerobic respiration uses oxygen; glucose plus oxygen yields carbon dioxide, water and ATP.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-025-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Anaerobic respiration in the notes yields:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only water"
+      },
+      {
+        "label": "B",
+        "body": "Ethanol, carbon dioxide and energy"
+      },
+      {
+        "label": "C",
+        "body": "Starch only"
+      },
+      {
+        "label": "D",
+        "body": "DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Without oxygen, glucose can form ethanol, CO2 and energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-025-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Anaerobic respiration in the notes yields:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only water"
+      },
+      {
+        "label": "B",
+        "body": "Ethanol, carbon dioxide and energy"
+      },
+      {
+        "label": "C",
+        "body": "Starch only"
+      },
+      {
+        "label": "D",
+        "body": "DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Without oxygen, glucose can form ethanol, CO2 and energy.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-026-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Organs of respiration in mammals, fish and amoeba are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Leaves, stomata and xylem"
+      },
+      {
+        "label": "B",
+        "body": "Lungs, gills and body surface"
+      },
+      {
+        "label": "C",
+        "body": "Kidneys, liver and skin only"
+      },
+      {
+        "label": "D",
+        "body": "Roots, stems and fruits"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mammals use lungs, fish use gills, amoeba uses the body surface.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-026-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Organs of respiration in mammals, fish and amoeba are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Leaves, stomata and xylem"
+      },
+      {
+        "label": "B",
+        "body": "Lungs, gills and body surface"
+      },
+      {
+        "label": "C",
+        "body": "Kidneys, liver and skin only"
+      },
+      {
+        "label": "D",
+        "body": "Roots, stems and fruits"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mammals use lungs, fish use gills, amoeba uses the body surface.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-027-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Excretion is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Taking in food"
+      },
+      {
+        "label": "B",
+        "body": "Removal of toxic metabolic wastes and excess substances"
+      },
+      {
+        "label": "C",
+        "body": "Cell division"
+      },
+      {
+        "label": "D",
+        "body": "Naming species"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Excretion removes toxic materials, metabolic wastes and excess substances.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10–11",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-027-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Excretion is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Taking in food"
+      },
+      {
+        "label": "B",
+        "body": "Removal of toxic metabolic wastes and excess substances"
+      },
+      {
+        "label": "C",
+        "body": "Cell division"
+      },
+      {
+        "label": "D",
+        "body": "Naming species"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Excretion removes toxic materials, metabolic wastes and excess substances.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 10–11",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-028-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Sexual reproduction requires:",
+    "options": [
+      {
+        "label": "A",
+        "body": "No parents"
+      },
+      {
+        "label": "B",
+        "body": "Union of male and female cells to form a zygote"
+      },
+      {
+        "label": "C",
+        "body": "Only budding"
+      },
+      {
+        "label": "D",
+        "body": "Only binary fission"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Sexual reproduction uses gametes that form a zygote.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 11",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-028-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Sexual reproduction requires:",
+    "options": [
+      {
+        "label": "A",
+        "body": "No parents"
+      },
+      {
+        "label": "B",
+        "body": "Union of male and female cells to form a zygote"
+      },
+      {
+        "label": "C",
+        "body": "Only budding"
+      },
+      {
+        "label": "D",
+        "body": "Only binary fission"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Sexual reproduction uses gametes that form a zygote.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 11",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-029-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Asexual reproduction examples in the notes include:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only fertilisation"
+      },
+      {
+        "label": "B",
+        "body": "Binary fission, budding and vegetative propagation"
+      },
+      {
+        "label": "C",
+        "body": "Meiosis I only"
+      },
+      {
+        "label": "D",
+        "body": "Pollination only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Asexual reproduction does not use sex cells; fission, budding and vegetative propagation are named.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 11",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-029-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Asexual reproduction examples in the notes include:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only fertilisation"
+      },
+      {
+        "label": "B",
+        "body": "Binary fission, budding and vegetative propagation"
+      },
+      {
+        "label": "C",
+        "body": "Meiosis I only"
+      },
+      {
+        "label": "D",
+        "body": "Pollination only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Asexual reproduction does not use sex cells; fission, budding and vegetative propagation are named.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 11",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-030-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Senescence in this chapter means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Seed germination"
+      },
+      {
+        "label": "B",
+        "body": "Biological ageing ending in death"
+      },
+      {
+        "label": "C",
+        "body": "Photosynthesis"
+      },
+      {
+        "label": "D",
+        "body": "Classification"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Living things have a lifespan; senescence is biological ageing that ends in death.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 12",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-030-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Senescence in this chapter means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Seed germination"
+      },
+      {
+        "label": "B",
+        "body": "Biological ageing ending in death"
+      },
+      {
+        "label": "C",
+        "body": "Photosynthesis"
+      },
+      {
+        "label": "D",
+        "body": "Classification"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Living things have a lifespan; senescence is biological ageing that ends in death.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 12",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-031-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Which is a non-living example from the comparison table?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Maize plant"
+      },
+      {
+        "label": "B",
+        "body": "Insect"
+      },
+      {
+        "label": "C",
+        "body": "Rock"
+      },
+      {
+        "label": "D",
+        "body": "Human"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Rocks, pens, buildings and gadgets are listed as non-living.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 12",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-031-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Which is a non-living example from the comparison table?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Maize plant"
+      },
+      {
+        "label": "B",
+        "body": "Insect"
+      },
+      {
+        "label": "C",
+        "body": "Rock"
+      },
+      {
+        "label": "D",
+        "body": "Human"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Rocks, pens, buildings and gadgets are listed as non-living.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 12",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-032-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Classification arranges organisms by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Random page numbers"
+      },
+      {
+        "label": "B",
+        "body": "Similarities and differences"
+      },
+      {
+        "label": "C",
+        "body": "Only colour of fur"
+      },
+      {
+        "label": "D",
+        "body": "Only habitat temperature"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Classification groups living things by similarities and differences.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-032-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Classification arranges organisms by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Random page numbers"
+      },
+      {
+        "label": "B",
+        "body": "Similarities and differences"
+      },
+      {
+        "label": "C",
+        "body": "Only colour of fur"
+      },
+      {
+        "label": "D",
+        "body": "Only habitat temperature"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Classification groups living things by similarities and differences.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-033-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The study of classification principles is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Physiology"
+      },
+      {
+        "label": "B",
+        "body": "Taxonomy (systematics)"
+      },
+      {
+        "label": "C",
+        "body": "Pharmacology"
+      },
+      {
+        "label": "D",
+        "body": "Forensics"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Taxonomy or systematics studies the general principles of classification.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-033-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The study of classification principles is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Physiology"
+      },
+      {
+        "label": "B",
+        "body": "Taxonomy (systematics)"
+      },
+      {
+        "label": "C",
+        "body": "Pharmacology"
+      },
+      {
+        "label": "D",
+        "body": "Forensics"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Taxonomy or systematics studies the general principles of classification.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-034-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The smallest unit of classification is the:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Kingdom"
+      },
+      {
+        "label": "B",
+        "body": "Phylum"
+      },
+      {
+        "label": "C",
+        "body": "Family"
+      },
+      {
+        "label": "D",
+        "body": "Species"
+      }
+    ],
+    "correct_option": "D",
+    "explanation": "Species is the most exact rank; members can mate and produce fertile offspring.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13–15",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-034-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The smallest unit of classification is the:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Kingdom"
+      },
+      {
+        "label": "B",
+        "body": "Phylum"
+      },
+      {
+        "label": "C",
+        "body": "Family"
+      },
+      {
+        "label": "D",
+        "body": "Species"
+      }
+    ],
+    "correct_option": "D",
+    "explanation": "Species is the most exact rank; members can mate and produce fertile offspring.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13–15",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-035-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The hierarchy from largest to smallest begins:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Species then genus"
+      },
+      {
+        "label": "B",
+        "body": "Kingdom, then phylum or division"
+      },
+      {
+        "label": "C",
+        "body": "Family then kingdom"
+      },
+      {
+        "label": "D",
+        "body": "Order then kingdom"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Kingdom is largest, then phylum/division, class, order, family, genus, species.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13–14",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-035-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The hierarchy from largest to smallest begins:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Species then genus"
+      },
+      {
+        "label": "B",
+        "body": "Kingdom, then phylum or division"
+      },
+      {
+        "label": "C",
+        "body": "Family then kingdom"
+      },
+      {
+        "label": "D",
+        "body": "Order then kingdom"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Kingdom is largest, then phylum/division, class, order, family, genus, species.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 13–14",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-036-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A scientific name has two parts:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Family and order"
+      },
+      {
+        "label": "B",
+        "body": "Genus then species"
+      },
+      {
+        "label": "C",
+        "body": "Kingdom then phylum"
+      },
+      {
+        "label": "D",
+        "body": "Class then family"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Binomial names use genus first and species second.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-036-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A scientific name has two parts:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Family and order"
+      },
+      {
+        "label": "B",
+        "body": "Genus then species"
+      },
+      {
+        "label": "C",
+        "body": "Kingdom then phylum"
+      },
+      {
+        "label": "D",
+        "body": "Class then family"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Binomial names use genus first and species second.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-037-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The five kingdoms in this course are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Virus, Algae, Moss, Fern, Pine"
+      },
+      {
+        "label": "B",
+        "body": "Monera, Protista, Fungi, Plantae, Animalia"
+      },
+      {
+        "label": "C",
+        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
+      },
+      {
+        "label": "D",
+        "body": "Root, Stem, Leaf, Flower, Fruit"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Linnaeus is presented as classifying living things into those five kingdoms.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-037-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The five kingdoms in this course are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Virus, Algae, Moss, Fern, Pine"
+      },
+      {
+        "label": "B",
+        "body": "Monera, Protista, Fungi, Plantae, Animalia"
+      },
+      {
+        "label": "C",
+        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
+      },
+      {
+        "label": "D",
+        "body": "Root, Stem, Leaf, Flower, Fruit"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Linnaeus is presented as classifying living things into those five kingdoms.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-038-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Kingdom Monera cell type is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Eukaryotic"
+      },
+      {
+        "label": "B",
+        "body": "Prokaryotic"
+      },
+      {
+        "label": "C",
+        "body": "Always multicellular"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Monera are prokaryotes with no nuclear membrane.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15–16",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-038-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Kingdom Monera cell type is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Eukaryotic"
+      },
+      {
+        "label": "B",
+        "body": "Prokaryotic"
+      },
+      {
+        "label": "C",
+        "body": "Always multicellular"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Monera are prokaryotes with no nuclear membrane.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15–16",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-039-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Nostoc and Spirulina are placed in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animalia"
+      },
+      {
+        "label": "B",
+        "body": "Fungi"
+      },
+      {
+        "label": "C",
+        "body": "Monera (cyanobacteria)"
+      },
+      {
+        "label": "D",
+        "body": "Plantae as trees"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Blue-green algae such as Nostoc and Spirulina are prokaryotes in Monera.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15–16",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-039-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Nostoc and Spirulina are placed in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animalia"
+      },
+      {
+        "label": "B",
+        "body": "Fungi"
+      },
+      {
+        "label": "C",
+        "body": "Monera (cyanobacteria)"
+      },
+      {
+        "label": "D",
+        "body": "Plantae as trees"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Blue-green algae such as Nostoc and Spirulina are prokaryotes in Monera.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 15–16",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-040-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A bacterium’s DNA region without a nuclear envelope is the:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Mitochondrion"
+      },
+      {
+        "label": "B",
+        "body": "Nucleoid"
+      },
+      {
+        "label": "C",
+        "body": "Golgi body"
+      },
+      {
+        "label": "D",
+        "body": "Chloroplast"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Bacterial DNA sits in a nucleoid, not a true nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 16",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-040-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A bacterium’s DNA region without a nuclear envelope is the:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Mitochondrion"
+      },
+      {
+        "label": "B",
+        "body": "Nucleoid"
+      },
+      {
+        "label": "C",
+        "body": "Golgi body"
+      },
+      {
+        "label": "D",
+        "body": "Chloroplast"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Bacterial DNA sits in a nucleoid, not a true nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 16",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-041-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Mycoplasma is unusual among bacteria because it:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Has chloroplasts"
+      },
+      {
+        "label": "B",
+        "body": "Lacks a cell wall"
+      },
+      {
+        "label": "C",
+        "body": "Is a mammal"
+      },
+      {
+        "label": "D",
+        "body": "Has a cellulose wall"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes say a few bacteria such as Mycoplasma do not have a cell wall.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 16",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-041-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Mycoplasma is unusual among bacteria because it:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Has chloroplasts"
+      },
+      {
+        "label": "B",
+        "body": "Lacks a cell wall"
+      },
+      {
+        "label": "C",
+        "body": "Is a mammal"
+      },
+      {
+        "label": "D",
+        "body": "Has a cellulose wall"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes say a few bacteria such as Mycoplasma do not have a cell wall.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 16",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-042-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Protista comes from a word meaning:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Last animals"
+      },
+      {
+        "label": "B",
+        "body": "The very first"
+      },
+      {
+        "label": "C",
+        "body": "No nucleus"
+      },
+      {
+        "label": "D",
+        "body": "Only fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Protista is from Greek protistos, ‘the very first’.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-042-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Protista comes from a word meaning:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Last animals"
+      },
+      {
+        "label": "B",
+        "body": "The very first"
+      },
+      {
+        "label": "C",
+        "body": "No nucleus"
+      },
+      {
+        "label": "D",
+        "body": "Only fungi"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Protista is from Greek protistos, ‘the very first’.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-043-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Most protists are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prokaryotic and multicellular trees"
+      },
+      {
+        "label": "B",
+        "body": "Eukaryotic and usually unicellular"
+      },
+      {
+        "label": "C",
+        "body": "Viruses"
+      },
+      {
+        "label": "D",
+        "body": "Rocks"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Protists have a nucleus and organelles; most species are unicellular.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-043-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Most protists are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prokaryotic and multicellular trees"
+      },
+      {
+        "label": "B",
+        "body": "Eukaryotic and usually unicellular"
+      },
+      {
+        "label": "C",
+        "body": "Viruses"
+      },
+      {
+        "label": "D",
+        "body": "Rocks"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Protists have a nucleus and organelles; most species are unicellular.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-044-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Trypanosoma is named as causing:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Malaria in birds only"
+      },
+      {
+        "label": "B",
+        "body": "Sleeping sickness in humans"
+      },
+      {
+        "label": "C",
+        "body": "Common cold"
+      },
+      {
+        "label": "D",
+        "body": "Scurvy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Parasitic Trypanosoma protozoa can cause sleeping sickness.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-044-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Trypanosoma is named as causing:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Malaria in birds only"
+      },
+      {
+        "label": "B",
+        "body": "Sleeping sickness in humans"
+      },
+      {
+        "label": "C",
+        "body": "Common cold"
+      },
+      {
+        "label": "D",
+        "body": "Scurvy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Parasitic Trypanosoma protozoa can cause sleeping sickness.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-045-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Giant kelp is used as an example of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A prokaryote"
+      },
+      {
+        "label": "B",
+        "body": "A multicellular protist"
+      },
+      {
+        "label": "C",
+        "body": "A mammal"
+      },
+      {
+        "label": "D",
+        "body": "A fungus spore"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Most protists are unicellular, but kelp can be huge and multicellular.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-045-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Giant kelp is used as an example of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A prokaryote"
+      },
+      {
+        "label": "B",
+        "body": "A multicellular protist"
+      },
+      {
+        "label": "C",
+        "body": "A mammal"
+      },
+      {
+        "label": "D",
+        "body": "A fungus spore"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Most protists are unicellular, but kelp can be huge and multicellular.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 17",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-046-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Fungi feed as:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Photosynthetic autotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Heterotrophs without chlorophyll"
+      },
+      {
+        "label": "C",
+        "body": "Chemosynthetic plants"
+      },
+      {
+        "label": "D",
+        "body": "Only carnivores"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Fungi lack chlorophyll and cannot photosynthesise; they are heterotrophs.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-046-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Fungi feed as:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Photosynthetic autotrophs"
+      },
+      {
+        "label": "B",
+        "body": "Heterotrophs without chlorophyll"
+      },
+      {
+        "label": "C",
+        "body": "Chemosynthetic plants"
+      },
+      {
+        "label": "D",
+        "body": "Only carnivores"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Fungi lack chlorophyll and cannot photosynthesise; they are heterotrophs.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-047-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Fungi reproduce mainly by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Seeds with fruit"
+      },
+      {
+        "label": "B",
+        "body": "Spores"
+      },
+      {
+        "label": "C",
+        "body": "Live birth"
+      },
+      {
+        "label": "D",
+        "body": "Eggs with shells"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Fungi reproduce by spores, sexually or asexually, and have no embryonic stage.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-047-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Fungi reproduce mainly by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Seeds with fruit"
+      },
+      {
+        "label": "B",
+        "body": "Spores"
+      },
+      {
+        "label": "C",
+        "body": "Live birth"
+      },
+      {
+        "label": "D",
+        "body": "Eggs with shells"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Fungi reproduce by spores, sexually or asexually, and have no embryonic stage.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-048-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Chitin biosynthesis is listed as a feature of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animal blood"
+      },
+      {
+        "label": "B",
+        "body": "Fungi"
+      },
+      {
+        "label": "C",
+        "body": "Granite"
+      },
+      {
+        "label": "D",
+        "body": "Viruses only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes list biosynthesis of chitin among fungal characteristics.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-048-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Chitin biosynthesis is listed as a feature of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Animal blood"
+      },
+      {
+        "label": "B",
+        "body": "Fungi"
+      },
+      {
+        "label": "C",
+        "body": "Granite"
+      },
+      {
+        "label": "D",
+        "body": "Viruses only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The notes list biosynthesis of chitin among fungal characteristics.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 18",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-049-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Kingdom Plantae members are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Heterotrophic and wall-less"
+      },
+      {
+        "label": "B",
+        "body": "Eukaryotic, multicellular autotrophs with chlorophyll"
+      },
+      {
+        "label": "C",
+        "body": "Prokaryotic bacteria"
+      },
+      {
+        "label": "D",
+        "body": "Always unicellular"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plants make food with chlorophyll, have cell walls and are multicellular eukaryotes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-049-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Kingdom Plantae members are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Heterotrophic and wall-less"
+      },
+      {
+        "label": "B",
+        "body": "Eukaryotic, multicellular autotrophs with chlorophyll"
+      },
+      {
+        "label": "C",
+        "body": "Prokaryotic bacteria"
+      },
+      {
+        "label": "D",
+        "body": "Always unicellular"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plants make food with chlorophyll, have cell walls and are multicellular eukaryotes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-050-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Animals differ from plants in this chapter because they:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Have cellulose walls"
+      },
+      {
+        "label": "B",
+        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
+      },
+      {
+        "label": "C",
+        "body": "Are always prokaryotes"
+      },
+      {
+        "label": "D",
+        "body": "Never move"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Animalia is the largest kingdom; members have no chlorophyll or cell wall and must eat.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-050-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Animals differ from plants in this chapter because they:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Have cellulose walls"
+      },
+      {
+        "label": "B",
+        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
+      },
+      {
+        "label": "C",
+        "body": "Are always prokaryotes"
+      },
+      {
+        "label": "D",
+        "body": "Never move"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Animalia is the largest kingdom; members have no chlorophyll or cell wall and must eat.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-051-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Chordata is listed as a phylum of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Fungi"
+      },
+      {
+        "label": "B",
+        "body": "Monera"
+      },
+      {
+        "label": "C",
+        "body": "Animalia"
+      },
+      {
+        "label": "D",
+        "body": "Protista only"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Animal phyla named include Porifera through Chordata.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-051-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Chordata is listed as a phylum of:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Fungi"
+      },
+      {
+        "label": "B",
+        "body": "Monera"
+      },
+      {
+        "label": "C",
+        "body": "Animalia"
+      },
+      {
+        "label": "D",
+        "body": "Protista only"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Animal phyla named include Porifera through Chordata.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 19",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-052-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Who named cells after looking at cork in 1665?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Virchow"
+      },
+      {
+        "label": "B",
+        "body": "Robert Hooke"
+      },
+      {
+        "label": "C",
+        "body": "Mendel"
+      },
+      {
+        "label": "D",
+        "body": "Darwin"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Hooke saw pores in cork, called them cells, and published Micrographia.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-052-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Who named cells after looking at cork in 1665?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Virchow"
+      },
+      {
+        "label": "B",
+        "body": "Robert Hooke"
+      },
+      {
+        "label": "C",
+        "body": "Mendel"
+      },
+      {
+        "label": "D",
+        "body": "Darwin"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Hooke saw pores in cork, called them cells, and published Micrographia.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-053-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Leeuwenhoek called the tiny organisms he saw:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Chromosomes"
+      },
+      {
+        "label": "B",
+        "body": "Animalcules"
+      },
+      {
+        "label": "C",
+        "body": "Tissues"
+      },
+      {
+        "label": "D",
+        "body": "Organs"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "He saw bacteria and protozoa with a simple microscope and called them animalcules.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-053-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Leeuwenhoek called the tiny organisms he saw:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Chromosomes"
+      },
+      {
+        "label": "B",
+        "body": "Animalcules"
+      },
+      {
+        "label": "C",
+        "body": "Tissues"
+      },
+      {
+        "label": "D",
+        "body": "Organs"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "He saw bacteria and protozoa with a simple microscope and called them animalcules.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-054-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Schleiden studied _____ cells and Schwann studied _____ cells.",
+    "options": [
+      {
+        "label": "A",
+        "body": "animal; plant"
+      },
+      {
+        "label": "B",
+        "body": "plant; animal"
+      },
+      {
+        "label": "C",
+        "body": "bacterial; viral"
+      },
+      {
+        "label": "D",
+        "body": "fungal; algal"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Schleiden worked on plants, Schwann on animals; together they proposed cell theory.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20–21",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-054-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Schleiden studied _____ cells and Schwann studied _____ cells.",
+    "options": [
+      {
+        "label": "A",
+        "body": "animal; plant"
+      },
+      {
+        "label": "B",
+        "body": "plant; animal"
+      },
+      {
+        "label": "C",
+        "body": "bacterial; viral"
+      },
+      {
+        "label": "D",
+        "body": "fungal; algal"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Schleiden worked on plants, Schwann on animals; together they proposed cell theory.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20–21",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-055-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Virchow’s 1855 statement was that:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Cells crystallise from body fluid"
+      },
+      {
+        "label": "B",
+        "body": "All cells come from existing cells"
+      },
+      {
+        "label": "C",
+        "body": "DNA is protein"
+      },
+      {
+        "label": "D",
+        "body": "Plants have no cells"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Virchow corrected earlier ideas: new cells are generated by existing cells.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 21, 29",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-055-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Virchow’s 1855 statement was that:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Cells crystallise from body fluid"
+      },
+      {
+        "label": "B",
+        "body": "All cells come from existing cells"
+      },
+      {
+        "label": "C",
+        "body": "DNA is protein"
+      },
+      {
+        "label": "D",
+        "body": "Plants have no cells"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Virchow corrected earlier ideas: new cells are generated by existing cells.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 21, 29",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-056-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Cell theory states all of the following except:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Living things are made of cells"
+      },
+      {
+        "label": "B",
+        "body": "The cell is the smallest unit of a living thing"
+      },
+      {
+        "label": "C",
+        "body": "New cells come from pre-existing cells"
+      },
+      {
+        "label": "D",
+        "body": "All cells have chloroplasts"
+      }
+    ],
+    "correct_option": "D",
+    "explanation": "The three pillars do not claim every cell has chloroplasts.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-056-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Cell theory states all of the following except:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Living things are made of cells"
+      },
+      {
+        "label": "B",
+        "body": "The cell is the smallest unit of a living thing"
+      },
+      {
+        "label": "C",
+        "body": "New cells come from pre-existing cells"
+      },
+      {
+        "label": "D",
+        "body": "All cells have chloroplasts"
+      }
+    ],
+    "correct_option": "D",
+    "explanation": "The three pillars do not claim every cell has chloroplasts.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-057-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A unicellular example in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Human"
+      },
+      {
+        "label": "B",
+        "body": "Cat"
+      },
+      {
+        "label": "C",
+        "body": "Amoeba"
+      },
+      {
+        "label": "D",
+        "body": "Spirogyra as a whole plant body of many specialised cells"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Amoeba, Paramecium and Chlamydomonas are unicellular examples.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-057-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A unicellular example in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Human"
+      },
+      {
+        "label": "B",
+        "body": "Cat"
+      },
+      {
+        "label": "C",
+        "body": "Amoeba"
+      },
+      {
+        "label": "D",
+        "body": "Spirogyra as a whole plant body of many specialised cells"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Amoeba, Paramecium and Chlamydomonas are unicellular examples.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 20",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-058-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The four basic human tissue types are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Bone, blood, fat, hair"
+      },
+      {
+        "label": "B",
+        "body": "Epithelial, muscle, nervous, connective"
+      },
+      {
+        "label": "C",
+        "body": "Root, stem, leaf, flower"
+      },
+      {
+        "label": "D",
+        "body": "Kingdom, phylum, class, order"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Those four tissue types are listed at the tissue level of organisation.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 22",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-058-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The four basic human tissue types are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Bone, blood, fat, hair"
+      },
+      {
+        "label": "B",
+        "body": "Epithelial, muscle, nervous, connective"
+      },
+      {
+        "label": "C",
+        "body": "Root, stem, leaf, flower"
+      },
+      {
+        "label": "D",
+        "body": "Kingdom, phylum, class, order"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Those four tissue types are listed at the tissue level of organisation.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 22",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-059-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "An organ is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One molecule"
+      },
+      {
+        "label": "B",
+        "body": "Two or more tissues performing a particular function"
+      },
+      {
+        "label": "C",
+        "body": "A single cell"
+      },
+      {
+        "label": "D",
+        "body": "A whole ecosystem"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heart, liver and kidney are given as organs made of tissues.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 23",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-059-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "An organ is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One molecule"
+      },
+      {
+        "label": "B",
+        "body": "Two or more tissues performing a particular function"
+      },
+      {
+        "label": "C",
+        "body": "A single cell"
+      },
+      {
+        "label": "D",
+        "body": "A whole ecosystem"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heart, liver and kidney are given as organs made of tissues.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 23",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-060-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Prokaryotic means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "True nucleus"
+      },
+      {
+        "label": "B",
+        "body": "Before a nucleus"
+      },
+      {
+        "label": "C",
+        "body": "Always a plant"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "From Greek: pro = before, karyose = kernel/nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 24",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-060-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Prokaryotic means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "True nucleus"
+      },
+      {
+        "label": "B",
+        "body": "Before a nucleus"
+      },
+      {
+        "label": "C",
+        "body": "Always a plant"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "From Greek: pro = before, karyose = kernel/nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 24",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-061-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Four features common to all cells are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Nucleus, mitochondria, Golgi, chloroplast"
+      },
+      {
+        "label": "B",
+        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
+      },
+      {
+        "label": "C",
+        "body": "Cell wall, vacuole, centriole, cilium"
+      },
+      {
+        "label": "D",
+        "body": "Gills, lungs, kidneys, skin"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Every cell has DNA, a membrane, cytoplasm and ribosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 24",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-061-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Four features common to all cells are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Nucleus, mitochondria, Golgi, chloroplast"
+      },
+      {
+        "label": "B",
+        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
+      },
+      {
+        "label": "C",
+        "body": "Cell wall, vacuole, centriole, cilium"
+      },
+      {
+        "label": "D",
+        "body": "Gills, lungs, kidneys, skin"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Every cell has DNA, a membrane, cytoplasm and ribosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 24",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-062-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Prokaryotic DNA is typically:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Linear with histones"
+      },
+      {
+        "label": "B",
+        "body": "Circular, in a nucleoid, often with plasmids"
+      },
+      {
+        "label": "C",
+        "body": "Absent"
+      },
+      {
+        "label": "D",
+        "body": "Only RNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Prokaryotes have one circular DNA molecule plus smaller plasmids; DNA is not in a true nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 25–26",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-062-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Prokaryotic DNA is typically:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Linear with histones"
+      },
+      {
+        "label": "B",
+        "body": "Circular, in a nucleoid, often with plasmids"
+      },
+      {
+        "label": "C",
+        "body": "Absent"
+      },
+      {
+        "label": "D",
+        "body": "Only RNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Prokaryotes have one circular DNA molecule plus smaller plasmids; DNA is not in a true nucleus.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 25–26",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-063-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Eukaryotic cells compared with prokaryotes are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Always smaller and simpler"
+      },
+      {
+        "label": "B",
+        "body": "Larger and more complex, with membrane organelles"
+      },
+      {
+        "label": "C",
+        "body": "Without ribosomes"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Eukaryotes are much larger and more complex, with a true nucleus and organelles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 25",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-063-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Eukaryotic cells compared with prokaryotes are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Always smaller and simpler"
+      },
+      {
+        "label": "B",
+        "body": "Larger and more complex, with membrane organelles"
+      },
+      {
+        "label": "C",
+        "body": "Without ribosomes"
+      },
+      {
+        "label": "D",
+        "body": "Without DNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Eukaryotes are much larger and more complex, with a true nucleus and organelles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 25",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-064-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Plant cells typically store food as:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Glycogen"
+      },
+      {
+        "label": "B",
+        "body": "Starch"
+      },
+      {
+        "label": "C",
+        "body": "Urea"
+      },
+      {
+        "label": "D",
+        "body": "Chitin only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Reserved food in plant cells is starch; animals store glycogen.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-064-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Plant cells typically store food as:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Glycogen"
+      },
+      {
+        "label": "B",
+        "body": "Starch"
+      },
+      {
+        "label": "C",
+        "body": "Urea"
+      },
+      {
+        "label": "D",
+        "body": "Chitin only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Reserved food in plant cells is starch; animals store glycogen.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-065-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Animal cells typically have centrioles; plant cells in the table:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Always have more centrioles"
+      },
+      {
+        "label": "B",
+        "body": "Typically lack centrioles"
+      },
+      {
+        "label": "C",
+        "body": "Use them as chloroplasts"
+      },
+      {
+        "label": "D",
+        "body": "Use them as cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Centrioles/centrosomes are listed present in animal cells and absent in plant cells.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-065-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Animal cells typically have centrioles; plant cells in the table:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Always have more centrioles"
+      },
+      {
+        "label": "B",
+        "body": "Typically lack centrioles"
+      },
+      {
+        "label": "C",
+        "body": "Use them as chloroplasts"
+      },
+      {
+        "label": "D",
+        "body": "Use them as cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Centrioles/centrosomes are listed present in animal cells and absent in plant cells.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 29",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-066-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Osmosis is the movement of water through a membrane from:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Low water to high water using ATP pumps only"
+      },
+      {
+        "label": "B",
+        "body": "High water (low solute) to low water (high solute)"
+      },
+      {
+        "label": "C",
+        "body": "Solute crystals only"
+      },
+      {
+        "label": "D",
+        "body": "Air into stone"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Osmosis is passive movement of solvent/water through a partially permeable membrane down the water gradient.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-066-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Osmosis is the movement of water through a membrane from:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Low water to high water using ATP pumps only"
+      },
+      {
+        "label": "B",
+        "body": "High water (low solute) to low water (high solute)"
+      },
+      {
+        "label": "C",
+        "body": "Solute crystals only"
+      },
+      {
+        "label": "D",
+        "body": "Air into stone"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Osmosis is passive movement of solvent/water through a partially permeable membrane down the water gradient.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-067-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "In an isotonic solution, net water movement is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Strongly into the cell"
+      },
+      {
+        "label": "B",
+        "body": "Strongly out of the cell"
+      },
+      {
+        "label": "C",
+        "body": "None; entry equals exit"
+      },
+      {
+        "label": "D",
+        "body": "Only through the nucleus"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Solute concentrations match, so water in equals water out.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-067-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "In an isotonic solution, net water movement is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Strongly into the cell"
+      },
+      {
+        "label": "B",
+        "body": "Strongly out of the cell"
+      },
+      {
+        "label": "C",
+        "body": "None; entry equals exit"
+      },
+      {
+        "label": "D",
+        "body": "Only through the nucleus"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Solute concentrations match, so water in equals water out.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-068-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A hypotonic solution causes:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Water to leave; plasmolysis"
+      },
+      {
+        "label": "B",
+        "body": "Water to enter; turgidity or possible lysis"
+      },
+      {
+        "label": "C",
+        "body": "No membrane to exist"
+      },
+      {
+        "label": "D",
+        "body": "DNA to leave the cell"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "More water enters. Plant cells become turgid; animal cells may burst.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31–32",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-068-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A hypotonic solution causes:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Water to leave; plasmolysis"
+      },
+      {
+        "label": "B",
+        "body": "Water to enter; turgidity or possible lysis"
+      },
+      {
+        "label": "C",
+        "body": "No membrane to exist"
+      },
+      {
+        "label": "D",
+        "body": "DNA to leave the cell"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "More water enters. Plant cells become turgid; animal cells may burst.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 31–32",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-069-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Exosmosis in a hypertonic solution makes a plant cell:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Turgid"
+      },
+      {
+        "label": "B",
+        "body": "Flaccid or plasmolysed"
+      },
+      {
+        "label": "C",
+        "body": "A bacterium"
+      },
+      {
+        "label": "D",
+        "body": "An autotroph"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Water leaves; the cell becomes flaccid or undergoes plasmolysis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-069-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Exosmosis in a hypertonic solution makes a plant cell:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Turgid"
+      },
+      {
+        "label": "B",
+        "body": "Flaccid or plasmolysed"
+      },
+      {
+        "label": "C",
+        "body": "A bacterium"
+      },
+      {
+        "label": "D",
+        "body": "An autotroph"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Water leaves; the cell becomes flaccid or undergoes plasmolysis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-070-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Animal cells survive best in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A strongly hypotonic bath"
+      },
+      {
+        "label": "B",
+        "body": "An isotonic solution"
+      },
+      {
+        "label": "C",
+        "body": "Pure concentrated brine only"
+      },
+      {
+        "label": "D",
+        "body": "A vacuum"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Animal cells lyse in hypotonic liquid and need isotonic surroundings.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-070-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Animal cells survive best in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A strongly hypotonic bath"
+      },
+      {
+        "label": "B",
+        "body": "An isotonic solution"
+      },
+      {
+        "label": "C",
+        "body": "Pure concentrated brine only"
+      },
+      {
+        "label": "D",
+        "body": "A vacuum"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Animal cells lyse in hypotonic liquid and need isotonic surroundings.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-071-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Osmotic pressure is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The pressure required to stop osmosis"
+      },
+      {
+        "label": "B",
+        "body": "The pressure that copies DNA"
+      },
+      {
+        "label": "C",
+        "body": "Blood type"
+      },
+      {
+        "label": "D",
+        "body": "A fungal spore"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "It is the minimum pressure that stops solvent transfer by osmosis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-071-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Osmotic pressure is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The pressure required to stop osmosis"
+      },
+      {
+        "label": "B",
+        "body": "The pressure that copies DNA"
+      },
+      {
+        "label": "C",
+        "body": "Blood type"
+      },
+      {
+        "label": "D",
+        "body": "A fungal spore"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "It is the minimum pressure that stops solvent transfer by osmosis.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 32",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-072-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Diffusion is movement of molecules:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only through a living kidney"
+      },
+      {
+        "label": "B",
+        "body": "From higher to lower concentration until even"
+      },
+      {
+        "label": "C",
+        "body": "Only of water through a membrane"
+      },
+      {
+        "label": "D",
+        "body": "From low to high using ATP always"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Diffusion equalises concentration in solids, liquids or gases and does not require a membrane.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 33",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-072-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Diffusion is movement of molecules:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only through a living kidney"
+      },
+      {
+        "label": "B",
+        "body": "From higher to lower concentration until even"
+      },
+      {
+        "label": "C",
+        "body": "Only of water through a membrane"
+      },
+      {
+        "label": "D",
+        "body": "From low to high using ATP always"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Diffusion equalises concentration in solids, liquids or gases and does not require a membrane.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 33",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-073-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Facilitated diffusion is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Active transport that spends ATP"
+      },
+      {
+        "label": "B",
+        "body": "Passive movement via a carrier from high to low concentration"
+      },
+      {
+        "label": "C",
+        "body": "A type of meiosis"
+      },
+      {
+        "label": "D",
+        "body": "Chemosynthesis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "A carrier helps, but it is still passive down the gradient.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 33–34",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-073-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Facilitated diffusion is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Active transport that spends ATP"
+      },
+      {
+        "label": "B",
+        "body": "Passive movement via a carrier from high to low concentration"
+      },
+      {
+        "label": "C",
+        "body": "A type of meiosis"
+      },
+      {
+        "label": "D",
+        "body": "Chemosynthesis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "A carrier helps, but it is still passive down the gradient.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 33–34",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-074-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A factor that speeds diffusion in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Lower temperature always"
+      },
+      {
+        "label": "B",
+        "body": "A steeper concentration gradient"
+      },
+      {
+        "label": "C",
+        "body": "A thicker wall always"
+      },
+      {
+        "label": "D",
+        "body": "Larger particles always"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Temperature, gradient, distance, particle size and membrane type affect rate; a steeper gradient increases rate.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 34–35",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-074-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A factor that speeds diffusion in the notes is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Lower temperature always"
+      },
+      {
+        "label": "B",
+        "body": "A steeper concentration gradient"
+      },
+      {
+        "label": "C",
+        "body": "A thicker wall always"
+      },
+      {
+        "label": "D",
+        "body": "Larger particles always"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Temperature, gradient, distance, particle size and membrane type affect rate; a steeper gradient increases rate.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 34–35",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-075-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Mitosis in humans keeps the chromosome number at:",
+    "options": [
+      {
+        "label": "A",
+        "body": "23"
+      },
+      {
+        "label": "B",
+        "body": "46"
+      },
+      {
+        "label": "C",
+        "body": "92"
+      },
+      {
+        "label": "D",
+        "body": "2"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mitosis copies chromosomes so daughter body cells still have 46.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-075-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Mitosis in humans keeps the chromosome number at:",
+    "options": [
+      {
+        "label": "A",
+        "body": "23"
+      },
+      {
+        "label": "B",
+        "body": "46"
+      },
+      {
+        "label": "C",
+        "body": "92"
+      },
+      {
+        "label": "D",
+        "body": "2"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mitosis copies chromosomes so daughter body cells still have 46.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-076-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Meiosis produces:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Two identical body cells"
+      },
+      {
+        "label": "B",
+        "body": "Haploid gametes with half the chromosome number"
+      },
+      {
+        "label": "C",
+        "body": "Only cell walls"
+      },
+      {
+        "label": "D",
+        "body": "Starch grains"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Meiosis is a two-step process that forms egg and sperm; humans go from 46 to 23.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-076-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Meiosis produces:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Two identical body cells"
+      },
+      {
+        "label": "B",
+        "body": "Haploid gametes with half the chromosome number"
+      },
+      {
+        "label": "C",
+        "body": "Only cell walls"
+      },
+      {
+        "label": "D",
+        "body": "Starch grains"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Meiosis is a two-step process that forms egg and sperm; humans go from 46 to 23.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-077-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "DNA is copied in which cell-cycle phase?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Anaphase"
+      },
+      {
+        "label": "B",
+        "body": "S phase"
+      },
+      {
+        "label": "C",
+        "body": "Cytokinesis only"
+      },
+      {
+        "label": "D",
+        "body": "Telophase only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "S (synthesis) is when chromosomes/DNA are replicated.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 38",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-077-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "DNA is copied in which cell-cycle phase?",
+    "options": [
+      {
+        "label": "A",
+        "body": "Anaphase"
+      },
+      {
+        "label": "B",
+        "body": "S phase"
+      },
+      {
+        "label": "C",
+        "body": "Cytokinesis only"
+      },
+      {
+        "label": "D",
+        "body": "Telophase only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "S (synthesis) is when chromosomes/DNA are replicated.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 38",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-078-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Interphase is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "G1 + S + G2"
+      },
+      {
+        "label": "B",
+        "body": "Only anaphase"
+      },
+      {
+        "label": "C",
+        "body": "Only cytokinesis"
+      },
+      {
+        "label": "D",
+        "body": "Fertilisation"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "Interphase is the long period of growth and DNA copying between mitotic divisions.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 38",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-078-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Interphase is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "G1 + S + G2"
+      },
+      {
+        "label": "B",
+        "body": "Only anaphase"
+      },
+      {
+        "label": "C",
+        "body": "Only cytokinesis"
+      },
+      {
+        "label": "D",
+        "body": "Fertilisation"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "Interphase is the long period of growth and DNA copying between mitotic divisions.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 38",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-079-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Chromosomes line up at the equator in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase"
+      },
+      {
+        "label": "B",
+        "body": "Metaphase"
+      },
+      {
+        "label": "C",
+        "body": "Anaphase"
+      },
+      {
+        "label": "D",
+        "body": "G1"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Metaphase aligns chromosomes on the metaphase plate.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 39",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-079-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Chromosomes line up at the equator in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase"
+      },
+      {
+        "label": "B",
+        "body": "Metaphase"
+      },
+      {
+        "label": "C",
+        "body": "Anaphase"
+      },
+      {
+        "label": "D",
+        "body": "G1"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Metaphase aligns chromosomes on the metaphase plate.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 39",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-080-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Sister chromatids separate in mitosis during:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase"
+      },
+      {
+        "label": "B",
+        "body": "Metaphase"
+      },
+      {
+        "label": "C",
+        "body": "Anaphase"
+      },
+      {
+        "label": "D",
+        "body": "G2"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Anaphase is the short stage when sisters are pulled to opposite poles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 39",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-080-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Sister chromatids separate in mitosis during:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase"
+      },
+      {
+        "label": "B",
+        "body": "Metaphase"
+      },
+      {
+        "label": "C",
+        "body": "Anaphase"
+      },
+      {
+        "label": "D",
+        "body": "G2"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "Anaphase is the short stage when sisters are pulled to opposite poles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 39",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-081-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Plant cytokinesis forms a:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Cleavage furrow only"
+      },
+      {
+        "label": "B",
+        "body": "Cell plate"
+      },
+      {
+        "label": "C",
+        "body": "Nucleoid"
+      },
+      {
+        "label": "D",
+        "body": "Plasmid"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plants build a cell plate; animals constrict the cytoplasm.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 40",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-081-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Plant cytokinesis forms a:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Cleavage furrow only"
+      },
+      {
+        "label": "B",
+        "body": "Cell plate"
+      },
+      {
+        "label": "C",
+        "body": "Nucleoid"
+      },
+      {
+        "label": "D",
+        "body": "Plasmid"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Plants build a cell plate; animals constrict the cytoplasm.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 40",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-082-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Crossing over occurs in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase of mitosis"
+      },
+      {
+        "label": "B",
+        "body": "Prophase I of meiosis"
+      },
+      {
+        "label": "C",
+        "body": "G0"
+      },
+      {
+        "label": "D",
+        "body": "S phase of bacteria only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Homologues pair and exchange DNA at chiasmata in prophase I.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-082-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Crossing over occurs in:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Prophase of mitosis"
+      },
+      {
+        "label": "B",
+        "body": "Prophase I of meiosis"
+      },
+      {
+        "label": "C",
+        "body": "G0"
+      },
+      {
+        "label": "D",
+        "body": "S phase of bacteria only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Homologues pair and exchange DNA at chiasmata in prophase I.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-083-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Meiosis I separates:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Sister chromatids only"
+      },
+      {
+        "label": "B",
+        "body": "Homologous chromosome pairs"
+      },
+      {
+        "label": "C",
+        "body": "Ribosomes"
+      },
+      {
+        "label": "D",
+        "body": "Cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Homologues (bivalents) separate in meiosis I; sisters separate in meiosis II.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41–43",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-083-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Meiosis I separates:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Sister chromatids only"
+      },
+      {
+        "label": "B",
+        "body": "Homologous chromosome pairs"
+      },
+      {
+        "label": "C",
+        "body": "Ribosomes"
+      },
+      {
+        "label": "D",
+        "body": "Cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Homologues (bivalents) separate in meiosis I; sisters separate in meiosis II.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41–43",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-084-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Independent assortment of 23 human pairs allows about:",
+    "options": [
+      {
+        "label": "A",
+        "body": "2 combinations"
+      },
+      {
+        "label": "B",
+        "body": "46 combinations"
+      },
+      {
+        "label": "C",
+        "body": "Over 8 million combinations"
+      },
+      {
+        "label": "D",
+        "body": "Exactly 23 combinations"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "The notes give 2^23, over 8 million possible combinations.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-084-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Independent assortment of 23 human pairs allows about:",
+    "options": [
+      {
+        "label": "A",
+        "body": "2 combinations"
+      },
+      {
+        "label": "B",
+        "body": "46 combinations"
+      },
+      {
+        "label": "C",
+        "body": "Over 8 million combinations"
+      },
+      {
+        "label": "D",
+        "body": "Exactly 23 combinations"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "The notes give 2^23, over 8 million possible combinations.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 41",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-085-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Uncontrolled cell division is linked in the notes to:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Better photosynthesis"
+      },
+      {
+        "label": "B",
+        "body": "Serious disease such as cancer"
+      },
+      {
+        "label": "C",
+        "body": "Osmosis only"
+      },
+      {
+        "label": "D",
+        "body": "Taxonomy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "If genes that regulate division fail, serious health issues such as cancer can follow.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37, 44",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-085-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Uncontrolled cell division is linked in the notes to:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Better photosynthesis"
+      },
+      {
+        "label": "B",
+        "body": "Serious disease such as cancer"
+      },
+      {
+        "label": "C",
+        "body": "Osmosis only"
+      },
+      {
+        "label": "D",
+        "body": "Taxonomy"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "If genes that regulate division fail, serious health issues such as cancer can follow.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 37, 44",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-086-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Heredity is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Ageing of rocks"
+      },
+      {
+        "label": "B",
+        "body": "Passing traits from parents to offspring through genes"
+      },
+      {
+        "label": "C",
+        "body": "Only learned behaviour"
+      },
+      {
+        "label": "D",
+        "body": "Diffusion of perfume"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heredity is gene-based transmission of characteristics between generations.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 45",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-086-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Heredity is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Ageing of rocks"
+      },
+      {
+        "label": "B",
+        "body": "Passing traits from parents to offspring through genes"
+      },
+      {
+        "label": "C",
+        "body": "Only learned behaviour"
+      },
+      {
+        "label": "D",
+        "body": "Diffusion of perfume"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Heredity is gene-based transmission of characteristics between generations.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 45",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-087-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Aristotle’s blending idea failed because it could not explain:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Why children exist"
+      },
+      {
+        "label": "B",
+        "body": "Hidden traits that reappear in later generations"
+      },
+      {
+        "label": "C",
+        "body": "Why plants are green"
+      },
+      {
+        "label": "D",
+        "body": "Why cells have walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Blending predicted medium offspring forever; Mendel showed units can hide and return.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 46",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-087-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Aristotle’s blending idea failed because it could not explain:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Why children exist"
+      },
+      {
+        "label": "B",
+        "body": "Hidden traits that reappear in later generations"
+      },
+      {
+        "label": "C",
+        "body": "Why plants are green"
+      },
+      {
+        "label": "D",
+        "body": "Why cells have walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Blending predicted medium offspring forever; Mendel showed units can hide and return.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 46",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-088-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Mendel experimented mainly on:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Fruit flies"
+      },
+      {
+        "label": "B",
+        "body": "Pea plants"
+      },
+      {
+        "label": "C",
+        "body": "Humans in hospitals"
+      },
+      {
+        "label": "D",
+        "body": "Bacteria only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "He tracked pea height, flower colour and seed texture.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 46–47",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-088-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Mendel experimented mainly on:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Fruit flies"
+      },
+      {
+        "label": "B",
+        "body": "Pea plants"
+      },
+      {
+        "label": "C",
+        "body": "Humans in hospitals"
+      },
+      {
+        "label": "D",
+        "body": "Bacteria only"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "He tracked pea height, flower colour and seed texture.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 46–47",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-089-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The law of segregation says alleles:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Never separate"
+      },
+      {
+        "label": "B",
+        "body": "Separate during gamete formation so each gamete gets one"
+      },
+      {
+        "label": "C",
+        "body": "Blend into paint"
+      },
+      {
+        "label": "D",
+        "body": "Sit only on mitochondria"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Each offspring then receives one allele from each parent.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-089-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The law of segregation says alleles:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Never separate"
+      },
+      {
+        "label": "B",
+        "body": "Separate during gamete formation so each gamete gets one"
+      },
+      {
+        "label": "C",
+        "body": "Blend into paint"
+      },
+      {
+        "label": "D",
+        "body": "Sit only on mitochondria"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Each offspring then receives one allele from each parent.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-090-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Independent assortment means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "All genes are on one chromosome only"
+      },
+      {
+        "label": "B",
+        "body": "Alleles of different traits can segregate independently"
+      },
+      {
+        "label": "C",
+        "body": "Offspring are clones"
+      },
+      {
+        "label": "D",
+        "body": "DNA is RNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mendel saw different character pairs assort independently in offspring.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-090-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Independent assortment means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "All genes are on one chromosome only"
+      },
+      {
+        "label": "B",
+        "body": "Alleles of different traits can segregate independently"
+      },
+      {
+        "label": "C",
+        "body": "Offspring are clones"
+      },
+      {
+        "label": "D",
+        "body": "DNA is RNA"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Mendel saw different character pairs assort independently in offspring.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-091-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A dominant allele in a heterozygote:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Is destroyed"
+      },
+      {
+        "label": "B",
+        "body": "Can mask a recessive allele"
+      },
+      {
+        "label": "C",
+        "body": "Is always lowercase"
+      },
+      {
+        "label": "D",
+        "body": "Cannot be inherited"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The dominant form is expressed; the recessive can reappear in homozygotes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-091-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A dominant allele in a heterozygote:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Is destroyed"
+      },
+      {
+        "label": "B",
+        "body": "Can mask a recessive allele"
+      },
+      {
+        "label": "C",
+        "body": "Is always lowercase"
+      },
+      {
+        "label": "D",
+        "body": "Cannot be inherited"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The dominant form is expressed; the recessive can reappear in homozygotes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 47",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-092-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "In a monohybrid tall × short cross, F1 plants are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "All short"
+      },
+      {
+        "label": "B",
+        "body": "All medium height"
+      },
+      {
+        "label": "C",
+        "body": "All tall"
+      },
+      {
+        "label": "D",
+        "body": "Half seeds"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "F1 is heterozygous tall; there was no medium-height blending.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-092-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "In a monohybrid tall × short cross, F1 plants are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "All short"
+      },
+      {
+        "label": "B",
+        "body": "All medium height"
+      },
+      {
+        "label": "C",
+        "body": "All tall"
+      },
+      {
+        "label": "D",
+        "body": "Half seeds"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "F1 is heterozygous tall; there was no medium-height blending.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-093-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The F2 phenotype ratio in that monohybrid is about:",
+    "options": [
+      {
+        "label": "A",
+        "body": "1:1"
+      },
+      {
+        "label": "B",
+        "body": "3 tall : 1 short"
+      },
+      {
+        "label": "C",
+        "body": "9:3:3:1 only"
+      },
+      {
+        "label": "D",
+        "body": "All short"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "F2 is about three tall to one short; genotypes are 1 TT : 2 Tt : 1 tt.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-093-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The F2 phenotype ratio in that monohybrid is about:",
+    "options": [
+      {
+        "label": "A",
+        "body": "1:1"
+      },
+      {
+        "label": "B",
+        "body": "3 tall : 1 short"
+      },
+      {
+        "label": "C",
+        "body": "9:3:3:1 only"
+      },
+      {
+        "label": "D",
+        "body": "All short"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "F2 is about three tall to one short; genotypes are 1 TT : 2 Tt : 1 tt.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-094-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Genotype means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The visible trait only"
+      },
+      {
+        "label": "B",
+        "body": "The complete set of alleles an organism carries"
+      },
+      {
+        "label": "C",
+        "body": "The environment"
+      },
+      {
+        "label": "D",
+        "body": "A type of tissue"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genotype is genetic identity, including unexpressed alleles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-094-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Genotype means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The visible trait only"
+      },
+      {
+        "label": "B",
+        "body": "The complete set of alleles an organism carries"
+      },
+      {
+        "label": "C",
+        "body": "The environment"
+      },
+      {
+        "label": "D",
+        "body": "A type of tissue"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genotype is genetic identity, including unexpressed alleles.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-095-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Phenotype means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only the DNA sequence hidden in a file"
+      },
+      {
+        "label": "B",
+        "body": "The expressed physical characteristics"
+      },
+      {
+        "label": "C",
+        "body": "The kingdom name"
+      },
+      {
+        "label": "D",
+        "body": "A plasmid"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Phenotype is the description of actual expressed traits.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-095-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Phenotype means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only the DNA sequence hidden in a file"
+      },
+      {
+        "label": "B",
+        "body": "The expressed physical characteristics"
+      },
+      {
+        "label": "C",
+        "body": "The kingdom name"
+      },
+      {
+        "label": "D",
+        "body": "A plasmid"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Phenotype is the description of actual expressed traits.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-096-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Heterozygous means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Both alleles the same"
+      },
+      {
+        "label": "B",
+        "body": "The two alleles of a gene are different"
+      },
+      {
+        "label": "C",
+        "body": "No genes"
+      },
+      {
+        "label": "D",
+        "body": "Only recessive alleles"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Tt is heterozygous; TT or tt is homozygous.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49–50",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-096-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Heterozygous means:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Both alleles the same"
+      },
+      {
+        "label": "B",
+        "body": "The two alleles of a gene are different"
+      },
+      {
+        "label": "C",
+        "body": "No genes"
+      },
+      {
+        "label": "D",
+        "body": "Only recessive alleles"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Tt is heterozygous; TT or tt is homozygous.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 49–50",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-097-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A dihybrid cross follows:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One trait pair"
+      },
+      {
+        "label": "B",
+        "body": "Two pairs of contrasting characters"
+      },
+      {
+        "label": "C",
+        "body": "No genes"
+      },
+      {
+        "label": "D",
+        "body": "Only environment"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Example: round-yellow versus wrinkled-green peas.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48–49",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-097-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A dihybrid cross follows:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One trait pair"
+      },
+      {
+        "label": "B",
+        "body": "Two pairs of contrasting characters"
+      },
+      {
+        "label": "C",
+        "body": "No genes"
+      },
+      {
+        "label": "D",
+        "body": "Only environment"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Example: round-yellow versus wrinkled-green peas.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 48–49",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-098-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Genes are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Whole organisms"
+      },
+      {
+        "label": "B",
+        "body": "DNA segments that carry hereditary instructions"
+      },
+      {
+        "label": "C",
+        "body": "Only sugar molecules"
+      },
+      {
+        "label": "D",
+        "body": "Cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genes are the fundamental units of heredity, segments of DNA.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52–53",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-098-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Genes are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Whole organisms"
+      },
+      {
+        "label": "B",
+        "body": "DNA segments that carry hereditary instructions"
+      },
+      {
+        "label": "C",
+        "body": "Only sugar molecules"
+      },
+      {
+        "label": "D",
+        "body": "Cell walls"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genes are the fundamental units of heredity, segments of DNA.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52–53",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-099-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A chromosome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A single amino acid"
+      },
+      {
+        "label": "B",
+        "body": "A thread of DNA plus packaging proteins carrying many genes"
+      },
+      {
+        "label": "C",
+        "body": "A type of lipid only"
+      },
+      {
+        "label": "D",
+        "body": "A kingdom"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Chromosomes are thread-like nuclear structures made of DNA containing many genes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52, 55",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-099-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A chromosome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "A single amino acid"
+      },
+      {
+        "label": "B",
+        "body": "A thread of DNA plus packaging proteins carrying many genes"
+      },
+      {
+        "label": "C",
+        "body": "A type of lipid only"
+      },
+      {
+        "label": "D",
+        "body": "A kingdom"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Chromosomes are thread-like nuclear structures made of DNA containing many genes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52, 55",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-100-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Human body cells have how many chromosome pairs?",
+    "options": [
+      {
+        "label": "A",
+        "body": "12"
+      },
+      {
+        "label": "B",
+        "body": "23"
+      },
+      {
+        "label": "C",
+        "body": "46 pairs"
+      },
+      {
+        "label": "D",
+        "body": "2"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Humans have 23 pairs; 46 chromosomes in total.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52, 55",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-100-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Human body cells have how many chromosome pairs?",
+    "options": [
+      {
+        "label": "A",
+        "body": "12"
+      },
+      {
+        "label": "B",
+        "body": "23"
+      },
+      {
+        "label": "C",
+        "body": "46 pairs"
+      },
+      {
+        "label": "D",
+        "body": "2"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Humans have 23 pairs; 46 chromosomes in total.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52, 55",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-101-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The four DNA bases named are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Iron, zinc, copper, boron"
+      },
+      {
+        "label": "B",
+        "body": "Adenine, cytosine, thymine, guanine"
+      },
+      {
+        "label": "C",
+        "body": "Glucose, starch, glycogen, cellulose"
+      },
+      {
+        "label": "D",
+        "body": "Sodium, potassium, calcium, magnesium"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "A, C, T and G write the DNA code.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-101-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The four DNA bases named are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Iron, zinc, copper, boron"
+      },
+      {
+        "label": "B",
+        "body": "Adenine, cytosine, thymine, guanine"
+      },
+      {
+        "label": "C",
+        "body": "Glucose, starch, glycogen, cellulose"
+      },
+      {
+        "label": "D",
+        "body": "Sodium, potassium, calcium, magnesium"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "A, C, T and G write the DNA code.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-102-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "About how many DNA bases are in a human, according to the notes?",
+    "options": [
+      {
+        "label": "A",
+        "body": "23"
+      },
+      {
+        "label": "B",
+        "body": "46"
+      },
+      {
+        "label": "C",
+        "body": "About 3 billion"
+      },
+      {
+        "label": "D",
+        "body": "99"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "About 99% of those bases are the same in everyone; the rest make you unique.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-102-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "About how many DNA bases are in a human, according to the notes?",
+    "options": [
+      {
+        "label": "A",
+        "body": "23"
+      },
+      {
+        "label": "B",
+        "body": "46"
+      },
+      {
+        "label": "C",
+        "body": "About 3 billion"
+      },
+      {
+        "label": "D",
+        "body": "99"
+      }
+    ],
+    "correct_option": "C",
+    "explanation": "About 99% of those bases are the same in everyone; the rest make you unique.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 52",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-103-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The term ‘gene’ was coined by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Darwin in 1859"
+      },
+      {
+        "label": "B",
+        "body": "Wilhelm Johannsen in 1909"
+      },
+      {
+        "label": "C",
+        "body": "Hooke in 1665"
+      },
+      {
+        "label": "D",
+        "body": "Aristotle"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Bateson introduced genetics in 1905; Johannsen named the gene in 1909.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-103-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The term ‘gene’ was coined by:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Darwin in 1859"
+      },
+      {
+        "label": "B",
+        "body": "Wilhelm Johannsen in 1909"
+      },
+      {
+        "label": "C",
+        "body": "Hooke in 1665"
+      },
+      {
+        "label": "D",
+        "body": "Aristotle"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Bateson introduced genetics in 1905; Johannsen named the gene in 1909.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-104-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A locus is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The whole genome"
+      },
+      {
+        "label": "B",
+        "body": "The fixed position of a gene on a chromosome"
+      },
+      {
+        "label": "C",
+        "body": "A type of fungus"
+      },
+      {
+        "label": "D",
+        "body": "A hypotonic solution"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Each gene occupies a particular position (locus) on a chromosome.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-104-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A locus is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "The whole genome"
+      },
+      {
+        "label": "B",
+        "body": "The fixed position of a gene on a chromosome"
+      },
+      {
+        "label": "C",
+        "body": "A type of fungus"
+      },
+      {
+        "label": "D",
+        "body": "A hypotonic solution"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Each gene occupies a particular position (locus) on a chromosome.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-105-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "The genome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One codon"
+      },
+      {
+        "label": "B",
+        "body": "The entire set of chromosomes / genetic material"
+      },
+      {
+        "label": "C",
+        "body": "Only mRNA"
+      },
+      {
+        "label": "D",
+        "body": "The cell wall"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "An organism’s genome is the complete set of chromosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-105-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "The genome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "One codon"
+      },
+      {
+        "label": "B",
+        "body": "The entire set of chromosomes / genetic material"
+      },
+      {
+        "label": "C",
+        "body": "Only mRNA"
+      },
+      {
+        "label": "D",
+        "body": "The cell wall"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "An organism’s genome is the complete set of chromosomes.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 53",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-106-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A codon is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Three bases that specify an amino acid"
+      },
+      {
+        "label": "B",
+        "body": "A whole chromosome"
+      },
+      {
+        "label": "C",
+        "body": "A histone only"
+      },
+      {
+        "label": "D",
+        "body": "A tissue"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "The genetic code uses three-base units; Nirenberg’s work is cited for this principle.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-106-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A codon is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Three bases that specify an amino acid"
+      },
+      {
+        "label": "B",
+        "body": "A whole chromosome"
+      },
+      {
+        "label": "C",
+        "body": "A histone only"
+      },
+      {
+        "label": "D",
+        "body": "A tissue"
+      }
+    ],
+    "correct_option": "A",
+    "explanation": "The genetic code uses three-base units; Nirenberg’s work is cited for this principle.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-107-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Transcription is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "mRNA to protein"
+      },
+      {
+        "label": "B",
+        "body": "DNA copied into mRNA"
+      },
+      {
+        "label": "C",
+        "body": "Cell bursting"
+      },
+      {
+        "label": "D",
+        "body": "Osmosis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Transcription produces a messenger RNA copy of a gene.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-107-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Transcription is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "mRNA to protein"
+      },
+      {
+        "label": "B",
+        "body": "DNA copied into mRNA"
+      },
+      {
+        "label": "C",
+        "body": "Cell bursting"
+      },
+      {
+        "label": "D",
+        "body": "Osmosis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Transcription produces a messenger RNA copy of a gene.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-108-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Translation is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "DNA to mRNA"
+      },
+      {
+        "label": "B",
+        "body": "mRNA to protein at ribosomes"
+      },
+      {
+        "label": "C",
+        "body": "Mitosis"
+      },
+      {
+        "label": "D",
+        "body": "Classification"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Translation builds the protein from the mRNA message.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-108-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Translation is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "DNA to mRNA"
+      },
+      {
+        "label": "B",
+        "body": "mRNA to protein at ribosomes"
+      },
+      {
+        "label": "C",
+        "body": "Mitosis"
+      },
+      {
+        "label": "D",
+        "body": "Classification"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Translation builds the protein from the mRNA message.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 54",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-109-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Haemoglobin is given as a protein that:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Builds cell walls"
+      },
+      {
+        "label": "B",
+        "body": "Carries oxygen in the blood"
+      },
+      {
+        "label": "C",
+        "body": "Copies osmosis"
+      },
+      {
+        "label": "D",
+        "body": "Names species"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The globin gene instructs production of haemoglobin.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 55",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-109-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Haemoglobin is given as a protein that:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Builds cell walls"
+      },
+      {
+        "label": "B",
+        "body": "Carries oxygen in the blood"
+      },
+      {
+        "label": "C",
+        "body": "Copies osmosis"
+      },
+      {
+        "label": "D",
+        "body": "Names species"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "The globin gene instructs production of haemoglobin.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 55",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-110-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Histones are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "DNA bases"
+      },
+      {
+        "label": "B",
+        "body": "Proteins that pack eukaryotic DNA"
+      },
+      {
+        "label": "C",
+        "body": "Plant vacuoles"
+      },
+      {
+        "label": "D",
+        "body": "Types of osmosis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Eukaryotic chromosomes wrap DNA on histone proteins.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 56",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-110-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Histones are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "DNA bases"
+      },
+      {
+        "label": "B",
+        "body": "Proteins that pack eukaryotic DNA"
+      },
+      {
+        "label": "C",
+        "body": "Plant vacuoles"
+      },
+      {
+        "label": "D",
+        "body": "Types of osmosis"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Eukaryotic chromosomes wrap DNA on histone proteins.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 56",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-111-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Two chromosomal disorders named are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Osmosis and diffusion"
+      },
+      {
+        "label": "B",
+        "body": "Down syndrome and Turner syndrome"
+      },
+      {
+        "label": "C",
+        "body": "Starch and glycogen"
+      },
+      {
+        "label": "D",
+        "body": "Botany and zoology"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Chromosome number or structure errors can cause those conditions and some leukaemias.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 56",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-111-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Two chromosomal disorders named are:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Osmosis and diffusion"
+      },
+      {
+        "label": "B",
+        "body": "Down syndrome and Turner syndrome"
+      },
+      {
+        "label": "C",
+        "body": "Starch and glycogen"
+      },
+      {
+        "label": "D",
+        "body": "Botany and zoology"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Chromosome number or structure errors can cause those conditions and some leukaemias.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 56",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-112-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "A gene compared with a chromosome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Larger and always visible"
+      },
+      {
+        "label": "B",
+        "body": "A coded segment on a chromosome, not visible as an X shape"
+      },
+      {
+        "label": "C",
+        "body": "A whole pack of many chromosomes"
+      },
+      {
+        "label": "D",
+        "body": "A type of tissue"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genes are not visible under an ordinary microscope; condensed chromosomes are.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 58",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-112-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "A gene compared with a chromosome is:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Larger and always visible"
+      },
+      {
+        "label": "B",
+        "body": "A coded segment on a chromosome, not visible as an X shape"
+      },
+      {
+        "label": "C",
+        "body": "A whole pack of many chromosomes"
+      },
+      {
+        "label": "D",
+        "body": "A type of tissue"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Genes are not visible under an ordinary microscope; condensed chromosomes are.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 58",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-113-learning",
+    "pool": "learning",
+    "usage": [
+      "review",
+      "practice",
+      "mock"
+    ],
+    "prompt": "Large chromosomal changes listed include:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only point mutations of one base"
+      },
+      {
+        "label": "B",
+        "body": "Duplication, deletion, inversion and rearrangement"
+      },
+      {
+        "label": "C",
+        "body": "Only osmosis"
+      },
+      {
+        "label": "D",
+        "body": "Only budding"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Those rearrangements can affect many genes at once.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 58–59",
+    "answer_format": "standard"
+  },
+  {
+    "logical_question_key": "bio101-ch1-7-20261101-113-battle",
+    "pool": "battle",
+    "usage": [
+      "battle"
+    ],
+    "prompt": "Large chromosomal changes listed include:",
+    "options": [
+      {
+        "label": "A",
+        "body": "Only point mutations of one base"
+      },
+      {
+        "label": "B",
+        "body": "Duplication, deletion, inversion and rearrangement"
+      },
+      {
+        "label": "C",
+        "body": "Only osmosis"
+      },
+      {
+        "label": "D",
+        "body": "Only budding"
+      }
+    ],
+    "correct_option": "B",
+    "explanation": "Those rearrangements can affect many genes at once.",
+    "course_code": "BIO 101",
+    "difficulty": "beginner",
+    "source_reference": "BIO CH.1-7.pdf, book pp. 58–59",
+    "answer_format": "standard",
+    "battle_seconds": 12,
+    "battle_reading_seconds": 8
+  }
+]
