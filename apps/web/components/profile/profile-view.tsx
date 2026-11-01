@@ -22,6 +22,7 @@ import { StreakFlame } from "@/components/icons/streak-flame";
 import { AccountDeletionDialog } from "./account-deletion-dialog";
 import { AcademicDetailsCard } from "./academic-details-card";
 import { ProfileEditForm } from "./profile-edit-form";
+import { LearningInsights } from "./learning-insights";
 import { ProfileFriends } from "./profile-friends";
 
 const activityNames: Record<string, string> = { lesson: "Lesson progress", review: "Topic review", practice: "Practice test", mock: "Mock exam", battle: "Quiz battle", signup: "Account created", correction: "XP adjustment" };
@@ -257,6 +258,7 @@ export function ProfileView({ registration = null, email = null }: { registratio
               </section>
               <ProfileNudge profile={p} />
               <XpProgressCard compact />
+              <LearningInsights />
             </>
           ) : tab === "achievements" ? (
             <XpProgressCard />
