@@ -9,6 +9,7 @@ export const qk = {
     ["scholau", "onboarding", u ?? null, f ?? null, p ?? null] as const,
   course: (offeringId: string) => ["scholau", "course", offeringId] as const,
   lesson: (lessonId: string) => ["scholau", "lesson", lessonId] as const,
+  insights: () => ["scholau", "insights"] as const,
   attempt: (attemptId: string) => ["scholau", "attempt", attemptId] as const,
   notifications: () => ["scholau", "notifications"] as const,
   liveBattle: () => ["scholau", "battle", "live"] as const,

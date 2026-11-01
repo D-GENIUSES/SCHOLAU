@@ -10,6 +10,7 @@ import { briefFlashcardBack, COPY, formatDate, formatXpDelta, pluralize } from "
 import { FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonStepper } from "@/components/lesson/lesson-stepper";
 import { FlashcardDeck } from "@/components/lesson/flashcard-deck";
+import { LessonClips } from "@/components/lesson/lesson-clips";
 import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
 import { Alert } from "@/components/ui/alert";
@@ -182,6 +183,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
           ) : null}
         </div>
       </div>
+
+      <LessonClips lesson={lesson} />
 
       {hasBlockContent ? (
         <>

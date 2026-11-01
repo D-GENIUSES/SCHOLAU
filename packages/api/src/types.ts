@@ -356,6 +356,52 @@ export interface Lesson extends Envelope {
 
   review: { assessment_id: Uuid; assessment_version_id: Uuid; title: string } | null;
 
+  videos?: LessonVideo[];
+
+  pending_videos?: LessonVideo[];
+
+  can_manage_videos?: boolean;
+
+}
+
+export interface LessonVideo {
+
+  id: Uuid;
+
+  title: string;
+
+  youtube_id: string;
+
+  start_seconds: number;
+
+  end_seconds: number | null;
+
+}
+
+export interface LearningTopicInsight {
+
+  lesson_id: Uuid | null;
+
+  course_code: string;
+
+  course_title: string;
+
+  title: string;
+
+  answered: number;
+
+  correct: number;
+
+  accuracy: number;
+
+}
+
+export interface LearningInsights extends Envelope {
+
+  strengths: LearningTopicInsight[];
+
+  weaknesses: LearningTopicInsight[];
+
 }
 
 

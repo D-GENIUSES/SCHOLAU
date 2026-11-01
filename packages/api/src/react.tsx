@@ -167,6 +167,31 @@ export function useLesson(lessonId: string | undefined) {
   });
 }
 
+export function useSubmitLessonVideo(lessonId: string) {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return usePlainMutation(api.submitLessonVideo, {
+    onSuccess: () => { void qc.invalidateQueries({ queryKey: qk.lesson(lessonId) }); },
+  });
+}
+
+export function useReviewLessonVideo(lessonId: string) {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return usePlainMutation(api.reviewLessonVideo, {
+    onSuccess: () => { void qc.invalidateQueries({ queryKey: qk.lesson(lessonId) }); },
+  });
+}
+
+export function useLearningInsights() {
+  const api = useScholauApi();
+  return useQuery({
+    queryKey: qk.insights(),
+    queryFn: () => api.getLearningInsights(),
+    retry: shouldRetry,
+  });
+}
+
 export function useStartLesson() {
   const api = useScholauApi();
   return usePlainMutation(api.startLesson);

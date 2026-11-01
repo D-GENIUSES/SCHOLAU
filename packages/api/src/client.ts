@@ -110,6 +110,17 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       rpc<T.Enrollment>("enroll_course_v1", { p_offering_id: a.offeringId, p_request_key: a.requestKey }),
     getCourseOverview: (offeringId: string) => rpc<T.CourseOverview>("get_course_overview_v1", { p_offering_id: offeringId }),
     getLesson: (lessonId: string) => rpc<T.Lesson>("get_lesson_v1", { p_lesson_id: lessonId }),
+    submitLessonVideo: (a: { lessonId: string; youtubeId: string; title: string; startSeconds: number; endSeconds: number | null }) =>
+      rpc<T.Envelope>("submit_lesson_video_v1", {
+        p_lesson_id: a.lessonId,
+        p_youtube_id: a.youtubeId,
+        p_title: a.title,
+        p_start_seconds: a.startSeconds,
+        p_end_seconds: a.endSeconds,
+      }),
+    reviewLessonVideo: (a: { videoId: string; decision: "approved" | "rejected" }) =>
+      rpc<T.Envelope>("review_lesson_video_v1", { p_video_id: a.videoId, p_decision: a.decision }),
+    getLearningInsights: () => rpc<T.LearningInsights>("get_learning_insights_v1"),
     startLesson: (lessonVersionId: string) =>
       rpc<T.LessonProgressResult>("start_lesson_v1", { p_lesson_version_id: lessonVersionId }),
     completeLesson: (a: Keyed<{ lessonVersionId: string }>) =>
