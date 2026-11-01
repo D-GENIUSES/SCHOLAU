@@ -48,28 +48,34 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
   const opponent = battle.participants.find((p) => !p.is_me);
   const opponentId = opponent?.user_id;
   const incoming = useBattleReactionFeed(battle.battle_id, me?.user_id);
+  const [trackedIncoming, setTrackedIncoming] = useState<BattleReactionEvent | null>(null);
   const [bubble, setBubble] = useState<BattleReactionEvent | null>(null);
-  const [bubbleStyle, setBubbleStyle] = useState<CSSProperties | undefined>();
+  const [placedStyle, setPlacedStyle] = useState<CSSProperties | undefined>();
   const [sentFlash, setSentFlash] = useState<(typeof REACTIONS)[number]["id"] | null>(null);
+  if (incoming && incoming !== trackedIncoming) {
+    setTrackedIncoming(incoming);
+    setBubble(incoming);
+  }
+  const bubbleStyle = bubble && opponentId ? placedStyle : undefined;
 
   useEffect(() => {
-    if (!incoming) return;
-    setBubble(incoming);
+    if (!bubble) return;
     const timer = window.setTimeout(() => setBubble(null), 2600);
     return () => window.clearTimeout(timer);
-  }, [incoming]);
+  }, [bubble]);
 
   useEffect(() => {
-    if (!bubble || !opponentId) {
-      setBubbleStyle(undefined);
-      return;
-    }
+    if (!bubble || !opponentId) return;
     const anchorId = `battle-player-${opponentId}`;
-    const place = () => setBubbleStyle(positionBubble(anchorId));
+    let frame = 0;
+    const place = () => {
+      frame = window.requestAnimationFrame(() => setPlacedStyle(positionBubble(anchorId)));
+    };
     place();
     window.addEventListener("resize", place);
     window.addEventListener("scroll", place, true);
     return () => {
+      window.cancelAnimationFrame(frame);
       window.removeEventListener("resize", place);
       window.removeEventListener("scroll", place, true);
     };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import type { FriendPerson, HomeSummary } from "@scholau/api";
 import { useBattleSetup, useCreateDirectBattle, useFriends, useJoinQueue, useSearchFriends } from "@scholau/api/react";
@@ -25,9 +25,17 @@ export function BattleStartPanel({ initialOfferingId, initialFriendId }: { cours
   const router = useRouter();
   const friends = useFriends();
   const preset = challengeFriend(friends.data?.people, initialFriendId);
-  const appliedFriendId = useRef<string | null>(preset ? initialFriendId ?? null : null);
+  const [trackedFriendId, setTrackedFriendId] = useState<string | null>(preset ? initialFriendId ?? null : null);
   const [mode, setMode] = useState<"random" | "direct">(preset ? "direct" : "random");
   const [opponent, setOpponent] = useState<FriendPerson | null>(preset);
+  if (initialFriendId && friends.isSuccess && trackedFriendId !== initialFriendId) {
+    setTrackedFriendId(initialFriendId);
+    const person = challengeFriend(friends.data?.people, initialFriendId);
+    if (person) {
+      setMode("direct");
+      setOpponent(person);
+    }
+  }
   const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
   const normalizedInput = input.trim().replace(/^@/, "");
@@ -37,14 +45,6 @@ export function BattleStartPanel({ initialOfferingId, initialFriendId }: { cours
   }, [normalizedInput]);
   const [chosen, setChosen] = useState<string[] | null>(null);
   const [questionCount, setQuestionCount] = useState(10);
-  useEffect(() => {
-    if (!initialFriendId || appliedFriendId.current === initialFriendId || !friends.isSuccess) return;
-    appliedFriendId.current = initialFriendId;
-    const person = challengeFriend(friends.data.people, initialFriendId);
-    if (!person) return;
-    setMode("direct");
-    setOpponent(person);
-  }, [initialFriendId, friends.isSuccess, friends.data]);
   const search = useSearchFriends(query);
   const setup = useBattleSetup();
   const shared = useBattleSetup(mode === "direct" ? opponent?.user_id : null);
