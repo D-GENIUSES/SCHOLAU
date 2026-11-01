@@ -10,7 +10,7 @@ union all select 'attempts',id::text,to_jsonb(a) from public.assessment_attempts
 -- Preserve the source C/R/E statuses and existing identities/enrollments/progress.
 do $$ declare u uuid; cs uuid; l uuid; r record; begin
 select id into strict u from public.universities where slug='adeleke-university-ede-osun-state';
-select id into strict cs from public.departments where university_id=u and name='Computer Science';
+select id into strict cs from public.departments where university_id=u and name='Computing Sciences';
 select id into strict l from public.levels where university_id=u and label='100 Level';
 if (select count(*) from public.curriculum_courses where department_id=cs and level_id=l and active and semester_number in (1,2))<>18 then raise exception 'Expected 18 first-year source requirements'; end if;
 if (select count(*) from public.departments where university_id=u and name in ('Cybersecurity','Software Engineering'))<>2 then raise exception 'Missing target departments'; end if;
@@ -62,7 +62,7 @@ insert into supabase_migrations.schema_migrations(version,name,statements) value
 -- Preserve the source C/R/E statuses and existing identities/enrollments/progress.
 do $$ declare u uuid; cs uuid; l uuid; r record; begin
 select id into strict u from public.universities where slug='adeleke-university-ede-osun-state';
-select id into strict cs from public.departments where university_id=u and name='Computer Science';
+select id into strict cs from public.departments where university_id=u and name='Computing Sciences';
 select id into strict l from public.levels where university_id=u and label='100 Level';
 if (select count(*) from public.curriculum_courses where department_id=cs and level_id=l and active and semester_number in (1,2))<>18 then raise exception 'Expected 18 first-year source requirements'; end if;
 if (select count(*) from public.departments where university_id=u and name in ('Cybersecurity','Software Engineering'))<>2 then raise exception 'Missing target departments'; end if;

@@ -16,13 +16,13 @@ select set_config('t.faculty',(select id::text from public.faculties where unive
 select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
 select set_config('t.semester',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;
 select set_config('t.level',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='200 Level'),true) is not null as setup;
-select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computer Science'),true) is not null as setup;
+select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computing Sciences'),true) is not null as setup;
 select set_config('t.cyber',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Cybersecurity'),true) is not null as setup;
 select set_config('t.se',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Software Engineering'),true) is not null as setup;
 select is((select count(*)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),28,'28 programme course entries imported');
 select is((select count(distinct course_id)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),11,'11 distinct courses shared across programmes');
-select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),10,'Computer Science has 10 courses');
-select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),21,'Computer Science totals 21 units');
+select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),10,'Computing Sciences has 10 courses');
+select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cs')::uuid),21,'Computing Sciences totals 21 units');
 select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cyber')::uuid),9,'Cybersecurity has 9 courses');
 select is((select sum(unit_count)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.cyber')::uuid),19,'Cybersecurity totals 19 units');
 select is((select count(*)::integer from public.curriculum_courses where semester_number=1 and level_id=current_setting('t.level')::uuid and department_id=current_setting('t.se')::uuid),9,'Software Engineering has 9 courses');

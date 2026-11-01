@@ -42,8 +42,11 @@ export function BattleStartPanel({ initialOfferingId, initialFriendId }: { cours
     appliedFriendId.current = initialFriendId;
     const person = challengeFriend(friends.data.people, initialFriendId);
     if (!person) return;
-    setMode("direct");
-    setOpponent(person);
+    const apply = window.setTimeout(() => {
+      setMode("direct");
+      setOpponent(person);
+    }, 0);
+    return () => window.clearTimeout(apply);
   }, [initialFriendId, friends.isSuccess, friends.data]);
   const search = useSearchFriends(query);
   const setup = useBattleSetup();

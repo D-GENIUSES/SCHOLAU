@@ -11,10 +11,18 @@ function callback(exchange, destination = async (next) => next === "/auth/contin
   const exports = {};
   const client = { auth: { exchangeCodeForSession: exchange } };
   const mocks = {
-    "next/server": { NextResponse: { redirect: (url) => new Response(null, { status: 307, headers: { Location: url.toString() } }) } },
+    "next/server": { NextResponse: { redirect: (url) => {
+      const response = new Response(null, { status: 307, headers: { Location: url.toString() } });
+      response.cookies = { set() {} };
+      return response;
+    } } },
     "@/lib/supabase/server": { getServerSupabase: async () => client },
     "@/lib/utils": { safeNext },
     "@/lib/auth-destination": { accountDestination: async (next, supplied) => { assert.equal(supplied, client); return destination(next); } },
+    "@/lib/google-signup-attempt": {
+      GOOGLE_SIGNUP_ATTEMPT_COOKIE: "scholau-google-signup-attempt",
+      isNewGoogleSignup: () => true,
+    },
   };
   new Function("require", "exports", compiled)((id) => {
     assert.ok(id in mocks, `Unexpected dependency: ${id}`);

@@ -3,8 +3,9 @@
 import { MathText } from "@/components/math/math-text";
 
 import { CheckCircle2, XCircle } from "lucide-react";
-import type { ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import type { AttemptOption } from "@scholau/api";
+import { displayOptionOrder } from "@scholau/core";
 import { cn } from "@/lib/utils";
 
 /**
@@ -28,10 +29,11 @@ export function QuestionOptions({
   disabled?: boolean;
   reveal?: { correctOptionId: string } | null;
 }) {
+  const ordered = useMemo(() => displayOptionOrder(options), [options]);
   return (
     <fieldset className="flex min-w-0 flex-col gap-3" disabled={disabled}>
       <legend className="mb-3 w-full">{legend}</legend>
-      {options.map((o, i) => {
+      {ordered.map((o, i) => {
         const id = `${name}-${o.id}`;
         const checked = value === o.id;
         const isCorrect = reveal ? o.id === reveal.correctOptionId : false;

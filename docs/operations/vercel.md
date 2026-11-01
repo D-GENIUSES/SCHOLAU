@@ -1,5 +1,9 @@
 # Vercel deployment from GitHub
 
+The repository is connected to two Vercel projects, `scholau` and `web`. The live site [scholau.com](https://scholau.com) is served by the project whose production alias is `scholau.vercel.app` (that host redirects to scholau.com). Keep that project. The other project, `web`, is a second Git integration on the same repository and is not the canonical host. Delete `web` in the Vercel dashboard; this repository cannot delete it.
+
+
+
 SCHOLAU is deployed using Vercel's native GitHub integration. Import
 `D-GENIUSES/SCHOLAU`, select the existing account, and use these project settings:
 

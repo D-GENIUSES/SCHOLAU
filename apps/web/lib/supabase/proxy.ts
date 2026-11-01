@@ -8,7 +8,9 @@ const PUBLIC_PATHS = ["/", "/home", "/sign-in", "/sign-up", "/verify", "/recover
 const AUTH_PAGES = ["/sign-in", "/sign-up"];
 
 function isPublic(pathname: string) {
-  return pathname === "/api/auth/google-signup-attempt"
+  const publicCourse = pathname === "/courses" || (pathname.startsWith("/courses/") && !pathname.includes("/challenges"));
+  return publicCourse
+    || pathname === "/api/auth/google-signup-attempt"
     || PUBLIC_PATHS.some((p) => pathname === p || (p !== "/" && pathname.startsWith(`${p}/`)));
 }
 

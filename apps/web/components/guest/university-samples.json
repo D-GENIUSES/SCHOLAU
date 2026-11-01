@@ -1,0 +1,322 @@
+[
+  {
+    "id": "sta111-q033-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "For grouped frequency data, the estimated mean uses what as each class value?",
+    "options": [
+      "Class width alone",
+      "Cumulative count",
+      "Upper class label only",
+      "Class midpoint"
+    ],
+    "correct": 3,
+    "explanation": "Midpoints approximate the unknown positions of observations within each class. Original question on source concepts",
+    "sourceReference": "Statistics study edition practice item Q033; Source: T18-21"
+  },
+  {
+    "id": "sta111-q034-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which mean is suited to speeds over equal distances?",
+    "options": [
+      "Harmonic mean",
+      "Mode",
+      "Unweighted arithmetic mean in all cases",
+      "Midrange"
+    ],
+    "correct": 0,
+    "explanation": "Total distance divided by total time leads to a harmonic mean for equal-distance speeds. Original question on source concepts",
+    "sourceReference": "Statistics study edition practice item Q034; Source: T18-21"
+  },
+  {
+    "id": "sta111-q035-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Which statement holds for positive observations?",
+    "options": [
+      "Harmonic mean ≤ geometric mean ≤ arithmetic mean",
+      "Geometric mean always equals median",
+      "Arithmetic mean is always smallest",
+      "Harmonic mean always equals maximum"
+    ],
+    "correct": 0,
+    "explanation": "The standard ordering holds for positive values, with equality when all are equal. Original question on source concepts",
+    "sourceReference": "Statistics study edition practice item Q035; Source: T18-21"
+  },
+  {
+    "id": "sta111-q036-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Adding 5 to every observation has what effect on the arithmetic mean?",
+    "options": [
+      "It stays unchanged",
+      "It increases by 25",
+      "It increases by 5",
+      "It is multiplied by 5"
+    ],
+    "correct": 2,
+    "explanation": "A location shift adds the same constant to the mean. Original question on source concepts",
+    "sourceReference": "Statistics study edition practice item Q036; Source: T18-21"
+  },
+  {
+    "id": "sta111-q037-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Find the arithmetic mean of 3, 7, 4, 8, 5, 10. Give the value to 4 decimal places.",
+    "options": [
+      "6.1667",
+      "37.0000",
+      "5.1667",
+      "7.1667"
+    ],
+    "correct": 0,
+    "explanation": "Sum=37, count=6; mean=37/6=6.166667. Original numerical application of source method",
+    "sourceReference": "Statistics study edition practice item Q037; Source: T18-19"
+  },
+  {
+    "id": "sta111-q038-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Find the arithmetic mean of 2, 3, 3, 4, 28. Give the value to 4 decimal places.",
+    "options": [
+      "40.0000",
+      "8.0000",
+      "9.0000",
+      "7.0000"
+    ],
+    "correct": 1,
+    "explanation": "Sum=40, count=5; mean=40/5=8.000000. Original numerical application of source method",
+    "sourceReference": "Statistics study edition practice item Q038; Source: T18-19"
+  },
+  {
+    "id": "sta111-q039-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Find the arithmetic mean of 4, 8, 12, 16. Give the value to 4 decimal places.",
+    "options": [
+      "9.0000",
+      "10.0000",
+      "40.0000",
+      "11.0000"
+    ],
+    "correct": 1,
+    "explanation": "Sum=40, count=4; mean=40/4=10.000000. Original numerical application of source method",
+    "sourceReference": "Statistics study edition practice item Q039; Source: T18-19"
+  },
+  {
+    "id": "sta111-q040-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "Use x=0,1,2,3,4,5,6,7,8 with f=4,3,2,5,2,2,1,3,2 from T18. What is the checked mean? Give the value to 4 decimal places.",
+    "options": [
+      "6.9167",
+      "3.4583",
+      "0.2892",
+      "9.2222"
+    ],
+    "correct": 1,
+    "explanation": "Products sum to 83 and frequencies to 24. Mean=83/24=3.458333; the printed numerator 166 is incorrect. Adapted source calculation, independently recomputed",
+    "sourceReference": "Statistics study edition practice item Q040; Source: T18-19"
+  },
+  {
+    "id": "sta111-q041-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "A vehicle covers two equal distances at speeds 30 and 60. Find the average speed. Give the value to 4 decimal places.",
+    "options": [
+      "90.0000",
+      "45.0000",
+      "40.0000",
+      "42.4264"
+    ],
+    "correct": 2,
+    "explanation": "Total-distance/total-time gives H=2/(1/30+1/60)=40.000000. Original numerical application of source method",
+    "sourceReference": "Statistics study edition practice item Q041; Source: T20"
+  },
+  {
+    "id": "sta111-q042-practice",
+    "courseCode": "STA 111",
+    "courseTitle": "Descriptive Statistics",
+    "level": 100,
+    "prompt": "A vehicle covers two equal distances at speeds 40 and 80. Find the average speed. Give the value to 4 decimal places.",
+    "options": [
+      "60.0000",
+      "120.0000",
+      "53.3333",
+      "56.5685"
+    ],
+    "correct": 2,
+    "explanation": "Total-distance/total-time gives H=2/(1/40+1/80)=53.333333. Original numerical application of source method",
+    "sourceReference": "Statistics study edition practice item Q042; Source: T20"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-001-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Biology is best defined as the scientific study of:",
+    "options": [
+      "Rocks and minerals",
+      "Life",
+      "Only human disease",
+      "The weather"
+    ],
+    "correct": 1,
+    "explanation": "The notes define biology as the scientific study of life, from cells to ecosystems.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1–2"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-002-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Which scientist grouped animals by visible traits in ancient Greece?",
+    "options": [
+      "Linnaeus",
+      "Darwin",
+      "Aristotle",
+      "Harvey"
+    ],
+    "correct": 2,
+    "explanation": "Aristotle made an early classification of animals from what he could observe.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-003-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "William Harvey is linked in this course to:",
+    "options": [
+      "The naming of cells",
+      "Blood circulation",
+      "The structure of DNA",
+      "Natural selection"
+    ],
+    "correct": 1,
+    "explanation": "Harvey showed that blood circulates through the body.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-004-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Who introduced the two-part naming system still used to name species?",
+    "options": [
+      "Aristotle",
+      "Carolus Linnaeus",
+      "Ibn Sina",
+      "Vesalius"
+    ],
+    "correct": 1,
+    "explanation": "Linnaeus built the naming method used in modern classification.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-005-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Darwin’s main contribution named in the notes is:",
+    "options": [
+      "The microscope",
+      "Evolution by natural selection",
+      "The cell wall",
+      "Anaerobic respiration"
+    ],
+    "correct": 1,
+    "explanation": "Darwin explained how species change by natural selection.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-006-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Watson and Crick described:",
+    "options": [
+      "The circulation of blood",
+      "The structure of DNA",
+      "Plant meristems",
+      "Kingdom Fungi"
+    ],
+    "correct": 1,
+    "explanation": "They described the structure of DNA, a 20th-century landmark in the notes.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 1"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-007-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Botany is the study of:",
+    "options": [
+      "Animals",
+      "Fossils only",
+      "Plants",
+      "The immune system"
+    ],
+    "correct": 2,
+    "explanation": "Botany is the plant branch of biology; zoology is animals.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 2"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-008-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Zoology is the study of:",
+    "options": [
+      "Plants",
+      "Animals",
+      "Rocks",
+      "Weather systems"
+    ],
+    "correct": 1,
+    "explanation": "Zoology covers the animal kingdom.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 2"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-009-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Which branch studies how organisms interact with their environment?",
+    "options": [
+      "Anatomy",
+      "Ecology",
+      "Paleontology",
+      "Immunology"
+    ],
+    "correct": 1,
+    "explanation": "Ecology examines organisms with each other and their surroundings.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 2–3"
+  },
+  {
+    "id": "bio101-ch1-7-20261101-010-learning",
+    "courseCode": "BIO 101",
+    "courseTitle": "General Biology I",
+    "level": 100,
+    "prompt": "Genetics is the study of:",
+    "options": [
+      "Only ocean animals",
+      "How traits are passed on",
+      "Rock layers",
+      "Star positions"
+    ],
+    "correct": 1,
+    "explanation": "Genetics studies heredity through genes, DNA, and chromosomes.",
+    "sourceReference": "BIO CH.1-7.pdf, book pp. 3"
+  }
+]

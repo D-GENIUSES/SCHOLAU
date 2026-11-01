@@ -1,5 +1,7 @@
 # SCHOLAU
 
+The live app is [scholau.com](https://scholau.com).
+
 A university learning platform that connects each student's academic curriculum with lessons, assessments, and competitive learning. This monorepo contains the web application, shared packages, and the database schema and access rules.
 
 Content access follows the student's university, programme, level, and semester. PostgreSQL enforces authorization, progress, and reward rules; the application consumes those contracts through a shared API layer.
@@ -138,6 +140,18 @@ supabase test db
 ```
 
 `db reset --local` deletes data in that local instance. Some migrations depend on scheduled jobs and extensions; confirm compatibility with your Supabase environment. Read the [backend guide](supabase/README.md) before preparing database changes.
+
+## Statistics practice import
+
+`scripts/build-sta-statistics.py` reads the study-edition PDFs in `imports/sta/source` and writes practice lessons, questions, and topic pre/post slots. The bank is labelled `practice`. It is not a past-paper collection. MCQ options are shuffled so the printed B, A, D, C key is not stored.
+
+After the database migrations are applied and an administrator exists:
+
+```bash
+node --env-file=apps/web/.env.local scripts/import-sta-statistics.mjs --apply
+```
+
+Publish the drafts from Admin review. Topic gap reports stay empty until those practice questions are published and students submit the pre-test and post-test.
 
 ## Development commands
 

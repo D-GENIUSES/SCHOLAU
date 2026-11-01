@@ -2,7 +2,9 @@
 
 import { MathText } from "@/components/math/math-text";
 
+import { useMemo } from "react";
 import type { BattleCurrentQuestion } from "@scholau/api";
+import { displayOptionOrder } from "@scholau/core";
 import { cn } from "@/lib/utils";
 
 export function BattleAnswerOptions({ question, selected, disabled, received, onSelect }: {
@@ -14,13 +16,14 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
   labelledBy?: string;
 }) {
   const worked = question.answer_format === "worked_solution";
+  const options = useMemo(() => displayOptionOrder(question.options), [question.options]);
   return (
     <fieldset disabled={disabled} className="min-w-0" aria-describedby={disabled && !received ? "battle-answer-phase" : undefined}>
       <legend className="mb-3 w-full whitespace-pre-wrap break-words text-left text-lg font-bold leading-snug tracking-tight text-ink sm:text-xl"><MathText text={question.prompt} /></legend>
       <p id="battle-answer-phase" className="sr-only">{received ? "Answer received" : disabled ? "Answers are locked during reading or after the deadline." : "Choose an answer, then submit."}</p>
       {worked ? <p className="mb-3 text-sm text-ink-muted">Choose the correct calculation and final answer.</p> : null}
       <div className={worked ? "grid grid-cols-1 gap-2 md:grid-cols-2 sm:gap-3" : "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3"}>
-        {question.options.map((option, index) => {
+        {options.map((option, index) => {
           const checked = selected === option.id;
           return (
             <label key={option.id} className={cn(

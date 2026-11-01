@@ -8,6 +8,7 @@ import { ContinueLearningCard } from "@/components/home/learning-panels";
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { Button } from "@/components/ui/button";
 import { sampleCourses, starterLesson } from "./guest-content";
+import { UniversityCourseSamples } from "./university-samples";
 
 // Keep the question bank out of the initial guest dashboard download.
 const MaterialQuiz = dynamic(() => import("./material-quiz").then((module) => module.MaterialQuiz), {
@@ -56,6 +57,7 @@ function GuestHome() {
       <ContinueLearningCard item={starterLesson} firstLesson preview href="/home?view=lesson" />
       <nav className="home-action-grid" aria-label="Learning shortcuts">{actions.map(({ label, href }) => <Link key={label} href={href} className="home-action-tile"><strong>{label}</strong></Link>)}</nav>
     </div><aside className="compact-home-aside" aria-label="Sample courses"><SampleCourses compact /><section className="study-note"><h2>Save your progress</h2><p className="mt-2 text-sm text-ink-muted">Create an account to access your courses, earn XP and join battles.</p><Button asChild size="sm" className="mt-3"><Link href="/sign-up">Create account</Link></Button></section></aside></div>
+    <UniversityCourseSamples />
   </div>;
 }
 

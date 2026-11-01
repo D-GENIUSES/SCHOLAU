@@ -1,6 +1,6 @@
 # Shared Computing Sciences first year
 
-36 new requirements across Cybersecurity and Software Engineering, both semesters. Each programme has 10 first-semester courses (19 listed units, eight required courses) and eight second-semester courses (17 listed units, seven required courses). All 18 existing Computer Science course identities and metadata are reused. Chemistry, Biology and second-semester Probability remain E status and are not automatically assigned; zero-unit seminars remain required. No learning content is created.
+36 new requirements across Cybersecurity and Software Engineering, both semesters. Each programme has 10 first-semester courses (19 listed units, eight required courses) and eight second-semester courses (17 listed units, seven required courses). All 18 existing Computing Sciences course identities and metadata are reused. Chemistry, Biology and second-semester Probability remain E status and are not automatically assigned; zero-unit seminars remain required. No learning content is created.
 
 Basis: user requested both programmes and confirmed CYB takes the listed sciences, with later corrections allowed. SEN is explicitly provisional using the same shared first-year list, rather than claiming a separately supplied handbook table. CYB maths is MTH 101 (100 first semester), MTH 102 (100 second semester) and existing MTH 201 (200 first semester); no MTH 202 is added.
 

@@ -7,7 +7,7 @@
   "session": "2026/2027",
   "groups": [
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 100,
       "semester": 1,
       "printed_total_units": 19,
@@ -110,7 +110,7 @@
       "required_courses": 8
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 100,
       "semester": 2,
       "printed_total_units": 17,
@@ -195,7 +195,7 @@
       "required_courses": 7
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 200,
       "semester": 1,
       "printed_total_units": 21,
@@ -298,7 +298,7 @@
       "required_courses": 10
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 200,
       "semester": 2,
       "printed_total_units": 19,
@@ -392,7 +392,7 @@
       "required_courses": 9
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 300,
       "semester": 1,
       "printed_total_units": 18,
@@ -483,7 +483,7 @@
       "required_courses": 5
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 300,
       "semester": 2,
       "printed_total_units": 18,
@@ -559,7 +559,7 @@
       "required_courses": 7
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 400,
       "semester": 1,
       "printed_total_units": 18,
@@ -649,7 +649,7 @@
       "required_courses": 6
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 400,
       "semester": 2,
       "printed_total_units": 17,
@@ -657,7 +657,7 @@
         {
           "source_code": "CSC 402",
           "code": "CSC 402",
-          "title": "Ethics and Legal Issues in Computer Science",
+          "title": "Ethics and Legal Issues in Computing Sciences",
           "units": 2,
           "status": "C",
           "lecture_hours": 30,
@@ -1734,7 +1734,7 @@
   "pending": [
     "100 Level Cybersecurity and Software Engineering not supplied",
     "COS 203 source code retains canonical CSC 203 pending confirmation",
-    "Computer Science 300 CYB 305 lecture hours remain unknown",
+    "Computing Sciences 300 CYB 305 lecture hours remain unknown",
     "Software Engineering 400 COS 409 practical hours conflict: 0 and 45",
     "Direct-entry GES additions unspecified"
   ]

@@ -2,7 +2,7 @@
   "session": "2026/2027",
   "groups": [
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 100,
       "semester": 1,
       "printed_total_units": 19,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 100,
       "semester": 2,
       "printed_total_units": 17,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 200,
       "semester": 1,
       "printed_total_units": 21,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 200,
       "semester": 2,
       "printed_total_units": 19,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 300,
       "semester": 1,
       "printed_total_units": 18,
@@ -458,7 +458,7 @@
       ]
     },
     {
-      "programme": "Computer Science",
+      "programme": "Computing Sciences",
       "level": 300,
       "semester": 2,
       "printed_total_units": 18,
@@ -1188,7 +1188,7 @@
     }
   ],
   "notes": [
-    "100-level page belongs to the Computer Science sequence (pages 19-21). It is not copied to other programmes.",
+    "100-level page belongs to the Computing Sciences sequence (pages 19-21). It is not copied to other programmes.",
     "CSC 203 remains the existing canonical code; handbook COS 203 is recorded as the source code as confirmed by the user.",
     "Cropped 400-level tables and unspecified direct-entry GES additions are not imported."
   ]

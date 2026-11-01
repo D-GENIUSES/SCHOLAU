@@ -1,5 +1,4 @@
 import type { LessonBlock } from "../domain";
-import type { IngestionQuestion } from "./types";
 
 const PARAGRAPH_MAX = 600;
 
@@ -38,7 +37,7 @@ export function validateTeachingLessonBlocks(
 
   for (let i = 0; i < blocks.length; i += 1) {
     const block = blocks[i];
-    if (block.type !== "paragraph" || block.text.length <= PARAGRAPH_MAX) continue;
+    if (!block || block.type !== "paragraph" || block.text.length <= PARAGRAPH_MAX) continue;
     const next = blocks[i + 1];
     const splitFollows = next && (next.type === "list" || next.type === "equation" || next.type === "worked_example");
     if (!splitFollows) {
@@ -49,10 +48,16 @@ export function validateTeachingLessonBlocks(
   return errors;
 }
 
-export function validateIngestionBattleQuestions(questions: IngestionQuestion[]): string[] {
+type BattleQuestionCheck = {
+  answer_format?: string;
+  correct_option?: string;
+  options?: readonly { label: string; steps?: readonly string[] | undefined }[] | undefined;
+};
+
+export function validateIngestionBattleQuestions(questions: readonly BattleQuestionCheck[]): string[] {
   const errors: string[] = [];
   questions.forEach((q, i) => {
-    if (q.answer_format !== "worked_solution" || !("options" in q)) return;
+    if (q.answer_format !== "worked_solution" || !q.options) return;
     const correct = q.correct_option?.toUpperCase();
     const correctOpt = q.options.find((o) => o.label.toUpperCase() === correct);
     if (!correctOpt?.steps?.length) {

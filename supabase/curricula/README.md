@@ -2,7 +2,7 @@
 
 Source: the three user-provided screenshots saved in `sources/`. Academic session 2026/2027 was confirmed by the user. The transcript is in `adeleke-200-first-semester.json`.
 
-11 distinct courses are shared across 28 programme requirements: Computer Science has 10 courses/21 units; Cybersecurity 9 courses/19 units; Software Engineering 9 courses/19 units. Units and status codes C/R are copied exactly; they have not been reinterpreted. The programme grouping uses Computing Sciences for onboarding.
+11 distinct courses are shared across 28 programme requirements: Computing Sciences has 10 courses/21 units; Cybersecurity 9 courses/19 units; Software Engineering 9 courses/19 units. Units and status codes C/R are copied exactly; they have not been reinterpreted. The programme grouping uses Computing Sciences for onboarding.
 
 Migration `20261015000200_adeleke_course_curriculum.sql` creates the university hierarchy, a 200 Level option, the 2026/2027 academic session, its First semester, reusable curriculum requirements, and published course offerings. No calendar dates were provided; academic period dates may remain null until supplied. Both dates must be entered together and the existing end-after-start validation remains in effect.
 

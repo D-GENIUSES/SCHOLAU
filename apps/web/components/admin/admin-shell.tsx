@@ -58,6 +58,7 @@ export const adminNavGroups: readonly { label: string; items: readonly AdminNavI
     items: [
       { href: "/admin/announcements", label: "Announcements", shortLabel: "Announce", icon: Megaphone },
       { href: "/admin/reports", label: "Reports", icon: Flag },
+      { href: "/admin/gaps", label: "Topic gaps", shortLabel: "Gaps", icon: Flag },
       { href: "/admin/battles", label: "Battles", icon: Swords },
     ],
   },

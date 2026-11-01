@@ -54,15 +54,18 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
 
   useEffect(() => {
     if (!incoming) return;
-    setBubble(incoming);
-    const timer = window.setTimeout(() => setBubble(null), 2600);
-    return () => window.clearTimeout(timer);
+    const show = window.setTimeout(() => setBubble(incoming), 0);
+    const hide = window.setTimeout(() => setBubble(null), 2600);
+    return () => {
+      window.clearTimeout(show);
+      window.clearTimeout(hide);
+    };
   }, [incoming]);
 
   useEffect(() => {
     if (!bubble || !opponentId) {
-      setBubbleStyle(undefined);
-      return;
+      const clear = window.setTimeout(() => setBubbleStyle(undefined), 0);
+      return () => window.clearTimeout(clear);
     }
     const anchorId = `battle-player-${opponentId}`;
     const place = () => setBubbleStyle(positionBubble(anchorId));

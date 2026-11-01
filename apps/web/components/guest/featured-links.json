@@ -1,0 +1,16 @@
+[
+  {
+    "href": "/courses/sta-111/topic-07",
+    "code": "STA 111",
+    "title": "Arithmetic, harmonic and geometric means",
+    "lessons": 2,
+    "questions": 13
+  },
+  {
+    "href": "/courses/bio-101/introduction-to-biology",
+    "code": "BIO 101",
+    "title": "Introduction to Biology",
+    "lessons": 2,
+    "questions": 10
+  }
+]
