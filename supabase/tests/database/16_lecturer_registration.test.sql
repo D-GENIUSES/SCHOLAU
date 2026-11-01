@@ -6,7 +6,7 @@ create function pg_temp.registration_user(p_lecturer boolean,p_verified boolean 
 declare v uuid:=gen_random_uuid(); begin
   insert into auth.users(instance_id,id,aud,role,email,email_confirmed_at,raw_user_meta_data,created_at,updated_at)
   values('00000000-0000-0000-0000-000000000000',v,'authenticated','authenticated',v::text||'@test.local',case when p_verified then now() else null end,
-    jsonb_build_object('display_name','Registration test','role','admin','signup_kind',case when p_lecturer then 'lecturer' else 'student' end,'lecturer_application',jsonb_build_object('full_name','Dr. Registration Test','university','Adeleke University','faculty','Science','department','Computing Sciences','position','Lecturer','requested_courses','CSC 201','institutional_profile_url','https://example.edu/staff/test','verification_note','Staff directory reference')),now(),now());
+    jsonb_build_object('display_name','Registration test','role','admin','signup_kind',case when p_lecturer then 'lecturer' else 'student' end,'lecturer_application',jsonb_build_object('full_name','Dr. Registration Test','university','Adeleke University','faculty','Science','department','Computer Science','position','Lecturer','requested_courses','CSC 201','institutional_profile_url','https://example.edu/staff/test','verification_note','Staff directory reference')),now(),now());
   return v;
 end $$;
 create function pg_temp.login(p_user uuid) returns void language plpgsql as $$ begin

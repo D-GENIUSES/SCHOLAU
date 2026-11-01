@@ -78,7 +78,7 @@ insert into public.faculties (id, university_id, name) values
 on conflict do nothing;
 insert into public.departments (id, university_id, faculty_id, name) values
   ('10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002', 'Cybersecurity (fixture)'),
-  ('10000000-0000-4000-8000-000000000013', '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002', 'Computing Sciences (fixture)')
+  ('10000000-0000-4000-8000-000000000013', '10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002', 'Computer Science (fixture)')
 on conflict do nothing;
 insert into public.levels (id, university_id, label, sort_order) values
   ('10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000001', '100 Level', 1),
