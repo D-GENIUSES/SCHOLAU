@@ -4,14 +4,13 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useHomeSummary, useMyLiveBattle } from "@scholau/api/react";
-import { FriendsPanel } from "@/components/battle/friends-panel";
 import { InvitationsPanel } from "@/components/battle/invitations-panel";
 import { BattleHistory } from "@/components/battle/battle-history";
 import { LiveResumeCard } from "@/components/battle/live-resume-card";
 import { BattleRulesCard } from "@/components/battle/rules-card";
 import { BattleStartPanel } from "@/components/battle/start-panel";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import "@/components/battle/battle-lobby.css";
 import { EmptyState, ErrorState, LoadingState } from "@/components/ui/states";
 
@@ -57,12 +56,15 @@ function Lobby() {
               }
             />
           ) : (
-            <BattleStartPanel courses={home.data.enrolled_courses} initialOfferingId={params.get("offering")} />
+            <BattleStartPanel courses={home.data.enrolled_courses} initialOfferingId={params.get("offering")} initialFriendId={params.get("friend")} />
           )}
         </div>
         <BattleRulesCard />
       </div>
-      <details className="battle-friends-disclosure"><summary className="battle-friends-summary"><span><strong>Friends and requests</strong></span><ChevronDown className="battle-disclosure-chevron" size={18} aria-hidden /></summary><div className="pt-3"><FriendsPanel /></div></details>
+      <Link href="/social" className="battle-friends-summary rounded-2xl border border-[#c9ddfa] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[5px] focus-visible:outline-brand-primary">
+        <span><strong>Manage friends</strong><small>Find classmates and respond to requests on Social.</small></span>
+        <ChevronRight className="battle-disclosure-chevron" size={18} aria-hidden />
+      </Link>
       <BattleHistory />
     </div>
   );

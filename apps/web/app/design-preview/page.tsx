@@ -11,6 +11,7 @@ import type { HomeSummary } from "@scholau/api";
 import { FirstLessonPreview } from "@/components/lesson/first-lesson-preview";
 import { HomeDashboard } from "@/components/home/home-dashboard";
 import { ShellFrame } from "@/components/shell/shell-frame";
+import { Button } from "@/components/ui/button";
 import { LeaderboardPreview } from "@/components/leaderboard/leaderboard-preview";
 import { LessonListPreview } from "@/components/lesson/lesson-list-preview";
 
@@ -27,10 +28,12 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "social") {
     return (
       <ShellFrame pathname="/social" displayName="Learner">
-        <div className="home-welcome">
-          <div>
-            <h1>Social</h1>
-            <p>We&apos;re building something new here.</p>
+        <div className="account-prompt">
+          <h1>Social</h1>
+          <p>Sign in to find classmates and manage your friends.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild><Link href="/sign-in?next=%2Fsocial">Sign in</Link></Button>
+            <Button asChild variant="outline"><Link href="/sign-up">Create account</Link></Button>
           </div>
         </div>
       </ShellFrame>

@@ -77,10 +77,13 @@ export function ProfileFriends() {
             <div className="py-2">
               <p className="font-semibold">No friends yet</p>
               <p className="mt-1 text-sm text-ink-muted">Find classmates and send a friend request from their profile.</p>
-              <Button asChild variant="link" className="mt-3"><Link href="/people">Find people</Link></Button>
+              <div className="mt-3 flex flex-wrap gap-4">
+                <Button asChild variant="link"><Link href="/people">Find people</Link></Button>
+                <Button asChild variant="link"><Link href="/social">Open Social</Link></Button>
+              </div>
             </div>
           )}
-          {accepted.length ? <Button asChild variant="link" className="mt-4"><Link href="/people">Find people</Link></Button> : null}
+          {accepted.length ? <div className="mt-4 flex flex-wrap gap-4"><Button asChild variant="link"><Link href="/people">Find people</Link></Button><Button asChild variant="link"><Link href="/social">Open Social</Link></Button></div> : null}
         </CardContent>
       </Card>
     </div>

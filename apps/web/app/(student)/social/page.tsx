@@ -1,10 +1,8 @@
-import { PageHeader } from "@/components/ui/misc";
+import type { Metadata } from "next";
+import { SocialHub } from "@/components/social/social-hub";
+
+export const metadata: Metadata = { title: "Social" };
 
 export default function SocialPage() {
-  return (
-    <>
-      <PageHeader title="Social" description="We're building something new here." />
-      <p className="text-sm text-ink-muted">Courses and lessons are on Home.</p>
-    </>
-  );
+  return <SocialHub />;
 }

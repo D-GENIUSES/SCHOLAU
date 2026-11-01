@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import type { FriendPerson, HomeSummary } from "@scholau/api";
 import { useBattleSetup, useCreateDirectBattle, useFriends, useJoinQueue, useSearchFriends } from "@scholau/api/react";
@@ -15,10 +15,19 @@ import { OpponentPickerOption, opponentBattleBusyLabel } from "./opponent-picker
 import "./battle-lobby.css";
 
 type EnrolledCourse = HomeSummary["enrolled_courses"][number];
-export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCourse[]; initialOfferingId: string | null }) {
+
+function challengeFriend(people: FriendPerson[] | undefined, friendId: string | null | undefined) {
+  if (!friendId || !people) return null;
+  return people.find((person) => person.user_id === friendId && person.state === "accepted" && !person.battle_busy) ?? null;
+}
+
+export function BattleStartPanel({ initialOfferingId, initialFriendId }: { courses: EnrolledCourse[]; initialOfferingId: string | null; initialFriendId?: string | null }) {
   const router = useRouter();
-  const [mode, setMode] = useState<"random" | "direct">("random");
-  const [opponent, setOpponent] = useState<FriendPerson | null>(null);
+  const friends = useFriends();
+  const preset = challengeFriend(friends.data?.people, initialFriendId);
+  const appliedFriendId = useRef<string | null>(preset ? initialFriendId ?? null : null);
+  const [mode, setMode] = useState<"random" | "direct">(preset ? "direct" : "random");
+  const [opponent, setOpponent] = useState<FriendPerson | null>(preset);
   const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
   const normalizedInput = input.trim().replace(/^@/, "");
@@ -28,7 +37,14 @@ export function BattleStartPanel({ initialOfferingId }: { courses: EnrolledCours
   }, [normalizedInput]);
   const [chosen, setChosen] = useState<string[] | null>(null);
   const [questionCount, setQuestionCount] = useState(10);
-  const friends = useFriends();
+  useEffect(() => {
+    if (!initialFriendId || appliedFriendId.current === initialFriendId || !friends.isSuccess) return;
+    appliedFriendId.current = initialFriendId;
+    const person = challengeFriend(friends.data.people, initialFriendId);
+    if (!person) return;
+    setMode("direct");
+    setOpponent(person);
+  }, [initialFriendId, friends.isSuccess, friends.data]);
   const search = useSearchFriends(query);
   const setup = useBattleSetup();
   const shared = useBattleSetup(mode === "direct" ? opponent?.user_id : null);

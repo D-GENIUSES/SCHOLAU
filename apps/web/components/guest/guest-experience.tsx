@@ -27,14 +27,7 @@ export function GuestExperience() {
 
   switch (view) {
     case "home": content = <GuestHome />; break;
-    case "social":
-      content = (
-        <>
-          <GuestHeader title="Social" description="We're building something new here." />
-          <p className="text-sm text-ink-muted">Courses and lessons are on Home.</p>
-        </>
-      );
-      break;
+    case "social": content = <AccountPrompt title="Social" description="Sign in to find classmates and manage your friends." next="/social" />; break;
     case "lesson": content = <GuestLesson />; break;
     case "practice": content = <MaterialQuiz />; break;
     case "battles": content = <GuestBattles />; break;

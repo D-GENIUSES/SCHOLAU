@@ -33,7 +33,7 @@ export function NavHomeIcon({ className, ...props }: NavIconProps) {
   );
 }
 
-/** People — Social tab (placeholder until product is defined). */
+/** People — Social tab. */
 export function NavSocialIcon({ className, ...props }: NavIconProps) {
   return (
     <svg {...iconProps(className, props)}>
