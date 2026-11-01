@@ -80,7 +80,7 @@ select throws_ok($$select public.enroll_course_v1('20000000-0000-4000-8000-00000
 select is((public.set_academic_profile_v1('10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
   '10000000-0000-4000-8000-000000000013', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',
   '10000000-0000-4000-8000-000000000006', gen_random_uuid())) -> 'academic' -> 'department' ->> 'name',
-  'Computer Science (fixture)', 'first self change in period allowed');
+  'Computing Sciences (fixture)', 'first self change in period allowed');
 select is((select count(*)::integer from public.enrollments where ended_at is null and offering_id='20000000-0000-4000-8000-000000000002'), 0, 'profile change ends out-of-scope enrollment');
 select throws_ok($$select public.set_academic_profile_v1('10000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000002',
   '10000000-0000-4000-8000-000000000003', '10000000-0000-4000-8000-000000000004', '10000000-0000-4000-8000-000000000005',

@@ -16,7 +16,7 @@ select set_config('t.faculty',(select id::text from public.faculties where unive
 select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
 select set_config('t.semester',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;
 select set_config('t.level',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='200 Level'),true) is not null as setup;
-select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computer Science'),true) is not null as setup;
+select set_config('t.cs',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Computing Sciences'),true) is not null as setup;
 select set_config('t.cyber',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Cybersecurity'),true) is not null as setup;
 select set_config('t.se',(select id::text from public.departments where faculty_id=current_setting('t.faculty')::uuid and name='Software Engineering'),true) is not null as setup;
 select is((select count(*)::integer from public.curriculum_courses cc join public.levels l on l.id=cc.level_id where l.label='200 Level' and cc.semester_number=1),28,'28 programme course entries imported');
