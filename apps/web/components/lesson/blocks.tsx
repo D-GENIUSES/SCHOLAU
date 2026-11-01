@@ -9,6 +9,7 @@ import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { LessonBlock } from "@scholau/core";
 import { Skeleton } from "@/components/ui/misc";
+import { shuffleIndexedChoices } from "@/lib/shuffle-options";
 import { cn } from "@/lib/utils";
 
 type CalloutTone = NonNullable<Extract<LessonBlock, { type: "callout" }>["tone"]>;
@@ -91,14 +92,15 @@ function Block({ block }: { block: LessonBlock }) {
 
 function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "checkpoint" }> }) {
   const id = useId();
+  const [shuffled] = useState(() => shuffleIndexedChoices(block.options, block.correct_index));
   const [selected, setSelected] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
-  const correct = selected === block.correct_index;
+  const correct = selected === shuffled.correctIndex;
   return <div className="rounded-control border border-line bg-surface-page p-5">
     <fieldset disabled={checked} aria-describedby={`${id}-note`}>
       <legend className="mb-3 font-bold">Check your understanding: <MathText text={block.question} /></legend>
       <div className="flex flex-col gap-2">
-        {block.options.map((option, index) => <label key={index} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-control border border-line bg-surface-card p-3">
+        {shuffled.options.map((option, index) => <label key={index} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-control border border-line bg-surface-card p-3">
           <input type="radio" name={id} checked={selected === index} onChange={() => setSelected(index)} />
           <span><MathText text={option} /></span>
         </label>)}
@@ -109,7 +111,7 @@ function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "chec
     <div aria-live="polite" role="status" className="mt-3">
       {checked ? <><p className="font-bold">{correct ? "Correct." : "Not quite."}</p>
         <p className="mt-2"><MathText text={block.explanation} /></p>
-        {!correct ? <><p className="mt-2">Correct answer: <MathText text={block.options[block.correct_index] ?? "Unavailable"} /></p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
+        {!correct ? <><p className="mt-2">Correct answer: <MathText text={shuffled.options[shuffled.correctIndex] ?? "Unavailable"} /></p><Button className="mt-3" variant="outline" onClick={() => { setSelected(null); setChecked(false); }}>Try again</Button></> : null}
       </> : null}
     </div>
   </div>;

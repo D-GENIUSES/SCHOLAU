@@ -11,22 +11,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Rocks and minerals"
-      },
-      {
-        "label": "B",
-        "body": "Life"
-      },
-      {
-        "label": "C",
         "body": "Only human disease"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "The weather"
+      },
+      {
+        "label": "C",
+        "body": "Life"
+      },
+      {
+        "label": "D",
+        "body": "Rocks and minerals"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "The notes define biology as the scientific study of life, from cells to ecosystems.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -43,22 +43,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Rocks and minerals"
-      },
-      {
-        "label": "B",
         "body": "Life"
       },
       {
+        "label": "B",
+        "body": "The weather"
+      },
+      {
         "label": "C",
-        "body": "Only human disease"
+        "body": "Rocks and minerals"
       },
       {
         "label": "D",
-        "body": "The weather"
+        "body": "Only human disease"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "The notes define biology as the scientific study of life, from cells to ecosystems.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -79,22 +79,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Linnaeus"
-      },
-      {
-        "label": "B",
         "body": "Darwin"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Aristotle"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Harvey"
+      },
+      {
+        "label": "D",
+        "body": "Linnaeus"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Aristotle made an early classification of animals from what he could observe.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -115,7 +115,7 @@
       },
       {
         "label": "B",
-        "body": "Darwin"
+        "body": "Harvey"
       },
       {
         "label": "C",
@@ -123,7 +123,7 @@
       },
       {
         "label": "D",
-        "body": "Harvey"
+        "body": "Darwin"
       }
     ],
     "correct_option": "C",
@@ -147,7 +147,7 @@
     "options": [
       {
         "label": "A",
-        "body": "The naming of cells"
+        "body": "The structure of DNA"
       },
       {
         "label": "B",
@@ -155,7 +155,7 @@
       },
       {
         "label": "C",
-        "body": "The structure of DNA"
+        "body": "The naming of cells"
       },
       {
         "label": "D",
@@ -179,22 +179,22 @@
     "options": [
       {
         "label": "A",
-        "body": "The naming of cells"
-      },
-      {
-        "label": "B",
-        "body": "Blood circulation"
-      },
-      {
-        "label": "C",
         "body": "The structure of DNA"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Natural selection"
+      },
+      {
+        "label": "C",
+        "body": "Blood circulation"
+      },
+      {
+        "label": "D",
+        "body": "The naming of cells"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Harvey showed that blood circulates through the body.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -215,22 +215,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Aristotle"
-      },
-      {
-        "label": "B",
         "body": "Carolus Linnaeus"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Ibn Sina"
+      },
+      {
+        "label": "C",
+        "body": "Aristotle"
       },
       {
         "label": "D",
         "body": "Vesalius"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Linnaeus built the naming method used in modern classification.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -247,22 +247,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Aristotle"
+        "body": "Vesalius"
       },
       {
         "label": "B",
-        "body": "Carolus Linnaeus"
+        "body": "Aristotle"
       },
       {
         "label": "C",
-        "body": "Ibn Sina"
+        "body": "Carolus Linnaeus"
       },
       {
         "label": "D",
-        "body": "Vesalius"
+        "body": "Ibn Sina"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Linnaeus built the naming method used in modern classification.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -283,22 +283,22 @@
     "options": [
       {
         "label": "A",
-        "body": "The microscope"
-      },
-      {
-        "label": "B",
-        "body": "Evolution by natural selection"
-      },
-      {
-        "label": "C",
         "body": "The cell wall"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Anaerobic respiration"
+      },
+      {
+        "label": "C",
+        "body": "Evolution by natural selection"
+      },
+      {
+        "label": "D",
+        "body": "The microscope"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Darwin explained how species change by natural selection.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -315,22 +315,22 @@
     "options": [
       {
         "label": "A",
-        "body": "The microscope"
-      },
-      {
-        "label": "B",
         "body": "Evolution by natural selection"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "The cell wall"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Anaerobic respiration"
+      },
+      {
+        "label": "D",
+        "body": "The microscope"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Darwin explained how species change by natural selection.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -359,11 +359,11 @@
       },
       {
         "label": "C",
-        "body": "Plant meristems"
+        "body": "Kingdom Fungi"
       },
       {
         "label": "D",
-        "body": "Kingdom Fungi"
+        "body": "Plant meristems"
       }
     ],
     "correct_option": "B",
@@ -419,22 +419,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Animals"
-      },
-      {
-        "label": "B",
         "body": "Fossils only"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Plants"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "The immune system"
+      },
+      {
+        "label": "D",
+        "body": "Animals"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Botany is the plant branch of biology; zoology is animals.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -455,18 +455,18 @@
       },
       {
         "label": "B",
-        "body": "Fossils only"
-      },
-      {
-        "label": "C",
         "body": "Plants"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "The immune system"
+      },
+      {
+        "label": "D",
+        "body": "Fossils only"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Botany is the plant branch of biology; zoology is animals.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -491,7 +491,7 @@
       },
       {
         "label": "B",
-        "body": "Animals"
+        "body": "Weather systems"
       },
       {
         "label": "C",
@@ -499,10 +499,10 @@
       },
       {
         "label": "D",
-        "body": "Weather systems"
+        "body": "Animals"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Zoology covers the animal kingdom.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -519,22 +519,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Plants"
-      },
-      {
-        "label": "B",
         "body": "Animals"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Rocks"
+      },
+      {
+        "label": "C",
+        "body": "Plants"
       },
       {
         "label": "D",
         "body": "Weather systems"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Zoology covers the animal kingdom.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -555,22 +555,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Anatomy"
+        "body": "Immunology"
       },
       {
         "label": "B",
-        "body": "Ecology"
-      },
-      {
-        "label": "C",
         "body": "Paleontology"
       },
       {
+        "label": "C",
+        "body": "Anatomy"
+      },
+      {
         "label": "D",
-        "body": "Immunology"
+        "body": "Ecology"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Ecology examines organisms with each other and their surroundings.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -587,22 +587,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Anatomy"
+        "body": "Immunology"
       },
       {
         "label": "B",
-        "body": "Ecology"
-      },
-      {
-        "label": "C",
         "body": "Paleontology"
       },
       {
+        "label": "C",
+        "body": "Anatomy"
+      },
+      {
         "label": "D",
-        "body": "Immunology"
+        "body": "Ecology"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Ecology examines organisms with each other and their surroundings.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -623,22 +623,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only ocean animals"
-      },
-      {
-        "label": "B",
         "body": "How traits are passed on"
       },
       {
+        "label": "B",
+        "body": "Star positions"
+      },
+      {
         "label": "C",
-        "body": "Rock layers"
+        "body": "Only ocean animals"
       },
       {
         "label": "D",
-        "body": "Star positions"
+        "body": "Rock layers"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Genetics studies heredity through genes, DNA, and chromosomes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -691,22 +691,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only whales"
+        "body": "Only flowering plants"
       },
       {
         "label": "B",
-        "body": "Bacteria, archaea, protists and fungi"
+        "body": "Only whales"
       },
       {
         "label": "C",
-        "body": "Only flowering plants"
+        "body": "Bacteria, archaea, protists and fungi"
       },
       {
         "label": "D",
         "body": "The whole solar system"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Microbiology is the world of microorganisms listed in the notes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -723,22 +723,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only whales"
-      },
-      {
-        "label": "B",
         "body": "Bacteria, archaea, protists and fungi"
       },
       {
+        "label": "B",
+        "body": "The whole solar system"
+      },
+      {
         "label": "C",
-        "body": "Only flowering plants"
+        "body": "Only whales"
       },
       {
         "label": "D",
-        "body": "The whole solar system"
+        "body": "Only flowering plants"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Microbiology is the world of microorganisms listed in the notes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -759,7 +759,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Astronomy of black holes"
+        "body": "Civil court procedure"
       },
       {
         "label": "B",
@@ -767,11 +767,11 @@
       },
       {
         "label": "C",
-        "body": "Pure number theory"
+        "body": "Astronomy of black holes"
       },
       {
         "label": "D",
-        "body": "Civil court procedure"
+        "body": "Pure number theory"
       }
     ],
     "correct_option": "B",
@@ -795,18 +795,18 @@
       },
       {
         "label": "B",
-        "body": "Medicine"
+        "body": "Civil court procedure"
       },
       {
         "label": "C",
-        "body": "Pure number theory"
+        "body": "Medicine"
       },
       {
         "label": "D",
-        "body": "Civil court procedure"
+        "body": "Pure number theory"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Medicine is named first among biology career fields, with agriculture, pharmacy and others.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -827,11 +827,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Atoms only"
+        "body": "Cells"
       },
       {
         "label": "B",
-        "body": "Cells"
+        "body": "Atoms only"
       },
       {
         "label": "C",
@@ -842,7 +842,7 @@
         "body": "Sand grains"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Living things are cellular; the cell is the basic unit of life.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -859,7 +859,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Atoms only"
+        "body": "Sand grains"
       },
       {
         "label": "B",
@@ -867,11 +867,11 @@
       },
       {
         "label": "C",
-        "body": "Crystals"
+        "body": "Atoms only"
       },
       {
         "label": "D",
-        "body": "Sand grains"
+        "body": "Crystals"
       }
     ],
     "correct_option": "B",
@@ -895,11 +895,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Flagellum, lysosome and centriole"
+        "body": "Gills, lungs and kidneys"
       },
       {
         "label": "B",
-        "body": "Cell wall, chloroplast and large central vacuole"
+        "body": "Flagellum, lysosome and centriole"
       },
       {
         "label": "C",
@@ -907,10 +907,10 @@
       },
       {
         "label": "D",
-        "body": "Gills, lungs and kidneys"
+        "body": "Cell wall, chloroplast and large central vacuole"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Plant cells have a wall, chloroplasts and a large vacuole.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -935,11 +935,11 @@
       },
       {
         "label": "C",
-        "body": "Nucleoid, pili and capsule"
+        "body": "Gills, lungs and kidneys"
       },
       {
         "label": "D",
-        "body": "Gills, lungs and kidneys"
+        "body": "Nucleoid, pili and capsule"
       }
     ],
     "correct_option": "B",
@@ -971,11 +971,11 @@
       },
       {
         "label": "C",
-        "body": "Death of an organism"
+        "body": "A type of fossil"
       },
       {
         "label": "D",
-        "body": "A type of fossil"
+        "body": "Death of an organism"
       }
     ],
     "correct_option": "B",
@@ -995,22 +995,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Breaking molecules to release energy"
-      },
-      {
-        "label": "B",
-        "body": "Building complex molecules using energy"
-      },
-      {
-        "label": "C",
         "body": "Death of an organism"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "A type of fossil"
+      },
+      {
+        "label": "C",
+        "body": "Breaking molecules to release energy"
+      },
+      {
+        "label": "D",
+        "body": "Building complex molecules using energy"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Anabolism (constructive metabolism) builds complex substances from simpler ones.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1031,7 +1031,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Building proteins for storage"
+        "body": "A kingdom of plants"
       },
       {
         "label": "B",
@@ -1039,7 +1039,7 @@
       },
       {
         "label": "C",
-        "body": "A kingdom of plants"
+        "body": "Building proteins for storage"
       },
       {
         "label": "D",
@@ -1063,22 +1063,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Building proteins for storage"
-      },
-      {
-        "label": "B",
-        "body": "Breaking complex molecules and releasing energy"
-      },
-      {
-        "label": "C",
         "body": "A kingdom of plants"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "A type of chromosome"
+      },
+      {
+        "label": "C",
+        "body": "Breaking complex molecules and releasing energy"
+      },
+      {
+        "label": "D",
+        "body": "Building proteins for storage"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Catabolism is destructive metabolism: complex molecules are broken down, often to release energy.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1103,18 +1103,18 @@
       },
       {
         "label": "B",
-        "body": "Only excretion"
-      },
-      {
-        "label": "C",
         "body": "Anabolism plus catabolism"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "A non-living process"
+      },
+      {
+        "label": "D",
+        "body": "Only excretion"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Metabolism collectively names both anabolic and catabolic processes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1131,22 +1131,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only photosynthesis"
-      },
-      {
-        "label": "B",
-        "body": "Only excretion"
-      },
-      {
-        "label": "C",
         "body": "Anabolism plus catabolism"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "A non-living process"
+      },
+      {
+        "label": "C",
+        "body": "Only photosynthesis"
+      },
+      {
+        "label": "D",
+        "body": "Only excretion"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "Metabolism collectively names both anabolic and catabolic processes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1167,7 +1167,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Heterotrophs"
+        "body": "Omnivores only"
       },
       {
         "label": "B",
@@ -1179,7 +1179,7 @@
       },
       {
         "label": "D",
-        "body": "Omnivores only"
+        "body": "Heterotrophs"
       }
     ],
     "correct_option": "B",
@@ -1199,22 +1199,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Heterotrophs"
+        "body": "Omnivores only"
       },
       {
         "label": "B",
-        "body": "Autotrophs"
-      },
-      {
-        "label": "C",
         "body": "Carnivores only"
       },
       {
+        "label": "C",
+        "body": "Autotrophs"
+      },
+      {
         "label": "D",
-        "body": "Omnivores only"
+        "body": "Heterotrophs"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Autotrophs make their own food, for example green plants by photosynthesis.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1235,22 +1235,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Ethanol"
+        "body": "Cellulose only"
       },
       {
         "label": "B",
-        "body": "Urea"
+        "body": "Ethanol"
       },
       {
         "label": "C",
-        "body": "Glucose"
+        "body": "Urea"
       },
       {
         "label": "D",
-        "body": "Cellulose only"
+        "body": "Glucose"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "Light and chlorophyll convert carbon dioxide and water to glucose and oxygen.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1267,22 +1267,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Ethanol"
-      },
-      {
-        "label": "B",
         "body": "Urea"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Glucose"
+      },
+      {
+        "label": "C",
+        "body": "Ethanol"
       },
       {
         "label": "D",
         "body": "Cellulose only"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Light and chlorophyll convert carbon dioxide and water to glucose and oxygen.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1303,7 +1303,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Needs no light"
+        "body": "Is only chewing of food"
       },
       {
         "label": "B",
@@ -1311,7 +1311,7 @@
       },
       {
         "label": "C",
-        "body": "Is only chewing of food"
+        "body": "Needs no light"
       },
       {
         "label": "D",
@@ -1339,7 +1339,7 @@
       },
       {
         "label": "B",
-        "body": "Absorbs light, splits water and makes reducing power"
+        "body": "Occurs only in mitochondria"
       },
       {
         "label": "C",
@@ -1347,10 +1347,10 @@
       },
       {
         "label": "D",
-        "body": "Occurs only in mitochondria"
+        "body": "Absorbs light, splits water and makes reducing power"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "The light phase needs light: chlorophyll absorbs energy and water is split, producing NADP reducing agent and cellular energy.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1371,22 +1371,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Splits water using light"
-      },
-      {
-        "label": "B",
-        "body": "Fixes carbon dioxide into organic compounds"
-      },
-      {
-        "label": "C",
         "body": "Makes urea in the kidney"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Splits water using light"
+      },
+      {
+        "label": "C",
         "body": "Copies DNA"
+      },
+      {
+        "label": "D",
+        "body": "Fixes carbon dioxide into organic compounds"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "The dark phase does not need light; it uses reducing power from the light phase to fix CO2.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1403,22 +1403,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Splits water using light"
-      },
-      {
-        "label": "B",
         "body": "Fixes carbon dioxide into organic compounds"
       },
       {
+        "label": "B",
+        "body": "Copies DNA"
+      },
+      {
         "label": "C",
-        "body": "Makes urea in the kidney"
+        "body": "Splits water using light"
       },
       {
         "label": "D",
-        "body": "Copies DNA"
+        "body": "Makes urea in the kidney"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "The dark phase does not need light; it uses reducing power from the light phase to fix CO2.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1439,7 +1439,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Sunlight only"
+        "body": "Only animal digestion"
       },
       {
         "label": "B",
@@ -1447,7 +1447,7 @@
       },
       {
         "label": "C",
-        "body": "Only animal digestion"
+        "body": "Sunlight only"
       },
       {
         "label": "D",
@@ -1471,22 +1471,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Sunlight only"
-      },
-      {
-        "label": "B",
         "body": "Chemical energy, not light, to make food"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Only animal digestion"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Wind energy"
+      },
+      {
+        "label": "D",
+        "body": "Sunlight only"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Colourless bacteria can make food from chemical energy such as nitrogen, sulphide or iron compounds.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1507,11 +1507,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Autotrophs"
+        "body": "Consumers (heterotrophs)"
       },
       {
         "label": "B",
-        "body": "Consumers (heterotrophs)"
+        "body": "Fungi"
       },
       {
         "label": "C",
@@ -1519,10 +1519,10 @@
       },
       {
         "label": "D",
-        "body": "Fungi"
+        "body": "Autotrophs"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Heterotrophs must obtain energy by eating; the three consumer types are named in the notes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1547,11 +1547,11 @@
       },
       {
         "label": "C",
-        "body": "Prokaryotes"
+        "body": "Fungi"
       },
       {
         "label": "D",
-        "body": "Fungi"
+        "body": "Prokaryotes"
       }
     ],
     "correct_option": "B",
@@ -1575,22 +1575,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Without oxygen"
-      },
-      {
-        "label": "B",
-        "body": "In the presence of oxygen"
-      },
-      {
-        "label": "C",
         "body": "Only in dead cells"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Only in viruses"
+      },
+      {
+        "label": "C",
+        "body": "In the presence of oxygen"
+      },
+      {
+        "label": "D",
+        "body": "Without oxygen"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Aerobic respiration uses oxygen; glucose plus oxygen yields carbon dioxide, water and ATP.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1607,22 +1607,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Without oxygen"
-      },
-      {
-        "label": "B",
         "body": "In the presence of oxygen"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Only in dead cells"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Only in viruses"
+      },
+      {
+        "label": "D",
+        "body": "Without oxygen"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Aerobic respiration uses oxygen; glucose plus oxygen yields carbon dioxide, water and ATP.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1643,11 +1643,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Only water"
+        "body": "Ethanol, carbon dioxide and energy"
       },
       {
         "label": "B",
-        "body": "Ethanol, carbon dioxide and energy"
+        "body": "DNA"
       },
       {
         "label": "C",
@@ -1655,10 +1655,10 @@
       },
       {
         "label": "D",
-        "body": "DNA"
+        "body": "Only water"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Without oxygen, glucose can form ethanol, CO2 and energy.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1675,22 +1675,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only water"
-      },
-      {
-        "label": "B",
         "body": "Ethanol, carbon dioxide and energy"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Starch only"
+      },
+      {
+        "label": "C",
+        "body": "Only water"
       },
       {
         "label": "D",
         "body": "DNA"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Without oxygen, glucose can form ethanol, CO2 and energy.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1715,18 +1715,18 @@
       },
       {
         "label": "B",
-        "body": "Lungs, gills and body surface"
-      },
-      {
-        "label": "C",
         "body": "Kidneys, liver and skin only"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Roots, stems and fruits"
+      },
+      {
+        "label": "D",
+        "body": "Lungs, gills and body surface"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Mammals use lungs, fish use gills, amoeba uses the body surface.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1743,22 +1743,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Leaves, stomata and xylem"
-      },
-      {
-        "label": "B",
         "body": "Lungs, gills and body surface"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Kidneys, liver and skin only"
+      },
+      {
+        "label": "C",
+        "body": "Leaves, stomata and xylem"
       },
       {
         "label": "D",
         "body": "Roots, stems and fruits"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Mammals use lungs, fish use gills, amoeba uses the body surface.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1783,18 +1783,18 @@
       },
       {
         "label": "B",
-        "body": "Removal of toxic metabolic wastes and excess substances"
-      },
-      {
-        "label": "C",
         "body": "Cell division"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Naming species"
+      },
+      {
+        "label": "D",
+        "body": "Removal of toxic metabolic wastes and excess substances"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Excretion removes toxic materials, metabolic wastes and excess substances.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1811,11 +1811,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Taking in food"
+        "body": "Naming species"
       },
       {
         "label": "B",
-        "body": "Removal of toxic metabolic wastes and excess substances"
+        "body": "Taking in food"
       },
       {
         "label": "C",
@@ -1823,10 +1823,10 @@
       },
       {
         "label": "D",
-        "body": "Naming species"
+        "body": "Removal of toxic metabolic wastes and excess substances"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Excretion removes toxic materials, metabolic wastes and excess substances.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1847,22 +1847,22 @@
     "options": [
       {
         "label": "A",
-        "body": "No parents"
-      },
-      {
-        "label": "B",
-        "body": "Union of male and female cells to form a zygote"
-      },
-      {
-        "label": "C",
         "body": "Only budding"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Only binary fission"
+      },
+      {
+        "label": "C",
+        "body": "Union of male and female cells to form a zygote"
+      },
+      {
+        "label": "D",
+        "body": "No parents"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Sexual reproduction uses gametes that form a zygote.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1879,22 +1879,22 @@
     "options": [
       {
         "label": "A",
-        "body": "No parents"
+        "body": "Only binary fission"
       },
       {
         "label": "B",
-        "body": "Union of male and female cells to form a zygote"
-      },
-      {
-        "label": "C",
         "body": "Only budding"
       },
       {
+        "label": "C",
+        "body": "No parents"
+      },
+      {
         "label": "D",
-        "body": "Only binary fission"
+        "body": "Union of male and female cells to form a zygote"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Sexual reproduction uses gametes that form a zygote.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1915,22 +1915,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only fertilisation"
+        "body": "Pollination only"
       },
       {
         "label": "B",
-        "body": "Binary fission, budding and vegetative propagation"
-      },
-      {
-        "label": "C",
         "body": "Meiosis I only"
       },
       {
+        "label": "C",
+        "body": "Only fertilisation"
+      },
+      {
         "label": "D",
-        "body": "Pollination only"
+        "body": "Binary fission, budding and vegetative propagation"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Asexual reproduction does not use sex cells; fission, budding and vegetative propagation are named.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -1947,7 +1947,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Only fertilisation"
+        "body": "Pollination only"
       },
       {
         "label": "B",
@@ -1959,7 +1959,7 @@
       },
       {
         "label": "D",
-        "body": "Pollination only"
+        "body": "Only fertilisation"
       }
     ],
     "correct_option": "B",
@@ -1983,22 +1983,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Seed germination"
+        "body": "Classification"
       },
       {
         "label": "B",
-        "body": "Biological ageing ending in death"
-      },
-      {
-        "label": "C",
         "body": "Photosynthesis"
       },
       {
+        "label": "C",
+        "body": "Biological ageing ending in death"
+      },
+      {
         "label": "D",
-        "body": "Classification"
+        "body": "Seed germination"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Living things have a lifespan; senescence is biological ageing that ends in death.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2015,22 +2015,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Seed germination"
-      },
-      {
-        "label": "B",
         "body": "Biological ageing ending in death"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Photosynthesis"
+      },
+      {
+        "label": "C",
+        "body": "Seed germination"
       },
       {
         "label": "D",
         "body": "Classification"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Living things have a lifespan; senescence is biological ageing that ends in death.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2051,22 +2051,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Maize plant"
-      },
-      {
-        "label": "B",
         "body": "Insect"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Rock"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Human"
+      },
+      {
+        "label": "D",
+        "body": "Maize plant"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "Rocks, pens, buildings and gadgets are listed as non-living.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2083,22 +2083,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Maize plant"
+        "body": "Human"
       },
       {
         "label": "B",
-        "body": "Insect"
+        "body": "Maize plant"
       },
       {
         "label": "C",
-        "body": "Rock"
+        "body": "Insect"
       },
       {
         "label": "D",
-        "body": "Human"
+        "body": "Rock"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "Rocks, pens, buildings and gadgets are listed as non-living.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2119,22 +2119,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Random page numbers"
+        "body": "Only habitat temperature"
       },
       {
         "label": "B",
-        "body": "Similarities and differences"
-      },
-      {
-        "label": "C",
         "body": "Only colour of fur"
       },
       {
+        "label": "C",
+        "body": "Random page numbers"
+      },
+      {
         "label": "D",
-        "body": "Only habitat temperature"
+        "body": "Similarities and differences"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Classification groups living things by similarities and differences.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2151,11 +2151,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Random page numbers"
+        "body": "Only habitat temperature"
       },
       {
         "label": "B",
-        "body": "Similarities and differences"
+        "body": "Random page numbers"
       },
       {
         "label": "C",
@@ -2163,10 +2163,10 @@
       },
       {
         "label": "D",
-        "body": "Only habitat temperature"
+        "body": "Similarities and differences"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Classification groups living things by similarities and differences.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2187,22 +2187,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Physiology"
-      },
-      {
-        "label": "B",
         "body": "Taxonomy (systematics)"
       },
       {
+        "label": "B",
+        "body": "Physiology"
+      },
+      {
         "label": "C",
-        "body": "Pharmacology"
+        "body": "Forensics"
       },
       {
         "label": "D",
-        "body": "Forensics"
+        "body": "Pharmacology"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Taxonomy or systematics studies the general principles of classification.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2219,22 +2219,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Physiology"
-      },
-      {
-        "label": "B",
         "body": "Taxonomy (systematics)"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Pharmacology"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Forensics"
+      },
+      {
+        "label": "D",
+        "body": "Physiology"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Taxonomy or systematics studies the general principles of classification.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2259,18 +2259,18 @@
       },
       {
         "label": "B",
-        "body": "Phylum"
+        "body": "Species"
       },
       {
         "label": "C",
-        "body": "Family"
+        "body": "Phylum"
       },
       {
         "label": "D",
-        "body": "Species"
+        "body": "Family"
       }
     ],
-    "correct_option": "D",
+    "correct_option": "B",
     "explanation": "Species is the most exact rank; members can mate and produce fertile offspring.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2295,14 +2295,14 @@
       },
       {
         "label": "C",
-        "body": "Family"
+        "body": "Species"
       },
       {
         "label": "D",
-        "body": "Species"
+        "body": "Family"
       }
     ],
-    "correct_option": "D",
+    "correct_option": "C",
     "explanation": "Species is the most exact rank; members can mate and produce fertile offspring.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2323,7 +2323,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Species then genus"
+        "body": "Family then kingdom"
       },
       {
         "label": "B",
@@ -2331,11 +2331,11 @@
       },
       {
         "label": "C",
-        "body": "Family then kingdom"
+        "body": "Order then kingdom"
       },
       {
         "label": "D",
-        "body": "Order then kingdom"
+        "body": "Species then genus"
       }
     ],
     "correct_option": "B",
@@ -2395,7 +2395,7 @@
       },
       {
         "label": "B",
-        "body": "Genus then species"
+        "body": "Class then family"
       },
       {
         "label": "C",
@@ -2403,10 +2403,10 @@
       },
       {
         "label": "D",
-        "body": "Class then family"
+        "body": "Genus then species"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Binomial names use genus first and species second.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2423,22 +2423,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Family and order"
+        "body": "Kingdom then phylum"
       },
       {
         "label": "B",
-        "body": "Genus then species"
+        "body": "Family and order"
       },
       {
         "label": "C",
-        "body": "Kingdom then phylum"
+        "body": "Genus then species"
       },
       {
         "label": "D",
         "body": "Class then family"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Binomial names use genus first and species second.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2463,18 +2463,18 @@
       },
       {
         "label": "B",
-        "body": "Monera, Protista, Fungi, Plantae, Animalia"
+        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
       },
       {
         "label": "C",
-        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
+        "body": "Monera, Protista, Fungi, Plantae, Animalia"
       },
       {
         "label": "D",
         "body": "Root, Stem, Leaf, Flower, Fruit"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Linnaeus is presented as classifying living things into those five kingdoms.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2491,22 +2491,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Virus, Algae, Moss, Fern, Pine"
-      },
-      {
-        "label": "B",
         "body": "Monera, Protista, Fungi, Plantae, Animalia"
       },
       {
+        "label": "B",
+        "body": "Virus, Algae, Moss, Fern, Pine"
+      },
+      {
         "label": "C",
-        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
+        "body": "Root, Stem, Leaf, Flower, Fruit"
       },
       {
         "label": "D",
-        "body": "Root, Stem, Leaf, Flower, Fruit"
+        "body": "Fish, Bird, Mammal, Reptile, Amphibian"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Linnaeus is presented as classifying living things into those five kingdoms.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2531,7 +2531,7 @@
       },
       {
         "label": "B",
-        "body": "Prokaryotic"
+        "body": "Without DNA"
       },
       {
         "label": "C",
@@ -2539,10 +2539,10 @@
       },
       {
         "label": "D",
-        "body": "Without DNA"
+        "body": "Prokaryotic"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Monera are prokaryotes with no nuclear membrane.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2559,7 +2559,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Eukaryotic"
+        "body": "Without DNA"
       },
       {
         "label": "B",
@@ -2567,11 +2567,11 @@
       },
       {
         "label": "C",
-        "body": "Always multicellular"
+        "body": "Eukaryotic"
       },
       {
         "label": "D",
-        "body": "Without DNA"
+        "body": "Always multicellular"
       }
     ],
     "correct_option": "B",
@@ -2595,7 +2595,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Animalia"
+        "body": "Plantae as trees"
       },
       {
         "label": "B",
@@ -2607,7 +2607,7 @@
       },
       {
         "label": "D",
-        "body": "Plantae as trees"
+        "body": "Animalia"
       }
     ],
     "correct_option": "C",
@@ -2627,22 +2627,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Animalia"
-      },
-      {
-        "label": "B",
-        "body": "Fungi"
-      },
-      {
-        "label": "C",
         "body": "Monera (cyanobacteria)"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Plantae as trees"
+      },
+      {
+        "label": "C",
+        "body": "Fungi"
+      },
+      {
+        "label": "D",
+        "body": "Animalia"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "Blue-green algae such as Nostoc and Spirulina are prokaryotes in Monera.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2663,22 +2663,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Mitochondrion"
+        "body": "Chloroplast"
       },
       {
         "label": "B",
-        "body": "Nucleoid"
-      },
-      {
-        "label": "C",
         "body": "Golgi body"
       },
       {
+        "label": "C",
+        "body": "Mitochondrion"
+      },
+      {
         "label": "D",
-        "body": "Chloroplast"
+        "body": "Nucleoid"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Bacterial DNA sits in a nucleoid, not a true nucleus.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2695,22 +2695,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Mitochondrion"
-      },
-      {
-        "label": "B",
         "body": "Nucleoid"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Golgi body"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Chloroplast"
+      },
+      {
+        "label": "D",
+        "body": "Mitochondrion"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Bacterial DNA sits in a nucleoid, not a true nucleus.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2763,22 +2763,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Has chloroplasts"
+        "body": "Has a cellulose wall"
       },
       {
         "label": "B",
-        "body": "Lacks a cell wall"
-      },
-      {
-        "label": "C",
         "body": "Is a mammal"
       },
       {
+        "label": "C",
+        "body": "Lacks a cell wall"
+      },
+      {
         "label": "D",
-        "body": "Has a cellulose wall"
+        "body": "Has chloroplasts"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "The notes say a few bacteria such as Mycoplasma do not have a cell wall.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2799,7 +2799,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Last animals"
+        "body": "Only fungi"
       },
       {
         "label": "B",
@@ -2807,11 +2807,11 @@
       },
       {
         "label": "C",
-        "body": "No nucleus"
+        "body": "Last animals"
       },
       {
         "label": "D",
-        "body": "Only fungi"
+        "body": "No nucleus"
       }
     ],
     "correct_option": "B",
@@ -2831,22 +2831,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Last animals"
+        "body": "Only fungi"
       },
       {
         "label": "B",
-        "body": "The very first"
+        "body": "Last animals"
       },
       {
         "label": "C",
-        "body": "No nucleus"
+        "body": "The very first"
       },
       {
         "label": "D",
-        "body": "Only fungi"
+        "body": "No nucleus"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Protista is from Greek protistos, ‘the very first’.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2867,22 +2867,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Prokaryotic and multicellular trees"
-      },
-      {
-        "label": "B",
         "body": "Eukaryotic and usually unicellular"
       },
       {
+        "label": "B",
+        "body": "Prokaryotic and multicellular trees"
+      },
+      {
         "label": "C",
-        "body": "Viruses"
+        "body": "Rocks"
       },
       {
         "label": "D",
-        "body": "Rocks"
+        "body": "Viruses"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Protists have a nucleus and organelles; most species are unicellular.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2935,22 +2935,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Malaria in birds only"
-      },
-      {
-        "label": "B",
-        "body": "Sleeping sickness in humans"
-      },
-      {
-        "label": "C",
         "body": "Common cold"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Malaria in birds only"
+      },
+      {
+        "label": "C",
         "body": "Scurvy"
+      },
+      {
+        "label": "D",
+        "body": "Sleeping sickness in humans"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Parasitic Trypanosoma protozoa can cause sleeping sickness.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -2967,11 +2967,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Malaria in birds only"
+        "body": "Scurvy"
       },
       {
         "label": "B",
-        "body": "Sleeping sickness in humans"
+        "body": "Malaria in birds only"
       },
       {
         "label": "C",
@@ -2979,10 +2979,10 @@
       },
       {
         "label": "D",
-        "body": "Scurvy"
+        "body": "Sleeping sickness in humans"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Parasitic Trypanosoma protozoa can cause sleeping sickness.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3003,7 +3003,7 @@
     "options": [
       {
         "label": "A",
-        "body": "A prokaryote"
+        "body": "A fungus spore"
       },
       {
         "label": "B",
@@ -3011,11 +3011,11 @@
       },
       {
         "label": "C",
-        "body": "A mammal"
+        "body": "A prokaryote"
       },
       {
         "label": "D",
-        "body": "A fungus spore"
+        "body": "A mammal"
       }
     ],
     "correct_option": "B",
@@ -3035,22 +3035,22 @@
     "options": [
       {
         "label": "A",
-        "body": "A prokaryote"
-      },
-      {
-        "label": "B",
         "body": "A multicellular protist"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "A mammal"
+      },
+      {
+        "label": "C",
+        "body": "A prokaryote"
       },
       {
         "label": "D",
         "body": "A fungus spore"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Most protists are unicellular, but kelp can be huge and multicellular.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3071,11 +3071,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Photosynthetic autotrophs"
+        "body": "Heterotrophs without chlorophyll"
       },
       {
         "label": "B",
-        "body": "Heterotrophs without chlorophyll"
+        "body": "Photosynthetic autotrophs"
       },
       {
         "label": "C",
@@ -3086,7 +3086,7 @@
         "body": "Only carnivores"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Fungi lack chlorophyll and cannot photosynthesise; they are heterotrophs.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3103,22 +3103,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Photosynthetic autotrophs"
-      },
-      {
-        "label": "B",
         "body": "Heterotrophs without chlorophyll"
       },
       {
+        "label": "B",
+        "body": "Only carnivores"
+      },
+      {
         "label": "C",
-        "body": "Chemosynthetic plants"
+        "body": "Photosynthetic autotrophs"
       },
       {
         "label": "D",
-        "body": "Only carnivores"
+        "body": "Chemosynthetic plants"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Fungi lack chlorophyll and cannot photosynthesise; they are heterotrophs.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3139,22 +3139,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Seeds with fruit"
-      },
-      {
-        "label": "B",
-        "body": "Spores"
-      },
-      {
-        "label": "C",
         "body": "Live birth"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Eggs with shells"
+      },
+      {
+        "label": "C",
+        "body": "Seeds with fruit"
+      },
+      {
+        "label": "D",
+        "body": "Spores"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Fungi reproduce by spores, sexually or asexually, and have no embryonic stage.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3171,7 +3171,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Seeds with fruit"
+        "body": "Live birth"
       },
       {
         "label": "B",
@@ -3179,7 +3179,7 @@
       },
       {
         "label": "C",
-        "body": "Live birth"
+        "body": "Seeds with fruit"
       },
       {
         "label": "D",
@@ -3207,22 +3207,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Animal blood"
-      },
-      {
-        "label": "B",
-        "body": "Fungi"
-      },
-      {
-        "label": "C",
         "body": "Granite"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Viruses only"
+      },
+      {
+        "label": "C",
+        "body": "Animal blood"
+      },
+      {
+        "label": "D",
+        "body": "Fungi"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "The notes list biosynthesis of chitin among fungal characteristics.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3243,18 +3243,18 @@
       },
       {
         "label": "B",
-        "body": "Fungi"
+        "body": "Viruses only"
       },
       {
         "label": "C",
-        "body": "Granite"
+        "body": "Fungi"
       },
       {
         "label": "D",
-        "body": "Viruses only"
+        "body": "Granite"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "The notes list biosynthesis of chitin among fungal characteristics.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3283,11 +3283,11 @@
       },
       {
         "label": "C",
-        "body": "Prokaryotic bacteria"
+        "body": "Always unicellular"
       },
       {
         "label": "D",
-        "body": "Always unicellular"
+        "body": "Prokaryotic bacteria"
       }
     ],
     "correct_option": "B",
@@ -3307,22 +3307,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Heterotrophic and wall-less"
-      },
-      {
-        "label": "B",
-        "body": "Eukaryotic, multicellular autotrophs with chlorophyll"
-      },
-      {
-        "label": "C",
         "body": "Prokaryotic bacteria"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Always unicellular"
+      },
+      {
+        "label": "C",
+        "body": "Heterotrophic and wall-less"
+      },
+      {
+        "label": "D",
+        "body": "Eukaryotic, multicellular autotrophs with chlorophyll"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Plants make food with chlorophyll, have cell walls and are multicellular eukaryotes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3343,11 +3343,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Have cellulose walls"
+        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
       },
       {
         "label": "B",
-        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
+        "body": "Have cellulose walls"
       },
       {
         "label": "C",
@@ -3358,7 +3358,7 @@
         "body": "Never move"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Animalia is the largest kingdom; members have no chlorophyll or cell wall and must eat.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3375,22 +3375,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Have cellulose walls"
-      },
-      {
-        "label": "B",
-        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
-      },
-      {
-        "label": "C",
         "body": "Are always prokaryotes"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Have cellulose walls"
+      },
+      {
+        "label": "C",
         "body": "Never move"
+      },
+      {
+        "label": "D",
+        "body": "Lack chlorophyll and a cell wall and are heterotrophic"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Animalia is the largest kingdom; members have no chlorophyll or cell wall and must eat.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3411,11 +3411,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Fungi"
+        "body": "Monera"
       },
       {
         "label": "B",
-        "body": "Monera"
+        "body": "Protista only"
       },
       {
         "label": "C",
@@ -3423,7 +3423,7 @@
       },
       {
         "label": "D",
-        "body": "Protista only"
+        "body": "Fungi"
       }
     ],
     "correct_option": "C",
@@ -3443,22 +3443,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Fungi"
-      },
-      {
-        "label": "B",
-        "body": "Monera"
-      },
-      {
-        "label": "C",
         "body": "Animalia"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Fungi"
+      },
+      {
+        "label": "C",
         "body": "Protista only"
+      },
+      {
+        "label": "D",
+        "body": "Monera"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "Animal phyla named include Porifera through Chordata.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3487,11 +3487,11 @@
       },
       {
         "label": "C",
-        "body": "Mendel"
+        "body": "Darwin"
       },
       {
         "label": "D",
-        "body": "Darwin"
+        "body": "Mendel"
       }
     ],
     "correct_option": "B",
@@ -3511,22 +3511,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Virchow"
-      },
-      {
-        "label": "B",
         "body": "Robert Hooke"
       },
       {
+        "label": "B",
+        "body": "Virchow"
+      },
+      {
         "label": "C",
-        "body": "Mendel"
+        "body": "Darwin"
       },
       {
         "label": "D",
-        "body": "Darwin"
+        "body": "Mendel"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Hooke saw pores in cork, called them cells, and published Micrographia.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3547,7 +3547,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Chromosomes"
+        "body": "Tissues"
       },
       {
         "label": "B",
@@ -3555,7 +3555,7 @@
       },
       {
         "label": "C",
-        "body": "Tissues"
+        "body": "Chromosomes"
       },
       {
         "label": "D",
@@ -3579,11 +3579,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Chromosomes"
+        "body": "Animalcules"
       },
       {
         "label": "B",
-        "body": "Animalcules"
+        "body": "Chromosomes"
       },
       {
         "label": "C",
@@ -3594,7 +3594,7 @@
         "body": "Organs"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "He saw bacteria and protozoa with a simple microscope and called them animalcules.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3615,22 +3615,22 @@
     "options": [
       {
         "label": "A",
-        "body": "animal; plant"
-      },
-      {
-        "label": "B",
         "body": "plant; animal"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "bacterial; viral"
+      },
+      {
+        "label": "C",
+        "body": "animal; plant"
       },
       {
         "label": "D",
         "body": "fungal; algal"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Schleiden worked on plants, Schwann on animals; together they proposed cell theory.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3647,22 +3647,22 @@
     "options": [
       {
         "label": "A",
-        "body": "animal; plant"
+        "body": "fungal; algal"
       },
       {
         "label": "B",
-        "body": "plant; animal"
-      },
-      {
-        "label": "C",
         "body": "bacterial; viral"
       },
       {
+        "label": "C",
+        "body": "animal; plant"
+      },
+      {
         "label": "D",
-        "body": "fungal; algal"
+        "body": "plant; animal"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Schleiden worked on plants, Schwann on animals; together they proposed cell theory.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3683,22 +3683,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Cells crystallise from body fluid"
-      },
-      {
-        "label": "B",
         "body": "All cells come from existing cells"
       },
       {
+        "label": "B",
+        "body": "Cells crystallise from body fluid"
+      },
+      {
         "label": "C",
-        "body": "DNA is protein"
+        "body": "Plants have no cells"
       },
       {
         "label": "D",
-        "body": "Plants have no cells"
+        "body": "DNA is protein"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Virchow corrected earlier ideas: new cells are generated by existing cells.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3715,7 +3715,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Cells crystallise from body fluid"
+        "body": "Plants have no cells"
       },
       {
         "label": "B",
@@ -3723,11 +3723,11 @@
       },
       {
         "label": "C",
-        "body": "DNA is protein"
+        "body": "Cells crystallise from body fluid"
       },
       {
         "label": "D",
-        "body": "Plants have no cells"
+        "body": "DNA is protein"
       }
     ],
     "correct_option": "B",
@@ -3751,22 +3751,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Living things are made of cells"
+        "body": "All cells have chloroplasts"
       },
       {
         "label": "B",
-        "body": "The cell is the smallest unit of a living thing"
-      },
-      {
-        "label": "C",
         "body": "New cells come from pre-existing cells"
       },
       {
+        "label": "C",
+        "body": "The cell is the smallest unit of a living thing"
+      },
+      {
         "label": "D",
-        "body": "All cells have chloroplasts"
+        "body": "Living things are made of cells"
       }
     ],
-    "correct_option": "D",
+    "correct_option": "A",
     "explanation": "The three pillars do not claim every cell has chloroplasts.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3783,7 +3783,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Living things are made of cells"
+        "body": "All cells have chloroplasts"
       },
       {
         "label": "B",
@@ -3795,10 +3795,10 @@
       },
       {
         "label": "D",
-        "body": "All cells have chloroplasts"
+        "body": "Living things are made of cells"
       }
     ],
-    "correct_option": "D",
+    "correct_option": "A",
     "explanation": "The three pillars do not claim every cell has chloroplasts.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3819,22 +3819,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Human"
-      },
-      {
-        "label": "B",
-        "body": "Cat"
-      },
-      {
-        "label": "C",
         "body": "Amoeba"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Spirogyra as a whole plant body of many specialised cells"
+      },
+      {
+        "label": "C",
+        "body": "Human"
+      },
+      {
+        "label": "D",
+        "body": "Cat"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "Amoeba, Paramecium and Chlamydomonas are unicellular examples.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3855,7 +3855,7 @@
       },
       {
         "label": "B",
-        "body": "Cat"
+        "body": "Spirogyra as a whole plant body of many specialised cells"
       },
       {
         "label": "C",
@@ -3863,7 +3863,7 @@
       },
       {
         "label": "D",
-        "body": "Spirogyra as a whole plant body of many specialised cells"
+        "body": "Cat"
       }
     ],
     "correct_option": "C",
@@ -3887,7 +3887,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Bone, blood, fat, hair"
+        "body": "Root, stem, leaf, flower"
       },
       {
         "label": "B",
@@ -3895,11 +3895,11 @@
       },
       {
         "label": "C",
-        "body": "Root, stem, leaf, flower"
+        "body": "Kingdom, phylum, class, order"
       },
       {
         "label": "D",
-        "body": "Kingdom, phylum, class, order"
+        "body": "Bone, blood, fat, hair"
       }
     ],
     "correct_option": "B",
@@ -3919,22 +3919,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Bone, blood, fat, hair"
-      },
-      {
-        "label": "B",
-        "body": "Epithelial, muscle, nervous, connective"
-      },
-      {
-        "label": "C",
         "body": "Root, stem, leaf, flower"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Bone, blood, fat, hair"
+      },
+      {
+        "label": "C",
         "body": "Kingdom, phylum, class, order"
+      },
+      {
+        "label": "D",
+        "body": "Epithelial, muscle, nervous, connective"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Those four tissue types are listed at the tissue level of organisation.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3955,22 +3955,22 @@
     "options": [
       {
         "label": "A",
-        "body": "One molecule"
+        "body": "A whole ecosystem"
       },
       {
         "label": "B",
-        "body": "Two or more tissues performing a particular function"
+        "body": "One molecule"
       },
       {
         "label": "C",
-        "body": "A single cell"
+        "body": "Two or more tissues performing a particular function"
       },
       {
         "label": "D",
-        "body": "A whole ecosystem"
+        "body": "A single cell"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Heart, liver and kidney are given as organs made of tissues.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -3987,22 +3987,22 @@
     "options": [
       {
         "label": "A",
-        "body": "One molecule"
+        "body": "A whole ecosystem"
       },
       {
         "label": "B",
-        "body": "Two or more tissues performing a particular function"
-      },
-      {
-        "label": "C",
         "body": "A single cell"
       },
       {
+        "label": "C",
+        "body": "Two or more tissues performing a particular function"
+      },
+      {
         "label": "D",
-        "body": "A whole ecosystem"
+        "body": "One molecule"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Heart, liver and kidney are given as organs made of tissues.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4023,22 +4023,22 @@
     "options": [
       {
         "label": "A",
-        "body": "True nucleus"
-      },
-      {
-        "label": "B",
         "body": "Before a nucleus"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Always a plant"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Without DNA"
+      },
+      {
+        "label": "D",
+        "body": "True nucleus"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "From Greek: pro = before, karyose = kernel/nucleus.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4059,7 +4059,7 @@
       },
       {
         "label": "B",
-        "body": "Before a nucleus"
+        "body": "Without DNA"
       },
       {
         "label": "C",
@@ -4067,10 +4067,10 @@
       },
       {
         "label": "D",
-        "body": "Without DNA"
+        "body": "Before a nucleus"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "From Greek: pro = before, karyose = kernel/nucleus.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4091,22 +4091,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Nucleus, mitochondria, Golgi, chloroplast"
+        "body": "Cell wall, vacuole, centriole, cilium"
       },
       {
         "label": "B",
-        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
+        "body": "Nucleus, mitochondria, Golgi, chloroplast"
       },
       {
         "label": "C",
-        "body": "Cell wall, vacuole, centriole, cilium"
+        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
       },
       {
         "label": "D",
         "body": "Gills, lungs, kidneys, skin"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Every cell has DNA, a membrane, cytoplasm and ribosomes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4123,11 +4123,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Nucleus, mitochondria, Golgi, chloroplast"
+        "body": "Gills, lungs, kidneys, skin"
       },
       {
         "label": "B",
-        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
+        "body": "Nucleus, mitochondria, Golgi, chloroplast"
       },
       {
         "label": "C",
@@ -4135,10 +4135,10 @@
       },
       {
         "label": "D",
-        "body": "Gills, lungs, kidneys, skin"
+        "body": "DNA, plasma membrane, cytoplasm, ribosomes"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Every cell has DNA, a membrane, cytoplasm and ribosomes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4159,22 +4159,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Linear with histones"
-      },
-      {
-        "label": "B",
-        "body": "Circular, in a nucleoid, often with plasmids"
-      },
-      {
-        "label": "C",
         "body": "Absent"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Linear with histones"
+      },
+      {
+        "label": "C",
         "body": "Only RNA"
+      },
+      {
+        "label": "D",
+        "body": "Circular, in a nucleoid, often with plasmids"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Prokaryotes have one circular DNA molecule plus smaller plasmids; DNA is not in a true nucleus.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4191,7 +4191,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Linear with histones"
+        "body": "Absent"
       },
       {
         "label": "B",
@@ -4199,7 +4199,7 @@
       },
       {
         "label": "C",
-        "body": "Absent"
+        "body": "Linear with histones"
       },
       {
         "label": "D",
@@ -4227,22 +4227,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Always smaller and simpler"
-      },
-      {
-        "label": "B",
-        "body": "Larger and more complex, with membrane organelles"
-      },
-      {
-        "label": "C",
         "body": "Without ribosomes"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Without DNA"
+      },
+      {
+        "label": "C",
+        "body": "Always smaller and simpler"
+      },
+      {
+        "label": "D",
+        "body": "Larger and more complex, with membrane organelles"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Eukaryotes are much larger and more complex, with a true nucleus and organelles.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4259,22 +4259,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Always smaller and simpler"
-      },
-      {
-        "label": "B",
-        "body": "Larger and more complex, with membrane organelles"
-      },
-      {
-        "label": "C",
         "body": "Without ribosomes"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Always smaller and simpler"
+      },
+      {
+        "label": "C",
         "body": "Without DNA"
+      },
+      {
+        "label": "D",
+        "body": "Larger and more complex, with membrane organelles"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Eukaryotes are much larger and more complex, with a true nucleus and organelles.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4295,7 +4295,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Glycogen"
+        "body": "Chitin only"
       },
       {
         "label": "B",
@@ -4303,11 +4303,11 @@
       },
       {
         "label": "C",
-        "body": "Urea"
+        "body": "Glycogen"
       },
       {
         "label": "D",
-        "body": "Chitin only"
+        "body": "Urea"
       }
     ],
     "correct_option": "B",
@@ -4331,7 +4331,7 @@
       },
       {
         "label": "B",
-        "body": "Starch"
+        "body": "Chitin only"
       },
       {
         "label": "C",
@@ -4339,10 +4339,10 @@
       },
       {
         "label": "D",
-        "body": "Chitin only"
+        "body": "Starch"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Reserved food in plant cells is starch; animals store glycogen.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4363,22 +4363,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Always have more centrioles"
+        "body": "Use them as cell walls"
       },
       {
         "label": "B",
-        "body": "Typically lack centrioles"
-      },
-      {
-        "label": "C",
         "body": "Use them as chloroplasts"
       },
       {
+        "label": "C",
+        "body": "Typically lack centrioles"
+      },
+      {
         "label": "D",
-        "body": "Use them as cell walls"
+        "body": "Always have more centrioles"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Centrioles/centrosomes are listed present in animal cells and absent in plant cells.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4399,7 +4399,7 @@
       },
       {
         "label": "B",
-        "body": "Typically lack centrioles"
+        "body": "Use them as cell walls"
       },
       {
         "label": "C",
@@ -4407,10 +4407,10 @@
       },
       {
         "label": "D",
-        "body": "Use them as cell walls"
+        "body": "Typically lack centrioles"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Centrioles/centrosomes are listed present in animal cells and absent in plant cells.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4435,18 +4435,18 @@
       },
       {
         "label": "B",
-        "body": "High water (low solute) to low water (high solute)"
+        "body": "Air into stone"
       },
       {
         "label": "C",
-        "body": "Solute crystals only"
+        "body": "High water (low solute) to low water (high solute)"
       },
       {
         "label": "D",
-        "body": "Air into stone"
+        "body": "Solute crystals only"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Osmosis is passive movement of solvent/water through a partially permeable membrane down the water gradient.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4463,7 +4463,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Low water to high water using ATP pumps only"
+        "body": "Solute crystals only"
       },
       {
         "label": "B",
@@ -4471,7 +4471,7 @@
       },
       {
         "label": "C",
-        "body": "Solute crystals only"
+        "body": "Low water to high water using ATP pumps only"
       },
       {
         "label": "D",
@@ -4499,22 +4499,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Strongly into the cell"
-      },
-      {
-        "label": "B",
         "body": "Strongly out of the cell"
       },
       {
+        "label": "B",
+        "body": "Only through the nucleus"
+      },
+      {
         "label": "C",
-        "body": "None; entry equals exit"
+        "body": "Strongly into the cell"
       },
       {
         "label": "D",
-        "body": "Only through the nucleus"
+        "body": "None; entry equals exit"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "Solute concentrations match, so water in equals water out.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4531,7 +4531,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Strongly into the cell"
+        "body": "None; entry equals exit"
       },
       {
         "label": "B",
@@ -4539,14 +4539,14 @@
       },
       {
         "label": "C",
-        "body": "None; entry equals exit"
+        "body": "Strongly into the cell"
       },
       {
         "label": "D",
         "body": "Only through the nucleus"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "Solute concentrations match, so water in equals water out.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4571,18 +4571,18 @@
       },
       {
         "label": "B",
-        "body": "Water to enter; turgidity or possible lysis"
+        "body": "DNA to leave the cell"
       },
       {
         "label": "C",
-        "body": "No membrane to exist"
+        "body": "Water to enter; turgidity or possible lysis"
       },
       {
         "label": "D",
-        "body": "DNA to leave the cell"
+        "body": "No membrane to exist"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "More water enters. Plant cells become turgid; animal cells may burst.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4599,22 +4599,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Water to leave; plasmolysis"
+        "body": "DNA to leave the cell"
       },
       {
         "label": "B",
-        "body": "Water to enter; turgidity or possible lysis"
-      },
-      {
-        "label": "C",
         "body": "No membrane to exist"
       },
       {
+        "label": "C",
+        "body": "Water to enter; turgidity or possible lysis"
+      },
+      {
         "label": "D",
-        "body": "DNA to leave the cell"
+        "body": "Water to leave; plasmolysis"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "More water enters. Plant cells become turgid; animal cells may burst.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4635,22 +4635,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Turgid"
+        "body": "An autotroph"
       },
       {
         "label": "B",
-        "body": "Flaccid or plasmolysed"
-      },
-      {
-        "label": "C",
         "body": "A bacterium"
       },
       {
+        "label": "C",
+        "body": "Turgid"
+      },
+      {
         "label": "D",
-        "body": "An autotroph"
+        "body": "Flaccid or plasmolysed"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Water leaves; the cell becomes flaccid or undergoes plasmolysis.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4667,22 +4667,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Turgid"
-      },
-      {
-        "label": "B",
         "body": "Flaccid or plasmolysed"
       },
       {
+        "label": "B",
+        "body": "An autotroph"
+      },
+      {
         "label": "C",
-        "body": "A bacterium"
+        "body": "Turgid"
       },
       {
         "label": "D",
-        "body": "An autotroph"
+        "body": "A bacterium"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Water leaves; the cell becomes flaccid or undergoes plasmolysis.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4703,7 +4703,7 @@
     "options": [
       {
         "label": "A",
-        "body": "A strongly hypotonic bath"
+        "body": "Pure concentrated brine only"
       },
       {
         "label": "B",
@@ -4711,11 +4711,11 @@
       },
       {
         "label": "C",
-        "body": "Pure concentrated brine only"
+        "body": "A vacuum"
       },
       {
         "label": "D",
-        "body": "A vacuum"
+        "body": "A strongly hypotonic bath"
       }
     ],
     "correct_option": "B",
@@ -4771,7 +4771,7 @@
     "options": [
       {
         "label": "A",
-        "body": "The pressure required to stop osmosis"
+        "body": "A fungal spore"
       },
       {
         "label": "B",
@@ -4779,14 +4779,14 @@
       },
       {
         "label": "C",
-        "body": "Blood type"
+        "body": "The pressure required to stop osmosis"
       },
       {
         "label": "D",
-        "body": "A fungal spore"
+        "body": "Blood type"
       }
     ],
-    "correct_option": "A",
+    "correct_option": "C",
     "explanation": "It is the minimum pressure that stops solvent transfer by osmosis.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4839,22 +4839,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only through a living kidney"
+        "body": "From low to high using ATP always"
       },
       {
         "label": "B",
-        "body": "From higher to lower concentration until even"
+        "body": "Only through a living kidney"
       },
       {
         "label": "C",
-        "body": "Only of water through a membrane"
+        "body": "From higher to lower concentration until even"
       },
       {
         "label": "D",
-        "body": "From low to high using ATP always"
+        "body": "Only of water through a membrane"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Diffusion equalises concentration in solids, liquids or gases and does not require a membrane.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4871,22 +4871,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only through a living kidney"
-      },
-      {
-        "label": "B",
         "body": "From higher to lower concentration until even"
       },
       {
+        "label": "B",
+        "body": "From low to high using ATP always"
+      },
+      {
         "label": "C",
-        "body": "Only of water through a membrane"
+        "body": "Only through a living kidney"
       },
       {
         "label": "D",
-        "body": "From low to high using ATP always"
+        "body": "Only of water through a membrane"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Diffusion equalises concentration in solids, liquids or gases and does not require a membrane.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -4939,7 +4939,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Active transport that spends ATP"
+        "body": "Chemosynthesis"
       },
       {
         "label": "B",
@@ -4947,11 +4947,11 @@
       },
       {
         "label": "C",
-        "body": "A type of meiosis"
+        "body": "Active transport that spends ATP"
       },
       {
         "label": "D",
-        "body": "Chemosynthesis"
+        "body": "A type of meiosis"
       }
     ],
     "correct_option": "B",
@@ -4979,18 +4979,18 @@
       },
       {
         "label": "B",
-        "body": "A steeper concentration gradient"
-      },
-      {
-        "label": "C",
         "body": "A thicker wall always"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Larger particles always"
+      },
+      {
+        "label": "D",
+        "body": "A steeper concentration gradient"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Temperature, gradient, distance, particle size and membrane type affect rate; a steeper gradient increases rate.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5007,22 +5007,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Lower temperature always"
-      },
-      {
-        "label": "B",
-        "body": "A steeper concentration gradient"
-      },
-      {
-        "label": "C",
         "body": "A thicker wall always"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Larger particles always"
+      },
+      {
+        "label": "C",
+        "body": "Lower temperature always"
+      },
+      {
+        "label": "D",
+        "body": "A steeper concentration gradient"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Temperature, gradient, distance, particle size and membrane type affect rate; a steeper gradient increases rate.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5043,22 +5043,22 @@
     "options": [
       {
         "label": "A",
-        "body": "23"
-      },
-      {
-        "label": "B",
         "body": "46"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "92"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "2"
+      },
+      {
+        "label": "D",
+        "body": "23"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Mitosis copies chromosomes so daughter body cells still have 46.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5075,22 +5075,22 @@
     "options": [
       {
         "label": "A",
-        "body": "23"
-      },
-      {
-        "label": "B",
         "body": "46"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "92"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "2"
+      },
+      {
+        "label": "D",
+        "body": "23"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Mitosis copies chromosomes so daughter body cells still have 46.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5143,22 +5143,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Two identical body cells"
-      },
-      {
-        "label": "B",
-        "body": "Haploid gametes with half the chromosome number"
-      },
-      {
-        "label": "C",
         "body": "Only cell walls"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Two identical body cells"
+      },
+      {
+        "label": "C",
         "body": "Starch grains"
+      },
+      {
+        "label": "D",
+        "body": "Haploid gametes with half the chromosome number"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Meiosis is a two-step process that forms egg and sperm; humans go from 46 to 23.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5211,22 +5211,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Anaphase"
-      },
-      {
-        "label": "B",
         "body": "S phase"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Cytokinesis only"
+      },
+      {
+        "label": "C",
+        "body": "Anaphase"
       },
       {
         "label": "D",
         "body": "Telophase only"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "S (synthesis) is when chromosomes/DNA are replicated.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5247,11 +5247,11 @@
     "options": [
       {
         "label": "A",
-        "body": "G1 + S + G2"
+        "body": "Only anaphase"
       },
       {
         "label": "B",
-        "body": "Only anaphase"
+        "body": "Fertilisation"
       },
       {
         "label": "C",
@@ -5259,10 +5259,10 @@
       },
       {
         "label": "D",
-        "body": "Fertilisation"
+        "body": "G1 + S + G2"
       }
     ],
-    "correct_option": "A",
+    "correct_option": "D",
     "explanation": "Interphase is the long period of growth and DNA copying between mitotic divisions.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5279,22 +5279,22 @@
     "options": [
       {
         "label": "A",
-        "body": "G1 + S + G2"
+        "body": "Fertilisation"
       },
       {
         "label": "B",
-        "body": "Only anaphase"
+        "body": "G1 + S + G2"
       },
       {
         "label": "C",
-        "body": "Only cytokinesis"
+        "body": "Only anaphase"
       },
       {
         "label": "D",
-        "body": "Fertilisation"
+        "body": "Only cytokinesis"
       }
     ],
-    "correct_option": "A",
+    "correct_option": "B",
     "explanation": "Interphase is the long period of growth and DNA copying between mitotic divisions.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5315,22 +5315,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Prophase"
+        "body": "G1"
       },
       {
         "label": "B",
-        "body": "Metaphase"
-      },
-      {
-        "label": "C",
         "body": "Anaphase"
       },
       {
+        "label": "C",
+        "body": "Metaphase"
+      },
+      {
         "label": "D",
-        "body": "G1"
+        "body": "Prophase"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Metaphase aligns chromosomes on the metaphase plate.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5351,18 +5351,18 @@
       },
       {
         "label": "B",
-        "body": "Metaphase"
-      },
-      {
-        "label": "C",
         "body": "Anaphase"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "G1"
+      },
+      {
+        "label": "D",
+        "body": "Metaphase"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Metaphase aligns chromosomes on the metaphase plate.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5383,7 +5383,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Prophase"
+        "body": "G2"
       },
       {
         "label": "B",
@@ -5395,7 +5395,7 @@
       },
       {
         "label": "D",
-        "body": "G2"
+        "body": "Prophase"
       }
     ],
     "correct_option": "C",
@@ -5423,14 +5423,14 @@
       },
       {
         "label": "C",
-        "body": "Anaphase"
+        "body": "G2"
       },
       {
         "label": "D",
-        "body": "G2"
+        "body": "Anaphase"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "Anaphase is the short stage when sisters are pulled to opposite poles.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5455,18 +5455,18 @@
       },
       {
         "label": "B",
-        "body": "Cell plate"
+        "body": "Nucleoid"
       },
       {
         "label": "C",
-        "body": "Nucleoid"
+        "body": "Cell plate"
       },
       {
         "label": "D",
         "body": "Plasmid"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Plants build a cell plate; animals constrict the cytoplasm.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5487,18 +5487,18 @@
       },
       {
         "label": "B",
-        "body": "Cell plate"
-      },
-      {
-        "label": "C",
         "body": "Nucleoid"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Plasmid"
+      },
+      {
+        "label": "D",
+        "body": "Cell plate"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Plants build a cell plate; animals constrict the cytoplasm.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5519,22 +5519,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Prophase of mitosis"
-      },
-      {
-        "label": "B",
-        "body": "Prophase I of meiosis"
-      },
-      {
-        "label": "C",
         "body": "G0"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "S phase of bacteria only"
+      },
+      {
+        "label": "C",
+        "body": "Prophase of mitosis"
+      },
+      {
+        "label": "D",
+        "body": "Prophase I of meiosis"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Homologues pair and exchange DNA at chiasmata in prophase I.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5551,7 +5551,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Prophase of mitosis"
+        "body": "G0"
       },
       {
         "label": "B",
@@ -5559,7 +5559,7 @@
       },
       {
         "label": "C",
-        "body": "G0"
+        "body": "Prophase of mitosis"
       },
       {
         "label": "D",
@@ -5627,11 +5627,11 @@
       },
       {
         "label": "C",
-        "body": "Ribosomes"
+        "body": "Cell walls"
       },
       {
         "label": "D",
-        "body": "Cell walls"
+        "body": "Ribosomes"
       }
     ],
     "correct_option": "B",
@@ -5655,22 +5655,22 @@
     "options": [
       {
         "label": "A",
-        "body": "2 combinations"
+        "body": "Over 8 million combinations"
       },
       {
         "label": "B",
-        "body": "46 combinations"
+        "body": "2 combinations"
       },
       {
         "label": "C",
-        "body": "Over 8 million combinations"
+        "body": "46 combinations"
       },
       {
         "label": "D",
         "body": "Exactly 23 combinations"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "The notes give 2^23, over 8 million possible combinations.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5687,22 +5687,22 @@
     "options": [
       {
         "label": "A",
-        "body": "2 combinations"
-      },
-      {
-        "label": "B",
         "body": "46 combinations"
       },
       {
+        "label": "B",
+        "body": "2 combinations"
+      },
+      {
         "label": "C",
-        "body": "Over 8 million combinations"
+        "body": "Exactly 23 combinations"
       },
       {
         "label": "D",
-        "body": "Exactly 23 combinations"
+        "body": "Over 8 million combinations"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "The notes give 2^23, over 8 million possible combinations.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5723,7 +5723,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Better photosynthesis"
+        "body": "Taxonomy"
       },
       {
         "label": "B",
@@ -5735,7 +5735,7 @@
       },
       {
         "label": "D",
-        "body": "Taxonomy"
+        "body": "Better photosynthesis"
       }
     ],
     "correct_option": "B",
@@ -5755,22 +5755,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Better photosynthesis"
+        "body": "Osmosis only"
       },
       {
         "label": "B",
-        "body": "Serious disease such as cancer"
+        "body": "Better photosynthesis"
       },
       {
         "label": "C",
-        "body": "Osmosis only"
+        "body": "Serious disease such as cancer"
       },
       {
         "label": "D",
         "body": "Taxonomy"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "If genes that regulate division fail, serious health issues such as cancer can follow.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5791,7 +5791,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Ageing of rocks"
+        "body": "Only learned behaviour"
       },
       {
         "label": "B",
@@ -5799,7 +5799,7 @@
       },
       {
         "label": "C",
-        "body": "Only learned behaviour"
+        "body": "Ageing of rocks"
       },
       {
         "label": "D",
@@ -5823,11 +5823,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Ageing of rocks"
+        "body": "Diffusion of perfume"
       },
       {
         "label": "B",
-        "body": "Passing traits from parents to offspring through genes"
+        "body": "Ageing of rocks"
       },
       {
         "label": "C",
@@ -5835,10 +5835,10 @@
       },
       {
         "label": "D",
-        "body": "Diffusion of perfume"
+        "body": "Passing traits from parents to offspring through genes"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Heredity is gene-based transmission of characteristics between generations.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5859,11 +5859,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Why children exist"
+        "body": "Why cells have walls"
       },
       {
         "label": "B",
-        "body": "Hidden traits that reappear in later generations"
+        "body": "Why children exist"
       },
       {
         "label": "C",
@@ -5871,10 +5871,10 @@
       },
       {
         "label": "D",
-        "body": "Why cells have walls"
+        "body": "Hidden traits that reappear in later generations"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Blending predicted medium offspring forever; Mendel showed units can hide and return.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5891,7 +5891,7 @@
     "options": [
       {
         "label": "A",
-        "body": "Why children exist"
+        "body": "Why plants are green"
       },
       {
         "label": "B",
@@ -5899,11 +5899,11 @@
       },
       {
         "label": "C",
-        "body": "Why plants are green"
+        "body": "Why cells have walls"
       },
       {
         "label": "D",
-        "body": "Why cells have walls"
+        "body": "Why children exist"
       }
     ],
     "correct_option": "B",
@@ -5931,7 +5931,7 @@
       },
       {
         "label": "B",
-        "body": "Pea plants"
+        "body": "Bacteria only"
       },
       {
         "label": "C",
@@ -5939,10 +5939,10 @@
       },
       {
         "label": "D",
-        "body": "Bacteria only"
+        "body": "Pea plants"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "He tracked pea height, flower colour and seed texture.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5959,22 +5959,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Fruit flies"
-      },
-      {
-        "label": "B",
-        "body": "Pea plants"
-      },
-      {
-        "label": "C",
         "body": "Humans in hospitals"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "Bacteria only"
+      },
+      {
+        "label": "C",
+        "body": "Pea plants"
+      },
+      {
+        "label": "D",
+        "body": "Fruit flies"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "He tracked pea height, flower colour and seed texture.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -5995,22 +5995,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Never separate"
-      },
-      {
-        "label": "B",
         "body": "Separate during gamete formation so each gamete gets one"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Blend into paint"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Sit only on mitochondria"
+      },
+      {
+        "label": "D",
+        "body": "Never separate"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Each offspring then receives one allele from each parent.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6027,11 +6027,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Never separate"
+        "body": "Sit only on mitochondria"
       },
       {
         "label": "B",
-        "body": "Separate during gamete formation so each gamete gets one"
+        "body": "Never separate"
       },
       {
         "label": "C",
@@ -6039,10 +6039,10 @@
       },
       {
         "label": "D",
-        "body": "Sit only on mitochondria"
+        "body": "Separate during gamete formation so each gamete gets one"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Each offspring then receives one allele from each parent.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6063,22 +6063,22 @@
     "options": [
       {
         "label": "A",
-        "body": "All genes are on one chromosome only"
-      },
-      {
-        "label": "B",
         "body": "Alleles of different traits can segregate independently"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Offspring are clones"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "DNA is RNA"
+      },
+      {
+        "label": "D",
+        "body": "All genes are on one chromosome only"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Mendel saw different character pairs assort independently in offspring.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6095,11 +6095,11 @@
     "options": [
       {
         "label": "A",
-        "body": "All genes are on one chromosome only"
+        "body": "DNA is RNA"
       },
       {
         "label": "B",
-        "body": "Alleles of different traits can segregate independently"
+        "body": "All genes are on one chromosome only"
       },
       {
         "label": "C",
@@ -6107,10 +6107,10 @@
       },
       {
         "label": "D",
-        "body": "DNA is RNA"
+        "body": "Alleles of different traits can segregate independently"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Mendel saw different character pairs assort independently in offspring.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6135,18 +6135,18 @@
       },
       {
         "label": "B",
-        "body": "Can mask a recessive allele"
+        "body": "Cannot be inherited"
       },
       {
         "label": "C",
-        "body": "Is always lowercase"
+        "body": "Can mask a recessive allele"
       },
       {
         "label": "D",
-        "body": "Cannot be inherited"
+        "body": "Is always lowercase"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "The dominant form is expressed; the recessive can reappear in homozygotes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6163,22 +6163,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Is destroyed"
-      },
-      {
-        "label": "B",
         "body": "Can mask a recessive allele"
       },
       {
+        "label": "B",
+        "body": "Cannot be inherited"
+      },
+      {
         "label": "C",
-        "body": "Is always lowercase"
+        "body": "Is destroyed"
       },
       {
         "label": "D",
-        "body": "Cannot be inherited"
+        "body": "Is always lowercase"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "The dominant form is expressed; the recessive can reappear in homozygotes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6207,14 +6207,14 @@
       },
       {
         "label": "C",
-        "body": "All tall"
+        "body": "Half seeds"
       },
       {
         "label": "D",
-        "body": "Half seeds"
+        "body": "All tall"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "F1 is heterozygous tall; there was no medium-height blending.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6231,22 +6231,22 @@
     "options": [
       {
         "label": "A",
-        "body": "All short"
-      },
-      {
-        "label": "B",
-        "body": "All medium height"
-      },
-      {
-        "label": "C",
         "body": "All tall"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "All short"
+      },
+      {
+        "label": "C",
         "body": "Half seeds"
+      },
+      {
+        "label": "D",
+        "body": "All medium height"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "F1 is heterozygous tall; there was no medium-height blending.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6267,7 +6267,7 @@
     "options": [
       {
         "label": "A",
-        "body": "1:1"
+        "body": "All short"
       },
       {
         "label": "B",
@@ -6275,11 +6275,11 @@
       },
       {
         "label": "C",
-        "body": "9:3:3:1 only"
+        "body": "1:1"
       },
       {
         "label": "D",
-        "body": "All short"
+        "body": "9:3:3:1 only"
       }
     ],
     "correct_option": "B",
@@ -6299,11 +6299,11 @@
     "options": [
       {
         "label": "A",
-        "body": "1:1"
+        "body": "All short"
       },
       {
         "label": "B",
-        "body": "3 tall : 1 short"
+        "body": "1:1"
       },
       {
         "label": "C",
@@ -6311,10 +6311,10 @@
       },
       {
         "label": "D",
-        "body": "All short"
+        "body": "3 tall : 1 short"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "F2 is about three tall to one short; genotypes are 1 TT : 2 Tt : 1 tt.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6339,18 +6339,18 @@
       },
       {
         "label": "B",
-        "body": "The complete set of alleles an organism carries"
+        "body": "A type of tissue"
       },
       {
         "label": "C",
-        "body": "The environment"
+        "body": "The complete set of alleles an organism carries"
       },
       {
         "label": "D",
-        "body": "A type of tissue"
+        "body": "The environment"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Genotype is genetic identity, including unexpressed alleles.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6367,22 +6367,22 @@
     "options": [
       {
         "label": "A",
-        "body": "The visible trait only"
-      },
-      {
-        "label": "B",
-        "body": "The complete set of alleles an organism carries"
-      },
-      {
-        "label": "C",
         "body": "The environment"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "The visible trait only"
+      },
+      {
+        "label": "C",
         "body": "A type of tissue"
+      },
+      {
+        "label": "D",
+        "body": "The complete set of alleles an organism carries"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Genotype is genetic identity, including unexpressed alleles.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6403,11 +6403,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Only the DNA sequence hidden in a file"
+        "body": "The expressed physical characteristics"
       },
       {
         "label": "B",
-        "body": "The expressed physical characteristics"
+        "body": "A plasmid"
       },
       {
         "label": "C",
@@ -6415,10 +6415,10 @@
       },
       {
         "label": "D",
-        "body": "A plasmid"
+        "body": "Only the DNA sequence hidden in a file"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Phenotype is the description of actual expressed traits.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6435,22 +6435,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only the DNA sequence hidden in a file"
+        "body": "A plasmid"
       },
       {
         "label": "B",
-        "body": "The expressed physical characteristics"
-      },
-      {
-        "label": "C",
         "body": "The kingdom name"
       },
       {
+        "label": "C",
+        "body": "The expressed physical characteristics"
+      },
+      {
         "label": "D",
-        "body": "A plasmid"
+        "body": "Only the DNA sequence hidden in a file"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Phenotype is the description of actual expressed traits.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6479,11 +6479,11 @@
       },
       {
         "label": "C",
-        "body": "No genes"
+        "body": "Only recessive alleles"
       },
       {
         "label": "D",
-        "body": "Only recessive alleles"
+        "body": "No genes"
       }
     ],
     "correct_option": "B",
@@ -6503,22 +6503,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Both alleles the same"
+        "body": "Only recessive alleles"
       },
       {
         "label": "B",
-        "body": "The two alleles of a gene are different"
-      },
-      {
-        "label": "C",
         "body": "No genes"
       },
       {
+        "label": "C",
+        "body": "The two alleles of a gene are different"
+      },
+      {
         "label": "D",
-        "body": "Only recessive alleles"
+        "body": "Both alleles the same"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Tt is heterozygous; TT or tt is homozygous.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6539,7 +6539,7 @@
     "options": [
       {
         "label": "A",
-        "body": "One trait pair"
+        "body": "Only environment"
       },
       {
         "label": "B",
@@ -6547,11 +6547,11 @@
       },
       {
         "label": "C",
-        "body": "No genes"
+        "body": "One trait pair"
       },
       {
         "label": "D",
-        "body": "Only environment"
+        "body": "No genes"
       }
     ],
     "correct_option": "B",
@@ -6571,7 +6571,7 @@
     "options": [
       {
         "label": "A",
-        "body": "One trait pair"
+        "body": "No genes"
       },
       {
         "label": "B",
@@ -6579,7 +6579,7 @@
       },
       {
         "label": "C",
-        "body": "No genes"
+        "body": "One trait pair"
       },
       {
         "label": "D",
@@ -6615,11 +6615,11 @@
       },
       {
         "label": "C",
-        "body": "Only sugar molecules"
+        "body": "Cell walls"
       },
       {
         "label": "D",
-        "body": "Cell walls"
+        "body": "Only sugar molecules"
       }
     ],
     "correct_option": "B",
@@ -6647,11 +6647,11 @@
       },
       {
         "label": "C",
-        "body": "Only sugar molecules"
+        "body": "Cell walls"
       },
       {
         "label": "D",
-        "body": "Cell walls"
+        "body": "Only sugar molecules"
       }
     ],
     "correct_option": "B",
@@ -6675,22 +6675,22 @@
     "options": [
       {
         "label": "A",
-        "body": "A single amino acid"
-      },
-      {
-        "label": "B",
-        "body": "A thread of DNA plus packaging proteins carrying many genes"
-      },
-      {
-        "label": "C",
         "body": "A type of lipid only"
       },
       {
-        "label": "D",
+        "label": "B",
         "body": "A kingdom"
+      },
+      {
+        "label": "C",
+        "body": "A single amino acid"
+      },
+      {
+        "label": "D",
+        "body": "A thread of DNA plus packaging proteins carrying many genes"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Chromosomes are thread-like nuclear structures made of DNA containing many genes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6707,22 +6707,22 @@
     "options": [
       {
         "label": "A",
-        "body": "A single amino acid"
-      },
-      {
-        "label": "B",
         "body": "A thread of DNA plus packaging proteins carrying many genes"
       },
       {
+        "label": "B",
+        "body": "A kingdom"
+      },
+      {
         "label": "C",
-        "body": "A type of lipid only"
+        "body": "A single amino acid"
       },
       {
         "label": "D",
-        "body": "A kingdom"
+        "body": "A type of lipid only"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Chromosomes are thread-like nuclear structures made of DNA containing many genes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6743,22 +6743,22 @@
     "options": [
       {
         "label": "A",
-        "body": "12"
-      },
-      {
-        "label": "B",
         "body": "23"
       },
       {
+        "label": "B",
+        "body": "12"
+      },
+      {
         "label": "C",
-        "body": "46 pairs"
+        "body": "2"
       },
       {
         "label": "D",
-        "body": "2"
+        "body": "46 pairs"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Humans have 23 pairs; 46 chromosomes in total.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6775,22 +6775,22 @@
     "options": [
       {
         "label": "A",
-        "body": "12"
-      },
-      {
-        "label": "B",
-        "body": "23"
-      },
-      {
-        "label": "C",
         "body": "46 pairs"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "12"
+      },
+      {
+        "label": "C",
         "body": "2"
+      },
+      {
+        "label": "D",
+        "body": "23"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Humans have 23 pairs; 46 chromosomes in total.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6811,22 +6811,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Iron, zinc, copper, boron"
-      },
-      {
-        "label": "B",
-        "body": "Adenine, cytosine, thymine, guanine"
-      },
-      {
-        "label": "C",
         "body": "Glucose, starch, glycogen, cellulose"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Iron, zinc, copper, boron"
+      },
+      {
+        "label": "C",
         "body": "Sodium, potassium, calcium, magnesium"
+      },
+      {
+        "label": "D",
+        "body": "Adenine, cytosine, thymine, guanine"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "A, C, T and G write the DNA code.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6843,11 +6843,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Iron, zinc, copper, boron"
+        "body": "Adenine, cytosine, thymine, guanine"
       },
       {
         "label": "B",
-        "body": "Adenine, cytosine, thymine, guanine"
+        "body": "Iron, zinc, copper, boron"
       },
       {
         "label": "C",
@@ -6858,7 +6858,7 @@
         "body": "Sodium, potassium, calcium, magnesium"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "A, C, T and G write the DNA code.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6879,7 +6879,7 @@
     "options": [
       {
         "label": "A",
-        "body": "23"
+        "body": "99"
       },
       {
         "label": "B",
@@ -6887,14 +6887,14 @@
       },
       {
         "label": "C",
-        "body": "About 3 billion"
+        "body": "23"
       },
       {
         "label": "D",
-        "body": "99"
+        "body": "About 3 billion"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "D",
     "explanation": "About 99% of those bases are the same in everyone; the rest make you unique.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6911,22 +6911,22 @@
     "options": [
       {
         "label": "A",
-        "body": "23"
+        "body": "99"
       },
       {
         "label": "B",
-        "body": "46"
-      },
-      {
-        "label": "C",
         "body": "About 3 billion"
       },
       {
+        "label": "C",
+        "body": "46"
+      },
+      {
         "label": "D",
-        "body": "99"
+        "body": "23"
       }
     ],
-    "correct_option": "C",
+    "correct_option": "B",
     "explanation": "About 99% of those bases are the same in everyone; the rest make you unique.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6947,22 +6947,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Darwin in 1859"
+        "body": "Aristotle"
       },
       {
         "label": "B",
-        "body": "Wilhelm Johannsen in 1909"
-      },
-      {
-        "label": "C",
         "body": "Hooke in 1665"
       },
       {
+        "label": "C",
+        "body": "Wilhelm Johannsen in 1909"
+      },
+      {
         "label": "D",
-        "body": "Aristotle"
+        "body": "Darwin in 1859"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Bateson introduced genetics in 1905; Johannsen named the gene in 1909.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -6979,22 +6979,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Darwin in 1859"
-      },
-      {
-        "label": "B",
         "body": "Wilhelm Johannsen in 1909"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Hooke in 1665"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Aristotle"
+      },
+      {
+        "label": "D",
+        "body": "Darwin in 1859"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Bateson introduced genetics in 1905; Johannsen named the gene in 1909.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7015,7 +7015,7 @@
     "options": [
       {
         "label": "A",
-        "body": "The whole genome"
+        "body": "A type of fungus"
       },
       {
         "label": "B",
@@ -7023,7 +7023,7 @@
       },
       {
         "label": "C",
-        "body": "A type of fungus"
+        "body": "The whole genome"
       },
       {
         "label": "D",
@@ -7047,22 +7047,22 @@
     "options": [
       {
         "label": "A",
-        "body": "The whole genome"
-      },
-      {
-        "label": "B",
         "body": "The fixed position of a gene on a chromosome"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "A type of fungus"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "A hypotonic solution"
+      },
+      {
+        "label": "D",
+        "body": "The whole genome"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Each gene occupies a particular position (locus) on a chromosome.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7083,22 +7083,22 @@
     "options": [
       {
         "label": "A",
-        "body": "One codon"
-      },
-      {
-        "label": "B",
         "body": "The entire set of chromosomes / genetic material"
       },
       {
+        "label": "B",
+        "body": "The cell wall"
+      },
+      {
         "label": "C",
-        "body": "Only mRNA"
+        "body": "One codon"
       },
       {
         "label": "D",
-        "body": "The cell wall"
+        "body": "Only mRNA"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "An organism’s genome is the complete set of chromosomes.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7115,7 +7115,7 @@
     "options": [
       {
         "label": "A",
-        "body": "One codon"
+        "body": "Only mRNA"
       },
       {
         "label": "B",
@@ -7123,11 +7123,11 @@
       },
       {
         "label": "C",
-        "body": "Only mRNA"
+        "body": "The cell wall"
       },
       {
         "label": "D",
-        "body": "The cell wall"
+        "body": "One codon"
       }
     ],
     "correct_option": "B",
@@ -7151,22 +7151,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Three bases that specify an amino acid"
+        "body": "A tissue"
       },
       {
         "label": "B",
-        "body": "A whole chromosome"
-      },
-      {
-        "label": "C",
         "body": "A histone only"
       },
       {
+        "label": "C",
+        "body": "A whole chromosome"
+      },
+      {
         "label": "D",
-        "body": "A tissue"
+        "body": "Three bases that specify an amino acid"
       }
     ],
-    "correct_option": "A",
+    "correct_option": "D",
     "explanation": "The genetic code uses three-base units; Nirenberg’s work is cited for this principle.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7187,15 +7187,15 @@
       },
       {
         "label": "B",
-        "body": "A whole chromosome"
+        "body": "A tissue"
       },
       {
         "label": "C",
-        "body": "A histone only"
+        "body": "A whole chromosome"
       },
       {
         "label": "D",
-        "body": "A tissue"
+        "body": "A histone only"
       }
     ],
     "correct_option": "A",
@@ -7223,18 +7223,18 @@
       },
       {
         "label": "B",
-        "body": "DNA copied into mRNA"
-      },
-      {
-        "label": "C",
         "body": "Cell bursting"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Osmosis"
+      },
+      {
+        "label": "D",
+        "body": "DNA copied into mRNA"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Transcription produces a messenger RNA copy of a gene.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7255,18 +7255,18 @@
       },
       {
         "label": "B",
-        "body": "DNA copied into mRNA"
-      },
-      {
-        "label": "C",
         "body": "Cell bursting"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Osmosis"
+      },
+      {
+        "label": "D",
+        "body": "DNA copied into mRNA"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Transcription produces a messenger RNA copy of a gene.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7287,7 +7287,7 @@
     "options": [
       {
         "label": "A",
-        "body": "DNA to mRNA"
+        "body": "Mitosis"
       },
       {
         "label": "B",
@@ -7295,11 +7295,11 @@
       },
       {
         "label": "C",
-        "body": "Mitosis"
+        "body": "Classification"
       },
       {
         "label": "D",
-        "body": "Classification"
+        "body": "DNA to mRNA"
       }
     ],
     "correct_option": "B",
@@ -7319,11 +7319,11 @@
     "options": [
       {
         "label": "A",
-        "body": "DNA to mRNA"
+        "body": "mRNA to protein at ribosomes"
       },
       {
         "label": "B",
-        "body": "mRNA to protein at ribosomes"
+        "body": "DNA to mRNA"
       },
       {
         "label": "C",
@@ -7334,7 +7334,7 @@
         "body": "Classification"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Translation builds the protein from the mRNA message.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7355,22 +7355,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Builds cell walls"
-      },
-      {
-        "label": "B",
         "body": "Carries oxygen in the blood"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Copies osmosis"
+      },
+      {
+        "label": "C",
+        "body": "Builds cell walls"
       },
       {
         "label": "D",
         "body": "Names species"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "The globin gene instructs production of haemoglobin.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7387,22 +7387,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Builds cell walls"
-      },
-      {
-        "label": "B",
-        "body": "Carries oxygen in the blood"
-      },
-      {
-        "label": "C",
         "body": "Copies osmosis"
       },
       {
-        "label": "D",
+        "label": "B",
+        "body": "Builds cell walls"
+      },
+      {
+        "label": "C",
         "body": "Names species"
+      },
+      {
+        "label": "D",
+        "body": "Carries oxygen in the blood"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "The globin gene instructs production of haemoglobin.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7423,7 +7423,7 @@
     "options": [
       {
         "label": "A",
-        "body": "DNA bases"
+        "body": "Plant vacuoles"
       },
       {
         "label": "B",
@@ -7431,11 +7431,11 @@
       },
       {
         "label": "C",
-        "body": "Plant vacuoles"
+        "body": "Types of osmosis"
       },
       {
         "label": "D",
-        "body": "Types of osmosis"
+        "body": "DNA bases"
       }
     ],
     "correct_option": "B",
@@ -7455,22 +7455,22 @@
     "options": [
       {
         "label": "A",
-        "body": "DNA bases"
+        "body": "Types of osmosis"
       },
       {
         "label": "B",
-        "body": "Proteins that pack eukaryotic DNA"
-      },
-      {
-        "label": "C",
         "body": "Plant vacuoles"
       },
       {
+        "label": "C",
+        "body": "DNA bases"
+      },
+      {
         "label": "D",
-        "body": "Types of osmosis"
+        "body": "Proteins that pack eukaryotic DNA"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Eukaryotic chromosomes wrap DNA on histone proteins.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7491,22 +7491,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Osmosis and diffusion"
-      },
-      {
-        "label": "B",
         "body": "Down syndrome and Turner syndrome"
       },
       {
-        "label": "C",
+        "label": "B",
         "body": "Starch and glycogen"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Botany and zoology"
+      },
+      {
+        "label": "D",
+        "body": "Osmosis and diffusion"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Chromosome number or structure errors can cause those conditions and some leukaemias.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7527,18 +7527,18 @@
       },
       {
         "label": "B",
-        "body": "Down syndrome and Turner syndrome"
-      },
-      {
-        "label": "C",
         "body": "Starch and glycogen"
       },
       {
-        "label": "D",
+        "label": "C",
         "body": "Botany and zoology"
+      },
+      {
+        "label": "D",
+        "body": "Down syndrome and Turner syndrome"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Chromosome number or structure errors can cause those conditions and some leukaemias.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7559,22 +7559,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Larger and always visible"
+        "body": "A type of tissue"
       },
       {
         "label": "B",
-        "body": "A coded segment on a chromosome, not visible as an X shape"
-      },
-      {
-        "label": "C",
         "body": "A whole pack of many chromosomes"
       },
       {
+        "label": "C",
+        "body": "A coded segment on a chromosome, not visible as an X shape"
+      },
+      {
         "label": "D",
-        "body": "A type of tissue"
+        "body": "Larger and always visible"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Genes are not visible under an ordinary microscope; condensed chromosomes are.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7591,22 +7591,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Larger and always visible"
+        "body": "A type of tissue"
       },
       {
         "label": "B",
-        "body": "A coded segment on a chromosome, not visible as an X shape"
-      },
-      {
-        "label": "C",
         "body": "A whole pack of many chromosomes"
       },
       {
+        "label": "C",
+        "body": "Larger and always visible"
+      },
+      {
         "label": "D",
-        "body": "A type of tissue"
+        "body": "A coded segment on a chromosome, not visible as an X shape"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "D",
     "explanation": "Genes are not visible under an ordinary microscope; condensed chromosomes are.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7627,11 +7627,11 @@
     "options": [
       {
         "label": "A",
-        "body": "Only point mutations of one base"
+        "body": "Duplication, deletion, inversion and rearrangement"
       },
       {
         "label": "B",
-        "body": "Duplication, deletion, inversion and rearrangement"
+        "body": "Only point mutations of one base"
       },
       {
         "label": "C",
@@ -7642,7 +7642,7 @@
         "body": "Only budding"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "Those rearrangements can affect many genes at once.",
     "course_code": "BIO 101",
     "difficulty": "beginner",
@@ -7659,22 +7659,22 @@
     "options": [
       {
         "label": "A",
-        "body": "Only point mutations of one base"
+        "body": "Only budding"
       },
       {
         "label": "B",
-        "body": "Duplication, deletion, inversion and rearrangement"
-      },
-      {
-        "label": "C",
         "body": "Only osmosis"
       },
       {
+        "label": "C",
+        "body": "Duplication, deletion, inversion and rearrangement"
+      },
+      {
         "label": "D",
-        "body": "Only budding"
+        "body": "Only point mutations of one base"
       }
     ],
-    "correct_option": "B",
+    "correct_option": "C",
     "explanation": "Those rearrangements can affect many genes at once.",
     "course_code": "BIO 101",
     "difficulty": "beginner",

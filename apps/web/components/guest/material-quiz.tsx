@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { NativeSelect } from "@/components/ui/input";
 import { Progress } from "@/components/ui/misc";
+import { shuffleIndexedChoices } from "@/lib/shuffle-options";
 import questions from "./material-questions.json";
 import starterQuestions from "./starter-questions.json";
 
@@ -26,14 +27,20 @@ export function chooseGuestQuestions(course: string, random = Math.random): Gues
     const j = Math.floor(random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
   }
-  if (course !== "mixed") return shuffled.slice(0, 5);
+  const picked = course !== "mixed" ? shuffled.slice(0, 5) : null;
+  if (picked) return picked.map((question) => withShuffledOptions(question, random));
   // Mixed quizzes cover different subjects rather than taking five items from one course.
   const seen = new Set<string>();
   return shuffled.filter(q => {
     if (seen.has(q.courseCode)) return false;
     seen.add(q.courseCode);
     return true;
-  }).slice(0, 5);
+  }).slice(0, 5).map((question) => withShuffledOptions(question, random));
+}
+
+function withShuffledOptions(question: GuestMaterialQuestion, random: () => number): GuestMaterialQuestion {
+  const shuffled = shuffleIndexedChoices(question.options, question.correct, random);
+  return { ...question, options: shuffled.options, correct: shuffled.correctIndex };
 }
 
 export function MaterialQuiz() {
