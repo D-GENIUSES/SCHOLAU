@@ -68,8 +68,16 @@ test("Google immediately loads, ignores duplicate clicks and requests same-tab a
   let finish;
   const calls = [];
   const app = googleHarness((args) => { calls.push(args); return new Promise((resolve) => { finish = resolve; }); });
+  const previousFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    assert.equal(url, "/api/auth/google-signup-attempt");
+    assert.equal(init?.method, "POST");
+    return { ok: true, json: async () => ({ attemptId: "attempt-1" }) };
+  };
+  try {
   const click = app.render({ mode: "sign-up", next: "/study?semester=1", label: "Sign up with Google" })[1].props.onClick;
   click(); click();
+  await flush();
   app.load();
   assert.equal(calls.length, 1);
   const pending = app.render();
@@ -82,14 +90,19 @@ test("Google immediately loads, ignores duplicate clicks and requests same-tab a
   assert.equal(callback.origin, "https://scholau.com");
   assert.equal(callback.searchParams.get("mode"), "sign-up");
   assert.equal(callback.searchParams.get("next"), "/study?semester=1");
+  assert.equal(callback.searchParams.get("attempt"), "attempt-1");
   finish({ data: { url: "https://provider.example/authorize" }, error: null }); await flush();
   assert.deepEqual(app.redirects, ["https://provider.example/authorize"]);
   app.back();
   assert.equal(app.render()[1].props.loading, false);
   app.render()[1].props.onClick();
+  await flush();
   assert.equal(calls.length, 2);
   app.unmount(); finish({ data: { url: "https://provider.example/stale" }, error: null }); await flush();
   assert.equal(app.redirects.length, 1);
+  } finally {
+    globalThis.fetch = previousFetch;
+  }
 });
 
 test("failed or stalled Google starts allow retries and cannot redirect from an expired attempt", async () => {

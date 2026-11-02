@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
+import { GOOGLE_SIGNUP_ATTEMPT_COOKIE, isNewGoogleSignup } from "../../lib/google-signup-attempt.ts";
 import { safeNext } from "../../lib/utils.ts";
 
 const source = readFileSync(new URL("../../app/auth/callback/route.ts", import.meta.url), "utf8");
@@ -9,12 +10,17 @@ const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.Modu
 
 function callback(exchange, destination = async (next) => next === "/auth/continue" ? "/admin" : safeNext(next)) {
   const exports = {};
-  const client = { auth: { exchangeCodeForSession: exchange } };
+  const client = { auth: { exchangeCodeForSession: exchange, signOut: async () => ({ error: null }) } };
   const mocks = {
-    "next/server": { NextResponse: { redirect: (url) => new Response(null, { status: 307, headers: { Location: url.toString() } }) } },
+    "next/server": { NextResponse: { redirect: (url) => {
+      const response = new Response(null, { status: 307, headers: { Location: url.toString() } });
+      response.cookies = { set() {} };
+      return response;
+    } } },
     "@/lib/supabase/server": { getServerSupabase: async () => client },
     "@/lib/utils": { safeNext },
     "@/lib/auth-destination": { accountDestination: async (next, supplied) => { assert.equal(supplied, client); return destination(next); } },
+    "@/lib/google-signup-attempt": { GOOGLE_SIGNUP_ATTEMPT_COOKIE, isNewGoogleSignup },
   };
   new Function("require", "exports", compiled)((id) => {
     assert.ok(id in mocks, `Unexpected dependency: ${id}`);
@@ -22,7 +28,7 @@ function callback(exchange, destination = async (next) => next === "/auth/contin
   }, exports);
   return (query) => {
     const url = `https://scholau.vercel.app/auth/callback?${query}`;
-    return exports.GET({ url, nextUrl: new URL(url) });
+    return exports.GET({ url, nextUrl: new URL(url), cookies: { get: () => undefined } });
   };
 }
 
