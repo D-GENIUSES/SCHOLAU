@@ -1,0 +1,2130 @@
+[
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-01",
+    "topic_title": "Statistical thinking and inference",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q001-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-01",
+    "topic_title": "Statistical thinking and inference",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q002-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-01",
+    "topic_title": "Statistical thinking and inference",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q003-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-01",
+    "topic_title": "Statistical thinking and inference",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q004-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-02",
+    "topic_title": "Variables and the meaning of data",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q005-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-02",
+    "topic_title": "Variables and the meaning of data",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q006-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-02",
+    "topic_title": "Variables and the meaning of data",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q007-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-02",
+    "topic_title": "Variables and the meaning of data",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q008-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-03",
+    "topic_title": "Data sources, collection and quality",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q009-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-03",
+    "topic_title": "Data sources, collection and quality",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q010-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-03",
+    "topic_title": "Data sources, collection and quality",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q011-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-03",
+    "topic_title": "Data sources, collection and quality",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q012-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-04",
+    "topic_title": "Official statistics and responsible use",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q013-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-04",
+    "topic_title": "Official statistics and responsible use",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q014-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-04",
+    "topic_title": "Official statistics and responsible use",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q015-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-04",
+    "topic_title": "Official statistics and responsible use",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q016-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q017-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q018-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q019-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q020-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q021-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q022-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q023-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-05",
+    "topic_title": "Frequency tables and statistical graphs",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q024-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q026-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q027-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q028-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q029-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q030-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-06",
+    "topic_title": "Stem-and-leaf displays and box plots",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q031-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q033-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q034-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q035-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q036-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q037-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q038-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q039-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-07",
+    "topic_title": "Arithmetic, harmonic and geometric means",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q040-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q043-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q044-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q045-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q046-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q047-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q048-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q049-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-08",
+    "topic_title": "Median, mode and robust location",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q050-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q052-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q053-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q054-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q055-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q056-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q057-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q058-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-09",
+    "topic_title": "Quartiles, deciles and percentiles",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q059-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q060-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q061-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q062-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q063-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q064-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q065-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q066-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-10",
+    "topic_title": "Dispersion, variance and relative variation",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q067-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta111-q070-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta111-q071-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta111-q072-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta111-q073-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta111-q074-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta111-q075-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta111-q076-practice"
+  },
+  {
+    "course_code": "STA 111",
+    "topic_key": "topic-11",
+    "topic_title": "Skewness, kurtosis and summary output",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta111-q077-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q078-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q079-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q080-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q081-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q082-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-12",
+    "topic_title": "Random variables and probability models",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q083-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q085-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q086-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q087-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q088-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q089-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q090-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q091-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-13",
+    "topic_title": "Expectation, variance and transformations",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q092-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q097-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q098-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q099-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q100-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q101-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-14",
+    "topic_title": "Events, axioms and probability laws",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q102-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q104-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q105-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q106-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q107-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q108-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q109-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q110-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-15",
+    "topic_title": "Conditional probability, tables and replacement",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q111-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q113-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q114-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q115-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q116-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q117-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q118-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q119-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-16",
+    "topic_title": "Combinatorial analysis",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q120-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q122-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q123-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q124-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q125-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q126-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-17",
+    "topic_title": "Discrete cumulative distribution functions",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q127-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q129-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q130-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q131-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q132-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q133-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-18",
+    "topic_title": "Continuous densities and cumulative probabilities",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q134-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q136-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q137-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q138-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q139-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q140-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q141-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q142-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-19",
+    "topic_title": "Bernoulli and binomial distributions",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q143-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q147-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q148-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q149-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q150-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q151-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q152-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q153-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-20",
+    "topic_title": "Poisson counts and approximation",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q154-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q156-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q157-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q158-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q159-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q160-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q161-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q162-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-21",
+    "topic_title": "Geometric waiting times",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q163-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q164-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q165-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q166-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q167-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q168-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-22",
+    "topic_title": "Hypergeometric sampling without replacement",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q169-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q171-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q172-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q173-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q174-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q175-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-23",
+    "topic_title": "Uniform or rectangular distribution",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q176-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q178-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q179-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q180-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q181-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q182-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-24",
+    "topic_title": "Normal distributions and standard scores",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q183-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q185-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q186-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q187-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta112-q188-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q189-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q190-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q191-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-25",
+    "topic_title": "Gamma integrals and distribution",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta112-q192-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q193-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q194-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q195-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q196-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q197-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-26",
+    "topic_title": "Supplement bridge: descriptive revision",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q198-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q199-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q200-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q201-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q202-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q203-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-27",
+    "topic_title": "Supplement bridge: sampling and standard error",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q204-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-28",
+    "topic_title": "Supplement bridge: testing and paired",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q206-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-28",
+    "topic_title": "Supplement bridge: testing and paired",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q207-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-28",
+    "topic_title": "Supplement bridge: testing and paired",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q208-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-28",
+    "topic_title": "Supplement bridge: testing and paired",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q209-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q211-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q212-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q213-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q214-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q215-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-29",
+    "topic_title": "Analysis of variance and post-hoc comparisons",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q216-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q218-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q219-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta112-q220-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q221-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q222-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-30",
+    "topic_title": "Chi-square goodness of fit and independence",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta112-q223-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-31",
+    "topic_title": "Experimental design and correlation concepts",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta112-q224-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-31",
+    "topic_title": "Experimental design and correlation concepts",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta112-q225-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-31",
+    "topic_title": "Experimental design and correlation concepts",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta112-q226-practice"
+  },
+  {
+    "course_code": "STA 112",
+    "topic_key": "topic-31",
+    "topic_title": "Experimental design and correlation concepts",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta112-q227-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q228-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q229-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q230-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q231-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q232-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-32",
+    "topic_title": "Sampling foundations and simple random sampling",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q233-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q234-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q235-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q236-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q237-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q238-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-33",
+    "topic_title": "Stratified and cluster sampling",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q239-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q241-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q242-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q243-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q244-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q245-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-34",
+    "topic_title": "Systematic and multistage sampling",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q246-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q248-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q249-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q250-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q251-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q252-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-35",
+    "topic_title": "Quota and purposive sampling",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q253-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q254-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q255-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q256-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q257-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q258-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-36",
+    "topic_title": "Hypotheses, errors and decisions",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q259-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q261-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q262-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q263-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q264-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q265-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-37",
+    "topic_title": "One-sample tests for a population mean",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q266-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q268-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q269-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q270-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q271-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q272-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-38",
+    "topic_title": "Tests comparing two population means",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q273-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q274-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q275-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q276-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q277-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q278-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-39",
+    "topic_title": "Tests for one and two proportions",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q279-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-40",
+    "topic_title": "Point estimation and properties of estimators",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q281-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-40",
+    "topic_title": "Point estimation and properties of estimators",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q282-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-40",
+    "topic_title": "Point estimation and properties of estimators",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q283-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-40",
+    "topic_title": "Point estimation and properties of estimators",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q284-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q286-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q287-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q288-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "pre",
+    "position": 4,
+    "logical_question_key": "sta121-q289-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q290-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q291-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q292-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-41",
+    "topic_title": "Confidence intervals for means and proportions",
+    "kind": "post",
+    "position": 4,
+    "logical_question_key": "sta121-q293-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "pre",
+    "position": 1,
+    "logical_question_key": "sta121-q294-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "pre",
+    "position": 2,
+    "logical_question_key": "sta121-q295-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "pre",
+    "position": 3,
+    "logical_question_key": "sta121-q296-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "post",
+    "position": 1,
+    "logical_question_key": "sta121-q297-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "post",
+    "position": 2,
+    "logical_question_key": "sta121-q298-practice"
+  },
+  {
+    "course_code": "STA 121",
+    "topic_key": "topic-42",
+    "topic_title": "Sample size and precision planning",
+    "kind": "post",
+    "position": 3,
+    "logical_question_key": "sta121-q299-practice"
+  }
+]

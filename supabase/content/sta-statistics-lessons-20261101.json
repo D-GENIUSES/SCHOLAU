@@ -1,0 +1,2438 @@
+[
+  {
+    "logical_key": "sta111-t01-l01",
+    "course_code": "STA 111",
+    "module_position": 1,
+    "module_title": "Statistical thinking and inference",
+    "lesson_position": 1,
+    "title": "Meaning, purpose and workflow",
+    "objective": "Explain and apply meaning, purpose and workflow.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Statistics concerns collecting, organising, presenting, analysing and interpreting data to answer a question. In the plural sense, statistics are numerical summaries; in the singular sense, statistics is the discipline and its methods. Start with a purpose, define the population and variables, collect suitable data, check quality, summarise, then interpret in context. The source emphasises aggregates, multiple causes, numerical expression, systematic collection, a predetermined purpose and comparability. These describe the traditional numerical conception; modern statistics also analyses categorical observations."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Classify an investigation",
+        "text": "An investigator records scores for 40 sampled students and finds a mean of 62. Reporting 62 describes the sample. Using it to estimate the mean for all registered students is induction. Starting from a model with population mean 60 and predicting possible sample means is deduction. The number 62 is a statistic, not automatically the population parameter."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T01-L01; Source: T1-4 | Course topic 1",
+    "editorial_status": null,
+    "topic_slug": "topic-01"
+  },
+  {
+    "logical_key": "sta111-t01-l02",
+    "course_code": "STA 111",
+    "module_position": 1,
+    "module_title": "Statistical thinking and inference",
+    "lesson_position": 2,
+    "title": "Descriptive, deductive and inductive reasoning",
+    "objective": "Use descriptive, deductive and inductive reasoning to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Descriptive statistics summarises the observations actually available. Deductive reasoning moves from a population model to implications for samples, often through probability. Inductive inference uses a sample to learn about a population, acknowledging uncertainty. A population is the full group of interest; a sample is a subset. A parameter describes a population, while a statistic is computed from a sample. Estimation and hypothesis testing are the two main inferential activities introduced here."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Plan a study",
+        "text": "Question: how long do first-year students study each week? Define the target population as all registered first-year students, the unit as one student, and the variable as weekly study hours. Select a defensible sample and specify a reference week. Summarise the hours and describe sampling uncertainty before generalising."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "A sample summary becomes an inference only when it is used to make a population claim. A large sample does not itself remove selection bias."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T01-L02; Source: T1-4 | Course topic 1",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-01"
+  },
+  {
+    "logical_key": "sta111-t02-l01",
+    "course_code": "STA 111",
+    "module_position": 2,
+    "module_title": "Variables and the meaning of data",
+    "lesson_position": 1,
+    "title": "Data, information and units",
+    "objective": "Explain and apply data, information and units.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A datum is one observation; data are observations or recorded facts. Information is the meaning obtained after organising and interpreting data in context. Identify the observational unit before classifying a variable. A numeric label such as an account number identifies an entity: arithmetic on its digits has no substantive statistical meaning. A quantitative variable records an amount; a qualitative or categorical variable records membership of a category."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Classify source exercise variables",
+        "text": "In T9, blood group and type of organism are categorical; hospital number and account number are identifiers. Age needs a measurement definition: age at last birthday is discrete, whereas exact elapsed age is modelled continuously. Height and mass are continuous measurements. Ward is generally a category or location label, even when numbered."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T02-L01; Source: T4-6, T9 | Course topic 2",
+    "editorial_status": null,
+    "topic_slug": "topic-02"
+  },
+  {
+    "logical_key": "sta111-t02-l02",
+    "course_code": "STA 111",
+    "module_position": 2,
+    "module_title": "Variables and the meaning of data",
+    "lesson_position": 2,
+    "title": "Discrete and continuous measurements",
+    "objective": "Use discrete and continuous measurements to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A discrete variable has a finite or countably infinite set of possible values. Counts are common examples, but discrete values need not be integers. A continuous model allows values throughout intervals, such as height or elapsed time. Recorded continuous measurements may be rounded to a finite precision. Binary categorical variables have two categories; other categorical variables have more. Ordered categories have a ranking, but differences between ranks need not represent equal quantities."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Interpret a number",
+        "text": "The entry 19 alone is ambiguous. In a column labelled age in completed years, it is one quantitative observation. In the statement that the mean age of 40 students is 19 years, it is a summary statistic. Interpretation depends on labels, units, the group and the measurement rule."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Do not classify every string of digits as quantitative. The source description of discrete variables as integers is narrower than the general definition."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T02-L02; Source: T4-6, T9 | Course topic 2",
+    "editorial_status": null,
+    "topic_slug": "topic-02"
+  },
+  {
+    "logical_key": "sta111-t03-l01",
+    "course_code": "STA 111",
+    "module_position": 3,
+    "module_title": "Data sources, collection and quality",
+    "lesson_position": 1,
+    "title": "Primary and secondary sources",
+    "objective": "Explain and apply primary and secondary sources.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Primary data are collected by the investigator for the current purpose. Secondary data are obtained from existing records produced by someone else or for another purpose. The same dataset may be primary to its collector and secondary to a later analyst. A census seeks information from every population unit; a sample survey studies a subset. Check coverage, date, definitions, missing values and relevance before analysis."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Match method to purpose",
+        "text": "To estimate weekly library visits, use a clearly worded survey or entry records, defining whether repeat visits count. To explore reasons for avoiding the library, interviews or focus groups can provide depth. To test whether a reminder increases attendance, randomly assign reminders where feasible and compare outcomes. A focus group alone does not yield a representative prevalence estimate."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T03-L01; Source: T5-8 | Course topic 3",
+    "editorial_status": null,
+    "topic_slug": "topic-03"
+  },
+  {
+    "logical_key": "sta111-t03-l02",
+    "course_code": "STA 111",
+    "module_position": 3,
+    "module_title": "Data sources, collection and quality",
+    "lesson_position": 2,
+    "title": "Choose a collection method",
+    "objective": "Use choose a collection method to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A questionnaire asks a planned set of questions; an interview allows direct questioning and clarification. Focus groups explore experiences and opinions through moderated discussion. Documentary analysis examines records. Observation records behaviour or events, with or without researcher participation. An experiment deliberately changes a factor and measures outcomes. Collection difficulties include nonresponse, poor communication, incomplete sampling frames, unclear variables, literacy barriers and insufficient resources. Questionnaires and interviews can collect either numeric or categorical information."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Diagnose bias",
+        "text": "Suppose 200 of 500 selected students respond to an online survey. The response rate is 200/500 × 100 = 40%. If students with poor internet access are less likely to respond, their experiences may be underrepresented. More responses from the same accessible group do not necessarily correct the bias; follow-up and alternative access methods are needed."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Observation alone does not establish causation. Recording a number carefully cannot repair a badly defined target population."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T03-L02; Source: T5-8 | Course topic 3",
+    "editorial_status": null,
+    "topic_slug": "topic-03"
+  },
+  {
+    "logical_key": "sta111-t04-l01",
+    "course_code": "STA 111",
+    "module_position": 4,
+    "module_title": "Official statistics and responsible use",
+    "lesson_position": 1,
+    "title": "Producers and users",
+    "objective": "Explain and apply producers and users.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Official statistics are quantitative information collected and disseminated by public bodies for public and administrative use. The source identifies the National Bureau of Statistics, Central Bank of Nigeria and National Population Commission, alongside sector ministries, research institutions and international organisations. Learn these as source examples, rather than an exhaustive current directory. Users include governments, businesses, researchers, journalists and the public."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use a rate correctly",
+        "text": "Two districts report 100 and 80 cases. Without population sizes, the counts do not identify which has the higher rate. If their populations are 10,000 and 4,000, rates per 1,000 are 10 and 20 respectively. The second district has fewer cases but a higher population-adjusted rate. These numbers are an original illustration of the source concepts."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T04-L01; Source: T8-9 | Course topic 4",
+    "editorial_status": null,
+    "topic_slug": "topic-04"
+  },
+  {
+    "logical_key": "sta111-t04-l02",
+    "course_code": "STA 111",
+    "module_position": 4,
+    "module_title": "Official statistics and responsible use",
+    "lesson_position": 2,
+    "title": "Evaluate a published statistic",
+    "objective": "Use evaluate a published statistic to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A useful table states its title, coverage, period, units, categories and source. Compare like with like: a count, percentage and rate answer different questions. A change in a definition or population denominator can make apparent trends misleading. Producers should document methods, revisions and limitations; users should preserve context and distinguish estimates from complete counts. Statistical information supports planning, monitoring and evaluation, but does not make value judgements on its own."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Design a readable table",
+        "text": "For student enrolment, title the table with institution and academic session, label rows by faculty, label columns with counts or percentages, and state whether part-time students are included. Add the original data source and any provisional-status note. A percentage column should state its denominator, such as all enrolled students."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Historical source examples are not claims about current agency responsibilities. Do not compare percentages with different denominators as though they were counts."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T04-L02; Source: T8-9 | Course topic 4",
+    "editorial_status": null,
+    "topic_slug": "topic-04"
+  },
+  {
+    "logical_key": "sta111-t05-l01",
+    "course_code": "STA 111",
+    "module_position": 5,
+    "module_title": "Frequency tables and statistical graphs",
+    "lesson_position": 1,
+    "title": "Build and verify frequency distributions",
+    "objective": "Explain and apply build and verify frequency distributions.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "An ungrouped table lists values and counts f. A grouped table combines values into nonoverlapping classes covering the observations. The total N = ∑f must match the number of observations. Relative frequency is f/N, or 100f/N percent. Cumulative frequency is a running total. A class midpoint is the average of its limits. For values rounded to whole units, class 20-29 has boundaries 19.5 and 29.5 and width 10."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Rebuild the textbook grouped table",
+        "text": "T12 gives frequencies 3, 4, 8, 11, 9, 6, 4 for classes 20-29 through 80-89. N = 45. Cumulative frequencies are 3, 7, 15, 26, 35, 41, 45. For 50-59, relative frequency is 11/45 = 24.44%; cumulative percentage is 26/45 = 57.78%. Check that frequencies sum to 45 and percentages to about 100% after rounding."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T05-L01; Source: T10-15, T43-47 | Course topic 5",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-05"
+  },
+  {
+    "logical_key": "sta111-t05-l02",
+    "course_code": "STA 111",
+    "module_position": 5,
+    "module_title": "Frequency tables and statistical graphs",
+    "lesson_position": 2,
+    "title": "Select and draw graphs",
+    "objective": "Use select and draw graphs to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Use a bar chart for categorical counts, a histogram for quantitative class intervals, a line graph for a time sequence, and a pie chart for parts of a specified whole. A frequency polygon joins class-midpoint frequencies. A less-than ogive plots cumulative frequency against upper class boundaries, starting with zero at the first lower boundary. With unequal class widths, histogram area must represent frequency, so use frequency density f/width. Label axes and units."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Plot an ogive",
+        "text": "Use points (19.5,0), (29.5,3), (39.5,7), (49.5,15), (59.5,26), (69.5,35), (79.5,41), (89.5,45). An estimate at cumulative frequency 22.5 gives the grouped median. Linear interpolation within the class gives 49.5 + (22.5-15)×10/11 = 56.318. Grouping sacrifices the exact within-class positions."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T13 says lower class boundary in its ogive prose; the less-than cumulative frequencies shown require upper boundaries. Include empty classes rather than hiding gaps."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T05-L02; Source: T10-15, T43-47 | Course topic 5",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-05"
+  },
+  {
+    "logical_key": "sta111-t06-l01",
+    "course_code": "STA 111",
+    "module_position": 6,
+    "module_title": "Stem-and-leaf displays and box plots",
+    "lesson_position": 1,
+    "title": "Preserve individual observations",
+    "objective": "Explain and apply preserve individual observations.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A stem-and-leaf display splits each value into a stem and a final digit or digits. State the key, sort leaves, retain repeated leaves and keep place values consistent. Unlike a grouped table, a well-defined stem plot preserves the observations. For decimal data, the key must specify scale: 2|4 might mean 2.4 rather than 24. A five-number summary is minimum, Q1, median, Q3 and maximum."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Make a stem plot",
+        "text": "Original illustration: 21, 24, 24, 29, 32, 35, 41. With key 2|1 = 21, stems and leaves are 2|1 4 4 9; 3|2 5; 4|1. There are seven leaves, matching seven observations. The two leaves 4 on stem 2 preserve both occurrences of 24."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T06-L01; Source: T14-17, T44 | Course topic 6",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-06"
+  },
+  {
+    "logical_key": "sta111-t06-l02",
+    "course_code": "STA 111",
+    "module_position": 6,
+    "module_title": "Stem-and-leaf displays and box plots",
+    "lesson_position": 2,
+    "title": "Construct and interpret a box plot",
+    "objective": "Use construct and interpret a box plot to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The box extends from Q1 to Q3, with a line at the median. IQR = Q3-Q1. Inner fences are Q1-1.5 IQR and Q3+1.5 IQR. In the modified box plot used here, whiskers end at the most extreme observed values still inside these fences; points beyond are shown individually. Outer fences at 3 IQR may identify especially extreme points. An outlier is a signal for investigation, not automatic evidence of error."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Check outliers with a stated convention",
+        "text": "For sorted values 1,2,3,4,5,6,7,8,20, use medians of the lower and upper halves, excluding the overall median: Q1 = 2.5, median = 5, Q3 = 7.5. IQR = 5; fences are -5 and 15. The value 20 is an outlier. Whiskers end at 1 and 8, not at the numerical fences."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Quartile conventions differ. State the convention before testing a numerical answer; never silently mix half-sample quartiles and (N+1)p interpolation."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T06-L02; Source: T14-17, T44 | Course topic 6",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-06"
+  },
+  {
+    "logical_key": "sta111-t07-l01",
+    "course_code": "STA 111",
+    "module_position": 7,
+    "module_title": "Arithmetic, harmonic and geometric means",
+    "lesson_position": 1,
+    "title": "Arithmetic and weighted means",
+    "objective": "Explain and apply arithmetic and weighted means.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The arithmetic mean is total divided by count. For frequency data, weight each value or class midpoint by its frequency. Grouped means are estimates because midpoints replace unknown individual values. Adding c to all observations adds c to the mean; multiplying by b multiplies the mean by b. The mean uses every value and is sensitive to extreme observations. Always retain units and round only the final result. mean = ∑x/n; weighted mean = ∑fx/∑f"
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct the source frequency mean",
+        "text": "In T18-19, x = 0,1,2,3,4,5,6,7,8 and f = 4,3,2,5,2,2,1,3,2. ∑f = 24 and ∑fx = 0+3+4+15+8+10+6+21+16 = 83. Therefore mean = 83/24 = 3.4583. The printed total 166 and resulting mean 6.91 are arithmetic errors. T19 grouped values instead give 2532.5/45 = 56.2778."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T07-L01; Source: T18-21 | Course topic 7",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-07"
+  },
+  {
+    "logical_key": "sta111-t07-l02",
+    "course_code": "STA 111",
+    "module_position": 7,
+    "module_title": "Arithmetic, harmonic and geometric means",
+    "lesson_position": 2,
+    "title": "Harmonic and geometric means",
+    "objective": "Use harmonic and geometric means to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For positive values, the harmonic mean H = n/∑(1/x) and the geometric mean G = (∏x)^(1/n). H is useful for averaging rates over equal amounts, such as speeds over equal distances. G is useful for multiplicative growth factors. For positive observations, H ≤ G ≤ arithmetic mean, with equality when all observations are equal. Do not use G directly on negative growth percentages; convert percentages to positive growth factors first."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compare three means",
+        "text": "For the source values 3,5,6,9,12, the arithmetic mean is 35/5 = 7. The product is 9720, so G = 9720^(1/5) ≈ 6.2738. The sum of reciprocals is 161/180; H = 5/(161/180) = 900/161 ≈ 5.5901. The checked ordering is 5.5901 ≤ 6.2738 ≤ 7."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Do not take an unweighted average of group means unless group sizes are equal. The correct weighting unit depends on the question."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T07-L02; Source: T18-21 | Course topic 7",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-07"
+  },
+  {
+    "logical_key": "sta111-t08-l01",
+    "course_code": "STA 111",
+    "module_position": 8,
+    "module_title": "Median, mode and robust location",
+    "lesson_position": 1,
+    "title": "Ungrouped median and mode",
+    "objective": "Explain and apply ungrouped median and mode.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Sort observations before finding a median. For odd n, take position (n+1)/2. For even n, average positions n/2 and n/2+1. The mode is the most frequent value and may be nonunique. In elementary usage, a dataset with no repeated values has no mode. The midrange is (minimum+maximum)/2; unlike the median, it depends directly on the extremes."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recompute source grouped location",
+        "text": "Using the T12 table, N/2 = 22.5 lies in 50-59: L = 49.5, C = 15, f = 11, h = 10. Median ≈ 49.5 + 7.5×10/11 = 56.3182. The modal class is also 50-59: d1 = 11-8 = 3, d2 = 11-9 = 2. Mode ≈ 49.5 + 3×10/5 = 55.5."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T08-L01; Source: T21-25 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-08"
+  },
+  {
+    "logical_key": "sta111-t08-l02",
+    "course_code": "STA 111",
+    "module_position": 8,
+    "module_title": "Median, mode and robust location",
+    "lesson_position": 2,
+    "title": "Grouped median and mode",
+    "objective": "Use grouped median and mode to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For a grouped quantile, identify the class containing the required cumulative count. The grouped median estimate is L + [(N/2-C)/f]h, with lower boundary L, preceding cumulative count C, class frequency f and width h. The grouped mode estimate is L + [d1/(d1+d2)]h, where d1 = fm-fprevious and d2 = fm-fnext. These formulas interpolate; the resulting values need not be observed scores."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Choose a location summary",
+        "text": "For 2,3,3,4,28, the mean is 40/5 = 8, the median is 3 and the mode is 3. Replacing 28 with 280 changes the mean to 58.4 but leaves median and mode at 3. For a typical central income in a strongly skewed sample, the median is often easier to interpret than the mean, depending on the purpose."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The near-equality of grouped mean and median in T23 does not prove symmetry. Mean-versus-median comparisons are useful heuristics, not universal characterisations."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T08-L02; Source: T21-25 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-08"
+  },
+  {
+    "logical_key": "sta111-t09-l01",
+    "course_code": "STA 111",
+    "module_position": 9,
+    "module_title": "Quartiles, deciles and percentiles",
+    "lesson_position": 1,
+    "title": "Ranks and interpolation",
+    "objective": "Explain and apply ranks and interpolation.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Quantiles divide an ordered distribution into parts: Q1 is the 25th percentile, Q2 the median and Q3 the 75th percentile. Decile Dj is percentile 10j. This pack uses rank r=(n+1)p for ungrouped interpolation when r is within the available ranks. If r=j+d, use (1-d)x(j)+d x(j+1). Here d is the fractional part of the rank, not necessarily p. Other conventions are valid when explicitly specified."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Check the source bird weights",
+        "text": "The ordered 20 weights in T26 are 0.90,0.98,1.03,1.04,1.04,1.10,1.11,1.11,1.13,1.14,1.19,1.20,1.21,1.21,1.23,1.23,1.24,1.24,1.30,1.32. Ranks 5.25,10.5,15.75 give Q1=1.055, median=1.165, Q3=1.23, hence IQR=0.175. The source switches between grams and kilograms; the calculations here preserve its numeric scale without assigning a resolved unit."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T09-L01; Source: T25-28 | Course topic 9",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-09"
+  },
+  {
+    "logical_key": "sta111-t09-l02",
+    "course_code": "STA 111",
+    "module_position": 9,
+    "module_title": "Quartiles, deciles and percentiles",
+    "lesson_position": 2,
+    "title": "Grouped quantiles and spread",
+    "objective": "Use grouped quantiles and spread to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For grouped data, estimate percentile p by L+[(pN-C)/f]h, using the class containing pN. IQR = Q3-Q1 and semi-IQR = IQR/2. Quantiles are in the original measurement units. Cumulative percentages and an ogive can be used for approximate graphical readings. The grouping approximation assumes observations are sufficiently spread through the relevant interval for linear interpolation to be reasonable."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Find grouped quartiles",
+        "text": "For T12, Q1 rank=11.25 is in 40-49: 39.5+(11.25-7)×10/8=44.8125. Q3 rank=33.75 is in 60-69: 59.5+(33.75-26)×10/9=68.1111. IQR≈23.2986. The 7th decile and 70th percentile are identical because both use p=0.7."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T27 prints N/2 in a general percentile formula; replace it with pN. Avoid claiming a unique quartile answer without specifying the rule."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T09-L02; Source: T25-28 | Course topic 9",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-09"
+  },
+  {
+    "logical_key": "sta111-t10-l01",
+    "course_code": "STA 111",
+    "module_position": 10,
+    "module_title": "Dispersion, variance and relative variation",
+    "lesson_position": 1,
+    "title": "Range, absolute deviations and variance",
+    "objective": "Explain and apply range, absolute deviations and variance.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Range=max-min. Mean absolute deviation about the mean is ∑|x-mean|/n. Population variance is σ²=∑(x-μ)²/N; sample variance is s²=∑(x-mean)²/(n-1). Standard deviation is the square root of variance. Variance has squared units; standard deviation has original units. Squared deviations emphasise extreme values. Use the sample divisor when estimating a population variance from an independent random sample."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct an inconsistent source example",
+        "text": "T31-32 states data 3,5,7,9,11, but its calculation switches values and mean. For the stated five values, mean=7, squared deviations are 16,4,0,4,16 and SS=40. Population variance=40/5=8 and SD=√8≈2.8284. Sample variance=40/4=10 and s≈3.1623. Both answers are valid only with the stated population/sample interpretation."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T10-L01; Source: T28-34 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-10"
+  },
+  {
+    "logical_key": "sta111-t10-l02",
+    "course_code": "STA 111",
+    "module_position": 10,
+    "module_title": "Dispersion, variance and relative variation",
+    "lesson_position": 2,
+    "title": "Frequency formulas and coefficient of variation",
+    "objective": "Use frequency formulas and coefficient of variation to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For frequencies, SS=∑fx²-(∑fx)²/∑f. Population variance=SS/∑f; sample variance=SS/(∑f-1). Replace x by class midpoints for grouped estimates. With assumed mean A and d=x-A, SS=∑fd²-(∑fd)²/∑f. CV=100×SD/mean for positive ratio-scale means. A lower CV means less relative variation, not automatically better performance. CV is unstable near zero and often inappropriate when zero is arbitrary."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use the source crate-sales table",
+        "text": "T32-33 gives midpoints 2,7,12,17,22 and frequencies 1,5,10,9,5. N=30, ∑fx=420 and mean=14. SS=144+245+40+81+320=830. Population variance=830/30=27.6667; SD≈5.2599. CV≈37.57%. The printed label equating variance to 5.26 confuses variance with SD."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Never take a square root and still call the result variance. State whether a frequency table represents a whole population or a sample."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T10-L02; Source: T28-34 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-10"
+  },
+  {
+    "logical_key": "sta111-t11-l01",
+    "course_code": "STA 111",
+    "module_position": 11,
+    "module_title": "Skewness, kurtosis and summary output",
+    "lesson_position": 1,
+    "title": "Asymmetry and Pearson coefficients",
+    "objective": "Explain and apply asymmetry and Pearson coefficients.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Right skew means a longer right tail; left skew means a longer left tail. A symmetric distribution need not have mean zero. Pearson location-based coefficients are (mean-mode)/SD and 3(mean-median)/SD. They are different summaries and need not equal a third-moment coefficient. The empirical relation mean-mode≈3(mean-median) is only an approximation in suitable distributions. Identify the formula used when comparing results."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recompute a source shape measure",
+        "text": "Using the crate table, grouped mode=9.5+[5/(5+1)]×5=13.6667: modal frequency 10, neighbouring frequencies 5 and 9. Mean=14, population SD≈5.2599. Pearson first coefficient=(14-13.6667)/5.2599≈0.0634. T37 uses the wrong upper neighbouring frequency and prints an inconsistent mode. Do not reuse its displayed skewness."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T11-L01; Source: T34-42 | Course topic 11",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-11"
+  },
+  {
+    "logical_key": "sta111-t11-l02",
+    "course_code": "STA 111",
+    "module_position": 11,
+    "module_title": "Skewness, kurtosis and summary output",
+    "lesson_position": 2,
+    "title": "Moments and kurtosis",
+    "objective": "Use moments and kurtosis to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For a distribution, skewness is E[(X-μ)³]/σ³. Kurtosis β2=E[(X-μ)⁴]/σ⁴, and excess kurtosis=β2-3. Normal distributions have kurtosis 3 and excess 0. Values above or below 3 are called leptokurtic or platykurtic relative to the normal. Kurtosis concerns tail weight and extreme observations; peak height alone is an incomplete interpretation. Software may use bias-adjusted sample formulas, so record the convention."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Read a software summary",
+        "text": "The source debt example includes count, sum, mean, median, SD, variance, skewness and kurtosis output. Count and sum provide basic checks: mean must equal sum/count. A software value labelled kurtosis may actually be excess kurtosis. Different skewness formulas explain some differences, but cannot justify an incorrect arithmetic total. The original tables also have uneven counts by region; do not assume equal sample sizes."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Skewness coefficients are not universally confined to -1 to +1. A moment skewness of zero does not by itself prove symmetry."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA111-T11-L02; Source: T34-42 | Course topic 11",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-11"
+  },
+  {
+    "logical_key": "sta112-t12-l01",
+    "course_code": "STA 112",
+    "module_position": 12,
+    "module_title": "Random variables and probability models",
+    "lesson_position": 1,
+    "title": "Map outcomes to numbers",
+    "objective": "Explain and apply map outcomes to numbers.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A random variable is a function assigning a real number to each experimental outcome. Distinguish an outcome from its numeric summary: HH is an outcome of two coin tosses, while the number of heads is 2. The sample space contains all outcomes; the support of X contains the possible values of X. Several outcomes can map to the same value, so those values need not be equally likely."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Derive a coin-count distribution",
+        "text": "T50 tosses a fair coin three times. The eight equally likely sequences give head counts 0,1,2,3 with frequencies 1,3,3,1. Thus probabilities are 1/8,3/8,3/8,1/8. P(X≥1)=1-P(X=0)=7/8. The four possible count values are not equally probable."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T12-L01; Source: T48-51, S12, S15 | Course topic 1",
+    "editorial_status": null,
+    "topic_slug": "topic-12"
+  },
+  {
+    "logical_key": "sta112-t12-l02",
+    "course_code": "STA 112",
+    "module_position": 12,
+    "module_title": "Random variables and probability models",
+    "lesson_position": 2,
+    "title": "Discrete and continuous models",
+    "objective": "Use discrete and continuous models to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A discrete probability mass function p(x)=P(X=x) is nonnegative and sums to 1. For a continuous variable with density f, probabilities are areas and P(X=x)=0 at every particular point. A density value is not itself a probability. Discrete models commonly count events; continuous models commonly measure amounts. Rounding may make recorded measurements discrete even when an underlying continuous model is useful."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Separate sample space and support",
+        "text": "For two fair dice, the sample space is 36 ordered pairs. If X is their sum, its support is 2 through 12. There is one pair giving 2 and six giving 7; therefore P(X=2)=1/36 but P(X=7)=6/36. Defining only the support does not provide the full distribution."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The supplement occasionally uses sampling space for sample space and confuses a population subset with the outcome space; use the definitions above."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T12-L02; Source: T48-51, S12, S15 | Course topic 1",
+    "editorial_status": null,
+    "topic_slug": "topic-12"
+  },
+  {
+    "logical_key": "sta112-t13-l01",
+    "course_code": "STA 112",
+    "module_position": 13,
+    "module_title": "Expectation, variance and transformations",
+    "lesson_position": 1,
+    "title": "Compute moments",
+    "objective": "Explain and apply compute moments.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For discrete X, E[g(X)]=∑g(x)p(x). For continuous X, integrate g(x)f(x) over its support, when the expectation exists. The mean is E(X), the second raw moment is E(X²), and Var(X)=E(X²)-[E(X)]². Standard deviation is √Var(X). Expected value is a long-run weighted average; it need not be a possible observed value."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Check the handwritten distribution",
+        "text": "S16-17 uses x=1,2,3,4 with probabilities 0.1,0.2,0.3,0.4. E(X)=0.1+0.4+0.9+1.6=3 and E(X²)=0.1+0.8+2.7+6.4=10. Var(X)=10-9=1. Thus E(3X+4)=13, E(5X²)=50 and Var(3X+10)=9. This explicitly distinguishes E(X²)=10 from [E(X)]²=9."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T13-L01; Source: T52-55, S15-17, S21-26 | Course topic 2",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-13"
+  },
+  {
+    "logical_key": "sta112-t13-l02",
+    "course_code": "STA 112",
+    "module_position": 13,
+    "module_title": "Expectation, variance and transformations",
+    "lesson_position": 2,
+    "title": "Transform and combine variables",
+    "objective": "Use transform and combine variables to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "E(a+bX)=a+bE(X), Var(a+bX)=b²Var(X), SD(a+bX)=|b|SD(X). Adding a constant changes location but not spread. For independent X and Y, Var(X+Y)=Var(X-Y)=Var(X)+Var(Y). Expectations add without requiring independence. In general, covariance terms are needed for variances of sums. A variance cannot be negative."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Integrate the supplement density",
+        "text": "S23-26 gives f(x)=(2/9)x(3-x), 0<x<3. It integrates to 1. E(X)=(2/9)[x³-x⁴/4] from 0 to 3=3/2. E(X²)=(2/9)[3x⁴/4-x⁵/5] from 0 to 3=27/10. Variance=27/10-9/4=9/20. Masses in (0,1),(1,2),(2,3) are 7/27,13/27,7/27."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T55 exercise 3 has listed probabilities 1/2,1/6,2/3 summing to 4/3. It is invalid as printed; no ordinary expectation answer is adopted."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T13-L02; Source: T52-55, S15-17, S21-26 | Course topic 2",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-13"
+  },
+  {
+    "logical_key": "sta112-t14-l01",
+    "course_code": "STA 112",
+    "module_position": 14,
+    "module_title": "Events, axioms and probability laws",
+    "lesson_position": 1,
+    "title": "Events and axioms",
+    "objective": "Explain and apply events and axioms.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "An event is a subset of a sample space. Its complement contains outcomes outside it; the union A∪B means A or B inclusive; intersection A∩B means both. Probabilities are nonnegative, P(S)=1 and probabilities add over disjoint events. For equally likely outcomes only, P(A)=number of favourable outcomes/number of outcomes. A probability of zero need not mean a logically impossible event in a continuous model."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use overlapping die events",
+        "text": "Let A={1,3,5} and B={2,3,5} on a fair die. Their intersection is {3,5}, probability 2/6. P(A∪B)=3/6+3/6-2/6=4/6=2/3. Since P(A)P(B)=1/4 differs from 1/3, A and B are dependent. They are not disjoint."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T14-L01; Source: T56-61, S12, S27 | Course topic 3",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-14"
+  },
+  {
+    "logical_key": "sta112-t14-l02",
+    "course_code": "STA 112",
+    "module_position": 14,
+    "module_title": "Events, axioms and probability laws",
+    "lesson_position": 2,
+    "title": "Addition, complements and independence",
+    "objective": "Use addition, complements and independence to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "P(Aᶜ)=1-P(A). P(A∪B)=P(A)+P(B)-P(A∩B). Mutually exclusive events have empty intersection. Independent events satisfy P(A∩B)=P(A)P(B); neither changes the probability of the other. Events of positive probability cannot be both disjoint and independent. Use disjointness for an addition simplification and independence for a multiplication simplification."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use disjoint marble colours",
+        "text": "T61 has 3 red, 6 black and 7 white marbles. A single draw cannot be both red and black, so P(red or black)=3/16+6/16=9/16. The missing subtraction term is zero because of disjointness, not independence. If two positive-probability events were independent instead, their intersection would generally be positive."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T61 incorrectly says the simplified addition rule also applies to independent events. It applies to mutually exclusive events."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T14-L02; Source: T56-61, S12, S27 | Course topic 3",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-14"
+  },
+  {
+    "logical_key": "sta112-t15-l01",
+    "course_code": "STA 112",
+    "module_position": 15,
+    "module_title": "Conditional probability, tables and replacement",
+    "lesson_position": 1,
+    "title": "Condition on the correct denominator",
+    "objective": "Explain and apply condition on the correct denominator.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "P(A|B)=P(A∩B)/P(B), provided P(B)>0. Restrict the sample space to B before counting favourable cases. The multiplication rule is P(A∩B)=P(B)P(A|B)=P(A)P(B|A). In a two-way table, use the relevant row or column total for a conditional probability, and the grand total for an unconditional joint probability."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Read the source animal table",
+        "text": "T63 lists male goats 42, male sheep 10, female goats 9 and female sheep 39; total=100. P(goat)=51/100. P(goat|male)=42/52=21/26. P(male|goat)=42/51=14/17. These conditional probabilities have the same joint numerator but different denominators. Independence would require 42/100=(52/100)(51/100), which is false."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T15-L01; Source: T62-72 | Course topic 4",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-15"
+  },
+  {
+    "logical_key": "sta112-t15-l02",
+    "course_code": "STA 112",
+    "module_position": 15,
+    "module_title": "Conditional probability, tables and replacement",
+    "lesson_position": 2,
+    "title": "Replacement and total probability",
+    "objective": "Use replacement and total probability to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "With replacement and random independent draws, category probabilities stay constant. Without replacement they change after each draw. For a partition B1,...,Bk, P(A)=∑P(A|Bj)P(Bj). Bayes rule reverses conditioning: P(Bj|A)=P(A|Bj)P(Bj)/P(A). The wet/dry season problem in T72 motivates this reversal. Write both stages explicitly to avoid reversing a conditional probability."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compare two sampling schemes",
+        "text": "For T63-64, 3 pink of 10 candies give P(two pink with replacement)=(3/10)²=9/100. For T65, 9 blue and 7 white balls sampled twice without replacement give P(two blue)=(9/16)(8/15)=3/10. P(one of each in either order)=2(9/16)(7/15)=21/40. The two orders are disjoint and both must be counted."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T70 resistor exercises omit the box composition and cannot be numerically solved from that statement. Burglary events in T71 also need a joint model or an explicit independence assumption."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T15-L02; Source: T62-72 | Course topic 4",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-15"
+  },
+  {
+    "logical_key": "sta112-t16-l01",
+    "course_code": "STA 112",
+    "module_position": 16,
+    "module_title": "Combinatorial analysis",
+    "lesson_position": 1,
+    "title": "Permutations and repeated symbols",
+    "objective": "Explain and apply permutations and repeated symbols.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The product rule multiplies numbers of choices at successive stages. n!=n(n-1)...1 and 0!=1. Arranging r distinct objects chosen from n without repetition gives nPr=n!/(n-r)!. If repeated symbols have multiplicities a,b,..., distinct arrangements of all n symbols number n!/(a!b!...). For n distinct people around an unlabelled circular table, with rotations equivalent and reflections distinct, the count is (n-1)!."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Solve the supplement committee question",
+        "text": "S66 selects five from six men and four women. Unrestricted committees: C(10,5)=252. Exactly three men and two women: C(6,3)C(4,2)=20×6=120. At least one woman: C(10,5)-C(6,5)=252-6=246. These are committees, so changing the order of the same people creates no new committee."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T16-L01; Source: S13-14, S66 | Course topic 5",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-16"
+  },
+  {
+    "logical_key": "sta112-t16-l02",
+    "course_code": "STA 112",
+    "module_position": 16,
+    "module_title": "Combinatorial analysis",
+    "lesson_position": 2,
+    "title": "Combinations and restrictions",
+    "objective": "Use combinations and restrictions to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Selecting an unordered r-subset from n distinct objects gives nCr=n!/[r!(n-r)!]. Multiply combinations for separate required categories. Use a complement for at least one when easier. Read whether order matters, whether repetition is allowed and whether positions are distinguishable before choosing a formula. Words such as choose and arrange are clues, but the actual experimental structure determines the answer."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Count passwords and circular seats",
+        "text": "S66 uses A-E and digits 0-9, giving 15 distinct symbols. For five-character passwords allowing an initial digit, repetition gives 15⁵=759375; without repetition, 15×14×13×12×11=360360. For eight people at an unlabelled circular table, fix one reference person and arrange the others: 7!=5040."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "S13 prints an incorrect numeric result for arranging six books from eighteen. The formula is 18P6=18×17×16×15×14×13=13366080."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T16-L02; Source: S13-14, S66 | Course topic 5",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-16"
+  },
+  {
+    "logical_key": "sta112-t17-l01",
+    "course_code": "STA 112",
+    "module_position": 17,
+    "module_title": "Discrete cumulative distribution functions",
+    "lesson_position": 1,
+    "title": "Build a step distribution function",
+    "objective": "Explain and apply build a step distribution function.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The cumulative distribution function is F(t)=P(X≤t), for any random variable. A CDF is nondecreasing, right-continuous, approaches zero at negative infinity and one at positive infinity. For discrete X it is a step function; the jump at x equals P(X=x). Use F for a CDF and p for a mass function to keep their different meanings clear."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Rebuild the first handwritten CDF",
+        "text": "S17 gives masses 1/4,1/2,1/4 at -1,2,5. The corrected CDF is 0 for t<-1; 1/4 for -1≤t<2; 3/4 for 2≤t<5; and 1 for t≥5. Thus F(2)=3/4, P(X=2)=3/4-1/4=1/2, and P(-1<X≤5)=1-1/4=3/4. S18 overlaps some endpoints; this version makes them consistent."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T17-L01; Source: S17-18; T49-50, T74-77 | Course topic 6",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-17"
+  },
+  {
+    "logical_key": "sta112-t17-l02",
+    "course_code": "STA 112",
+    "module_position": 17,
+    "module_title": "Discrete cumulative distribution functions",
+    "lesson_position": 2,
+    "title": "Read probabilities from jumps",
+    "objective": "Use read probabilities from jumps to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "P(a<X≤b)=F(b)-F(a). P(X=x)=F(x)-F(x-), where F(x-) is the left limit. Strict inequalities require care at points with positive probability. P(X≥a)=1-F(a-), whereas P(X>a)=1-F(a). Boundary conventions are part of a valid CDF, not optional typography."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recover the second mass function",
+        "text": "The S18 intended CDF levels are 0,1/6,1/2,1 at breakpoints -3,6,10. Its jumps give masses 1/6 at -3, 1/2-1/6=1/3 at 6 and 1-1/2=1/2 at 10. They sum to 1. P(X≤4)=1/6. We treat the inconsistent handwritten interval endpoints as a source issue and state the corrected right-continuous interpretation."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "A CDF value at a jump is the value after the jump. Never read all CDF levels as separate probabilities."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T17-L02; Source: S17-18; T49-50, T74-77 | Course topic 6",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-17"
+  },
+  {
+    "logical_key": "sta112-t18-l01",
+    "course_code": "STA 112",
+    "module_position": 18,
+    "module_title": "Continuous densities and cumulative probabilities",
+    "lesson_position": 1,
+    "title": "Normalise a density",
+    "objective": "Explain and apply normalise a density.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A valid density satisfies f(x)≥0 and total integral 1. P(a<X<b)=∫ from a to b f(x)dx, restricting to the support. A density can exceed 1 on a short interval; its area, rather than height, is a probability. If f(x)=kg(x), integrate g over the support, then set k equal to the reciprocal of that integral."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Normalise the source quadratic density",
+        "text": "S19 has f(x)=k(4x-2x²), 0<x<2. Integrating gives k[2x²-(2/3)x³] from 0 to 2 = k(8/3)=1, so k=3/8. P(X>1)=(3/8)[2x²-(2/3)x³] from 1 to 2 = 1/2. The antiderivative in the handwriting omits a denominator in one line; the checked result above includes it."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T18-L01; Source: T51, T54-55, S18-20, S22-26 | Course topic 7",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-18"
+  },
+  {
+    "logical_key": "sta112-t18-l02",
+    "course_code": "STA 112",
+    "module_position": 18,
+    "module_title": "Continuous densities and cumulative probabilities",
+    "lesson_position": 2,
+    "title": "Move between density and CDF",
+    "objective": "Use move between density and CDF to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "F(t)=∫ from -∞ to t f(x)dx. Outside finite support, the CDF is 0 below it and 1 above it. Where differentiable, f(t)=F′(t). For continuous densities, isolated endpoints have probability zero, so strict and non-strict versions of interval endpoints agree. Check both total area and monotonicity when deriving a CDF."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Obtain a CDF and an interval probability",
+        "text": "S20 gives f(x)=x²/9 for 0<x<3. Therefore F(t)=t³/27 for 0≤t<3, with 0 below 0 and 1 at or above 3. P(1<X<2)=(8-1)/27=7/27. In S22, f(x)=81x² on (0,1/3) gives E(X)=81[x⁴/4] from 0 to 1/3=1/4."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "S20 writes x³/27 inside a probability integral in one line; integrate the density x²/9 or subtract the CDF values instead."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T18-L02; Source: T51, T54-55, S18-20, S22-26 | Course topic 7",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-18"
+  },
+  {
+    "logical_key": "sta112-t19-l01",
+    "course_code": "STA 112",
+    "module_position": 19,
+    "module_title": "Bernoulli and binomial distributions",
+    "lesson_position": 1,
+    "title": "Recognise the model",
+    "objective": "Explain and apply recognise the model.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A Bernoulli variable is 1 for success and 0 for failure, with probability p of success. Its mean is p and variance p(1-p). A binomial count X sums n independent Bernoulli trials with the same p. Conditions: fixed n, two outcomes per trial, independence and constant success probability. Its support is 0,...,n. P(X=x)=C(n,x)p^x(1-p)^(n-x); E(X)=np; Var(X)=np(1-p)"
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Check a five-toss example",
+        "text": "The supplement tosses a fair coin five times. P(X=2)=C(5,2)/32=10/32=5/16. P(X=0)=1/32. P(X≥4)=[C(5,4)+C(5,5)]/32=6/32=3/16. P(X≤4)=1-P(X=5)=31/32. S35 writes an inconsistent at-most expression; the complement gives the correct value."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T19-L01; Source: T74-84, S28-35, S41 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-19"
+  },
+  {
+    "logical_key": "sta112-t19-l02",
+    "course_code": "STA 112",
+    "module_position": 19,
+    "module_title": "Bernoulli and binomial distributions",
+    "lesson_position": 2,
+    "title": "Derive and use binomial results",
+    "objective": "Use derive and use binomial results to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "There are C(n,x) sequences with x successes, and each has probability p^x(1-p)^(n-x); multiply them. The binomial theorem makes the masses sum to [p+(1-p)]^n=1. Mean and variance follow by adding the moments of independent Bernoulli indicators. At most r means X≤r; at least r means X≥r. Use a complement where it reduces the number of terms."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Repair the textbook medication calculation",
+        "text": "For T80-83, X~Bin(14,0.2). P(X≤2)=∑ from x=0 to 2 C(14,x)0.2^x0.8^(14-x)≈0.448051. P(X≥5)=1-P(X≤4)≈0.129840. P(2≤X≤4)≈0.672248. Terms are added as disjoint counts; the source drops coefficients and produces incorrect totals. The model assumes independent responses with the specified common probability."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "A large n alone does not justify a Poisson approximation. Sampling a substantial fraction without replacement generally requires a hypergeometric model."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T19-L02; Source: T74-84, S28-35, S41 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-19"
+  },
+  {
+    "logical_key": "sta112-t20-l01",
+    "course_code": "STA 112",
+    "module_position": 20,
+    "module_title": "Poisson counts and approximation",
+    "lesson_position": 1,
+    "title": "Model events over an interval",
+    "objective": "Explain and apply model events over an interval.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For X~Poisson(λ), P(X=x)=exp(-λ)λ^x/x! for x=0,1,... and λ>0. Both mean and variance equal λ. A constant-rate Poisson process motivates the model when disjoint intervals have independent counts and multiple events in a tiny interval are negligible. Change the mean in proportion to exposure: doubling time doubles λ, assuming constant rate."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Calculate a source count probability",
+        "text": "T85 models daily cars with λ=7.5. Exactly six: exp(-7.5)7.5⁶/6!≈0.136718. At most four: exp(-7.5)∑ from x=0 to 4 7.5^x/x!≈0.132062. At most eight means a sum through 8; at least eight means 1 minus a sum through 7. These are different events, confused in the printed worked solution."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T20-L01; Source: T85-86, S31, S35-37 | Course topic 9",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-20"
+  },
+  {
+    "logical_key": "sta112-t20-l02",
+    "course_code": "STA 112",
+    "module_position": 20,
+    "module_title": "Poisson counts and approximation",
+    "lesson_position": 2,
+    "title": "Check sums and moments",
+    "objective": "Use check sums and moments to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The exponential series ∑λ^x/x!=exp(λ) makes the masses sum to 1 after multiplying by exp(-λ). Reindexing x p(x) gives E(X)=λ; reindexing x(x-1)p(x) gives E[X(X-1)]=λ². Thus E(X²)=λ²+λ and variance=λ. Bin(n,p) may be approximated by Poisson(np) when trials are independent, n is large and p small; this is not a rule based on n>20 alone."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use rare-event scaling",
+        "text": "S37 assigns accident probability 0.0016 to each of 1000 workers. Under independent Bernoulli risks, the exact count is Bin(1000,0.0016). A Poisson approximation uses λ=1.6: P(no accidents)≈exp(-1.6)=0.201897 and P(exactly three)≈exp(-1.6)1.6³/6=0.137828. State approximation rather than presenting it as the exact binomial answer."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Poisson mean equals variance under the model; a dataset with a larger variance than mean does not by itself establish any particular causal explanation."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T20-L02; Source: T85-86, S31, S35-37 | Course topic 9",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-20"
+  },
+  {
+    "logical_key": "sta112-t21-l01",
+    "course_code": "STA 112",
+    "module_position": 21,
+    "module_title": "Geometric waiting times",
+    "lesson_position": 1,
+    "title": "Count trials through the first success",
+    "objective": "Explain and apply count trials through the first success.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Here X counts the trial on which the first success occurs in independent trials with constant success probability p. The support is 1,2,3,... and p(x)=(1-p)^(x-1)p. The first x-1 trials must fail and trial x must succeed. Another convention counts failures before success and starts at 0; always state which random variable is being used."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compute a waiting probability",
+        "text": "If p=0.25, first success on trial 3 has probability (0.75)²(0.25)=0.140625. Success by trial 3 has probability 1-(0.75)³=0.578125. The mean trial count is 4 and variance is 0.75/0.25²=12. The mean is not a guarantee that success occurs on the fourth trial."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T21-L01; Source: T87, S37-40, S44-45 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-21"
+  },
+  {
+    "logical_key": "sta112-t21-l02",
+    "course_code": "STA 112",
+    "module_position": 21,
+    "module_title": "Geometric waiting times",
+    "lesson_position": 2,
+    "title": "Moments, tails and lack of memory",
+    "objective": "Use moments, tails and lack of memory to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For the trial-count convention E(X)=1/p and Var(X)=(1-p)/p². The geometric series validates normalisation. For integer k≥0, P(X>k)=(1-p)^k. The memoryless property is P(X>s+t|X>s)=P(X>t): after failures, the remaining waiting time has the same distribution. This depends on independence and a constant p."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Distinguish conventions",
+        "text": "If Y counts failures before the first success, then Y=X-1. For p=0.25, E(Y)=4-1=3 and Var(Y)=Var(X)=12. After two failures, probability of waiting more than three additional trials is still (0.75)³=0.421875. No increasing chance of success is implied by earlier failures."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The support and the meaning of X control the exponent. Do not mix the failures-count formula with the trials-count mean."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T21-L02; Source: T87, S37-40, S44-45 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-21"
+  },
+  {
+    "logical_key": "sta112-t22-l01",
+    "course_code": "STA 112",
+    "module_position": 22,
+    "module_title": "Hypergeometric sampling without replacement",
+    "lesson_position": 1,
+    "title": "Select from a finite population",
+    "objective": "Explain and apply select from a finite population.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A population has N units, K successes and N-K failures. Choose an unordered simple random sample of n without replacement. X counts sampled successes. Its mass is C(K,x)C(N-K,n-x)/C(N,n). Support is max(0,n-(N-K)) through min(n,K). Draws are dependent because composition changes. The success label is simply the category being counted."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Repair the first source example",
+        "text": "T88 states N=50, n=10 and four defectives, but its solution switches K to 5. Using the stated K=4, P(X=2)=C(4,2)C(46,8)/C(50,10)≈0.152410. Mean=10(4/50)=0.8. Variance=10(0.08)(0.92)(40/49)≈0.600816. These values follow the question, not the inconsistent printed substitution."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T22-L01; Source: T87-89 | Course topic 11",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-22"
+  },
+  {
+    "logical_key": "sta112-t22-l02",
+    "course_code": "STA 112",
+    "module_position": 22,
+    "module_title": "Hypergeometric sampling without replacement",
+    "lesson_position": 2,
+    "title": "Moments and finite population adjustment",
+    "objective": "Use moments and finite population adjustment to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Write p=K/N. Then E(X)=np and Var(X)=np(1-p)(N-n)/(N-1), for N>1. The last factor reduces variation relative to independent binomial draws. It is 0 when every unit is sampled. The denominator C(N,n) counts all equally likely samples; the numerator counts those with the required category composition."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Set up the second source exercise",
+        "text": "T88 asks for five defectives in a sample of 50 from 150 with 20 defectives. The correct expression is C(20,5)C(130,45)/C(150,50). T88-89 instead substitutes different N,n,K,x values, so its displayed numerical answer is not adopted. Always rewrite the four parameters explicitly before calculating."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Do not silently choose between conflicting source parameters. State which version is being solved, or exclude an ambiguous question."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T22-L02; Source: T87-89 | Course topic 11",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-22"
+  },
+  {
+    "logical_key": "sta112-t23-l01",
+    "course_code": "STA 112",
+    "module_position": 23,
+    "module_title": "Uniform or rectangular distribution",
+    "lesson_position": 1,
+    "title": "Constant density on a finite interval",
+    "objective": "Explain and apply constant density on a finite interval.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For X~Uniform(a,b), a<b, f(x)=1/(b-a) inside the interval and 0 outside. For a≤c<d≤b, P(c<X<d)=(d-c)/(b-a). All equal-length subintervals have equal probability, but an exact single point has probability zero. F(t)=0 below a, (t-a)/(b-a) between a and b, and 1 above b."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use the explicitly stated source interval",
+        "text": "The conference example in T89 says the room cannot be reserved for more than six hours, but T90 explicitly models X on [0,4]. Solving that model gives f=1/4, P(X≥3)=(4-3)/4=1/4, mean=2 and variance=16/12=4/3. The conflicting six-hour sentence is recorded as a source issue."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T23-L01; Source: T89-90, S40-41 | Course topic 12",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-23"
+  },
+  {
+    "logical_key": "sta112-t23-l02",
+    "course_code": "STA 112",
+    "module_position": 23,
+    "module_title": "Uniform or rectangular distribution",
+    "lesson_position": 2,
+    "title": "Derive location and spread",
+    "objective": "Use derive location and spread to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Integrate xf(x) to obtain E(X)=(a+b)/2. Integrate x²f(x) to obtain E(X²)=(a²+ab+b²)/3. Subtract the squared mean to get variance (b-a)²/12. The density shape is rectangular and symmetric about the midpoint. The model assumes no preferred location inside its support; a stated maximum alone does not establish a uniform model."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Rescale a uniform variable",
+        "text": "Original illustration: if X~Uniform(2,8), then f=1/6 and P(3<X<5)=2/6=1/3. Mean=(2+8)/2=5, variance=36/12=3 and SD=√3. If Y=10X, its mean is 50 and variance is 100×3=300. Density height changes inversely with interval length."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "For continuous variables a uniform density is constant height, not an equal positive probability at every possible real number."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T23-L02; Source: T89-90, S40-41 | Course topic 12",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-23"
+  },
+  {
+    "logical_key": "sta112-t24-l01",
+    "course_code": "STA 112",
+    "module_position": 24,
+    "module_title": "Normal distributions and standard scores",
+    "lesson_position": 1,
+    "title": "Recognise a normal model",
+    "objective": "Explain and apply recognise a normal model.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "X~N(μ,σ²), σ>0, has density exp[-(x-μ)²/(2σ²)]/[σ√(2π)] on all real numbers. It is symmetric about μ, and mean=median=mode=μ. Total area is 1; each side of μ has area 1/2. The inflection points are μ±σ. The standard normal has μ=0 and σ²=1; other normal distributions need not have mean zero."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct a source threshold mismatch",
+        "text": "T92 states μ=300, σ=50 and asks for X>362, but later labels the event as 365. For the stated 362, z=(362-300)/50=1.24; probability=1-Φ(1.24)≈0.107488. If the threshold were 365, z=1.30 and the answer would be about 0.096800. They cannot be interchanged."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T24-L01; Source: T90-94 | Course topic 13",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-24"
+  },
+  {
+    "logical_key": "sta112-t24-l02",
+    "course_code": "STA 112",
+    "module_position": 24,
+    "module_title": "Normal distributions and standard scores",
+    "lesson_position": 2,
+    "title": "Standardise and read areas",
+    "objective": "Use standardise and read areas to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Z=(X-μ)/σ is standard normal. With Φ(z)=P(Z≤z), P(X>b)=1-Φ((b-μ)/σ) and P(a<X<b)=Φ((b-μ)/σ)-Φ((a-μ)/σ). Recover a score with x=μ+zσ. Know whether a supplied table shows left cumulative areas, right tails or areas from zero. Expected counts equal the model probability times the number of observations."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compute an expected count",
+        "text": "T94 uses 1000 candidates with mean 50 and SD 10. P(60<X<70)=P(1<Z<2)=0.977250-0.841345≈0.135905. Expected count≈135.905, about 136. This is a model expectation, not an exact observed count. A score of 60 corresponds to z=1; a z-score of -1.5 corresponds to 35."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "In N(μ,σ²), the second parameter is variance. Divide by its square root when standardising if only variance is supplied."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T24-L02; Source: T90-94 | Course topic 13",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-24"
+  },
+  {
+    "logical_key": "sta112-t25-l01",
+    "course_code": "STA 112",
+    "module_position": 25,
+    "module_title": "Gamma integrals and distribution",
+    "lesson_position": 1,
+    "title": "Gamma function and normalisation",
+    "objective": "Explain and apply gamma function and normalisation.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Γ(r)=∫ from 0 to ∞ t^(r-1)exp(-t)dt for r>0; Γ(r+1)=rΓ(r) and Γ(m)=(m-1)! for positive integers. With shape r>0 and rate λ>0, the gamma density is λ^r x^(r-1)exp(-λx)/Γ(r), x>0. Substitution t=λx makes its total integral equal to 1. The supplement uses the rate convention; a scale parameter would be 1/λ."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Evaluate the supplement integrals",
+        "text": "S42 gives ∫x³exp(-x)dx from 0 to ∞=Γ(4)=6. For ∫x²exp(-5x)dx, set t=5x: result=Γ(3)/5³=2/125. For ∫x³exp(-3x)dx, the result is Γ(4)/3⁴=6/81=2/27. Every substitution includes the differential factor dx=dt/λ."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T25-L01; Source: S42-44; T74 objective only | Course topic 14",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-25"
+  },
+  {
+    "logical_key": "sta112-t25-l02",
+    "course_code": "STA 112",
+    "module_position": 25,
+    "module_title": "Gamma integrals and distribution",
+    "lesson_position": 2,
+    "title": "Moments and a labelled connection",
+    "objective": "Use moments and a labelled connection to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Integrating x and x² against the density gives E(X)=r/λ and E(X²)=r(r+1)/λ². Therefore variance=r/λ². More generally E(X^m)=Γ(r+m)/[Γ(r)λ^m] when the moment exists. A connection added for explanation: setting r=1 gives the exponential density λexp(-λx), mean 1/λ and variance 1/λ². The textbook mentions exponential distribution in an objective but does not provide a substantive exponential lesson in the supplied chapter."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use shape and rate",
+        "text": "Original application of S43-44: if r=3 and λ=2, mean=3/2, second moment=3×4/4=3 and variance=3-9/4=3/4. Density is 2³x²exp(-2x)/Γ(3)=4x²exp(-2x). In scale notation this same model has scale 1/2, not 2."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The handwritten gamma density sometimes has an integral sign where a density expression is intended. Separate the function from its normalising integral."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T25-L02; Source: S42-44; T74 objective only | Course topic 14",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-25"
+  },
+  {
+    "logical_key": "sta112-t26-l01",
+    "course_code": "STA 112",
+    "module_position": 26,
+    "module_title": "Supplement bridge: descriptive revision",
+    "lesson_position": 1,
+    "title": "Locate the preliminary material",
+    "objective": "Explain and apply locate the preliminary material.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Although the uploaded filename is STA 112, S1, S4, S6 and S9 visibly include STA 111 labels. S1-2 revise statistics, S3 means, S4-6 frequencies and grouped location, S7-8 dispersion, S9-10 quantiles and skewness, and S11 a grouped-data assignment. These remain in the STA 112 supplement pathway by the user course allocation; the complete underlying methods are taught in the STA 111 section. S69-70 are crowded, partly cropped formula sheets, not a separate verified syllabus."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct the grouped supplement total",
+        "text": "S5 lists frequencies 20,41,52,14,49,98,19,15,31,65,18,92,66,70 for classes 1-10 through 131-140. These sum to 650, agreeing with the written total. Recomputing midpoint products gives ∑fx=51765 and mean≈79.6385, rather than the S5 written 51674.5/650. The grouped median is 80.5+(325-308)×10/31≈85.9839 and mode is 50.5+49×10/(49+79)≈54.3281, agreeing with S6. Check individual products rather than discarding the whole table."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T26-L01; Source: S1-11, S69-70; cross-reference STA 111 topics 1-11 | Course topic 15",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-26"
+  },
+  {
+    "logical_key": "sta112-t26-l02",
+    "course_code": "STA 112",
+    "module_position": 26,
+    "module_title": "Supplement bridge: descriptive revision",
+    "lesson_position": 2,
+    "title": "Reconcile conventions before computing",
+    "objective": "Use reconcile conventions before computing to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The supplement includes both population and sample variance and uses different percentile positions in different examples. Choose the rule stated in the question, record it and retain it throughout. For grouped data use class boundaries, cumulative frequency before the class, frequency inside it and class width. For ungrouped data, use the actual ordered values. Do not copy a handwritten total without checking the row entries."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recheck a short handwritten dataset",
+        "text": "S7 lists 8,7,4,6,7,2,3. Their sum is 37 and mean=37/7≈5.2857. Ordered values 2,3,4,6,7,7,8 give median 6, mode 7 and range 6. The population variance is [227-(37²/7)]/7=220/49≈4.4898; SD≈2.1190. Computing before rounding avoids drift in squared deviations."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Source headings are preserved as evidence, but do not override the user course mapping. Handwritten assignments are study material, not instructions to execute unrelated tasks."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T26-L02; Source: S1-11, S69-70; cross-reference STA 111 topics 1-11 | Course topic 15",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-26"
+  },
+  {
+    "logical_key": "sta112-t27-l01",
+    "course_code": "STA 112",
+    "module_position": 27,
+    "module_title": "Supplement bridge: sampling and standard error",
+    "lesson_position": 1,
+    "title": "Distinguish population, sample and design",
+    "objective": "Explain and apply distinguish population, sample and design.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The supplement revisits simple random, stratified, cluster, systematic and multistage probability sampling. Probability designs give units known selection probabilities; equal probabilities are not required in every probability design. Nonprobability designs listed include convenience, quota, purposive and snowball sampling. A sampling frame is the list or operational structure from which units are selected; incomplete coverage is a source of bias."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Allocate the sample",
+        "text": "If three strata have sizes 100,200,300 and the total sample is 60, N=600 and allocation gives 10,20,30. Random selection must then occur within each stratum for probability stratified sampling. Merely recruiting convenient people until those counts are filled produces quotas, not a random stratified sample."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T27-L01; Source: S46-48, S53-54, S61, S64; cross-reference STA 121 topics 32-35 | Course topic 16",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-27"
+  },
+  {
+    "logical_key": "sta112-t27-l02",
+    "course_code": "STA 112",
+    "module_position": 27,
+    "module_title": "Supplement bridge: sampling and standard error",
+    "lesson_position": 2,
+    "title": "Allocation and uncertainty",
+    "objective": "Use allocation and uncertainty to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Proportionate stratified allocation is nh=nNh/N. A systematic design uses an interval k=N/n with a random starting position. Standard error measures the sampling variability of a statistic; for independent observations, SD of the sample mean is σ/√n. It differs from the SD of individual observations. A sampling distribution is the distribution of a statistic over repeated samples under a specified design."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct the systematic illustration",
+        "text": "S47 lists the 12 values 4 through 15 and seeks four units. k=12/4=3. With starting position 3, selected positions are 3,6,9,12 and selected values are 6,9,12,15. The handwritten sequence 6,10,14,18 uses the wrong step and ends outside the original list. Positions and values must not be confused."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The full sampling lessons appear under STA 121 because textbook chapter 6 belongs there. This supplement pathway is retained under STA 112 for revision."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T27-L02; Source: S46-48, S53-54, S61, S64; cross-reference STA 121 topics 32-35 | Course topic 16",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-27"
+  },
+  {
+    "logical_key": "sta112-t28-l01",
+    "course_code": "STA 112",
+    "module_position": 28,
+    "module_title": "Supplement bridge: testing and paired",
+    "lesson_position": 1,
+    "title": "Write hypotheses and select a tail",
+    "objective": "Explain and apply write hypotheses and select a tail.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A hypothesis is a statement about a population parameter or model. The null H0 provides the reference value or no-effect claim. The alternative H1 states the effect or difference to be investigated. A directional alternative uses > or <; a nondirectional alternative uses ≠. Choose direction before seeing the sample result. For a two-sided 5% z test, the critical values are ±1.96, whereas a one-sided 5% test uses 1.645 in the specified tail."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Formulate a direction clearly",
+        "text": "To test whether a new teaching method raises the population mean score, use H0: μnew-μold=0 as the boundary reference and H1: μnew-μold>0. A claim of any change uses H1: difference≠0. The direction belongs to a measurable parameter, not to a vague statement such as new methods are better."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T28-L01; Source: S49-61; cross-reference STA 121 topics 36-39 | Course topic 17",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-28"
+  },
+  {
+    "logical_key": "sta112-t28-l02",
+    "course_code": "STA 112",
+    "module_position": 28,
+    "module_title": "Supplement bridge: testing and paired",
+    "lesson_position": 2,
+    "title": "Match test structure to the data",
+    "objective": "Use match test structure to the data to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Independent-sample tests compare separate groups; paired tests analyse within-pair differences, such as before and after observations on the same students. A paired t statistic is mean difference divided by its standard error: t=(mean(d)-d0)/(sd/√n), df=n-1. The differences should be independent across pairs and approximately normal for small-sample exact t inference. Do not test paired data as though all readings were independent."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work a paired test",
+        "text": "Original illustration of S55: differences are 2,4,3,5,1. Their mean is 3 and sample variance=(1+1+0+4+4)/4=2.5. SE=√2.5/√5≈0.7071. Against d0=0, t≈4.2426, df=4. For a two-sided 5% test, critical t≈2.776; reject H0, assuming the paired-difference model is appropriate."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Several supplement lines say reject for any calculated value greater than a positive critical value. Left-tailed tests and two-sided tests need their own correctly signed rules."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T28-L02; Source: S49-61; cross-reference STA 121 topics 36-39 | Course topic 17",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-28"
+  },
+  {
+    "logical_key": "sta112-t29-l01",
+    "course_code": "STA 112",
+    "module_position": 29,
+    "module_title": "Analysis of variance and post-hoc comparisons",
+    "lesson_position": 1,
+    "title": "Compare several population means",
+    "objective": "Explain and apply compare several population means.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "One-way ANOVA tests H0: μ1=...=μk against the alternative that at least one mean differs. It separates between-group variation from within-group variation. For the classical F test, observations are independent, errors are approximately normal within groups and population variances are equal. The factor identifies the groups; treatment is a group level. A significant omnibus test does not identify which pairs differ."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Build a complete small ANOVA",
+        "text": "Original illustration of the supplement method: groups A=(2,4), B=(5,7), C=(8,10). Group means are 3,6,9; grand mean=6. SSB=2(9+0+9)=36; SSE=(1+1)×3=6; SST=42. df between=2, within=3, total=5. MSB=18, MSE=2 and F=9. If a question supplies a 5% critical F of 9.552, do not reject H0 because 9<9.552."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T29-L01; Source: S60, S62-63, S65 | Course topic 18",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-29"
+  },
+  {
+    "logical_key": "sta112-t29-l02",
+    "course_code": "STA 112",
+    "module_position": 29,
+    "module_title": "Analysis of variance and post-hoc comparisons",
+    "lesson_position": 2,
+    "title": "Compute the ANOVA table",
+    "objective": "Use compute the ANOVA table to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "With group sizes nj, group means mj, grand mean m and N total observations: SSB=∑nj(mj-m)²; SSE=∑∑(xij-mj)²; SST=SSB+SSE. Degrees of freedom are k-1, N-k and N-1. MSB=SSB/(k-1), MSE=SSE/(N-k), and F=MSB/MSE. Correction-factor form: CF=G²/N, SST=∑x²-CF, SSB=∑Tj²/nj-CF. Post-hoc procedures such as Tukey compare pairs while addressing multiplicity. Two-way and block designs require additional terms; rows and columns alone do not define the design."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Interpret the handwritten exercise carefully",
+        "text": "S63 presents an IQ-rating table by six labelled faculty columns, but some labels and overwritten digits are uncertain. The source does not provide a fully reliable completed ANOVA. This pack therefore teaches the method with a fully specified original dataset rather than inventing a transcription. S62 gives N=22 and k=4 in a separate degree-of-freedom illustration: df total=21, treatment=3 and error=18."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Do not call the alternative all means differ. A post-hoc test is not simply an unadjusted repetition of every possible t test."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T29-L02; Source: S60, S62-63, S65 | Course topic 18",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-29"
+  },
+  {
+    "logical_key": "sta112-t30-l01",
+    "course_code": "STA 112",
+    "module_position": 30,
+    "module_title": "Chi-square goodness of fit and independence",
+    "lesson_position": 1,
+    "title": "Work with category counts",
+    "objective": "Explain and apply work with category counts.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Goodness of fit compares one categorical variable with specified probabilities pi, using expected counts Ei=npi. The statistic is χ²=∑(Oi-Ei)²/Ei. If k category probabilities are fully specified, df=k-1; subtract further degrees of freedom for parameters estimated from these same data. Observations should be independent and categories mutually exclusive. For the elementary chi-square approximation here, use expected counts at least 5."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work a goodness-of-fit calculation",
+        "text": "Original checked example: observed counts 18,22,20,20 across four equally likely categories give total 80 and expected count 20 in each. χ²=4/20+4/20+0+0=0.4, df=3. With supplied critical value 7.815 at 5%, do not reject equal category probabilities. The expected counts sum to the same 80 as the observations."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T30-L01; Source: S55, S63-65 | Course topic 19",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-30"
+  },
+  {
+    "logical_key": "sta112-t30-l02",
+    "course_code": "STA 112",
+    "module_position": 30,
+    "module_title": "Chi-square goodness of fit and independence",
+    "lesson_position": 2,
+    "title": "Test association in a table",
+    "objective": "Use test association in a table to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "An independence test concerns two categorical variables. Under H0, row and column classifications are independent. Expected cell count=(row total×column total)/grand total. Degrees of freedom=(r-1)(c-1). The statistic is the same sum over cells, and rejection is in the right tail. A significant result shows evidence of association, not causation or its strength. Never treat continuous measurements as category counts without a justified classification."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Work a two-way calculation",
+        "text": "Original illustration: counts [[30,20],[10,40]] have row totals 50,50 and column totals 40,60. Expected counts are [[20,30],[20,30]]. χ²=100/20+100/30+100/20+100/30=50/3≈16.6667, df=1. Compare with critical 3.841 at 5%: reject independence. S63-64 contains an inconsistent example with mismatched totals; it is excluded as a numerical source."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The source chi-square worked table does not provide a consistent O/E arrangement. Expected and observed totals must agree; χ² is not a test of two sample means."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T30-L02; Source: S55, S63-65 | Course topic 19",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-30"
+  },
+  {
+    "logical_key": "sta112-t31-l01",
+    "course_code": "STA 112",
+    "module_position": 31,
+    "module_title": "Experimental design and correlation concepts",
+    "lesson_position": 1,
+    "title": "Randomisation, replication and local control",
+    "objective": "Explain and apply randomisation, replication and local control.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The supplement names three design principles: randomisation assigns treatments by chance; replication applies treatments to multiple independent experimental units to estimate variability; local control uses blocking or related restrictions to manage nuisance variation. An experimental unit is the smallest unit independently assigned a treatment. Repeated readings on one unit do not automatically provide independent replication. ANOVA may analyse an experiment, but the design and assumptions determine its valid form."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Identify replication",
+        "text": "Suppose 24 plots are randomly assigned to three fertilisers, eight plots each. The plots are the experimental units and the eight plots per fertiliser provide replication. Measuring the same plant ten times improves measurement detail but does not create ten independently treated plots. Blocking plots by soil zone can reduce nuisance variation before treatment assignment within blocks."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T31-L01; Source: S65; S60, S62 contextual mentions | Course topic 20",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-31"
+  },
+  {
+    "logical_key": "sta112-t31-l02",
+    "course_code": "STA 112",
+    "module_position": 31,
+    "module_title": "Experimental design and correlation concepts",
+    "lesson_position": 2,
+    "title": "Association and scope of inference",
+    "objective": "Use association and scope of inference to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Simple correlation describes association between two variables; multiple correlation concerns a variable in relation to several predictors. The supplement gives concepts rather than a complete calculation lesson. Correlation alone cannot establish causation: confounding or reverse direction can explain an association. Random sampling supports population generalisation; random treatment assignment supports causal comparison under a sound design. A feasibility study asks whether a proposed approach can work; it is not itself a test statistic."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Limit a conclusion",
+        "text": "Students who visit the library more often have higher scores in an observational record. The association does not prove that visits caused the higher scores: prior ability or motivation may affect both. A randomised encouragement intervention could estimate the effect of that intervention, while a sample drawn from only one department would limit generalisation beyond it."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "No correlation coefficient formula or full two-way ANOVA computation is legibly developed in the supplement. These notes cover the concepts present without pretending the missing derivations were supplied."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA112-T31-L02; Source: S65; S60, S62 contextual mentions | Course topic 20",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-31"
+  },
+  {
+    "logical_key": "sta121-t32-l01",
+    "course_code": "STA 121",
+    "module_position": 32,
+    "module_title": "Sampling foundations and simple random sampling",
+    "lesson_position": 1,
+    "title": "Define a sampling investigation",
+    "objective": "Explain and apply define a sampling investigation.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Sampling selects a subset to learn about a target population. A census seeks every unit and may be appropriate when the population is small or information is needed for every unit. Sampling can save time and cost, and may improve supervision, but introduces sampling variability. Define target population, frame, sampling unit, sample size and selection procedure. A representative sample is an objective, not a property guaranteed by a large n."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Select valid random labels",
+        "text": "Original illustration: label 20 students 01-20 and seek five without replacement. Read pairs 04,19,23,04,07,00,12,16. Reject 23 and 00 as outside the frame and reject the second 04 as a duplicate. The selected labels are 04,19,07,12,16. Record the starting point and reading rule for reproducibility."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T32-L01; Source: T95-98 | Course topic 1",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-32"
+  },
+  {
+    "logical_key": "sta121-t32-l02",
+    "course_code": "STA 121",
+    "module_position": 32,
+    "module_title": "Sampling foundations and simple random sampling",
+    "lesson_position": 2,
+    "title": "Implement simple random sampling",
+    "objective": "Use implement simple random sampling to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For a simple random sample without replacement, every possible sample of a fixed size has the same probability. A lottery or properly applied random-number procedure can implement it. Label all frame units uniquely, generate random labels and retain valid ones. Reject repeated labels for sampling without replacement; retain them when sampling with replacement if that is the specified design. Homogeneity can improve precision but is not a mathematical requirement for the validity of SRS."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Distinguish two designs",
+        "text": "Sampling three labels from ten with replacement permits the same label more than once and produces 10³ ordered sequences. Sampling without replacement produces 10×9×8 ordered sequences. For an unordered SRS without replacement, there are C(10,3)=120 possible samples, each probability 1/120. Equal individual chances alone do not fully define all features of a sampling design."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T97 lists homogeneity as a basic condition; distinguish an efficiency consideration from the defining equal-sample-probability property."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T32-L02; Source: T95-98 | Course topic 1",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-32"
+  },
+  {
+    "logical_key": "sta121-t33-l01",
+    "course_code": "STA 121",
+    "module_position": 33,
+    "module_title": "Stratified and cluster sampling",
+    "lesson_position": 1,
+    "title": "Stratify for subgroup representation",
+    "objective": "Explain and apply stratify for subgroup representation.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Stratification divides the frame into mutually exclusive, collectively exhaustive strata, then selects a probability sample from each. Strata are often chosen to be internally similar on relevant variables. Proportionate allocation is nh=nNh/N; disproportionate allocation may be used deliberately with appropriate analysis weights. Stratification can ensure representation of small important subgroups and improve precision."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use proportional allocation",
+        "text": "T99 describes town populations 140,110,120,130, total 500, and sample sizes 14,11,12,13, total 50. The common sampling fraction is 10%. If the stratum means are 35.5,32.18,18.92,31.62 as tabulated, the weighted mean is [140(35.5)+110(32.18)+120(18.92)+130(31.62)]/500≈29.7816. Using rounded stratum means gives a rounded estimate."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T33-L01; Source: T98-100 | Course topic 2",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-33"
+  },
+  {
+    "logical_key": "sta121-t33-l02",
+    "course_code": "STA 121",
+    "module_position": 33,
+    "module_title": "Stratified and cluster sampling",
+    "lesson_position": 2,
+    "title": "Sample clusters",
+    "objective": "Use sample clusters to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Clusters are groups such as schools, villages or blocks. Select some clusters by a probability method; in one-stage cluster sampling, observe every unit in each selected cluster. Multistage sampling selects further units inside selected clusters. Cluster designs can reduce travel and listing costs, but similarity within clusters can reduce statistical efficiency. A complete list of clusters may suffice at the first stage even without a full list of all individuals."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Separate strata from clusters",
+        "text": "In the source phone example, 12,000 units are arranged into 120 clusters of 100, and three clusters are selected; observing every unit in them gives 300 observations. Stratified sampling of the same population would select some units from every stratum. The distinction is selection from every group versus selection of only some groups, not merely the presence of groups."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Cluster sizes need not always be equal. The design and weights must account for unequal probabilities and sizes when present."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T33-L02; Source: T98-100 | Course topic 2",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-33"
+  },
+  {
+    "logical_key": "sta121-t34-l01",
+    "course_code": "STA 121",
+    "module_position": 34,
+    "module_title": "Systematic and multistage sampling",
+    "lesson_position": 1,
+    "title": "Use a random start and fixed interval",
+    "objective": "Explain and apply use a random start and fixed interval.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For the elementary equal-interval case with N divisible by n, choose k=N/n and a random starting position r from 1,...,k. Select positions r,r+k,...,r+(n-1)k. The random start is essential. Periodic structure in the ordered frame can interact badly with the interval; inspect the ordering. More elaborate procedures are needed when N/n is not an integer."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Check positions against values",
+        "text": "T101 lists values 4 through 15, N=12 and n=4, so k=3. Starting at position 2 selects positions 2,5,8,11 and values 5,8,11,14. Starting at value 4, which is position 1, gives values 4,7,10,13. The value and its position happen to differ by three in this list."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T34-L01; Source: T101-103 | Course topic 3",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-34"
+  },
+  {
+    "logical_key": "sta121-t34-l02",
+    "course_code": "STA 121",
+    "module_position": 34,
+    "module_title": "Systematic and multistage sampling",
+    "lesson_position": 2,
+    "title": "Select at successive stages",
+    "objective": "Use select at successive stages to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A multistage design samples larger units, then smaller units inside them, such as states, local government areas, schools and students. Record the selection method at each stage. Inclusion probabilities are determined by the sequence of conditional selections, and analysis should respect clustering and weights. Multistage sampling differs from a single one-stage cluster sample because not necessarily every final unit in a selected large unit is observed."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Describe a defensible multistage sample",
+        "text": "To sample students across a state, first randomly select schools from a school frame, then randomly select classes inside chosen schools and students inside chosen classes. Keep the stage counts and selection probabilities. If schools have different sizes, equal school probabilities do not automatically produce equal student probabilities. A simple unweighted analysis may then misrepresent the population."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The source phrase every kth element assumes an ordered frame and a valid random start; it is not an instruction to select any convenient first unit."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T34-L02; Source: T101-103 | Course topic 3",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-34"
+  },
+  {
+    "logical_key": "sta121-t35-l01",
+    "course_code": "STA 121",
+    "module_position": 35,
+    "module_title": "Quota and purposive sampling",
+    "lesson_position": 1,
+    "title": "Use quotas with their limitations",
+    "objective": "Explain and apply use quotas with their limitations.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Quota sampling fills specified subgroup targets, often in population proportions, using nonrandom selection inside each quota. This may balance selected characteristics but does not ensure balance on unmeasured ones. Known selection probabilities are generally unavailable. Its convenience and speed should be weighed against selection bias and limited probability-based generalisation."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compute source quotas",
+        "text": "T102 has a class that is 70% female and 30% male, with a desired sample of 30. Quotas are 0.70×30=21 and 0.30×30=9. These numbers do not identify how the people are recruited. Random selection inside the two groups would instead make this a proportionately allocated stratified probability design."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T35-L01; Source: T102-103 | Course topic 4",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-35"
+  },
+  {
+    "logical_key": "sta121-t35-l02",
+    "course_code": "STA 121",
+    "module_position": 35,
+    "module_title": "Quota and purposive sampling",
+    "lesson_position": 2,
+    "title": "Use expert judgement appropriately",
+    "objective": "Use use expert judgement appropriately to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Purposive or judgement sampling deliberately selects units because they meet criteria relevant to the study. Experts or hard-to-find cases may be useful for exploratory understanding. The source mentions informed medical professionals as an example of expert selection; that does not turn their opinions into a probability estimate of a population prevalence. State the selection criteria and the limits of the resulting claims."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Choose a design for the purpose",
+        "text": "To explore experiences of a rare specialist role, purposively select people with that role and report the exploratory scope. To estimate an institution-wide mean with probability-based uncertainty, define a frame and use a probability design. A convenient sample of friends may meet a quota but still systematically exclude other experiences."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Balanced subgroup counts alone do not guarantee a representative sample. Do not attach an SRS margin of error to an arbitrary quota sample."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T35-L02; Source: T102-103 | Course topic 4",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-35"
+  },
+  {
+    "logical_key": "sta121-t36-l01",
+    "course_code": "STA 121",
+    "module_position": 36,
+    "module_title": "Hypotheses, errors and decisions",
+    "lesson_position": 1,
+    "title": "Set the question before the test",
+    "objective": "Explain and apply set the question before the test.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A statistical hypothesis concerns population parameters or a probability model. Use H0 with a reference equality and H1 as a directional or nondirectional alternative. Choose the significance level α and test procedure in advance. The test statistic measures how far the sample departs from H0 relative to expected sampling variation. A critical region is the set of sufficiently extreme values leading to rejection."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Choose the tail",
+        "text": "For a claim that a mean is different from 20, H0: μ=20 and H1: μ≠20, giving a two-sided test. For a decrease, H1: μ<20, giving a left-tailed test. At α=0.05, z critical values are ±1.96 for two sides, -1.645 for a left tail and +1.645 for a right tail."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T36-L01; Source: T104-108 | Course topic 5",
+    "editorial_status": null,
+    "topic_slug": "topic-36"
+  },
+  {
+    "logical_key": "sta121-t36-l02",
+    "course_code": "STA 121",
+    "module_position": 36,
+    "module_title": "Hypotheses, errors and decisions",
+    "lesson_position": 2,
+    "title": "Interpret errors, power and p-values",
+    "objective": "Use interpret errors, power and p-values to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A Type I error rejects a true H0; its probability is controlled at α by the procedure. A Type II error fails to reject H0 at a specified false parameter value; its probability is β. Power=1-β. A p-value is the probability, under H0 and the model, of a test result at least as extreme as observed in the direction(s) being tested. Reject when p≤α. Otherwise fail to reject; this does not prove equality or no effect."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Make a contextual decision",
+        "text": "Suppose the preselected test produces p=0.03 at α=0.05. Reject H0 and state that the data provide evidence for the specified alternative under the assumptions. With p=0.12, fail to reject. Neither result gives the probability that H0 is true. A statistically detectable difference can still be too small to matter in practice."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "The source often uses accept H0; this pack uses fail to reject to avoid claiming that a nonsignificant result establishes the null."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T36-L02; Source: T104-108 | Course topic 5",
+    "editorial_status": null,
+    "topic_slug": "topic-36"
+  },
+  {
+    "logical_key": "sta121-t37-l01",
+    "course_code": "STA 121",
+    "module_position": 37,
+    "module_title": "One-sample tests for a population mean",
+    "lesson_position": 1,
+    "title": "Choose z or t from assumptions",
+    "objective": "Explain and apply choose z or t from assumptions.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For independent observations with known population SD σ, z=(mean-μ0)/(σ/√n). With unknown σ, use t=(mean-μ0)/(s/√n), df=n-1. Exact small-sample t inference assumes a normal population; larger-sample approximations need a sufficiently well-behaved sampling distribution. The rule n<30 is a teaching shortcut, not the definition of a t test. Check outliers, design and distribution, not just n."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct the room-density conclusion",
+        "text": "T110 supplies mean=2.24, s=0.36, n=10 against μ0=2 with a two-sided alternative. Conditional on these supplied summaries, t=0.24/(0.36/√10)≈2.1082, df=9. At 5%, two-sided critical t≈2.262. Therefore fail to reject H0. The printed 1.83 critical value is approximately a one-sided value and leads to the wrong two-sided conclusion. Some raw values are cropped, so the summaries are explicitly the chosen inputs."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T37-L01; Source: T108-113 | Course topic 6",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-37"
+  },
+  {
+    "logical_key": "sta121-t37-l02",
+    "course_code": "STA 121",
+    "module_position": 37,
+    "module_title": "One-sample tests for a population mean",
+    "lesson_position": 2,
+    "title": "Follow a complete testing sequence",
+    "objective": "Use follow a complete testing sequence to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "State H0 and H1, α, assumptions, statistic and null distribution. Compute SE, then the signed statistic. Use the correct tail or p-value, make a decision and interpret in context. Two-sided t testing rejects when |t| exceeds its upper 1-α/2 quantile. Left-tailed testing rejects for sufficiently negative t. Do not turn a signed left-tailed statistic positive before applying a one-sided rule."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recheck the banking example",
+        "text": "T111-112 gives 21,18,20,14,15,19, sum=107, mean=17.8333 and sum of squares=1947. Sample variance=[1947-107²/6]/5=7.7667; s≈2.7869. For H1: μ<20, t≈-1.9043, df=5. The 5% left critical value is -2.015, so fail to reject a mean of 20; the evidence is insufficient for the claimed fall."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "Known σ versus estimated s matters. T113 also inconsistently labels n as 20 despite a stated sample of 400; use the fully stated question and document that choice."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T37-L02; Source: T108-113 | Course topic 6",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-37"
+  },
+  {
+    "logical_key": "sta121-t38-l01",
+    "course_code": "STA 121",
+    "module_position": 38,
+    "module_title": "Tests comparing two population means",
+    "lesson_position": 1,
+    "title": "Separate independent and paired designs",
+    "objective": "Explain and apply separate independent and paired designs.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For independent samples with known variances, z=[(mean1-mean2)-Δ0]/√(σ1²/n1+σ2²/n2). For normal populations with unknown but equal variances, pool: sp²=[(n1-1)s1²+(n2-1)s2²]/(n1+n2-2). Then t=[(mean1-mean2)-Δ0]/[sp√(1/n1+1/n2)] with df=n1+n2-2. Equal variance is an assumption, not a consequence of independent sampling."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recompute the source faculty comparison",
+        "text": "T115 gives Engineering 70,75,80,68 and Management 68,85,72,81. Means are 73.25 and 76.5. Sample variances are 28.9167 and 61.6667. Under the stated equal-variance normal model, sp²=45.2917, SE=√[45.2917(1/4+1/4)]≈4.7588. t=(73.25-76.5)/4.7588≈-0.6829, df=6. For Engineering>Management, the 5% right critical t≈1.943; fail to reject."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T38-L01; Source: T113-116 | Course topic 7",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-38"
+  },
+  {
+    "logical_key": "sta121-t38-l02",
+    "course_code": "STA 121",
+    "module_position": 38,
+    "module_title": "Tests comparing two population means",
+    "lesson_position": 2,
+    "title": "Use an appropriate alternative",
+    "objective": "Use use an appropriate alternative to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If unequal variances are plausible, a Welch t method with SE=√(s1²/n1+s2²/n2) is a standard clarification beyond the source pooled method; its degrees of freedom require a separate approximation. Paired observations instead use differences, not the independent-samples formula. State which population difference is first minus second so that the sign of the statistic matches the alternative."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compute a known-variance comparison",
+        "text": "Original illustration: independent samples have means 54 and 50, n1=n2=25 and known σ1=σ2=5. SE=√(25/25+25/25)=√2. Against Δ0=0, z=4/√2≈2.8284. A two-sided 5% test rejects because |z|>1.96. A causal interpretation still requires suitable assignment, not merely a small p-value."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T114 has misprinted standard-error terms and T116 a pooled-variance arithmetic error. Use the formulas and recalculated numbers above."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T38-L02; Source: T113-116 | Course topic 7",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-38"
+  },
+  {
+    "logical_key": "sta121-t39-l01",
+    "course_code": "STA 121",
+    "module_position": 39,
+    "module_title": "Tests for one and two proportions",
+    "lesson_position": 1,
+    "title": "Test a single population proportion",
+    "objective": "Explain and apply test a single population proportion.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "With x successes out of n independent Bernoulli observations, estimate p by phat=x/n. Under H0: p=p0, z=(phat-p0)/√[p0(1-p0)/n]. Use the null value p0 in the test SE. A normal approximation needs adequate expected success and failure counts; this pack uses np0≥10 and n(1-p0)≥10 as a conservative classroom check. Small counts call for an appropriate exact or other method."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Correct the source gambler test",
+        "text": "T118-119 gives n=100, x=65 and p0=0.60, testing for any change. phat=0.65. Null SE=√(0.6×0.4/100)≈0.0489898. z=0.05/0.0489898≈1.0206. Since |z|<1.96, fail to reject at 5%. The source substitutes phat in the SE and reports a slightly different statistic; its final lack of evidence for change remains the same."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T39-L01; Source: T116-120 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-39"
+  },
+  {
+    "logical_key": "sta121-t39-l02",
+    "course_code": "STA 121",
+    "module_position": 39,
+    "module_title": "Tests for one and two proportions",
+    "lesson_position": 2,
+    "title": "Compare two independent proportions",
+    "objective": "Use compare two independent proportions to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Under H0: p1=p2, pool phat=(x1+x2)/(n1+n2). The test SE is √[phat(1-phat)(1/n1+1/n2)] and z=(phat1-phat2)/SE. Check independence within and between samples and adequate expected counts. A confidence interval for the difference uses an unpooled SE instead; do not reuse the null pooling mechanically."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compare the source bolt proportions",
+        "text": "T120 has x1=30,n1=1000 and x2=100,n2=1200. Estimates are 0.03 and 0.0833333. Pooled phat=130/2200≈0.0590909. SE≈0.0100961 and z≈-5.2826. A two-sided 5% test rejects equality. Report the estimated difference -0.0533333, about -5.33 percentage points, alongside the statistical result."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T117 prints n1+n1 in the pooled denominator; it must be n1+n2. Hypothesis-test standard errors and confidence-interval standard errors serve different purposes."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T39-L02; Source: T116-120 | Course topic 8",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-39"
+  },
+  {
+    "logical_key": "sta121-t40-l01",
+    "course_code": "STA 121",
+    "module_position": 40,
+    "module_title": "Point estimation and properties of estimators",
+    "lesson_position": 1,
+    "title": "Distinguish estimator, estimate and parameter",
+    "objective": "Explain and apply distinguish estimator, estimate and parameter.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A parameter is a fixed unknown population quantity in the frequentist framework used here. An estimator is a rule based on a random sample; its realised numerical value is an estimate. The sample mean estimates μ and the sample proportion estimates p. Point estimation gives one number; interval estimation gives a range produced by a procedure with a specified coverage rate. An estimate should be accompanied by information about uncertainty."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Separate a rule from its value",
+        "text": "For a random sample X1,...,Xn, the estimator mean(X) is random before observations. After values 4,6,8 are observed, its estimate is 6. The population μ remains fixed and unknown. Repeating the sample may produce another mean. A 95% procedure describes how often intervals constructed by the rule cover μ, not how often μ changes."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T40-L01; Source: T121-124 | Course topic 9",
+    "editorial_status": "flagged",
+    "topic_slug": "topic-40"
+  },
+  {
+    "logical_key": "sta121-t40-l02",
+    "course_code": "STA 121",
+    "module_position": 40,
+    "module_title": "Point estimation and properties of estimators",
+    "lesson_position": 2,
+    "title": "Compare estimator properties",
+    "objective": "Use compare estimator properties to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Unbiasedness means E(estimator)=parameter. Consistency means convergence in probability to the parameter as n grows. Among unbiased estimators of the same parameter, lower variance gives greater efficiency in that comparison. Sufficiency means the statistic retains all information in the sample about the parameter under the specified model. No single observed estimate demonstrates unbiasedness; the property concerns repeated-sample behaviour."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Compare unbiased estimators",
+        "text": "Original illustration: two unbiased estimators of μ have variances 4 and 9 under the same model and sample size. The first is more efficient by the smaller-variance criterion. An estimator with constant bias 1 and variance tending to zero is not consistent for μ: it concentrates near μ+1. Bias, variance and consistency are different properties."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T124 conflates a chosen significance level with an observed p-value. Keep α fixed by design and p-value calculated from the data and test model."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T40-L02; Source: T121-124 | Course topic 9",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-40"
+  },
+  {
+    "logical_key": "sta121-t41-l01",
+    "course_code": "STA 121",
+    "module_position": 41,
+    "module_title": "Confidence intervals for means and proportions",
+    "lesson_position": 1,
+    "title": "Interpret and construct intervals",
+    "objective": "Explain and apply interpret and construct intervals.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A confidence interval has form estimate ± critical multiplier×SE. The margin of error is the multiplier times SE; width is twice that margin. For a normal population with known σ, mean CI is mean±z(1-α/2)σ/√n. With unknown σ, use mean±t(1-α/2,n-1)s/√n under the t-model assumptions. Higher confidence requires a wider interval for the same data. Frequentist confidence refers to long-run coverage of the procedure."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Construct the source voter interval",
+        "text": "T133 has 600 of 800 voters in a category. phat=0.75. SE=√(0.75×0.25/800)≈0.0153093. A 95% Wald margin is 1.96×SE≈0.0300062. Interval=(0.719994,0.780006), about 72.00%-78.00%. The method assumes an appropriate random design and approximate independence; the interval does not repair selection bias."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T41-L01; Source: T125-128, T132-133 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-41"
+  },
+  {
+    "logical_key": "sta121-t41-l02",
+    "course_code": "STA 121",
+    "module_position": 41,
+    "module_title": "Confidence intervals for means and proportions",
+    "lesson_position": 2,
+    "title": "Proportions and differences",
+    "objective": "Use proportions and differences to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A large-sample Wald interval for one proportion is phat±z√[phat(1-phat)/n], using adequate successes and failures. For p1-p2 from independent samples, use difference±z√[phat1(1-phat1)/n1+phat2(1-phat2)/n2]. Wald intervals are classroom approximations and can perform poorly near 0 or 1. A pooled t interval for two means uses (mean1-mean2)±t sp√(1/n1+1/n2), when its assumptions hold."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Use a small-sample t interval",
+        "text": "Original illustration of T127: n=16, mean=20, s=4, with a normal population and unknown σ. SE=4/4=1. A 95% critical t with df=15 is about 2.13145. Interval=20±2.13145=(17.86855,22.13145). It is wider than the z interval because σ is estimated. Do not describe this as a 95% probability that the fixed μ is in this realised interval."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T126 wrongly says a general normal distribution has mean zero and variance greater than one. Only the standard normal fixes mean 0 and variance 1."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T41-L02; Source: T125-128, T132-133 | Course topic 10",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-41"
+  },
+  {
+    "logical_key": "sta121-t42-l01",
+    "course_code": "STA 121",
+    "module_position": 42,
+    "module_title": "Sample size and precision planning",
+    "lesson_position": 1,
+    "title": "Plan sample size for a mean",
+    "objective": "Explain and apply plan sample size for a mean.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For an approximate two-sided mean interval with known or defensibly planned σ and desired margin E, n=(zσ/E)², rounded up. A pilot estimate can inform planning but is not magically a known population SD. More variability or higher confidence increases n; a larger allowable error reduces it. The formula assumes a suitable sampling design and does not include design effects, nonresponse inflation or a finite-population adjustment unless explicitly added."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Recalculate the source ISP plan",
+        "text": "T131 uses 95% confidence, σ=6.95 minutes and E=1 minute. Using z=1.96, n=(1.96×6.95/1)²=185.552644, so at least 186 randomly selected households are required under the model. Rounding to 185 would miss the target. The chosen n plans interval precision; it does not guarantee that any one sample mean is within one minute."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T42-L01; Source: T128-133 | Course topic 11",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-42"
+  },
+  {
+    "logical_key": "sta121-t42-l02",
+    "course_code": "STA 121",
+    "module_position": 42,
+    "module_title": "Sample size and precision planning",
+    "lesson_position": 2,
+    "title": "Plan sample size for a proportion",
+    "objective": "Use plan sample size for a proportion to solve and interpret a specified problem.",
+    "estimated_minutes": 5,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Use n=z²p*(1-p*)/E², with a planning proportion p*. If no prior value is available, p*=0.5 maximises p*(1-p*) and gives a conservative value. Round up. For the same confidence and variability, margin is proportional to 1/√n: quartering the margin requires 16 times the sample size. Sample-size planning should consider cost, heterogeneity, resources, purpose and precision."
+      },
+      {
+        "type": "callout",
+        "tone": "example",
+        "title": "Plan a proportion and an improvement",
+        "text": "At 95% confidence with no prior p and E=0.05, n=1.96²×0.25/0.05²=384.16, so take 385. To halve E to 0.025, n=1536.64, so take 1537. The underlying unrounded requirement quadruples. If 80% response is anticipated, inviting ceil(385/0.8)=482 is a separate operational allowance, not a cure for nonresponse bias."
+      },
+      {
+        "type": "callout",
+        "tone": "tip",
+        "title": "Check before moving on",
+        "text": "T128 describes standard errors as inversely proportional to n; they scale as 1/√n in these formulas. Always round the required sample size upward."
+      }
+    ],
+    "flashcards": [],
+    "source_reference": "STA121-T42-L02; Source: T128-133 | Course topic 11",
+    "editorial_status": "corrected",
+    "topic_slug": "topic-42"
+  }
+]
