@@ -84,7 +84,7 @@ async function main() {
   }
   assert.equal(questions, 178);
   const prompt = buildIngestionSystemPrompt({ courseCode: 'MTH 101', moduleTitle: 'Powers', filename: 'powers.pdf', battleMix: { standard: 1, worked_solution: 0, fill_in_gap: 0 } });
-  assert.match(prompt, /MATHS TEACHING STANDARD/);
+  assert.match(prompt, /QUANTITATIVE TEACHING STANDARD/);
   console.log(`Rendering, safety, schema and teaching checks passed for ${count} lessons and ${questions} questions.`);
 
   if (process.env.PGLITE_MODULE) {
