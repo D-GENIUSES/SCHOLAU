@@ -126,9 +126,10 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
             disabled={send.isPending}
             aria-label={r.label}
             onClick={() => {
-              const mine = { userId: me.user_id, reaction: r.id };
               setSentFlash(r.id);
-              setBubble(mine);
+              if (me.user_id) {
+                setBubble({ userId: me.user_id, reaction: r.id });
+              }
               playTauntSound(r.id);
               send.mutate({ battleId: battle.battle_id, reaction: r.id });
             }}
