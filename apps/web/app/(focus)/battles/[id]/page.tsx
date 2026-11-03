@@ -66,14 +66,14 @@ export default function BattlePage() {
       seen.current.activated = true;
       analytics.track({ name: "battle_activated", battle_id: id });
     }
+    if (state === "finished" && seen.current.live && !seen.current.sounded && (result === "win" || result === "draw" || result === "loss")) {
+      seen.current.sounded = true;
+      if (result === "loss") playBattleLossSound();
+      else playBattleWinSound();
+    }
     if (state === "finished" && seen.current.live && !seen.current.completed) {
       seen.current.completed = true;
       analytics.track({ name: "battle_completed", battle_id: id, outcome: result ?? "unknown" });
-      if (!seen.current.sounded) {
-        seen.current.sounded = true;
-        if (result === "win" || result === "draw") playBattleWinSound();
-        else if (result === "loss") playBattleLossSound();
-      }
       void api.getHomeSummary().then((summary) => {
         qc.setQueryData(qk.home(), summary);
         const prev = streakBeforeBattle.current ?? home.data?.streak;

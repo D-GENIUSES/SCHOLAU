@@ -6,6 +6,7 @@ import { useNotificationSettings } from "@scholau/api/react";
 import { Bell, BellOff } from "lucide-react";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { disableBrowserPush, enableBrowserPush, readPushDevice } from "@/lib/push-browser";
+import { playNotificationChime } from "@/lib/notification-sound";
 
 function subscribeSound(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -91,8 +92,8 @@ export function NotificationSettings({ owner }: { owner: string }) {
         catch { setMessage("Your browser could not save sound preferences. Check site storage permissions."); }
       }} />In-app sound (notifications, lessons, battles)</label>
       <button type="button" className="rounded-md border border-blue-200 bg-white px-2 py-1 font-semibold" onClick={() => {
-        const audio = new Audio("/sounds/scholau-notification.wav"); audio.volume = 0.35;
-        void audio.play().catch(() => setMessage("Your browser could not play the preview. Check your device sound settings."));
+        if (!sound) { setMessage("Turn in-app sound on to hear the preview."); return; }
+        playNotificationChime();
       }}>Preview sound</button>
       <p className="w-full text-xs">Sound plays while the app is open. Background alerts use your device settings.</p>
     </div>

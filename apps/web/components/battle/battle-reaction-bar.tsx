@@ -6,6 +6,7 @@ import { useScholauApi, useSendBattleReaction } from "@scholau/api/react";
 import type { Battle } from "@scholau/api";
 import { Button } from "@/components/ui/button";
 import { InlineError } from "@/components/ui/states";
+import { playTauntSound } from "@/lib/feedback-sounds";
 import { cn } from "@/lib/utils";
 
 const REACTIONS = [
@@ -44,8 +45,8 @@ export function useBattleReactionFeed(battleId: string | undefined, myUserId: st
 
 export function BattleReactionBar({ battle, className }: { battle: Battle; className?: string }) {
   const send = useSendBattleReaction();
-  const me = battle.participants.find((p) => p.is_me);
-  const opponent = battle.participants.find((p) => !p.is_me);
+  const me = battle.participants.find((p) => p.is_me) ?? battle.participants[0];
+  const opponent = battle.participants.find((p) => p !== me);
   const opponentId = opponent?.user_id;
   const incoming = useBattleReactionFeed(battle.battle_id, me?.user_id);
   const [trackedIncoming, setTrackedIncoming] = useState<BattleReactionEvent | null>(null);
@@ -57,6 +58,11 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
     setBubble(incoming);
   }
   const bubbleStyle = bubble && opponentId ? placedStyle : undefined;
+
+  useEffect(() => {
+    if (!incoming) return;
+    playTauntSound(incoming.reaction);
+  }, [incoming]);
 
   useEffect(() => {
     if (!bubble) return;
@@ -95,19 +101,19 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
     <div className={cn("relative flex flex-col gap-1.5", className)}>
       {bubble ? (
         <p className="sr-only" role="status">
-          Opponent sent a {bubble.reaction === "handshake" ? "handshake" : bubble.reaction === "laugh" ? "laugh" : "taunt"} reaction
+          {bubble.userId === me.user_id ? "You sent a" : "Opponent sent a"} {bubble.reaction === "handshake" ? "handshake" : bubble.reaction === "laugh" ? "laugh" : "taunt"}
         </p>
       ) : null}
-      {bubbleEmoji && bubbleStyle ? (
+      {bubbleEmoji ? (
         <div
-          className="battle-reaction-bubble pointer-events-none fixed z-50 animate-bounce text-4xl drop-shadow-md sm:text-5xl"
+          className="battle-reaction-bubble pointer-events-none fixed z-50 animate-bounce text-6xl drop-shadow-md"
           aria-hidden
-          style={bubbleStyle}
+          style={bubbleStyle ?? { top: 88, left: "50%", transform: "translateX(-50%)" }}
         >
           {bubbleEmoji}
         </div>
       ) : null}
-      <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl border border-dashed border-brand-primary/35 bg-surface-page px-3 py-2.5">
+      <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl border border-brand-primary/40 bg-surface-tint px-3 py-2.5">
         <span className="w-full text-center text-xs font-bold uppercase tracking-wide text-brand-primary sm:w-auto sm:text-left">Taunt</span>
         {REACTIONS.map((r) => (
           <Button
@@ -115,11 +121,15 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
             type="button"
             variant={sentFlash === r.id ? "primary" : "outline"}
             size="sm"
-            className="min-h-11 min-w-11 px-3 text-2xl leading-none"
+            className="min-h-12 min-w-12 px-3 leading-none"
+            style={{ fontSize: 28 }}
             disabled={send.isPending}
             aria-label={r.label}
             onClick={() => {
+              const mine = { userId: me.user_id, reaction: r.id };
               setSentFlash(r.id);
+              setBubble(mine);
+              playTauntSound(r.id);
               send.mutate({ battleId: battle.battle_id, reaction: r.id });
             }}
           >

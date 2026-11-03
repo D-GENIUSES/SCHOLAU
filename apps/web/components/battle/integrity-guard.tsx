@@ -71,7 +71,7 @@ export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: st
     const checkWindow = () => {
       const { availWidth: width, availHeight: height } = window.screen;
       const small = width > 0 && height > 0 && window.outerWidth > 0 && window.outerHeight > 0 &&
-        (window.outerWidth < width * 0.75 || window.outerHeight < height * 0.65);
+        window.outerWidth < width * 0.55;
       if (small && !smallWindow) flag("possible_split_screen");
       smallWindow = small;
     };
@@ -122,7 +122,7 @@ export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: st
 
   return <div ref={root} className="flex select-none flex-col gap-2" style={{ WebkitUserSelect: "none", WebkitTouchCallout: "none" }}>
     <details className="text-xs text-ink-muted"><summary className="w-fit cursor-pointer font-medium">Fair play rules</summary><p className="mt-2">Fair play: stay in this app, use a full window, and do not share your screen. Copying battle text is disabled. Leaving, losing focus, or possible split-screen use is flagged. Three flags automatically forfeit the battle.</p></details>
-    {warning ? <Alert tone="warning" role="status" title={`Battle activity flagged (${strikes}/3 saved)`}>Return to a full battle window. The third recorded flag automatically forfeits this battle.</Alert> : null}
+    {warning ? <Alert tone="warning" role="status" title={`Battle activity flagged (${strikes}/3 saved)`}>Stay in this battle window. The third recorded flag automatically forfeits this battle.</Alert> : null}
     {unsaved ? <Alert tone="warning" role="status" title="Flag could not be saved">Keep this battle open. We will retry while you are connected.</Alert> : null}
     {children}
   </div>;

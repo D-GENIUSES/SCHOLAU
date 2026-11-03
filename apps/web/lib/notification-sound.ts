@@ -1,4 +1,4 @@
-const STORAGE_KEY = "scholau.notification.sound.v1";
+const STORAGE_KEY = "scholau.notification-sound";
 
 let audio: AudioContext | null = null;
 let lastChimeAt = 0;
@@ -53,7 +53,7 @@ function chime(ctx: AudioContext): void {
     osc.type = "sine";
     osc.frequency.value = frequency;
     gain.gain.setValueAtTime(0.0001, start);
-    gain.gain.exponentialRampToValueAtTime(0.045, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.2, start + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
     osc.connect(gain);
     gain.connect(ctx.destination);
