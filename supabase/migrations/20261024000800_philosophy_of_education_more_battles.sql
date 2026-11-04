@@ -66,7 +66,8 @@ begin
     select p.id into v_reviewer from public.profiles p order by p.created_at limit 1;
   end if;
   if v_reviewer is null then
-    raise exception 'AUE-GST 201 battle questions need a reviewer to publish';
+    raise notice 'Skipping supplementary AUE-GST 201 published battle content on an empty database: no reviewer available';
+    return;
   end if;
 
   perform set_config('scholau.allow_publish', 'on', true);
