@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InlineError } from "@/components/ui/states";
+import { curatedVideosForLesson } from "./curated-video-library";
 
 function parseYoutubeId(input: string): string | null {
   const value = input.trim();
@@ -36,7 +37,9 @@ function clipSrc(video: LessonVideo) {
 }
 
 export function LessonClips({ lesson }: { lesson: Lesson }) {
-  const videos = lesson.videos ?? [];
+  const approved = lesson.videos ?? [];
+  const curated = curatedVideosForLesson(lesson.title);
+  const videos = [...approved, ...curated.filter((v) => !approved.some((existing) => existing.youtube_id === v.youtube_id))];
   const pending = lesson.pending_videos ?? [];
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -44,7 +47,7 @@ export function LessonClips({ lesson }: { lesson: Lesson }) {
   return (
     <section className="mb-8" aria-labelledby="lesson-clips-heading">
       <h2 id="lesson-clips-heading" className="text-lg font-bold">Video lessons</h2>
-      <p className="mt-1 text-sm text-ink-muted">Lesson-matched videos are reviewed before appearing here. The YouTube player loads only when you choose to watch.</p>
+      <p className="mt-1 text-sm text-ink-muted">Videos are matched to this lesson from published educational sources or approved suggestions. YouTube loads only when you choose to watch.</p>
       {videos.length ? (
         <ul className="mt-3 flex flex-col gap-3">
           {videos.map((video) => (
