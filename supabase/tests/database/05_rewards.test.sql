@@ -26,7 +26,7 @@ end $$;
 create function pg_temp.attempt(p_user uuid,p_kind text,p_correct integer,p_total integer,p_status text default 'submitted',p_stage integer default null)
 returns uuid language plpgsql as $$ declare v uuid; v_assessment uuid; v_version uuid; begin
   select a.id,av.id into v_assessment,v_version from public.assessments a join public.assessment_versions av on av.assessment_id=a.id
-    where a.kind=p_kind order by a.position,a.id,av.version desc limit 1;
+    where a.kind=p_kind and a.course_id='20000000-0000-4000-8000-000000000001' order by a.position,a.id,av.version desc limit 1;
   insert into public.assessment_attempts(user_id,offering_id,assessment_id,assessment_version_id,request_key,status,started_at,finalized_at,
     scoring_version,feedback_mode,total_count,correct_count,answered_count,xp_review_stage)
   values(p_user,'20000000-0000-4000-8000-000000000002',v_assessment,v_version,gen_random_uuid(),p_status,now(),
