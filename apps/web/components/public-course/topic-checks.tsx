@@ -22,13 +22,15 @@ export function TopicChecks({
   topicKey,
   pre,
   post,
+  lessonLinks = [],
 }: {
   courseCode: string;
   topicKey: string;
   pre: PublicQuestion[];
   post: PublicQuestion[];
+  lessonLinks?: { href: string; title: string }[];
 }) {
-  const [phase, setPhase] = useState<"pre" | "post" | "report">("pre");
+  const [phase, setPhase] = useState<"pre" | "read" | "post" | "report">("pre");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState<string | null>(null);
   const questions = phase === "post" ? post : pre;
@@ -50,10 +52,23 @@ export function TopicChecks({
     } else {
       setSaved("Sign in to keep this result on your topic gap report.");
     }
-    setPhase(kind === "pre" ? "post" : "report");
+    setPhase(kind === "pre" ? "read" : "report");
   }
 
   if (!pre.length || !post.length) return null;
+  if (phase === "read") {
+    return (
+      <section className="practice-card" aria-labelledby="topic-read-title">
+        <h2 id="topic-read-title">Read the lesson before your post-test</h2>
+        <p className="mt-2">Your starting check is complete. Open the relevant lessons, study the worked examples, then return here to check your improvement.</p>
+        {saved ? <p role="status" className="mt-2 text-sm text-ink-muted">{saved}</p> : null}
+        <ul className="mt-3 list-disc pl-5">
+          {lessonLinks.map((lesson) => <li key={lesson.href}><Link href={lesson.href} target="_blank" rel="noopener noreferrer">{lesson.title} (opens a new tab)</Link></li>)}
+        </ul>
+        <Button className="mt-4" onClick={() => setPhase("post")}>I have studied the lessons. Start post-test</Button>
+      </section>
+    );
+  }
   if (phase === "report") {
     const preScore = score(preResult);
     const postScore = score(postResult);
