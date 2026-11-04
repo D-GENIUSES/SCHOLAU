@@ -31,7 +31,7 @@ export default async function PublicTopicPage({ params }: { params: Promise<{ of
       <CourseCrumb course={found.course} topic={found.topic} />
       <h1>{found.topic.title}</h1>
       <p>{found.course.code}. Practice questions, not past papers.</p>
-      <TopicChecks courseCode={found.course.code} topicKey={found.topic.slug} pre={pre} post={post} />
+      <TopicChecks courseCode={found.course.code} topicKey={found.topic.slug} pre={pre} post={post} lessonLinks={found.topic.lessons.map((lesson) => ({ title: lesson.title, href: `/courses/${found.course.slug}/${found.topic.slug}/${lesson.slug}` }))} />
       <h2>Lessons</h2>
       <ul>
         {found.topic.lessons.map((lesson) => (
