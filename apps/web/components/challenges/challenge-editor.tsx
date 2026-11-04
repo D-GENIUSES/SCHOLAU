@@ -1,5 +1,6 @@
-import { MathText } from "@/components/math/math-text";
 "use client";
+
+import { MathText } from "@/components/math/math-text";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
