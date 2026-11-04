@@ -45,9 +45,17 @@ export function ResultQuestion({ question, total, reteach }: { question: Attempt
         ) : null}
       </dl>
       {fb ? (
-        <div className="rounded-control bg-surface-page p-3">
-          <SolutionWalkthrough explanation={fb.explanation} steps={fb.steps} />
-        </div>
+        !isCorrect ? (
+          <details className="rounded-control bg-surface-page p-3" open>
+            <summary className="cursor-pointer font-semibold">Explain this mistake</summary>
+            <p className="mt-2 text-sm text-ink-muted">You selected <MathText text={yours ?? "no answer"} />. Compare your choice with the correct answer and follow the explanation below.</p>
+            <div className="mt-3"><SolutionWalkthrough explanation={fb.explanation} steps={fb.steps} /></div>
+          </details>
+        ) : (
+          <div className="rounded-control bg-surface-page p-3">
+            <SolutionWalkthrough explanation={fb.explanation} steps={fb.steps} />
+          </div>
+        )
       ) : null}
       {!fb ? <p className="text-sm text-ink-muted">Answer details aren&apos;t available for this result.</p> : null}
       {fb && !isCorrect && reteach ? <Link className="font-semibold text-brand-primary underline" href={"/study/lessons/" + reteach.lesson_id + "?focus=worked_example"}>Revisit the lesson example: {reteach.lesson_title}</Link> : null}
