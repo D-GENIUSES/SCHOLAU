@@ -20,7 +20,9 @@ export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
     const exampleStep = steps.findIndex(step => step.blocks.some(block =>
       block.type === "worked_example" || (block.type === "callout" && block.tone === "example")
     ));
-    if (exampleStep >= 0) setIndex(exampleStep);
+    if (exampleStep < 0) return;
+    const timer = window.setTimeout(() => setIndex(exampleStep), 0);
+    return () => window.clearTimeout(timer);
   }, [steps]);
 
 
