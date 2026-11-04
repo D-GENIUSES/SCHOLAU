@@ -1,0 +1,39 @@
+name: Database migration and security tests
+
+on:
+  pull_request:
+    paths:
+      - "supabase/**"
+      - ".github/workflows/database-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: db-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  database:
+    name: Apply migrations and run pgTAP
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@689adcfb80d947100a1eab127289b97d1fb07b13 # v3.2.0
+        with:
+          version: "2.84.2"
+      - name: Start disposable local Supabase
+        run: supabase start
+      - name: Reapply all migrations in clean local database
+        run: supabase db reset --local
+      - name: Execute database security and regression tests
+        run: supabase test db
+      - name: Stop disposable Supabase
+        if: always()
+        run: supabase stop --no-backup
