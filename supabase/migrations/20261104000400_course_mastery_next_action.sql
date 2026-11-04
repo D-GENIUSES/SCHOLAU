@@ -18,7 +18,7 @@ begin
       m.position module_position, l.position lesson_position,
       case when count(r.stage)=3 then 'mastered'
            when tm.lesson_id is not null then 'proficient'
-           when lp.id is not null then 'learning'
+           when lp.lesson_id is not null then 'learning'
            else 'not_started' end mastery_state,
       case when tm.lesson_id is null or count(r.stage)>=3 then null
            else (count(r.stage)+1)::integer end due_stage,
@@ -31,7 +31,7 @@ begin
     left join private.topic_mastery tm on tm.lesson_id=l.id and tm.user_id=v_uid
     left join private.review_awards r on r.lesson_id=l.id and r.user_id=v_uid
     where l.course_id=v_offering.course_id
-    group by l.id,m.title,lv.title,m.position,l.position,tm.lesson_id,tm.mastered_at,lp.id
+    group by l.id,m.title,lv.title,m.position,l.position,tm.lesson_id,tm.mastered_at,lp.lesson_id
   ) x;
   return private.envelope(jsonb_build_object('items',v_rows));
 end;
