@@ -43,9 +43,9 @@ const MATH_SNIPPET = new RegExp(`${MATH_ATOM}(?:\\s*(?:\\*\\*|[=+\\-*/^_×÷≤�
 /** Format unambiguous legacy maths without interpreting programming syntax as equations. */
 function mathNotation(expression: string): string {
   const equality = expression.match(/^(\s*[A-Za-z]\d*\s*=\s*)(.+)$/);
-  if (equality) return equality[1] + mathNotation(equality[2]);
+  if (equality?.[1] && equality[2]) return equality[1] + mathNotation(equality[2]);
   const groupedDenominator = expression.match(/^(\s*[A-Za-z]\d*(?:\s*\*\s*[A-Za-z]\d*)+)\s*\/\s*\(([^()\n]+)\)\s*$/);
-  if (groupedDenominator) {
+  if (groupedDenominator?.[1] && groupedDenominator[2]) {
     return `\\frac{${mathNotation(groupedDenominator[1])}}{${mathNotation(groupedDenominator[2])}}`;
   }
   let result = expression
