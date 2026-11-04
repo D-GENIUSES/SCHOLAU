@@ -32,6 +32,10 @@ begin
     where e.user_id=v_uid and e.ended_at is null
       and o.id=p_offering_id and o.status='published'
   ) then perform private.raise_error('NOT_ENROLLED'); end if;
+  if (select count(*) from private.student_material_submissions
+      where student_id=v_uid and status='pending') >= 5 then
+    perform private.raise_error('VALIDATION_FAILED','You already have five materials awaiting review.');
+  end if;
   return private.envelope(jsonb_build_object('allowed',true));
 end;
 $$;
