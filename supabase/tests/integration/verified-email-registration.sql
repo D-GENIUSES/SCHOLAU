@@ -1,12 +1,12 @@
 -- Run inside a transaction; test addresses and all side effects are rolled back.
 begin;
 -- Hosted delivery is optional in the disposable database.
-do $ begin
+do $$ begin
   if exists(select 1 from pg_trigger where tgrelid='private.welcome_email_events'::regclass
     and tgname='welcome_email_send_on_insert') then
     alter table private.welcome_email_events disable trigger welcome_email_send_on_insert;
   end if;
-end $;
+end $$;
 do $$
 declare uid uuid:=gen_random_uuid(); gid uuid:=gen_random_uuid(); m jsonb; admin_id uuid; r jsonb;
 begin
