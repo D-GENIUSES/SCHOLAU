@@ -1,5 +1,6 @@
 import type { HomeSummary } from "@scholau/api";
 import { HomeCourseFocus } from "./home-course-focus";
+import { NextLearningAction } from "./next-learning-action";
 import { StatsPanel } from "./side-panels";
 
 export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
@@ -21,6 +22,7 @@ export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
         </div>
         <StatsPanel summary={s} />
       </header>
+      <NextLearningAction />
       <HomeCourseFocus summary={s} />
     </div>
   );
