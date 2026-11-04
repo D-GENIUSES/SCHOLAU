@@ -111,6 +111,11 @@ end $steps$;
 do $cleanup$
 declare actor uuid; removed integer;
 begin
+ -- This targeted production cleanup is a no-op on a fresh database that never had the nine original drafts.
+ if not exists (select 1 from public.question_versions where id=any(array['b73230cd-104c-4046-913e-50f05104959a'::uuid,'86df14ea-9e1a-440e-998a-15a2f442cbb9'::uuid,'4d4c6657-3748-4af2-9bd5-dd6fb44b217d'::uuid,'34139b0c-eb5b-4977-8b95-ee5cf9f26a15'::uuid,'52b2dd5c-10f1-4497-8872-adaa1079aa6a'::uuid,'07797d98-e3d2-423e-8ede-18fce7e76c32'::uuid,'e3592860-b2ca-4a5d-be0b-74a796701142'::uuid,'7293e9cd-0c22-4527-b46e-768488142e51'::uuid,'bd04e930-d31b-4230-a4e7-e0991bc0da05'::uuid])) then
+   raise notice 'Skipping production-only placeholder cleanup: target drafts are absent';
+   return;
+ end if;
  select user_id into actor from public.user_roles where role='admin' order by user_id limit 1;
  if actor is null then raise exception 'An administrator is required'; end if;
  if (select count(*) from public.question_versions where id=any(array['b73230cd-104c-4046-913e-50f05104959a'::uuid,'86df14ea-9e1a-440e-998a-15a2f442cbb9'::uuid,'4d4c6657-3748-4af2-9bd5-dd6fb44b217d'::uuid,'34139b0c-eb5b-4977-8b95-ee5cf9f26a15'::uuid,'52b2dd5c-10f1-4497-8872-adaa1079aa6a'::uuid,'07797d98-e3d2-423e-8ede-18fce7e76c32'::uuid,'e3592860-b2ca-4a5d-be0b-74a796701142'::uuid,'7293e9cd-0c22-4527-b46e-768488142e51'::uuid,'bd04e930-d31b-4230-a4e7-e0991bc0da05'::uuid]) and status='draft'
