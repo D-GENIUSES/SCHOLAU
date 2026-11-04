@@ -17,8 +17,9 @@ select throws_ok(format('select public.service_set_profile_photo_v1(%L,%L,null)'
 select throws_ok('select * from private.profile_photos','42501',null,'browser cannot access private image table');
 select throws_ok(format('select public.update_profile_v1(p_avatar_path=>%L)','avatars/someone-else/fake.webp'),'PT422','VALIDATION_FAILED','profile update cannot select a foreign or invented image');
 reset role;
+select set_config('p.previous',(select avatar_path from public.profiles where id=current_setting('p.owner')::uuid),true);
 set local role service_role;
-select set_config('p.path',public.service_set_profile_photo_v1(current_setting('p.owner')::uuid,current_setting('p.bytes'),null)->>'avatar_path',true);
+select set_config('p.path',public.service_set_profile_photo_v1(current_setting('p.owner')::uuid,current_setting('p.bytes'),current_setting('p.previous'))->>'avatar_path',true);
 reset role;
 select is((select count(*)::int from private.profile_photos where user_id=current_setting('p.owner')::uuid),1,'one private image stored');
 select ok(current_setting('p.path') like 'avatars/'||current_setting('p.owner')||'/%','path is bound to owner');

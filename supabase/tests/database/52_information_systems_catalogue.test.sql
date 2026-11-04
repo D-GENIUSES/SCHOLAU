@@ -1,4 +1,4 @@
--- Computer Information System handbook curriculum (100–400 Level), Faculty of Science.
+-- Computer Information System handbook curriculum (100â€“400 Level), Faculty of Science.
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
@@ -13,7 +13,7 @@ create function pg_temp.login(p_user uuid) returns void language plpgsql as $$ b
 end $$;
 select set_config('t.uni',(select id::text from public.universities where slug='adeleke-university-ede-osun-state'),true) is not null as setup;
 select set_config('t.faculty',(select f.id::text from public.faculties f where f.university_id=current_setting('t.uni')::uuid and f.name='Faculty of Science'),true) is not null as setup;
-select set_config('t.cis',(select d.id::text from public.departments d where d.faculty_id=current_setting('t.faculty')::uuid and d.name='Computer Information System'),true) is not null as setup;
+select set_config('t.cis',(select d.id::text from public.departments d where d.faculty_id=current_setting('t.faculty')::uuid and d.name='Computer Information Systems'),true) is not null as setup;
 select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
 select set_config('t.first',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;
 select set_config('t.l100',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='100 Level'),true) is not null as setup;

@@ -28,8 +28,9 @@ select is(public.get_public_profile_v1(current_setting('pub.owner')::uuid)->>'di
 reset role;
 update public.profiles set leaderboard_visible=false where id=current_setting('pub.owner')::uuid;
 insert into private.xp_badges(user_id,code) values(current_setting('pub.owner')::uuid,'first_steps');
+select set_config('pub.previous',(select avatar_path from public.profiles where id=current_setting('pub.owner')::uuid),true);
 set local role service_role;
-select set_config('pub.photo',public.service_set_profile_photo_v1(current_setting('pub.owner')::uuid,'UklGRgAAAABXRUJQ',null)->>'avatar_path',true);
+select set_config('pub.photo',public.service_set_profile_photo_v1(current_setting('pub.owner')::uuid,'UklGRgAAAABXRUJQ',current_setting('pub.previous'))->>'avatar_path',true);
 reset role;
 set local role authenticated;
 select is(public.get_public_profile_v1(current_setting('pub.owner')::uuid)->>'xp_total',null::text,'hidden leaderboard XP stays private');

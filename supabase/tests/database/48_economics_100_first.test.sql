@@ -27,7 +27,7 @@ select set_config('t.student',pg_temp.new_user('Economics first year')::text,tru
 select private.apply_academic_profile(current_setting('t.student')::uuid,current_setting('t.student')::uuid,current_setting('t.uni')::uuid,current_setting('t.faculty')::uuid,current_setting('t.econ')::uuid,current_setting('t.l100')::uuid,current_setting('t.period')::uuid,current_setting('t.first')::uuid,'initial',null,null);
 select pg_temp.login(current_setting('t.student')::uuid);
 select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),8,'Economics student sees the eight first-semester courses');
-select is((select sum((x->>'unit_count')::integer) from jsonb_array_elements(public.get_catalog_v1()->'offerings') x),21,'catalog units match the selected course list');
+select is((select sum((x->>'unit_count')::integer)::integer from jsonb_array_elements(public.get_catalog_v1()->'offerings') x),21,'catalog units match the selected course list');
 reset role;
 select * from finish();
 rollback;

@@ -19,7 +19,7 @@ select set_config('t.a',pg_temp.new_user('Welcome learner')::text,true) is not n
 select set_config('t.b',pg_temp.new_user('Second learner')::text,true) is not null as setup;
 select is((select total from public.user_points where user_id=current_setting('t.a')::uuid),10::bigint,'new account receives 10 XP immediately');
 select is((select count(*)::integer from public.points_ledger where user_id=current_setting('t.a')::uuid),1,'signup creates exactly one ledger entry');
-select is((select amount from public.points_ledger where user_id=current_setting('t.a')::uuid and event_key='signup:welcome'),10,'welcome event records 10 XP');
+select is((select amount::integer from public.points_ledger where user_id=current_setting('t.a')::uuid and event_key='signup:welcome'),10,'welcome event records 10 XP');
 select is((select source_type from public.points_ledger where user_id=current_setting('t.a')::uuid),'signup','welcome XP has its own activity source');
 select ok((select reason like '%Welcome%' from public.points_ledger where user_id=current_setting('t.a')::uuid),'history explains welcome reward');
 select is(private.award_points(current_setting('t.a')::uuid,'signup_welcome','signup',current_setting('t.a')::uuid,'signup:welcome',10),0,'retrying welcome event cannot award twice');

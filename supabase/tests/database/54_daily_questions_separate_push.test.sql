@@ -61,11 +61,11 @@ select ok(
 );
 
 select ok(
-  private.push_relevant(n)
+  (select private.push_relevant(n)
   from public.notifications n
   where n.user_id = current_setting('t.student')::uuid
     and n.kind = 'daily_questions'
-    and n.event_key = 'daily_questions:' || current_setting('t.student') || ':2026-10-24:0',
+    and n.event_key = 'daily_questions:' || current_setting('t.student') || ':2026-10-24:0'),
   'eligible daily question remains push-relevant'
 );
 
