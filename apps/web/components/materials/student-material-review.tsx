@@ -69,6 +69,7 @@ export function StudentMaterialReview() {
               <h2 className="font-semibold">{item.filename}</h2>
               <p className="text-sm">{item.course_code} · Submitted by {item.student_name}</p>
               {item.notes ? <p className="text-sm text-ink-muted">{item.notes}</p> : null}
+              <a className="inline-block text-sm font-semibold text-brand-primary underline" href={"/api/student-materials?submissionId=" + encodeURIComponent(item.id)} target="_blank" rel="noopener noreferrer">Download original source to review</a>
               <p className="text-xs text-ink-muted">Submitted {new Date(item.submitted_at).toLocaleDateString()}</p>
               <div className="flex gap-3">
                 <Button size="sm" loading={busy === item.id} onClick={() => void decide(item.id, "approved")}>Approve for draft generation</Button>
