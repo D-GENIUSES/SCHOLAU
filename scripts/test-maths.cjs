@@ -48,7 +48,14 @@ async function main() {
   assert.match(render(Equation, { expression: String.raw`\frac{`, display: true }), /Equation needs review/);
   assert.doesNotMatch(render(Equation, { expression: String.raw`\href{javascript:alert(1)}{click}` }), /href="javascript/);
   assert.match(render(MathText, { text: '<script>alert(1)</script>' }), /&lt;script&gt;/);
-  assert.match(render(MathText, { text: 'x^(-2) and x^(n+1)' }), /<sup/);
+  assert.match(render(MathText, { text: 'x^(-2) and x^(n+1)' }), /katex-mathml/);
+  for (const text of ['x^2', '(x+1)^2', 'x**2', 'sqrt(16)', '3/4', '2 * 3', 'x_1', 'Solve x^2 + 3x = 4.', 'Find 2 * x.', 'Evaluate 2/3 + 4/5']) {
+    assert.match(render(MathText, { text }), /katex-mathml/, text);
+  }
+  const javaText = render(MathText, { text: 'Which escape sequence inserts a tab in a Java string? ' + String.fromCharCode(92) + 't' });
+  assert.doesNotMatch(javaText, /katex|<sup/);
+  assert.match(javaText, /\\t/);
+  assert.doesNotMatch(render(MathText, { text: 'In Python, x**2 uses the power operator.' }), /katex/);
   assert.doesNotMatch(render(MathText, { text: 'Price $20; ordinary a/b; `code`' }), /katex|<sup/);
   const lessonHtml = render(LessonBlocks, { blocks: bundles[0].lessons[0].blocks });
   assert.match(lessonHtml, /Step 1/);

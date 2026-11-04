@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MathText } from "@/components/math/math-text";
 import { CourseCrumb, CourseFrame } from "@/components/public-course/course-frame";
 import { TopicChecks } from "@/components/public-course/topic-checks";
 import { publicCatalog, publicTopic, topicChecks } from "@/lib/public-courses/catalog";
@@ -41,7 +42,7 @@ export default async function PublicTopicPage({ params }: { params: Promise<{ of
       <ol>
         {found.topic.questions.slice(0, 10).map((question) => (
           <li key={question.logical_question_key}>
-            <p>{question.prompt}</p>
+            <p><MathText text={question.prompt} /></p>
             <p className="text-sm text-ink-muted">{question.source_reference}</p>
           </li>
         ))}
