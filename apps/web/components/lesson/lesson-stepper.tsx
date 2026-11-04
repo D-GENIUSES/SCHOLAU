@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { LessonBlock } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/misc";
+import { MathText } from "@/components/math/math-text";
 import { splitLessonIntoSteps } from "@/lib/lesson-steps";
 import { LessonBlocks } from "./blocks";
 
@@ -50,7 +51,7 @@ export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
               Step {index + 1} of {total}
             </p>
             <p className="max-w-[min(100%,20rem)] truncate text-sm font-bold text-ink">
-              {step.title}
+              <MathText text={step.title} />
             </p>
           </div>
           <Progress value={progress} label="Lesson progress" />

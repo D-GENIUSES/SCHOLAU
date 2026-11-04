@@ -56,6 +56,20 @@ async function main() {
   assert.doesNotMatch(javaText, /katex|<sup/);
   assert.match(javaText, /\\t/);
   assert.doesNotMatch(render(MathText, { text: 'In Python, x**2 uses the power operator.' }), /katex/);
+
+  const gravity = 'In F = G*m1*m2/(r*r), which input requires a nonzero check?';
+  const gravityHtml = render(MathText, { text: gravity });
+  assert.match(gravityHtml, /katex-mathml/, 'full physics formula must render as one equation');
+  assert.match(gravityHtml, /\\frac\{/, 'grouped denominator should render as a fraction');
+  assert.match(gravityHtml, /m_\{1\}/);
+  assert.match(gravityHtml, /m_\{2\}/);
+  assert.match(gravityHtml, /\\times/, 'multiplication must use maths typography');
+  assert.doesNotMatch(gravityHtml, /G\*m1|m1\*m2|r\*r/, 'no raw multiplication operators');
+  for (const sample of ['m1*m2/(r*r)', 'f(x)=x^2', '3x+4=7', '2/3 + 4/5', 'x_1 + x_2']) {
+    assert.match(render(MathText, { text: sample }), /katex-mathml/, sample);
+  }
+  assert.doesNotMatch(render(MathText, { text: 'In Java, x * y is the multiplication operator.' }), /katex/);
+  assert.doesNotMatch(render(MathText, { text: 'A/B testing is useful.' }), /katex/);
   assert.doesNotMatch(render(MathText, { text: 'Price $20; ordinary a/b; `code`' }), /katex|<sup/);
   const lessonHtml = render(LessonBlocks, { blocks: bundles[0].lessons[0].blocks });
   assert.match(lessonHtml, /Step 1/);

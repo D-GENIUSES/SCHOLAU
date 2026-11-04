@@ -36,8 +36,18 @@ const CODE_CONTEXT = /\b(?:java|javascript|typescript|python|c\+\+|c#|programmin
 const MATH_CONTEXT = /\b(?:maths?|mathematics|algebra|fraction|ratio|equation|solve|simplify|evaluate|calculate|derivative|integral|square root|multiply|multiplication)\b/i;
 const LOOSE_MATH = /\\(?:frac|sqrt|sum|int|lim|pi|alpha|beta|gamma|theta|sigma)(?:\{[^{}\n]*\}){0,2}|(?:\([^()\n]+\)|\b[A-Za-z0-9]+)\s*(?:\*\*|\^|_)\s*(?:\{[^{}\n]+\}|\([^()\n]+\)|[+-]?\d+|[A-Za-z](?![A-Za-z0-9]))|\bsqrt\([^()\n]+\)|(?<![\w.])(?:\d+(?:\.\d+)?|[A-Za-z])\s*[*/]\s*(?:\d+(?:\.\d+)?|[A-Za-z])(?![\w.])/g;
 
+// Match full formulas before falling back to small legacy fragments, so operators are never stranded as raw text.
+const MATH_ATOM = String.raw`(?:\bsqrt\([^()\n]+\)|\b[A-Za-z]\([^()\n]+\)|\([^()\n]+\)|\{[^{}\n]+\}|\b\d+(?:\.\d+)?[A-Za-z]?\d*\b|\b[A-Za-z]\d*\b)`;
+const MATH_SNIPPET = new RegExp(`${MATH_ATOM}(?:\\s*(?:\\*\\*|[=+\\-*/^_×÷≤≥<>])\\s*${MATH_ATOM})+|${LOOSE_MATH.source}`, "g");
+
 /** Format unambiguous legacy maths without interpreting programming syntax as equations. */
 function mathNotation(expression: string): string {
+  const equality = expression.match(/^(\s*[A-Za-z]\d*\s*=\s*)(.+)$/);
+  if (equality) return equality[1] + mathNotation(equality[2]);
+  const groupedDenominator = expression.match(/^(\s*[A-Za-z]\d*(?:\s*\*\s*[A-Za-z]\d*)+)\s*\/\s*\(([^()\n]+)\)\s*$/);
+  if (groupedDenominator) {
+    return `\\frac{${mathNotation(groupedDenominator[1])}}{${mathNotation(groupedDenominator[2])}}`;
+  }
   let result = expression
     .replace(/\*\*/g, "^")
     .replace(/−/g, "-")
@@ -46,7 +56,8 @@ function mathNotation(expression: string): string {
     .replace(/×/g, "\\times ")
     .replace(/÷/g, "\\div ")
     .replace(/(\^|_)\s*\(([^()\n]+)\)/g, "$1{$2}")
-    .replace(/\bsqrt\(([^()\n]+)\)/g, "\\sqrt{$1}");
+    .replace(/\bsqrt\(([^()\n]+)\)/g, "\\sqrt{$1}")
+    .replace(/\b([A-Za-z])(\d+)\b/g, "$1_{$2}");
   result = result.replace(
     /(?<![\w^_])(\([^()\n]+\)|[A-Za-z]|\d+(?:\.\d+)?)\s*\/\s*(\([^()\n]+\)|[A-Za-z]|\d+(?:\.\d+)?)(?![\w^_])/g,
     (_match, numerator: string, denominator: string) => "\\frac{" + numerator + "}{" + denominator + "}",
@@ -73,7 +84,7 @@ function PlainText({ text }: { text: string }) {
     if (standaloneFormula(segment)) return <Equation key={index} expression={mathNotation(segment.trim())} />;
     const pieces: ReactNode[] = [];
     let offset = 0;
-    for (const match of segment.matchAll(LOOSE_MATH)) {
+    for (const match of segment.matchAll(MATH_SNIPPET)) {
       const candidate = match[0];
       const start = match.index;
       if (start === undefined || !candidate) continue;
