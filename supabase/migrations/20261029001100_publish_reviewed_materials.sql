@@ -8,7 +8,10 @@ declare payload jsonb:= $reviewed_payload${"lessons":[{"course_code":"CSC 203","
  chapter integer; kind text; title text; count_expected integer; ids uuid[]; n integer;
 begin
  select user_id into actor from public.user_roles where role='admin' order by user_id limit 1;
- if actor is null then raise exception 'An administrator is required'; end if;
+ if actor is null then
+   raise notice 'Skipping production-only reviewed content publication on empty database: no admin reviewer';
+   return;
+ end if;
  perform set_config('request.jwt.claim.sub',actor::text,true);
  perform set_config('request.headers','{"x-client-platform":"web","x-client-build":"1","x-api-version":"1"}',true);
  for row in select jsonb_build_object('code',value->>'course_code') from jsonb_array_elements(payload->'lessons') group by value->>'course_code' loop
