@@ -32,6 +32,21 @@ jobs:
         run: supabase start
       - name: Reapply all migrations in clean local database
         run: supabase db reset --local
+      - name: Inventory security failures
+        run: |
+          docker exec -i supabase_db_scholau psql -U postgres -d postgres -v ON_ERROR_STOP=1 <<'SQL'
+          select n.nspname as schema, c.relname as table_name
+          from pg_class c join pg_namespace n on n.oid=c.relnamespace
+          where c.relkind in ('r','p') and n.nspname in ('public','private') and not c.relrowsecurity;
+          select p.oid::regprocedure as function_name, r.role
+          from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+          cross join (values ('anon'),('authenticated')) r(role)
+          where n.nspname='private' and has_function_privilege(r.role,p.oid,'EXECUTE');
+          select p.oid::regprocedure as function_name
+          from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+          where n.nspname='public' and has_function_privilege('anon',p.oid,'EXECUTE')
+            and p.proname like '%\_v1';
+          SQL
       - name: Execute database security and regression tests
         run: supabase test db
       - name: Stop disposable Supabase
