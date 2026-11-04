@@ -1,4 +1,5 @@
 import { MathText } from "@/components/math/math-text";
+import Link from "next/link";
 import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 import type { AttemptQuestion } from "@scholau/api";
 import { cn } from "@/lib/utils";
@@ -11,7 +12,7 @@ function optionLabel(q: AttemptQuestion, optionId: string | null | undefined): s
   return o ? `${String.fromCharCode(65 + i)}. ${o.body}` : null;
 }
 
-export function ResultQuestion({ question, total }: { question: AttemptQuestion; total: number }) {
+export function ResultQuestion({ question, total, reteach }: { question: AttemptQuestion; total: number; reteach?: { lesson_id: string; lesson_title: string } }) {
   const yours = optionLabel(question, question.saved?.option_id);
   const fb = question.feedback;
   const correct = optionLabel(question, fb?.correct_option_id);
@@ -49,6 +50,7 @@ export function ResultQuestion({ question, total }: { question: AttemptQuestion;
         </div>
       ) : null}
       {!fb ? <p className="text-sm text-ink-muted">Answer details aren&apos;t available for this result.</p> : null}
+      {fb && !isCorrect && reteach ? <Link className="font-semibold text-brand-primary underline" href={"/study/lessons/" + reteach.lesson_id + "?focus=worked_example"}>Revisit the lesson example: {reteach.lesson_title}</Link> : null}
     </article>
   );
 }
