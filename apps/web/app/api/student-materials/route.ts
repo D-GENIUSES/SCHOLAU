@@ -1,3 +1,5 @@
+import { createClient } from "@supabase/supabase-js";
+import { SUPABASE_URL } from "@/lib/env";
 import { createHash } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { getRequestSupabase, allowRequestWrite } from "@/lib/supabase/request";
@@ -38,6 +40,11 @@ export async function POST(request: NextRequest) {
     const access = await client.rpc("can_submit_student_material_v1", { p_offering_id: offeringId });
     if (access.error || access.data?.allowed !== true) return fail("You must be enrolled in this course.", 403);
 
+    const serviceKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!serviceKey) return fail("Material uploads are temporarily unavailable.", 503);
+    const writer = createClient(SUPABASE_URL, serviceKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
     const contentType = request.headers.get("content-type") ?? "";
     const bytes = await readPhotoBody(request, MAX_BYTES + 65536);
     const form = await new Response(new Uint8Array(bytes), { headers: { "Content-Type": contentType } }).formData();
@@ -54,6 +61,11 @@ export async function POST(request: NextRequest) {
     const sha = createHash("sha256").update(data).digest("hex");
     const objectKey = "course-materials/" + sha + "." + ext;
     await putCourseMaterial(objectKey, data, sha, mime);
+    const receipt = await writer.rpc("register_student_material_upload_v1", {
+      p_student_id: auth.user.id, p_offering_id: offeringId, p_sha256: sha,
+      p_object_key: objectKey, p_mime_type: mime, p_bytes: data.length,
+    });
+    if (receipt.error) return fail("The uploaded material could not be registered. Please try again.", 503);
     const submitted = await client.rpc("submit_student_material_v1", {
       p_offering_id: offeringId, p_filename: file.name, p_sha256: sha,
       p_object_key: objectKey, p_mime_type: mime, p_bytes: data.length, p_notes: notes,

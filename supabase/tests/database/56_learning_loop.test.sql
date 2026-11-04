@@ -145,8 +145,8 @@ select current_setting('r.attempt')::uuid,current_setting('r.question')::uuid,1,
 from public.question_options where question_version_id=current_setting('r.question')::uuid;
 select pg_temp.login(current_setting('r.admin')::uuid);
 set local role authenticated;
-select lives_ok($select public.admin_set_practice_hints_v1(current_setting('r.question')::uuid,
-  '["Think about which security goal protects unchanged data."]'::jsonb)$,
+select lives_ok($$select public.admin_set_practice_hints_v1(current_setting('r.question')::uuid,
+  '["Think about which security goal protects unchanged data."]'::jsonb)$$,
   'administrator can author a practice hint');
 reset role;
 select pg_temp.login(current_setting('r.student')::uuid);
@@ -154,27 +154,66 @@ set local role authenticated;
 select is(public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
   current_setting('r.question')::uuid,1)->>'hint','Think about which security goal protects unchanged data.',
   'owner receives approved hint during active untimed practice');
-select throws_ok($select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
-  current_setting('r.question')::uuid,null)$,'PT422','VALIDATION_FAILED','null hint step is rejected');
+select throws_ok($$select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
+  current_setting('r.question')::uuid,null)$$,'PT422','VALIDATION_FAILED','null hint step is rejected');
 reset role;
 select pg_temp.login(current_setting('r.outsider')::uuid);
 set local role authenticated;
-select throws_ok($select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
-  current_setting('r.question')::uuid,1)$,'PT403','FORBIDDEN','another learner cannot read attempt hints');
+select throws_ok($$select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
+  current_setting('r.question')::uuid,1)$$,'PT403','FORBIDDEN','another learner cannot read attempt hints');
 reset role;
 update public.assessment_attempts set expires_at=now()+interval '10 minutes'
 where id=current_setting('r.attempt')::uuid;
 select pg_temp.login(current_setting('r.student')::uuid);
 set local role authenticated;
-select throws_ok($select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
-  current_setting('r.question')::uuid,1)$,'PT403','FORBIDDEN','timed practice does not reveal hints');
+select throws_ok($$select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
+  current_setting('r.question')::uuid,1)$$,'PT403','FORBIDDEN','timed practice does not reveal hints');
 reset role;
 update public.assessment_attempts set expires_at=null,status='submitted',finalized_at=now()
 where id=current_setting('r.attempt')::uuid;
 set local role authenticated;
-select throws_ok($select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
-  current_setting('r.question')::uuid,1)$,'PT403','FORBIDDEN','finished practice cannot reveal hints');
+select throws_ok($$select public.get_practice_hint_v1(current_setting('r.attempt')::uuid,
+  current_setting('r.question')::uuid,1)$$,'PT403','FORBIDDEN','finished practice cannot reveal hints');
 reset role;
+
+-- Private object access requires proof that this student uploaded the bytes.
+select pg_temp.login(current_setting('r.student')::uuid);
+set local role authenticated;
+select throws_ok($$select public.submit_student_material_v1(current_setting('r.offering')::uuid,
+ 'source.pdf',repeat('a',64),'course-materials/'||repeat('a',64)||'.pdf','application/pdf',100,'')$$,
+ 'PT403','FORBIDDEN','student cannot claim a private object by supplying its hash');
+select throws_ok($$select public.register_student_material_upload_v1(current_setting('r.student')::uuid,
+ current_setting('r.offering')::uuid,repeat('a',64),'course-materials/'||repeat('a',64)||'.pdf','application/pdf',100)$$,
+ '42501',null,'student cannot issue an upload receipt');
+reset role;
+set local role service_role;
+select lives_ok($$select public.register_student_material_upload_v1(current_setting('r.student')::uuid,
+ current_setting('r.offering')::uuid,repeat('a',64),'course-materials/'||repeat('a',64)||'.pdf','application/pdf',100)$$,
+ 'trusted upload server issues a receipt');
+reset role;
+set local role authenticated;
+select set_config('r.material',(public.submit_student_material_v1(current_setting('r.offering')::uuid,
+ 'source.pdf',repeat('a',64),'course-materials/'||repeat('a',64)||'.pdf','application/pdf',100,'')->>'id'),true);
+select is(public.get_student_material_source_v1(current_setting('r.material')::uuid)->>'filename',
+ 'source.pdf','uploader can retrieve the registered source');
+select throws_ok($$select public.submit_student_material_v1(current_setting('r.offering')::uuid,
+ 'source.pdf',repeat('a',64),'course-materials/'||repeat('a',64)||'.pdf','application/pdf',100,'')$$,
+ 'PT403','FORBIDDEN','upload receipt is consumed once');
+select throws_ok($$select public.review_student_material_v1(current_setting('r.material')::uuid,'approved','')$$,
+ 'PT403','FORBIDDEN','student cannot approve own material');
+reset role;
+select pg_temp.login(current_setting('r.outsider')::uuid);
+set local role authenticated;
+select throws_ok($$select public.get_student_material_source_v1(current_setting('r.material')::uuid)$$,
+ 'PT403','FORBIDDEN','another learner cannot download the private source');
+reset role;
+select pg_temp.login(current_setting('r.admin')::uuid);
+set local role authenticated;
+select lives_ok($$select public.review_student_material_v1(current_setting('r.material')::uuid,'rejected','Wrong course')$$,
+ 'reviewer can reject a source without queuing ingestion');
+reset role;
+select is((select ingestion_job_id from private.student_material_submissions
+ where id=current_setting('r.material')::uuid),null::uuid,'rejection never creates an ingestion job');
 
 select * from finish();
 rollback;
