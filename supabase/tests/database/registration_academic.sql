@@ -1,9 +1,13 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
 -- Run inside a transaction and roll back: no accounts or messages persist.
 do $$
 declare v jsonb; uid uuid:=gen_random_uuid(); bad uuid:=gen_random_uuid(); legacy uuid:=gen_random_uuid(); before_level uuid;
 begin
- if jsonb_array_length(public.get_registration_options_v1('adeleke-university-ede-osun-state')->'faculties')<>6 then raise exception 'Expected six faculties'; end if;
- if (select count(*) from public.departments d join public.faculties f on f.id=d.faculty_id join public.universities u on u.id=f.university_id where u.slug='adeleke-university-ede-osun-state' and f.name='Faculty of Science' and d.active)<>11 then raise exception 'Expected eleven science departments'; end if;
+ if jsonb_array_length(public.get_registration_options_v1('adeleke-university-ede-osun-state')->'faculties')<>8 then raise exception 'Expected eight faculties and colleges'; end if;
+ if (select count(*) from public.departments d join public.faculties f on f.id=d.faculty_id join public.universities u on u.id=f.university_id where u.slug='adeleke-university-ede-osun-state' and f.name='Faculty of Science' and d.active)<>12 then raise exception 'Expected twelve science departments'; end if;
  if not has_function_privilege('anon','public.get_registration_options_v1(text)','execute') then raise exception 'Signup catalogue unavailable before login'; end if;
  select jsonb_build_object('universityId',u.id,'facultyId',f.id,'departmentId',d.id,'levelId',l.id,'academicPeriodId',a.id,'semesterId',s.id) into strict v
  from public.universities u join public.faculties f on f.university_id=u.id and f.name='Faculty of Science'
@@ -30,3 +34,7 @@ begin
  values(legacy,'authenticated','authenticated',legacy::text||'@example.invalid','{"provider":"email"}',jsonb_build_object('username','test_'||left(replace(legacy::text,'-',''),12),'display_name','Legacy registration test'),now(),now());
  if not exists(select 1 from public.profiles where id=legacy and university_id is null) then raise exception 'Legacy signup compatibility failed'; end if;
 end $$;
+
+select pass('registration_academic assertions completed');
+select * from finish();
+rollback;

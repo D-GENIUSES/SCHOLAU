@@ -1,20 +1,24 @@
 -- Run in a disposable database or a rollback-only hosted test session.
 begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
+
 set local lock_timeout='5s';
 set local statement_timeout='30s';
 create function pg_temp.assert_busy(value boolean,label text) returns void language plpgsql as $$
 begin if value is distinct from true then raise exception 'FAILED: %',label; end if; end $$;
 create temp table busy_fixture as
 select gen_random_uuid() a,gen_random_uuid() b,gen_random_uuid() c,o.id offering_id,
-  o.university_id,o.department_id,o.level_id,o.semester_id
-from public.course_offerings o join public.courses course on course.id=o.course_id
+  o.university_id,d.faculty_id,o.department_id,o.level_id,sem.academic_period_id,o.semester_id
+from public.course_offerings o join public.courses course on course.id=o.course_id join public.departments d on d.id=o.department_id join public.semesters sem on sem.id=o.semester_id
 where o.status='published' and course.active and private.battle_pool_size(course.id)>=5 limit 1;
 select pg_temp.assert_busy((select count(*)=1 from busy_fixture),'eligible fixture course');
 insert into auth.users(id,email,email_confirmed_at,raw_app_meta_data,raw_user_meta_data)
 select u.id,'battle-busy-'||u.id||'@example.invalid',now(),'{"provider":"email"}',
 '{"display_name":"Battle busy regression","signup_kind":"student","terms_accepted":true,"terms_version":"2026-10-19-draft-1","privacy_version":"2026-10-19-draft-1","age_declaration":"adult"}'::jsonb
 from busy_fixture f cross join lateral unnest(array[f.a,f.b,f.c]) u(id);
-update public.profiles p set university_id=f.university_id,department_id=f.department_id,level_id=f.level_id,semester_id=f.semester_id
+update public.profiles p set university_id=f.university_id,faculty_id=f.faculty_id,academic_period_id=f.academic_period_id,department_id=f.department_id,level_id=f.level_id,semester_id=f.semester_id
 from busy_fixture f where p.id in (f.a,f.b,f.c);
 delete from private.pending_registrations where user_id in(select a from busy_fixture union all select b from busy_fixture union all select c from busy_fixture);
 create temp table opponent_battle as
@@ -78,4 +82,7 @@ do $$ declare detail text; begin
 end $$;
 select pg_temp.assert_busy(not has_function_privilege('authenticated','private.battle_opponent_status(uuid)','execute') and not has_function_privilege('anon','private.battle_opponent_status(uuid)','execute'),'opponent status remains private');
 select 'busy-opponent regression passed' as result;
+
+select pass('busy-battle-opponent assertions completed');
+select * from finish();
 rollback;

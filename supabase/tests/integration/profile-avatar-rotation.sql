@@ -1,5 +1,9 @@
 -- Run after the avatar migration; all fixture accounts roll back.
 begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
+
 create temp table photo_preservation on commit drop as select * from private.profile_photos;
 create temp table uploaded_path_preservation on commit drop as select id,avatar_path from public.profiles where avatar_path like 'avatars/%';
 create temp table avatar_backfill_expected on commit drop as select id,((row_number() over(order by created_at,id)-1)%6)::text preset from public.profiles where avatar_path is null;
@@ -39,4 +43,7 @@ begin
  if has_function_privilege('anon','public.set_profile_avatar_v1(integer,text)','execute') then raise exception 'Anonymous access granted'; end if;
 end $$;
 
+
+select pass('profile-avatar-rotation assertions completed');
+select * from finish();
 rollback;

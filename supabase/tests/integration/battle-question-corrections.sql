@@ -1,5 +1,26 @@
 -- Read-only checks against finalized matches; temporary active-state check rolls back.
 begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
+
+select set_config('bc.battle',gen_random_uuid()::text,true);
+insert into public.battles(id,offering_id,rules_id,mode,state,created_by,starts_at,ends_at,finalized_at,result_kind,round_count,seconds_per_round)
+values(current_setting('bc.battle')::uuid,'20000000-0000-4000-8000-000000000002',
+  (private.active_battle_rules()).id,'direct','finished','90000000-0000-4000-8000-000000000001',
+  now()-interval '2 minutes',now()-interval '1 minute',now(),'draw',1,20);
+insert into public.battle_participants(battle_id,user_id,seat,correct_count)
+values(current_setting('bc.battle')::uuid,'90000000-0000-4000-8000-000000000001',1,0),
+      (current_setting('bc.battle')::uuid,'90000000-0000-4000-8000-000000000002',2,0);
+insert into public.battle_questions(battle_id,position,question_version_id,opened_at,deadline,option_order)
+select current_setting('bc.battle')::uuid,1,qv.id,now()-interval '2 minutes',now()-interval '1 minute',
+  (select array_agg(id order by position) from public.question_options where question_version_id=qv.id)
+from public.questions q join public.question_versions qv on qv.question_id=q.id and qv.status='published'
+where q.course_id='20000000-0000-4000-8000-000000000001' and q.pool='battle'
+order by q.logical_key limit 1;
+insert into auth.users(id,email,raw_user_meta_data)
+values(gen_random_uuid(),'correction-outsider@release.test','{"display_name":"Correction outsider"}');
+
 do $$
 declare sample record; outsider uuid; result jsonb; checked integer:=0;
 begin
@@ -26,4 +47,7 @@ begin
  if has_function_privilege('anon','public.get_battle_correction_v1(uuid,integer)','execute') then raise exception 'Anonymous correction access'; end if;
 end $$;
 
+
+select pass('battle-question-corrections assertions completed');
+select * from finish();
 rollback;
