@@ -45,7 +45,7 @@ do $$ declare phase text; detail text; begin
 end $$;
 select pg_temp.assert_busy(not exists(select 1 from public.battles where created_by=(select a from busy_fixture)),'no rejected invitation created');
 select pg_temp.assert_busy(not exists(select 1 from private.battle_slots where user_id=(select a from busy_fixture)),'no sender slot reserved');
-select pg_temp.assert_busy(not exists(select 1 from public.notifications where user_id=(select b from busy_fixture)),'no rejected invitation notification');
+select pg_temp.assert_busy(not exists(select 1 from public.notifications where user_id=(select b from busy_fixture) and kind='battle_invitation'),'no rejected invitation notification');
 insert into public.friendships(user_low,user_high,actor_id,state) select least(a,b),greatest(a,b),a,'blocked' from busy_fixture;
 do $$ begin
  begin perform public.create_scoped_battle_v1(array[(select offering_id from busy_fixture)],5,gen_random_uuid(),(select b from busy_fixture)); raise exception 'FAILED: blocked opponent allowed';

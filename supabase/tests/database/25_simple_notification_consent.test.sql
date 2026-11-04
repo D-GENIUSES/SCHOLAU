@@ -16,7 +16,7 @@ select ok((select not(activity or academic or announcement or account or reminde
 select lives_ok($q$select public.enable_all_notifications_v1(auth.uid(),'simple-device',current_setting('t.sub')::jsonb,'Europe/London')$q$,'one consent enables a valid browser subscription');
 select ok((select activity and academic and announcement and account and reminder from private.notification_preferences where user_id=auth.uid()),'all categories and daily reminder enabled together');
 select is((select timezone from private.notification_preferences where user_id=auth.uid()),'Europe/London','timezone is detected automatically');
-select is((select reminder_time::text from private.notification_preferences where user_id=auth.uid()),'19:00:00','automatic daily reminder defaults to seven pm');
+select is((select reminder_time::text from private.notification_preferences where user_id=auth.uid()),'15:00:00','automatic daily reminder defaults to three pm');
 select lives_ok($q$select public.enable_all_notifications_v1(auth.uid(),'simple-device',current_setting('t.sub')::jsonb,'not/a-zone')$q$,'unsupported browser timezone falls back safely');
 select is((select timezone from private.notification_preferences where user_id=auth.uid()),'Africa/Lagos','timezone fallback is Africa/Lagos');
 select is((select count(*)::int from public.push_tokens where device_key='simple-device' and revoked_at is null),1,'repeating enable does not create extra active device records');

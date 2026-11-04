@@ -123,7 +123,7 @@ select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_sett
 select is(private.award_mastery_battle(current_setting('t.b')::uuid,current_setting('t.battle1')::uuid,'battle_win',30),0,'battle replay awards zero');
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),1,'battle replay does not increment limits');
 select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_loss',0),0,'zero-correct completed loss awards zero');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_win',30),0,'third same-opponent match earns zero');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid),'battle_win',30),30,'repeat opponent remains eligible under unlimited battle XP');
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),3,'zero-award matches count toward daily limits');
 select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','cancelled'),'battle_win',30),0,'cancelled match earns zero');
 select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.v')::uuid,'cancelled','forfeit'),'battle_win',30),0,'forfeited match earns zero');
@@ -134,7 +134,7 @@ do $$ declare i integer; v_other uuid; begin
     pg_temp.battle(current_setting('t.b')::uuid,v_other),'battle_win',30); end loop;
 end $$;
 select is((select completed from private.battle_xp_counts where user_id=current_setting('t.b')::uuid),10,'first ten completed matches counted');
-select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.u')::uuid),'battle_win',30),0,'eleventh completed match cannot earn XP');
+select is(private.award_mastery_battle(current_setting('t.b')::uuid,pg_temp.battle(current_setting('t.b')::uuid,current_setting('t.u')::uuid),'battle_win',30),30,'eleventh completed match remains eligible under unlimited battle XP');
 -- Move counter rows to yesterday to simulate the next daily window.
 update private.battle_xp_counts set local_date=private.lagos_date()-1 where user_id=current_setting('t.b')::uuid;
 update private.battle_opponent_counts set local_date=private.lagos_date()-1 where user_id=current_setting('t.b')::uuid;

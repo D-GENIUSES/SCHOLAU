@@ -35,7 +35,7 @@ select private.apply_academic_profile(current_setting('t.student')::uuid,current
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null and o.requirement_status='E'),0,'100 Level first semester electives are not auto-assigned');
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null),8,'100 Level first semester core/required courses are auto-assigned');
 select pg_temp.login(current_setting('t.student')::uuid);
-select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),8,'Information Technology 100 student sees eight first-semester assigned courses');
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'Information Technology student can select all ten first-semester courses including electives');
 reset role;
 select * from finish();
 rollback;

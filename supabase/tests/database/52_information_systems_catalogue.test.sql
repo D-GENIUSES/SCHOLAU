@@ -28,7 +28,7 @@ select is((select cc.source_code from public.curriculum_courses cc join public.c
 select ok(
   exists(
     select 1 from jsonb_array_elements(public.get_registration_options_v1('adeleke-university-ede-osun-state')->'departments') elem
-    where elem->>'name'='Computer Information System'
+    where elem->>'name'='Computer Information Systems'
   ),
   'Computer Information System appears in registration options'
 );
@@ -37,7 +37,7 @@ select private.apply_academic_profile(current_setting('t.student')::uuid,current
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null and o.requirement_status='E'),0,'100 Level first semester electives are not auto-assigned');
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null),8,'100 Level first semester core/required courses are auto-assigned');
 select pg_temp.login(current_setting('t.student')::uuid);
-select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),8,'Computer Information System 100 student sees eight first-semester assigned courses');
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'Computer Information Systems student sees all ten first-semester courses including electives');
 reset role;
 select * from finish();
 rollback;

@@ -2,6 +2,9 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+-- Seeded reviewer exists only in this disposable, rollback-only fixture.
+\ir ../../migrations/20261024000700_philosophy_of_education_battle_pool.sql
+\ir ../../migrations/20261024000800_philosophy_of_education_more_battles.sql
 select is((select count(*)::integer from public.courses where code='AUE-GST 201'),1,'AUE-GST 201 remains a single course');
 select is((select title from public.courses where code='AUE-GST 201'),'Philosophy of Education','course title unchanged');
 select is((select count(distinct o.course_id)::integer from public.course_offerings o join public.courses c on c.id=o.course_id where c.code='AUE-GST 201'),1,'offerings share one course id');
