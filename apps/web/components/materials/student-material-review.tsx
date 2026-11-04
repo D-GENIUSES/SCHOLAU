@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +21,7 @@ export function StudentMaterialReview() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [message, setMessage] = useState("");
-  async function refresh() {
+  const refresh = useCallback(async () => {
     setLoading(true);
     try {
       const { data, error } = await getBrowserSupabase().rpc("list_student_materials_v1");
@@ -32,8 +32,8 @@ export function StudentMaterialReview() {
     } finally {
       setLoading(false);
     }
-  }
-  useEffect(() => { void refresh(); }, []);
+  }, []);
+  useEffect(() => { const timer = window.setTimeout(() => void refresh(), 0); return () => window.clearTimeout(timer); }, [refresh]);
 
   async function decide(id: string, decision: "approved" | "rejected") {
     const note = decision === "rejected" ? window.prompt("Reason for rejection (optional, maximum 500 characters):") : "";
