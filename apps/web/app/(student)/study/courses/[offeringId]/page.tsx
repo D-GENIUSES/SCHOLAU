@@ -8,6 +8,7 @@ import { useCourseOverview, useEnrollCourse } from "@scholau/api/react";
 import { type AssessmentKind, COPY, formatDuration, pluralize } from "@scholau/core";
 import { ModuleSection } from "@/components/lesson/lesson-module";
 import { TopicMastery } from "@/components/lesson/topic-mastery";
+import { CourseLightAssignments } from "@/components/lesson/course-light-assignments";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, PageHeader, Progress } from "@/components/ui/misc";
@@ -125,6 +126,7 @@ function Overview({ data }: { data: CourseOverview }) {
         </CardContent>
       </Card>
 
+      <CourseLightAssignments offeringId={data.offering_id} />
       <TopicMastery offeringId={data.offering_id} />
       <section aria-labelledby="lessons-heading" className="mb-6 flex flex-col gap-3">
         <h2 id="lessons-heading" className="text-xl font-bold">
