@@ -47,8 +47,8 @@ begin
     perform private.raise_error('VALIDATION_FAILED', 'You already have three suggestions awaiting review.');
   end if;
 
-  select coalesce(max(position), 0) + 1 into v_position
-  from public.lesson_videos where lesson_id = p_lesson_id;
+  select count(*) + 1 into v_position
+  from public.lesson_videos where lesson_id = p_lesson_id and status <> 'rejected';
   -- Rejected suggestions remain reviewer-owned history; do not silently revive them.
   begin
     insert into public.lesson_videos

@@ -39,13 +39,13 @@ create function public.get_practice_hint_v1(
 ) returns jsonb language plpgsql stable security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_hint text; v_count integer;
 begin
-  if p_step not between 1 and 4 then perform private.raise_error('VALIDATION_FAILED'); end if;
+  if p_step is null or p_step not between 1 and 4 then perform private.raise_error('VALIDATION_FAILED'); end if;
   if not exists(
     select 1 from public.assessment_attempts at
     join public.assessments a on a.id=at.assessment_id
     join public.attempt_questions aq on aq.attempt_id=at.id
     where at.id=p_attempt_id and at.user_id=v_uid
-      and at.status='active' and a.kind='practice'
+      and at.status='active' and at.expires_at is null and a.kind='practice'
       and aq.question_version_id=p_question_version_id
   ) then perform private.raise_error('FORBIDDEN','Hints are only available during your own active untimed practice.'); end if;
   select count(*) into v_count from private.practice_question_hints
