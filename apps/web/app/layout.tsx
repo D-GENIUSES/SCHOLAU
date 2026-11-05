@@ -27,11 +27,13 @@ export const metadata: Metadata = {
   },
 };
 
-// Pinch and browser zoom stay available. Text selection stays limited outside privacy and terms.
+// Keep the installed app at its native scale.
 export const viewport: Viewport = {
   themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: "cover",
 };
 

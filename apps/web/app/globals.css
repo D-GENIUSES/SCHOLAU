@@ -6,7 +6,8 @@
 .math-equation { max-width: 100%; min-width: 0; text-indent: 0; }
 .math-inline { display: inline-block; vertical-align: middle; overflow-x: auto; overflow-y: hidden; }
 .math-display { display: block; width: 100%; overflow-x: auto; margin: .85rem 0 .35rem; padding: .85rem .25rem; }
-.lesson-reading { display: flex; flex-direction: column; gap: 1.35rem; font-size: 1rem; line-height: 1.7; }
+.lesson-reading { display: flex; min-width: 0; flex-direction: column; gap: 1.35rem; font-size: 1rem; line-height: 1.7; overflow-wrap: anywhere; }
+.lesson-reading > * { min-width: 0; max-width: 100%; }
 .lesson-reading > h2, .lesson-reading > h3, .lesson-reading > h4 { margin-top: .35rem; }
 .math-display .katex-display { margin: 0; text-align: left; }
 .math-display .katex-display > .katex { text-align: left; white-space: nowrap; }

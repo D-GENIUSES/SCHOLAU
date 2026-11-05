@@ -14,11 +14,14 @@ const previous = { current: 1, longest: 1, active_today: false, local_date: '202
 const result = { already_completed: false, streak: { ...previous, current: 2, active_today: true } };
 assert.equal(celebrate(result, previous), true, 'second day');
 assert.equal(celebrate({ ...result, streak: { ...result.streak, current: 30 } }, previous), true, 'later streak');
-assert.equal(celebrate(result, result.streak), false, 'another lesson today');
+assert.equal(celebrate(result, result.streak), true, 'a different newly completed lesson today still shows the confirmed streak');
 assert.equal(celebrate({ ...result, already_completed: true }, previous), false, 'repeat completion');
 assert.equal(celebrate({ ...result, streak: { ...result.streak, current: 1 } }, previous), true, 'restart');
 assert.equal(celebrate({ ...result, first_lesson_completed: true }), true, 'first lesson without cache');
-assert.equal(celebrate(result), false, 'unknown prior state');
+assert.equal(celebrate(result), true, 'missing home cache must not suppress lesson completion feedback');
+assert.equal(celebrate({ ...result, streak_advanced: false }), true, 'show after a new lesson even when today was already active');
+assert.equal(celebrate({ ...result, already_completed: true, streak_advanced: true }), false, 'idempotent retry cannot replay the popup');
+assert.equal(celebrate({ ...result, streak: { ...result.streak, current: 0 } }), false, 'never invent a streak');
 assert.equal(celebrate({ ...result, streak: { ...result.streak, active_today: false } }, previous), false, 'no confirmed progress');
 assert.equal(celebrate(result, { ...result.streak, local_date: '2026-10-20' }), true, 'cached prior day');
-console.log('PASS: first lesson, daily extension, longer streak, restart, repeated day, repeat completion, unknown state, server confirmation, date rollover.');
+console.log('PASS: first lesson, daily extension, restart, new lesson on active day, missing cache, repeat completion, retry, zero streak, server confirmation.');

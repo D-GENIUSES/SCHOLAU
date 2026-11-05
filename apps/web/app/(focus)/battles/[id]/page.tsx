@@ -4,13 +4,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { isApiError, qk, type HomeSummary } from "@scholau/api";
-import { useBattleSignals, useBattleState, useForfeitBattle, useHomeSummary, useScholauApi } from "@scholau/api/react";
+import { isApiError, qk } from "@scholau/api";
+import { useBattleSignals, useBattleState, useForfeitBattle } from "@scholau/api/react";
 import { isLiveBattleState } from "@scholau/core";
 import { BattleReactionBar } from "@/components/battle/battle-reaction-bar";
 import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/battle/battle-chrome";
-import { playBattleLossSound, playBattleWinSound } from "@/lib/feedback-sounds";
-import { celebrationPayload, emitStreakCelebration, streakAdvanced } from "@/lib/streak-celebration-bus";
 import { useAfter } from "@/components/battle/hooks";
 import { IntegrityGuard } from "@/components/battle/integrity-guard";
 import { BattleScoreboard } from "@/components/battle/arena";
@@ -33,10 +31,8 @@ export default function BattlePage() {
   const forfeit = useForfeitBattle();
   const graceOver = useAfter(3000);
   const [leaveOpen, setLeaveOpen] = useState(false);
-  const seen = useRef({ live: false, activated: false, completed: false, sounded: false });
-  const streakBeforeBattle = useRef<HomeSummary["streak"] | undefined>(undefined);
-  const home = useHomeSummary();
-  const api = useScholauApi();
+  const [celebratingBattle, setCelebratingBattle] = useState<string | null>(null);
+  const seen = useRef({ live: false, activated: false, completed: false });
 
   const battle = q.data;
   const live = battle ? isLiveBattleState(battle.state) : false;
@@ -60,26 +56,14 @@ export default function BattlePage() {
     if (!state) return;
     if (isLiveBattleState(state)) {
       seen.current.live = true;
-      if (!streakBeforeBattle.current && home.data?.streak) streakBeforeBattle.current = home.data.streak;
     }
     if (state === "active" && !seen.current.activated) {
       seen.current.activated = true;
       analytics.track({ name: "battle_activated", battle_id: id });
     }
-    if (state === "finished" && seen.current.live && !seen.current.sounded && (result === "win" || result === "draw" || result === "loss")) {
-      seen.current.sounded = true;
-      if (result === "loss") playBattleLossSound();
-      else playBattleWinSound();
-    }
     if (state === "finished" && seen.current.live && !seen.current.completed) {
       seen.current.completed = true;
       analytics.track({ name: "battle_completed", battle_id: id, outcome: result ?? "unknown" });
-      void api.getHomeSummary().then((summary) => {
-        qc.setQueryData(qk.home(), summary);
-        const prev = streakBeforeBattle.current ?? home.data?.streak;
-        const next = summary.streak;
-        if (streakAdvanced(prev, next)) emitStreakCelebration(celebrationPayload(prev, next));
-      }).catch(() => undefined);
     }
     if (!isLiveBattleState(state)) {
       void Promise.all([
@@ -89,7 +73,14 @@ export default function BattlePage() {
         qc.invalidateQueries({ queryKey: qk.home() }),
       ]);
     }
-  }, [state, result, id, analytics, qc, api, home.data?.streak]);
+  }, [state, result, id, analytics, qc]);
+
+  useEffect(() => {
+    if (state !== "finished" || !seen.current.live) return;
+    // Let the final score paint before starting the full-screen result effect.
+    const timer = window.setTimeout(() => setCelebratingBattle(id), 0);
+    return () => window.clearTimeout(timer);
+  }, [state, id]);
 
   const leave = () => {
     forfeit.mutate(
@@ -144,7 +135,7 @@ export default function BattlePage() {
         break;
       case "finished":
       case "voided":
-        body = <ResultPanel battle={battle} />;
+        body = <ResultPanel battle={battle} celebrate={celebratingBattle === id} />;
         break;
       case "cancelled":
         body = <CancelledPanel battle={battle} />;

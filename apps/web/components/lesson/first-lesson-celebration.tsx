@@ -9,7 +9,7 @@ import "./streak-celebration.css";
 
 export const FIRST_LESSON_CELEBRATION_MS = 2500;
 
-/** Presentation only; receives a server-confirmed streak increase. */
+/** Presentation only; receives the server-confirmed streak after lesson completion. */
 export function FirstLessonCelebration({
   days,
   localDate,
@@ -40,7 +40,7 @@ export function FirstLessonCelebration({
   const weekday = (new Date(`${localDate}T12:00:00Z`).getUTCDay() + 6) % 7;
   const labels = ["M", "T", "W", "T", "F", "S", "S"];
   const names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  return <Dialog open={open} onOpenChange={setOpen}>
+  return <Dialog open={open} onOpenChange={(next) => { if (!next) close(); }}>
     <DialogContent hideClose className="streak-celebration" data-stage={stage}>
       <p className="text-xs font-semibold uppercase tracking-widest text-brand-primary">Daily streak</p>
       <div className="streak-ignite" aria-hidden="true"><span className="streak-halo" /><StreakFlame active={stage >= 1} tone="blue" size={104} /><span className="streak-ember ember-one" /><span className="streak-ember ember-two" /><span className="streak-ember ember-three" /></div>
