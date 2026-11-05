@@ -3,6 +3,11 @@ begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
 -- Seeded reviewer exists only in this disposable, rollback-only fixture.
+-- The earlier clean-reset content import deliberately leaves these drafts unreviewed.
+select set_config('scholau.allow_publish','on',true);
+update public.question_versions v set status='published',reviewed_by='90000000-0000-4000-8000-000000000002',published_at=now()
+from public.questions q join public.courses c on c.id=q.course_id
+where v.question_id=q.id and c.code='AUE-GST 201' and v.status='draft';
 -- More battle questions for the shared course AUE-GST 201.
 -- Each item keeps the keyed learning prompt, the original three options, and the same correct answer.
 -- The fourth option is a real wrong answer already named in the Philosophy of Education notes.

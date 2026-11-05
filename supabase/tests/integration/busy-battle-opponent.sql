@@ -62,7 +62,7 @@ do $$ declare detail text; begin
  exception when sqlstate 'PT409' then get stacked diagnostics detail=pg_exception_detail;
  perform pg_temp.assert_busy(detail::jsonb->'field_errors'->>'opponent_status'='queue','queue classified'); end;
 end $$;
-update public.battle_queue set created_at=now()-interval '2 minutes',expires_at=now()-interval '1 second' where id=(select id from opponent_queue);
+update public.battle_queue set queued_at=now()-interval '2 minutes',expires_at=now()-interval '1 second' where id=(select id from opponent_queue);
 select pg_temp.assert_busy(private.battle_opponent_status((select b from busy_fixture)) is null,'expired queue ignored');
 delete from private.battle_slots where user_id=(select b from busy_fixture);
 insert into private.battle_slots(user_id,battle_id,expires_at) select f.b,ob.id,now()+interval '20 minutes' from busy_fixture f,opponent_battle ob;
