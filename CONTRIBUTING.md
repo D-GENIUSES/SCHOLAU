@@ -6,11 +6,11 @@ Follow [Getting started](README.md#getting-started), use pnpm 12.11.2, and read 
 
 ## Workflow
 
-1. Create a branch from an up-to-date `main`. Use a descriptive name such as `feat/course-search`, `fix/session-expiry`, or `docs/setup`.
+1. Synchronize your clean `main` checkout with remote `main`. Work directly on `main`; do not create feature branches.
 2. Keep changes focused. Separate organization work from behavior changes and dependency upgrades.
 3. Update documentation and `.env.example` when contracts or required variables change.
 4. Run `pnpm lint`, `pnpm typecheck`, and `pnpm build` from the root. For database changes, run the relevant SQL tests against a prepared local instance.
-5. Open a pull request explaining the problem, resulting behavior, validation, and any migration or rollback steps.
+5. Commit and push directly to `main` after checks pass. Do not open pull requests unless the owner explicitly changes this workflow. Record validation and any migration or rollback steps in the commit or accompanying documentation.
 
 Write commit messages that explain intent, such as `docs: document local development` or `fix: restore expired session navigation`. Reviewers should understand a change without access to an external conversation.
 
@@ -22,4 +22,4 @@ Add new migrations using the existing `<timestamp>_<description>.sql` pattern. D
 
 ## Review expectations
 
-Include screenshots for interface changes and describe affected loading, error, and empty states. Distinguish completed checks from pending verification. Before merging, confirm documentation links resolve and documented commands match package manifests.
+Include screenshots for interface changes and describe affected loading, error, and empty states. Distinguish completed checks from pending verification. Before pushing, confirm documentation links resolve and documented commands match package manifests.

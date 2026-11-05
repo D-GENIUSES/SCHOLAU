@@ -1,7 +1,8 @@
 name: Database migration and security tests
 
 on:
-  pull_request:
+  push:
+    branches: [main]
     paths:
       - "supabase/**"
       - ".github/workflows/database-check.yml"

@@ -1,3 +1,9 @@
+# ScholAu workflow
+
+- Use `main` as the only active branch. Commit and push directly to `main`; do not create branches or pull requests unless the user explicitly changes this instruction.
+- Synchronize with remote main and run relevant checks before pushing. Never overwrite newer work.
+- Production on scholau.com follows `main`.
+
 <!-- BEGIN:turborepo-agent-rules -->
 
 # This is NOT the Turborepo you know

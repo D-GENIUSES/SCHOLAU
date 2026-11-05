@@ -7,11 +7,9 @@ SCHOLAU is deployed using Vercel's native GitHub integration. Import
 - Framework: Next.js; Node.js: 24.x.
 - Install: `pnpm install --frozen-lockfile`.
 - Build: `pnpm --filter @scholau/web build`.
-- Production branch: `staging`, which contains the current application and lesson
-  synchronization release. Changing the production branch is a separate release
-  decision; GitHub's default `main` currently has older application code.
+- Production branch: `main`, the single active application branch.
 
-Push reviewed commits to `staging` to deploy. Inspect the resulting Git deployment
+Run the relevant checks, then commit and push directly to `main` to deploy. Do not create feature branches or pull requests. Inspect the resulting Git deployment
 and verify its commit before declaring it live. There is no local-source upload
 or separate deployment workflow to run. Existing GitHub CI continues to run lint,
 type checks and the production build.
