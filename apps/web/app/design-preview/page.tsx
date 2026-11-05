@@ -14,11 +14,13 @@ import { ShellFrame } from "@/components/shell/shell-frame";
 import { Button } from "@/components/ui/button";
 import { LeaderboardPreview } from "@/components/leaderboard/leaderboard-preview";
 import { LessonListPreview } from "@/components/lesson/lesson-list-preview";
+import { FeedbackPreview } from "@/components/battle/feedback-preview";
 
 export default async function DesignPreview({ searchParams }: { searchParams: Promise<{ state?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
   const { state = "returning" } = await searchParams;
   const now = new Date();
+  if (state === "learning-feedback") return <FeedbackPreview />;
   if (state === "admin-users") return <div className="admin-workspace mx-auto max-w-5xl p-3"><h1 className="mb-3 text-xl font-semibold">Users</h1><AdminUserDirectory creationEnabled={false} /></div>;
   if (state === "battle-friends") return <BattleLobbyPreview showFriendActions />;
   if (state === "battle-lobby") return <BattleLobbyPreview />;

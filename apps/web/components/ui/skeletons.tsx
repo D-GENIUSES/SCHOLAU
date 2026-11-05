@@ -20,10 +20,6 @@ export function HomeSkeleton() {
       <div className="home-dashboard compact-home" aria-hidden>
         <div className="home-welcome">
           <Skeleton className="h-7 w-56 max-w-full" />
-          <div className="home-stats">
-            <Skeleton className="h-[58px] rounded-[14px]" />
-            <Skeleton className="h-[58px] rounded-[14px]" />
-          </div>
         </div>
         <div className="compact-home-grid">
           <div className="compact-home-main">

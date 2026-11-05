@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/misc";
 import { MathText } from "@/components/math/math-text";
 import { splitLessonIntoSteps } from "@/lib/lesson-steps";
+import { normalizeNoteBlocks } from "@/lib/lesson-note-blocks";
 import { LessonBlocks } from "./blocks";
 
 export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
-  const steps = useMemo(() => splitLessonIntoSteps(blocks), [blocks]);
+  const steps = useMemo(() => splitLessonIntoSteps(normalizeNoteBlocks(blocks)), [blocks]);
   const [index, setIndex] = useState(0);
   const step = steps[index];
   const total = steps.length;

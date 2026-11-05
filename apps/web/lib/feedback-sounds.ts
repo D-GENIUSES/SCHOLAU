@@ -2,6 +2,40 @@ const STORAGE_KEY = "scholau.notification-sound";
 
 let audio: AudioContext | null = null;
 let unlockInstalled = false;
+const battleSounds = new Map<string, Promise<AudioBuffer>>();
+
+function loadBattleSound(context: AudioContext, result: "win" | "loss"): Promise<AudioBuffer> {
+  const path = `/sounds/battle-${result}.mp3`;
+  let pending = battleSounds.get(path);
+  if (!pending) {
+    pending = fetch(path).then(response => {
+      if (!response.ok) throw new Error("Battle sound unavailable");
+      return response.arrayBuffer();
+    }).then(bytes => context.decodeAudioData(bytes)).catch(error => {
+      battleSounds.delete(path);
+      throw error;
+    });
+    battleSounds.set(path, pending);
+  }
+  return pending;
+}
+
+function playBattleSound(result: "win" | "loss", fallback: () => void): void {
+  if (!enabled()) return;
+  const context = ctx();
+  if (!context) return;
+  void Promise.all([loadBattleSound(context, result), context.resume()]).then(([buffer]) => {
+    if (!enabled()) return;
+    const source = context.createBufferSource();
+    const gain = context.createGain();
+    source.buffer = buffer;
+    gain.gain.value = 0.65;
+    source.connect(gain);
+    gain.connect(context.destination);
+    source.onended = () => { source.disconnect(); gain.disconnect(); };
+    source.start();
+  }).catch(fallback);
+}
 
 function enabled(): boolean {
   if (typeof window === "undefined") return false;
@@ -27,6 +61,10 @@ export function installFeedbackSoundUnlock(): void {
   const unlock = () => {
     const context = ctx();
     if (context?.state === "suspended") void context.resume().catch(() => undefined);
+    if (context && enabled()) {
+      void loadBattleSound(context, "win").catch(() => undefined);
+      void loadBattleSound(context, "loss").catch(() => undefined);
+    }
   };
   window.addEventListener("pointerdown", unlock, { capture: true, passive: true });
   window.addEventListener("keydown", unlock, { capture: true });
@@ -78,20 +116,24 @@ export function playStreakExtendedSound(): void {
 }
 
 export function playBattleWinSound(): void {
-  playSequence([
-    { freq: 523.25, at: 0, dur: 0.12, vol: 0.22 },
-    { freq: 659.25, at: 0.12, dur: 0.12, vol: 0.24 },
-    { freq: 783.99, at: 0.24, dur: 0.14, vol: 0.26 },
-    { freq: 1046.5, at: 0.4, dur: 0.32, vol: 0.24 },
-  ]);
+  playBattleSound("win", () => playSequence([
+    { freq: 261.63, at: 0, dur: 0.22, vol: 0.23 },
+    { freq: 392, at: 0.28, dur: 0.12, vol: 0.22 },
+    { freq: 523.25, at: 0.42, dur: 0.16, vol: 0.24 },
+    { freq: 392, at: 0.66, dur: 0.22, vol: 0.24 },
+    { freq: 523.25, at: 0.94, dur: 0.22, vol: 0.24 },
+    { freq: 783.99, at: 1.24, dur: 0.72, vol: 0.24 },
+    { freq: 1046.5, at: 1.24, dur: 0.72, vol: 0.12 },
+  ]));
 }
 
 export function playBattleLossSound(): void {
-  playSequence([
-    { freq: 392, at: 0, dur: 0.24, vol: 0.2 },
-    { freq: 311.13, at: 0.18, dur: 0.36, vol: 0.22 },
-    { freq: 233.08, at: 0.4, dur: 0.4, vol: 0.18 },
-  ]);
+  playBattleSound("loss", () => playSequence([
+    { freq: 196, at: 0, dur: 0.45, vol: 0.18 },
+    { freq: 174.61, at: 0.3, dur: 0.5, vol: 0.19 },
+    { freq: 146.83, at: 0.65, dur: 0.65, vol: 0.18 },
+    { freq: 130.81, at: 1.1, dur: 0.9, vol: 0.16 },
+  ]));
 }
 
 export function playTauntSound(reaction: "laugh" | "angry" | "handshake"): void {

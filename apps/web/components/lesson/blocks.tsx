@@ -11,6 +11,7 @@ import type { LessonBlock } from "@scholau/core";
 import { Skeleton } from "@/components/ui/misc";
 import { shuffleIndexedChoices } from "@/lib/shuffle-options";
 import { cn } from "@/lib/utils";
+import { normalizeNoteBlocks } from "@/lib/lesson-note-blocks";
 
 type CalloutTone = NonNullable<Extract<LessonBlock, { type: "callout" }>["tone"]>;
 
@@ -24,7 +25,7 @@ const CALLOUT: Record<CalloutTone, { label: string; icon: typeof Info; box: stri
 export function LessonBlocks({ blocks }: { blocks: LessonBlock[] }) {
   return (
     <div className="lesson-reading">
-      {blocks.map((block, i) => (
+      {normalizeNoteBlocks(blocks).map((block, i) => (
         <Block key={i} block={block} />
       ))}
     </div>
@@ -79,7 +80,7 @@ function Block({ block }: { block: LessonBlock }) {
           <pre
             tabIndex={0}
             aria-label={block.language ? `${block.language} code` : "Code"}
-            className="overflow-x-auto rounded-control border border-line bg-[#0f1f33] p-4 text-sm text-[#e6eef8]"
+            className="max-w-full whitespace-pre-wrap break-words rounded-control border border-line bg-surface-page p-4 text-sm text-ink"
           >
             <code>{block.code}</code>
           </pre>

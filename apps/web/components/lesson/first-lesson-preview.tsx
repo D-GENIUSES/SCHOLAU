@@ -7,7 +7,9 @@ import { ScholauApiProvider, useCompleteLesson, useHomeSummary } from "@scholau/
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { StatsPanel } from "@/components/home/side-panels";
 import { Button } from "@/components/ui/button";
-import { FirstLessonCelebration, FIRST_LESSON_CELEBRATION_MS } from "./first-lesson-celebration";
+import { FIRST_LESSON_CELEBRATION_MS } from "./first-lesson-celebration";
+import { celebrationPayload, emitStreakCelebration } from "@/lib/streak-celebration-bus";
+import { shouldCelebrateStreak } from "@/lib/streak-celebration";
 
 /** Development-only, isolated API fixture. Never calls the connected database. */
 export function FirstLessonPreview() {
@@ -35,14 +37,19 @@ export function FirstLessonPreview() {
 function PreviewLesson() {
   const { data } = useHomeSummary();
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
+  const markComplete = () => {
+    const previous = data?.streak;
+    void complete.mutateAsync({ lessonVersionId: "preview-version" }).then(result => {
+      if (shouldCelebrateStreak(result)) emitStreakCelebration(celebrationPayload(previous, result.streak));
+    }).catch(() => undefined);
+  };
   return <ShellFrame pathname="/home" displayName="New learner" streak={data?.streak}>
-    {complete.data?.first_lesson_completed && !complete.data.already_completed ? <FirstLessonCelebration days={complete.data.streak.current} localDate={complete.data.streak.local_date} /> : null}
     <div className="mx-auto flex max-w-reading flex-col gap-6">
       <p className="text-xs text-ink-muted">Development preview · sample data · no account progress is changed.</p>
       <div><h1 className="text-2xl font-bold tracking-tight">Your first lesson</h1><p className="mt-2 text-sm text-ink-muted">Complete this sample to see the fire animation, followed by your updated streak.</p></div>
       {data ? <StatsPanel summary={data} /> : null}
       <section className="rounded-card border border-line bg-surface-card p-5"><h2 className="font-semibold">Daily streak</h2><p className="my-4 text-sm leading-relaxed text-ink-muted">Complete a lesson to start your streak. Come back tomorrow to keep it going.</p>
-        <Button onClick={() => complete.mutate({ lessonVersionId: "preview-version" })} loading={complete.isPending}>{complete.data ? "Complete again" : "Mark as complete"}</Button>
+        <Button onClick={markComplete} loading={complete.isPending}>{complete.data ? "Complete again" : "Mark as complete"}</Button>
         {complete.data ? <p role="status" className="mt-3 text-sm text-success">{complete.data.already_completed ? "Already completed. Your streak stays the same." : "Lesson complete."}</p> : null}
       </section>
     </div>

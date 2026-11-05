@@ -18,6 +18,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Stat } from "@/components/ui/misc";
 import { BattleOpponentFriend } from "./opponent-friend";
 import { cancelReasonCopy } from "./outcome";
+import { BattleResultCelebration } from "./result-celebration";
 
 const HEADLINE = {
   win: { text: "You won" },
@@ -26,7 +27,7 @@ const HEADLINE = {
 } as const;
 
 /** Finished / voided results; corrections reveal only the viewer's own answer. */
-export function ResultPanel({ battle }: { battle: Battle }) {
+export function ResultPanel({ battle, celebrate = false }: { battle: Battle; celebrate?: boolean }) {
   const profile = useProfile();
   const me = battle.participants.find((p) => p.is_me);
   const opponent = battle.participants.find((p) => !p.is_me);
@@ -39,6 +40,7 @@ export function ResultPanel({ battle }: { battle: Battle }) {
   const visibleRounds = missedOnly ? battle.rounds?.filter(round => !round.my_is_correct) : battle.rounds;
   return (
     <div className="flex flex-col gap-6">
+      {celebrate && !voided && (result === "win" || result === "loss") ? <BattleResultCelebration key={battle.battle_id} result={result} /> : null}
       <Card>
         <CardHeader className="items-center text-center">
           <CardTitle as="h2" className="text-2xl">

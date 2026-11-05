@@ -26,7 +26,7 @@ export function streakAdvanced(previous: Streak | undefined, next: Streak): bool
 
 export function celebrationPayload(previous: Streak | undefined, next: Streak): StreakCelebrationPayload {
   const previousDays = previous?.active_today && previous.local_date === next.local_date
-    ? Math.max(0, next.current - 1)
+    ? Math.min(previous.current, next.current)
     : Math.max(0, next.current - 1);
   return { days: next.current, localDate: next.local_date, previousDays };
 }
