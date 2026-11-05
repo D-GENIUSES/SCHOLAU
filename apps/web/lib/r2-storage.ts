@@ -3,7 +3,7 @@ import { GetObjectCommand, HeadObjectCommand, PutObjectCommand, S3Client } from 
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 /** Credentials stay in the Node server; never import this module from client code. */
-export function getR2Storage() {
+export function getR2Storage(disableAutomaticChecksums = false) {
   const accountId = process.env.R2_ACCOUNT_ID;
   const bucket = process.env.R2_BUCKET;
   const accessKeyId = process.env.R2_ACCESS_KEY_ID;
@@ -17,6 +17,7 @@ export function getR2Storage() {
       endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
       credentials: { accessKeyId, secretAccessKey },
       maxAttempts: 3,
+      requestChecksumCalculation: disableAutomaticChecksums ? "WHEN_REQUIRED" : "WHEN_SUPPORTED",
     }),
   };
 }

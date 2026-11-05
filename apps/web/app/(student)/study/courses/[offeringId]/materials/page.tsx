@@ -24,21 +24,30 @@ export default function SuggestCourseMaterial() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!file || sending) return;
-    if (file.size > 4 * 1024 * 1024) {
-      setMessage("Choose a file that is 4 MB or smaller.");
+    if (file.size > 50 * 1024 * 1024) {
+      setMessage("Choose a file that is 50 MB or smaller.");
       return;
     }
     setSending(true);
     setMessage("");
     try {
-      const body = new FormData();
-      body.set("file", file);
-      body.set("notes", notes);
-      const res = await fetch("/api/student-materials?offeringId=" + encodeURIComponent(offeringId), {
-        method: "POST", body, credentials: "same-origin",
+      const endpoint = "/api/student-materials?offeringId=" + encodeURIComponent(offeringId);
+      const prepared = await fetch(endpoint, {
+        method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "prepare", filename: file.name, bytes: file.size }),
+      });
+      const upload = await prepared.json();
+      if (!prepared.ok) throw new Error(upload.message ?? "Could not start upload.");
+      const stored = await fetch(upload.uploadUrl, {
+        method: "PUT", headers: { "Content-Type": upload.mimeType }, body: file,
+      });
+      if (!stored.ok) throw new Error("The private file upload failed. Please try again.");
+      const res = await fetch(endpoint, {
+        method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "complete", ticket: upload.ticket, notes }),
       });
       const result = await res.json();
-      if (!res.ok) throw new Error(result.message ?? "Upload failed");
+      if (!res.ok) throw new Error(result.message ?? "Could not submit uploaded file.");
       setFile(null);
       setNotes("");
       setMessage("Submitted for lecturer or administrator review. This will not publish anything automatically.");
@@ -56,7 +65,7 @@ export default function SuggestCourseMaterial() {
       <p>Upload a lecture note or relevant source for lecturer approval. After approval, ScholAu can generate draft lessons and practice questions. Nothing becomes a student-facing lesson until separately reviewed and published.</p>
       <form onSubmit={submit} className="space-y-4 rounded-card border border-line p-5">
         <label className="block space-y-2">
-          <span className="font-semibold">Material file (up to 4 MB)</span>
+          <span className="font-semibold">Material file (up to 50 MB)</span>
           <input type="file" className="block w-full text-sm" accept=".pdf,.docx,.pptx,.txt,.jpg,.jpeg,.png,.webp"
             required onChange={(event) => setFile(event.target.files?.[0] ?? null)} />
         </label>
