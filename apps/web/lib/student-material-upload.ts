@@ -31,12 +31,12 @@ export async function prepareStudentMaterialUpload(userId: string, offeringId: s
 }
 
 export function verifyStudentMaterialTicket(token: string, userId: string, secret: string): Ticket {
-  const parts = token.split(".");
-  if (parts.length !== 2 || !/^[A-Za-z0-9_-]+$/.test(parts[0]) || !/^[A-Za-z0-9_-]{43}$/.test(parts[1])) throw new Error("INVALID_UPLOAD_TICKET");
-  const actual = Buffer.from(parts[1], "base64url");
-  const expected = signature(parts[0], secret);
+  const [payload, signed, ...extra] = token.split(".");
+  if (!payload || !signed || extra.length || !/^[A-Za-z0-9_-]+$/.test(payload) || !/^[A-Za-z0-9_-]{43}$/.test(signed)) throw new Error("INVALID_UPLOAD_TICKET");
+  const actual = Buffer.from(signed, "base64url");
+  const expected = signature(payload, secret);
   if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) throw new Error("INVALID_UPLOAD_TICKET");
-  const item = JSON.parse(Buffer.from(parts[0], "base64url").toString()) as Ticket;
+  const item = JSON.parse(Buffer.from(payload, "base64url").toString()) as Ticket;
   if (item.userId !== userId || item.expires < Date.now() || !Number.isSafeInteger(item.bytes)
     || item.bytes < 1 || item.bytes > MAX_STUDENT_MATERIAL_BYTES
     || !item.key.startsWith("student-material-uploads/" + userId + "/")) throw new Error("INVALID_UPLOAD_TICKET");
