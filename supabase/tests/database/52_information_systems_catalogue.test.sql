@@ -1,4 +1,4 @@
--- Computer Information System handbook curriculum (100–400 Level), Faculty of Science.
+-- Computer Information System handbook curriculum (100â€“400 Level), Faculty of Science.
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
@@ -13,7 +13,7 @@ create function pg_temp.login(p_user uuid) returns void language plpgsql as $$ b
 end $$;
 select set_config('t.uni',(select id::text from public.universities where slug='adeleke-university-ede-osun-state'),true) is not null as setup;
 select set_config('t.faculty',(select f.id::text from public.faculties f where f.university_id=current_setting('t.uni')::uuid and f.name='Faculty of Science'),true) is not null as setup;
-select set_config('t.cis',(select d.id::text from public.departments d where d.faculty_id=current_setting('t.faculty')::uuid and d.name='Computer Information System'),true) is not null as setup;
+select set_config('t.cis',(select d.id::text from public.departments d where d.faculty_id=current_setting('t.faculty')::uuid and d.name='Computer Information Systems'),true) is not null as setup;
 select set_config('t.period',(select id::text from public.academic_periods where university_id=current_setting('t.uni')::uuid and label='2026/2027'),true) is not null as setup;
 select set_config('t.first',(select id::text from public.semesters where academic_period_id=current_setting('t.period')::uuid and sort_order=1),true) is not null as setup;
 select set_config('t.l100',(select id::text from public.levels where university_id=current_setting('t.uni')::uuid and label='100 Level'),true) is not null as setup;
@@ -28,7 +28,7 @@ select is((select cc.source_code from public.curriculum_courses cc join public.c
 select ok(
   exists(
     select 1 from jsonb_array_elements(public.get_registration_options_v1('adeleke-university-ede-osun-state')->'departments') elem
-    where elem->>'name'='Computer Information System'
+    where elem->>'name'='Computer Information Systems'
   ),
   'Computer Information System appears in registration options'
 );
@@ -37,7 +37,7 @@ select private.apply_academic_profile(current_setting('t.student')::uuid,current
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null and o.requirement_status='E'),0,'100 Level first semester electives are not auto-assigned');
 select is((select count(*)::integer from public.enrollments e join public.course_offerings o on o.id=e.offering_id where e.user_id=current_setting('t.student')::uuid and e.ended_at is null),8,'100 Level first semester core/required courses are auto-assigned');
 select pg_temp.login(current_setting('t.student')::uuid);
-select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),8,'Computer Information System 100 student sees eight first-semester assigned courses');
+select is(jsonb_array_length(public.get_catalog_v1()->'offerings'),10,'Computer Information Systems student sees all ten first-semester courses including electives');
 reset role;
 select * from finish();
 rollback;

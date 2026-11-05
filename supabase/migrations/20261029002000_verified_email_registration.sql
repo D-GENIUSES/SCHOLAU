@@ -75,6 +75,5 @@ begin
   execute d;
 end $$;
 
-insert into supabase_migrations.schema_migrations(version,name,statements)
-values('20261029002000','verified_email_registration',array['Email registration waits for verification']);
+-- Supabase CLI records this migration automatically; do not insert its history row manually.
 commit;

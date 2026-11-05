@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { LessonBlock } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/misc";
@@ -10,10 +10,21 @@ import { splitLessonIntoSteps } from "@/lib/lesson-steps";
 import { LessonBlocks } from "./blocks";
 
 export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
-  const steps = splitLessonIntoSteps(blocks);
+  const steps = useMemo(() => splitLessonIntoSteps(blocks), [blocks]);
   const [index, setIndex] = useState(0);
   const step = steps[index];
   const total = steps.length;
+  useEffect(() => {
+    const focus = new URLSearchParams(window.location.search).get("focus");
+    if (focus !== "worked_example") return;
+    const exampleStep = steps.findIndex(step => step.blocks.some(block =>
+      block.type === "worked_example" || (block.type === "callout" && block.tone === "example")
+    ));
+    if (exampleStep < 0) return;
+    const timer = window.setTimeout(() => setIndex(exampleStep), 0);
+    return () => window.clearTimeout(timer);
+  }, [steps]);
+
 
   const go = useCallback(
     (next: number) => {

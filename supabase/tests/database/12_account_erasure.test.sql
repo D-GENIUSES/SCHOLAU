@@ -49,7 +49,7 @@ end $$;
 create function pg_temp.battle(p_user uuid,p_other uuid,p_state text default 'finished',p_kind text default 'win')
 returns uuid language plpgsql as $$ declare v uuid; begin
   insert into public.battles(offering_id,rules_id,mode,state,created_by,request_key,starts_at,ends_at,finalized_at,result_kind,round_count,seconds_per_round)
-    values('20000000-0000-4000-8000-000000000002','40000000-0000-4000-8000-000000000001','direct',p_state,p_user,gen_random_uuid(),
+    values('20000000-0000-4000-8000-000000000002',(select id from public.battle_rules where published_at is not null order by version desc limit 1),'direct',p_state,p_user,gen_random_uuid(),
       now()-interval '2 minutes',now()-interval '1 minute',now(),p_kind,5,20) returning id into v;
   insert into public.battle_participants(battle_id,user_id,seat,correct_count) values(v,p_user,1,5),(v,p_other,2,0); return v;
 end $$;
@@ -74,7 +74,7 @@ select set_config('erase.other_xp',(select total::text from public.user_points w
 insert into public.notifications(user_id,kind,body) values(current_setting('erase.user')::uuid,'test','Delete this notification');
 insert into private.outbox(event_key,topic,safe_payload) values('erase-test','user:'||current_setting('erase.user'),'{}');
 insert into public.battles(offering_id,rules_id,mode,state,created_by,request_key,round_count,seconds_per_round)
-values('20000000-0000-4000-8000-000000000002','40000000-0000-4000-8000-000000000001','direct','ready',current_setting('erase.user')::uuid,gen_random_uuid(),5,20);
+values('20000000-0000-4000-8000-000000000002',(select id from public.battle_rules where published_at is not null order by version desc limit 1),'direct','ready',current_setting('erase.user')::uuid,gen_random_uuid(),5,20);
 select set_config('erase.live',(select id::text from public.battles where state='ready' and created_by=current_setting('erase.user')::uuid),true) is not null as setup;
 insert into public.battle_participants(battle_id,user_id,seat) values
 (current_setting('erase.live')::uuid,current_setting('erase.user')::uuid,1),(current_setting('erase.live')::uuid,current_setting('erase.other')::uuid,2);

@@ -1,3 +1,7 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
 -- Execute in a transaction and ROLLBACK. Uses an enrolled administrator and temporary assessments.
 do $$
 declare actor uuid; course uuid; source uuid; questions uuid[]; created jsonb; vid uuid; practice_vid uuid;
@@ -41,3 +45,7 @@ begin
  if (payload->>'total_count')::integer<>2 or payload->>'expires_at' is not null then raise exception 'Untimed practice configuration failed'; end if;
  if has_function_privilege('anon','public.start_configured_attempt_v1(uuid,uuid,integer,integer,boolean)','execute') then raise exception 'Anonymous attempt start allowed'; end if;
 end $$;
+
+select pass('configurable_attempts assertions completed');
+select * from finish();
+rollback;

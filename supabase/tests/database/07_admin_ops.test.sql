@@ -147,11 +147,14 @@ select is((public.admin_triage_report_v1(current_setting('t.rep')::uuid, 'resolv
 reset role;
 
 -- ---------------------------------------------------------------- notifications ownership
+-- Prior publication/reminder notifications are independent of this ownership fixture.
+update public.notifications set read_at=now() where user_id in(current_setting('t.s')::uuid,current_setting('t.s2')::uuid);
 insert into public.notifications (id, user_id, kind, body) values
   ('60000000-0000-4000-8000-000000000001', current_setting('t.s')::uuid, 'info', 'Hello'),
   ('60000000-0000-4000-8000-000000000002', current_setting('t.s2')::uuid, 'info', 'Hi');
 select pg_temp.login(current_setting('t.s')::uuid);
-select is((select count(*)::integer from public.notifications), 1, 'student reads only own notifications');
+select is((select count(*)::integer from public.notifications where kind='info'), 1, 'student reads own fixture notification');
+select is((select count(*)::integer from public.notifications where user_id<>current_setting('t.s')::uuid),0,'notification RLS hides every other recipient');
 select throws_ok($$select public.mark_notification_read_v1('60000000-0000-4000-8000-000000000002')$$, 'PT403', 'FORBIDDEN',
   'cannot mark another user''s notification');
 select is((public.mark_notification_read_v1('60000000-0000-4000-8000-000000000001')) ->> 'unread', '0', 'own notification marked read');

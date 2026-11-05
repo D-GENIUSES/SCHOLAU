@@ -7,6 +7,8 @@ import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau
 import { useCourseOverview, useEnrollCourse } from "@scholau/api/react";
 import { type AssessmentKind, COPY, formatDuration, pluralize } from "@scholau/core";
 import { ModuleSection } from "@/components/lesson/lesson-module";
+import { TopicMastery } from "@/components/lesson/topic-mastery";
+import { CourseLightAssignments } from "@/components/lesson/course-light-assignments";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, PageHeader, Progress } from "@/components/ui/misc";
@@ -110,7 +112,7 @@ function Overview({ data }: { data: CourseOverview }) {
         }
       />
 
-      <div className="mb-4"><Button asChild variant="secondary"><Link href={`/courses/${data.offering_id}/challenges`}>Course challenges</Link></Button></div>
+      <div className="mb-4 flex flex-wrap gap-2"><Button asChild variant="secondary"><Link href={`/courses/${data.offering_id}/challenges`}>Course challenges</Link></Button><Button asChild variant="outline"><Link href={`/study/courses/${data.offering_id}/materials`}>Suggest study material</Link></Button></div>
       {data.unit_count != null ? <p className="mb-4 text-sm text-ink-muted">{pluralize(data.unit_count, "unit")} · Status {data.requirement_status}</p> : null}
       {progress.lessons_total === 0 ? <p className="mb-4 text-ink-muted">Content coming soon. Published lessons and assessments will appear here when ready.</p> : null}
       {data.lecture_hours != null || data.practical_hours != null ? <p className="mb-4 text-sm text-ink-muted">Lecture hours: {data.lecture_hours ?? "Not provided"} · Practical hours: {data.practical_hours ?? "Not provided"}</p> : null}
@@ -124,6 +126,8 @@ function Overview({ data }: { data: CourseOverview }) {
         </CardContent>
       </Card>
 
+      <CourseLightAssignments offeringId={data.offering_id} />
+      <TopicMastery offeringId={data.offering_id} />
       <section aria-labelledby="lessons-heading" className="mb-6 flex flex-col gap-3">
         <h2 id="lessons-heading" className="text-xl font-bold">
           Lessons

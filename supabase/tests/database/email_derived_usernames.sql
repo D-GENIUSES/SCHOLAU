@@ -1,3 +1,7 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
 -- Run prepare before the migration, then checks after it, inside one rolled-back transaction.
 -- PREPARE
 create temp table username_before on commit drop as
@@ -27,3 +31,7 @@ begin
  if private.public_username(actor)<>edit_name then raise exception 'Generated handle cannot be edited'; end if;
  if has_function_privilege('anon','private.assign_username(uuid)','execute') or has_function_privilege('authenticated','private.email_username_base(text)','execute') then raise exception 'Private email helper exposed'; end if;
 end $$;
+
+select pass('email_derived_usernames assertions completed');
+select * from finish();
+rollback;

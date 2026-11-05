@@ -1,5 +1,9 @@
 -- Run after the avatar welcome migration; fixture signup rolls back.
 begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
+
 do $$
 declare account uuid:=gen_random_uuid(); assigned text; result jsonb;
 begin
@@ -19,4 +23,7 @@ begin
  if has_function_privilege('anon','public.complete_avatar_setup_v1()','execute') then raise exception 'Anonymous completion allowed'; end if;
 end $$;
 
+
+select pass('avatar-welcome assertions completed');
+select * from finish();
 rollback;

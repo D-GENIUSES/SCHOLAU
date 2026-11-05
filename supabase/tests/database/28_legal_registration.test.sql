@@ -5,7 +5,7 @@ select no_plan();
 create function pg_temp.register_legal(p_email text,p_meta jsonb) returns uuid language plpgsql as $$
 declare uid uuid:=gen_random_uuid();
 begin
-  insert into auth.users(id,email,raw_user_meta_data) values(uid,p_email,p_meta);
+  insert into auth.users(id,email,email_confirmed_at,raw_user_meta_data) values(uid,p_email,now(),p_meta);
   return uid;
 end $$;
 create function pg_temp.adult_meta() returns jsonb language sql as $$
@@ -13,7 +13,7 @@ create function pg_temp.adult_meta() returns jsonb language sql as $$
     'terms_version','2026-10-19-draft-1','privacy_version','2026-10-19-draft-1','age_declaration','adult')
 $$;
 select is((public.get_registration_legal_status_v1()->>'guardian_enabled')::boolean,false,'Guardian registration is closed by default');
-select throws_ok($$select pg_temp.register_legal('missing@legal.test','{}')$$,'P0001','LEGAL_ACCEPTANCE_REQUIRED','Direct signup requires legal metadata');
+select throws_ok($$select pg_temp.register_legal('missing@legal.test','{}')$$,'P0001','LEGAL_ACCEPTANCE_REQUIRED','Verified signup requires legal metadata');
 select throws_ok($$select pg_temp.register_legal('unchecked@legal.test',pg_temp.adult_meta()||'{"terms_accepted":false}')$$,'P0001','LEGAL_ACCEPTANCE_REQUIRED','Unchecked terms are rejected');
 select throws_ok($$select pg_temp.register_legal('stale@legal.test',pg_temp.adult_meta()||'{"terms_version":"old"}')$$,'P0001','LEGAL_ACCEPTANCE_REQUIRED','Stale policy versions are rejected');
 select set_config('legal_test.minor',pg_temp.register_legal('minor@legal.test',pg_temp.adult_meta()||'{"age_declaration":"under18"}')::text,true);

@@ -15,6 +15,7 @@ import { EmptyState, InlineError } from "@/components/ui/states";
 import { useBeforeUnload, useOnline } from "@/lib/hooks";
 import { AnswerStatusLabel, type AnswerStatus } from "./answer-status";
 import { AttemptHeader } from "./attempt-header";
+import { PracticeHints } from "./practice-hints";
 import { AttemptTimer } from "./attempt-timer";
 import { ExpiredNotice } from "./expired-notice";
 import { QuestionLegend } from "./question-legend";
@@ -199,6 +200,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
             onChange={(optionId) => choose(current, optionId)}
             disabled={expired || submit.isPending}
           />
+          {attempt.kind === "practice" ? <PracticeHints key={current.question_version_id} attemptId={attemptId} questionVersionId={current.question_version_id} /> : null}
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-2">
               <AnswerStatusLabel

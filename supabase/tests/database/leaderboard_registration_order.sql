@@ -1,3 +1,7 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select no_plan();
+\ir ../helpers/legal-fixtures.inc
 -- Transactional fixtures: callers must wrap this file in BEGIN / ROLLBACK.
 do $$
 declare ids uuid[]:=array[gen_random_uuid(),gen_random_uuid(),gen_random_uuid(),gen_random_uuid()];
@@ -44,3 +48,7 @@ begin
  if exists(select 1 from jsonb_array_elements(board->'rows') r where (r->>'user_id')::uuid=ids[1]) then raise exception 'Deactivated account leaked'; end if;
  if has_function_privilege('anon','public.get_leaderboard_v1(text,uuid,text,integer)','execute') then raise exception 'Anonymous leaderboard access changed'; end if;
 end $$;
+
+select pass('leaderboard_registration_order assertions completed');
+select * from finish();
+rollback;

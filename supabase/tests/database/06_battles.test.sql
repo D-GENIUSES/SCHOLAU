@@ -158,7 +158,7 @@ select is(current_setting('t.fb')::jsonb ->> 'state', 'finished', 'battle reachi
 select is(current_setting('t.fb')::jsonb -> 'outcome' ->> 'result', 'loss', 'B lost (accuracy only)');
 select is((current_setting('t.fb')::jsonb -> 'outcome' ->> 'xp_awarded')::integer, 0, 'zero correct answers and a loss earns no XP');
 select is(jsonb_array_length(current_setting('t.fb')::jsonb -> 'rounds'), 5, 'results list every round');
-select ok(position('correct_option' in current_setting('t.fb')::jsonb::text) = 0, 'results never reveal battle answer keys');
+select ok(position('correct_option_id' in current_setting('t.fb')::jsonb::text) > 0, 'finished participant results include corrections');
 reset role;
 select pg_temp.login(current_setting('t.a')::uuid);
 select is((public.get_battle_state_v1(current_setting('t.b1')::uuid)) -> 'outcome' ->> 'result', 'win', 'A won');
@@ -204,12 +204,12 @@ reset role;
 select pg_temp.shift_battle(current_setting('t.b2')::uuid, interval '30 seconds');
 select pg_temp.login(current_setting('t.a')::uuid);
 select set_config('t.ff', (public.forfeit_battle_v1(current_setting('t.b2')::uuid, gen_random_uuid()))::text, true) is not null as setup;
-select is(current_setting('t.ff')::jsonb ->> 'state', 'cancelled', 'early forfeit cancels the battle');
+select is(current_setting('t.ff')::jsonb ->> 'state', 'finished', 'early forfeit immediately finishes the battle');
 select is(current_setting('t.ff')::jsonb ->> 'result_kind', 'forfeit', 'result kind is forfeit');
 reset role;
 select is((select count(*)::integer from public.points_ledger where source_id = current_setting('t.b2')::uuid), 0, 'early forfeit awards no XP to either player');
 select is((select count(*)::integer from private.battle_slots where battle_id = current_setting('t.b2')::uuid), 0, 'slots released after forfeit');
-select is((select count(*)::integer from public.notifications where user_id = current_setting('t.b')::uuid and kind = 'battle_cancelled'), 1, 'opponent notified');
+select is((select count(*)::integer from public.notifications where user_id = current_setting('t.b')::uuid and kind = 'battle_finished' and safe_target='/battles/'||current_setting('t.b2')), 1, 'opponent notified of finished forfeit');
 
 -- ---------------------------------------------------------------- ready timeout
 select pg_temp.login(current_setting('t.a')::uuid);

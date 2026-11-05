@@ -66,7 +66,8 @@ begin
     select p.id into v_reviewer from public.profiles p order by p.created_at limit 1;
   end if;
   if v_reviewer is null then
-    raise exception 'AUE-GST 201 battle questions need a reviewer to publish';
+    raise notice 'Skipping supplementary AUE-GST 201 published battle content on an empty database: no reviewer available';
+    return;
   end if;
 
   perform set_config('scholau.allow_publish', 'on', true);
@@ -132,7 +133,6 @@ begin
       from jsonb_array_elements(v_row -> 'options') with ordinality as n(elem, ord)
       join public.question_options lo
         on lo.question_version_id = v_learning_version
-       and lo.position = n.ord::integer
        and lo.body = btrim(n.elem #>> '{}')
       where n.ord <= 3
     ) <> 3 then

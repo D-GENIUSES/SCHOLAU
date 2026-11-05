@@ -31,7 +31,7 @@ reset role;
 select is((select count(*)::integer from private.legal_acceptances where user_id=current_setting('t.google')::uuid),1,'exactly one acceptance record is stored');
 select ok(exists(select 1 from private.pending_registrations where user_id=current_setting('t.other')::uuid),'completion never changes another user');
 select is((select leaderboard_visible from public.profiles where id=current_setting('t.google')::uuid),true,'completion restores the original visibility preference');
-select throws_ok($$insert into auth.users(id,email,raw_user_meta_data) values(gen_random_uuid(),'spoof@pending.test','{"provider":"google","signup_kind":"google"}')$$,
+select throws_ok($$insert into auth.users(id,email,email_confirmed_at,raw_user_meta_data) values(gen_random_uuid(),'spoof@pending.test',now(),'{"provider":"google","signup_kind":"google"}')$$,
   'P0001','LEGAL_ACCEPTANCE_REQUIRED','editable metadata cannot impersonate a trusted OAuth provider');
 select set_config('request.jwt.claim.sub',current_setting('t.other'),true);
 update public.profiles set deactivated_at=now() where id=current_setting('t.other')::uuid;

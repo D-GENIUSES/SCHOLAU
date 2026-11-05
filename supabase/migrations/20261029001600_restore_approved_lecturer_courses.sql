@@ -1,5 +1,6 @@
 -- Restore catalogue matches for legacy approvals made before automatic assignment.
 -- Never override existing assignments or a recorded administrator assignment edit.
+begin;
 lock table public.lecturer_course_assignments in share row exclusive mode;
 do $$
 declare a public.lecturer_applications; ids uuid[]; request_id uuid; affected integer;
@@ -30,3 +31,5 @@ begin
   on conflict(event_key) do nothing;
  end loop;
 end $$;
+
+commit;

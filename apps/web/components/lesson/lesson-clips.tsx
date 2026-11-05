@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InlineError } from "@/components/ui/states";
+import { curatedVideosForLesson } from "./curated-video-library";
 
 function parseYoutubeId(input: string): string | null {
   const value = input.trim();
@@ -36,15 +37,17 @@ function clipSrc(video: LessonVideo) {
 }
 
 export function LessonClips({ lesson }: { lesson: Lesson }) {
-  const videos = lesson.videos ?? [];
+  const approved = lesson.videos ?? [];
+  const curated = curatedVideosForLesson(lesson.title);
+  const videos = [...approved, ...curated.filter((v) => !approved.some((existing) => existing.youtube_id === v.youtube_id))];
   const pending = lesson.pending_videos ?? [];
   const [openId, setOpenId] = useState<string | null>(null);
-  if (!videos.length && !pending.length && !lesson.can_manage_videos) return null;
+
 
   return (
     <section className="mb-8" aria-labelledby="lesson-clips-heading">
-      <h2 id="lesson-clips-heading" className="text-lg font-bold">Clips</h2>
-      <p className="mt-1 text-sm text-ink-muted">Lecturer-approved clips for this lesson. A clip loads only after you open it.</p>
+      <h2 id="lesson-clips-heading" className="text-lg font-bold">Video lessons</h2>
+      <p className="mt-1 text-sm text-ink-muted">Videos are matched to this lesson from published educational sources or approved suggestions. YouTube loads only when you choose to watch.</p>
       {videos.length ? (
         <ul className="mt-3 flex flex-col gap-3">
           {videos.map((video) => (
@@ -60,21 +63,21 @@ export function LessonClips({ lesson }: { lesson: Lesson }) {
                 />
               ) : (
                 <Button type="button" variant="outline" onClick={() => setOpenId(video.id)}>
-                  Watch: {video.title}
+                  Watch video: {video.title}
                 </Button>
               )}
             </li>
           ))}
         </ul>
       ) : (
-        <p className="mt-3 text-sm text-ink-muted">No approved clips yet.</p>
+        <p className="mt-3 text-sm text-ink-muted">No reviewed video available yet. You can continue with the written lesson and worked examples.</p>
       )}
-      {lesson.can_manage_videos ? <ClipManager lessonId={lesson.lesson_id} pending={pending} /> : null}
+      <ClipManager lessonId={lesson.lesson_id} pending={lesson.can_manage_videos ? pending : []} canReview={Boolean(lesson.can_manage_videos)} />
     </section>
   );
 }
 
-function ClipManager({ lessonId, pending }: { lessonId: string; pending: LessonVideo[] }) {
+function ClipManager({ lessonId, pending, canReview }: { lessonId: string; pending: LessonVideo[]; canReview: boolean }) {
   const submit = useSubmitLessonVideo(lessonId);
   const review = useReviewLessonVideo(lessonId);
   const [link, setLink] = useState("");
@@ -107,7 +110,7 @@ function ClipManager({ lessonId, pending }: { lessonId: string; pending: LessonV
   return (
     <div className="mt-4 flex flex-col gap-4">
       {pending.length ? (
-        <ul className="flex flex-col gap-2" aria-label="Clips waiting for approval">
+        <ul className="flex flex-col gap-2" aria-label="Video suggestions waiting for approval">
           {pending.map((video) => (
             <li key={video.id} className="flex flex-wrap items-center justify-between gap-2 rounded-control border border-line p-3">
               <span className="text-sm font-semibold">{video.title}</span>
@@ -119,7 +122,10 @@ function ClipManager({ lessonId, pending }: { lessonId: string; pending: LessonV
           ))}
         </ul>
       ) : null}
-      <form className="grid gap-3" onSubmit={onSubmit}>
+      <details className="rounded-control border border-line px-4 py-3">
+        <summary className="cursor-pointer font-semibold text-brand-primary">{canReview ? "Add a video for review" : "Suggest a lesson video"}</summary>
+        <p className="mt-2 text-sm text-ink-muted">Suggest a relevant, publicly available educational YouTube video. Only approved links appear in lessons.</p>
+        <form className="mt-3 grid gap-3" onSubmit={onSubmit}>
         <Field id="clip-link" label="YouTube link" hint={youtubeId ? `Video id ${youtubeId}` : "The player uses youtube-nocookie and stays unloaded until a student opens it."}>
           <Input id="clip-link" value={link} onChange={(event) => setLink(event.target.value)} placeholder="https://www.youtube.com/watch?v=..." maxLength={200} />
         </Field>
@@ -136,8 +142,9 @@ function ClipManager({ lessonId, pending }: { lessonId: string; pending: LessonV
         </div>
         {formError ? <p className="text-sm text-danger">{formError}</p> : null}
         <InlineError error={submit.error ?? review.error} />
-        <Button type="submit" className="self-start" loading={submit.isPending}>Submit clip for approval</Button>
-      </form>
+        <Button type="submit" className="self-start" loading={submit.isPending}>Send for review</Button>
+        </form>
+      </details>
     </div>
   );
 }

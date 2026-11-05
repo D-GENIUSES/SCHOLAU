@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader, Stat } from "@/components/ui/misc";
 import { ErrorState, InlineError, LoadingState, Spinner } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
+import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { useServerCountdown } from "@/lib/hooks";
 
 export default function AttemptResultsPage() {
@@ -107,6 +108,18 @@ function Results({ attempt }: { attempt: Attempt }) {
   const total = result?.total_count ?? attempt.total_count;
   const correct = result?.correct_count ?? 0;
   const firstIncorrect = attempt.questions.find((q) => q.feedback && !(q.feedback.is_correct && q.saved));
+  const [reteachTargets, setReteachTargets] = useState<Record<string, { lesson_id: string; lesson_title: string }>>({});
+  useEffect(() => {
+    let current = true;
+    void getBrowserSupabase().rpc("get_result_reteach_targets_v1", { p_attempt_id: attempt.attempt_id })
+      .then(({ data, error }) => {
+        if (!current || error) return;
+        const items = (data?.items ?? []) as { question_version_id: string; lesson_id: string; lesson_title: string }[];
+        setReteachTargets(Object.fromEntries(items.map(item => [item.question_version_id, { lesson_id: item.lesson_id, lesson_title: item.lesson_title }])));
+      });
+    return () => { current = false; };
+  }, [attempt.attempt_id]);
+
 
   const reviewMistakes = () => {
     if (!firstIncorrect) return;
@@ -184,7 +197,7 @@ function Results({ attempt }: { attempt: Attempt }) {
             Questions
           </h2>
           {attempt.questions.map((q) => (
-            <ResultQuestion key={q.question_version_id} question={q} total={attempt.questions.length} />
+            <ResultQuestion key={q.question_version_id} question={q} total={attempt.questions.length} reteach={reteachTargets[q.question_version_id]} />
           ))}
         </section>
       </div>

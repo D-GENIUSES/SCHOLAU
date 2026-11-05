@@ -1,7 +1,7 @@
 begin;
 
 -- Public to active signed-in users. Private profile tables and writers keep their policies.
-create function private.can_view_public_profile(p_viewer uuid,p_target uuid) returns boolean
+create or replace function private.can_view_public_profile(p_viewer uuid,p_target uuid) returns boolean
 language sql stable security definer set search_path='' as $$
   select exists(select 1 from public.profiles where id=p_target and deactivated_at is null)
     and not exists(select 1 from private.pending_registrations where user_id=p_target)
@@ -13,11 +13,12 @@ revoke all on function private.can_view_public_profile(uuid,uuid) from public,an
 -- Keep the battle payload intact while making participant identities navigable.
 do $$ declare definition text; begin
   select pg_get_functiondef('private.battle_payload(uuid,uuid)'::regprocedure) into definition;
+  if strpos(definition,'''user_id'', bp.user_id,') > 0 then return; end if;
   if strpos(definition,'''seat'', bp.seat,')=0 then raise exception 'Unexpected battle participant payload'; end if;
   execute replace(definition,'''seat'', bp.seat,','''seat'', bp.seat, ''user_id'', bp.user_id,');
 end $$;
 
-create function public.get_public_profile_v1(p_user_id uuid) returns jsonb
+create or replace function public.get_public_profile_v1(p_user_id uuid) returns jsonb
 language plpgsql stable security definer set search_path='' as $$
 declare viewer uuid:=private.require_user(); result jsonb;
 begin
@@ -69,7 +70,7 @@ end $$;
 
 -- Public profile photos use the same block/deactivation rules as profile reads.
 -- Existing photo access rules for private/administrative contexts remain separate.
-create function public.get_public_profile_photo_v1(p_path text) returns jsonb
+create or replace function public.get_public_profile_photo_v1(p_path text) returns jsonb
 language plpgsql stable security definer set search_path='' as $$
 declare viewer uuid:=private.require_user(); result jsonb;
 begin
