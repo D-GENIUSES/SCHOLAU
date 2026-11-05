@@ -24,6 +24,10 @@ export default function SuggestCourseMaterial() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!file || sending) return;
+    if (file.size > 4 * 1024 * 1024) {
+      setMessage("Choose a file that is 4 MB or smaller.");
+      return;
+    }
     setSending(true);
     setMessage("");
     try {
@@ -52,7 +56,7 @@ export default function SuggestCourseMaterial() {
       <p>Upload a lecture note or relevant source for lecturer approval. After approval, ScholAu can generate draft lessons and practice questions. Nothing becomes a student-facing lesson until separately reviewed and published.</p>
       <form onSubmit={submit} className="space-y-4 rounded-card border border-line p-5">
         <label className="block space-y-2">
-          <span className="font-semibold">Material file (up to 50 MB)</span>
+          <span className="font-semibold">Material file (up to 4 MB)</span>
           <input type="file" className="block w-full text-sm" accept=".pdf,.docx,.pptx,.txt,.jpg,.jpeg,.png,.webp"
             required onChange={(event) => setFile(event.target.files?.[0] ?? null)} />
         </label>

@@ -7,7 +7,8 @@ import { readPhotoBody } from "@/lib/profile-photo-server";
 import { putCourseMaterial } from "@/lib/r2-storage";
 
 export const runtime = "nodejs";
-const MAX_BYTES = 50 * 1024 * 1024;
+// Keep multipart uploads below Vercel's 4.5 MB request-body limit.
+const MAX_BYTES = 4 * 1024 * 1024;
 const headers = { "Cache-Control": "private, no-store", Vary: "Cookie, Authorization" };
 const fail = (message: string, status: number) => NextResponse.json({ message }, { status, headers });
 const allowedMime: Record<string, string> = {
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     return fail("Upload a supported course material file.", 415);
   }
   const length = Number(request.headers.get("content-length"));
-  if (Number.isFinite(length) && length > MAX_BYTES + 65536) return fail("The maximum file size is 50 MB.", 413);
+  if (Number.isFinite(length) && length > MAX_BYTES + 65536) return fail("The maximum file size is 4 MB.", 413);
   try {
     const client = await getRequestSupabase(request);
     const { data: auth, error: authError } = await client.auth.getUser();
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
     const form = await new Response(new Uint8Array(bytes), { headers: { "Content-Type": contentType } }).formData();
     const file = form.get("file");
     if (!(file instanceof File) || file.size < 1) return fail("Select a file.", 400);
-    if (file.size > MAX_BYTES || file.name.length > 240) return fail("File must be 50 MB or smaller with a short name.", 413);
+    if (file.size > MAX_BYTES || file.name.length > 240) return fail("File must be 4 MB or smaller with a short name.", 413);
     const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
     const mime = allowedMime[ext];
     if (!mime) return fail("Unsupported format. Use PDF, Word, PowerPoint, text or an image.", 415);
