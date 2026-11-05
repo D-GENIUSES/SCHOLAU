@@ -149,7 +149,6 @@ begin
       from jsonb_array_elements(v_row -> 'options') with ordinality as n(elem, ord)
       join public.question_options lo
         on lo.question_version_id = v_learning_version
-       and lo.position = n.ord::integer
        and lo.body = btrim(n.elem #>> '{}')
       where n.ord <= 3
     ) <> 3 then
