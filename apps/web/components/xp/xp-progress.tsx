@@ -18,7 +18,7 @@ const badgeArtwork = {
   long_term_recall: { icon: Layers, ribbon: "#62536e" },
 };
 
-function AchievementMedal({ code, earned }: { code: string; earned: boolean }) {
+export function AchievementMedal({ code, earned }: { code: string; earned: boolean }) {
   const id = useId();
   const artwork = badgeArtwork[code as keyof typeof badgeArtwork] ?? { icon: Award, ribbon: "#344e68" };
   const Icon = artwork.icon;

@@ -52,6 +52,7 @@ export function PodiumMedal({ place }: { place: 1 | 2 | 3 }) {
       <path d="M10 21 8 30 12.5 27 16 31 19.5 27 24 30 22 21Z" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="1" />
       <circle cx="16" cy="13" r="11.5" fill={`url(#${id}-metal)`} stroke={p.stroke} />
       <circle cx="16" cy="13" r="9.5" fill={`url(#${id}-face)`} stroke={p.stroke} strokeWidth=".6" />
+      <text x="16" y="13.5" dy=".35em" textAnchor="middle" fontSize="14" fontWeight="700" fontFamily="inherit" fill={p.ribbon}>{place}</text>
       <path
         d="m16 19.5 1 2 2.2.3-1.6 1.5.4 2.1-2-1-2 1 .4-2.1-1.6-1.5 2.2-.3Z"
         fill={p.star}

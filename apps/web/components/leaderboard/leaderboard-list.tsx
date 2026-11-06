@@ -30,9 +30,9 @@ export function LeaderboardList({
       <span className="leaderboard-columns-meta">{updatedAt ? <>XP · {updatedAt}</> : "XP"}</span>
     </div>
     <ol aria-label={label} className="leaderboard-list">
-      {rows.map((row) => (
+      {rows.map((row, index) => (
         <li key={row.user_id}>
-          <LeaderboardRowItem row={row} />
+          <LeaderboardRowItem row={row} eager={index < 10} priority={index < 3} />
         </li>
       ))}
     </ol>
@@ -40,7 +40,7 @@ export function LeaderboardList({
   );
 }
 
-function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
+function LeaderboardRowItem({ row, eager, priority }: { row: LeaderboardRow; eager: boolean; priority: boolean }) {
   const medalLabel = podiumMedalLabel(row.rank);
   const podiumPlace = row.rank === 1 || row.rank === 2 || row.rank === 3 ? row.rank : null;
   return (
@@ -67,7 +67,7 @@ function LeaderboardRowItem({ row }: { row: LeaderboardRow }) {
           </>
         )}
       </span>
-      <Link href={`/people/${row.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile${row.online ? ", online now" : ""}`}><OnlineAvatar name={row.display_name} path={row.avatar_path} size={32} online={row.online} /></Link>
+      <Link href={`/people/${row.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile${row.online ? ", online now" : ""}`}><OnlineAvatar name={row.display_name} path={row.avatar_path} size={32} online={row.online} eager={eager} priority={priority} /></Link>
       <div className="leaderboard-identity">
         <div className="leaderboard-name"><Link href={`/people/${row.user_id}`} className="hover:underline">{row.display_name}</Link>{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
         <div className="leaderboard-academic">
