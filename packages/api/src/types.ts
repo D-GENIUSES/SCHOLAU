@@ -292,6 +292,11 @@ export interface CourseAssessment {
 
 }
 
+export interface TopicQuizOptions extends Envelope {
+  topics: { lesson_id: Uuid; title: string; module_title: string; question_count: number }[];
+  active_attempt_id: Uuid | null;
+}
+
 
 
 export interface CourseOverview extends Envelope {

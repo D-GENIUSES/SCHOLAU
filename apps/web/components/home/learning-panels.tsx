@@ -47,10 +47,10 @@ export function ContinueLearningCard({ item, firstLesson, course, href, preview 
 }
 
 export function QuickActions({ offeringId, guest = false }: { offeringId?: string; guest?: boolean }) {
-  const base = offeringId ? `/study/courses/${offeringId}` : "/home";
+  const base = offeringId ? `/study/courses/${offeringId}/assessments` : "/home";
   const actions = [
-    { label: "Practice test", description: "Questions with feedback", href: guest ? "/home?view=practice" : `${base}${offeringId ? "#practice" : ""}` },
-    { label: "Mock exam", description: "Timed assessment", href: guest ? "/home?view=mock" : `${base}${offeringId ? "#mock" : ""}` },
+    { label: "Practice test", description: "Questions with feedback", href: guest ? "/home?view=practice" : base },
+    { label: "Mock exam", description: "Timed assessment", href: guest ? "/home?view=mock" : `${base}${offeringId ? "?tab=mock" : ""}` },
   ];
   return (
     <section aria-labelledby="quick-title">

@@ -129,6 +129,10 @@ function Results({ attempt }: { attempt: Attempt }) {
   };
 
   const tryAgain = () => {
+    if (attempt.kind === "practice") {
+      router.push(`/study/courses/${attempt.offering_id}/assessments`);
+      return;
+    }
     if (attempt.xp_review_stage && attempt.lesson_id) {
       scheduled.mutate({ lessonId: attempt.lesson_id, stage: attempt.xp_review_stage }, {
         onSuccess: (a) => router.push(`/attempts/${a.attempt_id}`),
@@ -182,7 +186,7 @@ function Results({ attempt }: { attempt: Attempt }) {
             </Button>
           ) : null}
           <Button onClick={tryAgain} loading={start.isPending || scheduled.isPending} disabled={Boolean(attempt.xp_review_stage && correct * 5 >= total * 4)}>
-            <RotateCcw className="size-4" aria-hidden /> Try again
+            <RotateCcw className="size-4" aria-hidden /> {attempt.kind === "practice" ? "New quiz" : "Try again"}
           </Button>
           <Button asChild variant="outline">
             <Link href={`/study/courses/${attempt.offering_id}`}>

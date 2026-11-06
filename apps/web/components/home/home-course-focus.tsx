@@ -78,9 +78,9 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
           <h1>{enrolled.title}</h1>
           <p>{enrolled.code}</p>
         </div>
-        {overview && overview.assessments.length > 0 ? (
+        {overview && !isPreviewOffering ? (
           <Button asChild variant="secondary" size="sm" className="w-full sm:w-auto">
-            <Link href={`/study/courses/${overview.offering_id}#practice`}>
+            <Link href={`/study/courses/${overview.offering_id}/assessments`}>
               Open assessments <ChevronRight className="size-4" aria-hidden />
             </Link>
           </Button>

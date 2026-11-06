@@ -3,22 +3,16 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
+import { type CourseOverview, isApiError } from "@scholau/api";
 import { useCourseOverview, useEnrollCourse } from "@scholau/api/react";
-import { type AssessmentKind, COPY, formatDuration, pluralize } from "@scholau/core";
+import { COPY, pluralize } from "@scholau/core";
 import { ModuleSection } from "@/components/lesson/lesson-module";
 import { TopicMastery } from "@/components/lesson/topic-mastery";
 import { CourseLightAssignments } from "@/components/lesson/course-light-assignments";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge, PageHeader, Progress } from "@/components/ui/misc";
+import { Card, CardContent } from "@/components/ui/card";
+import { PageHeader, Progress } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
-
-const GROUPS: { kind: AssessmentKind; title: string; description: string }[] = [
-  { kind: "review", title: "Review", description: "Quick checks with immediate feedback." },
-  { kind: "practice", title: "Practice", description: "Untimed sets; results after you submit." },
-  { kind: "mock", title: "Mock exams", description: "Exam-style sets; results after you submit." },
-];
 
 function BackToHome() {
   return (
@@ -139,84 +133,10 @@ function Overview({ data }: { data: CourseOverview }) {
         )}
       </section>
 
-      <section aria-labelledby="assessments-heading" className="flex flex-col gap-6">
-        <h2 id="assessments-heading" className="text-xl font-bold">
-          Assessments
-        </h2>
-        {data.assessments.length === 0 ? (
-          <EmptyState title="No assessments yet" description="Review, practice and mock exams will appear here." />
-        ) : (
-          GROUPS.map((g) => {
-            const items = data.assessments.filter((a) => a.kind === g.kind);
-            if (items.length === 0) return null;
-            return (
-              <div key={g.kind} id={g.kind} className="flex scroll-mt-24 flex-col gap-3">
-                <div>
-                  <h3 className="text-lg font-bold">{g.title}</h3>
-                  <p className="text-sm text-ink-muted">{g.description}</p>
-                </div>
-                <ul className="grid gap-3 sm:grid-cols-2">
-                  {items.map((a) => (
-                    <li key={a.assessment_version_id}>
-                      <AssessmentCard assessment={a} offeringId={data.offering_id} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })
-        )}
+      <section aria-labelledby="assessments-heading" className="flex flex-wrap items-center justify-between gap-3 rounded-card border border-line bg-surface-card p-4">
+        <div><h2 id="assessments-heading" className="text-base font-semibold">Assessments</h2><p className="mt-1 text-sm text-ink-muted">Topic quizzes, timed mock exams and lecturer challenges.</p></div>
+        <Button asChild size="sm"><Link href={`/study/courses/${data.offering_id}/assessments`}>Open assessments</Link></Button>
       </section>
     </>
-  );
-}
-
-
-function xpNote(a: CourseAssessment): string {
-  if (a.kind === "practice" || a.kind === "mock") return "1 XP per correct answer on each submitted attempt. No completion bonus.";
-  const max = 20;
-  return `Up to ${max} XP for your best score. Improve your best to earn the difference.`;
-}
-
-function AssessmentCard({ assessment: a, offeringId }: { assessment: CourseAssessment; offeringId: string }) {
-  return (
-    <Card className="flex h-full flex-col">
-      <CardHeader>
-        <CardTitle as="h4">{a.title}</CardTitle>
-        <CardDescription>
-          {a.kind === "review" ? <>{pluralize(a.question_count, "question")} · {formatDuration(a.duration_seconds)}</> : <>{pluralize(a.question_count, "question")} available · Choose your session length</>}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-1 flex-col gap-2 text-sm">
-        <dl className="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-1">
-          <dt className="text-ink-muted">Best score</dt>
-          <dd className="font-semibold">{a.best_percent === null ? "No attempts yet" : `${a.best_percent}%`}</dd>
-          <dt className="text-ink-muted">Completed</dt>
-          <dd className="font-semibold">{pluralize(a.completed_attempts, "attempt")}</dd>
-        </dl>
-        <p className="text-ink-muted">{xpNote(a)}</p>
-        {a.active_attempt_id ? (
-          <Badge tone="warning" className="self-start">
-            In progress
-          </Badge>
-        ) : null}
-      </CardContent>
-      <CardFooter>
-        {a.active_attempt_id ? (
-          <Button asChild block>
-            <Link href={`/attempts/${a.active_attempt_id}`}>
-              Resume<span className="sr-only"> {a.title}</span>
-            </Link>
-          </Button>
-        ) : (
-          <Button asChild block variant={a.completed_attempts > 0 ? "outline" : "primary"}>
-            <Link href={`/study/assessments/${a.assessment_version_id}?offering=${offeringId}`}>
-              {a.completed_attempts > 0 ? "Start again" : "Start"}
-              <span className="sr-only"> {a.title}</span>
-            </Link>
-          </Button>
-        )}
-      </CardFooter>
-    </Card>
   );
 }

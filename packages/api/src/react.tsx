@@ -249,6 +249,22 @@ export function useStartAttempt() {
   });
 }
 
+export function useTopicQuizOptions(offeringId: string) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "course", offeringId, "topic-quiz"], queryFn: () => api.getTopicQuizOptions(offeringId) });
+}
+
+export function useStartTopicQuiz() {
+  const api = useScholauApi();
+  const qc = useQueryClient();
+  return useKeyedMutation(api.startTopicQuiz, {
+    onSuccess: (data) => {
+      qc.setQueryData(qk.attempt(data.attempt_id), data);
+      void invalidate(qc, ["scholau", "course"]);
+    },
+  });
+}
+
 export function useSaveAttemptAnswers() {
   const api = useScholauApi();
   return useKeyedMutation(api.saveAttemptAnswers);

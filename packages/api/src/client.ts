@@ -132,6 +132,10 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     }),
 
     /* -------------------------------------- Assessments --------------------------------------- */
+    getTopicQuizOptions: (offeringId: string) => rpc<T.TopicQuizOptions>("get_topic_quiz_options_v1", { p_offering_id: offeringId }),
+    startTopicQuiz: (a: Keyed<{ offeringId: string; lessonIds: string[]; questionCount: number }>) => rpc<T.Attempt>("start_topic_quiz_v1", {
+      p_offering_id: a.offeringId, p_lesson_ids: a.lessonIds, p_question_count: a.questionCount, p_request_key: a.requestKey,
+    }),
     startAttempt: (a: Keyed<{ assessmentVersionId: string; resume?: boolean; questionCount?: number; durationSeconds?: number | null }>) =>
       a.questionCount !== undefined ? rpc<T.Attempt>("start_configured_attempt_v1", {
         p_assessment_version_id: a.assessmentVersionId,
