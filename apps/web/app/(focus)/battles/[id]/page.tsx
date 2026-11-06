@@ -12,6 +12,7 @@ import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/b
 import { useAfter } from "@/components/battle/hooks";
 import { IntegrityGuard } from "@/components/battle/integrity-guard";
 import { BattleScoreboard } from "@/components/battle/arena";
+import { BattleRoundResultStrip } from "@/components/battle/round-result";
 import { PlayPhase } from "@/components/battle/play-phase";
 import { ReadyPanel } from "@/components/battle/ready-panel";
 import { CancelledPanel, ResultPanel } from "@/components/battle/result-panel";
@@ -151,6 +152,7 @@ export default function BattlePage() {
       {battle && (battle.state === "ready" || battle.state === "countdown" || battle.state === "active") ? (
         <BattleScoreboard battle={battle} footer={<BattleReactionBar battle={battle} />} />
       ) : null}
+      <BattleRoundResultStrip key={`round-result-${id}`} result={battle?.latest_round_result} />
       {body}
       <LeaveBattleDialog
         open={leaveOpen}

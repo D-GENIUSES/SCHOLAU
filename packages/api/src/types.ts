@@ -756,7 +756,16 @@ export interface BattleRound {
   opponent_is_correct: boolean;
 }
 
+export type BattleRoundStatus = "correct" | "incorrect" | "unanswered";
+
+export interface BattleRoundResult {
+  position: number;
+  my_status: BattleRoundStatus;
+  opponent_status: BattleRoundStatus;
+}
+
 export interface Battle {
+  latest_round_result?: BattleRoundResult | null;
 
   courses?: { id: string; code: string; title: string }[];
 

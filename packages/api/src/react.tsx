@@ -329,7 +329,7 @@ export function useBattleState(battleId: string | undefined, channelStatus: Chan
       const data = query.state.data;
       if (!data) return 3000;
       if (!isLiveBattleState(data.state)) return false;
-      return channelStatus === "connected" ? 5000 : 1500;
+      return data.state === "active" || channelStatus !== "connected" ? 1500 : 5000;
     },
     refetchIntervalInBackground: false,
   });

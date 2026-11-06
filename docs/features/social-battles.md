@@ -70,5 +70,17 @@ versions are immutable; the battle's selected versions and deadlines persist
 through reconnection. Payloads expose only the current question and its steps;
 future questions and answer keys remain hidden.
 
+`latest_round_result` reveals the highest eligible question's position and each
+player's `correct`, `incorrect`, or `unanswered` status. The server releases it
+only after both answers are accepted or the deadline passes. Opponent choices
+and corrections stay hidden during play. A forfeit's finalization time freezes
+eligibility, so later deadlines cannot reveal unfinished rounds.
+
+The numbered result strip survives question changes without pausing the shared
+schedule. Accepted answers broadcast a new battle revision; active clients also
+poll every 1.5 seconds and refetch at deadlines. Taunts remain available during
+live play with their existing three-second cooldown. Full corrections remain
+available in the final review.
+
 No demo questions/users are deployed. Local tests use transaction-isolated
 fixtures. A production match still requires enough published content.

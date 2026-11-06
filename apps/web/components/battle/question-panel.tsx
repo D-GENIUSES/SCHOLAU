@@ -92,7 +92,7 @@ export function QuestionPanel({
           <BattleAnswerOptions question={question} selected={shown} disabled={optionsLocked} received={status === "received"} onSelect={setSelected} />
         )}
 
-        <StatusLine status={status} />
+        <StatusLine status={status} revealed={battle.latest_round_result?.position === question.position} />
         {keptEarlier ? <p className="text-sm text-ink-muted">Your first answer for this question was kept.</p> : null}
         {status === "error" ? <InlineError error={submit.error} /> : null}
         <LiveRegion>{STATUS_ANNOUNCEMENT[status]}</LiveRegion>
@@ -119,13 +119,13 @@ const STATUS_ANNOUNCEMENT: Record<AnswerStatus, string> = {
   idle: "",
   selected: "",
   sending: "Sending answer…",
-  received: "Answer received",
+  received: "Answer locked in",
   unsent: "Answer not sent yet",
   time_up: "Time's up for this question",
   error: "",
 };
 
-function StatusLine({ status }: { status: AnswerStatus }) {
+function StatusLine({ status, revealed }: { status: AnswerStatus; revealed: boolean }) {
   switch (status) {
     case "selected":
       return <p className="text-sm font-semibold text-ink-muted">Selected - lock in to send your answer.</p>;
@@ -137,8 +137,8 @@ function StatusLine({ status }: { status: AnswerStatus }) {
       );
     case "received":
       return (
-        <Alert tone="success" title="Answer received">
-          Wait for the next question.
+        <Alert title={revealed ? "Locked in · results above" : "Locked in · waiting for opponent"}>
+          {revealed ? "The next question starts on schedule." : "Results appear when both answers are received or time runs out."}
         </Alert>
       );
     case "unsent":
