@@ -1,9 +1,11 @@
 "use client";
 
-import { BookOpen, Settings } from "lucide-react";
+import { Settings } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
+import { CourseLearningMap } from "@/components/home/course-learning-map";
+import { CourseSelector } from "@/components/home/course-selector";
 import { StreakFlame } from "@/components/icons/streak-flame";
 import { LeaderboardChrome } from "@/components/leaderboard/leaderboard-chrome";
 import { LeaderboardList } from "@/components/leaderboard/leaderboard-list";
@@ -11,7 +13,7 @@ import { ShellFrame } from "@/components/shell/shell-frame";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { GuestBattles } from "./guest-battles";
-import { guestCourses, guestRanking } from "./guest-content";
+import { guestCourseOptions, guestCourses, guestModules, guestRanking } from "./guest-content";
 
 const accountViews = {
   social: { title: "Social", description: "Sign in to find classmates and manage your friends." },
@@ -51,39 +53,31 @@ export function GuestExperience() {
 }
 
 function GuestHome({ course }: { course: typeof guestCourses[number] }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-5 sm:gap-6">
-      <header className="grid gap-4 rounded-card border border-line bg-linear-to-r from-surface-tint to-surface-page p-4 sm:p-6">
+    <div className="home-dashboard compact-home home-dashboard-course">
+      <div className="home-course-focus">
         <p className="content-label">Guest preview</p>
-        <nav aria-label="Sample courses" className="grid grid-cols-3 gap-1.5 rounded-xl bg-surface-page p-1.5 sm:max-w-md">
-          {guestCourses.map(({ id, title }) => (
-            <Link
-              key={id}
-              href={id === "1" ? "/home" : `/home?course=${id}`}
-              aria-current={course.id === id ? "page" : undefined}
-              className="grid min-h-11 place-items-center rounded-lg px-1 text-center text-sm font-semibold text-ink-muted hover:bg-surface-tint aria-[current=page]:bg-brand-primary aria-[current=page]:text-white"
-            >
-              {title}
-            </Link>
-          ))}
-        </nav>
-        <div className="home-course-heading"><h1>{course.title}</h1></div>
-      </header>
-      {[1, 2, 3, 4, 5].map((topic) => (
-        <section key={topic} aria-labelledby={`guest-topic-${topic}`} className="overflow-hidden rounded-card border border-line bg-surface-page">
-          <h2 id={`guest-topic-${topic}`} className="border-l-4 border-brand-primary bg-surface-tint px-4 py-3 text-base font-semibold text-ink sm:px-5">
-            Topic {topic}
-          </h2>
-          <ul aria-label={`Topic ${topic} lessons`} className="grid list-none gap-3 p-4 sm:grid-cols-3 sm:p-5">
-            {[1, 2, 3].map((lesson) => (
-              <li key={lesson} className="home-map-node">
-                <span className="home-map-node-marker" aria-hidden><BookOpen className="size-4" /></span>
-                <span className="home-map-node-title">Lesson {lesson}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+        <CourseSelector
+          preview
+          courses={guestCourseOptions}
+          selectedId={course.id}
+          open={menuOpen}
+          onOpenChange={setMenuOpen}
+          onSelect={(id) => window.history.replaceState(null, "", id === "1" ? "/home" : `/home?course=${id}`)}
+        />
+        <header className="home-course-heading"><h1>{course.title}</h1></header>
+        <CourseLearningMap
+          preview
+          continueLessonId={null}
+          overview={{
+            offering_id: course.id,
+            progress: { lessons_total: 15, lessons_completed: 0, percent: 0 },
+            modules: guestModules,
+          }}
+        />
+      </div>
     </div>
   );
 }

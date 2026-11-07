@@ -1,10 +1,35 @@
-import type { LeaderboardRow } from "@scholau/api";
+import type { CourseOverview, HomeSummary, LeaderboardRow } from "@scholau/api";
 
 export const guestCourses = [
   { id: "1", title: "Course 1" },
   { id: "2", title: "Course 2" },
   { id: "3", title: "Course 3" },
 ] as const;
+
+export const guestCourseOptions = guestCourses.map(({ id, title }): HomeSummary["enrolled_courses"][number] => ({
+  offering_id: id,
+  course_id: id,
+  code: id,
+  title,
+  lessons_total: 15,
+  lessons_completed: 0,
+}));
+
+export const guestModules: CourseOverview["modules"] = [1, 2, 3, 4, 5].map((topic) => ({
+  id: `guest-topic-${topic}`,
+  position: topic,
+  title: `Topic ${topic}`,
+  lessons: [1, 2, 3].map((lesson) => ({
+    lesson_id: `guest-${topic}-${lesson}`,
+    lesson_version_id: `guest-${topic}-${lesson}`,
+    position: lesson,
+    title: `Lesson ${lesson}`,
+    objective: "",
+    estimated_minutes: 1,
+    state: "not_started",
+    completed_at: null,
+  })),
+}));
 
 export const guestRanking: LeaderboardRow[] = [
   { rank: 1, user_id: "guest-1", display_name: "Ada M.", xp_total: 1280 },

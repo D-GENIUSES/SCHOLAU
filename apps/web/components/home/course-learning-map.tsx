@@ -11,23 +11,35 @@ function ModuleTrack({
   module,
   moduleIndex,
   continueLessonId,
+  preview,
 }: {
   module: CourseModule;
   moduleIndex: number;
   continueLessonId: string | null;
+  preview: boolean;
 }) {
   const done = module.lessons.filter((l) => l.state === "completed").length;
   return (
     <section className="home-map-module" aria-labelledby={`module-${module.id}`}>
       <header className="home-map-module-head">
-        <p className="home-map-module-index">Topic {moduleIndex + 1}</p>
+        {preview ? null : <p className="home-map-module-index">Topic {moduleIndex + 1}</p>}
         <h3 id={`module-${module.id}`}>{module.title}</h3>
-        <p className="home-map-module-meta">
+        {preview ? null : <p className="home-map-module-meta">
           {done}/{module.lessons.length} complete
-        </p>
+        </p>}
       </header>
       <ol className="home-map-track">
         {module.lessons.map((lesson) => {
+          if (preview) {
+            return (
+              <li key={lesson.lesson_id}>
+                <div className="home-map-node">
+                  <span className="home-map-node-marker" aria-hidden />
+                  <span className="home-map-node-title">{lesson.title}</span>
+                </div>
+              </li>
+            );
+          }
           const isContinue = continueLessonId === lesson.lesson_id;
           const state = lesson.state;
           return (
@@ -62,10 +74,12 @@ export function CourseLearningMap({
   overview,
   continueLessonId,
   loading,
+  preview = false,
 }: {
-  overview: CourseOverview | null;
+  overview: Pick<CourseOverview, "offering_id" | "progress" | "modules"> | null;
   continueLessonId: string | null;
   loading?: boolean;
+  preview?: boolean;
 }) {
   if (loading) return <LoadingState variant="course" label="Loading course map…" lines={5} />;
   if (!overview) return null;
@@ -87,7 +101,7 @@ export function CourseLearningMap({
 
   return (
     <div className="home-course-map">
-      <div className="home-map-summary">
+      {preview ? null : <div className="home-map-summary">
         <div className="home-map-summary-row">
           <p className="home-map-summary-label">Course progress</p>
           <p className="home-map-summary-value">
@@ -95,9 +109,9 @@ export function CourseLearningMap({
           </p>
         </div>
         <Progress value={progress.percent} label="Course lesson progress" tone={progress.percent >= 100 ? "success" : "brand"} className="h-1.5" />
-      </div>
+      </div>}
       {modules.map((module, index) => (
-        <ModuleTrack key={module.id} module={module} moduleIndex={index} continueLessonId={continueLessonId} />
+        <ModuleTrack key={module.id} module={module} moduleIndex={index} continueLessonId={continueLessonId} preview={preview} />
       ))}
     </div>
   );
