@@ -69,7 +69,8 @@ export function VerifyPanel({ email: initialEmail, lecturer = false }: { email?:
       />
       <div className="flex flex-col gap-4">
         <p className="text-ink-muted">
-          {lecturer ? "Confirm your email address to continue. Your lecturer application still requires administrator approval; confirming your email does not activate teaching access." : "Open the confirmation link to continue directly to ScholAu."} The link expires after a while, so use it soon.
+          Open the confirmation link to sign in to ScholAu. It expires 10 minutes after it was sent.
+          {lecturer ? " Your lecturer application still requires administrator approval." : null}
         </p>
         {initialEmail ? null : (
           <Field id="verify-email" label="Email">

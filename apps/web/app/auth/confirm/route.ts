@@ -26,8 +26,10 @@ export async function GET(request: NextRequest) {
     // A recovery email must always open the password form, regardless of `next`.
     const next = type === "recovery" ? "/reset-password" : safeNext(searchParams.get("next"), "/auth/continue");
     const supabase = await getServerSupabase();
-    const { error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash }).catch((err: unknown) => ({ error: err }));
-    if (!error) return redirect(next === "/auth/continue" ? await accountDestination() : next);
+    const { data, error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash }).catch((err: unknown) => ({ data: null, error: err }));
+    if (!error && (data?.session || type === "email_change")) {
+      return redirect(next === "/auth/continue" ? await accountDestination(undefined, supabase) : next);
+    }
   }
   return redirect("/sign-in?error=link");
 }

@@ -20,17 +20,25 @@ function load(file, mocks) {
 
 test("confirmation works without a PKCE cookie and goes directly to the account", async () => {
   let received;
+  let session = { access_token: "test-access-token" };
+  const client = { auth: { verifyOtp: async (value) => { received = value; return { data: { session }, error: null }; } } };
   const { GET } = load("../app/auth/confirm/route.ts", {
     "next/server": { NextResponse },
     "@/lib/utils": { safeNext },
-    "@/lib/auth-destination": { accountDestination: async () => "/lecturer/application" },
-    "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { verifyOtp: async (value) => { received = value; return { error: null }; } } }) },
+    "@/lib/auth-destination": { accountDestination: async (_next, authenticatedClient) => {
+      assert.equal(authenticatedClient, client);
+      return "/lecturer/application";
+    } },
+    "@/lib/supabase/server": { getServerSupabase: async () => client },
   });
   const result = await GET(new NextRequest("https://scholau.vercel.app/auth/confirm?type=email&token_hash=one-use-token"));
   assert.deepEqual(received, { type: "email", token_hash: "one-use-token" });
   assert.equal(result.headers.get("location"), "https://scholau.vercel.app/lecturer/application");
   assert.equal(result.headers.get("cache-control"), "private, no-store");
   assert.equal(result.headers.get("referrer-policy"), "no-referrer");
+  session = null;
+  const unsigned = await GET(new NextRequest("https://scholau.vercel.app/auth/confirm?type=email&token_hash=no-session"));
+  assert.equal(unsigned.headers.get("location"), "https://scholau.vercel.app/sign-in?error=link");
 });
 
 test("recovery always reaches the password form; invalid and expired links fail safely", async () => {
@@ -39,7 +47,7 @@ test("recovery always reaches the password form; invalid and expired links fail 
   const { GET } = load("../app/auth/confirm/route.ts", {
     "next/server": { NextResponse }, "@/lib/utils": { safeNext },
     "@/lib/auth-destination": { accountDestination: () => assert.fail("recovery must not resolve an account destination") },
-    "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { verifyOtp: async () => { calls++; if (fail) throw Error("private detail"); return { error: null }; } } }) },
+    "@/lib/supabase/server": { getServerSupabase: async () => ({ auth: { verifyOtp: async () => { calls++; if (fail) throw Error("private detail"); return { data: { session: { access_token: "test-access-token" } }, error: null }; } } }) },
   });
   const get = (query) => GET(new NextRequest(`https://scholau.vercel.app/auth/confirm?${query}`));
   assert.equal((await get("type=recovery&token_hash=token&next=/admin")).headers.get("location"), "https://scholau.vercel.app/reset-password");

@@ -76,6 +76,7 @@ double_confirm_changes = true
 enable_confirmations = true
 secure_password_change = true
 max_frequency = "1m0s"
+otp_expiry = 600
 
 [auth.email.template.confirmation]
 subject = "Confirm your ScholAu email"
