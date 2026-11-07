@@ -23,6 +23,18 @@ export type SharedStudyFeedback = {
   steps?: string[] | null;
 };
 export type StudyLink = { url: string; topic: string };
+export type StudyShareErrorCode = "unauthenticated" | "not_enrolled" | "not_shareable";
+
+export function studyShareErrorMessage(code: StudyShareErrorCode) {
+  switch (code) {
+    case "unauthenticated":
+      return "Sign in again to share this question.";
+    case "not_enrolled":
+      return "Enroll in this course to share questions from it.";
+    case "not_shareable":
+      return "This question can't be shared because it's tied to a protected assessment.";
+  }
+}
 
 export function studyInvitation(topic: string) {
   return topic

@@ -6,17 +6,18 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { studyInvitation, type StudyLink, type StudyReport, type StudySource } from "@/lib/shared-study";
+import { studyInvitation, studyShareErrorMessage, type StudyLink, type StudyReport, type StudyShareErrorCode, type StudySource } from "@/lib/shared-study";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
 export function QuestionActions({
-  source, report, link, signInHref, startReport,
+  source, report, link, signInHref, startReport, shareable = true,
 }: {
   source?: StudySource;
   report: StudyReport;
   link?: StudyLink;
   signInHref?: string;
   startReport?: boolean;
+  shareable?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [dialog, setDialog] = useState<"share" | "report" | null>(startReport ? "report" : null);
@@ -83,9 +84,9 @@ export function QuestionActions({
         <Ellipsis className="size-5" aria-hidden />
       </Button>
       <div id={menuId} hidden={!expanded} className="absolute right-0 top-full z-20 w-48 rounded-control border border-line bg-surface-card p-1 shadow-raised">
-        <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => { setExpanded(false); setDialog("share"); }}>
+        {shareable ? <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => { setExpanded(false); setDialog("share"); }}>
           <Share2 className="size-4" aria-hidden /> Share question
-        </Button>
+        </Button> : null}
         <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => void openReport()}>
           <Flag className="size-4" aria-hidden /> Report question
         </Button>
@@ -124,13 +125,21 @@ function ShareDialog({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(source),
+          credentials: "same-origin",
           signal: controller.signal,
         });
-        if (response.status === 404) {
-          setError("This question is no longer available to share.");
-          return;
+        if (!response.ok) {
+          const body = await response.json().catch(() => null) as { code?: StudyShareErrorCode } | null;
+          if (body?.code) {
+            setError(studyShareErrorMessage(body.code));
+            return;
+          }
+          if (response.status === 404) {
+            setError(studyShareErrorMessage("not_shareable"));
+            return;
+          }
+          throw new Error();
         }
-        if (!response.ok) throw new Error();
         setLink(await response.json() as StudyLink);
       } catch {
         if (!controller.signal.aborted) setError("Couldn’t prepare the link. Close this panel and try again.");

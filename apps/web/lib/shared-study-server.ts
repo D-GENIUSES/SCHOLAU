@@ -4,9 +4,9 @@ import { createHash } from "node:crypto";
 import { cache } from "react";
 import { z } from "zod";
 import type { LessonBlock } from "@scholau/core";
-import { publicCatalog } from "@/lib/public-courses/catalog";
+import { publicCatalog, type PublicQuestion } from "@/lib/public-courses/catalog";
 import { getServerSupabase } from "@/lib/supabase/server";
-import type { CatalogSource, SharedStudyFeedback, SharedStudyQuestion } from "./shared-study";
+import type { CatalogSource, SharedStudyFeedback, SharedStudyQuestion, StudyLink, StudyShareErrorCode } from "./shared-study";
 
 const checkpoint = z.number().int().min(1).max(10_000);
 const slug = z.string().min(1).max(200);
@@ -16,6 +16,10 @@ export const sourceSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("catalog"), course: slug, topic: slug, key: slug }),
   z.object({ kind: z.literal("catalog-checkpoint"), course: slug, topic: slug, lesson: slug, checkpoint }),
 ]);
+
+export type StudyLinkResult =
+  | { ok: true; token: string; topic: string }
+  | { ok: false; reason: StudyShareErrorCode };
 
 type CatalogEntry = {
   token: string;
@@ -31,6 +35,16 @@ function sourceKey(source: CatalogSource) {
   return JSON.stringify(source.kind === "catalog"
     ? [source.kind, source.course, source.topic, source.key]
     : [source.kind, source.course, source.topic, source.lesson, source.checkpoint]);
+}
+
+export function publicQuestionInShareIndex(question: PublicQuestion) {
+  if (question.editorial_status === "flagged" || !question.usage.some((value) => value === "practice" || value === "review") ||
+    question.usage.some((value) => value === "mock" || value === "battle")) return false;
+  const options = question.options?.map((option) => ({ id: option.label, body: option.body })) ?? [];
+  const gapAnswers = question.gaps?.[0]?.accepted_answers;
+  return question.answer_format === "standard"
+    ? options.some((option) => option.id === question.correct_option)
+    : Boolean(gapAnswers?.length);
 }
 
 function makeCatalogIndex() {
@@ -49,13 +63,9 @@ function makeCatalogIndex() {
     for (const topic of course.topics) {
       const location = { course: course.slug, topic: topic.slug };
       for (const item of topic.questions) {
-        if (item.editorial_status === "flagged" || !item.usage.some((value) => value === "practice" || value === "review") ||
-          item.usage.some((value) => value === "mock" || value === "battle")) continue;
+        if (!publicQuestionInShareIndex(item)) continue;
         const options = item.options?.map((option) => ({ id: option.label, body: option.body })) ?? [];
         const gapAnswers = item.gaps?.[0]?.accepted_answers;
-        if (item.answer_format === "standard"
-          ? !options.some((option) => option.id === item.correct_option)
-          : !gapAnswers?.length) continue;
         const key = item.logical_question_key;
         add({ kind: "catalog", ...location, key }, {
           courseCode: course.code,
@@ -100,6 +110,10 @@ function getCatalogIndex() {
   return catalogIndex ??= makeCatalogIndex();
 }
 
+export function catalogShareEntry(source: CatalogSource) {
+  return getCatalogIndex().bySource.get(sourceKey(source));
+}
+
 async function isCatalogEligible(supabase: Awaited<ReturnType<typeof getServerSupabase>>, entry: CatalogEntry) {
   const { data, error } = await supabase.rpc("can_share_catalog_question_v1", {
     p_course_code: entry.courseCode, p_key: entry.key, p_prompt: entry.question.prompt,
@@ -108,20 +122,71 @@ async function isCatalogEligible(supabase: Awaited<ReturnType<typeof getServerSu
   return data === true;
 }
 
-export async function createStudyLink(source: z.infer<typeof sourceSchema>) {
+async function canShareBankPayload(
+  supabase: Awaited<ReturnType<typeof getServerSupabase>>,
+  source: Extract<z.infer<typeof sourceSchema>, { kind: "bank" } | { kind: "checkpoint" }>,
+) {
+  const { data, error } = await supabase.rpc("can_share_bank_question_v1", {
+    p_kind: source.kind,
+    p_version: source.version,
+    p_checkpoint: source.kind === "checkpoint" ? source.checkpoint : 0,
+  });
+  if (error) throw error;
+  return data === true;
+}
+
+export async function canShareBankVersions(versionIds: string[]) {
+  const unique = [...new Set(versionIds.filter((id) => z.uuid().safeParse(id).success))];
+  if (!unique.length) return {} as Record<string, boolean>;
+  const supabase = await getServerSupabase();
+  const { data, error } = await supabase.rpc("can_share_bank_questions_v1", { p_versions: unique });
+  if (error) throw error;
+  return (data ?? {}) as Record<string, boolean>;
+}
+
+export async function createStudyLink(source: z.infer<typeof sourceSchema>): Promise<StudyLinkResult> {
   const supabase = await getServerSupabase();
   if (source.kind === "catalog" || source.kind === "catalog-checkpoint") {
-    const entry = getCatalogIndex().bySource.get(sourceKey(source));
-    return entry && await isCatalogEligible(supabase, entry)
-      ? { token: entry.token, topic: entry.question.topic } : null;
+    const entry = catalogShareEntry(source);
+    if (!entry) return { ok: false, reason: "not_shareable" };
+    if (!await isCatalogEligible(supabase, entry)) return { ok: false, reason: "not_shareable" };
+    return { ok: true, token: entry.token, topic: entry.question.topic };
   }
   const { data: session } = await supabase.auth.getClaims();
-  if (!session?.claims.sub) return null;
+  if (!session?.claims.sub) return { ok: false, reason: "unauthenticated" };
+  if (!await canShareBankPayload(supabase, source)) return { ok: false, reason: "not_shareable" };
   const { data, error } = await supabase.rpc("create_shared_study_link_v1", {
     p_kind: source.kind, p_version: source.version, p_checkpoint: source.kind === "checkpoint" ? source.checkpoint : 0,
   });
   if (error) throw error;
-  return data as { token: string; topic: string } | null;
+  if (!data) return { ok: false, reason: "not_enrolled" };
+  const link = data as { token: string; topic: string };
+  return { ok: true, token: link.token, topic: link.topic };
+}
+
+export async function resolveCatalogStudyLink(source: CatalogSource, baseUrl: string): Promise<StudyLink | null> {
+  const result = await createStudyLink(source);
+  if (!result.ok) return null;
+  return { url: new URL(`/q/${result.token}`, baseUrl).toString(), topic: result.topic };
+}
+
+export async function catalogShareByQuestionKey(
+  questions: PublicQuestion[],
+  courseSlug: string,
+  topicSlug: string,
+  baseUrl: string,
+) {
+  const map: Record<string, { link?: StudyLink; shareable: boolean }> = {};
+  for (const question of questions) {
+    if (!publicQuestionInShareIndex(question)) {
+      map[question.logical_question_key] = { shareable: false };
+      continue;
+    }
+    const source: CatalogSource = { kind: "catalog", course: courseSlug, topic: topicSlug, key: question.logical_question_key };
+    const link = await resolveCatalogStudyLink(source, baseUrl);
+    map[question.logical_question_key] = { shareable: Boolean(link), link: link ?? undefined };
+  }
+  return map;
 }
 
 function normalizeAnswer(value: string) {

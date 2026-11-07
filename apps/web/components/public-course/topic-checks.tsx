@@ -7,6 +7,7 @@ import type { PublicQuestion } from "@/lib/public-courses/catalog";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { QuestionActions } from "@/components/question-actions";
 import { Button } from "@/components/ui/button";
+import type { StudyLink } from "@/lib/shared-study";
 
 function ask(questions: PublicQuestion[], answers: Record<string, string>) {
   return questions.map((question) => {
@@ -25,6 +26,7 @@ export function TopicChecks({
   pre,
   post,
   lessonLinks = [],
+  catalogShares = {},
 }: {
   courseCode: string;
   courseSlug: string;
@@ -32,6 +34,7 @@ export function TopicChecks({
   pre: PublicQuestion[];
   post: PublicQuestion[];
   lessonLinks?: { href: string; title: string }[];
+  catalogShares?: Record<string, { link?: StudyLink; shareable: boolean }>;
 }) {
   const [phase, setPhase] = useState<"pre" | "read" | "post" | "report">("pre");
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -93,7 +96,9 @@ export function TopicChecks({
         <div key={question.logical_question_key} className="mt-4">
           <div className="flex justify-end">
             <QuestionActions
+              shareable={catalogShares[question.logical_question_key]?.shareable === true}
               source={{ kind: "catalog", course: courseSlug, topic: topicKey, key: question.logical_question_key }}
+              link={catalogShares[question.logical_question_key]?.link}
               report={{ targetType: "technical", reference: `${courseCode} / ${topicKey} / ${question.logical_question_key}` }}
             />
           </div>
