@@ -6,6 +6,8 @@ export function buildIngestionSystemPrompt(input: {
   filename: string;
   battleMix: BattleMix;
   skipLogicalKeys?: string[];
+  lessonTitle?: string;
+  segmentHint?: string;
 }): string {
   const skip =
     input.skipLogicalKeys?.length ?
@@ -34,5 +36,7 @@ Include an explained checkpoint and a new independent problem with a justified s
   "battle_questions": mix answer_format standard (4 MCQ), worked_solution (4 options, each with steps[] showing the full working and body as the final result only), fill_in_gap (gaps[].accepted_answers with aliases for voice). Calculation explanations must list every step, not only the final value
 }
 Battle mix weights: standard ${input.battleMix.standard}, worked_solution ${input.battleMix.worked_solution}, fill_in_gap ${input.battleMix.fill_in_gap}.
-Course: ${input.courseCode}. Module: ${input.moduleTitle}. Source: ${input.filename}. Ground every field in the uploaded file.${skip}`;
+Course: ${input.courseCode}. Module: ${input.moduleTitle}. Source: ${input.filename}. Ground every field in the uploaded file.
+${input.lessonTitle ? `Target lesson title: ${input.lessonTitle}. Use this title unless the source clearly requires a small refinement.` : ""}
+${input.segmentHint ? `Focus only on this portion of the source: ${input.segmentHint}. Ignore other sections.` : ""}${skip}`;
 }

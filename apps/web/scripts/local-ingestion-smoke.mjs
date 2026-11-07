@@ -10,6 +10,9 @@ const workerSecret = process.env.INGESTION_WORKER_SECRET;
 const geminiKey = process.env.GEMINI_API_KEY;
 const model = process.env.GEMINI_MODEL ?? "gemini-3-flash-preview";
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteFallbacks = [site, "http://127.0.0.1:3149", "http://localhost:3000"].filter(
+  (v, i, a) => a.indexOf(v) === i,
+);
 
 function fail(msg) {
   console.error("FAIL:", msg);
@@ -63,21 +66,34 @@ async function testWorker() {
     fail("INGESTION_WORKER_SECRET not set — uploads will queue until worker is called manually.");
     return;
   }
-  const res = await fetch(`${site}/api/material-ingestion/worker`, {
-    method: "POST",
-    headers: { "x-ingestion-worker-secret": workerSecret },
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    fail(`Worker HTTP ${res.status}: ${body.message ?? JSON.stringify(body)}`);
-    return;
+  let lastErr = "";
+  for (const origin of siteFallbacks) {
+    try {
+      const res = await fetch(`${origin}/api/material-ingestion/worker`, {
+        method: "POST",
+        headers: { "x-ingestion-worker-secret": workerSecret },
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok) {
+        ok(`Worker reachable at ${origin} (processed=${body.processed ?? 0}).`);
+        if (origin !== site) {
+          console.log(`Hint: set NEXT_PUBLIC_SITE_URL=${origin} so upload wake matches your dev server.`);
+        }
+        return;
+      }
+      lastErr = `${origin} HTTP ${res.status}: ${body.message ?? JSON.stringify(body)}`;
+    } catch (e) {
+      lastErr = `${origin}: ${e instanceof Error ? e.message : "fetch failed"}`;
+    }
   }
-  ok(`Worker reachable (processed=${body.processed ?? 0}).`);
+  fail(`Worker not reachable — ${lastErr}`);
 }
 
 console.log("ScholAu material ingestion — local smoke test\n");
 await testGemini();
 await testSupabaseRpcs();
 await testWorker();
-console.log("\nBrowser E2E: sign in as lecturer/admin → http://localhost:3000/lecturer/materials → upload PDF/txt → watch job status → /admin/review (drafts).");
+console.log(
+  `\nBrowser E2E: lecturer → ${siteFallbacks[0]}/lecturer/courses/<offeringId>/content (topic/lesson upload) or /lecturer/materials (legacy).`,
+);
 if (process.exitCode) process.exit(process.exitCode);

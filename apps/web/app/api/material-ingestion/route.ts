@@ -54,6 +54,11 @@ export async function POST(request: NextRequest) {
       fill_in_gap: Number(form.get("battleGap") ?? 0.4),
     };
 
+    const ingestionScope = String(form.get("ingestionScope") ?? "legacy");
+    const moduleId = String(form.get("moduleId") ?? "") || null;
+    const lessonId = String(form.get("lessonId") ?? "") || null;
+    const mergeMode = String(form.get("mergeMode") ?? "fork_from_published");
+
     const { data, error } = await client.rpc("create_material_ingestion_job_v1", {
       p_offering_id: offeringId,
       p_sha256: sha256,
@@ -68,6 +73,10 @@ export async function POST(request: NextRequest) {
       p_battle_mix: battleMix,
       p_force_reprocess: forceReprocess,
       p_request_key: randomUUID(),
+      p_ingestion_scope: ingestionScope,
+      p_module_id: moduleId,
+      p_lesson_id: lessonId,
+      p_merge_mode: mergeMode,
     });
     if (error) return reply("Could not queue ingestion.", 422);
     const workerSecret = process.env.INGESTION_WORKER_SECRET;
@@ -82,6 +91,31 @@ export async function POST(request: NextRequest) {
       return reply("Uploaded file failed storage verification.", 503);
     }
     return reply("Upload failed.", 503);
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  if (!allowRequestWrite(request)) return reply("Request origin is not allowed.", 403);
+  try {
+    const client = await getRequestSupabase(request);
+    const { data: auth, error: authError } = await client.auth.getUser();
+    if (authError || !auth.user) return reply("Sign in to continue.", 401);
+    const body = (await request.json()) as { jobId?: string; outline?: Record<string, unknown> };
+    if (!body.jobId || !body.outline) return reply("Job id and outline required.", 400);
+    const { data, error } = await client.rpc("confirm_material_ingestion_outline_v1", {
+      p_job_id: body.jobId,
+      p_outline: body.outline,
+      p_request_key: randomUUID(),
+    });
+    if (error) return reply("Could not confirm outline.", 422);
+    const workerSecret = process.env.INGESTION_WORKER_SECRET;
+    if (workerSecret) {
+      const workerUrl = new URL("/api/material-ingestion/worker", request.url);
+      void fetch(workerUrl, { method: "POST", headers: { "x-ingestion-worker-secret": workerSecret } }).catch(() => undefined);
+    }
+    return NextResponse.json(data, { headers });
+  } catch {
+    return reply("Could not confirm outline.", 503);
   }
 }
 

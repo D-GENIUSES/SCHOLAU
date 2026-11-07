@@ -8,3 +8,4 @@ export * from "./schemas";
 export * from "./prompts";
 export * from "./normalize-gap";
 export * from "./flashcards";
+export * from "./gemini-outline";

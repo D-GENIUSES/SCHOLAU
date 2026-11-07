@@ -25,6 +25,11 @@ in Vercel's **Production** environment, using Secret values for private keys:
 - `SUPABASE_SECRET_KEY` (server only).
 - `LESSON_ASSET_STORAGE`, `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`,
   `R2_SECRET_ACCESS_KEY` (R2 credentials are server only).
+- `GEMINI_API_KEY`, `GEMINI_MODEL` (optional), `INGESTION_WORKER_SECRET` (server only;
+  must match Supabase Vault `ingestion_worker_secret`; URL in `ingestion_worker_url`).
+
+`NEXT_PUBLIC_SITE_URL` must match the live origin (including port in local dev) so
+uploads can wake `POST /api/material-ingestion/worker`.
 
 Use the assigned stable Vercel production origin for `NEXT_PUBLIC_SITE_URL`.
 Set Supabase Auth's Site URL and confirmation/recovery callback allowlist to

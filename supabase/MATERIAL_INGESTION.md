@@ -1,6 +1,13 @@
 # Material ingestion (Gemini + R2)
 
-**Lecturers** upload at `/lecturer/materials` (assigned published offerings). **Administrators** upload at `/admin/materials` (any published offering). Both use the same pipeline: bytes go to **Cloudflare R2** under `course-materials/{sha256}.{ext}`; **Gemini** on the server produces structured lesson/question JSON imported as drafts; Postgres stores job metadata only (not file blobs).
+**Lecturers** upload at `/lecturer/materials` (legacy) or **`/lecturer/courses/{offeringId}/content`** (topic/lesson scoped). **Administrators** upload at `/admin/materials` (any published offering). Both use the same pipeline: bytes go to **Cloudflare R2** under `course-materials/{sha256}.{ext}`; **Gemini** on the server produces structured lesson/question JSON imported as drafts; Postgres stores job metadata only (not file blobs).
+
+Scoped uploads (`ingestion_scope`):
+
+- **`lesson`** — extract into one existing lesson (draft version); optional `merge_mode` append/replace.
+- **`topic`** — Gemini proposes an outline (`awaiting_outline`), user confirms via `confirm_material_ingestion_outline_v1`, then worker imports one draft per lesson in the topic (max 12).
+
+Enrolled **students** submit materials with topic/lesson on `/study/courses/{offeringId}/materials`; approval queues the same scoped ingestion job.
 
 Authorization: `private.can_manage_ingestion_for_offering` — approved lecturer with assignment, or any admin. Course picker: `get_material_ingestion_offerings_v1`.
 

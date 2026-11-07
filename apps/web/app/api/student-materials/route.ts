@@ -37,6 +37,9 @@ export async function POST(request: NextRequest) {
     if (!item) return fail("Start a new upload.", 400);
     const notes = typeof input.notes === "string" ? input.notes : "";
     if (notes.length > 500) return fail("Notes must be 500 characters or fewer.", 400);
+    const moduleId = typeof input.moduleId === "string" && /^[0-9a-f-]{36}$/i.test(input.moduleId) ? input.moduleId : null;
+    const lessonId = typeof input.lessonId === "string" && /^[0-9a-f-]{36}$/i.test(input.lessonId) ? input.lessonId : null;
+    const ingestionScope = input.ingestionScope === "lesson" ? "lesson" : "topic";
     try {
       // Hash the actual private object, never a browser-supplied hash or storage key.
       const data = await readStudentMaterialUpload(item);
@@ -50,6 +53,7 @@ export async function POST(request: NextRequest) {
       const submitted = await client.rpc("submit_student_material_v1", {
         p_offering_id: offeringId, p_filename: item.filename, p_sha256: data.sha256,
         p_object_key: data.objectKey, p_mime_type: item.mimeType, p_bytes: data.bytes.length, p_notes: notes,
+        p_module_id: moduleId, p_lesson_id: lessonId, p_ingestion_scope: ingestionScope,
       });
       if (submitted.error) return fail("The material could not be submitted for approval. Check your pending submissions.", 422);
       return NextResponse.json({ id: submitted.data.id, status: submitted.data.status }, { status: 201, headers });

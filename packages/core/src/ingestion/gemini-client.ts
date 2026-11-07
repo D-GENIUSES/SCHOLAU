@@ -16,6 +16,8 @@ export type GeminiGenerateInput = {
   battleMix: BattleMix;
   fileBytes: Buffer;
   skipLogicalKeys?: string[];
+  lessonTitle?: string;
+  segmentHint?: string;
 };
 
 /** Source generation must fail visibly; test fixtures must never become course content. */
@@ -34,6 +36,8 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
       filename: input.filename,
       battleMix: input.battleMix,
       skipLogicalKeys: input.skipLogicalKeys,
+      lessonTitle: input.lessonTitle,
+      segmentHint: input.segmentHint,
     });
     const response = await ai.models.generateContent({
       model,
