@@ -6,6 +6,8 @@ import { WorkedExample } from "@/components/math/worked-example";
 import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, ImageOff, Info, Lightbulb, NotebookPen } from "lucide-react";
 import { useId, useState } from "react";
+import { QuestionActions } from "@/components/question-actions";
+import type { StudyReport, StudySource } from "@/lib/shared-study";
 import { Button } from "@/components/ui/button";
 import type { LessonBlock } from "@scholau/core";
 import { Skeleton } from "@/components/ui/misc";
@@ -22,17 +24,45 @@ const CALLOUT: Record<CalloutTone, { label: string; icon: typeof Info; box: stri
   example: { label: "Example", icon: NotebookPen, box: "border-line bg-surface-page", iconClass: "text-ink-muted" },
 };
 
-export function LessonBlocks({ blocks }: { blocks: LessonBlock[] }) {
+type Checkpoint = Extract<LessonBlock, { type: "checkpoint" }>;
+type LessonSource =
+  | { kind: "checkpoint"; version: string; lessonId: string }
+  | { kind: "catalog-checkpoint"; course: string; courseCode: string; topic: string; lesson: string };
+
+export function LessonBlocks({
+  blocks, source, allCheckpoints = blocks.filter((block) => block.type === "checkpoint"),
+}: {
+  blocks: LessonBlock[];
+  source?: LessonSource;
+  allCheckpoints?: Checkpoint[];
+}) {
   return (
     <div className="lesson-reading">
-      {normalizeNoteBlocks(blocks).map((block, i) => (
-        <Block key={i} block={block} />
-      ))}
+      {normalizeNoteBlocks(blocks).map((block, index) => {
+        if (block.type !== "checkpoint") return <Block key={index} block={block} />;
+        const checkpoint = allCheckpoints.indexOf(block) + 1;
+        const actions = source && checkpoint ? checkpointActions(source, checkpoint) : undefined;
+        return <LessonCheckpoint key={JSON.stringify([index, block])} block={block} actions={actions} />;
+      })}
     </div>
   );
 }
 
-function Block({ block }: { block: LessonBlock }) {
+function checkpointActions(source: LessonSource, checkpoint: number): { source: StudySource; report: StudyReport } {
+  if (source.kind === "checkpoint") {
+    return {
+      source: { kind: source.kind, version: source.version, checkpoint },
+      report: { targetType: "lesson", targetId: source.lessonId, reference: `Lesson version ${source.version}, checkpoint ${checkpoint}` },
+    };
+  }
+  const { courseCode, ...location } = source;
+  return {
+    source: { ...location, checkpoint },
+    report: { targetType: "technical", reference: `${courseCode} / ${source.topic} / ${source.lesson} / checkpoint ${checkpoint}` },
+  };
+}
+
+function Block({ block }: { block: Exclude<LessonBlock, Checkpoint> }) {
   switch (block.type) {
     case "equation":
       return <Equation expression={block.expression} reading={block.reading} display />;
@@ -40,8 +70,6 @@ function Block({ block }: { block: LessonBlock }) {
       return <WorkedExample block={block} />;
     case "paragraph":
       return <p className="whitespace-pre-line"><MathText text={block.text} /></p>;
-    case "checkpoint":
-      return <LessonCheckpoint key={JSON.stringify(block)} block={block} />;
     case "heading": {
       const level = block.level ?? 2;
       if (level === 4) return <h4 className="mt-2 text-lg font-bold"><MathText text={block.text} /></h4>;
@@ -91,13 +119,14 @@ function Block({ block }: { block: LessonBlock }) {
   }
 }
 
-function LessonCheckpoint({ block }: { block: Extract<LessonBlock, { type: "checkpoint" }> }) {
+function LessonCheckpoint({ block, actions }: { block: Checkpoint; actions?: { source: StudySource; report: StudyReport } }) {
   const id = useId();
   const [shuffled] = useState(() => shuffleIndexedChoices(block.options, block.correct_index));
   const [selected, setSelected] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
   const correct = selected === shuffled.correctIndex;
   return <div className="rounded-control border border-line bg-surface-page p-5">
+    {actions ? <div className="flex justify-end"><QuestionActions {...actions} /></div> : null}
     <fieldset disabled={checked} aria-describedby={`${id}-note`}>
       <legend className="mb-3 font-bold">Check your understanding: <MathText text={block.question} /></legend>
       <div className="flex flex-col gap-2">

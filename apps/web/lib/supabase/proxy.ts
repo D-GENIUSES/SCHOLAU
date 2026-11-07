@@ -10,6 +10,8 @@ const AUTH_PAGES = ["/sign-in", "/sign-up"];
 function isPublic(pathname: string) {
   const publicCourse = pathname === "/courses" || (pathname.startsWith("/courses/") && !pathname.includes("/challenges"));
   return pathname === "/api/auth/google-signup-attempt"
+    || pathname === "/api/shared-questions"
+    || /^\/q\/[^/]+(?:\/answer)?$/.test(pathname)
     || publicCourse
     || PUBLIC_PATHS.some((p) => pathname === p || (p !== "/" && pathname.startsWith(`${p}/`)));
 }

@@ -10,7 +10,9 @@ import { splitLessonIntoSteps } from "@/lib/lesson-steps";
 import { normalizeNoteBlocks } from "@/lib/lesson-note-blocks";
 import { LessonBlocks } from "./blocks";
 
-export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
+export function LessonStepper({ blocks, lessonId, version }: { blocks: LessonBlock[]; lessonId: string; version: string }) {
+  const allCheckpoints = blocks.filter((block) => block.type === "checkpoint");
+  const source = { kind: "checkpoint" as const, lessonId, version };
   const steps = useMemo(() => splitLessonIntoSteps(normalizeNoteBlocks(blocks)), [blocks]);
   const [index, setIndex] = useState(0);
   const step = steps[index];
@@ -69,7 +71,7 @@ export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
           <Progress value={progress} label="Lesson progress" />
         </>
       ) : null}
-      <LessonBlocks blocks={step.blocks} />
+      <LessonBlocks blocks={step.blocks} source={source} allCheckpoints={allCheckpoints} />
       {total > 1 ? (
         <nav className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-4" aria-label="Lesson steps">
           <Button type="button" variant="outline" size="sm" disabled={index === 0} onClick={() => go(index - 1)}>
@@ -84,7 +86,7 @@ export function LessonStepper({ blocks }: { blocks: LessonBlock[] }) {
         <details className="rounded-control border border-line bg-surface-page">
           <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-brand-primary">View all sections</summary>
           <div className="border-t border-line px-4 py-4">
-            <LessonBlocks blocks={blocks} />
+            <LessonBlocks blocks={blocks} source={source} allCheckpoints={allCheckpoints} />
           </div>
         </details>
       ) : null}

@@ -178,7 +178,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
 
       {hasBlockContent ? (
         <>
-          <LessonStepper blocks={lesson.blocks} />
+          <LessonStepper key={lesson.lesson_version_id} blocks={lesson.blocks} lessonId={lesson.lesson_id} version={lesson.lesson_version_id} />
           {examCards.length ? (
             <section className="mt-8" aria-labelledby="lesson-flashcards-heading">
               <h2 id="lesson-flashcards-heading" className="text-lg font-bold">Quick check</h2>

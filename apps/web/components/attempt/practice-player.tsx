@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { type Attempt, type AttemptQuestion, isApiError, newRequestKey } from "@scholau/api";
 import { useSaveAttemptAnswers } from "@scholau/api/react";
 import { COPY, pluralize } from "@scholau/core";
+import { QuestionActions } from "@/components/question-actions";
 import { ReportDialog } from "@/components/report-dialog";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -192,6 +193,11 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
 
       <Card>
         <CardContent className="flex flex-col gap-4 pt-4 sm:pt-6">
+          {attempt.kind === "practice" ? (
+            <div className="flex justify-end">
+              <QuestionActions key={current.question_version_id} source={{ kind: "bank", version: current.question_version_id }} report={{ targetType: "question", targetId: current.question_version_id }} />
+            </div>
+          ) : null}
           <QuestionOptions
             name={`q-${current.question_version_id}`}
             legend={<QuestionLegend ref={headingRef} position={safeIndex + 1} total={questions.length} prompt={current.prompt} />}
@@ -213,7 +219,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
                 </Button>
               ) : null}
             </div>
-            <ReportDialog targetType="question" targetId={current.question_version_id} triggerLabel="Report this question" />
+            {attempt.kind !== "practice" ? <ReportDialog targetType="question" targetId={current.question_version_id} triggerLabel="Report this question" /> : null}
           </div>
         </CardContent>
       </Card>

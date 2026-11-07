@@ -1,3 +1,4 @@
+import { QuestionActions } from "@/components/question-actions";
 import { MathText } from "@/components/math/math-text";
 import Link from "next/link";
 import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
@@ -12,7 +13,7 @@ function optionLabel(q: AttemptQuestion, optionId: string | null | undefined): s
   return o ? `${String.fromCharCode(65 + i)}. ${o.body}` : null;
 }
 
-export function ResultQuestion({ question, total, reteach }: { question: AttemptQuestion; total: number; reteach?: { lesson_id: string; lesson_title: string } }) {
+export function ResultQuestion({ question, total, reteach, study }: { question: AttemptQuestion; total: number; study?: boolean; reteach?: { lesson_id: string; lesson_title: string } }) {
   const yours = optionLabel(question, question.saved?.option_id);
   const fb = question.feedback;
   const correct = optionLabel(question, fb?.correct_option_id);
@@ -31,7 +32,10 @@ export function ResultQuestion({ question, total, reteach }: { question: Attempt
         <h3 id={`result-q-${question.position}-title`} className="text-sm font-semibold text-ink-muted">
           Question {question.position} of {total}
         </h3>
-        {fb ? <CorrectnessBadge correct={isCorrect} /> : null}
+        <div className="flex items-center gap-2">
+          {fb ? <CorrectnessBadge correct={isCorrect} /> : null}
+          {study ? <QuestionActions source={{ kind: "bank", version: question.question_version_id }} report={{ targetType: "question", targetId: question.question_version_id }} /> : null}
+        </div>
       </div>
       <p className="whitespace-pre-line break-words text-lg font-semibold"><MathText text={question.prompt} /></p>
       <dl className="grid gap-2 text-base sm:grid-cols-[max-content_1fr] sm:gap-x-4">

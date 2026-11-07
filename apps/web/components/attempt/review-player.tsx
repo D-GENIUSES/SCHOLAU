@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { type Attempt, type AttemptQuestion, isApiError, newRequestKey, type ReviewCheckResult } from "@scholau/api";
 import { useCheckReviewAnswer } from "@scholau/api/react";
 import { COPY, errorMessage, pluralize } from "@scholau/core";
-import { ReportDialog } from "@/components/report-dialog";
+import { QuestionActions } from "@/components/question-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ConfirmDialog } from "@/components/ui/dialog";
@@ -122,6 +122,9 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
 
       <Card>
         <CardContent className="flex flex-col gap-4 pt-4 sm:pt-6">
+          <div className="flex justify-end">
+            <QuestionActions key={qv} source={{ kind: "bank", version: qv }} report={{ targetType: "question", targetId: qv }} />
+          </div>
           <QuestionOptions
             name={`q-${qv}`}
             legend={<QuestionLegend ref={headingRef} position={safeIndex + 1} total={questions.length} prompt={current.prompt} />}
@@ -148,9 +151,6 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
             </div>
           )}
 
-          <div className="flex justify-end">
-            <ReportDialog targetType="question" targetId={qv} triggerLabel="Report this question" />
-          </div>
         </CardContent>
       </Card>
 

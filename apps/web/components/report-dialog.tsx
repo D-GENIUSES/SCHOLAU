@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Flag } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { ReportTargetType } from "@scholau/core";
 import { REPORT_CATEGORIES, type ReportInput, reportSchema } from "@scholau/core";
@@ -20,13 +20,24 @@ export function ReportDialog({
   targetId,
   triggerLabel = "Report a problem",
   title = "Report a problem",
+  reference,
+  controlledOpen,
+  onControlledOpenChange,
+  onCloseAutoFocus,
 }: {
   targetType: ReportTargetType;
   targetId?: string | null;
   triggerLabel?: string;
   title?: string;
+  reference?: string;
+  controlledOpen?: boolean;
+  onControlledOpenChange?: (open: boolean) => void;
+  onCloseAutoFocus?: (event: Event) => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [localOpen, setLocalOpen] = useState(false);
+  const id = useId();
+  const reportReference = reference ? `\n\nQuestion reference: ${reference}` : "";
+  const noteLimit = 2000 - reportReference.length;
   const report = useReportContent();
   const analytics = useAnalytics();
   const form = useForm<ReportInput>({
@@ -34,9 +45,18 @@ export function ReportDialog({
     defaultValues: { category: undefined as unknown as ReportInput["category"], note: "" },
   });
 
+  function changeOpen(open: boolean) {
+    if (controlledOpen === undefined) setLocalOpen(open);
+    else onControlledOpenChange?.(open);
+    if (!open) {
+      report.reset();
+      form.reset();
+    }
+  }
+
   const onSubmit = form.handleSubmit((values) => {
     report.mutate(
-      { targetType, targetId: targetId ?? null, category: values.category, note: values.note },
+      { targetType, targetId: targetId ?? null, category: values.category, note: `${values.note}${reportReference}` },
       {
         onSuccess: () => {
           analytics.track({ name: "content_reported", target_type: targetType, category: values.category });
@@ -46,23 +66,16 @@ export function ReportDialog({
   });
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(o) => {
-        setOpen(o);
-        if (!o) {
-          report.reset();
-          form.reset();
-        }
-      }}
-    >
-      <DialogTrigger asChild>
-        <Button variant="ghost" size="sm">
-          <Flag className="size-4" aria-hidden />
-          {triggerLabel}
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
+    <Dialog open={controlledOpen ?? localOpen} onOpenChange={changeOpen}>
+      {controlledOpen === undefined ? (
+        <DialogTrigger asChild>
+          <Button variant="ghost" size="sm">
+            <Flag className="size-4" aria-hidden />
+            {triggerLabel}
+          </Button>
+        </DialogTrigger>
+      ) : null}
+      <DialogContent onCloseAutoFocus={onCloseAutoFocus}>
         <DialogTitle>{title}</DialogTitle>
         {report.isSuccess ? (
           <>
@@ -70,13 +83,13 @@ export function ReportDialog({
               Our content team reviews every report. You can keep going.
             </Alert>
             <DialogFooter>
-              <Button onClick={() => setOpen(false)}>Done</Button>
+              <Button onClick={() => changeOpen(false)}>Done</Button>
             </DialogFooter>
           </>
         ) : (
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
             <DialogDescription>Tell us what&apos;s wrong. Please don&apos;t include personal information.</DialogDescription>
-            <Field id="report-category" label="What's wrong?" error={form.formState.errors.category?.message}>
+            <Field id={`${id}-category`} label="What's wrong?" error={form.formState.errors.category?.message}>
               <NativeSelect {...form.register("category")} defaultValue="">
                 <option value="" disabled>
                   Choose a category
@@ -88,9 +101,10 @@ export function ReportDialog({
                 ))}
               </NativeSelect>
             </Field>
-            <Field id="report-note" label="Details" error={form.formState.errors.note?.message}>
-              <Textarea maxLength={2000} {...form.register("note")} />
+            <Field id={`${id}-note`} label="Details" error={form.formState.errors.note?.message}>
+              <Textarea maxLength={noteLimit} {...form.register("note")} />
             </Field>
+            {reference ? <p className="break-words text-xs text-ink-muted">Question reference: {reference}</p> : null}
             <InlineError error={report.error} />
             <DialogFooter>
               <Button type="submit" loading={report.isPending}>

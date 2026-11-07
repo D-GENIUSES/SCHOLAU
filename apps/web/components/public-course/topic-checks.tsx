@@ -5,6 +5,7 @@ import { MathText } from "@/components/math/math-text";
 import Link from "next/link";
 import type { PublicQuestion } from "@/lib/public-courses/catalog";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { QuestionActions } from "@/components/question-actions";
 import { Button } from "@/components/ui/button";
 
 function ask(questions: PublicQuestion[], answers: Record<string, string>) {
@@ -19,12 +20,14 @@ function ask(questions: PublicQuestion[], answers: Record<string, string>) {
 
 export function TopicChecks({
   courseCode,
+  courseSlug,
   topicKey,
   pre,
   post,
   lessonLinks = [],
 }: {
   courseCode: string;
+  courseSlug: string;
   topicKey: string;
   pre: PublicQuestion[];
   post: PublicQuestion[];
@@ -87,28 +90,36 @@ export function TopicChecks({
       <h2 id="topic-check-title">{phase === "pre" ? "Pre-test" : "Post-test"}</h2>
       <p>{phase === "pre" ? "Answer before you read the lessons." : "Answer again after the lessons. This is practice, not a past paper."}</p>
       {questions.map((question, index) => (
-        <fieldset key={question.logical_question_key} className="mt-4">
-          <legend>{index + 1}. <MathText text={question.prompt} /></legend>
-          {question.options ? question.options.map((option) => (
-            <label key={option.label} className="mt-2 flex min-h-11 items-start gap-2">
-              <input
-                type="radio"
-                name={question.logical_question_key}
-                value={option.label}
-                checked={answers[question.logical_question_key] === option.label}
-                onChange={() => setAnswers((current) => ({ ...current, [question.logical_question_key]: option.label }))}
-              />
-              <span>{option.label}. <MathText text={option.body} /></span>
-            </label>
-          )) : (
-            <input
-              className="mt-2 min-h-11 w-full rounded-control border border-line px-3"
-              aria-label="Your answer"
-              value={answers[question.logical_question_key] ?? ""}
-              onChange={(event) => setAnswers((current) => ({ ...current, [question.logical_question_key]: event.target.value }))}
+        <div key={question.logical_question_key} className="mt-4">
+          <div className="flex justify-end">
+            <QuestionActions
+              source={{ kind: "catalog", course: courseSlug, topic: topicKey, key: question.logical_question_key }}
+              report={{ targetType: "technical", reference: `${courseCode} / ${topicKey} / ${question.logical_question_key}` }}
             />
-          )}
-        </fieldset>
+          </div>
+          <fieldset>
+            <legend>{index + 1}. <MathText text={question.prompt} /></legend>
+            {question.options ? question.options.map((option) => (
+              <label key={option.label} className="mt-2 flex min-h-11 items-start gap-2">
+                <input
+                  type="radio"
+                  name={question.logical_question_key}
+                  value={option.label}
+                  checked={answers[question.logical_question_key] === option.label}
+                  onChange={() => setAnswers((current) => ({ ...current, [question.logical_question_key]: option.label }))}
+                />
+                <span>{option.label}. <MathText text={option.body} /></span>
+              </label>
+            )) : (
+              <input
+                className="mt-2 min-h-11 w-full rounded-control border border-line px-3"
+                aria-label="Your answer"
+                value={answers[question.logical_question_key] ?? ""}
+                onChange={(event) => setAnswers((current) => ({ ...current, [question.logical_question_key]: event.target.value }))}
+              />
+            )}
+          </fieldset>
+        </div>
       ))}
       <Button className="mt-4" disabled={!ready} onClick={() => void finish(phase, ask(questions, answers))}>
         {phase === "pre" ? "Save pre-test and read the lessons" : "Save post-test"}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MathText } from "@/components/math/math-text";
 import { CourseCrumb, CourseFrame } from "@/components/public-course/course-frame";
+import { QuestionActions } from "@/components/question-actions";
 import { TopicChecks } from "@/components/public-course/topic-checks";
 import { publicCatalog, publicTopic, topicChecks } from "@/lib/public-courses/catalog";
 import { SITE_URL } from "@/lib/seo";
@@ -31,7 +32,7 @@ export default async function PublicTopicPage({ params }: { params: Promise<{ of
       <CourseCrumb course={found.course} topic={found.topic} />
       <h1>{found.topic.title}</h1>
       <p>{found.course.code}. Practice questions, not past papers.</p>
-      <TopicChecks courseCode={found.course.code} topicKey={found.topic.slug} pre={pre} post={post} lessonLinks={found.topic.lessons.map((lesson) => ({ title: lesson.title, href: `/courses/${found.course.slug}/${found.topic.slug}/${lesson.slug}` }))} />
+      <TopicChecks courseSlug={found.course.slug} courseCode={found.course.code} topicKey={found.topic.slug} pre={pre} post={post} lessonLinks={found.topic.lessons.map((lesson) => ({ title: lesson.title, href: `/courses/${found.course.slug}/${found.topic.slug}/${lesson.slug}` }))} />
       <h2>Lessons</h2>
       <ul>
         {found.topic.lessons.map((lesson) => (
@@ -42,7 +43,13 @@ export default async function PublicTopicPage({ params }: { params: Promise<{ of
       <ol>
         {found.topic.questions.slice(0, 10).map((question) => (
           <li key={question.logical_question_key}>
-            <p><MathText text={question.prompt} /></p>
+            <div className="flex items-start justify-between gap-2">
+              <p className="min-w-0"><MathText text={question.prompt} /></p>
+              <QuestionActions
+                source={{ kind: "catalog", course: found.course.slug, topic: found.topic.slug, key: question.logical_question_key }}
+                report={{ targetType: "technical", reference: `${found.course.code} / ${found.topic.slug} / ${question.logical_question_key}` }}
+              />
+            </div>
             <p className="text-sm text-ink-muted">{question.source_reference}</p>
           </li>
         ))}

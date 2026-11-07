@@ -201,7 +201,7 @@ function Results({ attempt }: { attempt: Attempt }) {
             Questions
           </h2>
           {attempt.questions.map((q) => (
-            <ResultQuestion key={q.question_version_id} question={q} total={attempt.questions.length} reteach={reteachTargets[q.question_version_id]} />
+            <ResultQuestion key={q.question_version_id} question={q} study={attempt.kind === "practice" || attempt.kind === "review"} total={attempt.questions.length} reteach={reteachTargets[q.question_version_id]} />
           ))}
         </section>
       </div>

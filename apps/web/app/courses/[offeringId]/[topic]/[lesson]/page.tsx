@@ -36,7 +36,7 @@ export default async function PublicLessonPage({ params }: { params: Promise<{ o
       <p>{found.lesson.objective}</p>
       <EditorialNote status={found.lesson.editorial_status} />
       <p className="text-sm text-ink-muted">{found.lesson.source}</p>
-      <LessonBlocks blocks={found.lesson.blocks as LessonBlock[]} />
+      <LessonBlocks blocks={found.lesson.blocks as LessonBlock[]} source={{ kind: "catalog-checkpoint", course: found.course.slug, courseCode: found.course.code, topic: found.topic.slug, lesson: found.lesson.slug }} />
     </CourseFrame>
   );
 }
