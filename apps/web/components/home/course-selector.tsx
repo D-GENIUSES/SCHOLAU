@@ -15,16 +15,19 @@ export function CourseSelector({
   open,
   onOpenChange,
   onSelect,
+  preview = false,
 }: {
   courses: Course[];
   selectedId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSelect: (offeringId: string) => void;
+  preview?: boolean;
 }) {
   const selected = courses.find((c) => c.offering_id === selectedId) ?? courses[0];
   const menuId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -32,7 +35,10 @@ export function CourseSelector({
       if (!rootRef.current?.contains(event.target as Node)) onOpenChange(false);
     };
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onOpenChange(false);
+      if (event.key === "Escape") {
+        onOpenChange(false);
+        triggerRef.current?.focus();
+      }
     };
     document.addEventListener("mousedown", onPointer);
     document.addEventListener("keydown", onKey);
@@ -47,6 +53,7 @@ export function CourseSelector({
   return (
     <div className="course-selector" ref={rootRef}>
       <button
+        ref={triggerRef}
         type="button"
         className="course-selector-trigger"
         aria-expanded={open}
@@ -56,13 +63,13 @@ export function CourseSelector({
       >
         <List className="size-4 shrink-0 text-brand-primary" aria-hidden />
         <span className="course-selector-label">
-          <span className="course-selector-code">{selected.code}</span>
+          {preview ? null : <span className="course-selector-code">{selected.code}</span>}
           <span className="course-selector-title">{selected.title}</span>
         </span>
         <ChevronDown className={cn("size-4 shrink-0 opacity-60 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
       {open ? (
-        <ul id={menuId} role="listbox" aria-label="Your courses" className="course-selector-menu">
+        <ul id={menuId} role="listbox" aria-label={preview ? "Sample courses" : "Your courses"} className="course-selector-menu">
           {courses.map((course) => {
             const percent = course.lessons_total > 0 ? Math.round((100 * course.lessons_completed) / course.lessons_total) : 0;
             const active = course.offering_id === selectedId;
@@ -75,19 +82,20 @@ export function CourseSelector({
                   onClick={() => {
                     onSelect(course.offering_id);
                     onOpenChange(false);
+                    triggerRef.current?.focus();
                   }}
                 >
                   <span className="min-w-0 flex-1 text-left">
-                    <span className="course-selector-option-code">{course.code}</span>
+                    {preview ? null : <span className="course-selector-option-code">{course.code}</span>}
                     <span className="course-selector-option-title">{course.title}</span>
-                    <span className="course-selector-option-meta">
+                    {preview ? null : <span className="course-selector-option-meta">
                       {course.lessons_completed} of {pluralize(course.lessons_total, "lesson")}
-                    </span>
+                    </span>}
                   </span>
-                  <span className="course-selector-option-progress" aria-hidden>
+                  {preview ? null : <span className="course-selector-option-progress" aria-hidden>
                     <Progress value={percent} label={`${course.code} progress`} className="h-1 w-14" tone={percent >= 100 ? "success" : "brand"} />
                     <span className="text-[10px] font-semibold tabular-nums text-ink-muted">{percent}%</span>
-                  </span>
+                  </span>}
                 </button>
               </li>
             );

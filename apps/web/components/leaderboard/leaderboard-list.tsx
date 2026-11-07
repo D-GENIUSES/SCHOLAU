@@ -13,12 +13,14 @@ export function LeaderboardList({
   updatedAt,
   scopeBar,
   positionBar,
+  readOnly = false,
 }: {
   rows: LeaderboardRow[];
   label: string;
   updatedAt?: string;
   scopeBar?: ReactNode;
   positionBar?: ReactNode;
+  readOnly?: boolean;
 }) {
   return (
     <div className="leaderboard-panel">
@@ -26,13 +28,13 @@ export function LeaderboardList({
     {positionBar}
     <div className="leaderboard-columns" aria-hidden>
       <span>Rank</span>
-      <span>Student · faculty & level</span>
+      <span>{readOnly ? "Student" : "Student · faculty & level"}</span>
       <span className="leaderboard-columns-meta">{updatedAt ? <>XP · {updatedAt}</> : "XP"}</span>
     </div>
     <ol aria-label={label} className="leaderboard-list">
       {rows.map((row, index) => (
         <li key={row.user_id}>
-          <LeaderboardRowItem row={row} eager={index < 10} priority={index < 3} />
+          <LeaderboardRowItem row={row} eager={index < 10} priority={index < 3} readOnly={readOnly} />
         </li>
       ))}
     </ol>
@@ -40,9 +42,11 @@ export function LeaderboardList({
   );
 }
 
-function LeaderboardRowItem({ row, eager, priority }: { row: LeaderboardRow; eager: boolean; priority: boolean }) {
+function LeaderboardRowItem({ row, eager, priority, readOnly }: { row: LeaderboardRow; eager: boolean; priority: boolean; readOnly: boolean }) {
   const medalLabel = podiumMedalLabel(row.rank);
   const podiumPlace = row.rank === 1 || row.rank === 2 || row.rank === 3 ? row.rank : null;
+  const avatar = <OnlineAvatar name={row.display_name} path={row.avatar_path} size={32} online={row.online} eager={eager} priority={priority} />;
+  const profileHref = `/people/${row.user_id}`;
   return (
     <div
       className={cn(
@@ -67,13 +71,13 @@ function LeaderboardRowItem({ row, eager, priority }: { row: LeaderboardRow; eag
           </>
         )}
       </span>
-      <Link href={`/people/${row.user_id}`} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile${row.online ? ", online now" : ""}`}><OnlineAvatar name={row.display_name} path={row.avatar_path} size={32} online={row.online} eager={eager} priority={priority} /></Link>
+      {readOnly ? avatar : <Link href={profileHref} className="rounded-full focus-visible:outline-2 focus-visible:outline-brand-primary" aria-label={`View ${row.display_name}'s public profile${row.online ? ", online now" : ""}`}>{avatar}</Link>}
       <div className="leaderboard-identity">
-        <div className="leaderboard-name"><Link href={`/people/${row.user_id}`} className="hover:underline">{row.display_name}</Link>{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
-        <div className="leaderboard-academic">
+        <div className="leaderboard-name">{readOnly ? <span>{row.display_name}</span> : <Link href={profileHref} className="hover:underline">{row.display_name}</Link>}{row.is_me ? <span className="leaderboard-you">You</span> : null}</div>
+        {readOnly ? null : <div className="leaderboard-academic">
           <span>{row.faculty_name ?? "Faculty not set"}</span>
           <span className="leaderboard-level">{row.level_label ?? "Level not set"}</span>
-        </div>
+        </div>}
       </div>
       <span className="leaderboard-xp">{formatXp(row.xp_total)}</span>
     </div>

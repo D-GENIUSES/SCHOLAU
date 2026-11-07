@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { GuestExperience } from "@/components/guest/guest-experience";
 import { HomeView } from "@/components/home/home-view";
@@ -24,10 +25,12 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 }
 
 /** Public app entry. Guests do not call account RPCs or subscribe to user signals. */
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const supabase = await getServerSupabase();
   const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
   if (!data?.claims?.sub) {
+    const { view } = await searchParams;
+    if ((Array.isArray(view) ? view[0] : view) === "practice") redirect("/home");
     return <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "ScholAu", url: `${SITE_URL}/` }).replace(/</g, "\\u003c") }} />
       <Suspense fallback={<LoadingState variant="home" label="Opening ScholAu…" />}><GuestExperience /></Suspense>

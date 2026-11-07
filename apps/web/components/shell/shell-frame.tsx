@@ -12,12 +12,12 @@ import type { Streak } from "@scholau/api";
 import { StreakBadge } from "./streak-badge";
 import { NavbarPeopleSearch } from "./people-search";
 
-export function ShellFrame({ children, pathname = "/home", displayName = "", unread = 0, isAdmin = false, guest = false, avatarPath = null, streak }: {
-  children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: Streak;
+export function ShellFrame({ children, pathname = "/home", displayName = "", unread = 0, isAdmin = false, guest = false, avatarPath = null, streak, guestControls }: {
+  children: ReactNode; pathname?: string; displayName?: string; unread?: number; isAdmin?: boolean; guest?: boolean; avatarPath?: string | null; streak?: Streak; guestControls?: ReactNode;
 }) {
   const destination = (href: string) => guest ? href === "/home" ? "/home" : `/home?view=${href.slice(1)}` : href;
   const activeLabel = studentNav.find((item) => isActive(pathname, item.href))?.label ?? "Home";
-  const account = guest ? <Button asChild size="sm" ><Link href="/sign-up">Sign in</Link></Button> : <>
+  const account = guest ? guestControls ?? <Button asChild size="sm"><Link href="/sign-in">Sign in</Link></Button> : <>
     <NavbarPeopleSearch />
     {streak ? <StreakBadge streak={streak} /> : null}
     <Link href="/notification-settings" className="notification-button" aria-label={unread ? `Notifications, ${unread} unread` : "Notifications"}>

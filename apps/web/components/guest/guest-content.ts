@@ -1,15 +1,25 @@
-/** Public, self-contained introductory content. Never submitted as enrolled course data or XP. */
-export const sampleCourses = [
-  { title: "Science and Nature", description: "Planets and the natural world." },
-  { title: "Everyday Numbers", description: "Numbers, patterns, and shapes." },
-  { title: "Our World", description: "Places, oceans, and geography." },
-] as const;
-export const starterLesson = {
-  kind: "next" as const, lesson_id: "guest-general-knowledge", lesson_version_id: "guest-v2", title: "Three short lessons on planets, shapes, and oceans.",
-  estimated_minutes: 3, course_id: "guest-general-knowledge", course_title: "General Knowledge", offering_id: "guest-preview",
-};
-export const practiceQuestions = [
-  { prompt: "Which planet is known as the Red Planet?", options: ["Jupiter", "Mars", "Venus"], correct: 1, explanation: "Mars is known as the Red Planet because iron oxide on its surface gives it a reddish appearance." },
-  { prompt: "How many sides does a triangle have?", options: ["Three", "Four", "Five"], correct: 0, explanation: "A triangle has three straight sides and three corners, regardless of its size or orientation." },
-  { prompt: "Which is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean"], correct: 2, explanation: "The Pacific Ocean is the largest ocean on Earth. Oceans are vast bodies of salt water." },
-] as const;
+import type { HomeSummary, LeaderboardRow } from "@scholau/api";
+
+function sampleCourse(id: string): HomeSummary["enrolled_courses"][number] {
+  return {
+    offering_id: id,
+    course_id: id,
+    code: id,
+    title: `Course ${id}`,
+    lessons_total: 3,
+    lessons_completed: 0,
+  };
+}
+
+export const guestCourses = [sampleCourse("1"), sampleCourse("2"), sampleCourse("3")] satisfies [
+  HomeSummary["enrolled_courses"][number],
+  ...HomeSummary["enrolled_courses"],
+];
+
+export const guestRanking: LeaderboardRow[] = [
+  { rank: 1, user_id: "guest-1", display_name: "Ada M.", xp_total: 1280 },
+  { rank: 2, user_id: "guest-2", display_name: "Tobi A.", xp_total: 1050 },
+  { rank: 3, user_id: "guest-3", display_name: "Sam K.", xp_total: 940 },
+  { rank: 4, user_id: "guest-4", display_name: "Nora E.", xp_total: 820 },
+  { rank: 5, user_id: "guest-5", display_name: "Mika O.", xp_total: 710 },
+].map((row) => ({ ...row, is_me: false, avatar_path: null }));
