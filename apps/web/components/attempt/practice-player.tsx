@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, RefreshCw, Send } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { type Attempt, type AttemptQuestion, isApiError, newRequestKey } from "@scholau/api";
 import { useSaveAttemptAnswers } from "@scholau/api/react";
 import { COPY, pluralize } from "@scholau/core";
@@ -14,7 +14,6 @@ import { ConfirmDialog } from "@/components/ui/dialog";
 import { LiveRegion } from "@/components/ui/misc";
 import { EmptyState, InlineError } from "@/components/ui/states";
 import { useBeforeUnload, useOnline } from "@/lib/hooks";
-import { useBankQuestionShareability } from "@/lib/use-bank-question-shareability";
 import { AnswerStatusLabel, type AnswerStatus } from "./answer-status";
 import { AttemptHeader } from "./attempt-header";
 import { PracticeHints } from "./practice-hints";
@@ -47,8 +46,6 @@ function serverRevisionFromError(fieldErrors: Record<string, unknown> | undefine
 export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRefetch: RefetchAttempt }) {
   const attemptId = attempt.attempt_id;
   const questions = attempt.questions;
-  const versionIds = useMemo(() => questions.map((question) => question.question_version_id), [questions]);
-  const shareability = useBankQuestionShareability(attempt.kind === "practice" ? versionIds : []);
   const online = useOnline();
   const save = useSaveAttemptAnswers();
   const { submit, remaining, expired, onFinalized, markDeadlinePassed } = useAttemptLifecycle(attempt, onRefetch);
@@ -200,7 +197,6 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
             <div className="flex justify-end">
               <QuestionActions
                 key={current.question_version_id}
-                shareable={shareability.data?.[current.question_version_id] === true}
                 source={{ kind: "bank", version: current.question_version_id }}
                 report={{ targetType: "question", targetId: current.question_version_id }}
               />

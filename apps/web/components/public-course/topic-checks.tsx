@@ -96,7 +96,6 @@ export function TopicChecks({
         <div key={question.logical_question_key} className="mt-4">
           <div className="flex justify-end">
             <QuestionActions
-              shareable={catalogShares[question.logical_question_key]?.shareable === true}
               source={{ kind: "catalog", course: courseSlug, topic: topicKey, key: question.logical_question_key }}
               link={catalogShares[question.logical_question_key]?.link}
               report={{ targetType: "technical", reference: `${courseCode} / ${topicKey} / ${question.logical_question_key}` }}

@@ -55,7 +55,6 @@ export default async function PublicTopicPage({ params }: { params: Promise<{ of
             <div className="flex items-start justify-between gap-2">
               <p className="min-w-0"><MathText text={question.prompt} /></p>
               <QuestionActions
-                shareable={listedShares[question.logical_question_key]?.shareable === true}
                 source={{ kind: "catalog", course: found.course.slug, topic: found.topic.slug, key: question.logical_question_key }}
                 link={listedShares[question.logical_question_key]?.link}
                 report={{ targetType: "technical", reference: `${found.course.code} / ${found.topic.slug} / ${question.logical_question_key}` }}

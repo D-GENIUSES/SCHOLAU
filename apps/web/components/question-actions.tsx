@@ -10,14 +10,13 @@ import { studyInvitation, studyShareErrorMessage, type StudyLink, type StudyRepo
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
 export function QuestionActions({
-  source, report, link, signInHref, startReport, shareable = true,
+  source, report, link, signInHref, startReport,
 }: {
   source?: StudySource;
   report: StudyReport;
   link?: StudyLink;
   signInHref?: string;
   startReport?: boolean;
-  shareable?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [dialog, setDialog] = useState<"share" | "report" | null>(startReport ? "report" : null);
@@ -84,9 +83,11 @@ export function QuestionActions({
         <Ellipsis className="size-5" aria-hidden />
       </Button>
       <div id={menuId} hidden={!expanded} className="absolute right-0 top-full z-20 w-48 rounded-control border border-line bg-surface-card p-1 shadow-raised">
-        {shareable ? <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => { setExpanded(false); setDialog("share"); }}>
-          <Share2 className="size-4" aria-hidden /> Share question
-        </Button> : null}
+        {source || link ? (
+          <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => { setExpanded(false); setDialog("share"); }}>
+            <Share2 className="size-4" aria-hidden /> Share question
+          </Button>
+        ) : null}
         <Button type="button" variant="ghost" className="w-full justify-start" onClick={() => void openReport()}>
           <Flag className="size-4" aria-hidden /> Report question
         </Button>

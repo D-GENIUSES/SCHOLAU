@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, CheckCheck, RefreshCw } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { type Attempt, type AttemptQuestion, isApiError, newRequestKey, type ReviewCheckResult } from "@scholau/api";
 import { useCheckReviewAnswer } from "@scholau/api/react";
 import { COPY, errorMessage, pluralize } from "@scholau/core";
@@ -12,7 +12,6 @@ import { ConfirmDialog } from "@/components/ui/dialog";
 import { LiveRegion } from "@/components/ui/misc";
 import { EmptyState, InlineError } from "@/components/ui/states";
 import { useBeforeUnload } from "@/lib/hooks";
-import { useBankQuestionShareability } from "@/lib/use-bank-question-shareability";
 import { AnswerFeedback } from "./answer-feedback";
 import { AttemptHeader } from "./attempt-header";
 import { AttemptTimer } from "./attempt-timer";
@@ -38,8 +37,6 @@ interface QuestionView {
 export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefetch: RefetchAttempt }) {
   const attemptId = attempt.attempt_id;
   const questions = attempt.questions;
-  const versionIds = useMemo(() => questions.map((question) => question.question_version_id), [questions]);
-  const shareability = useBankQuestionShareability(versionIds);
   const check = useCheckReviewAnswer();
   const { submit, remaining, expired, onFinalized, markDeadlinePassed } = useAttemptLifecycle(attempt, onRefetch);
 
@@ -128,7 +125,6 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
           <div className="flex justify-end">
             <QuestionActions
               key={qv}
-              shareable={shareability.data?.[qv] === true}
               source={{ kind: "bank", version: qv }}
               report={{ targetType: "question", targetId: qv }}
             />
