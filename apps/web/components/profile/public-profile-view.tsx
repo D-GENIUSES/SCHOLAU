@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, Award, Check, Search, UserPlus } from "lucide-react";
 import { AppStarIcon } from "@/components/icons/app-chrome-icons";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useId, useState } from "react";
 import { type PublicProfile, isApiError } from "@scholau/api";
 import { useFriendAction, useFriends, useProfile, usePublicProfile, useSearchFriends } from "@scholau/api/react";
 import { formatNumber } from "@scholau/core";
@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ErrorState, InlineError, LoadingState } from "@/components/ui/states";
-import { cn } from "@/lib/utils";
 
 const badgeNames: Record<string, string> = {
   first_steps: "First steps", topic_mastered: "Topic mastered", perfect_practice: "Perfect practice",
@@ -75,123 +74,107 @@ function ProfileFriendAction({ userId }: { userId: string }) {
 /** Uses only the existing public-profile allowlist; no private progress is requested. */
 export function PublicProfileContent({ profile: p, actions }: { profile: PublicProfile; actions?: ReactNode }) {
   const [section, setSection] = useState<"progress" | "about">("progress");
+  const id = useId();
   const academic = [["University", p.university], ["Faculty", p.faculty], ["Department", p.department], ["Level", p.level]].filter(([, value]) => value);
+  const academicSummary = [p.university, p.department, p.level].filter(Boolean).join(" · ");
   const joined = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date(p.joined_at));
-  const eyebrow = [p.department, p.level].filter(Boolean).join(" · ");
   return (
-    <div className="public-profile-page">
+    <div className="public-profile-page public-profile-detail">
       <Link href="/people" className="public-profile-back">
         <ArrowLeft className="size-4" aria-hidden />
         Find people
       </Link>
-      <section className="public-profile-hero">
-        {eyebrow ? <p className="profile-identity-eyebrow">{eyebrow}</p> : null}
+      <header className="public-profile-hero">
         <div className="public-profile-hero-row">
-          <OnlineAvatar name={p.display_name} path={p.avatar_path} size={56} online={p.online} variant="profile" />
+          <OnlineAvatar name={p.display_name} path={p.avatar_path} size={72} online={p.online} variant="profile" />
           <div className="public-profile-hero-copy">
             <h1>{p.display_name}</h1>
             {p.username ? <p className="public-profile-username">@{p.username}</p> : null}
+            {section === "progress" && academicSummary ? <p className="public-profile-academic-summary">{academicSummary}</p> : null}
           </div>
         </div>
-        {p.university ? <p className="public-profile-university">{p.university}</p> : null}
         {actions ? <div className="public-profile-actions">{actions}</div> : null}
-        <div role="group" aria-label="Profile sections" className="public-profile-tabs">
-          {(["progress", "about"] as const).map((value) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={section === value}
-              aria-controls="public-profile-section"
-              onClick={() => setSection(value)}
-              className={cn("public-profile-tab", section === value && "is-active")}
-            >
-              {value === "progress" ? "Progress" : "About"}
-            </button>
-          ))}
-        </div>
-      </section>
-      <section
-        id="public-profile-section"
-        aria-label={section === "progress" ? "Learning progress" : "About this learner"}
-        className={cn("public-profile-body", section === "progress" && "public-profile-body-progress")}
-      >
-        {section === "progress" ? (
-          <>
-            <div className="public-profile-stat-grid">
+      </header>
+
+      <div role="tablist" aria-label="Profile sections" className="public-profile-tabs">
+        {(["progress", "about"] as const).map((value) => (
+          <button
+            key={value}
+            id={`${id}-${value}-tab`}
+            type="button"
+            role="tab"
+            aria-selected={section === value}
+            aria-controls={`${id}-${value}`}
+            tabIndex={section === value ? 0 : -1}
+            onClick={() => setSection(value)}
+            onKeyDown={(event) => {
+              const key = event.key;
+              if (key !== "ArrowLeft" && key !== "ArrowRight" && key !== "Home" && key !== "End") return;
+              event.preventDefault();
+              const next = key === "Home" ? "progress" : key === "End" ? "about" : value === "progress" ? "about" : "progress";
+              setSection(next);
+              document.getElementById(`${id}-${next}-tab`)?.focus();
+            }}
+            className="public-profile-tab"
+          >
+            {value === "progress" ? "Progress" : "About"}
+          </button>
+        ))}
+      </div>
+
+      <section id={`${id}-progress`} role="tabpanel" aria-labelledby={`${id}-progress-tab`} hidden={section !== "progress"} tabIndex={0}>
+        <div className="public-profile-body">
+          <div className="public-profile-stat-grid">
+            {p.xp_total !== null ? (
               <div className="public-profile-stat">
-                <div className="profile-stat-icon">
-                  <AppStarIcon className="size-5" />
-                </div>
-                <div>
-                  {p.xp_total === null ? (
-                    <>
-                      <strong>—</strong>
-                      <p>Total XP not shared</p>
-                    </>
-                  ) : (
-                    <>
-                      <strong>{formatNumber(p.xp_total)}</strong>
-                      <p>Total XP</p>
-                    </>
-                  )}
-                </div>
+                <div className="profile-stat-icon" aria-hidden><AppStarIcon className="size-5" /></div>
+                <div><strong>{formatNumber(p.xp_total)}</strong><p>Total XP</p></div>
               </div>
-              <div className="public-profile-stat">
-                <div className="profile-stat-icon" data-tone="purple">
-                  <Award className="size-5" aria-hidden />
-                </div>
-                <div>
-                  <strong>{p.badges.length}</strong>
-                  <p>Badges</p>
-                </div>
-              </div>
+            ) : null}
+            <div className="public-profile-stat">
+              <div className="profile-stat-icon" data-tone="purple"><Award className="size-5" aria-hidden /></div>
+              <div><strong>{p.badges.length}</strong><p>Badges</p></div>
             </div>
-            <Card className="public-profile-milestones">
-              <CardHeader>
-                <p className="profile-activity-label">Achievements</p>
-                <CardTitle>Learning milestones</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {p.badges.length ? (
-                  <ul className="public-profile-badge-list">
-                    {p.badges.map((code) => (
-                      <li key={code}>
-                        <span className="profile-badge-count">{badgeNames[code] ?? "Badge"}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="py-4">
-                    <p className="text-sm font-semibold">No badges yet</p>
-                    <p className="mt-1 text-xs text-ink-muted">Badges appear here when they are earned.</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </>
-        ) : (
-          <Card className="public-profile-about">
-            <CardHeader>
-              <p className="profile-activity-label">Academic</p>
-              <CardTitle>Academic profile</CardTitle>
-            </CardHeader>
+          </div>
+          <Card className="public-profile-milestones">
+            <CardHeader><CardTitle>Learning milestones</CardTitle></CardHeader>
             <CardContent>
-              {academic.length ? (
-                <dl className="public-profile-about-grid">
-                  {academic.map(([label, value]) => (
-                    <div key={label}>
-                      <dt>{label}</dt>
-                      <dd>{value}</dd>
-                    </div>
+              {p.badges.length ? (
+                <ul className="public-profile-badge-list">
+                  {p.badges.map((code) => (
+                    <li key={code}>
+                      <Award className="size-4 shrink-0 text-brand-primary" aria-hidden />
+                      <span>{badgeNames[code] ?? "Badge"}</span>
+                    </li>
                   ))}
-                </dl>
+                </ul>
               ) : (
-                <p className="text-sm text-ink-muted">No academic information shared yet.</p>
+                <p className="text-sm text-ink-muted">No badges yet.</p>
               )}
-              <p className="public-profile-joined">Joined {joined}</p>
             </CardContent>
           </Card>
-        )}
+        </div>
+      </section>
+
+      <section id={`${id}-about`} role="tabpanel" aria-labelledby={`${id}-about-tab`} hidden={section !== "about"} tabIndex={0}>
+        <Card className="public-profile-about">
+          <CardHeader><CardTitle>Academic profile</CardTitle></CardHeader>
+          <CardContent>
+            {academic.length ? (
+              <dl className="public-profile-about-grid">
+                {academic.map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="text-sm text-ink-muted">No academic information shared yet.</p>
+            )}
+            <p className="public-profile-joined">Joined {joined}</p>
+          </CardContent>
+        </Card>
       </section>
       <p className="public-profile-disclaimer">Only information this person has chosen to share is shown.</p>
     </div>

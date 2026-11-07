@@ -97,3 +97,6 @@ enabled = false
 
 [functions.push-delivery]
 verify_jwt = false # Dedicated x-push-worker-secret verified inside the handler.
+
+[functions.engagement-email]
+verify_jwt = false # Scheduler secret or one-click unsubscribe token is checked in the handler.

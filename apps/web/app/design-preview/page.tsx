@@ -25,6 +25,7 @@ export default async function DesignPreview({ searchParams }: { searchParams: Pr
   if (state === "battle-friends") return <BattleLobbyPreview showFriendActions />;
   if (state === "battle-lobby") return <BattleLobbyPreview />;
   if (state === "public-profile") return <PublicProfilePreview />;
+  if (state === "public-profile-minimal") return <PublicProfilePreview key={state} minimal />;
   if (state === "leaderboard") return <ShellFrame pathname="/leaderboard" displayName="Learner"><LeaderboardPreview /></ShellFrame>;
   if (state === "lessons") return <ShellFrame pathname="/home" displayName="Learner"><LessonListPreview /></ShellFrame>;
   if (state === "social") {

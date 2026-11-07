@@ -3,8 +3,8 @@
 import { BookOpen, Settings } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, type ReactNode } from "react";
-import { CourseSelector } from "@/components/home/course-selector";
+import type { ReactNode } from "react";
+import { StreakFlame } from "@/components/icons/streak-flame";
 import { LeaderboardChrome } from "@/components/leaderboard/leaderboard-chrome";
 import { LeaderboardList } from "@/components/leaderboard/leaderboard-list";
 import { ShellFrame } from "@/components/shell/shell-frame";
@@ -22,7 +22,7 @@ const accountViews = {
 export function GuestExperience() {
   const params = useSearchParams();
   const view = params.get("view");
-  const course = guestCourses.find(({ offering_id }) => offering_id === params.get("course")) ?? guestCourses[0];
+  const course = guestCourses.find(({ id }) => id === params.get("course")) ?? guestCourses[0];
   let pathname = "/home";
   let content: ReactNode;
 
@@ -44,38 +44,46 @@ export function GuestExperience() {
       break;
     }
     default:
-      content = <GuestHome key={course.offering_id} initialCourse={course} />;
+      content = <GuestHome course={course} />;
   }
 
   return <ShellFrame guest pathname={pathname} guestControls={<GuestControls next={pathname} />}>{content}</ShellFrame>;
 }
 
-function GuestHome({ initialCourse }: { initialCourse: typeof guestCourses[number] }) {
-  const [selectedId, setSelectedId] = useState(initialCourse.offering_id);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const selected = guestCourses.find(({ offering_id }) => offering_id === selectedId) ?? initialCourse;
+function GuestHome({ course }: { course: typeof guestCourses[number] }) {
   return (
-    <div className="home-dashboard compact-home home-dashboard-course">
-      <div className="home-course-focus">
+    <div className="mx-auto grid w-full max-w-5xl gap-5 sm:gap-6">
+      <header className="grid gap-4 rounded-card border border-line bg-linear-to-r from-surface-tint to-surface-page p-4 sm:p-6">
         <p className="content-label">Guest preview</p>
-        <CourseSelector
-          preview
-          courses={guestCourses}
-          selectedId={selectedId}
-          open={menuOpen}
-          onOpenChange={setMenuOpen}
-          onSelect={setSelectedId}
-        />
-        <header className="home-course-heading"><h1>{selected.title}</h1></header>
-        <ul aria-label="Sample lessons" className="grid list-none gap-3">
-          {["Lesson 1", "Lesson 2", "Lesson 3"].map((label) => (
-            <li key={label} className="home-map-node">
-              <span className="home-map-node-marker" aria-hidden><BookOpen className="size-4" /></span>
-              <span className="home-map-node-title">{label}</span>
-            </li>
+        <nav aria-label="Sample courses" className="grid grid-cols-3 gap-1.5 rounded-xl bg-surface-page p-1.5 sm:max-w-md">
+          {guestCourses.map(({ id, title }) => (
+            <Link
+              key={id}
+              href={id === "1" ? "/home" : `/home?course=${id}`}
+              aria-current={course.id === id ? "page" : undefined}
+              className="grid min-h-11 place-items-center rounded-lg px-1 text-center text-sm font-semibold text-ink-muted hover:bg-surface-tint aria-[current=page]:bg-brand-primary aria-[current=page]:text-white"
+            >
+              {title}
+            </Link>
           ))}
-        </ul>
-      </div>
+        </nav>
+        <div className="home-course-heading"><h1>{course.title}</h1></div>
+      </header>
+      {[1, 2, 3, 4, 5].map((topic) => (
+        <section key={topic} aria-labelledby={`guest-topic-${topic}`} className="overflow-hidden rounded-card border border-line bg-surface-page">
+          <h2 id={`guest-topic-${topic}`} className="border-l-4 border-brand-primary bg-surface-tint px-4 py-3 text-base font-semibold text-ink sm:px-5">
+            Topic {topic}
+          </h2>
+          <ul aria-label={`Topic ${topic} lessons`} className="grid list-none gap-3 p-4 sm:grid-cols-3 sm:p-5">
+            {[1, 2, 3].map((lesson) => (
+              <li key={lesson} className="home-map-node">
+                <span className="home-map-node-marker" aria-hidden><BookOpen className="size-4" /></span>
+                <span className="home-map-node-title">Lesson {lesson}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }
@@ -103,15 +111,18 @@ function AccountLinks({ next }: { next: string }) {
 
 function GuestControls({ next }: { next: string }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button type="button" className="notification-button" aria-label="Guest settings"><Settings className="size-5" aria-hidden /></button>
-      </DialogTrigger>
-      <DialogContent className="max-w-sm">
-        <DialogTitle>Guest settings</DialogTitle>
-        <DialogDescription>Sign in or create an account to use ScholAu.</DialogDescription>
-        <AccountLinks next={next} />
-      </DialogContent>
-    </Dialog>
+    <>
+      <span className="grid size-9 shrink-0 place-items-center" aria-hidden><StreakFlame active size={23} /></span>
+      <Dialog>
+        <DialogTrigger asChild>
+          <button type="button" className="notification-button" aria-label="Guest settings"><Settings className="size-5" aria-hidden /></button>
+        </DialogTrigger>
+        <DialogContent className="max-w-sm">
+          <DialogTitle>Guest settings</DialogTitle>
+          <DialogDescription>Sign in or create an account to use ScholAu.</DialogDescription>
+          <AccountLinks next={next} />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

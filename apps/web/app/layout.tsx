@@ -20,7 +20,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu" },
   twitter: { card: "summary_large_image" },
-  appleWebApp: { capable: true, title: "ScholAu", statusBarStyle: "default", startupImage: startupImages },
+  appleWebApp: {
+    capable: true,
+    title: "ScholAu",
+    statusBarStyle: "default",
+    startupImage: startupImages.map(({ url, media }) => ({ url: `${url}?v=8`, media })),
+  },
   icons: {
     icon: [{ url: "/icons/app-white-on-blue-v1-192.png", sizes: "192x192", type: "image/png" }],
     apple: [{ url: "/icons/app-white-on-blue-v1-180.png", sizes: "180x180", type: "image/png" }],
@@ -42,7 +47,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     // Browser extensions may add attributes to <html> before React hydrates.
     <html lang="en" suppressHydrationWarning style={{ backgroundColor: "#ffffff" }}>
       <head>
-        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#ffffff!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
+        <style>{'[data-scholau-splash="blue-orbit"]{display:none}html[data-scholau-launch="cold"],html[data-scholau-launch="cold"] body{background:#0866e8!important}html[data-scholau-launch="cold"] [data-scholau-splash="blue-orbit"]{display:grid}'}</style>
         <script dangerouslySetInnerHTML={{ __html: LAUNCH_BOOTSTRAP }} />
       </head>
       <body>

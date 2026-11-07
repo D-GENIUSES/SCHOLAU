@@ -1,20 +1,10 @@
-import type { HomeSummary, LeaderboardRow } from "@scholau/api";
+import type { LeaderboardRow } from "@scholau/api";
 
-function sampleCourse(id: string): HomeSummary["enrolled_courses"][number] {
-  return {
-    offering_id: id,
-    course_id: id,
-    code: id,
-    title: `Course ${id}`,
-    lessons_total: 3,
-    lessons_completed: 0,
-  };
-}
-
-export const guestCourses = [sampleCourse("1"), sampleCourse("2"), sampleCourse("3")] satisfies [
-  HomeSummary["enrolled_courses"][number],
-  ...HomeSummary["enrolled_courses"],
-];
+export const guestCourses = [
+  { id: "1", title: "Course 1" },
+  { id: "2", title: "Course 2" },
+  { id: "3", title: "Course 3" },
+] as const;
 
 export const guestRanking: LeaderboardRow[] = [
   { rank: 1, user_id: "guest-1", display_name: "Ada M.", xp_total: 1280 },
