@@ -21,19 +21,22 @@ function pickAttention(items: LecturerQuiz[]) {
 }
 
 export function LecturerQuizAttention({ courses }: { courses: Pick<LecturerOffering, "id" | "code" | "title">[] }) {
+  const slice = courses.slice(0, 12);
   const queries = useQueries({
-    queries: courses.slice(0, 12).map(c => ({
+    queries: slice.map(c => ({
       queryKey: ["lecturer-quiz-attention", c.id],
       queryFn: () => api().list(c.id, 0),
       staleTime: 60_000,
+      retry: 1,
     })),
   });
   const items: Array<{ course: (typeof courses)[number]; quiz: LecturerQuiz }> = [];
   for (let i = 0; i < queries.length; i++) {
-    const course = courses[i];
+    const course = slice[i];
     const data = queries[i]?.data;
     if (!course || !data?.teacher) continue;
-    const { drafts, closingSoon, live } = pickAttention(data.items);
+    const list = Array.isArray(data.items) ? data.items.filter(Boolean) : [];
+    const { drafts, closingSoon, live } = pickAttention(list);
     for (const quiz of [...drafts.slice(0, 2), ...closingSoon.slice(0, 2), ...live.filter(q => !closingSoon.includes(q)).slice(0, 1)]) {
       items.push({ course, quiz });
     }

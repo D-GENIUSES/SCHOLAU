@@ -38,7 +38,7 @@ export function CourseQuizzes({ offering, lecturer = false }: { offering: string
     <div className="space-y-5 min-w-0">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          {list.data ? <p className="text-xs font-semibold text-brand-primary">{list.data.course.code} · {list.data.course.title}</p> : null}
+          {list.data?.course ? <p className="text-xs font-semibold text-brand-primary">{list.data.course.code} · {list.data.course.title}</p> : null}
           <h2 className="text-2xl font-bold tracking-tight">Class quizzes</h2>
           <p className="mt-1 text-sm text-ink-muted">Scheduled forms with timer, matric confirmation, and shuffled options.</p>
         </div>

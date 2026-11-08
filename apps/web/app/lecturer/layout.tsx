@@ -11,7 +11,7 @@ export default async function LecturerLayout({ children }: { children: ReactNode
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
   const { profile } = session;
   return (
-    <LecturerWorkspaceShell name={profile.display_name} avatar={profile.avatar_path} canTeach={profile.roles.includes("lecturer") || profile.roles.includes("admin")}>
+    <LecturerWorkspaceShell name={profile.display_name ?? "Lecturer"} avatar={profile.avatar_path} canTeach={profile.roles.includes("lecturer") || profile.roles.includes("admin")}>
       {children}
     </LecturerWorkspaceShell>
   );

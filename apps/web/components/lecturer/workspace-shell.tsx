@@ -45,20 +45,21 @@ function WorkspaceNavigation({ canTeach, mobile = false }: { canTeach: boolean; 
 }
 
 function AccountMenu({ name, avatar, mobile = false }: { name: string; avatar?: string | null; mobile?: boolean }) {
-  const initials = name.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((part) => Array.from(part)[0]).join("").toUpperCase();
+  const safeName = name?.trim() || "Lecturer";
+  const initials = safeName.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => Array.from(part)[0]).join("").toUpperCase();
   return (
     <Dialog>
       <DialogTrigger asChild>
         <button type="button" aria-label="Account menu" className={cn(navLink, mobile ? "justify-center px-1" : "w-full justify-start")}>
-          {avatar ? <Avatar name={name} path={avatar} size={32} /> : (
+          {avatar ? <Avatar name={safeName} path={avatar} size={32} /> : (
             <span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-surface-tint text-xs font-bold text-brand-primary">{initials || "SA"}</span>
           )}
-          {!mobile ? <><span className="min-w-0 flex-1 truncate text-left">{name}</span><ChevronDown className="size-4 shrink-0 text-ink-muted" aria-hidden /></> : null}
+          {!mobile ? <><span className="min-w-0 flex-1 truncate text-left">{safeName}</span><ChevronDown className="size-4 shrink-0 text-ink-muted" aria-hidden /></> : null}
         </button>
       </DialogTrigger>
       <DialogContent className="max-w-xs">
         <DialogTitle>Account</DialogTitle>
-        <DialogDescription className="break-words">{name}</DialogDescription>
+        <DialogDescription className="break-words">{safeName}</DialogDescription>
         <div className="space-y-1">
           {accountLinks.map(({ href, label }) => (
             <DialogClose key={href} asChild><Link href={href} className={navLink}>{label}</Link></DialogClose>
