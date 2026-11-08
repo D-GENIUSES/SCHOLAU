@@ -17,9 +17,10 @@ const tones: Record<LecturerQuizState, "neutral" | "brand" | "success" | "warnin
   cancelled: "danger",
 };
 
-export function QuizStateBadge({ state }: { state: LecturerQuizState }) {
-  const label = labels[state] ?? state;
-  return <Badge tone={tones[state] ?? "neutral"}>{label === "Open" ? "Open now" : label}</Badge>;
+export function QuizStateBadge({ state }: { state: LecturerQuizState | string }) {
+  const known = state in labels ? (state as LecturerQuizState) : null;
+  const label = known ? labels[known] : String(state || "Unknown");
+  return <Badge tone={known ? tones[known] : "neutral"}>{label === "Open" ? "Open now" : label}</Badge>;
 }
 
 export function formatQuizWindow(opens: string | null, closes: string | null) {

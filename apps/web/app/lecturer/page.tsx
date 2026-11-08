@@ -16,10 +16,12 @@ export default async function LecturerPage() {
     return <ServiceUnavailable reference="SA-LECTURER-COURSES" message="Your teaching assignments could not be loaded. Please try again." />;
   }
 
-  const offeringIds = new Set(courses.value.items.map(({ id }) => id));
-  const pending = submissions.status === "fulfilled"
-    ? submissions.value.items.filter((item) => item.status === "pending" && offeringIds.has(item.offering_id)).length
-    : 0;
+  const courseItems = Array.isArray(courses.value.items) ? courses.value.items : [];
+  const offeringIds = new Set(courseItems.map(({ id }) => id));
+  const submissionItems = submissions.status === "fulfilled" && Array.isArray(submissions.value.items)
+    ? submissions.value.items
+    : [];
+  const pending = submissionItems.filter((item) => item.status === "pending" && offeringIds.has(item.offering_id)).length;
 
-  return <LecturerDashboard courses={courses.value.items} pendingSubmissions={pending} />;
+  return <LecturerDashboard courses={courseItems} pendingSubmissions={pending} />;
 }

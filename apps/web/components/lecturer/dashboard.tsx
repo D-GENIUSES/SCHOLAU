@@ -5,6 +5,7 @@ import { EmptyState } from "@/components/ui/states";
 import { CreateQuizAction } from "./create-quiz-action";
 import { CourseQuickActions } from "./course-quick-actions";
 import { LecturerQuizAttention } from "./lecturer-quiz-attention";
+import { QuizAttentionBoundary } from "./quiz-attention-boundary";
 
 const row = "flex min-w-0 items-center gap-3 px-4 py-4 hover:bg-surface-tint focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-primary sm:px-5";
 
@@ -46,7 +47,9 @@ export function LecturerDashboard({ courses, pendingSubmissions }: {
         <EmptyState title="No teaching courses assigned yet" description="Your courses will appear here once an administrator assigns them to you." />
       )}
 
-      <LecturerQuizAttention courses={courses} />
+      <QuizAttentionBoundary>
+        <LecturerQuizAttention courses={courses} />
+      </QuizAttentionBoundary>
       {pendingSubmissions > 0 ? (
         <section aria-labelledby="lecturer-needs-attention" className="space-y-3">
           <h2 id="lecturer-needs-attention" className="text-xl font-bold tracking-tight sm:text-2xl">Needs attention</h2>
