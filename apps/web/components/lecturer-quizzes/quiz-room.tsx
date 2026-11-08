@@ -4,23 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import type { LecturerQuizAttempt, LecturerQuizDetail } from "@scholau/core";
+import { canonicalAnswerToDisplayIndex, isNestedOptionOrders } from "@scholau/core";
 import { MathText } from "@/components/math/math-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Failure, useChallengeClock } from "@/components/challenges/course-challenges";
 import { QuizEditor, QuizQuestionReview } from "./quiz-editor";
 import { QuizRoster, quizApi } from "./course-quizzes";
+import { QuizStateBadge, formatQuizWindow } from "./quiz-ui";
 import { lecturerQuizError } from "@/lib/lecturer-quiz-api";
 
 function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): number | undefined {
   const order = attempt.question_order;
   const perm = attempt.option_orders?.[displayIndex];
   if (!order || !perm) return attempt.answers[String(displayIndex)];
-  const cq = order[displayIndex];
-  const canonical = attempt.answers[String(cq)];
+  const cq = Number(order[displayIndex]);
+  const canonical = attempt.answers[String(cq)] ?? attempt.answers[cq];
   if (canonical === undefined) return undefined;
-  const found = perm.indexOf(canonical);
-  return found >= 0 ? found : undefined;
+  return canonicalAnswerToDisplayIndex(perm, Number(canonical));
 }
 
 export function QuizRoom({ id }: { id: string }) {
@@ -38,10 +39,13 @@ export function QuizRoom({ id }: { id: string }) {
   return (
     <div className="space-y-6 min-w-0 break-words">
       <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/courses/${q.offering_id}/quizzes`}>Back to quizzes</Link>
-      <h1 className="text-2xl font-bold">{q.title}</h1>
-      <p className="whitespace-pre-wrap">{q.instructions}</p>
-      <p className="capitalize">{q.state} · {q.question_count} questions · {q.duration_minutes} minutes per attempt</p>
-      {q.opens_at && q.closes_at ? <p>{new Date(q.opens_at).toLocaleString()} – {new Date(q.closes_at).toLocaleString()}</p> : null}
+      <div className="flex flex-wrap items-center gap-2">
+        <h1 className="text-2xl font-bold">{q.title}</h1>
+        <QuizStateBadge state={q.state} />
+      </div>
+      <p className="whitespace-pre-wrap text-ink-muted">{q.instructions}</p>
+      <p className="text-sm text-ink-muted">{q.question_count} questions · {q.duration_minutes} minutes per attempt</p>
+      <p className="text-sm text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
       <Failure error={actionError ? new Error(lecturerQuizError(actionError)) : query.error} retry={() => { setActionError(null); void query.refetch(); }} />
       {q.state === "cancelled" ? <p>This quiz was cancelled.</p> : d.teacher ? (
         <>
@@ -81,6 +85,14 @@ function StudentQuizFlow({ detail, refresh, busy, act }: { detail: LecturerQuizD
     return <QuizIntake detail={detail} busy={busy} onStart={matric => void act(() => quizApi().start(detail.quiz.id, matric))} />;
   }
   if (detail.attempt && !detail.attempt.submitted_at && detail.questions.length) {
+    const badShuffle = !isNestedOptionOrders(detail.attempt.option_orders, detail.questions.length);
+    if (badShuffle) {
+      return (
+        <p role="alert" className="rounded-lg border border-danger bg-danger-bg px-3 py-2 text-sm text-danger">
+          This attempt was started before a server fix and cannot save answers safely. Start a new attempt (if allowed) or ask your lecturer to republish the quiz.
+        </p>
+      );
+    }
     return <QuizAttemptView detail={detail} refresh={refresh} />;
   }
   return null;

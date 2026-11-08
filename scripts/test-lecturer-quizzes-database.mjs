@@ -4,6 +4,7 @@ import { createChallengeTestDatabase } from "./lib/course-challenge-test-db.mjs"
 
 const { db, id, query, login, lecturer, students, offering } = await createChallengeTestDatabase();
 await db.exec(readFileSync("supabase/migrations/20261108000100_lecturer_course_quizzes.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261108000200_fix_quiz_option_orders.sql", "utf8"));
 let checks = 0;
 const rpc = async (name, args = []) => (await query(`select public.${name}($${args.map((_, i) => i + 1).join(",$")}) as value`, args))[0].value;
 const eq = (a, b) => { assert.deepEqual(a, b); checks++; };
@@ -37,6 +38,9 @@ detail = await rpc("get_course_quiz_v1", [quizId]);
 eq(detail.questions.length, 1);
 eq(detail.questions[0].correct, undefined);
 assert.ok(detail.attempt.question_order.length === 1);
+const oo = (await query("select option_orders::text as value from private.lecturer_course_quiz_attempts where quiz_id=$1 and user_id=$2", [quizId, students[0]]))[0].value;
+assert.match(oo, /^\[\[/, "option_orders must be nested array-of-arrays");
+assert.ok(detail.attempt.option_orders?.length === 1 && Array.isArray(detail.attempt.option_orders[0]));
 await rpc("save_lecturer_quiz_answer_v1", [quizId, 0, detail.questions[0].options.indexOf("4"), detail.attempt.revision]);
 detail = await rpc("submit_lecturer_quiz_attempt_v1", [quizId, detail.attempt.revision + 1]);
 eq(detail.attempt.score, 1);

@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { LecturerOffering } from "@scholau/core";
 import { EmptyState } from "@/components/ui/states";
 import { CreateQuizAction } from "./create-quiz-action";
+import { CourseQuickActions } from "./course-quick-actions";
+import { LecturerQuizAttention } from "./lecturer-quiz-attention";
 
 const row = "flex min-w-0 items-center gap-3 px-4 py-4 hover:bg-surface-tint focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-primary sm:px-5";
 
@@ -24,16 +26,19 @@ export function LecturerDashboard({ courses, pendingSubmissions }: {
         <ul aria-label="Assigned courses" className="divide-y divide-line overflow-hidden rounded-card border border-line bg-surface-card">
           {courses.map((course) => (
             <li key={course.id}>
-              <Link href={`/lecturer/courses/${course.id}/content`} className={`${row} relative`}>
-                <div className="min-w-0 flex-1 wrap-break-word">
-                  <p className="font-bold sm:text-lg">{course.code}</p>
-                  <p className="text-sm leading-snug text-ink">{course.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">{course.department} · {course.period}</p>
-                  <p className="mt-1 text-xs text-ink-muted min-[420px]:hidden">{course.semester}</p>
-                </div>
-                <p className="hidden max-w-32 shrink-0 text-right text-sm text-ink-muted min-[420px]:block">{course.semester}</p>
-                <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden />
-              </Link>
+              <div className={`${row.replace("hover:bg-surface-tint", "")} flex-col items-stretch sm:flex-row`}>
+                <Link href={`/lecturer/courses/${course.id}/content`} className="flex min-w-0 flex-1 items-center gap-3 focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand-primary">
+                  <div className="min-w-0 flex-1 wrap-break-word">
+                    <p className="font-bold sm:text-lg">{course.code}</p>
+                    <p className="text-sm leading-snug text-ink">{course.title}</p>
+                    <p className="mt-1 text-xs text-ink-muted">{course.department} · {course.period}</p>
+                    <p className="mt-1 text-xs text-ink-muted min-[420px]:hidden">{course.semester}</p>
+                  </div>
+                  <p className="hidden max-w-32 shrink-0 text-right text-sm text-ink-muted min-[420px]:block">{course.semester}</p>
+                  <ChevronRight className="size-4 shrink-0 text-ink-muted" aria-hidden />
+                </Link>
+                <CourseQuickActions offeringId={course.id} />
+              </div>
             </li>
           ))}
         </ul>
@@ -41,6 +46,7 @@ export function LecturerDashboard({ courses, pendingSubmissions }: {
         <EmptyState title="No teaching courses assigned yet" description="Your courses will appear here once an administrator assigns them to you." />
       )}
 
+      <LecturerQuizAttention courses={courses} />
       {pendingSubmissions > 0 ? (
         <section aria-labelledby="lecturer-needs-attention" className="space-y-3">
           <h2 id="lecturer-needs-attention" className="text-xl font-bold tracking-tight sm:text-2xl">Needs attention</h2>
