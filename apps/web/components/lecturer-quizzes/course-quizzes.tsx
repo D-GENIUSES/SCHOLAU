@@ -55,7 +55,7 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
     URL.revokeObjectURL(url);
   }
   return <section className="space-y-3" aria-label="Quiz results">
-    <motionFailure error={roster.error} retry={() => void roster.refetch()} />
+    <Failure error={roster.error} retry={() => void roster.refetch()} />
     <div className="flex flex-wrap gap-2 items-end">
       <label className="block flex-1 min-w-[12rem]">Search<Input value={search} onChange={e => { setSearch(e.target.value); setOffset(0); }} /></label>
       <Button type="button" variant="secondary" onClick={() => void downloadCsv()}>Download CSV</Button>
@@ -68,8 +68,4 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
     ))}</ul>
     <Paging offset={offset} hasMore={roster.data?.items.length === 50} change={setOffset} />
   </section>;
-}
-
-function motionFailure({ error, retry }: { error: unknown; retry?: () => void }) {
-  return <Failure error={error} retry={retry} />;
 }

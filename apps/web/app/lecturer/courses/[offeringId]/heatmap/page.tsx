@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
@@ -38,8 +37,7 @@ export default function LecturerTopicHeatmap() {
     return () => window.clearTimeout(timer);
   }, [load]);
   return (
-    <main className="mx-auto max-w-4xl space-y-5">
-      <Link href="/lecturer" className="text-brand-primary underline">Back to my courses</Link>
+    <section className="space-y-5">
       <h1 className="text-2xl font-bold">Class topic heatmap</h1>
       <p className="text-sm text-ink-muted">Based on students enrolled in this course who completed both topic checks. Small groups are hidden; no individual answers or student names are shown.</p>
       <Button variant="outline" size="sm" onClick={() => void load()}>Refresh class results</Button>
@@ -63,6 +61,6 @@ export default function LecturerTopicHeatmap() {
         </div>
       ) : <p>No class-level topic data meets the five-student privacy threshold yet.</p>}
       {suppressed ? <p className="text-sm text-ink-muted">{suppressed} small topic groups were hidden to protect student privacy.</p> : null}
-    </main>
+    </section>
   );
 }

@@ -16,6 +16,7 @@ export function lecturerApi(client: AnySupabaseClient) {
     },
     mine: () => rpc<{ application: LecturerApplication | null }>("get_my_lecturer_application_v1"),
     courses: () => rpc<{ items: LecturerOffering[] }>("get_my_lecturer_courses_v1"),
+    studentSubmissions: () => rpc<{ items: { offering_id: string; status: string }[] }>("list_student_materials_v1"),
     list: (status: LecturerApplicationStatus | null, search: string, offset: number) => rpc<{ items: LecturerApplication[]; total: number; pending_count: number }>("admin_list_lecturer_applications_v1", { p_status: status, p_search: search, p_offset: offset, p_limit: 20 }),
     detail: (id: string) => rpc<{ application: LecturerApplication }>("admin_get_lecturer_application_v1", { p_application_id: id }),
     offerings: () => rpc<{ items: LecturerOffering[] }>("admin_get_lecturer_offerings_v1"),

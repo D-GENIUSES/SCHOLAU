@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -84,9 +83,8 @@ export default function ManageCourseAssignments() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl space-y-5">
-      <Link href="/lecturer" className="text-brand-primary underline">Back to my courses</Link>
-      <h1 className="text-2xl font-bold">Light assignments</h1>
+    <section className="space-y-5">
+      <h1 className="text-2xl font-bold">Assignments</h1>
       <p className="text-sm text-ink-muted">Give students an existing lesson or untimed practice set to finish by a date. This does not create a challenge, affect official grades or restrict attempts.</p>
       <form onSubmit={create} className="space-y-3 rounded-card border border-line p-5">
         <label className="block space-y-1"><span className="font-semibold">Assignment title</span>
@@ -110,6 +108,6 @@ export default function ManageCourseAssignments() {
           </li>
         ))}</ul> : <p className="text-sm text-ink-muted">No assignments created yet.</p>}
       </section>
-    </main>
+    </section>
   );
 }

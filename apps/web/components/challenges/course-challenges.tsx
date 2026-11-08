@@ -16,15 +16,21 @@ export function Failure({ error, retry }: { error: unknown; retry?: () => void }
 export function Paging({ offset, hasMore, change }: { offset: number; hasMore: boolean; change: (offset: number) => void }) {
   return <div className="flex flex-wrap gap-2"><Button type="button" variant="secondary" disabled={!offset} onClick={() => change(Math.max(0, offset - 20))}>Previous page</Button><Button type="button" variant="secondary" disabled={!hasMore} onClick={() => change(offset + 20)}>Next page</Button></div>;
 }
-export function CourseChallenges({ offering }: { offering: string }) {
+export function CourseChallenges({ offering, workspace = false }: { offering: string; workspace?: boolean }) {
   const [offset, setOffset] = useState(0);
   const query = useQuery({ staleTime: 0, queryKey: ["course-challenges", offering, offset], queryFn: () => api().list(offering, offset), refetchInterval: 15000 });
   return <section className="space-y-4 min-w-0"><h1 className="text-2xl font-bold">Course challenges</h1>
     <Failure error={query.error} retry={() => void query.refetch()} />
     {query.isPending && <p role="status">Loading challenges…</p>}
-    {query.data && <><p>{query.data.course.code} · {query.data.course.title}<br />{query.data.course.period} · {query.data.course.semester}</p>
-      <Link className="inline-flex min-h-11 items-center underline" href={query.data.teacher ? "/lecturer" : `/study/courses/${offering}`}>Back to course</Link>
-      {query.data.teacher && <div className="flex flex-wrap gap-3"><Button asChild><Link href={`/lecturer/courses/${offering}/challenges/new`}>Create challenge</Link></Button><Button asChild variant="secondary"><Link href={`/lecturer/courses/${offering}/students`}>Enrolled students</Link></Button></div>}
+    {query.data && <>
+      {!workspace && <>
+        <p>{query.data.course.code} · {query.data.course.title}<br />{query.data.course.period} · {query.data.course.semester}</p>
+        <Link className="inline-flex min-h-11 items-center underline" href={query.data.teacher ? "/lecturer" : `/study/courses/${offering}`}>Back to course</Link>
+      </>}
+      {query.data.teacher && <div className="flex flex-wrap gap-3">
+        <Button asChild><Link href={`/lecturer/courses/${offering}/challenges/new`}>Create challenge</Link></Button>
+        {!workspace && <Button asChild variant="secondary"><Link href={`/lecturer/courses/${offering}/students`}>Enrolled students</Link></Button>}
+      </div>}
       {!query.data.items.length && <p>No challenges on this page.</p>}
       <ul className="grid gap-3 sm:grid-cols-2">{query.data.items.map(c => <li key={c.id} className="min-w-0 rounded-xl border border-line p-4 space-y-2 break-words"><h2 className="font-bold">{c.title}</h2><p className="capitalize">{c.state} · {c.question_count} questions · {c.duration_minutes} minutes</p><p>{c.starts_at ? new Date(c.starts_at).toLocaleString() : "Unpublished draft"}</p><Button asChild variant="secondary"><Link href={`/challenges/${c.id}`}>Open challenge</Link></Button></li>)}</ul>
       <Paging offset={offset} hasMore={query.data.items.length === 20} change={setOffset} /></>}

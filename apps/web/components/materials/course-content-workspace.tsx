@@ -1,7 +1,6 @@
 "use client";
 
 import { Upload } from "lucide-react";
-import Link from "next/link";
 import { type ChangeEvent, useCallback, useEffect, useState } from "react";
 import { newRequestKey } from "@scholau/api";
 import { Alert } from "@/components/ui/alert";
@@ -45,12 +44,8 @@ type OutlineSegment = {
 
 export function CourseContentWorkspace({
   offeringId,
-  backHref,
-  backLabel,
 }: {
   offeringId: string;
-  backHref: string;
-  backLabel: string;
 }) {
   const [curriculum, setCurriculum] = useState<Curriculum | null>(null);
   const [loading, setLoading] = useState(true);
@@ -192,15 +187,12 @@ export function CourseContentWorkspace({
   if (loading) return <LoadingState label="Loading course content…" />;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="space-y-6">
       <PageHeader
         eyebrow={curriculum?.course.code}
         title="Topics and lessons"
         description="Upload sources to a single lesson or split a file across every lesson in a topic."
       />
-      <Button asChild variant="outline">
-        <Link href={backHref}>{backLabel}</Link>
-      </Button>
       {message ? <Alert tone="info">{message}</Alert> : null}
 
       {curriculum?.modules.length === 0 ? (

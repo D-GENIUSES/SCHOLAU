@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { generateQuizQuestionsFromSource } from "@scholau/core";
+import { generateQuizQuestionsFromSource } from "@scholau/core/ingestion";
 import { getRequestSupabase } from "@/lib/supabase/request";
 
 export const runtime = "nodejs";
