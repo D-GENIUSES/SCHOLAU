@@ -170,6 +170,47 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
     /** Owner view of an attempt (active or finalized) according to the feedback policy. */
     getAttempt: (attemptId: string) => rpc<T.Attempt>("get_attempt_result_v1", { p_attempt_id: attemptId }),
 
+    listCourseQuizzes: (offeringId: string, offset = 0) =>
+      rpc<T.LecturerQuizList>("list_course_quizzes_v1", { p_offering_id: offeringId, p_offset: offset }),
+    saveLecturerQuiz: (a: { id: string; offeringId: string; revision: number; data: Record<string, unknown> }) =>
+      rpc<T.LecturerQuizSaveResult>("save_lecturer_quiz_v1", {
+        p_id: a.id,
+        p_offering_id: a.offeringId,
+        p_revision: a.revision,
+        p_data: a.data,
+      }),
+    publishLecturerQuiz: (id: string, revision: number) =>
+      rpc<{ quiz: T.LecturerQuiz }>("publish_lecturer_quiz_v1", { p_id: id, p_revision: revision }),
+    cancelLecturerQuizDraft: (id: string) => rpc<{ cancelled: boolean }>("cancel_lecturer_quiz_draft_v1", { p_id: id }),
+    getCourseQuiz: (id: string) => rpc<T.LecturerQuizDetail>("get_course_quiz_v1", { p_id: id }),
+    startLecturerQuizAttempt: (quizId: string, matricNumber: string) =>
+      rpc<T.LecturerQuizDetail>("start_lecturer_quiz_attempt_v1", { p_quiz_id: quizId, p_matric_number: matricNumber }),
+    saveLecturerQuizAnswer: (quizId: string, displayQuestion: number, displayOption: number, revision: number) =>
+      rpc<T.LecturerQuizDetail>("save_lecturer_quiz_answer_v1", {
+        p_quiz_id: quizId,
+        p_display_question: displayQuestion,
+        p_display_option: displayOption,
+        p_revision: revision,
+      }),
+    submitLecturerQuizAttempt: (quizId: string, revision: number) =>
+      rpc<T.LecturerQuizDetail>("submit_lecturer_quiz_attempt_v1", { p_quiz_id: quizId, p_revision: revision }),
+    lecturerQuizRoster: (offeringId: string, quizId: string, search = "", offset = 0) =>
+      rpc<T.LecturerQuizRoster>("lecturer_quiz_roster_v1", {
+        p_offering_id: offeringId,
+        p_quiz_id: quizId,
+        p_search: search,
+        p_offset: offset,
+      }),
+    exportLecturerQuizResults: (quizId: string) => rpc<T.LecturerQuizExport>("export_lecturer_quiz_results_v1", { p_quiz_id: quizId }),
+    startLecturerQuizImport: (quizId: string, offeringId: string, objectKey: string, mimeType: string) =>
+      rpc<{ job_id: string }>("start_lecturer_quiz_import_v1", {
+        p_quiz_id: quizId,
+        p_offering_id: offeringId,
+        p_object_key: objectKey,
+        p_mime_type: mimeType,
+      }),
+    getLecturerQuizImport: (jobId: string) => rpc<T.LecturerQuizImportJob>("get_lecturer_quiz_import_v1", { p_job_id: jobId }),
+
     /* ----------------------------------- Reports & notices ------------------------------------ */
     reportContent: (a: Keyed<{ targetType: ReportTargetType; targetId?: string | null; category: ReportCategory; note: string }>) =>
       rpc<T.ReportReceipt>("report_content_v1", {

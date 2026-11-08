@@ -1519,3 +1519,97 @@ export interface PushHealth extends Envelope {
   oldest_pending_at: string | null;
   failures: Array<{ id: string; last_code: string | null; attempts: number; updated_at: string }>;
 }
+
+export type LecturerQuizState = "draft" | "upcoming" | "open" | "closed" | "cancelled";
+
+export interface LecturerQuiz extends Envelope {
+  id: Uuid;
+  offering_id: Uuid;
+  title: string;
+  instructions: string;
+  duration_minutes: number;
+  state: LecturerQuizState;
+  opens_at: string | null;
+  closes_at: string | null;
+  revision: number;
+  question_count: number;
+  max_attempts: number;
+  feedback_mode: "after_submit" | "immediate";
+}
+
+export interface LecturerQuizQuestion {
+  prompt: string;
+  options: string[];
+  correct?: number;
+  explanation?: string;
+}
+
+export interface LecturerQuizList extends Envelope {
+  items: LecturerQuiz[];
+  teacher: boolean;
+  course: { code: string; title: string; semester: string; period: string };
+}
+
+export interface LecturerQuizSaveResult extends Envelope {
+  quiz: LecturerQuiz;
+  questions: LecturerQuizQuestion[];
+}
+
+export interface LecturerQuizAttempt {
+  id: string;
+  attempt_number: number;
+  answers: Record<string, number>;
+  revision: number;
+  started_at: string;
+  expires_at: string;
+  submitted_at: string | null;
+  score: number | null;
+}
+
+export interface LecturerQuizDetail extends Envelope {
+  quiz: LecturerQuiz;
+  teacher: boolean;
+  questions: LecturerQuizQuestion[];
+  attempts_used: number;
+  profile: { display_name: string; department: string | null; matric_number: string | null } | null;
+  identity: { matric_number: string; display_name: string; department: string } | null;
+  attempt: LecturerQuizAttempt | null;
+  server_time: string;
+}
+
+export interface LecturerQuizRoster extends Envelope {
+  items: Array<{
+    user_id: string;
+    name: string;
+    matric_number: string | null;
+    department: string | null;
+    attempt_number: number | null;
+    score: number | null;
+    submitted_at: string | null;
+    status: "not_started" | "in_progress" | "submitted";
+  }>;
+  total: number;
+  quiz: LecturerQuiz;
+}
+
+export interface LecturerQuizExport extends Envelope {
+  quiz: LecturerQuiz;
+  questions: LecturerQuizQuestion[];
+  rows: Array<{
+    matric_number: string;
+    name: string;
+    department: string;
+    attempt_number: number;
+    score: number | null;
+    total: number;
+    submitted_at: string | null;
+    answers: Record<string, number>;
+  }>;
+}
+
+export interface LecturerQuizImportJob extends Envelope {
+  job_id: string;
+  status: "pending" | "processing" | "completed" | "failed";
+  proposed_questions: LecturerQuizQuestion[] | null;
+  error_message: string | null;
+}

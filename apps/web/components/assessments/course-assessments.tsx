@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, Coffee, ListChecks, Timer, Trophy } from "lucide-react";
+import { ArrowRight, ClipboardList, Coffee, ListChecks, Timer, Trophy } from "lucide-react";
+import { CourseQuizzes } from "@/components/lecturer-quizzes/course-quizzes";
 import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
 import { useStartAttempt, useStartTopicQuiz, useTopicQuizOptions } from "@scholau/api/react";
 import { formatDuration, pluralize } from "@scholau/core";
@@ -20,6 +21,7 @@ const tabs = [
   { id: "quiz", label: "Topic quiz", icon: ListChecks },
   { id: "mock", label: "Mock exam", icon: Timer },
   { id: "challenges", label: "Challenges", icon: Trophy },
+  { id: "class-quizzes", label: "Class quizzes", icon: ClipboardList },
 ] as const;
 
 export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseOverview; initialTab?: (typeof tabs)[number]["id"] }) {
@@ -31,7 +33,7 @@ export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseO
         <h1 className="mt-1 text-2xl font-bold tracking-tight">Assessments</h1>
         <p className="mt-1 text-sm text-ink-muted">Choose how you want to practise.</p>
       </header>
-      <div role="tablist" aria-label="Assessment type" className="mb-4 grid grid-cols-3 border-b border-line">
+      <div role="tablist" aria-label="Assessment type" className="mb-4 grid grid-cols-2 sm:grid-cols-4 border-b border-line">
         {tabs.map(({ id, label, icon: Icon }, index) => (
           <button key={id} type="button" role="tab" id={`assessment-tab-${id}`} aria-controls={`assessment-panel-${id}`} aria-selected={tab === id}
             tabIndex={tab === id ? 0 : -1}
@@ -53,7 +55,7 @@ export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseO
       {tabs.map(({ id }) => (
         <section key={id} role="tabpanel" id={`assessment-panel-${id}`} aria-labelledby={`assessment-tab-${id}`} hidden={tab !== id}
           className="min-w-0 rounded-card border border-line bg-surface-card p-4 sm:p-5">
-          {id === "quiz" ? <TopicQuiz data={data} /> : id === "mock" ? <MockExam assessments={data.assessments.filter(a => a.kind === "mock")} /> : tab === "challenges" ? <CompactChallenges offeringId={data.offering_id} /> : null}
+          {id === "quiz" ? <TopicQuiz data={data} /> : id === "mock" ? <MockExam assessments={data.assessments.filter(a => a.kind === "mock")} /> : id === "challenges" ? <CompactChallenges offeringId={data.offering_id} /> : id === "class-quizzes" ? <CourseQuizzes offering={data.offering_id} /> : null}
         </section>
       ))}
     </>

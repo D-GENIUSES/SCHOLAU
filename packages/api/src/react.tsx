@@ -254,6 +254,16 @@ export function useTopicQuizOptions(offeringId: string) {
   return useQuery({ queryKey: ["scholau", "course", offeringId, "topic-quiz"], queryFn: () => api.getTopicQuizOptions(offeringId) });
 }
 
+export function useCourseQuizzes(offeringId: string, offset = 0) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "course", offeringId, "class-quizzes", offset], queryFn: () => api.listCourseQuizzes(offeringId, offset) });
+}
+
+export function useCourseQuiz(quizId: string) {
+  const api = useScholauApi();
+  return useQuery({ queryKey: ["scholau", "course-quiz", quizId], queryFn: () => api.getCourseQuiz(quizId) });
+}
+
 export function useStartTopicQuiz() {
   const api = useScholauApi();
   const qc = useQueryClient();

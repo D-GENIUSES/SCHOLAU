@@ -79,3 +79,21 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     throw new Error("MATERIAL_GENERATION_FAILED: no drafts were imported. Check the model configuration and retry the source.", { cause });
   }
 }
+
+export async function generateGeminiJson(
+  parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }>,
+): Promise<unknown> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error("GEMINI_NOT_CONFIGURED");
+  const { GoogleGenAI } = await import("@google/genai");
+  const model = process.env.GEMINI_MODEL ?? "gemini-3-flash-preview";
+  const ai = new GoogleGenAI({ apiKey });
+  const response = await ai.models.generateContent({
+    model,
+    contents: [{ role: "user", parts: parts.map(p => (p.text ? { text: p.text } : { inlineData: p.inlineData! })) }],
+    config: { responseMimeType: "application/json" },
+  });
+  const text = response.text?.trim();
+  if (!text) throw new Error("Empty Gemini response");
+  return JSON.parse(text);
+}

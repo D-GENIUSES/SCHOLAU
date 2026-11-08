@@ -9,3 +9,4 @@ export * from "./prompts";
 export * from "./normalize-gap";
 export * from "./flashcards";
 export * from "./gemini-outline";
+export * from "./gemini-quiz-extract";

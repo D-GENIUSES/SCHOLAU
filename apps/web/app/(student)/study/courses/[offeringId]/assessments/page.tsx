@@ -15,7 +15,7 @@ export default function CourseAssessmentsPage() {
 function AssessmentsRoute() {
   const { offeringId } = useParams<{ offeringId: string }>();
   const requestedTab = useSearchParams().get("tab");
-  const initialTab = requestedTab === "mock" || requestedTab === "challenges" ? requestedTab : "quiz";
+  const initialTab = requestedTab === "mock" || requestedTab === "challenges" || requestedTab === "class-quizzes" ? requestedTab : "quiz";
   const overview = useCourseOverview(offeringId);
   return (
     <div className="mx-auto w-full max-w-3xl min-w-0">
