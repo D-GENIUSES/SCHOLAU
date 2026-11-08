@@ -136,7 +136,7 @@ export function MaterialUploadPage({
             <NativeSelect id="topic-mode" value={topicMode} onChange={(e: ChangeEvent<HTMLSelectElement>) => setTopicMode(e.target.value)}>
               <option value="new_module">New topic (module)</option>
               <option value="existing_module">Existing module</option>
-              <option value="auto_segment">Let AI suggest topics (confirm later)</option>
+              <option value="auto_segment">Suggest topics (confirm later)</option>
             </NativeSelect>
           </Field>
           <Field id="module-title" label="Module / topic title">
@@ -147,7 +147,7 @@ export function MaterialUploadPage({
           </Field>
           {message ? <Alert tone={status === "failed" ? "error" : "info"}>{message}</Alert> : null}
           <Button size="lg" onClick={() => void upload()} disabled={uploading || !offeringId || !file || courseOptions.length === 0} loading={uploading}>
-            <Upload className="size-4" aria-hidden /> Upload and process with Gemini
+            <Upload className="size-4" aria-hidden /> Upload and process
           </Button>
           {jobId ? <p className="text-sm text-ink-muted">Job {jobId} — {status ?? "…"}</p> : null}
           {workspace === "admin" ? (

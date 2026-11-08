@@ -165,7 +165,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
           <>
             <div className="rounded-xl border border-line p-4 space-y-2">
               <p className="font-semibold">Import from PDF or Word</p>
-              <p className="text-sm text-ink-muted">AI proposes questions — you choose which rows to add.</p>
+              <p className="text-sm text-ink-muted">Review the suggested questions and choose which rows to add.</p>
               <Input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange={e => { const f = e.target.files?.[0]; if (f) void uploadImport(f); e.target.value = ""; }} />
             </div>
             <h2 className="text-xl font-bold">Questions ({draft.questions.length}/100)</h2>
