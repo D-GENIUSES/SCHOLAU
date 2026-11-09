@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Swords } from "lucide-react";
 import type { ReactNode } from "react";
 import type { QueueEntry } from "@scholau/api";
 import { COPY, formatCountdown } from "@scholau/core";
@@ -27,16 +28,17 @@ export function QueueWaiting({
   const elapsed = useServerElapsed(queue.queued_at);
   if (remaining <= 0) return <>{noOpponent}</>;
   return (
-    <Card>
-      <CardHeader>
+    <Card className="rounded-2xl border-brand-primary/20 shadow-none">
+      <CardHeader className="items-center gap-3 text-center">
+        <span className="flex size-14 items-center justify-center rounded-2xl bg-surface-tint text-brand-primary"><Swords className="size-7" aria-hidden /></span>
         <CardTitle as="h2">Looking for an opponent</CardTitle>
         <CardDescription>
           {courseLabel ? `${courseLabel} · ` : null}We&apos;ll match you with a classmate in the same course.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <p className="text-sm text-ink-muted">
-          Waiting for <span className="font-semibold text-ink tabular-nums">{formatCountdown(elapsed)}</span>
+        <p className="rounded-xl bg-surface-tint p-4 text-center text-sm text-ink-muted">
+          Searching for <span className="block text-3xl font-bold tabular-nums text-brand-primary">{formatCountdown(elapsed)}</span>
         </p>
         <CountdownBar
           remainingMs={remaining}
@@ -46,7 +48,7 @@ export function QueueWaiting({
         />
       </CardContent>
       <CardFooter>
-        <Button variant="outline" onClick={onCancel} loading={cancelling}>
+        <Button className="min-h-11" block variant="outline" onClick={onCancel} loading={cancelling}>
           Cancel search
         </Button>
       </CardFooter>

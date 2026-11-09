@@ -145,14 +145,13 @@ export default function BattlePage() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="battle-experience flex min-w-0 flex-col gap-3 sm:gap-4">
       <h1 className="sr-only">{battle?.course ? `${battle.course.code} battle` : "Battle"}</h1>
       <BattleTopBar battle={battle} live={live} onLeave={() => setLeaveOpen(true)} />
       {live && (disconnected || q.isError || slowRequest) ? <ReconnectBanner offline={!online} delayed={!disconnected} onRefresh={() => void refetch()} refreshing={q.isFetching} /> : null}
-      {battle && (battle.state === "ready" || battle.state === "countdown" || battle.state === "active") ? (
-        <BattleScoreboard battle={battle} footer={<BattleReactionBar battle={battle} />} />
+      {battle && battle.participants.length === 2 ? (
+        <BattleScoreboard battle={battle} preview={!live} result={<BattleRoundResultStrip result={battle.latest_round_result} />} footer={live && battle.state !== "waiting" ? <BattleReactionBar battle={battle} /> : null} />
       ) : null}
-      <BattleRoundResultStrip key={`round-result-${id}`} result={battle?.latest_round_result} />
       {body}
       <LeaveBattleDialog
         open={leaveOpen}

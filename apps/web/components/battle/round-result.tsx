@@ -13,8 +13,8 @@ export function BattleRoundResultStrip({ result }: { result?: BattleRoundResult 
   return (
     <div role="status" aria-live="polite" aria-atomic="true">
       {result ? (
-        <div className="flex min-w-0 flex-wrap items-center justify-center gap-x-4 gap-y-1 rounded-xl border border-line bg-surface-tint px-3 py-2 text-xs sm:text-sm">
-          <strong>Q{result.position}</strong>
+        <div className="grid min-w-0 grid-cols-2 gap-x-3 gap-y-1 rounded-xl bg-surface-tint px-3 py-2 text-xs sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:text-sm">
+          <strong className="col-span-2 text-brand-primary">Q{result.position} · Round result</strong>
           <Result label="You" status={result.my_status} />
           <Result label="Opponent" status={result.opponent_status} />
         </div>
@@ -25,5 +25,5 @@ export function BattleRoundResultStrip({ result }: { result?: BattleRoundResult 
 
 function Result({ label, status }: { label: string; status: BattleRoundStatus }) {
   const value = LABELS[status];
-  return <span>{label}: <strong>{value.text}</strong> <span aria-hidden="true">{value.icon}</span></span>;
+  return <span className="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-1"><span>{label}:</span><span className="whitespace-nowrap"><strong>{value.text}</strong> <span aria-hidden="true">{value.icon}</span></span></span>;
 }

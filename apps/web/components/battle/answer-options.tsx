@@ -26,7 +26,7 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
             <label key={option.id} className={cn(
               "relative flex min-w-0 cursor-pointer gap-3 border-2 transition-colors focus-within:ring-2 focus-within:ring-brand-primary focus-within:ring-offset-2",
               worked ? "min-h-40 flex-col rounded-2xl p-3 sm:min-h-44 sm:p-4" : "min-h-[56px] items-center rounded-xl px-3 py-2 sm:min-h-[64px]",
-              checked ? "border-brand-primary bg-surface-tint" : "border-brand-primary/20 bg-surface-card hover:border-brand-primary",
+              checked ? "border-brand-primary bg-surface-tint ring-1 ring-brand-primary" : "border-line bg-surface-card hover:border-brand-primary",
               disabled && "cursor-default",
             )}>
               <span className="flex shrink-0 items-center gap-2">
@@ -42,7 +42,7 @@ export function BattleAnswerOptions({ question, selected, disabled, received, on
                 ) : null}
                 <span className={cn("whitespace-pre-wrap text-sm font-semibold", worked && "mt-auto border-t border-line pt-3 font-bold")}><MathText text={option.body} /></span>
               </span>
-              {checked ? <span className="sr-only">{received ? "Answer received" : "Selected"}</span> : null}
+              {checked ? <span className="shrink-0 self-start text-xs font-bold text-brand-primary"><span aria-hidden>✓</span><span className="sr-only">{received ? "Answer received" : "Selected"}</span></span> : null}
             </label>
           );
         })}

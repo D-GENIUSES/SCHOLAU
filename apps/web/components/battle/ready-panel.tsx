@@ -18,12 +18,12 @@ export function ReadyPanel({ battle, refetch }: { battle: Battle; refetch: () =>
   const iAmReady = Boolean(battle.me?.ready);
   const opponentReady = Boolean(opponent?.ready);
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle as="h2">{opponent ? `You vs ${opponent.display_name}` : "Opponent found"}</CardTitle>
+    <Card className="rounded-2xl border-brand-primary/20 shadow-none">
+      <CardHeader className="gap-2 rounded-t-2xl bg-surface-tint pb-4 sm:pb-4">
+        <CardTitle as="h2" className="break-words">{opponent ? "Your opponent is here" : "Opponent found"}</CardTitle>
         <CardDescription>{battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code} · {battle.round_count} questions · Reading time, then 5–15 seconds each</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-5">
+      <CardContent className="flex flex-col gap-5 pt-4 sm:pt-4">
         <ul className="flex flex-col gap-2" aria-label="Ready status">
           {battle.participants.map((p) => (
             <ReadyRow key={p.seat} participant={p} />

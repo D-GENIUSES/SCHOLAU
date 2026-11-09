@@ -55,7 +55,7 @@ export function QuestionPanel({
   else if (isApiError(submit.error, "NETWORK")) status = "unsent";
   else if (isApiError(submit.error, "DEADLINE_PASSED")) status = "time_up";
   else if (submit.error) status = "error";
-  else if (selected) status = "selected";
+  else if (selected || (isGap && gapText.trim())) status = "selected";
 
   const optionsLocked = reading || remaining <= 0 || status === "received" || status === "sending" || status === "unsent" || status === "time_up";
   const canSubmitGap = isGap && gapText.trim().length > 0;
@@ -73,18 +73,19 @@ export function QuestionPanel({
 
   return (
     <div className="battle-question-flow flex min-w-0 flex-col gap-2">
-      <BattleRoundProgress count={battle.round_count} position={question.position} answered={battle.my_answered_positions} />
       <Card className="battle-question-card rounded-2xl border-brand-primary/20 shadow-none">
       <CardContent className="flex flex-col gap-3 p-3 sm:p-5">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h2 ref={headingRef} tabIndex={-1} className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted focus:outline-none">
-              {question.course_code ?? battle.course?.code ?? "Battle question"}
+              Question {question.position} of {battle.round_count}
             </h2>
+            <p className="mt-1 text-xs font-medium text-brand-primary">{question.course_code ?? battle.course?.code ?? "Battle"}</p>
             <p className="mt-1 text-xs text-ink-muted" role="status">{reading ? `Reading time · then ${question.duration_seconds ?? 5}s to answer` : "Answer now · select, then submit"}</p>
           </div>
           <BattleTimer remainingMs={reading ? readingRemaining : remaining} totalMs={reading ? totalWindowMs(question.reading_at, question.opened_at, 3000) : totalWindowMs(question.opened_at, question.deadline, 5000)} reading={reading} />
         </div>
+        <BattleRoundProgress count={battle.round_count} position={question.position} answered={battle.my_answered_positions} />
 
         {isGap ? (
           <BattleGapAnswer question={question} value={gapText} disabled={optionsLocked} onChange={setGapText} />
