@@ -8,6 +8,7 @@ import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { useOnlineUsers, useUserInsights } from "@/lib/admin-insights";
 import { AdminCreateUser } from "./admin-create-user";
+import { AdminCreateLecturer } from "./admin-create-lecturer";
 import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
 import { Avatar } from "@/components/ui/avatar";
@@ -149,8 +150,14 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
     </DialogContent></Dialog>
     {insights.isError && <Alert tone="warning">Activity and online status are unavailable. <Button variant="ghost" onClick={() => void insights.refetch()}>Retry</Button></Alert>}
     <Dialog open={Boolean(infoId)} onOpenChange={open => {if (!open) setInfoId(null);}}><DialogContent className="max-w-lg"><DialogTitle>{items.find(user => user.id === infoId)?.display_name || "User information"}</DialogTitle><DialogDescription>Academic details and today&apos;s activity. Resets at midnight WAT.</DialogDescription>{info ? <><dl className="grid grid-cols-2 gap-3 text-sm">{[["Department",info.department],["Faculty",info.faculty],["Level",info.level],["Status",info.online ? "Online" : "Offline"]].map(([label,value]) => <div key={label}><dt className="text-ink-muted">{label}</dt><dd>{value || "Not provided"}</dd></div>)}</dl><h3 className="text-sm font-semibold">Today · {info.events.length} {info.events.length === 1 ? "activity" : "activities"}</h3><ul className="max-h-72 overflow-y-auto divide-y divide-line">{info.events.map(event => <li key={event.id} className="flex justify-between gap-3 py-2 text-sm"><span>{event.label}</span><time className="shrink-0 text-xs text-ink-muted">{new Date(event.at).toLocaleTimeString("en-GB",{timeZone:"Africa/Lagos",hour:"2-digit",minute:"2-digit"})}</time></li>)}</ul>{!info.events.length && <p className="text-sm text-ink-muted">No activity today.</p>}</> : <p className="text-sm">{insights.isError ? "Unable to load user activity." : "Loading information..."}</p>}</DialogContent></Dialog>
+    <details className="mb-4 rounded-control border border-line bg-surface-card p-3 shadow-card" open>
+      <summary className="cursor-pointer text-sm font-semibold">Add a lecturer</summary>
+      <div className="mt-3 border-t border-line pt-3">
+        <AdminCreateLecturer enabled={creationEnabled} onCreated={() => { void load(); }} />
+      </div>
+    </details>
     <details className="mb-4 rounded-control border border-line bg-surface-card p-3 shadow-card">
-      <summary className="cursor-pointer text-sm font-semibold">Add a student or lecturer</summary>
+      <summary className="cursor-pointer text-sm font-semibold">Add a student</summary>
       <div className="mt-3 border-t border-line pt-3">
         <AdminCreateUser enabled={creationEnabled} onCreated={() => { void load(); }} />
       </div>

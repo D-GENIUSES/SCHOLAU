@@ -7,5 +7,10 @@ export const adminUserSchema = z.object({
   password: passwordSchema,
   role: z.enum(["student", "lecturer"]),
   requestKey: z.string().uuid(),
-}).strict();
+  offeringIds: z.array(z.string().uuid()).max(100).optional().default([]),
+}).strict().superRefine((data, ctx) => {
+  if (data.offeringIds.length > 0 && data.role !== "lecturer") {
+    ctx.addIssue({ code: "custom", message: "Only lecturer accounts can receive teaching assignments.", path: ["offeringIds"] });
+  }
+});
 export type AdminUserInput = z.input<typeof adminUserSchema>;

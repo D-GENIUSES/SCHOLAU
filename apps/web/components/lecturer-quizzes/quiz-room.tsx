@@ -9,6 +9,7 @@ import { MathText } from "@/components/math/math-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Failure, useChallengeClock } from "@/components/challenges/course-challenges";
+import { QuizIntegrityGuard } from "./quiz-integrity-guard";
 import { QuizEditor, QuizQuestionReview } from "./quiz-editor";
 import { QuizRoster, quizApi } from "./course-quizzes";
 import { QuizStateBadge, formatQuizWindow } from "./quiz-ui";
@@ -69,7 +70,7 @@ function QuizIntake({ detail, onStart, busy }: { detail: LecturerQuizDetail; onS
   const [matric, setMatric] = useState(detail.profile?.matric_number ?? "");
   return <section className="space-y-4 rounded-xl border border-line p-4">
     <h2 className="text-lg font-bold">Confirm your details</h2>
-    <p className="text-sm text-ink-muted">Questions and options are shuffled for each attempt to reduce copying.</p>
+    <p className="text-sm text-ink-muted">Keep the quiz in focus and use a full window. Window changes and capture shortcuts the browser receives are flagged for lecturer review.</p>
     <label className="block text-sm">Full name<p className="mt-1 font-medium">{detail.profile?.display_name}</p></label>
     <label className="block text-sm">Department<p className="mt-1 font-medium">{detail.profile?.department ?? "Not set"}</p></label>
     <label className="block">Matriculation number<Input required value={matric} onChange={e => setMatric(e.target.value)} autoComplete="off" /></label>
@@ -93,7 +94,7 @@ function StudentQuizFlow({ detail, refresh, busy, act }: { detail: LecturerQuizD
         </p>
       );
     }
-    return <QuizAttemptView detail={detail} refresh={refresh} />;
+    return <QuizAttemptView key={detail.attempt.id} detail={detail} refresh={refresh} />;
   }
   return null;
 }
@@ -142,6 +143,7 @@ export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetai
   const answered = detail.questions.reduce((n, _, i) => (displaySelection(attempt, i) !== undefined ? n + 1 : n), 0);
   return (
     <section className="space-y-4 min-w-0" aria-label="Quiz attempt">
+      <QuizIntegrityGuard attemptId={attempt.id} active={seconds > 0} />
       <p role="timer">Time remaining: {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}</p>
       <Failure error={error ? new Error(lecturerQuizError(error)) : null} />
       {!seconds && <p role="alert">Time is up. Refresh to see your result.</p>}

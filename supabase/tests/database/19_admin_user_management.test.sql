@@ -56,6 +56,10 @@ select is((select count(*)::int from public.user_points where user_id=current_se
 select pg_temp.login(current_setting('t.admin')::uuid);
 select throws_ok(format('select public.admin_set_user_frozen_v1(%L,true,%L,%L,gen_random_uuid())',current_setting('t.admin'),public.admin_get_user_v1(current_setting('t.admin')::uuid)->'user'->>'updated_at','test'),'PT403','FORBIDDEN','admin accounts protected');
 select throws_ok(format('select public.admin_set_user_frozen_v1(%L,true,%L,%L,gen_random_uuid())',current_setting('t.student'),'2000-01-01','test'),'PT409','STALE_REVISION','stale account update blocked');
+select is((select count(*)::int from private.welcome_email_events where user_id=current_setting('t.lecturer')::uuid),0,'managed lecturer has no welcome before legal acceptance');
+insert into private.legal_acceptances(user_id,terms_version,privacy_version,age_declaration)
+  select current_setting('t.lecturer')::uuid,terms_version,privacy_version,'adult' from private.legal_settings where singleton;
+select is((select count(*)::int from private.welcome_email_events where user_id=current_setting('t.lecturer')::uuid),1,'managed lecturer receives welcome after legal acceptance');
 select lives_ok(format('select public.admin_set_user_courses_v1(%L,array[%L]::uuid[],array[]::uuid[],gen_random_uuid())',current_setting('t.lecturer'),current_setting('t.offering')),'assign course to manually created lecturer');
 select is(jsonb_array_length(public.admin_get_user_v1(current_setting('t.lecturer')::uuid)->'user'->'assignments'),1,'assignment visible in detail');
 select pg_temp.login(current_setting('t.lecturer')::uuid);

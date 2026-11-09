@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { EmptyState } from "@/components/ui/states";
 import { Failure, Paging } from "@/components/challenges/course-challenges";
-import { lecturerQuizApi } from "@/lib/lecturer-quiz-api";
+import { lecturerQuizApi, type QuizIntegrityFlag } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { formatQuizWindow, QuizStateBadge } from "./quiz-ui";
 import { useMemo, useState } from "react";
@@ -80,10 +80,36 @@ export function CourseQuizzes({ offering, lecturer = false }: { offering: string
   );
 }
 
+const integrityLabels: Record<QuizIntegrityFlag["kind"], string> = {
+  app_hidden: "Left quiz tab",
+  focus_lost: "Window lost focus",
+  possible_split_screen: "Possible split screen",
+  fullscreen_exit: "Exited full screen",
+  screenshot_shortcut: "Screenshot shortcut",
+  recording_shortcut: "Screen recording shortcut",
+  casting_shortcut: "Screen casting shortcut",
+};
+
 export function QuizRoster({ offering, quizId }: { offering: string; quizId: string }) {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
   const roster = useQuery({ queryKey: ["lecturer-quiz-roster", offering, quizId, search, offset], queryFn: () => quizApi().roster(offering, quizId, search, offset) });
+
+  const students = roster.data?.items.map(({ user_id }) => user_id) ?? [];
+  const integrity = useQuery({
+    queryKey: ["lecturer-quiz-integrity", quizId, students],
+    queryFn: () => quizApi().integrity(quizId, students),
+    enabled: students.length > 0,
+  });
+  const flagsByStudent = useMemo(() => {
+    const grouped = new Map<string, QuizIntegrityFlag[]>();
+    for (const flag of integrity.data?.items ?? []) {
+      const existing = grouped.get(flag.user_id);
+      if (existing) existing.push(flag);
+      else grouped.set(flag.user_id, [flag]);
+    }
+    return grouped;
+  }, [integrity.data]);
 
   const stats = useMemo(() => {
     const items = roster.data?.items ?? [];
@@ -138,6 +164,7 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button type="button" variant="ghost" size="sm" disabled={!students.length || integrity.isFetching} onClick={() => void integrity.refetch()}>Refresh flags</Button>
           <Button type="button" variant="secondary" size="sm" onClick={() => void downloadCsv(false)}><Download className="size-4" aria-hidden /> Summary CSV</Button>
           <Button type="button" variant="outline" size="sm" onClick={() => void downloadCsv(true)}>Detailed CSV</Button>
         </div>
@@ -148,6 +175,8 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
         </p>
       ) : null}
       <Failure error={roster.error} retry={() => void roster.refetch()} />
+      <p className="text-sm text-ink-muted">Activity flags are browser signals for review. They do not change scores.</p>
+      {integrity.isError ? <p className="text-sm text-danger" role="status">Activity flags are temporarily unavailable. <Button variant="link" onClick={() => void integrity.refetch()}>Retry</Button></p> : null}
       <label className="block max-w-md">Search students<Input value={search} onChange={e => { setSearch(e.target.value); setOffset(0); }} placeholder="Name or matric" /></label>
       <div className="overflow-x-auto rounded-card border border-line">
         <table className="w-full min-w-[32rem] text-left text-sm">
@@ -158,18 +187,34 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
               <th className="px-3 py-2">Department</th>
               <th className="px-3 py-2">Status</th>
               <th className="px-3 py-2 text-right">Score</th>
+              <th className="px-3 py-2">Activity flags</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line">
-            {roster.data?.items.map(r => (
-              <tr key={r.user_id} className="hover:bg-surface-tint">
-                <td className="px-3 py-2 font-medium">{r.name}</td>
-                <td className="px-3 py-2 text-ink-muted">{r.matric_number ?? "—"}</td>
-                <td className="px-3 py-2 text-ink-muted">{r.department ?? "—"}</td>
-                <td className="px-3 py-2 capitalize">{r.status.replace("_", " ")}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{r.score != null ? r.score : "—"}</td>
-              </tr>
-            ))}
+            {roster.data?.items.map(r => {
+              const flags = flagsByStudent.get(r.user_id) ?? [];
+              return (
+                <tr key={r.user_id} className="hover:bg-surface-tint">
+                  <td className="px-3 py-2 font-medium">{r.name}</td>
+                  <td className="px-3 py-2 text-ink-muted">{r.matric_number ?? "—"}</td>
+                  <td className="px-3 py-2 text-ink-muted">{r.department ?? "—"}</td>
+                  <td className="px-3 py-2 capitalize">{r.status.replace("_", " ")}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{r.score != null ? r.score : "—"}</td>
+                  <td className="min-w-32 px-3 py-2">
+                    {flags.length ? (
+                      <details>
+                        <summary className="cursor-pointer font-semibold text-warning">{flags.reduce((total, flag) => total + flag.count, 0)} flagged</summary>
+                        <ul className="mt-2 space-y-1 text-xs text-ink-muted">
+                          {flags.map((flag) => (
+                            <li key={`${flag.attempt_number}:${flag.kind}`}>Attempt {flag.attempt_number} · {integrityLabels[flag.kind]} ×{flag.count}</li>
+                          ))}
+                        </ul>
+                      </details>
+                    ) : <span className="text-ink-muted">{integrity.isError ? "Unavailable" : integrity.isSuccess ? "None" : "—"}</span>}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

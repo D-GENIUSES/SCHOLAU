@@ -2,9 +2,10 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { observeAssessmentWindow, type WindowActivity } from "@/lib/assessment-activity";
 import { Alert } from "@/components/ui/alert";
 
-type Signal = "app_hidden" | "focus_lost" | "possible_split_screen" | "fullscreen_exit" | "copy_attempt";
+type Signal = WindowActivity | "copy_attempt";
 
 /** Browser signals are review evidence, never proof of cheating. */
 export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: string; onForfeit: () => unknown; children: ReactNode }) {
@@ -29,9 +30,6 @@ export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: st
     const last = new Map<Signal, number>();
     let sending = false;
     let disposed = false;
-    let away = false;
-    let smallWindow = false;
-    let resizeTimer: ReturnType<typeof setTimeout>;
     const flush = async () => {
       if (sending || !pending.length) return;
       sending = true;
@@ -62,30 +60,12 @@ export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: st
       persist();
       void flush();
     };
-    const departure = (kind: Signal) => { if (!away) { away = true; flag(kind); } };
-    const focus = () => { if (!document.hidden && document.hasFocus()) away = false; void flush(); };
-    const visibility = () => { if (document.hidden) departure("app_hidden"); else focus(); };
-    const blur = () => departure("focus_lost");
-    const fullscreen = () => { if (!document.fullscreenElement) flag("fullscreen_exit"); };
-    // Compare window dimensions rather than viewport dimensions to avoid flagging zoom/keyboard.
-    const checkWindow = () => {
-      const { availWidth: width, availHeight: height } = window.screen;
-      const small = width > 0 && height > 0 && window.outerWidth > 0 && window.outerHeight > 0 &&
-        window.outerWidth < width * 0.55;
-      if (small && !smallWindow) flag("possible_split_screen");
-      smallWindow = small;
-    };
-    const resize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(checkWindow, 1000); };
+    const stopObserving = observeAssessmentWindow(flag, () => void flush());
     const protect = (event: Event) => {
       event.preventDefault();
       if (event.type === "copy" || event.type === "cut") flag("copy_attempt");
     };
     const element = root.current;
-    document.addEventListener("visibilitychange", visibility);
-    window.addEventListener("blur", blur);
-    window.addEventListener("focus", focus);
-    document.addEventListener("fullscreenchange", fullscreen);
-    window.addEventListener("resize", resize);
     window.addEventListener("online", flush);
     for (const name of ["copy", "cut", "contextmenu", "dragstart", "selectstart"]) element?.addEventListener(name, protect);
     const retry = setInterval(() => void flush(), 5000);
@@ -103,17 +83,10 @@ export function IntegrityGuard({ battleId, onForfeit, children }: { battleId: st
       } catch { /* Event delivery exposes failures and retries independently. */ }
     })();
     void flush();
-    checkWindow();
-    visibility();
     return () => {
       disposed = true;
-      clearTimeout(resizeTimer);
+      stopObserving();
       clearInterval(retry);
-      document.removeEventListener("visibilitychange", visibility);
-      window.removeEventListener("blur", blur);
-      window.removeEventListener("focus", focus);
-      document.removeEventListener("fullscreenchange", fullscreen);
-      window.removeEventListener("resize", resize);
       window.removeEventListener("online", flush);
       for (const name of ["copy", "cut", "contextmenu", "dragstart", "selectstart"]) element?.removeEventListener(name, protect);
       void flush();

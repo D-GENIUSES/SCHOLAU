@@ -10,6 +10,10 @@ import type {
   LecturerQuizRoster,
 } from "@scholau/core";
 
+import type { CaptureShortcut, WindowActivity } from "./assessment-activity";
+
+export type QuizIntegrityFlag = { user_id: string; attempt_number: number; kind: WindowActivity | CaptureShortcut; count: number };
+
 export function lecturerQuizApi(client: AnySupabaseClient) {
   async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
     const { data, error, status } = await client.rpc(name, args);
@@ -58,6 +62,8 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
         p_search: search,
         p_offset: offset,
       }),
+    integrity: (quizId: string, students: string[]) =>
+      rpc<{ items: QuizIntegrityFlag[] }>("get_lecturer_quiz_integrity_v1", { p_quiz_id: quizId, p_students: students }),
     exportResults: (quizId: string) => rpc<LecturerQuizExport>("export_lecturer_quiz_results_v1", { p_quiz_id: quizId }),
     startImport: (quizId: string, offering: string, objectKey: string, mimeType: string) =>
       rpc<{ job_id: string }>("start_lecturer_quiz_import_v1", {
