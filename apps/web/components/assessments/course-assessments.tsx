@@ -8,7 +8,7 @@ import { ArrowRight, ClipboardList, Coffee, ListChecks, Timer, Trophy } from "lu
 import { CourseQuizzes } from "@/components/lecturer-quizzes/course-quizzes";
 import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
 import { useStartAttempt, useStartTopicQuiz, useTopicQuizOptions } from "@scholau/api/react";
-import { formatDuration, pluralize } from "@scholau/core";
+import { ASSESSMENT_XP_COPY, formatDuration, pluralize } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Input, NativeSelect } from "@/components/ui/input";
 import { Badge } from "@/components/ui/misc";
@@ -120,6 +120,7 @@ function TopicQuiz({ data }: { data: CourseOverview }) {
         <Button size="sm" className="ml-auto" loading={start.isPending} disabled={!valid || Boolean(options.data?.active_attempt_id)} onClick={begin}>Start quiz <ArrowRight aria-hidden /></Button>
       </div>
       <p id="quiz-count-hint" className="text-xs text-ink-muted">{selected.length ? `Choose ${selected.length}–${max} questions. Every selected topic is included.` : "Select topics to build your quiz."} Results and explanations appear after submission.</p>
+      <p className="text-xs text-ink-muted">{ASSESSMENT_XP_COPY.practice}</p>
       <InlineError error={start.error} /><ActiveAttempt error={start.error} />
       {reviews.length > 0 ? <details className="border-t border-line pt-3"><summary className="cursor-pointer text-xs font-semibold text-ink-muted">Topic checks</summary><ul className="mt-2 divide-y divide-line">{reviews.map(a => <li key={a.assessment_version_id} className="flex items-center justify-between gap-3 py-2"><span className="min-w-0 break-words text-sm">{a.title}</span><Button asChild size="sm" variant="ghost"><Link href={a.active_attempt_id ? `/attempts/${a.active_attempt_id}` : `/study/assessments/${a.assessment_version_id}?offering=${data.offering_id}`}>{a.active_attempt_id ? "Resume" : "Open"}</Link></Button></li>)}</ul></details> : null}
     </div>
@@ -153,6 +154,7 @@ function MockSession({ assessment: a }: { assessment: CourseAssessment }) {
   return (
     <>
       <div><h2 className="text-sm font-semibold">{a.title}</h2><p className="mt-1 text-sm text-ink-muted">A timed practice exam. Results after submission.</p></div>
+      <p className="text-xs text-ink-muted">{ASSESSMENT_XP_COPY.mock}</p>
       <div className="my-4 flex flex-wrap gap-x-6 gap-y-2 text-sm"><span>{pluralize(count, "question")}</span><span className="inline-flex items-center gap-1.5"><Timer className="size-4 text-ink-muted" aria-hidden />{formatDuration(duration)}</span></div>
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3"><p className="text-xs text-ink-muted">The timer keeps running if you leave.</p>{a.active_attempt_id ? <Button asChild size="sm"><Link href={`/attempts/${a.active_attempt_id}`}>Resume exam</Link></Button> : <Button size="sm" onClick={() => setConfirm(true)}>Start mock exam <ArrowRight aria-hidden /></Button>}</div>
       <InlineError error={start.error} /><ActiveAttempt error={start.error} />

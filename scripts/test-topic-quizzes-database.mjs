@@ -5,7 +5,9 @@ import { createChallengeTestDatabase } from "./lib/course-challenge-test-db.mjs"
 export async function createTopicQuizTestDatabase() {
   const fixture = await createChallengeTestDatabase();
   const { db, id, query, offering, otherOffering, admin } = fixture;
+  await db.exec(readFileSync("supabase/migrations/20261022000100_per_answer_xp.sql", "utf8"));
   await db.exec(readFileSync("supabase/migrations/20261106203528_compact_topic_assessments.sql", "utf8"));
+  await db.exec(readFileSync("supabase/migrations/20261109201000_assessment_reward_boost.sql", "utf8"));
   const course = (await query("select course_id from public.course_offerings where id=$1", [offering]))[0].course_id;
   const otherCourse = (await query("select course_id from public.course_offerings where id=$1", [otherOffering]))[0].course_id;
   const topics = [id(801), id(802), id(803), id(804), id(805)];
@@ -68,10 +70,15 @@ if (process.argv[1]?.endsWith("test-topic-quizzes-database.mjs")) {
     await fails(()=>query('select * from private.topic_quiz_banks'),/permission denied/);
     const another=await begin(undefined,2,id(2002));eq(another.attempt_id!==attempt.attempt_id,true);
     await login(students[0]);
-    const answers = attempt.questions.map(q=>({question_version_id:q.question_version_id,option_id:q.options[0].id,answer_revision:1}));
+    await db.exec('reset role');
+    const keys = await query('select aq.question_version_id, k.correct_option_id from public.attempt_questions aq join private.question_answer_keys k using (question_version_id) where aq.attempt_id=$1', [attempt.attempt_id]);
+    const answers = keys.map(key=>({question_version_id:key.question_version_id,option_id:key.correct_option_id,answer_revision:1}));
+    await login(students[0]);
     await rpc('save_attempt_answers_v1',[attempt.attempt_id,answers,id(2003)]);
     const submitted=await rpc('submit_attempt_v1',[attempt.attempt_id,null,id(2004)]);
     eq(submitted.status,'submitted');eq(submitted.questions.every(q=>q.feedback!==null),true);
+    eq(submitted.result.xp_awarded,13);
+    eq((await rpc('get_xp_progress_v1')).badges.map(badge=>badge.code).sort(),['first_quiz','perfect_practice','quiz_ace']);
     eq((await rpc('get_topic_quiz_options_v1',[offering])).active_attempt_id,null);
     eq((await begin([topics[1]],2,id(2005))).total_count,2);
     await fails(()=>rpc('get_topic_quiz_options_v1',[otherOffering]),/NOT_ENROLLED|FORBIDDEN/);

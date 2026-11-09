@@ -6,18 +6,13 @@ import { AppStarIcon } from "@/components/icons/app-chrome-icons";
 import { type ReactNode, useId, useState } from "react";
 import { type PublicProfile, isApiError } from "@scholau/api";
 import { useFriendAction, useFriends, useProfile, usePublicProfile, useSearchFriends } from "@scholau/api/react";
-import { formatNumber } from "@scholau/core";
+import { formatNumber, XP_BADGES } from "@scholau/core";
 import { Avatar } from "@/components/ui/avatar";
 import { OnlineAvatar } from "@/components/ui/online-avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ErrorState, InlineError, LoadingState } from "@/components/ui/states";
-
-const badgeNames: Record<string, string> = {
-  first_steps: "First steps", topic_mastered: "Topic mastered", perfect_practice: "Perfect practice",
-  exam_ready: "Exam ready", long_term_recall: "Long-term recall",
-};
 
 export function PeopleSearch({ initialQuery = "" }: { initialQuery?: string }) {
   const [input, setInput] = useState(initialQuery);
@@ -144,7 +139,7 @@ export function PublicProfileContent({ profile: p, actions }: { profile: PublicP
                   {p.badges.map((code) => (
                     <li key={code}>
                       <Award className="size-4 shrink-0 text-brand-primary" aria-hidden />
-                      <span>{badgeNames[code] ?? "Badge"}</span>
+                      <span>{XP_BADGES[code]?.title ?? "Badge"}</span>
                     </li>
                   ))}
                 </ul>
