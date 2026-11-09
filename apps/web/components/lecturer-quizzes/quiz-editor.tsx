@@ -143,7 +143,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
           throw new Error(`Draft saved. Publication could not be confirmed. ${lecturerQuizError(cause)}`, { cause });
         }
         void queryClient.invalidateQueries({ queryKey: [...qk.classQuizzes(), offering] });
-        void queryClient.invalidateQueries({ queryKey: ["course-quiz", quizId] });
+        void queryClient.invalidateQueries({ queryKey: qk.courseQuiz(quizId) });
         setMessage("Published. Enrolled students were notified.");
         router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
         router.refresh();

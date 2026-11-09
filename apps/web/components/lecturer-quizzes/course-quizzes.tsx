@@ -50,9 +50,17 @@ export function CourseQuizzes({
     initialData: offset === 0 ? initialList : undefined,
     queryFn: () => quizApi().list(offering, offset),
     retry: shouldRetry,
-    staleTime: lecturer ? 0 : 30_000,
-    refetchOnMount: (query) => lecturer || studentListStale(query.state.data as LecturerQuizList | undefined),
-    refetchOnWindowFocus: (query) => lecturer || studentListStale(query.state.data as LecturerQuizList | undefined),
+    staleTime: lecturer ? 0 : initialList ? 120_000 : 30_000,
+    refetchOnMount: (query) => {
+      if (lecturer) return true;
+      if (initialList && offset === 0) return false;
+      return studentListStale(query.state.data as LecturerQuizList | undefined);
+    },
+    refetchOnWindowFocus: (query) => {
+      if (lecturer) return true;
+      if (initialList && offset === 0) return false;
+      return studentListStale(query.state.data as LecturerQuizList | undefined);
+    },
     refetchInterval: lecturer ? 15_000 : false,
   });
   const base = lecturer ? `/lecturer/courses/${offering}/quizzes` : `/courses/${offering}/quizzes`;

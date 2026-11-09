@@ -1,11 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, ClipboardList, Coffee, ListChecks, Timer, Trophy } from "lucide-react";
-import { CourseQuizzes } from "@/components/lecturer-quizzes/course-quizzes";
+
+const CourseQuizzes = dynamic(
+  () => import("@/components/lecturer-quizzes/course-quizzes").then((m) => m.CourseQuizzes),
+  { loading: () => <p className="text-sm text-ink-muted" role="status">Loading class quizzes…</p> },
+);
 import { type CourseAssessment, type CourseOverview, type LecturerQuizList, isApiError } from "@scholau/api";
 import { useCourseQuizzes, useStartAttempt, useStartTopicQuiz, useTopicQuizOptions } from "@scholau/api/react";
 import { ASSESSMENT_XP_COPY, formatDuration, pluralize } from "@scholau/core";

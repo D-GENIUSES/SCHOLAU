@@ -149,12 +149,15 @@ export function useEnrollCourse() {
 
 export function useCourseOverview(offeringId: string | undefined, initialData?: T.CourseOverview) {
   const api = useScholauApi();
+  const hydrated = initialData != null;
   return useQuery({
     queryKey: qk.course(offeringId ?? ""),
     queryFn: () => api.getCourseOverview(offeringId!),
     enabled: Boolean(offeringId),
-    initialData,
-    staleTime: 60_000,
+    initialData: hydrated ? initialData : undefined,
+    staleTime: hydrated ? 120_000 : 60_000,
+    refetchOnMount: hydrated ? false : true,
+    refetchOnWindowFocus: hydrated ? false : true,
     retry: shouldRetry,
   });
 }
@@ -258,18 +261,42 @@ export function useTopicQuizOptions(offeringId: string) {
 
 export function useCourseQuizzes(offeringId: string, offset = 0, initialData?: T.LecturerQuizList) {
   const api = useScholauApi();
+  const hydrated = offset === 0 && initialData != null;
   return useQuery({
     queryKey: [...qk.classQuizzes(), offeringId, offset],
     queryFn: () => api.listCourseQuizzes(offeringId, offset),
-    initialData,
-    staleTime: 60_000,
+    initialData: hydrated ? initialData : undefined,
+    staleTime: hydrated ? 120_000 : 60_000,
+    refetchOnMount: hydrated ? false : true,
+    refetchOnWindowFocus: hydrated ? false : true,
     retry: shouldRetry,
   });
 }
 
-export function useCourseQuiz(quizId: string) {
+function courseQuizPollMs(data: T.LecturerQuizDetail | undefined): number | false {
+  if (!data) return false;
+  const { quiz, attempt } = data;
+  if (quiz.state === "closed" || quiz.state === "cancelled" || quiz.state === "draft") return false;
+  if (attempt?.submitted_at) return false;
+  if (quiz.state === "open" && attempt && !attempt.submitted_at) return 15_000;
+  if (quiz.state === "open" || quiz.state === "upcoming") return 60_000;
+  return false;
+}
+
+export function useCourseQuiz(quizId: string, initialData?: T.LecturerQuizDetail) {
   const api = useScholauApi();
-  return useQuery({ queryKey: ["scholau", "course-quiz", quizId], queryFn: () => api.getCourseQuiz(quizId) });
+  const hydrated = initialData != null;
+  return useQuery({
+    queryKey: qk.courseQuiz(quizId),
+    queryFn: () => api.getCourseQuiz(quizId),
+    initialData: hydrated ? initialData : undefined,
+    staleTime: hydrated ? 120_000 : 30_000,
+    refetchOnMount: hydrated ? false : true,
+    refetchOnWindowFocus: (query) => Boolean(courseQuizPollMs(query.state.data)),
+    refetchInterval: (query) => courseQuizPollMs(query.state.data),
+    refetchIntervalInBackground: false,
+    retry: shouldRetry,
+  });
 }
 
 export function useStartTopicQuiz() {

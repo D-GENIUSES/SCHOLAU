@@ -1,10 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
 import { isApiError } from "@scholau/api";
-import { shouldRetry } from "@scholau/api/react";
+import { useCourseQuiz } from "@scholau/api/react";
 import type { LecturerQuizAttempt, LecturerQuizDetail } from "@scholau/core";
 import { canonicalAnswerToDisplayIndex, isNestedOptionOrders } from "@scholau/core";
 import { MathText } from "@/components/math/math-text";
@@ -12,11 +12,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Failure, useChallengeClock } from "@/components/challenges/course-challenges";
 import { QuizIntegrityGuard } from "./quiz-integrity-guard";
-import { QuizEditor, QuizQuestionReview } from "./quiz-editor";
+import { QuizQuestionReview } from "./quiz-editor";
 import { QuizRoster, quizApi } from "./course-quizzes";
 import { QuizStateBadge, QuizStudentStatus, formatQuizWindow } from "./quiz-ui";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { lecturerQuizError } from "@/lib/lecturer-quiz-api";
+
+const QuizEditor = dynamic(() => import("./quiz-editor").then((m) => ({ default: m.QuizEditor })), {
+  loading: () => <p className="text-sm text-ink-muted" role="status">Loading editor…</p>,
+});
 
 function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): number | undefined {
   const order = attempt.question_order;
@@ -28,17 +32,12 @@ function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): n
   return canonicalAnswerToDisplayIndex(perm, Number(canonical));
 }
 
-export function QuizRoom({ id }: { id: string }) {
+export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: LecturerQuizDetail }) {
   const [actionError, setActionError] = useState<unknown>(null);
   const [busy, setBusy] = useState(false);
-  const query = useQuery({
-    queryKey: ["course-quiz", id],
-    queryFn: () => quizApi().detail(id),
-    staleTime: 0,
-    retry: shouldRetry,
-    refetchInterval: ({ state }) => busy || !state.data ? false : 10_000,
-  });
+  const query = useCourseQuiz(id, initialDetail);
   async function act(action: () => Promise<unknown>) {
+    if (busy) return;
     setBusy(true); setActionError(null);
     try { await action(); await query.refetch(); } catch (e) { setActionError(e); } finally { setBusy(false); }
   }

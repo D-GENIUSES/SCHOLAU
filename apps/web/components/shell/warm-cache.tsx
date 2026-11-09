@@ -7,16 +7,20 @@ import { useScholauApi } from "@scholau/api/react";
 
 const fresh = 60_000;
 
-/** Load the main screens while the browser is idle so the first tap can render from cache. */
+/** Prefetch in idle slices so first paint stays responsive. */
 export function WarmCache() {
   const api = useScholauApi();
   const qc = useQueryClient();
   useEffect(() => {
-    const warm = () => {
-      const jobs = [
-        qc.prefetchQuery({ queryKey: qk.catalog(), queryFn: api.getCatalog, staleTime: fresh }),
-        qc.prefetchQuery({ queryKey: qk.liveBattle(), queryFn: api.getMyLiveBattle, staleTime: 15_000 }),
+    const warmNow = () => {
+      void Promise.allSettled([
         qc.prefetchQuery({ queryKey: qk.notifications(), queryFn: () => api.listNotifications(), staleTime: fresh }),
+        qc.prefetchQuery({ queryKey: qk.liveBattle(), queryFn: api.getMyLiveBattle, staleTime: 15_000 }),
+      ]);
+    };
+    const warmLater = () => {
+      void Promise.allSettled([
+        qc.prefetchQuery({ queryKey: qk.catalog(), queryFn: api.getCatalog, staleTime: fresh }),
         qc.prefetchQuery({ queryKey: ["scholau", "xp"], queryFn: api.getXpProgress, staleTime: 30_000 }),
         qc.prefetchQuery({ queryKey: ["scholau", "social", "invitations"], queryFn: api.getBattleInvitations, staleTime: fresh }),
         qc.prefetchQuery({ queryKey: ["scholau", "social", "setup", null], queryFn: () => api.getBattleSetup(null), staleTime: fresh }),
@@ -39,14 +43,19 @@ export function WarmCache() {
           initialPageParam: null as string | null,
           staleTime: fresh,
         }),
-      ];
-      void Promise.allSettled(jobs);
+      ]);
     };
-    const idle = typeof window.requestIdleCallback === "function" ? window.requestIdleCallback(warm, { timeout: 1200 }) : undefined;
-    const timer = idle == null ? window.setTimeout(warm, 250) : undefined;
+    const schedule = (run: () => void, timeout: number) =>
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback(run, { timeout })
+        : window.setTimeout(run, Math.min(timeout, 400));
+    const first = schedule(warmNow, 800);
+    const second = schedule(warmLater, 5_000);
     return () => {
-      if (idle != null) window.cancelIdleCallback(idle);
-      if (timer != null) window.clearTimeout(timer);
+      if (typeof first === "number") window.clearTimeout(first);
+      else window.cancelIdleCallback(first);
+      if (typeof second === "number") window.clearTimeout(second);
+      else window.cancelIdleCallback(second);
     };
   }, [api, qc]);
   return null;
