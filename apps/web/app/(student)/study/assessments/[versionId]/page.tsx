@@ -6,7 +6,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { type ReactNode, Suspense, useState } from "react";
 import { type CourseAssessment, isApiError } from "@scholau/api";
 import { useCourseOverview, useStartAttempt } from "@scholau/api/react";
-import { ASSESSMENT_KIND_LABEL, COPY, formatDuration, pluralize } from "@scholau/core";
+import { ASSESSMENT_KIND_LABEL, ASSESSMENT_XP_COPY, COPY, formatDuration, pluralize } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -120,7 +120,7 @@ function Rule({ title, children }: { title: string; children: ReactNode }) {
 }
 
 function xpRule(a: CourseAssessment): string {
-  if (a.kind === "practice" || a.kind === "mock") return "1 XP per correct answer on each submitted attempt. No completion bonus.";
+  if (a.kind === "practice" || a.kind === "mock") return ASSESSMENT_XP_COPY[a.kind];
   const max = 20;
   return `Up to ${max} XP based on your best score. Improve your best to earn the difference.`;
 }

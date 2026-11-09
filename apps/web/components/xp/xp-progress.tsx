@@ -14,7 +14,11 @@ const badgeArtwork = {
   first_steps: { icon: BookOpen, ribbon: "#344e68" },
   topic_mastered: { icon: Target, ribbon: "#3e6255" },
   perfect_practice: { icon: Star, ribbon: "#854439" },
+  first_quiz: { icon: BookOpen, ribbon: "#4f6a86" },
+  quiz_ace: { icon: Target, ribbon: "#427066" },
   exam_ready: { icon: GraduationCap, ribbon: "#344e68" },
+  first_mock: { icon: GraduationCap, ribbon: "#62536e" },
+  perfect_mock: { icon: Award, ribbon: "#854439" },
   long_term_recall: { icon: Layers, ribbon: "#62536e" },
 };
 
@@ -55,7 +59,7 @@ export function AchievementBadges({ badges }: { badges: { code: string }[] }) {
         <span className="profile-badge-count">{earnedCount} of {entries.length} earned</span>
       </div>
       <div className="mt-4"><Progress value={entries.length ? earnedCount / entries.length * 100 : 0} label="Badge collection progress" /></div>
-      {earnedCount === 0 ? <p className="mt-2 text-xs leading-relaxed text-ink-muted">Complete a lesson knowledge check to earn your first badge.</p> : null}
+      {earnedCount === 0 ? <p className="mt-2 text-xs leading-relaxed text-ink-muted">Complete a lesson check, quiz, or mock exam to earn your first badge.</p> : null}
     </div>
     <ul className="grid min-w-0 list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
       {entries.map(([code, badge]) => {

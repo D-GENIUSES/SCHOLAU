@@ -56,15 +56,17 @@ end $$;
 
 
 select set_config('t.u',pg_temp.student('Per answer student')::text,true) is not null as setup;
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',5,5)),5,'perfect five-question practice earns five XP');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',5,5)),15,'perfect five-question practice earns fifteen XP');
 insert into private.xp_bests(user_id,activity_type,activity_id,earned)
 select current_setting('t.u')::uuid,'practice',a.id,50 from public.assessments a where a.kind='practice';
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',4,5)),4,'legacy best does not suppress new per-answer awards');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',4,5)),13,'legacy best does not suppress boosted awards');
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'practice',0,5)),0,'all incorrect earns zero');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',32,50)),32,'32 correct out of 50 earns 32 XP');
-select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',32,50)),32,'new mock attempt earns points again');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',32,50)),96,'32 correct out of 50 earns 96 XP');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',32,50)),96,'new mock attempt earns points again');
 select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',0,50)),0,'zero-correct mock earns zero');
-select is((select count(*)::integer from public.points_ledger where user_id=current_setting('t.u')::uuid and source_type in ('practice','mock') and reason='One XP per correct answer.'),6,'ledger explains per-answer awards including zero');
+select is((select count(*)::integer from public.points_ledger where user_id=current_setting('t.u')::uuid and source_type in ('practice','mock') and reason like '%for scoring at least 80%.'),6,'ledger explains boosted awards including zero');
+select is(pg_temp.delta(pg_temp.attempt(current_setting('t.u')::uuid,'mock',5,5)),30,'perfect mock earns thirty XP');
+select ok(exists(select 1 from private.xp_badges where user_id=current_setting('t.u')::uuid and code='perfect_mock'),'perfect mock unlocks the champion badge');
 
 create function pg_temp.scored_battle(p_rounds integer,p_first integer,p_second integer)
 returns uuid language plpgsql as $$

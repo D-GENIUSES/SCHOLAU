@@ -12,13 +12,16 @@ await db.exec(`
 create role anon; create role authenticated; create role service_role bypassrls;
 create schema auth; create schema extensions; create schema realtime; create schema storage;
 create table auth.users (instance_id uuid,id uuid primary key,aud text,role text,email text,encrypted_password text,email_confirmed_at timestamptz,raw_app_meta_data jsonb,raw_user_meta_data jsonb,created_at timestamptz,last_sign_in_at timestamptz,updated_at timestamptz,confirmation_token text,recovery_token text,email_change_token_new text,email_change text);
+alter table auth.users add column deleted_at timestamptz, add column is_anonymous boolean, add column banned_until timestamptz;
 create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
 grant usage on schema auth to anon,authenticated,service_role;
 grant execute on function auth.uid() to anon,authenticated,service_role;
 create function realtime.send(jsonb,text,text,boolean) returns void language sql as $$ select $$;
+create schema cron;
+create function cron.schedule(text,text,text) returns bigint language sql as $$ select 1::bigint $$;
 `);
 for (const name of fs.readdirSync(path.join(root,'supabase/migrations')).sort()) {
-  if(name.includes('_jobs.sql') || name === '20261022000100_per_answer_xp.sql') continue;
+  if(name.includes('_jobs.sql') || name === '20261022000100_per_answer_xp.sql' || name.endsWith('_assessment_reward_boost.sql')) continue;
   if(process.argv.includes('--base-only') && /mastery_xp|welcome_xp_leaderboards/.test(name)) continue;
   stage = name;
   await db.exec(fs.readFileSync(path.join(root,'supabase/migrations',name),'utf8'));
@@ -28,8 +31,8 @@ stage='seed';
 await db.exec(fs.readFileSync(path.join(root,'supabase/seed.sql'),'utf8'));
 console.log('Fixtures seeded.');
 // Existing awards survive rollout byte-for-byte, and totals are not recalculated.
-await db.exec(`insert into auth.users(id,email,raw_user_meta_data) values
-('90000000-0000-4000-8000-000000000047','legacy-xp@test.local','{"display_name":"Legacy XP","terms_accepted":true,"terms_version":"2026-10-19-draft-1","privacy_version":"2026-10-19-draft-1","age_declaration":"adult"}');
+await db.exec(`insert into auth.users(id,email,email_confirmed_at,raw_user_meta_data) values
+('90000000-0000-4000-8000-000000000047','legacy-xp@test.local',now(),'{"display_name":"Legacy XP","terms_accepted":true,"terms_version":"2026-10-19-draft-1","privacy_version":"2026-10-19-draft-1","age_declaration":"adult"}');
 select private.award_points('90000000-0000-4000-8000-000000000047','practice_first','practice','90000000-0000-4000-8000-000000000048','legacy:practice',50);`);
 const legacySnapshot = async () => (await db.query(`select
   (select jsonb_agg(to_jsonb(l) order by l.id) from public.points_ledger l) ledger,
@@ -39,7 +42,10 @@ stage = '20261022000100_per_answer_xp.sql';
 await db.exec(fs.readFileSync(path.join(root,'supabase/migrations',stage),'utf8'));
 const assert = (await import('node:assert/strict')).default;
 assert.deepEqual(await legacySnapshot(), before);
-console.log('PASS: rollout preserves all historical awards and balances.');
+stage = '20261109201000_assessment_reward_boost.sql';
+await db.exec(fs.readFileSync(path.join(root,'supabase/migrations',stage),'utf8'));
+assert.deepEqual(await legacySnapshot(), before);
+console.log('PASS: both rollouts preserve all historical awards and balances.');
 
 if(!process.argv.includes('--base-only')) console.log('XP access:', (await db.query("select has_function_privilege('anon','public.get_xp_progress_v1()','execute') as guest, has_function_privilege('authenticated','public.get_xp_progress_v1()','execute') as student")).rows);
 // Minimal assertions for the existing pgTAP SQL, preserving role and transaction behavior.
