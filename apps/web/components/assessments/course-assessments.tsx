@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, ClipboardList, Coffee, ListChecks, Timer, Trophy } from "lucide-react";
 import { CourseQuizzes } from "@/components/lecturer-quizzes/course-quizzes";
-import { type CourseAssessment, type CourseOverview, isApiError } from "@scholau/api";
-import { useStartAttempt, useStartTopicQuiz, useTopicQuizOptions } from "@scholau/api/react";
+import { type CourseAssessment, type CourseOverview, type LecturerQuizList, isApiError } from "@scholau/api";
+import { useCourseQuizzes, useStartAttempt, useStartTopicQuiz, useTopicQuizOptions } from "@scholau/api/react";
 import { ASSESSMENT_XP_COPY, formatDuration, pluralize } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Input, NativeSelect } from "@/components/ui/input";
@@ -24,8 +24,26 @@ const tabs = [
   { id: "class-quizzes", label: "Class quizzes", icon: ClipboardList },
 ] as const;
 
-export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseOverview; initialTab?: (typeof tabs)[number]["id"] }) {
-  const [tab, setTab] = useState<(typeof tabs)[number]["id"]>(initialTab);
+export function CourseAssessments({
+  data,
+  initialTab = "quiz",
+  initialQuizList,
+}: {
+  data: CourseOverview;
+  initialTab?: (typeof tabs)[number]["id"];
+  initialQuizList?: LecturerQuizList;
+}) {
+  const [tab, setTabState] = useState(initialTab);
+  useEffect(() => { setTabState(initialTab); }, [initialTab]);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [requested, setRequested] = useState("20");
+  const [chosenMock, setChosenMock] = useState("");
+  function setTab(next: (typeof tabs)[number]["id"]) {
+    setTabState(next);
+    const url = new URL(window.location.href);
+    url.searchParams.set("tab", next);
+    window.history.replaceState(null, "", url);
+  }
   return (
     <>
       <header className="mb-5">
@@ -33,6 +51,9 @@ export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseO
         <h1 className="mt-1 text-2xl font-bold tracking-tight">Assessments</h1>
         <p className="mt-1 text-sm text-ink-muted">Choose how you want to practise.</p>
       </header>
+      {tab !== "class-quizzes" ? (
+        <ClassQuizBanner offeringId={data.offering_id} initialQuizList={initialQuizList} onOpen={() => setTab("class-quizzes")} />
+      ) : null}
       <div role="tablist" aria-label="Assessment type" className="mb-4 grid grid-cols-2 sm:grid-cols-4 border-b border-line">
         {tabs.map(({ id, label, icon: Icon }, index) => (
           <button key={id} type="button" role="tab" id={`assessment-tab-${id}`} aria-controls={`assessment-panel-${id}`} aria-selected={tab === id}
@@ -55,10 +76,43 @@ export function CourseAssessments({ data, initialTab = "quiz" }: { data: CourseO
       {tabs.map(({ id }) => (
         <section key={id} role="tabpanel" id={`assessment-panel-${id}`} aria-labelledby={`assessment-tab-${id}`} hidden={tab !== id}
           className="min-w-0 rounded-card border border-line bg-surface-card p-4 sm:p-5">
-          {id === "quiz" ? <TopicQuiz data={data} /> : id === "mock" ? <MockExam assessments={data.assessments.filter(a => a.kind === "mock")} /> : id === "challenges" ? <CompactChallenges offeringId={data.offering_id} /> : id === "class-quizzes" ? <CourseQuizzes offering={data.offering_id} /> : null}
+          {tab !== id ? null : id === "quiz" ? (
+            <TopicQuiz data={data} selected={selected} setSelected={setSelected} requested={requested} setRequested={setRequested} />
+          ) : id === "mock" ? <MockExam assessments={data.assessments.filter(a => a.kind === "mock")} chosen={chosenMock} setChosen={setChosenMock} />
+            : id === "challenges" ? <CompactChallenges offeringId={data.offering_id} />
+              : <CourseQuizzes offering={data.offering_id} initialList={initialQuizList} />}
         </section>
       ))}
     </>
+  );
+}
+
+function ClassQuizBanner({
+  offeringId,
+  initialQuizList,
+  onOpen,
+}: {
+  offeringId: string;
+  initialQuizList?: LecturerQuizList;
+  onOpen: () => void;
+}) {
+  const list = useCourseQuizzes(offeringId, 0, initialQuizList);
+  const items = list.data?.items ?? [];
+  const visible = items.filter((q) => q.state === "open" || q.state === "upcoming" || q.state === "closed");
+  if (!list.isSuccess || visible.length === 0) return null;
+  const openCount = visible.filter((q) => q.state === "open").length;
+  return (
+    <div className="mb-4 rounded-card border border-brand-primary/25 bg-surface-tint px-4 py-3 text-sm">
+      <p className="font-semibold text-ink">Class quiz from your lecturer</p>
+      <p className="mt-1 text-ink-muted">
+        {openCount > 0
+          ? `${pluralize(openCount, "quiz")} open now. They are not the same as topic quizzes below.`
+          : `${pluralize(visible.length, "scheduled class quiz")} — open the Class quizzes tab to view details.`}
+      </p>
+      <Button type="button" size="sm" className="mt-3" onClick={onOpen}>
+        Open class quizzes
+      </Button>
+    </div>
   );
 }
 
@@ -67,13 +121,17 @@ function ActiveAttempt({ error }: { error: unknown }) {
   return typeof attemptId === "string" ? <Button asChild variant="secondary" size="sm"><Link href={`/attempts/${attemptId}`}>Resume current attempt</Link></Button> : null;
 }
 
-function TopicQuiz({ data }: { data: CourseOverview }) {
+function TopicQuiz({ data, selected, setSelected, requested, setRequested }: {
+  data: CourseOverview;
+  selected: string[];
+  setSelected: (value: string[]) => void;
+  requested: string;
+  setRequested: (value: string) => void;
+}) {
   const options = useTopicQuizOptions(data.offering_id);
   const start = useStartTopicQuiz();
   const router = useRouter();
   const analytics = useAnalytics();
-  const [selected, setSelected] = useState<string[]>([]);
-  const [requested, setRequested] = useState("20");
   const topics = options.data?.topics ?? [];
   const available = topics.filter(t => selected.includes(t.lesson_id) && t.question_count > 0);
   const poolSize = available.reduce((sum, t) => sum + t.question_count, 0);
@@ -127,8 +185,11 @@ function TopicQuiz({ data }: { data: CourseOverview }) {
   );
 }
 
-function MockExam({ assessments }: { assessments: CourseAssessment[] }) {
-  const [chosen, setChosen] = useState("");
+function MockExam({ assessments, chosen, setChosen }: {
+  assessments: CourseAssessment[];
+  chosen: string;
+  setChosen: (value: string) => void;
+}) {
   const assessment = assessments.find(a => a.assessment_version_id === chosen) ?? assessments[0];
   return !assessment ? <p className="text-sm text-ink-muted">Mock exams will appear here when questions are ready.</p> : (
     <div className="space-y-4">
@@ -165,7 +226,7 @@ function MockSession({ assessment: a }: { assessment: CourseAssessment }) {
 
 function CompactChallenges({ offeringId }: { offeringId: string }) {
   const [offset, setOffset] = useState(0);
-  const query = useQuery({ queryKey: ["course-challenges", offeringId, offset], queryFn: () => challengeApi().list(offeringId, offset), staleTime: 0, refetchInterval: 15000 });
+  const query = useQuery({ queryKey: ["course-challenges", offeringId, offset], queryFn: () => challengeApi().list(offeringId, offset), staleTime: 60_000, refetchInterval: 30_000 });
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="text-sm font-semibold">From your lecturers</h2>{query.data?.teacher ? <Button asChild size="sm" variant="secondary"><Link href={`/lecturer/courses/${offeringId}/challenges/new`}>Create challenge</Link></Button> : null}</div>

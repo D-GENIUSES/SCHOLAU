@@ -7,6 +7,7 @@ export const qk = {
   catalog: () => ["scholau", "catalog"] as const,
   onboarding: (u?: string | null, f?: string | null, p?: string | null) =>
     ["scholau", "onboarding", u ?? null, f ?? null, p ?? null] as const,
+  classQuizzes: () => ["scholau", "class-quizzes"] as const,
   course: (offeringId: string) => ["scholau", "course", offeringId] as const,
   lesson: (lessonId: string) => ["scholau", "lesson", lessonId] as const,
   insights: () => ["scholau", "insights"] as const,

@@ -26,8 +26,11 @@ await writeFile(
   resolve(dir, "entry.tsx"),
   `import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { QuizEditor } from '@/components/lecturer-quizzes/quiz-editor';
-createRoot(document.getElementById('root')).render(<QuizEditor offering={window.fixture.offering} />);`,
+createRoot(document.getElementById('root')).render(
+  <QueryClientProvider client={new QueryClient()}><QuizEditor offering={window.fixture.offering} /></QueryClientProvider>,
+);`,
 );
 
 await new Promise((done, reject) => webpack({
@@ -58,6 +61,7 @@ const allowed = new Set([
   "get_course_quiz_v1",
 ]);
 const errors = [];
+let losePublishResponse = true;
 const server = http.createServer(async (req, res) => {
   try {
     if (req.url === "/rpc") {
@@ -76,6 +80,12 @@ const server = http.createServer(async (req, res) => {
         )).rows[0].value;
       });
       res.setHeader("Content-Type", "application/json");
+      if (name === "publish_lecturer_quiz_v1" && losePublishResponse) {
+        losePublishResponse = false;
+        res.statusCode = 503;
+        res.end(JSON.stringify({ data: null, error: { message: "Connection interrupted" }, status: 503 }));
+        return;
+      }
       res.end(JSON.stringify({ data, error: null, status: 200 }));
       return;
     }
@@ -98,7 +108,8 @@ const server = http.createServer(async (req, res) => {
 });
 
 await new Promise(done => server.listen(0, "127.0.0.1", done));
-const browser = await chromium.launch({ channel: "msedge", headless: true });
+const executablePath = process.env.LECTURER_TEST_BROWSER;
+const browser = await chromium.launch({ ...(executablePath ? { executablePath } : { channel: "msedge" }), headless: true });
 const page = await browser.newPage();
 page.setDefaultTimeout(12000);
 page.on("pageerror", e => errors.push(e.message));
@@ -131,8 +142,11 @@ await page.getByRole("button", { name: "Save draft", exact: true }).click();
 await page.getByText("Draft saved.", { exact: true }).waitFor();
 bump();
 
-await page.getByRole("button", { name: "Publish quiz", exact: true }).click();
-await page.waitForFunction(() => location.href.includes("/lecturer/courses/") || location.pathname === "/");
+const publish = page.getByRole("button", { name: "Publish quiz", exact: true });
+await publish.click();
+await page.getByText(/Publication could not be confirmed/).waitFor();
+await publish.click();
+await page.waitForURL("**/lecturer/courses/**");
 const quizId = (await db.query("select id from private.lecturer_course_quizzes where title='Midterm practice'")).rows[0].id;
 assert.ok(quizId);
 assert.equal((await db.query("select status from private.lecturer_course_quizzes where id=$1", [quizId])).rows[0].status, "published");

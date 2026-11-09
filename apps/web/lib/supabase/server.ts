@@ -23,6 +23,6 @@ export async function getServerSupabase() {
   });
 }
 
-export async function getServerApi() {
-  return createScholauApi(await getServerSupabase(), { clock: new ServerClock() });
+export async function getServerApi(client?: Awaited<ReturnType<typeof getServerSupabase>>) {
+  return createScholauApi(client ?? await getServerSupabase(), { clock: new ServerClock() });
 }

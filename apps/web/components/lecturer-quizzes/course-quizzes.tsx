@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { Download, Plus } from "lucide-react";
+import { qk } from "@scholau/api";
+import { shouldRetry } from "@scholau/api/react";
+import type { LecturerQuizList } from "@scholau/api";
 import type { LecturerQuiz } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +14,11 @@ import { Failure, Paging } from "@/components/challenges/course-challenges";
 import { lecturerQuizApi, type QuizIntegrityFlag } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { formatQuizWindow, QuizStateBadge } from "./quiz-ui";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+function studentListStale(data: LecturerQuizList | undefined) {
+  return !data || data.items.length === 0;
+}
 
 export const quizApi = () => lecturerQuizApi(getBrowserSupabase());
 
@@ -28,9 +35,38 @@ function lecturerQuizCta(quiz: LecturerQuiz) {
   return "Manage";
 }
 
-export function CourseQuizzes({ offering, lecturer = false }: { offering: string; lecturer?: boolean }) {
+export function CourseQuizzes({
+  offering,
+  lecturer = false,
+  initialList,
+}: {
+  offering: string;
+  lecturer?: boolean;
+  initialList?: LecturerQuizList;
+}) {
   const [offset, setOffset] = useState(0);
-  const list = useQuery({ queryKey: ["course-quizzes", offering, offset], queryFn: () => quizApi().list(offering, offset), refetchInterval: lecturer ? 15_000 : false });
+  const list = useQuery({
+    queryKey: [...qk.classQuizzes(), offering, offset],
+    initialData: offset === 0 ? initialList : undefined,
+    queryFn: () => quizApi().list(offering, offset),
+    retry: shouldRetry,
+    staleTime: lecturer ? 0 : 30_000,
+    refetchOnMount: (query) => lecturer || studentListStale(query.state.data as LecturerQuizList | undefined),
+    refetchOnWindowFocus: (query) => lecturer || studentListStale(query.state.data as LecturerQuizList | undefined),
+    refetchInterval: lecturer ? 15_000 : false,
+  });
+  useEffect(() => {
+    if (!list.isError) return;
+    // #region agent log
+    agentDebugLog({
+      location: "course-quizzes.tsx:listError",
+      message: "class quiz list failed",
+      data: { offering, lecturer, code: (list.error as { code?: string })?.code ?? "unknown" },
+      hypothesisId: "E",
+      runId: "post-fix",
+    });
+    // #endregion
+  }, [list.isError, list.error, offering, lecturer]);
   const base = lecturer ? `/lecturer/courses/${offering}/quizzes` : `/courses/${offering}/quizzes`;
   const studentHref = (id: string) => `/course-quizzes/${id}`;
 
@@ -48,7 +84,7 @@ export function CourseQuizzes({ offering, lecturer = false }: { offering: string
       </div>
       <Failure error={list.error} retry={() => void list.refetch()} />
       {list.isPending && <p role="status">Loading quizzes…</p>}
-      {!list.data?.items.length && !list.isPending ? (
+      {list.isSuccess && !list.data.items.length ? (
         lecturer ? (
           <EmptyState
             title="No class quizzes yet"

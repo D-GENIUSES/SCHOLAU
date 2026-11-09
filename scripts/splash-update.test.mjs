@@ -29,7 +29,7 @@ test("checks every 15 seconds and automatically applies a new release on a safe 
 test("works without service-worker or notification support", async()=>{
  const f=fixture();await flush();delete f.browser.serviceWorker;f.setVersion("new");f.events.dispatchEvent(new Event("focus"));await flush();assert.equal(f.stats().reloads,1);f.stop();
 });
-for(const route of ["/battles/live-id","/attempts/test-id","/battles/queue"]){
+for(const route of ["/battles/live-id","/attempts/test-id","/battles/queue","/course-quizzes/test-id"]){
  test("defers reload during "+route+" and applies after leaving",async()=>{
   const f=fixture(route);await flush();f.setVersion("new");f.events.dispatchEvent(new Event("focus"));await flush();assert.equal(f.stats().reloads,0);assert.equal(f.stats().pending,true);
   f.events.location.pathname="/home";f.events.dispatchEvent(new Event("popstate"));await flush();assert.equal(f.stats().reloads,1);f.stop();

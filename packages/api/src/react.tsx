@@ -87,14 +87,14 @@ function invalidate(qc: QueryClient, ...keys: readonly (readonly unknown[])[]) {
 /* Profile, onboarding, home                                                                        */
 /* ------------------------------------------------------------------------------------------------ */
 
-export function useProfile(enabled = true) {
+export function useProfile(enabled = true, initialData?: T.Profile) {
   const api = useScholauApi();
-  return useQuery({ queryKey: qk.profile(), queryFn: api.getMyProfile, enabled, retry: shouldRetry });
+  return useQuery({ queryKey: qk.profile(), queryFn: api.getMyProfile, enabled, initialData, retry: shouldRetry });
 }
 
-export function useHomeSummary() {
+export function useHomeSummary(initialData?: T.HomeSummary) {
   const api = useScholauApi();
-  return useQuery({ queryKey: qk.home(), queryFn: api.getHomeSummary, retry: shouldRetry });
+  return useQuery({ queryKey: qk.home(), queryFn: api.getHomeSummary, initialData, retry: shouldRetry });
 }
 
 export function useOnboardingOptions(universityId?: string | null, facultyId?: string | null, academicPeriodId?: string | null) {
@@ -147,12 +147,14 @@ export function useEnrollCourse() {
   });
 }
 
-export function useCourseOverview(offeringId: string | undefined) {
+export function useCourseOverview(offeringId: string | undefined, initialData?: T.CourseOverview) {
   const api = useScholauApi();
   return useQuery({
     queryKey: qk.course(offeringId ?? ""),
     queryFn: () => api.getCourseOverview(offeringId!),
     enabled: Boolean(offeringId),
+    initialData,
+    staleTime: 60_000,
     retry: shouldRetry,
   });
 }
@@ -254,9 +256,15 @@ export function useTopicQuizOptions(offeringId: string) {
   return useQuery({ queryKey: ["scholau", "course", offeringId, "topic-quiz"], queryFn: () => api.getTopicQuizOptions(offeringId) });
 }
 
-export function useCourseQuizzes(offeringId: string, offset = 0) {
+export function useCourseQuizzes(offeringId: string, offset = 0, initialData?: T.LecturerQuizList) {
   const api = useScholauApi();
-  return useQuery({ queryKey: ["scholau", "course", offeringId, "class-quizzes", offset], queryFn: () => api.listCourseQuizzes(offeringId, offset) });
+  return useQuery({
+    queryKey: [...qk.classQuizzes(), offeringId, offset],
+    queryFn: () => api.listCourseQuizzes(offeringId, offset),
+    initialData,
+    staleTime: 60_000,
+    retry: shouldRetry,
+  });
 }
 
 export function useCourseQuiz(quizId: string) {
@@ -401,7 +409,7 @@ export function useUserSignals(userId: string | undefined): ChannelStatus {
           if (inboxTimer.current) clearTimeout(inboxTimer.current);
           inboxTimer.current = setTimeout(() => {
             inboxTimer.current = null;
-            void invalidate(qc, qk.notifications(), qk.home());
+            void invalidate(qc, qk.notifications(), qk.home(), qk.classQuizzes());
           }, event === "resync" ? 0 : 80);
         }
       },

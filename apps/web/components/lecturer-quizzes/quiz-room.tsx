@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { isApiError } from "@scholau/api";
+import { shouldRetry } from "@scholau/api/react";
 import type { LecturerQuizAttempt, LecturerQuizDetail } from "@scholau/core";
 import { canonicalAnswerToDisplayIndex, isNestedOptionOrders } from "@scholau/core";
 import { MathText } from "@/components/math/math-text";
@@ -28,10 +30,25 @@ function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): n
 export function QuizRoom({ id }: { id: string }) {
   const [actionError, setActionError] = useState<unknown>(null);
   const [busy, setBusy] = useState(false);
-  const query = useQuery({ staleTime: 0, queryKey: ["course-quiz", id], queryFn: () => quizApi().detail(id), refetchInterval: busy ? false : 10000 });
+  const query = useQuery({
+    queryKey: ["course-quiz", id],
+    queryFn: () => quizApi().detail(id),
+    staleTime: 0,
+    retry: shouldRetry,
+    refetchInterval: ({ state }) => busy || !state.data ? false : 10_000,
+  });
   async function act(action: () => Promise<unknown>) {
     setBusy(true); setActionError(null);
     try { await action(); await query.refetch(); } catch (e) { setActionError(e); } finally { setBusy(false); }
+  }
+  if (isApiError(query.error, "FORBIDDEN") || isApiError(query.error, "NOT_ENROLLED")) {
+    return (
+      <div className="space-y-3 rounded-card border border-line p-4">
+        <h1 className="text-xl font-bold">Quiz unavailable for your account</h1>
+        <p className="text-sm text-ink-muted">When a lecturer publishes a quiz, it becomes available to students enrolled in that class.</p>
+        <Button asChild variant="outline"><Link href="/home">My courses</Link></Button>
+      </div>
+    );
   }
   if (!query.data) return <><Failure error={query.error} retry={() => void query.refetch()} />{query.isPending && <p role="status">Loading quiz…</p>}</>;
   const d = query.data;
@@ -39,7 +56,7 @@ export function QuizRoom({ id }: { id: string }) {
   if (d.teacher && q.state === "draft") return <QuizEditor offering={q.offering_id} initial={d} />;
   return (
     <div className="space-y-6 min-w-0 break-words">
-      <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/courses/${q.offering_id}/quizzes`}>Back to quizzes</Link>
+      <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
       <div className="flex flex-wrap items-center gap-2">
         <h1 className="text-2xl font-bold">{q.title}</h1>
         <QuizStateBadge state={q.state} />

@@ -49,7 +49,7 @@ export default async function LecturerCourseLayout({ params, children }: {
           </Link>
         </div>
         <p className="mt-1 wrap-break-word text-2xl font-bold tracking-tight sm:text-3xl">{course.title}</p>
-        <p className="mb-4 mt-1 text-sm text-ink-muted">{course.department} · {course.period} · {course.semester}</p>
+        <p className="mb-4 mt-1 text-sm text-ink-muted"><span className="font-semibold text-ink">Class</span> · {course.department} · {course.period} · {course.semester}</p>
         <CourseNavigation offeringId={offeringId} />
       </header>
       {children}

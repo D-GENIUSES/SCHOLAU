@@ -12,7 +12,10 @@ export function SplashGate({ children }: { children: ReactNode }) {
     if (document.documentElement.dataset.scholauLaunch !== "cold") return;
     const timer = window.setTimeout(() => {
       if (document.documentElement.dataset.scholauLaunch === "cold") {
-        void video.current?.play().catch(finishLaunch);
+        const player = video.current;
+        if (!player) return finishLaunch();
+        player.src = "/brand/splash-bounce-centered.mp4";
+        void player.play().catch(finishLaunch);
       }
     }, 350);
     return () => window.clearTimeout(timer);
@@ -26,14 +29,12 @@ export function SplashGate({ children }: { children: ReactNode }) {
           className={styles.video}
           muted
           playsInline
-          preload="auto"
+          preload="none"
           disablePictureInPicture
           onPlaying={() => setPlaying(true)}
           onEnded={finishLaunch}
           onError={finishLaunch}
-        >
-          <source src="/brand/splash-bounce-centered.mp4" type="video/mp4" />
-        </video>
+        />
         <div className={styles.intro}><SplashLogo /></div>
       </div>
       {children}

@@ -19,7 +19,7 @@ export function startAppUpdates({ browser = navigator, page = document, events =
     const location = events.location.pathname + events.location.search;
     if (location !== editedPath) { edited = false; editedPath = location; }
     const focused = page.activeElement;
-    return !/^\/(?:attempts|battles)\/[^/]+\/?$/.test(events.location.pathname)
+    return !/^\/(?:attempts|battles|course-quizzes)\/[^/]+\/?$/.test(events.location.pathname)
       && !edited && Date.now() - interactedAt > 3_000
       && !focused?.matches?.("input, textarea, select, [contenteditable=true]")
       && !page.querySelector?.('[aria-busy="true"], [role="dialog"]');

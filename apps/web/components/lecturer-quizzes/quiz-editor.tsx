@@ -1,8 +1,10 @@
 "use client";
 
 import { MathText } from "@/components/math/math-text";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import { qk } from "@scholau/api";
 import { useRouter } from "next/navigation";
 import {
   completeQuizQuestions,
@@ -33,14 +35,15 @@ const steps: QuizEditorStep[] = ["Schedule", "Questions", "Review"];
 
 export function QuizEditor({ offering, initial }: { offering: string; initial?: LecturerQuizDetail }) {
   const router = useRouter();
-  const id = useRef(initial?.quiz.id ?? "");
-  const [revision, setRevision] = useState(initial?.quiz.revision ?? 0);
+  const queryClient = useQueryClient();
+  const [id, setId] = useState(initial?.quiz.id ?? "");
+  const [revision, setRevision] = useState(initial?.quiz.revision ?? null);
   const defaults = defaultQuizWindow();
   const [step, setStep] = useState<QuizEditorStep>("Schedule");
   const [stepError, setStepError] = useState<string | null>(null);
   const [openQuestions, setOpenQuestions] = useState<Record<number, boolean>>({ 0: true });
   const [importReview, setImportReview] = useState<LecturerQuizQuestion[] | null>(null);
-  const importSession = useRef(0);
+  const [importSession, setImportSession] = useState(0);
   const [draft, setDraft] = useState<LecturerQuizDraft>(() =>
     initial
       ? {
@@ -121,18 +124,30 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
     setMessage("");
     setStepError(null);
     try {
-      if (!id.current) id.current = crypto.randomUUID();
+      const quizId = id || crypto.randomUUID();
+      setId(quizId);
       const payload: LecturerQuizDraft = { ...draft, questions: completeQuizQuestions(draft.questions) };
       if (!draft.opens_at || !draft.closes_at) throw new Error("Set when the quiz opens and closes.");
-      const saved = await api().save(id.current, offering, revision, payload);
-      setRevision(saved.quiz.revision);
-      setDraft(d => ({ ...d, questions: saved.questions }));
-      setDirty(false);
-      if (publish) {
-        await api().publish(id.current, saved.quiz.revision);
-        router.push(`/lecturer/courses/${offering}/quizzes/${id.current}`);
+      let savedRevision = revision;
+      if (!publish || dirty || savedRevision === null) {
+        const saved = await api().save(quizId, offering, revision ?? 0, payload);
+        savedRevision = saved.quiz.revision;
+        setRevision(savedRevision);
+        setDraft(d => ({ ...d, questions: saved.questions }));
+        setDirty(false);
+      }
+      if (publish && savedRevision !== null) {
+        try {
+          await api().publish(quizId, savedRevision);
+        } catch (cause) {
+          throw new Error(`Draft saved. Publication could not be confirmed. ${lecturerQuizError(cause)}`, { cause });
+        }
+        void queryClient.invalidateQueries({ queryKey: [...qk.classQuizzes(), offering] });
+        void queryClient.invalidateQueries({ queryKey: ["course-quiz", quizId] });
+        setMessage("Published. Enrolled students were notified.");
+        router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
         router.refresh();
-      } else setMessage("Draft saved.");
+      } else setMessage("Draft saved. Students cannot see this quiz until you publish.");
     } catch (e) {
       setError(e);
     } finally {
@@ -141,13 +156,13 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
   }
 
   async function recover() {
-    if (!id.current) return;
+    if (!id) return;
     if (dirty && !window.confirm("Reload the saved draft? Unsaved changes will be replaced.")) return;
     setBusy(true);
     try {
-      const result = await api().detail(id.current);
+      const result = await api().detail(id);
       if (result.quiz.state !== "draft") {
-        router.push(`/lecturer/courses/${offering}/quizzes/${id.current}`);
+        router.push(`/lecturer/courses/${offering}/quizzes/${id}`);
         router.refresh();
         return;
       }
@@ -173,19 +188,20 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
   }
 
   async function uploadImport(file: File) {
-    if (!id.current) id.current = crypto.randomUUID();
+    const quizId = id || crypto.randomUUID();
+    setId(quizId);
     setImportBusy(true);
     setError(null);
     try {
       const body = new FormData();
-      body.set("quizId", id.current);
+      body.set("quizId", quizId);
       body.set("offeringId", offering);
       body.set("file", file);
       const res = await fetch("/api/lecturer-quiz-import", { method: "POST", body });
       const json = await res.json() as { questions?: LecturerQuizQuestion[]; error?: string };
       if (!res.ok) throw new Error(json.error || "Import failed.");
       if (json.questions?.length) {
-        importSession.current += 1;
+        setImportSession(session => session + 1);
         setImportReview(json.questions);
         goTo("Questions");
       }
@@ -202,7 +218,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
     setMessage(`Added ${selected.length} question${selected.length === 1 ? "" : "s"}. Review before publishing.`);
   }
 
-  const publishReady = !publishBlockers(draft, true);
+  const publishIssue = publishBlockers(draft, true);
   const feedbackLabel = draft.feedback_mode === "immediate" ? "Score only (hide answer review)" : "Full answer review after submit";
 
   return (
@@ -237,7 +253,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       </nav>
       <Failure
         error={error ? new Error(lecturerQuizError(error)) : null}
-        retry={id.current ? () => void recover() : undefined}
+        retry={id ? () => void recover() : undefined}
       />
       {stepError ? <p role="alert" className="text-sm text-danger">{stepError}</p> : null}
       {message && <p role="status">{message}</p>}
@@ -316,9 +332,6 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
             <ul className="space-y-1 text-sm" aria-label="Publish checklist">
               <li className={scheduleIssue ? "text-danger" : "text-success"}>{scheduleIssue ? `Schedule: ${scheduleIssue}` : "Schedule: ready"}</li>
               <li className={readyCount < 1 ? "text-danger" : "text-success"}>{readyCount < 1 ? "Questions: add at least one complete question" : `Questions: ${readyCount} ready${incompleteCount ? ` (${incompleteCount} incomplete will not be saved)` : ""}`}</li>
-              <li className={draft.closes_at && new Date(draft.closes_at).getTime() > Date.now() ? "text-success" : "text-danger"}>
-                {draft.closes_at && new Date(draft.closes_at).getTime() > Date.now() ? "Close time: in the future" : "Close time: must be in the future to publish"}
-              </li>
               <li className="text-ink-muted">Feedback: {feedbackLabel}</li>
             </ul>
             <dl className="grid gap-2 text-sm sm:grid-cols-2">
@@ -329,31 +342,32 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
               <div className="sm:col-span-2"><dt className="text-ink-muted">Window</dt><dd className="font-semibold">{formatQuizWindow(draft.opens_at ?? null, draft.closes_at ?? null)}</dd></div>
             </dl>
             {scheduleWarning ? <p className="text-sm text-warning">{scheduleWarning}</p> : null}
-            <p className="text-sm text-ink-muted">Publishing freezes questions and schedule. Enrolled students receive a notification. Options are shuffled per student.</p>
+            <p className="text-sm text-ink-muted">Publishing locks the questions and schedule. Students enrolled in the class shown above receive a notification. Options are shuffled per student.</p>
             <ReviewPreviewList questions={completeQuizQuestions(draft.questions)} />
+            {publishIssue ? <p className="text-sm text-danger">{publishIssue}</p> : null}
             <div className="flex flex-wrap gap-2">
               <Button type="button" variant="outline" onClick={() => setStep("Questions")}>Back</Button>
               <Button type="submit" loading={busy}>Save draft</Button>
               <Button
                 type="button"
-                disabled={!publishReady || busy}
+                disabled={Boolean(publishIssue) || busy}
                 onClick={() => {
-                  if (window.confirm("Publish this quiz? You cannot edit questions afterwards.")) void save(true);
+                  if (window.confirm("Publish to students enrolled in this class? You cannot edit the questions afterwards.")) void save(true);
                 }}
               >
                 Publish quiz
               </Button>
             </div>
-            {(initial || revision > 0) ? (
+            {revision !== null ? (
               <Button
                 type="button"
                 variant="secondary"
-                disabled={busy || !id.current}
+                disabled={busy || !id}
                 onClick={async () => {
-                  if (!id.current || !window.confirm("Cancel this draft?")) return;
+                  if (!id || !window.confirm("Cancel this draft?")) return;
                   setBusy(true);
                   try {
-                    await api().cancel(id.current);
+                    await api().cancel(id);
                     setDirty(false);
                     router.push(`/lecturer/courses/${offering}/quizzes`);
                     router.refresh();
@@ -372,7 +386,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       </fieldset>
 
       <ImportReviewDialog
-        key={importSession.current}
+        key={importSession}
         open={Boolean(importReview)}
         questions={importReview ?? []}
         onClose={() => setImportReview(null)}

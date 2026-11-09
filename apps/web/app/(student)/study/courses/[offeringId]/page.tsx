@@ -215,12 +215,17 @@ function Overview({ data }: { data: CourseOverview }) {
             Assessments
           </h2>
           <p className="mt-1 text-sm text-ink-muted">
-            Topic quizzes, timed mock exams and lecturer challenges.
+            Topic quizzes, timed mock exams, lecturer challenges and class quizzes.
           </p>
         </div>
-        <Button asChild size="sm">
-          <Link href={`/study/courses/${data.offering_id}/assessments`}>Open assessments</Link>
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Button asChild size="sm">
+            <Link href={`/study/courses/${data.offering_id}/assessments`}>Open assessments</Link>
+          </Button>
+          <Button asChild size="sm" variant="outline">
+            <Link href={`/study/courses/${data.offering_id}/assessments?tab=class-quizzes`}>Class quizzes</Link>
+          </Button>
+        </div>
       </section>
     </>
   );

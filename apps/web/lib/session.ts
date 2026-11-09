@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { isApiError, type Profile } from "@scholau/api";
 import { readRegistrationAcademic } from "@scholau/core";
@@ -12,16 +13,28 @@ export type SessionResult =
  * Server-side session + profile. Redirects to sign-in when unauthenticated. Returns `unavailable`
  * (never a fabricated profile) when the backend can't be reached.
  */
-export async function requireSession(nextPath: string): Promise<SessionResult> {
-  const supabase = await getServerSupabase();
+const getSessionClient = cache(getServerSupabase);
+
+export const getSessionClaims = cache(async () => {
+  const supabase = await getSessionClient();
   const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
-  const userId = data?.claims?.sub as string | undefined;
+  return data?.claims;
+});
+
+export const getSessionApi = cache(async () => getServerApi(await getSessionClient()));
+
+const getSessionProfile = cache(async () => {
+  const api = await getSessionApi();
+  return api.getMyProfile();
+});
+
+export async function requireSession(nextPath: string): Promise<SessionResult> {
+  const userId = (await getSessionClaims())?.sub;
   if (!userId) redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
 
   let profile: Profile;
   try {
-    const api = await getServerApi();
-    profile = await api.getMyProfile();
+    profile = await getSessionProfile();
   } catch (err) {
     if (isApiError(err, "INVALID_STATE") && err.field_errors?.registration_required === true) redirect("/complete-registration");
     if (isApiError(err, "UNAUTHENTICATED")) redirect("/auth/deactivated?reason=unavailable");
@@ -45,9 +58,8 @@ export async function requireSession(nextPath: string): Promise<SessionResult> {
 export async function requireOnboardedSession(nextPath: string): Promise<SessionResult> {
   const s = await requireSession(nextPath);
   if (s.kind === "ok" && s.profile.needs_onboarding) {
-    const supabase = await getServerSupabase();
-    const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
-    if (!readRegistrationAcademic(data?.claims?.user_metadata)) redirect("/onboarding");
+    const claims = await getSessionClaims();
+    if (!readRegistrationAcademic(claims?.user_metadata)) redirect("/onboarding");
   }
   return s;
 }

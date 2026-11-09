@@ -1,4 +1,4 @@
-import { isApiError, parseRpcError, type AnySupabaseClient } from "@scholau/api";
+import { isApiError, parseRpcError, ScholauApiError, type AnySupabaseClient } from "@scholau/api";
 import type {
   LecturerQuiz,
   LecturerQuizDetail,
@@ -17,6 +17,9 @@ export type QuizIntegrityFlag = { user_id: string; attempt_number: number; kind:
 export function lecturerQuizApi(client: AnySupabaseClient) {
   async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
     const { data, error, status } = await client.rpc(name, args);
+    if (error?.message === "ATTEMPT_LIMIT") {
+      throw new ScholauApiError({ code: "INVALID_STATE", message: "You have used all allowed attempts.", retryable: false });
+    }
     if (error) throw parseRpcError(error, status);
     return data as T;
   }
@@ -81,7 +84,6 @@ export function lecturerQuizError(error: unknown): string {
     if (error.code === "STALE_REVISION") return "This quiz changed in another tab. Refresh before continuing.";
     if (error.code === "FORBIDDEN" || error.code === "NOT_ENROLLED") return "You no longer have access to this course.";
     if (error.code === "DEADLINE_PASSED") return "Time is up or the quiz window has closed.";
-    if (error.code === "ATTEMPT_LIMIT") return "You have used all allowed attempts.";
     if (error.code === "INVALID_STATE") return error.message || "This quiz is not open right now.";
     if (error.code === "VALIDATION_FAILED") return error.message;
     return error.message;

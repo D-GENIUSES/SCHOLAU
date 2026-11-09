@@ -6,8 +6,7 @@ import { HomeView } from "@/components/home/home-view";
 import { ServiceUnavailable } from "@/components/service-unavailable";
 import { AppShell } from "@/components/shell/app-shell";
 import { LoadingState } from "@/components/ui/states";
-import { requireOnboardedSession } from "@/lib/session";
-import { getServerSupabase } from "@/lib/supabase/server";
+import { getSessionApi, getSessionClaims, requireOnboardedSession } from "@/lib/session";
 import { publicPages, SITE_URL } from "@/lib/seo";
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }): Promise<Metadata> {
@@ -26,9 +25,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 
 /** Public app entry. Guests do not call account RPCs or subscribe to user signals. */
 export default async function HomePage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const supabase = await getServerSupabase();
-  const { data } = await supabase.auth.getClaims().catch(() => ({ data: null }));
-  if (!data?.claims?.sub) {
+  if (!(await getSessionClaims())?.sub) {
     const { view } = await searchParams;
     if ((Array.isArray(view) ? view[0] : view) === "practice") redirect("/home");
     return <>
@@ -36,7 +33,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       <Suspense fallback={<LoadingState variant="home" label="Opening ScholAu…" />}><GuestExperience /></Suspense>
     </>;
   }
+  const summaryRequest = getSessionApi().then(api => api.getHomeSummary()).catch(() => undefined);
   const session = await requireOnboardedSession("/home");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
-  return <AppShell userId={session.userId} isAdmin={session.profile.roles.includes("admin")}><HomeView owner={session.userId} /></AppShell>;
+  const summary = await summaryRequest;
+  return <AppShell key={session.userId} userId={session.userId} initialProfile={session.profile} initialHome={summary} isAdmin={session.profile.roles.includes("admin")}><HomeView owner={session.userId} initialHome={summary} /></AppShell>;
 }

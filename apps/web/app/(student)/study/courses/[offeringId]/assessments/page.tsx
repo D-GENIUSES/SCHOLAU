@@ -1,30 +1,53 @@
-"use client";
-
-import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { ArrowLeft } from "lucide-react";
-import { useCourseOverview } from "@scholau/api/react";
-import { CourseAssessments } from "@/components/assessments/course-assessments";
-import { ErrorState, LoadingState } from "@/components/ui/states";
+import { isApiError, type CourseOverview } from "@scholau/api";
+import type { LecturerQuizList } from "@scholau/api";
+import { getSessionApi } from "@/lib/session";
+import { agentDebugLogServer } from "@/lib/agent-debug-log-server";
+import { LoadingState } from "@/components/ui/states";
+import { AssessmentsRoute } from "./assessments-route";
 
-export default function CourseAssessmentsPage() {
-  return <Suspense fallback={<LoadingState variant="assessment" label="Loading assessments…" />}><AssessmentsRoute /></Suspense>;
-}
+type PageProps = {
+  params: Promise<{ offeringId: string }>;
+};
 
-function AssessmentsRoute() {
-  const { offeringId } = useParams<{ offeringId: string }>();
-  const requestedTab = useSearchParams().get("tab");
-  const initialTab = requestedTab === "mock" || requestedTab === "challenges" || requestedTab === "class-quizzes" ? requestedTab : "quiz";
-  const overview = useCourseOverview(offeringId);
+export default async function CourseAssessmentsPage({ params }: PageProps) {
+  const { offeringId } = await params;
+  const api = await getSessionApi();
+  let initialOverview: CourseOverview | undefined;
+  let initialQuizList: LecturerQuizList | undefined;
+  let overviewError: string | undefined;
+  let quizListError: string | undefined;
+
+  try {
+    initialOverview = await api.getCourseOverview(offeringId);
+  } catch (error) {
+    overviewError = isApiError(error) ? `${error.code}:${error.message}` : String(error);
+  }
+
+  try {
+    initialQuizList = await api.listCourseQuizzes(offeringId, 0);
+  } catch (error) {
+    quizListError = isApiError(error) ? `${error.code}:${error.message}` : String(error);
+  }
+
+  await agentDebugLogServer({
+    location: "assessments/page.tsx",
+    message: "assessments server prefetch",
+    runId: "post-fix",
+    hypothesisId: "B",
+    data: {
+      offeringId,
+      hasOverview: Boolean(initialOverview),
+      overviewError,
+      quizCount: initialQuizList?.items?.length ?? 0,
+      quizStates: initialQuizList?.items?.map((q) => q.state) ?? [],
+      quizListError,
+    },
+  });
+
   return (
-    <div className="mx-auto w-full max-w-3xl min-w-0">
-      <Link href="/home" className="mb-4 inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-brand-primary hover:underline">
-        <ArrowLeft className="size-4" aria-hidden /> My courses
-      </Link>
-      {overview.data ? <CourseAssessments key={`${offeringId}-${initialTab}`} data={overview.data} initialTab={initialTab} /> : overview.isError ? (
-        <ErrorState error={overview.error} onRetry={() => void overview.refetch()} />
-      ) : <LoadingState variant="assessment" label="Loading assessments…" />}
-    </div>
+    <Suspense fallback={<LoadingState variant="assessment" label="Loading assessments…" />}>
+      <AssessmentsRoute initialOverview={initialOverview} initialQuizList={initialQuizList} />
+    </Suspense>
   );
 }
