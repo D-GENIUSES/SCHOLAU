@@ -8,7 +8,7 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { safeNext } from "@/lib/utils";
 import { markGoogleDeparture, measureAuth } from "@/lib/auth-timing";
 
-export function GoogleSignIn({ next, disabled, label = "Continue with Google", mode = "sign-in" }: { next?: string; disabled?: boolean; label?: string; mode?: "sign-in" | "sign-up" }) {
+export function GoogleSignIn({ next, disabled, label = "Continue with Google", mode = "sign-in", signupRole = "student" }: { next?: string; disabled?: boolean; label?: string; mode?: "sign-in" | "sign-up"; signupRole?: "student" | "lecturer" }) {
   const pending = useRef(false);
   const attempt = useRef(0);
   const [busy, setBusy] = useState(false);
@@ -44,7 +44,12 @@ export function GoogleSignIn({ next, disabled, label = "Continue with Google", m
       callback.searchParams.set("provider", "google");
       callback.searchParams.set("mode", mode);
       if (mode === "sign-up") {
-        const response = await fetch("/api/auth/google-signup-attempt", { method: "POST" });
+        callback.searchParams.set("role", signupRole);
+        const response = await fetch("/api/auth/google-signup-attempt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ role: signupRole }),
+        });
         if (!response.ok) throw new Error("Google signup attempt unavailable");
         const { attemptId } = await response.json() as { attemptId?: string };
         if (!attemptId) throw new Error("Google signup attempt unavailable");
@@ -75,7 +80,7 @@ export function GoogleSignIn({ next, disabled, label = "Continue with Google", m
 
   return <div className="flex flex-col gap-3">
     {error ? <Alert tone="error" role="alert">{error}</Alert> : null}
-    <Button block size="lg" variant="outline" loading={busy} disabled={disabled} onClick={() => void signIn()}>
+    <Button type="button" block size="lg" variant="outline" loading={busy} disabled={disabled} onClick={() => void signIn()}>
       {busy ? <LoaderCircle className="animate-spin motion-reduce:animate-none" aria-hidden="true" /> : <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
         <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z" />
         <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.4 38.04 46.98 31.9 46.98 24.55Z" />

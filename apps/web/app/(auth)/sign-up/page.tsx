@@ -26,7 +26,7 @@ export default async function SignUpPage({ searchParams }: { searchParams: Searc
     <AuthNotices {...context} />
     {email ? <SignUpForm next={context.next} context={context} /> : <AuthMethodOptions mode="sign-up" context={context} />}
   </div>;
-  if (role === "lecturer") return <LecturerSignUpForm />;
+  if (role === "lecturer") return <><AuthNotices {...context} /><LecturerSignUpForm /></>;
   return <>
     <AuthHeading title="Create an account" description="Select the account you need." />
     <div className="auth-role-options" aria-label="Choose an account type">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { GoogleLecturerApplicationForm } from "@/components/auth/google-lecturer-application-form";
 import { CompleteRegistrationForm } from "@/components/auth/complete-registration-form";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { accountDestination } from "@/lib/auth-destination";
@@ -14,5 +15,9 @@ export default async function CompleteRegistrationPage() {
   const status = await client.rpc("get_my_registration_status_v1");
   if (status.error) return <ServiceUnavailable reference="SA-REGISTRATION" message="Registration is temporarily unavailable. Please try again shortly." />;
   if (!status.data?.pending) redirect(await accountDestination());
+  if (status.data.lecturer) {
+    const name = data.user.user_metadata?.full_name;
+    return <GoogleLecturerApplicationForm email={data.user.email ?? ""} name={typeof name === "string" ? name.slice(0, 120) : ""} />;
+  }
   return <CompleteRegistrationForm />;
 }

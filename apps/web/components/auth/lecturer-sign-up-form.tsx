@@ -12,6 +12,7 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { AuthSteps } from "./auth-steps";
 import { SignupNotifications } from "@/components/notifications/signup-notifications";
+import { GoogleSignIn } from "./google-sign-in";
 import { AuthHeading } from "./auth-heading";
 import { authErrorMessage } from "./auth-errors";
 import { LecturerApplicationFields } from "./lecturer-application-fields";
@@ -45,6 +46,7 @@ export function LecturerSignUpForm() {
     <AuthSteps current={step} labels={["Account", "Teaching details"]} />
     <AuthHeading title={step === 0 ? "Apply as a lecturer" : "Your teaching details"} description={step === 0 ? "Create your sign-in details, then tell us about your teaching role." : "An administrator will review your affiliation and requested courses."} />
     
+    {step === 0 ? <div className="mb-4"><GoogleSignIn mode="sign-up" signupRole="lecturer" label="Apply with Google" /></div> : null}
     <FormProvider {...form}><form noValidate className="auth-form" onSubmit={event => {
       if (step === 0) { event.preventDefault(); const legalError = legal.validate(); if (legalError) { setError(legalError); return; } setError(null); void form.trigger(["email", "password"], { shouldFocus: true }).then(valid => { if (valid) setStep(1); }); }
       else void submit(event);

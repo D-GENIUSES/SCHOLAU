@@ -104,12 +104,16 @@ function AccountLinks({ next }: { next: string }) {
 }
 
 function GuestControls({ next }: { next: string }) {
+  const destination = encodeURIComponent(next);
   return (
     <>
       <span className="grid size-9 shrink-0 place-items-center" aria-hidden><StreakFlame active size={23} /></span>
+      <Button asChild size="sm" className="lg:hidden">
+        <Link href={`/sign-in?next=${destination}`}>Sign in</Link>
+      </Button>
       <Dialog>
         <DialogTrigger asChild>
-          <button type="button" className="notification-button" aria-label="Guest settings"><Settings className="size-5" aria-hidden /></button>
+          <button type="button" className="notification-button hidden lg:inline-flex" aria-label="Guest settings"><Settings className="size-5" aria-hidden /></button>
         </DialogTrigger>
         <DialogContent className="max-w-sm">
           <DialogTitle>Guest settings</DialogTitle>

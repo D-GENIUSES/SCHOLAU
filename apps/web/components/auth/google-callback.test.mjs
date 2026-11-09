@@ -2,15 +2,15 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
-import { GOOGLE_SIGNUP_ATTEMPT_COOKIE, isNewGoogleSignup } from "../../lib/google-signup-attempt.ts";
+import { GOOGLE_SIGNUP_ATTEMPT_COOKIE, GOOGLE_SIGNUP_ATTEMPT_MAX_AGE_SECONDS, googleSignupStartedAt, isNewGoogleSignup } from "../../lib/google-signup-attempt.ts";
 import { safeNext } from "../../lib/utils.ts";
 
 const source = readFileSync(new URL("../../app/auth/callback/route.ts", import.meta.url), "utf8");
 const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
 
-function callback(exchange, destination = async (next) => next === "/auth/continue" ? "/admin" : safeNext(next)) {
+function callback(exchange, destination = async (next) => next === "/auth/continue" ? "/admin" : safeNext(next), { rpc, cookie } = {}) {
   const exports = {};
-  const client = { auth: { exchangeCodeForSession: exchange, signOut: async () => ({ error: null }) } };
+  const client = { rpc, auth: { exchangeCodeForSession: exchange, signOut: async () => ({ error: null }) } };
   const mocks = {
     "next/server": { NextResponse: { redirect: (url) => {
       const response = new Response(null, { status: 307, headers: { Location: url.toString() } });
@@ -20,7 +20,7 @@ function callback(exchange, destination = async (next) => next === "/auth/contin
     "@/lib/supabase/server": { getServerSupabase: async () => client },
     "@/lib/utils": { safeNext },
     "@/lib/auth-destination": { accountDestination: async (next, supplied) => { assert.equal(supplied, client); return destination(next); } },
-    "@/lib/google-signup-attempt": { GOOGLE_SIGNUP_ATTEMPT_COOKIE, isNewGoogleSignup },
+    "@/lib/google-signup-attempt": { GOOGLE_SIGNUP_ATTEMPT_COOKIE, GOOGLE_SIGNUP_ATTEMPT_MAX_AGE_SECONDS, googleSignupStartedAt, isNewGoogleSignup },
   };
   new Function("require", "exports", compiled)((id) => {
     assert.ok(id in mocks, `Unexpected dependency: ${id}`);
@@ -28,7 +28,7 @@ function callback(exchange, destination = async (next) => next === "/auth/contin
   }, exports);
   return (query) => {
     const url = `https://scholau.vercel.app/auth/callback?${query}`;
-    return exports.GET({ url, nextUrl: new URL(url), cookies: { get: () => undefined } });
+    return exports.GET({ url, nextUrl: new URL(url), cookies: { get: () => cookie ? { value: cookie } : undefined } });
   };
 }
 
@@ -58,6 +58,23 @@ test("Google always resolves registration and roles even with an explicit next d
     })("provider=google&code=valid&next=%2Fstudy%3Fsemester%3D1");
     assert.equal(new URL(response.headers.get("location")).pathname, destination.split("?")[0]);
   }
+});
+
+test("Lecturer Google signup binds the signup attempt and opens the teaching form", async () => {
+  const query = "provider=google&mode=sign-up&role=lecturer&attempt=apply&code=valid";
+  const exchange = async () => ({ data: { user: { created_at: "2026-10-01T00:00:00Z" } }, error: null });
+  const result = await callback(exchange, undefined, {
+    cookie: `apply:${Date.now() - 1}:lecturer`,
+    rpc: async (name) => { assert.equal(name, "begin_google_lecturer_registration_v1"); return { data: { pending: true } }; },
+  })(query);
+  assert.equal(new URL(result.headers.get("location")).pathname, "/complete-registration");
+
+  const mismatch = await callback(exchange, undefined, {
+    cookie: `apply:${Date.now() - 1}:student`,
+    rpc: () => assert.fail("A student attempt must not start a lecturer application"),
+  })(query);
+  assert.equal(new URL(mismatch.headers.get("location")).searchParams.get("role"), "lecturer");
+  assert.equal(new URL(mismatch.headers.get("location")).searchParams.get("error"), "account-exists");
 });
 
 test("Google cancellation and exchange failures return a generic retry message", async () => {

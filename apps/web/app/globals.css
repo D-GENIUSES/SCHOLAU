@@ -819,6 +819,12 @@
 .app-main > * { min-width: 0; }
 .header-brand { flex-shrink: 0; }
 .header-mark { display: none; }
+.guest-header-brand { display: inline-flex; align-items: center; gap: 8px; }
+.guest-header-name { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--color-ink); }
+@media (max-width: 1023px) {
+  .guest-header-brand .header-wordmark { display: none; }
+  .guest-header-brand .header-mark { display: inline-flex; }
+}
 .desktop-sidebar { padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
 .app-header { min-width: 0; height: auto; min-height: calc(64px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
 .header-account { flex-shrink: 0; }
