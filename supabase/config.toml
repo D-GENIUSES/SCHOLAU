@@ -100,3 +100,6 @@ verify_jwt = false # Dedicated x-push-worker-secret verified inside the handler.
 
 [functions.engagement-email]
 verify_jwt = false # Scheduler secret or one-click unsubscribe token is checked in the handler.
+
+[functions.registration-welcome]
+verify_jwt = false # Scheduler webhook secret is checked in the handler.
