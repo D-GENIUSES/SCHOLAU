@@ -33,10 +33,12 @@ begin
   if teacher and q.status = 'draft' then
     questions := q.questions;
   elsif a.id is not null and (a.submitted_at is not null or clock_timestamp() >= a.expires_at) then
-  show_answers := teacher
-    or coalesce(q.settings->>'feedback_mode', 'after_submit') = 'after_submit';
-    reveal := show_answers and (a.submitted_at is not null or teacher);
-    questions := private.quiz_student_questions(q.questions, a.question_order, a.option_orders, reveal);
+    show_answers := teacher
+      or coalesce(q.settings->>'feedback_mode', 'after_submit') = 'after_submit';
+    questions := private.quiz_student_questions(
+      q.questions, a.question_order, a.option_orders,
+      show_answers and (a.submitted_at is not null or teacher)
+    );
   elsif a.id is not null and a.submitted_at is null and clock_timestamp() < a.expires_at then
     questions := private.quiz_student_questions(q.questions, a.question_order, a.option_orders, false);
   end if;
