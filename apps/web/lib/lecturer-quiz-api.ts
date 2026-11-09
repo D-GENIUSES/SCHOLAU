@@ -1,4 +1,4 @@
-import { parseRpcError, type AnySupabaseClient } from "@scholau/api";
+import { isApiError, parseRpcError, type AnySupabaseClient } from "@scholau/api";
 import type {
   LecturerQuiz,
   LecturerQuizDetail,
@@ -77,11 +77,17 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
 }
 
 export function lecturerQuizError(error: unknown): string {
+  if (isApiError(error)) {
+    if (error.code === "STALE_REVISION") return "This quiz changed in another tab. Refresh before continuing.";
+    if (error.code === "FORBIDDEN" || error.code === "NOT_ENROLLED") return "You no longer have access to this course.";
+    if (error.code === "DEADLINE_PASSED") return "Time is up or the quiz window has closed.";
+    if (error.code === "ATTEMPT_LIMIT") return "You have used all allowed attempts.";
+    if (error.code === "INVALID_STATE") return error.message || "This quiz is not open right now.";
+    if (error.code === "VALIDATION_FAILED") return error.message;
+    return error.message;
+  }
   const e = error as { code?: string; message?: string };
   if (e?.code === "STALE_REVISION") return "This quiz changed in another tab. Refresh before continuing.";
-  if (e?.code === "FORBIDDEN" || e?.code === "NOT_ENROLLED") return "You no longer have access to this course.";
-  if (e?.code === "DEADLINE_PASSED") return "Time is up or the quiz window has closed.";
-  if (e?.code === "ATTEMPT_LIMIT") return "You have used all allowed attempts.";
-  if (e?.code === "INVALID_STATE") return e.message || "This quiz is not open right now.";
+  if (e?.code === "VALIDATION_FAILED" && e.message) return e.message;
   return e?.message || "The request failed. Please retry.";
 }

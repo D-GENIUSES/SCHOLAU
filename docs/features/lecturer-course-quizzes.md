@@ -14,6 +14,7 @@ Each quiz belongs to one assigned course offering. The editor supports manual mu
 
 - Default **one attempt**; lecturers may allow up to three.
 - Answers auto-save; students submit manually or expire at deadline.
+- **Feedback mode:** `after_submit` shows correct answers and explanations to students; `immediate` shows score only (no per-question review).
 - **No XP** is awarded. Lecturers download **CSV** results and browse the roster.
 
 ## RPCs

@@ -14,6 +14,7 @@ import {
 } from "@/lib/home-course-selection";
 import { CourseSelector } from "./course-selector";
 import { CourseLearningMap } from "./course-learning-map";
+import { resolveContinueLessonId } from "@/lib/continue-lesson";
 import { buildPreviewCourseOverview } from "./home-preview-overview";
 
 export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
@@ -28,8 +29,12 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
   const isPreviewOffering = Boolean(offeringId?.startsWith("preview-"));
   const overviewQuery = useCourseOverview(isPreviewOffering ? undefined : offeringId ?? undefined);
   const overview = isPreviewOffering && enrolled ? buildPreviewCourseOverview(enrolled) : overviewQuery.data ?? null;
-  const continueLessonId =
-    summary.continue_learning?.offering_id === offeringId ? summary.continue_learning.lesson_id : null;
+  const continueLessonId = useMemo(() => {
+    if (summary.continue_learning?.offering_id === offeringId) {
+      return summary.continue_learning.lesson_id;
+    }
+    return overview ? resolveContinueLessonId(overview.modules) : null;
+  }, [summary.continue_learning, offeringId, overview]);
 
   const selectOffering = (id: string) => {
     setUserPick(id);

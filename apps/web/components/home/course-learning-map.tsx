@@ -75,11 +75,14 @@ export function CourseLearningMap({
   continueLessonId,
   loading,
   preview = false,
+  showProgressSummary = true,
 }: {
   overview: Pick<CourseOverview, "offering_id" | "progress" | "modules"> | null;
   continueLessonId: string | null;
   loading?: boolean;
   preview?: boolean;
+  /** When false, hide the map progress strip (e.g. course page hero already shows progress). */
+  showProgressSummary?: boolean;
 }) {
   if (loading) return <LoadingState variant="course" label="Loading course map…" lines={5} />;
   if (!overview) return null;
@@ -101,7 +104,7 @@ export function CourseLearningMap({
 
   return (
     <div className="home-course-map">
-      {preview ? null : <div className="home-map-summary">
+      {preview || !showProgressSummary ? null : <div className="home-map-summary">
         <div className="home-map-summary-row">
           <p className="home-map-summary-label">Course progress</p>
           <p className="home-map-summary-value">

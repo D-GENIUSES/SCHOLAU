@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { parseRpcError } from "@scholau/api";
 import { generateQuizQuestionsFromSource } from "@scholau/core/ingestion";
+import type { LecturerQuizList } from "@scholau/core";
 import { getRequestSupabase } from "@/lib/supabase/request";
 
 export const runtime = "nodejs";
@@ -16,6 +18,33 @@ export async function POST(request: Request) {
   if (!(file instanceof File) || !quizId || !offeringId) {
     return NextResponse.json({ error: "Missing file or quiz context." }, { status: 400 });
   }
+
+  const { data: listRaw, error: listError, status: listStatus } = await client.rpc("list_course_quizzes_v1", {
+    p_offering_id: offeringId,
+    p_offset: 0,
+  });
+  if (listError) {
+    const parsed = parseRpcError(listError, listStatus);
+    return NextResponse.json({ error: parsed.message }, { status: parsed.status ?? 403 });
+  }
+  const list = listRaw as LecturerQuizList;
+  if (!list?.teacher) {
+    return NextResponse.json({ error: "You are not assigned to teach this course." }, { status: 403 });
+  }
+
+  const { data: detailRaw, error: detailError, status: detailStatus } = await client.rpc("get_course_quiz_v1", { p_id: quizId });
+  if (!detailError && detailRaw) {
+    const detail = detailRaw as { quiz?: { state?: string } };
+    if (detail.quiz?.state && detail.quiz.state !== "draft") {
+      return NextResponse.json({ error: "Import is only available while the quiz is a draft." }, { status: 409 });
+    }
+  } else if (detailError) {
+    const parsed = parseRpcError(detailError, detailStatus);
+    if (parsed.code !== "NOT_FOUND") {
+      return NextResponse.json({ error: parsed.message }, { status: parsed.status ?? 403 });
+    }
+  }
+
   if (file.size > MAX_BYTES) return NextResponse.json({ error: "File too large (10MB max)." }, { status: 400 });
   const mime = file.type || "application/octet-stream";
   const allowed = mime === "application/pdf" || mime.includes("word") || mime === "application/msword";

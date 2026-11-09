@@ -13,4 +13,5 @@ export { normalizeGapAnswer } from "./ingestion/normalize-gap";
 export { briefFlashcardBack, briefFlashcardFront, solutionLines, stripFlashcardPrefixes } from "./ingestion/flashcards";
 export * from "./course-challenges";
 export * from "./lecturer-quizzes";
+export * from "./lecturer-quiz-editor";
 export * from "./lecturer-quiz-shuffle";
