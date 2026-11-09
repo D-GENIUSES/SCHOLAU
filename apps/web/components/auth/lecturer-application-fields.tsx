@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useController, useFormContext, useWatch } from "react-hook-form";
 import type { LecturerApplicationInput } from "@scholau/core";
 import { Field } from "@/components/ui/field";
-import { Input, Textarea } from "@/components/ui/input";
+import { Input, NativeSelect, Textarea } from "@/components/ui/input";
 import { SearchSelect, type SearchOption } from "@/components/ui/search-select";
 import { Button } from "@/components/ui/button";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -22,7 +22,7 @@ function CatalogueStatus({ loading, failed, empty, retry }: { loading: boolean; 
 }
 
 /** IDs remain local to the form; applications retain their readable text contract. */
-export function LecturerApplicationFields() {
+export function LecturerApplicationFields({ nativeAcademicSelects = false }: { nativeAcademicSelects?: boolean }) {
   const form = useFormContext<LecturerApplicationInput>();
   const { register, control, formState: { errors } } = form;
   const [university, faculty, department] = useWatch({ control, name: ["university", "faculty", "department"] });
@@ -84,9 +84,18 @@ export function LecturerApplicationFields() {
   };
   const affiliation = (name: AcademicName, label: string, options: readonly SearchOption[], value: string, text: string, disabled: boolean, key: string) => <div key={name}>
     <Field id={`lecturer-${name}`} label={label} error={value === NOT_LISTED ? undefined : errors[name]?.message}>
-      <SearchSelect id={`lecturer-${name}`} key={key} options={options} fallbackOption={otherOption} value={value} disabled={disabled} placeholder={`Select ${label.toLowerCase()}`}
-        onBlur={() => void form.trigger(name)} ref={value === NOT_LISTED ? undefined : register(name).ref}
-        onChange={next => choose(name, next, options)} />
+      {nativeAcademicSelects ? (
+        <NativeSelect value={value} disabled={disabled} ref={value === NOT_LISTED ? undefined : register(name).ref}
+          onBlur={() => void form.trigger(name)} onChange={event => choose(name, event.target.value, options)}>
+          <option value="" disabled>Select {label.toLowerCase()}</option>
+          {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+          <option value={otherOption.value}>{otherOption.label}</option>
+        </NativeSelect>
+      ) : (
+        <SearchSelect id={`lecturer-${name}`} key={key} options={options} fallbackOption={otherOption} value={value} disabled={disabled} placeholder={`Select ${label.toLowerCase()}`}
+          onBlur={() => void form.trigger(name)} ref={value === NOT_LISTED ? undefined : register(name).ref}
+          onChange={next => choose(name, next, options)} />
+      )}
     </Field>
     {value === NOT_LISTED ? <Field id={`lecturer-${name}-manual`} label={`${label} name`} className="mt-2" error={errors[name]?.message}>
       <Input autoComplete="off" placeholder={`Enter your ${label.toLowerCase()}`} maxLength={200} required value={text} {...register(name)}

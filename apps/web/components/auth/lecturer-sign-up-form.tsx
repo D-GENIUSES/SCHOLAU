@@ -60,7 +60,7 @@ export function LecturerSignUpForm() {
       <Button block type="submit" disabled={legal.loading}>Continue</Button>
       </Fragment> : null}
       <div hidden={step !== 1}>
-      <LecturerApplicationFields />
+      <LecturerApplicationFields nativeAcademicSelects />
       <div className="mt-4 grid gap-3">
       <p className="text-sm text-ink-muted">Your acceptance of the <Link href="/terms" className="underline">Terms of Use</Link> applies to this application. Read the <Link href="/privacy" className="underline">Privacy Policy</Link>. Administrators review your details.</p>
       <Button block type="submit" loading={form.formState.isSubmitting}>Submit lecturer application</Button>

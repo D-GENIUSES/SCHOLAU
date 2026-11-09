@@ -43,10 +43,16 @@ await context.route("http://127.0.0.1:54321/**", async route => {
   await route.fulfill({ status, headers, contentType: "application/json", body: JSON.stringify(body) }).catch(error => { if (!/closed|cancel|abort/i.test(error.message)) throw error; });
 });
 const choose = async (label, name) => {
-  await page.getByRole("combobox", { name: label, exact: true }).click();
-  await page.getByRole("option", { name, exact: true }).click();
+  const control = page.getByRole("combobox", { name: label, exact: true });
+  if (await control.evaluate(el => el.tagName === "SELECT")) {
+    await control.selectOption({ label: name });
+    return;
+  }
+  await control.click();
+  await page.getByRole("listbox").getByRole("option", { name, exact: true }).click();
 };
 const courseLabel = "Courses you teach or wish to manage";
+const departmentSelect = page.getByLabel("Department", { exact: true });
 async function start() {
   await page.goto(origin + "/sign-up?role=lecturer", { waitUntil: "networkidle" });
   await page.getByLabel("Email", { exact: true }).fill("lecturer@example.test");
@@ -59,6 +65,7 @@ async function start() {
 async function selectDepartment() {
   await choose("University", "Adeleke University, Ede, Osun State");
   await choose("Faculty", "Faculty of Science");
+  assert.deepEqual(await departmentSelect.locator("option").allTextContents(), ["Select department", "Computer Science", "Biochemistry", "Not listed"]); checks++;
   await choose("Department", "Computer Science");
   await page.getByRole("combobox", { name: courseLabel, exact: true }).click();
   await page.getByRole("option", { name: "CSC 101 — Introduction to Computing", exact: true }).waitFor();
@@ -93,6 +100,7 @@ try {
   await page.getByLabel("Institutional profile URL", { exact: true }).fill("https://university.example/staff/lecturer");
   await page.getByRole("button", { name: "Back to account details" }).click();
   await page.getByRole("button", { name: "Continue", exact: true }).click();
+  assert.equal(await departmentSelect.inputValue(), id(4)); checks++;
   assert.equal(await page.getByRole("list", { name: "Selected courses" }).getByRole("listitem").count(), 2); checks++;
   await page.getByRole("button", { name: /Remove CSC 401/ }).click();
   assert.equal(await page.getByRole("list", { name: "Selected courses" }).getByRole("listitem").count(), 1); checks++;
@@ -101,19 +109,20 @@ try {
   assert.equal(submissions.at(-1).data.signup_kind, "lecturer");
   assert.equal(submissions.at(-1).data.lecturer_application.requested_courses, "CSC 101 — Introduction to Computing");
   assert.equal(submissions.at(-1).data.lecturer_application.faculty, "Faculty of Science"); checks += 3;
+  assert.equal(submissions.at(-1).data.lecturer_application.department, "Computer Science"); checks++;
 
   await start(); await selectDepartment();
   await choose(courseLabel, "CSC 101 — Introduction to Computing");
   await choose("Faculty", "Faculty of Engineering");
   assert.equal(await page.getByRole("combobox", { name: "Department", exact: true }).inputValue(), "");
   assert.equal(await page.getByRole("list", { name: "Selected courses" }).count(), 0); checks += 2;
-  await page.getByRole("combobox", { name: "Department", exact: true }).click();
-  assert.equal(await page.getByRole("option", { name: "Computer Science", exact: true }).count(), 0); checks++;
-  await page.getByRole("option", { name: "Civil Engineering", exact: true }).click();
+  assert.deepEqual(await departmentSelect.locator("option").allTextContents(), ["Select department", "Civil Engineering", "Not listed"]); checks++;
+  await choose("Department", "Civil Engineering");
   await page.getByText("No catalogue options available.", { exact: false }).waitFor(); checks++;
 
-  await page.getByRole("combobox", { name: "University", exact: true }).fill("A university absent from the catalogue");
-  await page.getByRole("option", { name: "Not listed", exact: true }).click(); checks++;
+  await choose("University", "Not listed");
+  assert.equal(await page.getByLabel("Faculty", { exact: true }).inputValue(), "");
+  assert.equal(await departmentSelect.inputValue(), ""); checks += 2;
   await page.getByLabel("University name", { exact: true }).fill("Independent University");
   await choose("Faculty", "Not listed"); await page.getByLabel("Faculty name", { exact: true }).fill("Creative Faculty");
   await choose("Department", "Not listed"); await page.getByLabel("Department name", { exact: true }).fill("Creative Department");
