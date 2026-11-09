@@ -6,7 +6,7 @@ const chip = "inline-flex min-h-9 items-center gap-1.5 rounded-control border bo
 export function CourseQuickActions({ offeringId }: { offeringId: string }) {
   const base = `/lecturer/courses/${offeringId}`;
   return (
-    <nav aria-label="Course shortcuts" className="mt-3 flex flex-wrap gap-2" onClick={e => e.stopPropagation()}>
+    <nav aria-label="Course shortcuts" className="mt-3 flex flex-wrap gap-2">
       <Link href={`${base}/quizzes`} className={chip}><ClipboardList className="size-3.5" aria-hidden /> Quizzes</Link>
       <Link href={`${base}/challenges`} className={chip}><Swords className="size-3.5" aria-hidden /> Challenges</Link>
       <Link href={`${base}/students`} className={chip}><Users className="size-3.5" aria-hidden /> Students</Link>

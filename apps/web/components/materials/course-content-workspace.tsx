@@ -295,7 +295,7 @@ export function CourseContentWorkspace({
             <CardDescription>
               {uploadTarget.scope === "lesson"
                 ? "Content is extracted into this lesson as a draft."
-                : "Gemini proposes how to split the file across lessons; you confirm before import."}
+                : "Review the suggested lesson split before importing the file."}
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
@@ -329,7 +329,7 @@ export function CourseContentWorkspace({
             ) : null}
             <div className="flex flex-wrap gap-2">
               <Button onClick={() => void upload()} disabled={uploading || !file} loading={uploading}>
-                Process with Gemini
+                Process file
               </Button>
               <Button variant="ghost" onClick={() => setUploadTarget(null)}>
                 Cancel
