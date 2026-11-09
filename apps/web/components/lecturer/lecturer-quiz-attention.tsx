@@ -10,7 +10,7 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { QuizStateBadge } from "@/components/lecturer-quizzes/quiz-ui";
 
 const api = () => lecturerQuizApi(getBrowserSupabase());
-const row = "flex min-h-14 items-center gap-3 rounded-card border border-line bg-surface-card px-4 py-3 hover:bg-surface-tint focus-visible:outline-2 focus-visible:outline-brand-primary sm:px-5";
+const row = "flex min-h-12 items-center gap-3 rounded-card border border-line bg-surface-card px-3.5 py-2.5 hover:bg-surface-tint focus-visible:outline-2 focus-visible:outline-brand-primary sm:px-4";
 
 function pickAttention(items: LecturerQuiz[]) {
   const now = Date.now();
@@ -57,9 +57,9 @@ export function LecturerQuizAttention({ courses }: { courses: Pick<LecturerOffer
   const unique = items.filter((x, i, a) => a.findIndex(y => y.quiz.id === x.quiz.id) === i).slice(0, 6);
   if (!unique.length) return null;
   return (
-    <section aria-labelledby="lecturer-quiz-attention" className="space-y-3">
-      <h2 id="lecturer-quiz-attention" className="text-xl font-bold tracking-tight sm:text-2xl">Quizzes</h2>
-      <ul className="space-y-2">
+    <section aria-labelledby="lecturer-quiz-attention" className="space-y-2">
+      <h2 id="lecturer-quiz-attention" className="text-sm font-semibold text-ink">Quizzes</h2>
+      <ul className="space-y-1.5">
         {unique.map(({ course, quiz }) => (
           <li key={quiz.id}>
             <Link href={`/lecturer/courses/${course.id}/quizzes/${quiz.id}`} className={row}>

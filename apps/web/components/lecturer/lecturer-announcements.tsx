@@ -8,6 +8,7 @@ import type { LecturerOffering } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/ui/dialog";
 import { ErrorState, LoadingState } from "@/components/ui/states";
+import { LecturerPageHeader } from "@/components/lecturer/page-header";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
@@ -27,7 +28,7 @@ type Post = {
 };
 
 const statuses = { scheduled: "Scheduled", published: "Published", cancelled: "Cancelled", failed: "Couldn’t publish" };
-const field = "mt-1.5 block min-h-11 w-full rounded-control border border-line bg-surface-card px-3 focus-visible:outline-2 focus-visible:outline-brand-primary";
+const field = "mt-1.5 block min-h-10 w-full rounded-control border border-line bg-surface-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-brand-primary";
 const pageSize = 20;
 
 async function request<T>(name: string, args: Record<string, unknown>) {
@@ -92,16 +93,14 @@ export function LecturerAnnouncements({ initialCourse }: { initialCourse?: strin
 
   const posts = history.data?.items ?? [];
   return (
-    <div className="mx-auto max-w-4xl space-y-6">
-      <header className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Announcements</h1>
-          <p className="mt-1.5 text-sm text-ink-muted">Send updates to students in the classes you teach.</p>
-        </div>
-        {!editor && courses.data?.items.length ? (
-          <Button onClick={() => { setMessage(""); setEditor({}); }}><Plus className="size-4" aria-hidden /> New announcement</Button>
-        ) : null}
-      </header>
+    <div className="mx-auto max-w-4xl space-y-4">
+      <LecturerPageHeader
+        title="Announcements"
+        description="Send updates to students in the classes you teach."
+        actions={!editor && courses.data?.items.length ? (
+          <Button size="sm" onClick={() => { setMessage(""); setEditor({}); }}><Plus className="size-4" aria-hidden /> New</Button>
+        ) : undefined}
+      />
       {courses.isPending ? <LoadingState label="Loading your classes…" /> : null}
       {courses.error ? <ErrorState error={courses.error} onRetry={() => void courses.refetch()} /> : null}
       {courses.data && !courses.data.items.length ? <p className="text-sm text-ink-muted">Your classes will appear here once they’re assigned to you.</p> : null}
@@ -118,25 +117,24 @@ export function LecturerAnnouncements({ initialCourse }: { initialCourse?: strin
         />
       ) : null}
 
-      <section className="space-y-3" aria-labelledby="announcement-history">
-        <h2 id="announcement-history" className="text-lg font-bold">Your announcements</h2>
+      <section className="space-y-2" aria-labelledby="announcement-history">
+        <h2 id="announcement-history" className="text-sm font-semibold text-ink">History</h2>
         {history.isPending ? <LoadingState label="Loading announcements…" /> : null}
         {history.error ? <ErrorState error={history.error} onRetry={() => void history.refetch()} /> : null}
-        {history.data && !posts.length ? <p className="rounded-card border border-line px-4 py-5 text-sm text-ink-muted">No announcements yet.</p> : null}
+        {history.data && !posts.length ? <p className="rounded-card border border-line px-3.5 py-4 text-sm text-ink-muted">No announcements yet.</p> : null}
         {posts.length ? (
           <ul className="divide-y divide-line rounded-card border border-line">
             {posts.slice(0, pageSize).map((post) => (
-              <li key={post.id} className="space-y-2 p-4 sm:p-5">
+              <li key={post.id} className="space-y-1.5 px-3.5 py-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="min-w-0 wrap-break-word font-semibold">{post.title}</h3>
-                  <span className="rounded-pill bg-surface-tint px-2.5 py-1 text-xs font-semibold">{statuses[post.status]}</span>
+                  <h3 className="min-w-0 wrap-break-word text-sm font-semibold">{post.title}</h3>
+                  <span className="rounded-pill bg-surface-tint px-2 py-0.5 text-[11px] font-semibold">{statuses[post.status]}</span>
                 </div>
-                <p className="text-xs text-ink-muted">{post.course_label ?? "Course offering"} · {showDate(post.published_at ?? post.scheduled_at ?? post.created_at)}</p>
-                <p className="whitespace-pre-wrap wrap-break-word text-sm">{post.body}</p>
-                {post.status === "published" ? <p className="text-sm text-ink-muted">{post.recipient_count} {post.recipient_count === 1 ? "student" : "students"}</p> : null}
+                <p className="text-xs text-ink-muted">{post.course_label ?? "Course offering"} · {showDate(post.published_at ?? post.scheduled_at ?? post.created_at)}{post.status === "published" ? ` · ${post.recipient_count} ${post.recipient_count === 1 ? "student" : "students"}` : ""}</p>
+                <p className="line-clamp-2 wrap-break-word text-sm text-ink-muted">{post.body}</p>
                 {post.failure_reason ? <p className="text-sm text-danger">{post.failure_reason}</p> : null}
                 {post.status === "scheduled" ? (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 pt-0.5">
                     <Button size="sm" variant="outline" onClick={() => { setMessage(""); setEditor({ post }); }}>Edit</Button>
                     <Button size="sm" variant="ghost" onClick={() => setCancelPost(post)}>Cancel schedule</Button>
                   </div>
@@ -227,8 +225,8 @@ function Composer({ courses, post, initialCourse, onClose, onSaved }: {
   }
 
   return (
-    <form className="grid gap-4 rounded-card border border-line bg-surface-card p-4 sm:p-6" onSubmit={(event) => void previewAudience(event)}>
-      <h2 className="text-lg font-bold">{post ? "Edit announcement" : "New announcement"}</h2>
+    <form className="grid gap-3 rounded-card border border-line bg-surface-card p-3.5 sm:p-4" onSubmit={(event) => void previewAudience(event)}>
+      <h2 className="text-sm font-semibold">{post ? "Edit announcement" : "New announcement"}</h2>
       <label className="text-sm font-semibold">Audience
         <select className={field} value={offering} onChange={(event) => setOffering(event.target.value)} required disabled={busy}>
           <option value="">Choose a class</option>
@@ -239,12 +237,12 @@ function Composer({ courses, post, initialCourse, onClose, onSaved }: {
         <input ref={titleInput} className={field} value={title} onChange={(event) => setTitle(event.target.value)} maxLength={100} required disabled={busy} />
       </label>
       <label className="text-sm font-semibold">Message
-        <textarea className={`${field} min-h-28 py-3`} value={body} onChange={(event) => setBody(event.target.value)} maxLength={500} required disabled={busy} />
+        <textarea className={`${field} min-h-24 py-2.5`} value={body} onChange={(event) => setBody(event.target.value)} maxLength={500} required disabled={busy} />
       </label>
       <fieldset className="flex flex-wrap gap-x-5 gap-y-1 text-sm" disabled={busy}>
         <legend className="font-semibold">Publish time</legend>
-        <label className="inline-flex min-h-11 items-center gap-2"><input type="radio" name="publish-time" checked={!schedule} onChange={() => setSchedule(false)} /> Publish now</label>
-        <label className="inline-flex min-h-11 items-center gap-2"><input type="radio" name="publish-time" checked={schedule} onChange={() => setSchedule(true)} /> Schedule</label>
+        <label className="inline-flex min-h-9 items-center gap-2"><input type="radio" name="publish-time" checked={!schedule} onChange={() => setSchedule(false)} /> Publish now</label>
+        <label className="inline-flex min-h-9 items-center gap-2"><input type="radio" name="publish-time" checked={schedule} onChange={() => setSchedule(true)} /> Schedule</label>
       </fieldset>
       {schedule ? (
         <label className="min-w-0 text-sm font-semibold">Date and time <span className="font-normal text-ink-muted">({zone})</span>

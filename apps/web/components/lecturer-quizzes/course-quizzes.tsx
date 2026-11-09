@@ -145,15 +145,21 @@ export function CourseQuizzes({
   const studentHref = (id: string) => `/course-quizzes/${id}`;
 
   return (
-    <div className="space-y-5 min-w-0">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          {list.data?.course ? <p className="text-xs font-semibold text-brand-primary">{list.data.course.code} · {list.data.course.title}</p> : null}
-          <h2 className="text-2xl font-bold tracking-tight">Class quizzes</h2>
-          <p className="mt-1 text-sm text-ink-muted">Scheduled forms with timer, matric confirmation, and shuffled options.</p>
+    <div className="min-w-0 space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="min-w-0">
+          {lecturer ? (
+            <p className="text-sm text-ink-muted">Timed class quizzes with live results.</p>
+          ) : (
+            <>
+              {list.data?.course ? <p className="text-xs font-semibold text-brand-primary">{list.data.course.code} · {list.data.course.title}</p> : null}
+              <h2 className="text-xl font-bold tracking-tight sm:text-[1.35rem]">Class quizzes</h2>
+              <p className="mt-0.5 text-xs text-ink-muted sm:text-sm">Scheduled forms with timer and shuffled options.</p>
+            </>
+          )}
         </div>
         {lecturer ? (
-          <Button asChild className="sm:sticky sm:top-4"><Link href={`${base}/new`}><Plus className="size-4" aria-hidden /> Create quiz</Link></Button>
+          <Button asChild size="sm"><Link href={`${base}/new`}><Plus className="size-4" aria-hidden /> Create</Link></Button>
         ) : null}
       </div>
       <Failure error={list.error} retry={() => void list.refetch()} />
@@ -167,24 +173,27 @@ export function CourseQuizzes({
           />
         ) : <p className="text-sm text-ink-muted">Your lecturer has not published a quiz for this course yet.</p>
       ) : null}
-      <ul className="grid gap-3 sm:grid-cols-2">{list.data?.items.map(q => (
-        <li key={q.id} className="flex min-w-0 flex-col justify-between gap-3 rounded-card border border-line bg-surface-card p-4 break-words">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-bold">{q.title}</h3>
-              <QuizStateBadge state={q.state} />
+      <ul className={lecturer ? "divide-y divide-line overflow-hidden rounded-card border border-line bg-surface-card" : "grid gap-3 sm:grid-cols-2"}>
+        {list.data?.items.map(q => (
+          <li key={q.id} className={lecturer
+            ? "flex min-w-0 flex-wrap items-center justify-between gap-2 px-3.5 py-3 break-words"
+            : "flex min-w-0 flex-col justify-between gap-3 rounded-card border border-line bg-surface-card p-4 break-words"}>
+            <div className={lecturer ? "min-w-0 space-y-0.5" : "space-y-2"}>
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className={lecturer ? "text-sm font-semibold" : "font-bold"}>{q.title}</h3>
+                <QuizStateBadge state={q.state} />
+              </div>
+              <p className="text-xs text-ink-muted">{q.question_count} questions · {q.duration_minutes} min · {q.max_attempts} attempt{q.max_attempts === 1 ? "" : "s"} · {formatQuizWindow(q.opens_at, q.closes_at)}</p>
             </div>
-            <p className="text-sm text-ink-muted">{q.question_count} questions · {q.duration_minutes} min per attempt · {q.max_attempts} attempt{q.max_attempts === 1 ? "" : "s"}</p>
-            <p className="text-xs text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : studentClassQuizCta(q.state)}</Link></Button>
-            {lecturer && q.state !== "draft" ? (
-              <Button asChild variant="outline" size="sm"><Link href={`/course-quizzes/${q.id}`}>Student view</Link></Button>
-            ) : null}
-          </div>
-        </li>
-      ))}</ul>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : studentClassQuizCta(q.state)}</Link></Button>
+              {lecturer && q.state !== "draft" ? (
+                <Button asChild variant="outline" size="sm"><Link href={`/course-quizzes/${q.id}`}>Student view</Link></Button>
+              ) : null}
+            </div>
+          </li>
+        ))}
+      </ul>
       <Paging offset={offset} hasMore={list.data?.items.length === 20} change={setOffset} />
     </div>
   );

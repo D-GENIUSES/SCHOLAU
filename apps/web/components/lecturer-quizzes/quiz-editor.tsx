@@ -224,13 +224,13 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
   return (
     <form className="space-y-5 min-w-0" onSubmit={e => { e.preventDefault(); void save(false); }}>
       <Link
-        className="inline-flex min-h-11 items-center underline"
+        className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline"
         href={`/lecturer/courses/${offering}/quizzes`}
         onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}
       >
         Back to quizzes
       </Link>
-      <h1 className="text-2xl font-bold">{initial ? "Edit quiz" : "Create quiz"}</h1>
+      <h1 className="text-lg font-bold tracking-tight sm:text-xl">{initial ? "Edit quiz" : "Create quiz"}</h1>
       <nav aria-label="Quiz editor steps" className="flex flex-wrap gap-2">
         {steps.map((s, i) => {
           const locked = (s === "Questions" && !canOpenQuestions) || (s === "Review" && !canOpenReview);

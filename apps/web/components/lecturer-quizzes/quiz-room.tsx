@@ -58,9 +58,9 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
   const instructions = q.instructions?.trim() || "Follow your lecturer’s directions for this class quiz.";
   return (
     <div className="space-y-4 min-w-0 break-words">
-      <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${d.viewer_offering_id ?? q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
+      <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${d.viewer_offering_id ?? q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
       <div className="flex flex-wrap items-center gap-2">
-        <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{q.title}</h1>
+        <h1 className="text-lg font-bold tracking-tight sm:text-xl">{q.title}</h1>
         <QuizStateBadge state={q.state} />
       </div>
       {d.teacher ? (

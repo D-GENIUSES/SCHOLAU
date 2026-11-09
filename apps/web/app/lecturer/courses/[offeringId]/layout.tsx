@@ -38,18 +38,15 @@ export default async function LecturerCourseLayout({ params, children }: {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <header className="mb-6">
-        <Link href="/lecturer" className="mb-3 inline-flex min-h-11 items-center gap-2 rounded-control text-sm font-semibold text-ink-muted hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary">
-          <ArrowLeft className="size-4" aria-hidden /> My courses
+      <header className="mb-4">
+        <Link href="/lecturer" className="mb-2 inline-flex min-h-9 items-center gap-1.5 rounded-control text-xs font-semibold text-ink-muted hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-brand-primary">
+          <ArrowLeft className="size-3.5" aria-hidden /> Courses
         </Link>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <p className="text-sm font-semibold text-brand-primary">{course.code}</p>
-          <Link href={`/lecturer/announcements?course=${course.id}`} className="rounded-control text-sm font-semibold text-brand-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-brand-primary">
-            Announce to this class
-          </Link>
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          <p className="text-xs font-semibold text-brand-primary">{course.code}</p>
+          <h1 className="wrap-break-word text-lg font-bold tracking-tight sm:text-xl">{course.title}</h1>
         </div>
-        <p className="mt-1 wrap-break-word text-2xl font-bold tracking-tight sm:text-3xl">{course.title}</p>
-        <p className="mb-4 mt-1 text-sm text-ink-muted"><span className="font-semibold text-ink">Class</span> · {course.department} · {course.period} · {course.semester}</p>
+        <p className="mb-3 mt-0.5 text-xs text-ink-muted">{course.department} · {course.period} · {course.semester}</p>
         <CourseNavigation offeringId={offeringId} />
       </header>
       {children}

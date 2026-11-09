@@ -49,8 +49,8 @@ export function ChallengeEditor({ offering, initial }: { offering: string; initi
     try { const result = await api().detail(id.current); if (result.challenge.state !== "draft") { router.push(`/challenges/${id.current}`); router.refresh(); return; } setRevision(result.challenge.revision); setDraft({ ...result.challenge, questions: result.questions }); setMode(result.challenge.starts_at ? "scheduled" : "now"); setStart(localDateTime(result.challenge.starts_at)); setDirty(false); setError(null); } catch (e) { setError(e); } finally { setBusy(false); }
   }
   return <form className="space-y-5 min-w-0" onSubmit={e => { e.preventDefault(); void save(false); }}>
-    <Link className="inline-flex min-h-11 items-center underline" href={`/lecturer/courses/${offering}/challenges`} onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}>Back to challenges</Link>
-    <h1 className="text-2xl font-bold">{initial ? "Edit challenge" : "Create challenge"}</h1>
+    <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={`/lecturer/courses/${offering}/challenges`} onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}>Back to challenges</Link>
+    <h1 className="text-lg font-bold tracking-tight sm:text-xl">{initial ? "Edit challenge" : "Create challenge"}</h1>
     <Failure error={error} retry={() => void recover()} />{message && <p role="status">{message}</p>}
     <fieldset disabled={busy} className="space-y-4 min-w-0">
       <label className="block">Title<Input required maxLength={160} value={draft.title} onChange={e => change({ title: e.target.value })} /></label>

@@ -496,6 +496,11 @@
 .lecturer-verification { min-width: 0; border-top: 1px solid var(--color-line); }
 .lecturer-verification summary { min-height: 44px; padding-block: 12px; font-size: 13px; font-weight: 600; cursor: pointer; overflow-wrap: anywhere; }
 .lecturer-application-page { max-width: 1120px; margin: 0 auto; }
+.lecturer-shell { width: 100%; min-width: 0; }
+.lecturer-main { padding-bottom: max(1.25rem, env(safe-area-inset-bottom)); }
+.lecturer-course-tabs { display: flex; gap: 0.75rem; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; border-bottom: 1px solid var(--color-line); -webkit-overflow-scrolling: touch; }
+.lecturer-course-tabs::-webkit-scrollbar { display: none; }
+.lecturer-course-tabs a { flex: 0 0 auto; }
 .application-layout { display: grid; gap: 24px; }
 .application-layout > * { min-width: 0; }
 .application-layout dd { overflow-wrap: anywhere; }

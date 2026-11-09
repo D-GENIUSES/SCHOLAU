@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
+import { LecturerPageHeader } from "@/components/lecturer/page-header";
 
 type Material = {
   id: string;
@@ -57,28 +58,33 @@ export function StudentMaterialReview() {
   }
   const pending = items.filter((item) => item.status === "pending");
   return (
-    <section className="mx-auto max-w-3xl space-y-4">
-      <h1 className="text-2xl font-bold">Student source submissions</h1>
-      <p className="text-sm text-ink-muted">Only approved sources enter draft generation. Review ownership, quality, relevance and personal information before approving. Final publication uses the separate content review process.</p>
-      <Button variant="outline" size="sm" onClick={() => void refresh()}>Refresh</Button>
+    <section className="mx-auto max-w-3xl space-y-3">
+      <LecturerPageHeader
+        title="Submissions"
+        description="Approve sources before draft generation. Final publication still needs content review."
+        actions={<Button variant="outline" size="sm" onClick={() => void refresh()}>Refresh</Button>}
+      />
       {message ? <p role="status" className="text-sm">{message}</p> : null}
-      {loading ? <p>Loading submitted materials…</p> : pending.length ? (
-        <ul className="space-y-3">
+      {loading ? <p className="text-sm text-ink-muted">Loading submitted materials…</p> : pending.length ? (
+        <ul className="divide-y divide-line overflow-hidden rounded-card border border-line bg-surface-card">
           {pending.map((item) => (
-            <li key={item.id} className="space-y-2 rounded-card border border-line p-4">
-              <h2 className="font-semibold">{item.filename}</h2>
-              <p className="text-sm">{item.course_code} · Submitted by {item.student_name}</p>
-              {item.notes ? <p className="text-sm text-ink-muted">{item.notes}</p> : null}
-              <a className="inline-block text-sm font-semibold text-brand-primary underline" href={"/api/student-materials?submissionId=" + encodeURIComponent(item.id)} target="_blank" rel="noopener noreferrer">Download original source to review</a>
-              <p className="text-xs text-ink-muted">Submitted {new Date(item.submitted_at).toLocaleDateString()}</p>
-              <div className="flex gap-3">
-                <Button size="sm" loading={busy === item.id} onClick={() => void decide(item.id, "approved")}>Approve for draft generation</Button>
+            <li key={item.id} className="space-y-1.5 px-3.5 py-3">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <h2 className="text-sm font-semibold wrap-break-word">{item.filename}</h2>
+                  <p className="text-xs text-ink-muted">{item.course_code} · {item.student_name} · {new Date(item.submitted_at).toLocaleDateString()}</p>
+                </div>
+                <a className="shrink-0 text-xs font-semibold text-brand-primary underline-offset-2 hover:underline" href={"/api/student-materials?submissionId=" + encodeURIComponent(item.id)} target="_blank" rel="noopener noreferrer">Download</a>
+              </div>
+              {item.notes ? <p className="line-clamp-2 text-sm text-ink-muted">{item.notes}</p> : null}
+              <div className="flex flex-wrap gap-2 pt-0.5">
+                <Button size="sm" loading={busy === item.id} onClick={() => void decide(item.id, "approved")}>Approve</Button>
                 <Button size="sm" variant="outline" disabled={busy !== null} onClick={() => void decide(item.id, "rejected")}>Reject</Button>
               </div>
             </li>
           ))}
         </ul>
-      ) : <p>No student submissions are awaiting review.</p>}
+      ) : <p className="rounded-card border border-line px-3.5 py-4 text-sm text-ink-muted">No student submissions are awaiting review.</p>}
     </section>
   );
 }

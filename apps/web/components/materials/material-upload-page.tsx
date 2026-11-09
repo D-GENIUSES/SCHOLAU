@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { Input, NativeSelect } from "@/components/ui/input";
+import { LecturerPageHeader } from "@/components/lecturer/page-header";
 import { PageHeader } from "@/components/ui/misc";
 import { LoadingState } from "@/components/ui/states";
 
@@ -110,13 +111,17 @@ export function MaterialUploadPage({
 
   return (
     <div className="mx-auto max-w-2xl">
-      <PageHeader eyebrow={eyebrow} title="Upload course materials" />
+      {workspace === "lecturer" ? (
+        <LecturerPageHeader title="Materials" description={courseHint} />
+      ) : (
+        <PageHeader eyebrow={eyebrow} title="Upload course materials" />
+      )}
       <Card>
-        <CardHeader>
-          <CardTitle>Source file</CardTitle>
-          <CardDescription>{courseHint}</CardDescription>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">Source file</CardTitle>
+          {workspace === "admin" ? <CardDescription>{courseHint}</CardDescription> : null}
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="flex flex-col gap-3">
           <Field id="offering" label="Course offering">
             <NativeSelect id="offering" value={offeringId} onChange={(e: ChangeEvent<HTMLSelectElement>) => setOfferingId(e.target.value)}>
               <option value="">Select course…</option>
@@ -146,16 +151,16 @@ export function MaterialUploadPage({
             <Input id="source-file" type="file" accept=".pdf,.docx,.pptx,.txt,.jpg,.jpeg,.png,.webp" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
           </Field>
           {message ? <Alert tone={status === "failed" ? "error" : "info"}>{message}</Alert> : null}
-          <Button size="lg" onClick={() => void upload()} disabled={uploading || !offeringId || !file || courseOptions.length === 0} loading={uploading}>
+          <Button size="sm" onClick={() => void upload()} disabled={uploading || !offeringId || !file || courseOptions.length === 0} loading={uploading}>
             <Upload className="size-4" aria-hidden /> Upload and process
           </Button>
-          {jobId ? <p className="text-sm text-ink-muted">Job {jobId} — {status ?? "…"}</p> : null}
+          {jobId ? <p className="text-xs text-ink-muted">Job {jobId} — {status ?? "…"}</p> : null}
           {workspace === "admin" ? (
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" size="sm">
               <Link href="/admin/review?tab=lessons&status=draft">Review drafts</Link>
             </Button>
           ) : null}
-          <Button asChild variant="outline">
+          <Button asChild variant="ghost" size="sm">
             <Link href={backHref}>{backLabel}</Link>
           </Button>
         </CardContent>
