@@ -7,10 +7,37 @@ await db.exec(readFileSync("supabase/migrations/20261108000100_lecturer_course_q
 await db.exec(readFileSync("supabase/migrations/20261108000200_fix_quiz_option_orders.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261109203000_lecturer_quiz_feedback_mode.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261109300000_course_quiz_notifications.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000100_shared_course_class_quizzes.sql", "utf8"));
 let checks = 0;
 const rpc = async (name, args = []) => (await query(`select public.${name}($${args.map((_, i) => i + 1).join(",$")}) as value`, args))[0].value;
 const eq = (a, b) => { assert.deepEqual(a, b); checks++; };
 const reject = async (fn, pattern) => { await assert.rejects(fn, pattern); checks++; };
+
+// Sibling offering of the same course/semester (e.g. Software Engineering COS 201 vs Computer Science).
+const offeringMeta = (await query(
+  "select course_id, university_id, level_id, semester_id, department_id from public.course_offerings where id=$1",
+  [offering],
+))[0];
+const siblingDept = (await query(
+  "select id from public.departments where university_id=$1 and id<>$2 limit 1",
+  [offeringMeta.university_id, offeringMeta.department_id],
+))[0]?.id;
+const siblingOffering = id(505);
+if (siblingDept) {
+  await db.query(
+    `insert into public.course_offerings(id, course_id, university_id, department_id, level_id, semester_id, status)
+     values($1,$2,$3,$4,$5,$6,'published')
+     on conflict do nothing`,
+    [siblingOffering, offeringMeta.course_id, offeringMeta.university_id, siblingDept, offeringMeta.level_id, offeringMeta.semester_id],
+  );
+  const siblingStudent = id(206);
+  await db.query("insert into auth.users(id,email,raw_user_meta_data) values($1,$2,$3)", [
+    siblingStudent, `${siblingStudent}@example.invalid`, { display_name: "Sibling programme student" },
+  ]);
+  await db.query("insert into public.user_roles(user_id,role) values($1,'student') on conflict do nothing", [siblingStudent]);
+  await db.query("insert into public.enrollments(user_id,offering_id) values($1,$2)", [siblingStudent, siblingOffering]);
+  students.push(siblingStudent);
+}
 
 const quizId = id(500);
 const opens = new Date(Date.now() + 60_000).toISOString();
@@ -38,6 +65,17 @@ await rpc("publish_lecturer_quiz_v1", [quizId, saved.quiz.revision]);
 await login(students[3]);
 eq((await rpc("list_course_quizzes_v1", [otherOffering, 0])).items, []);
 await reject(() => rpc("get_course_quiz_v1", [quizId]), /FORBIDDEN/);
+if (siblingDept) {
+  await login(students[students.length - 1]);
+  const siblingList = await rpc("list_course_quizzes_v1", [siblingOffering, 0]);
+  eq(siblingList.items[0]?.id, quizId);
+  const siblingNotice = (await query(
+    "select context from public.notifications where event_key=$1",
+    [`course-quiz:${quizId}:${students[students.length - 1]}`],
+  ))[0];
+  eq(siblingNotice.context.offering_id, siblingOffering);
+  eq(siblingNotice.context.quiz_id, quizId);
+}
 await login(students[0]);
 const scheduled = (await rpc("list_course_quizzes_v1", [offering, 0])).items[0];
 eq([scheduled.id, scheduled.state], [quizId, "upcoming"]);
@@ -49,12 +87,13 @@ const notice = await query(
   "select safe_target, body, title, category, expires_at, context from public.notifications where kind='course_quiz' and event_key like $1",
   [`course-quiz:${quizId}:%`],
 );
-eq(notice.map((row) => row.safe_target), [`/course-quizzes/${quizId}`]);
+assert.ok(notice.every((row) => row.safe_target === `/course-quizzes/${quizId}`));
 eq(notice[0].category, "academic");
 eq(notice[0].title, courseTitle);
 assert.match(notice[0].body, new RegExp(`New class quiz in ${courseTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}: Week 1 quiz`));
-eq(notice[0].context.offering_id, offering);
-eq(notice[0].context.quiz_id, quizId);
+const homeNotice = notice.find((row) => row.context.offering_id === offering);
+eq(homeNotice.context.quiz_id, quizId);
+checks += 2;
 
 const longQuizId = id(502);
 const longOpens = new Date(Date.now() + 3 * 86_400_000).toISOString();
