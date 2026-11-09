@@ -26,7 +26,9 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.next({ request });
   }
   if (isBearerApiRequest(request)) return NextResponse.next({ request });
-  if (process.env.NODE_ENV === "development" && request.nextUrl.pathname === "/design-preview") {
+  if (process.env.NODE_ENV === "development" && (
+    request.nextUrl.pathname === "/design-preview" || /^\/design-preview\/battle-flow\/[^/]+$/.test(request.nextUrl.pathname)
+  )) {
     return NextResponse.next({ request });
   }
   let response = NextResponse.next({ request });

@@ -106,23 +106,23 @@ export function BattleReactionBar({ battle, className }: { battle: Battle; class
       ) : null}
       {bubbleEmoji ? (
         <div
-          className="battle-reaction-bubble pointer-events-none fixed z-50 animate-bounce text-6xl drop-shadow-md"
+          className="battle-reaction-bubble pointer-events-none fixed z-50 motion-safe:animate-bounce text-6xl drop-shadow-md"
           aria-hidden
           style={bubbleStyle ?? { top: 88, left: "50%", transform: "translateX(-50%)" }}
         >
           {bubbleEmoji}
         </div>
       ) : null}
-      <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl border border-brand-primary/40 bg-surface-tint px-3 py-2.5">
-        <span className="w-full text-center text-xs font-bold uppercase tracking-wide text-brand-primary sm:w-auto sm:text-left">Taunt</span>
+      <div className="flex flex-wrap items-center justify-center gap-2 border-t border-line pt-3">
+        <span className="mr-auto text-xs font-semibold text-ink-muted">Taunts</span>
         {REACTIONS.map((r) => (
           <Button
             key={r.id}
             type="button"
             variant={sentFlash === r.id ? "primary" : "outline"}
             size="sm"
-            className="min-h-12 min-w-12 px-3 leading-none"
-            style={{ fontSize: 28 }}
+            className="min-h-11 min-w-11 px-2 leading-none"
+            style={{ fontSize: 24 }}
             disabled={send.isPending}
             aria-label={r.label}
             onClick={() => {

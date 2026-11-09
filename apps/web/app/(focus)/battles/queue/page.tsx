@@ -116,7 +116,7 @@ function Queue() {
         eyebrow="Battle queue"
         title="Find an opponent"
         actions={
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="min-h-11">
             <Link href="/battles">Back to battles</Link>
           </Button>
         }

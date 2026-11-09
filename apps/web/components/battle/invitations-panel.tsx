@@ -16,8 +16,8 @@ export function InvitationsPanel() {
     <Card className="border-brand-primary/25">
       <CardHeader><CardTitle>Battle challenges</CardTitle></CardHeader>
       <CardContent className="flex flex-col gap-3">
-        {invitations.data.invitations.map((invite) => <div key={invite.battle_id} className="flex flex-wrap items-center gap-3 rounded-xl border border-brand-primary/25 p-3">
-          <div className="min-w-0 flex-1"><p className="font-bold">{invite.display_name} has challenged you to a battle</p>
+        {invitations.data.invitations.map((invite) => <div key={invite.battle_id} className="grid min-w-0 grid-cols-2 items-center gap-3 rounded-xl border border-line p-3 sm:flex sm:flex-wrap">
+          <div className="col-span-2 min-w-0 flex-1 break-words"><p className="font-bold">{invite.display_name} has challenged you to a battle</p>
             <p className="text-sm">{invite.courses.join(" + ")} · {invite.round_count} questions</p>
             <p className="text-xs text-ink-muted">Reading time, then 5–15 seconds per question · up to {Math.ceil(invite.round_count * 27 / 60)} minutes</p>
           </div>

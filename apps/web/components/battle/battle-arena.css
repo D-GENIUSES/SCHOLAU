@@ -9,3 +9,14 @@
 }
 .battle-question-card label { scroll-margin-bottom: 110px; }
 @media (min-width: 640px) { .battle-question-card .battle-submit-bar { padding-inline:20px; } }
+
+.battle-experience { width: 100%; max-width: 880px; margin-inline: auto; }
+.battle-experience .rounded-card { box-shadow: none; }
+.battle-experience button, .battle-experience a[role=button], .battle-experience summary { min-height: 44px; }
+.battle-scoreboard { background: linear-gradient(135deg, var(--color-surface-card, white), var(--color-surface-tint, #eef6ff)); }
+.battle-question-card label { transition: background-color 150ms, border-color 150ms; }
+.battle-experience .ui-button:is(:hover, :active) { transform: none; scale: 1; }
+.battle-results { overflow-wrap: anywhere; }
+.battle-results .battle-result-actions { gap: 10px; }
+@media (max-width: 359px) { .battle-result-actions { flex-direction: column; align-items: stretch; } }
+@media (prefers-reduced-motion: reduce) { .battle-question-card label { transition: none; } }

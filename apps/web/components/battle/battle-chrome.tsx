@@ -58,7 +58,7 @@ export function BattleTopBar({
       ) : null}
         </div>
       </div>
-      {live && battle && battle.participants.length === 2 ? <Button size="sm" variant="danger-outline" className="px-3" onClick={onLeave}>
+      {live && battle && battle.participants.length === 2 ? <Button size="sm" variant="danger-outline" className="min-h-11 shrink-0 px-3" onClick={onLeave}>
         <Flag className="size-4" aria-hidden />Forfeit
       </Button> : null}
     </div>

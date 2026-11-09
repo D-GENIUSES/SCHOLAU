@@ -51,15 +51,15 @@ export function WaitingPanel({
   };
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="rounded-2xl border-brand-primary/20 shadow-none">
+      <CardHeader className="gap-2 rounded-t-2xl bg-surface-tint pb-4 sm:pb-4">
         <CardTitle as="h2">Waiting for your opponent</CardTitle>
         <CardDescription>
           {battle.invited_user_id ? "Your opponent has received a challenge for" : "Share this link with a classmate enrolled in"} {battle.courses?.map((c) => c.code).join(" + ") ?? battle.course?.code ?? "the selected courses"}. The battle starts once they accept and you&apos;re
           both ready.
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
+      <CardContent className="flex flex-col gap-4 pt-4 sm:pt-4">
         <p className="font-semibold">{battle.round_count} questions · Reading time, then 5–15 seconds per question</p>
         {battle.invite_token ? (
           <>

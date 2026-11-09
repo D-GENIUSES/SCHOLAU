@@ -37,7 +37,7 @@ export function OpponentPickerOption({
       <span className="flex min-w-0 items-center gap-2.5">
         <OnlineAvatar name={person.display_name} path={person.avatar_path} size={32} online={person.online} />
         <span className="min-w-0 text-left">
-          <strong className="block truncate">{person.display_name}</strong>
+          <strong className="block break-words">{person.display_name}</strong>
           <small className="block truncate text-ink-muted">@{person.username}</small>
           <span className="mt-0.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold">
             <span className={person.online ? "text-success" : "text-ink-muted"}>
@@ -47,7 +47,7 @@ export function OpponentPickerOption({
           </span>
         </span>
       </span>
-      <span className="shrink-0 text-xs font-semibold">
+      <span className="battle-opponent-action shrink-0 text-xs font-semibold">
         {unavailable ? "Unavailable" : selected ? "Selected" : "Choose"}
       </span>
     </button>

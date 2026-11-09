@@ -4,7 +4,7 @@ import { MathText } from "@/components/math/math-text";
 import { SolutionWalkthrough } from "@/components/math/solution-walkthrough";
 import { XpProgressCard } from "@/components/xp/xp-progress";
 
-import { BookOpen, CheckCircle2, ChevronUp, MinusCircle, XCircle } from "lucide-react";
+import { BookOpen, CheckCircle2, ChevronUp, MinusCircle, XCircle, Trophy, Swords } from "lucide-react";
 import Link from "next/link";
 import { useId, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -39,16 +39,17 @@ export function ResultPanel({ battle, celebrate = false }: { battle: Battle; cel
   const missedCount = battle.rounds?.filter(round => !round.my_is_correct).length ?? 0;
   const visibleRounds = missedOnly ? battle.rounds?.filter(round => !round.my_is_correct) : battle.rounds;
   return (
-    <div className="flex flex-col gap-6">
+    <div className="battle-results flex min-w-0 flex-col gap-5">
       {celebrate && !voided && (result === "win" || result === "loss") ? <BattleResultCelebration key={battle.battle_id} result={result} /> : null}
-      <Card>
-        <CardHeader className="items-center text-center">
+      <Card className="overflow-hidden rounded-2xl border-brand-primary/20 shadow-none">
+        <CardHeader className="items-center gap-3 bg-surface-tint pb-5 text-center sm:pb-5">
+          <span className="flex size-14 items-center justify-center rounded-2xl bg-surface-card text-brand-primary">{result === "win" ? <Trophy className="size-7" aria-hidden /> : <Swords className="size-7" aria-hidden />}</span>
           <CardTitle as="h2" className="text-2xl">
             {headline?.text ?? "Battle complete"}
           </CardTitle>
           {battle.courses?.length ? <p className="text-ink-muted">{battle.courses.map((c) => c.code).join(" + ")}</p> : battle.course ? <p className="text-ink-muted">{battle.course.code} — {battle.course.title}</p> : null}
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="flex flex-col gap-4 pt-5 sm:pt-5">
           {!voided && battle.result_kind === "forfeit" ? <p className="text-center font-medium text-ink-muted">{me?.forfeited ? "You forfeited. Your opponent wins." : "Your opponent forfeited. You win."}</p> : null}
           {voided ? (
             <Alert tone="warning" title="Voided by an administrator">
@@ -59,7 +60,7 @@ export function ResultPanel({ battle, celebrate = false }: { battle: Battle; cel
             <ScoreBox label="You" value={me?.correct_count} total={battle.round_count} />
             <ScoreBox label={opponent?.display_name ?? "Opponent"} value={opponent?.correct_count} total={battle.round_count} />
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 rounded-xl bg-surface-tint p-4 sm:grid-cols-2">
             <Stat label="XP earned" value={formatXpDelta(battle.outcome?.xp_awarded ?? 0)} />
             <Stat
               label="Your XP balance"
@@ -67,18 +68,16 @@ export function ResultPanel({ battle, celebrate = false }: { battle: Battle; cel
             />
           </div>
         </CardContent>
-        <CardFooter>
-          <Button asChild>
+        <CardFooter className="battle-result-actions">
+          <Button asChild className="min-h-11 flex-1">
             <Link href={`/battles?offering=${encodeURIComponent(battle.offering_id)}`}>Play again</Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="min-h-11 flex-1">
             <Link href="/battles">Back to battles</Link>
           </Button>
           <ReportDialog targetType="battle" targetId={battle.battle_id} triggerLabel="Report battle" title="Report this battle" />
         </CardFooter>
       </Card>
-
-      {opponent?.user_id ? <BattleOpponentFriend opponent={opponent} /> : null}
 
       {battle.courses && battle.courses.length > 1 && battle.rounds ? (
         <section aria-label="Results by course" className="grid gap-3 sm:grid-cols-3">
@@ -92,7 +91,6 @@ export function ResultPanel({ battle, celebrate = false }: { battle: Battle; cel
           })}
         </section>
       ) : null}
-      <XpProgressCard compact />
       {battle.outcome?.xp_awarded === 0 ? <p className="text-sm text-ink-muted">{battle.result_kind === "forfeit" ? "No XP is awarded for forfeited battles." : "No XP earned: battle limits may have been reached, or no answers were correct. Your first 10 completed matches daily and first 2 per opponent qualify."}</p> : null}
       {battle.rounds && battle.rounds.length > 0 ? (
         <section aria-labelledby="rounds-heading" className="flex flex-col gap-3">
@@ -107,6 +105,8 @@ export function ResultPanel({ battle, celebrate = false }: { battle: Battle; cel
           </ol>
         </section>
       ) : null}
+      {opponent?.user_id ? <BattleOpponentFriend opponent={opponent} /> : null}
+      <XpProgressCard compact />
     </div>
   );
 }
@@ -148,7 +148,7 @@ export function RoundRow({ round, battleId }: { round: BattleRound; battleId: st
           Opponent: <Mark kind={round.opponent_is_correct ? "correct" : "incorrect"} />
         </span>
       </div>
-      <Button type="button" variant="ghost" size="sm" className="self-start px-0 text-brand-primary" aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(value => !value)}>
+      <Button type="button" variant="ghost" size="sm" className="min-h-11 self-start px-0 text-brand-primary" aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(value => !value)}>
         {expanded ? <ChevronUp className="size-4" aria-hidden /> : <BookOpen className="size-4" aria-hidden />}
         {expanded ? "Hide answer" : "View answer"}
       </Button>

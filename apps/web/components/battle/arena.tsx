@@ -5,16 +5,17 @@ import type { Battle, BattleParticipant } from "@scholau/api";
 import { Avatar } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-export function BattleScoreboard({ battle, footer, preview = false }: { battle: Pick<Battle, "participants">; footer?: ReactNode; preview?: boolean }) {
+export function BattleScoreboard({ battle, result, footer, preview = false }: { battle: Pick<Battle, "participants">; result?: ReactNode; footer?: ReactNode; preview?: boolean }) {
   const me = battle.participants.find((p) => p.is_me);
   const opponent = battle.participants.find((p) => !p.is_me);
   return (
-    <section aria-label="Battle players" className="flex flex-col gap-2 rounded-xl border border-line bg-surface-card px-3 py-2 sm:p-3">
+    <section aria-label="Battle players" className="battle-scoreboard flex min-w-0 flex-col gap-3 rounded-2xl border border-brand-primary/20 bg-surface-card p-3 sm:p-4">
       <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
         <Player participant={me} preview={preview} />
         <span className="flex size-9 items-center justify-center rounded-full bg-surface-page text-xs font-bold text-ink-muted">VS</span>
         <Player participant={opponent} preview={preview} reverse reactionAnchor={opponent?.user_id} />
       </div>
+      {result}
       {footer}
     </section>
   );
@@ -35,10 +36,10 @@ function Player({
   return (
     <div
       id={reactionAnchor ? `battle-player-${reactionAnchor}` : undefined}
-      className={cn("relative flex min-w-0 items-center gap-2 sm:gap-3", reverse && "flex-row-reverse text-right")}
+      className={cn("relative flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3", reverse && "items-end text-right sm:flex-row-reverse")}
     >
     <Avatar name={name} path={participant?.avatar_path} size={32} />
-    <div className="min-w-0">
+    <div className="w-full min-w-0 sm:w-auto">
       <p className="truncate text-sm font-semibold sm:text-base" title={name}>{name}</p>
       {preview ? null : <p className="text-xs text-ink-muted">{participant?.correct_count != null ? <><strong className="text-xl font-bold tabular-nums text-brand-primary sm:text-2xl">{participant.correct_count}</strong> correct</> : participant?.is_me ? "You" : "Challenger"}</p>}
     </div>
