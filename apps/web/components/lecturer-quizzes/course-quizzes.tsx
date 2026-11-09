@@ -45,23 +45,24 @@ export function CourseQuizzes({
   initialList?: LecturerQuizList;
 }) {
   const [offset, setOffset] = useState(0);
+  const seededEmpty = offset === 0 && initialList != null && initialList.items.length === 0;
   const list = useQuery({
     queryKey: [...qk.classQuizzes(), offering, offset],
     initialData: offset === 0 ? initialList : undefined,
     queryFn: () => quizApi().list(offering, offset),
     retry: shouldRetry,
-    staleTime: lecturer ? 0 : initialList ? 120_000 : 30_000,
+    // Keep empty student lists soft so a just-published quiz appears without a hard refresh.
+    staleTime: lecturer ? 0 : seededEmpty ? 0 : initialList ? 60_000 : 30_000,
     refetchOnMount: (query) => {
-      if (lecturer) return true;
+      if (lecturer) return "always";
+      if (seededEmpty) return "always";
       if (initialList && offset === 0) return false;
       return studentListStale(query.state.data as LecturerQuizList | undefined);
     },
-    refetchOnWindowFocus: (query) => {
-      if (lecturer) return true;
-      if (initialList && offset === 0) return false;
-      return studentListStale(query.state.data as LecturerQuizList | undefined);
-    },
-    refetchInterval: lecturer ? 15_000 : false,
+    refetchOnWindowFocus: true,
+    refetchInterval: lecturer
+      ? 15_000
+      : (query) => (studentListStale(query.state.data as LecturerQuizList | undefined) ? 20_000 : false),
   });
   const base = lecturer ? `/lecturer/courses/${offering}/quizzes` : `/courses/${offering}/quizzes`;
   const studentHref = (id: string) => `/course-quizzes/${id}`;

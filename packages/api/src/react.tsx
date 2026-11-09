@@ -262,13 +262,15 @@ export function useTopicQuizOptions(offeringId: string) {
 export function useCourseQuizzes(offeringId: string, offset = 0, initialData?: T.LecturerQuizList) {
   const api = useScholauApi();
   const hydrated = offset === 0 && initialData != null;
+  // Empty lists must stay fresh — a lecturer may publish while the student is already on Assessments.
+  const emptyHydration = hydrated && (initialData?.items?.length ?? 0) === 0;
   return useQuery({
     queryKey: [...qk.classQuizzes(), offeringId, offset],
     queryFn: () => api.listCourseQuizzes(offeringId, offset),
     initialData: hydrated ? initialData : undefined,
-    staleTime: hydrated ? 120_000 : 60_000,
-    refetchOnMount: hydrated ? false : true,
-    refetchOnWindowFocus: hydrated ? false : true,
+    staleTime: emptyHydration ? 0 : hydrated ? 60_000 : 30_000,
+    refetchOnMount: emptyHydration ? "always" : hydrated ? false : true,
+    refetchOnWindowFocus: true,
     retry: shouldRetry,
   });
 }
