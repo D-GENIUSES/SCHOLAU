@@ -14,7 +14,8 @@ import { Failure, useChallengeClock } from "@/components/challenges/course-chall
 import { QuizIntegrityGuard } from "./quiz-integrity-guard";
 import { QuizEditor, QuizQuestionReview } from "./quiz-editor";
 import { QuizRoster, quizApi } from "./course-quizzes";
-import { QuizStateBadge, formatQuizWindow } from "./quiz-ui";
+import { QuizStateBadge, QuizStudentStatus, formatQuizWindow } from "./quiz-ui";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { lecturerQuizError } from "@/lib/lecturer-quiz-api";
 
 function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): number | undefined {
@@ -61,9 +62,15 @@ export function QuizRoom({ id }: { id: string }) {
         <h1 className="text-2xl font-bold">{q.title}</h1>
         <QuizStateBadge state={q.state} />
       </div>
-      <p className="whitespace-pre-wrap text-ink-muted">{q.instructions}</p>
-      <p className="text-sm text-ink-muted">{q.question_count} questions · {q.duration_minutes} minutes per attempt</p>
-      <p className="text-sm text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
+      <Card>
+        <CardHeader>
+          <CardTitle>Instructions</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <p className="whitespace-pre-wrap text-sm">{q.instructions?.trim() || "Follow your lecturer’s directions for this class quiz."}</p>
+          <p className="text-xs text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
+        </CardContent>
+      </Card>
       <Failure error={actionError ? new Error(lecturerQuizError(actionError)) : query.error} retry={() => { setActionError(null); void query.refetch(); }} />
       {q.state === "cancelled" ? <p>This quiz was cancelled.</p> : d.teacher ? (
         <>
@@ -73,10 +80,18 @@ export function QuizRoom({ id }: { id: string }) {
         </>
       ) : (
         <>
-          {q.state === "upcoming" && <p role="status">This quiz opens at the scheduled time.</p>}
-          {q.state === "closed" && !d.attempt?.submitted_at && <p>This quiz has closed.</p>}
+          <QuizStudentStatus
+            state={q.state}
+            opensAt={q.opens_at}
+            closesAt={q.closes_at}
+            questionCount={q.question_count}
+            durationMinutes={q.duration_minutes}
+            maxAttempts={q.max_attempts}
+            attemptsUsed={d.attempts_used}
+            submitted={Boolean(d.attempt?.submitted_at)}
+          />
           {(q.state === "open" || d.attempt) && <StudentQuizFlow detail={d} refresh={() => void query.refetch()} busy={busy} act={act} />}
-          {d.attempt?.submitted_at && <QuizResults detail={d} />}
+          {d.attempt?.submitted_at ? <QuizResults detail={d} /> : null}
         </>
       )}
     </div>
@@ -118,10 +133,22 @@ function StudentQuizFlow({ detail, refresh, busy, act }: { detail: LecturerQuizD
 
 function QuizResults({ detail }: { detail: LecturerQuizDetail }) {
   const a = detail.attempt!;
-  return <section className="space-y-3">
-    <p role="status" className="text-lg font-semibold">Score: {a.score ?? 0} / {detail.quiz.question_count}</p>
-    {detail.questions.some(x => x.correct != null) ? <QuizQuestionReview questions={detail.questions} /> : null}
-  </section>;
+  const review = detail.questions.some((x) => x.correct != null);
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Your result</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <p role="status" className="text-lg font-semibold">
+          Score: {a.score ?? 0} / {detail.quiz.question_count}
+        </p>
+        {review ? <QuizQuestionReview questions={detail.questions} /> : (
+          <p className="text-sm text-ink-muted">Your lecturer chose not to show per-question review for this quiz.</p>
+        )}
+      </CardContent>
+    </Card>
+  );
 }
 
 export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetail; refresh: () => void }) {

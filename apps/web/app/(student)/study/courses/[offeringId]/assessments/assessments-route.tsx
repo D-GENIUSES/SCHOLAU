@@ -12,9 +12,11 @@ import { ErrorState, LoadingState } from "@/components/ui/states";
 export function AssessmentsRoute({
   initialOverview,
   initialQuizList,
+  quizListError,
 }: {
   initialOverview?: CourseOverview;
   initialQuizList?: LecturerQuizList;
+  quizListError?: string;
 }) {
   const { offeringId } = useParams<{ offeringId: string }>();
   const requestedTab = useSearchParams().get("tab");
@@ -26,7 +28,13 @@ export function AssessmentsRoute({
         <ArrowLeft className="size-4" aria-hidden /> My courses
       </Link>
       {overview.data ? (
-        <CourseAssessments key={offeringId} data={overview.data} initialTab={initialTab} initialQuizList={initialQuizList} />
+        <CourseAssessments
+          key={`${offeringId}:${initialTab}`}
+          data={overview.data}
+          initialTab={initialTab}
+          initialQuizList={initialQuizList}
+          quizListError={quizListError}
+        />
       ) : overview.isError ? (
         <ErrorState error={overview.error} onRetry={() => void overview.refetch()} />
       ) : <LoadingState variant="assessment" label="Loading assessments…" />}

@@ -13,8 +13,8 @@ import { EmptyState } from "@/components/ui/states";
 import { Failure, Paging } from "@/components/challenges/course-challenges";
 import { lecturerQuizApi, type QuizIntegrityFlag } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
-import { formatQuizWindow, QuizStateBadge } from "./quiz-ui";
-import { useEffect, useMemo, useState } from "react";
+import { formatQuizWindow, QuizStateBadge, studentClassQuizCta } from "./quiz-ui";
+import { useMemo, useState } from "react";
 
 function studentListStale(data: LecturerQuizList | undefined) {
   return !data || data.items.length === 0;
@@ -55,18 +55,6 @@ export function CourseQuizzes({
     refetchOnWindowFocus: (query) => lecturer || studentListStale(query.state.data as LecturerQuizList | undefined),
     refetchInterval: lecturer ? 15_000 : false,
   });
-  useEffect(() => {
-    if (!list.isError) return;
-    // #region agent log
-    agentDebugLog({
-      location: "course-quizzes.tsx:listError",
-      message: "class quiz list failed",
-      data: { offering, lecturer, code: (list.error as { code?: string })?.code ?? "unknown" },
-      hypothesisId: "E",
-      runId: "post-fix",
-    });
-    // #endregion
-  }, [list.isError, list.error, offering, lecturer]);
   const base = lecturer ? `/lecturer/courses/${offering}/quizzes` : `/courses/${offering}/quizzes`;
   const studentHref = (id: string) => `/course-quizzes/${id}`;
 
@@ -104,7 +92,7 @@ export function CourseQuizzes({
             <p className="text-xs text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : q.state === "open" ? "Take quiz" : "Details"}</Link></Button>
+            <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : studentClassQuizCta(q.state)}</Link></Button>
             {lecturer && q.state !== "draft" ? (
               <Button asChild variant="outline" size="sm"><Link href={`/course-quizzes/${q.id}`}>Student view</Link></Button>
             ) : null}

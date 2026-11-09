@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
@@ -28,13 +28,14 @@ export function CourseAssessments({
   data,
   initialTab = "quiz",
   initialQuizList,
+  quizListError,
 }: {
   data: CourseOverview;
   initialTab?: (typeof tabs)[number]["id"];
   initialQuizList?: LecturerQuizList;
+  quizListError?: string;
 }) {
   const [tab, setTabState] = useState(initialTab);
-  useEffect(() => { setTabState(initialTab); }, [initialTab]);
   const [selected, setSelected] = useState<string[]>([]);
   const [requested, setRequested] = useState("20");
   const [chosenMock, setChosenMock] = useState("");
@@ -50,6 +51,11 @@ export function CourseAssessments({
         <p className="text-xs font-semibold text-brand-primary">{data.course.code} · {data.course.title}</p>
         <h1 className="mt-1 text-2xl font-bold tracking-tight">Assessments</h1>
         <p className="mt-1 text-sm text-ink-muted">Choose how you want to practise.</p>
+        {quizListError?.startsWith("FORBIDDEN") ? (
+          <p className="mt-2 rounded-lg border border-warning bg-warning-bg px-3 py-2 text-sm text-warning">
+            You must be enrolled as a student in this course to see class quizzes. Topic quizzes below may still work.
+          </p>
+        ) : null}
       </header>
       {tab !== "class-quizzes" ? (
         <ClassQuizBanner offeringId={data.offering_id} initialQuizList={initialQuizList} onOpen={() => setTab("class-quizzes")} />
@@ -107,7 +113,7 @@ function ClassQuizBanner({
       <p className="mt-1 text-ink-muted">
         {openCount > 0
           ? `${pluralize(openCount, "quiz")} open now. They are not the same as topic quizzes below.`
-          : `${pluralize(visible.length, "scheduled class quiz")} — open the Class quizzes tab to view details.`}
+          : `${pluralize(visible.length, "class quiz")} from your lecturer — open the tab to see schedules, take open quizzes, or review closed ones.`}
       </p>
       <Button type="button" size="sm" className="mt-3" onClick={onOpen}>
         Open class quizzes

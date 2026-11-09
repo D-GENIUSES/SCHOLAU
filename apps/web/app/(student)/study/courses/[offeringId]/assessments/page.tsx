@@ -1,8 +1,6 @@
 import { Suspense } from "react";
-import { isApiError, type CourseOverview } from "@scholau/api";
-import type { LecturerQuizList } from "@scholau/api";
+import { isApiError, type CourseOverview, type LecturerQuizList } from "@scholau/api";
 import { getSessionApi } from "@/lib/session";
-import { agentDebugLogServer } from "@/lib/agent-debug-log-server";
 import { LoadingState } from "@/components/ui/states";
 import { AssessmentsRoute } from "./assessments-route";
 
@@ -15,13 +13,12 @@ export default async function CourseAssessmentsPage({ params }: PageProps) {
   const api = await getSessionApi();
   let initialOverview: CourseOverview | undefined;
   let initialQuizList: LecturerQuizList | undefined;
-  let overviewError: string | undefined;
   let quizListError: string | undefined;
 
   try {
     initialOverview = await api.getCourseOverview(offeringId);
-  } catch (error) {
-    overviewError = isApiError(error) ? `${error.code}:${error.message}` : String(error);
+  } catch {
+    initialOverview = undefined;
   }
 
   try {
@@ -30,24 +27,13 @@ export default async function CourseAssessmentsPage({ params }: PageProps) {
     quizListError = isApiError(error) ? `${error.code}:${error.message}` : String(error);
   }
 
-  await agentDebugLogServer({
-    location: "assessments/page.tsx",
-    message: "assessments server prefetch",
-    runId: "post-fix",
-    hypothesisId: "B",
-    data: {
-      offeringId,
-      hasOverview: Boolean(initialOverview),
-      overviewError,
-      quizCount: initialQuizList?.items?.length ?? 0,
-      quizStates: initialQuizList?.items?.map((q) => q.state) ?? [],
-      quizListError,
-    },
-  });
-
   return (
     <Suspense fallback={<LoadingState variant="assessment" label="Loading assessments…" />}>
-      <AssessmentsRoute initialOverview={initialOverview} initialQuizList={initialQuizList} />
+      <AssessmentsRoute
+        initialOverview={initialOverview}
+        initialQuizList={initialQuizList}
+        quizListError={quizListError}
+      />
     </Suspense>
   );
 }
