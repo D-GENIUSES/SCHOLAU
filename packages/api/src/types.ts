@@ -1569,6 +1569,8 @@ export interface LecturerQuizAttempt {
 export interface LecturerQuizDetail extends Envelope {
   quiz: LecturerQuiz;
   teacher: boolean;
+  /** Student's enrolled sibling offering for back-links (may differ from quiz.offering_id). */
+  viewer_offering_id?: string;
   questions: LecturerQuizQuestion[];
   attempts_used: number;
   profile: { display_name: string; department: string | null; matric_number: string | null } | null;
@@ -1599,7 +1601,8 @@ export interface LecturerQuizExport extends Envelope {
     matric_number: string;
     name: string;
     department: string;
-    attempt_number: number;
+    status: "not_started" | "in_progress" | "submitted";
+    attempt_number: number | null;
     score: number | null;
     total: number;
     submitted_at: string | null;

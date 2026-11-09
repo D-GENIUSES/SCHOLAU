@@ -1,6 +1,6 @@
 "use client";
 
-import { RefreshCw, WifiOff } from "lucide-react";
+import { BookOpen, RefreshCw, WifiOff } from "lucide-react";
 import type * as React from "react";
 import { useEffect, useState } from "react";
 import { isApiError } from "@scholau/api";
@@ -54,7 +54,7 @@ export function EmptyState({
   );
 }
 
-/** Plain retry with request reference for support; never fabricates a result. */
+/** Friendly retry card. Support correlation stays in logs — never shown in UI. */
 export function ErrorState({
   error,
   onRetry,
@@ -70,17 +70,45 @@ export function ErrorState({
 }) {
   const apiErr = isApiError(error) ? error : null;
   const offline = apiErr?.code === "NETWORK";
+  const notEnrolled = apiErr?.code === "NOT_ENROLLED";
+  const forbidden = apiErr?.code === "FORBIDDEN";
+  const unavailable = apiErr?.code === "CONTENT_UNAVAILABLE" || apiErr?.code === "NOT_FOUND";
   const message = apiErr ? errorMessage(apiErr) : "Something went wrong. Please try again.";
+
+  useEffect(() => {
+    if (apiErr?.reference) console.warn("[scholau]", apiErr.code, apiErr.reference);
+  }, [apiErr]);
+
+  const heading = offline
+    ? "You're offline"
+    : notEnrolled
+      ? "You're not enrolled"
+      : unavailable
+        ? "This isn't available"
+        : forbidden
+          ? "You can't open this"
+          : title;
+
+  const Icon = offline ? WifiOff : notEnrolled ? BookOpen : RefreshCw;
+  const showRetry = Boolean(onRetry) && !notEnrolled && !forbidden && !unavailable;
+
   return (
-    <div role="alert" className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-5 py-8 text-center", className)}>
-      <span className="inline-flex size-12 items-center justify-center rounded-pill bg-danger-bg text-danger" aria-hidden>
-        {offline ? <WifiOff className="size-6" /> : <RefreshCw className="size-6" />}
+    <div role="alert" className={cn("flex flex-col items-center gap-3 rounded-card border border-line bg-surface-card px-5 py-10 text-center shadow-sm", className)}>
+      <span
+        className={cn(
+          "inline-flex size-14 items-center justify-center rounded-full",
+          offline ? "bg-surface-tint text-ink-muted" : notEnrolled ? "bg-surface-tint text-brand-primary" : "bg-danger-bg text-danger",
+        )}
+        aria-hidden
+      >
+        <Icon className="size-7" />
       </span>
-      <h2 className="text-base font-semibold">{offline ? "You're offline" : title}</h2>
-      <p className="max-w-md text-sm leading-relaxed text-ink-muted">{message}</p>
-      {apiErr ? <p className="text-sm text-ink-muted">Reference: {apiErr.reference}</p> : null}
+      <div className="space-y-1.5">
+        <h2 className="text-lg font-semibold tracking-tight">{heading}</h2>
+        <p className="mx-auto max-w-md text-sm leading-relaxed text-ink-muted">{message}</p>
+      </div>
       <div className="mt-2 flex flex-wrap justify-center gap-2">
-        {onRetry ? (
+        {showRetry ? (
           <Button onClick={onRetry} variant="primary">
             <RefreshCw className="size-4" aria-hidden /> Try again
           </Button>
@@ -93,14 +121,14 @@ export function ErrorState({
 
 /** Inline error for mutations: message, field errors are handled by forms. */
 export function InlineError({ error, className }: { error: unknown; className?: string }) {
-  if (!error) return null;
   const apiErr = isApiError(error) ? error : null;
+  useEffect(() => {
+    if (apiErr?.reference) console.warn("[scholau]", apiErr.code, apiErr.reference);
+  }, [apiErr]);
+  if (!error) return null;
   return (
     <p role="alert" className={cn("rounded-control border border-[#f3c4bf] bg-danger-bg p-3 text-sm font-medium text-danger", className)}>
       {apiErr ? errorMessage(apiErr) : "Something went wrong. Please try again."}
-      {apiErr && !apiErr.retryable && apiErr.code !== "VALIDATION_FAILED" ? (
-        <span className="block font-normal text-ink-muted">Reference: {apiErr.reference}</span>
-      ) : null}
     </p>
   );
 }

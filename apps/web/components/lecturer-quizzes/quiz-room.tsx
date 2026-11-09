@@ -54,26 +54,40 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
   const d = query.data;
   const q = d.quiz;
   if (d.teacher && q.state === "draft") return <QuizEditor offering={q.offering_id} initial={d} />;
+  const windowLine = formatQuizWindow(q.opens_at, q.closes_at);
+  const instructions = q.instructions?.trim() || "Follow your lecturer’s directions for this class quiz.";
   return (
-    <div className="space-y-6 min-w-0 break-words">
-      <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
+    <div className="space-y-4 min-w-0 break-words">
+      <Link className="inline-flex min-h-11 items-center underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${d.viewer_offering_id ?? q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
       <div className="flex flex-wrap items-center gap-2">
-        <h1 className="text-2xl font-bold">{q.title}</h1>
+        <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{q.title}</h1>
         <QuizStateBadge state={q.state} />
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Instructions</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <p className="whitespace-pre-wrap text-sm">{q.instructions?.trim() || "Follow your lecturer’s directions for this class quiz."}</p>
-          <p className="text-xs text-ink-muted">{formatQuizWindow(q.opens_at, q.closes_at)}</p>
-        </CardContent>
-      </Card>
+      {d.teacher ? (
+        <div className="space-y-1">
+          <p className="text-xs text-ink-muted">{windowLine}</p>
+          <details className="text-sm">
+            <summary className="cursor-pointer select-none text-xs font-medium text-ink-muted hover:text-ink">Instructions</summary>
+            <p className="mt-1.5 whitespace-pre-wrap text-sm text-ink-muted">{instructions}</p>
+          </details>
+        </div>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Instructions</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <p className="whitespace-pre-wrap text-sm">{instructions}</p>
+            <p className="text-xs text-ink-muted">{windowLine}</p>
+          </CardContent>
+        </Card>
+      )}
       <Failure error={actionError ? new Error(lecturerQuizError(actionError)) : query.error} retry={() => { setActionError(null); void query.refetch(); }} />
       {q.state === "cancelled" ? <p>This quiz was cancelled.</p> : d.teacher ? (
         <>
-          {q.state !== "closed" && q.state !== "draft" && <Button disabled={busy} variant="secondary" onClick={() => { if (window.confirm("Cancel this quiz?")) void act(() => quizApi().cancel(id)); }}>Cancel quiz</Button>}
+          {q.state !== "closed" && q.state !== "draft" ? (
+            <Button disabled={busy} variant="outline" size="sm" onClick={() => { if (window.confirm("Cancel this quiz?")) void act(() => quizApi().cancel(id)); }}>Cancel quiz</Button>
+          ) : null}
           <QuizRoster offering={q.offering_id} quizId={id} />
           {d.questions.length ? <QuizQuestionReview questions={d.questions} /> : null}
         </>

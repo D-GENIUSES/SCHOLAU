@@ -42,7 +42,7 @@ export const ERROR_COPY: Record<ErrorCode, string> = {
   UNAUTHENTICATED: "Please sign in to continue.",
   FORBIDDEN: "You don't have permission to do that.",
   INVALID_PROFILE: "Your academic profile is missing or invalid. Please review it.",
-  NOT_ENROLLED: "Enroll in this course first.",
+  NOT_ENROLLED: "You're not enrolled in this course yet.",
   CONTENT_UNAVAILABLE: "This content is under review.",
   ATTEMPT_ACTIVE: "You already have an attempt in progress.",
   ATTEMPT_LIMIT: "You have used all allowed attempts.",

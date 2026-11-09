@@ -8,6 +8,8 @@ await db.exec(readFileSync("supabase/migrations/20261108000200_fix_quiz_option_o
 await db.exec(readFileSync("supabase/migrations/20261109203000_lecturer_quiz_feedback_mode.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261109300000_course_quiz_notifications.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261110000100_shared_course_class_quizzes.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000300_quiz_results_export_roster.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000200_resolve_shared_course_enrollment.sql", "utf8"));
 let checks = 0;
 const rpc = async (name, args = []) => (await query(`select public.${name}($${args.map((_, i) => i + 1).join(",$")}) as value`, args))[0].value;
 const eq = (a, b) => { assert.deepEqual(a, b); checks++; };
@@ -131,8 +133,11 @@ detail = await rpc("submit_lecturer_quiz_attempt_v1", [quizId, detail.attempt.re
 eq(detail.attempt.score, 1);
 await login(lecturer.uid);
 const exported = await rpc("export_lecturer_quiz_results_v1", [quizId]);
-eq(exported.rows.length, 1);
-eq(exported.rows[0].matric_number, "MAT2024001");
+assert.ok(exported.rows.length >= 1, "export includes enrolled students");
+const submittedRow = exported.rows.find((row) => row.matric_number === "MAT2024001");
+eq(submittedRow?.status, "submitted");
+eq(submittedRow?.score, 1);
+checks += 1;
 const quizHideId = id(501);
 const hidePayload = { ...payload, opens_at: new Date(Date.now() - 60_000).toISOString(), title: "Score only quiz", feedback_mode: "immediate", questions: [question] };
 await rpc("save_lecturer_quiz_v1", [quizHideId, offering, 0, hidePayload]);

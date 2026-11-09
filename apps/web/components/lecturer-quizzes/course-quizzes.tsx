@@ -6,15 +6,92 @@ import { Download, Plus } from "lucide-react";
 import { qk } from "@scholau/api";
 import { shouldRetry } from "@scholau/api/react";
 import type { LecturerQuizList } from "@scholau/api";
-import type { LecturerQuiz } from "@scholau/core";
+import type { LecturerQuiz, LecturerQuizExport, LecturerQuizRosterRow } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/misc";
 import { EmptyState } from "@/components/ui/states";
 import { Failure, Paging } from "@/components/challenges/course-challenges";
+import { downloadText, toCsv } from "@/components/admin/csv";
 import { lecturerQuizApi, type QuizIntegrityFlag } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { formatQuizWindow, QuizStateBadge, studentClassQuizCta } from "./quiz-ui";
 import { useMemo, useState } from "react";
+
+const ROSTER_PAGE = 50;
+
+const statusLabels: Record<LecturerQuizRosterRow["status"], string> = {
+  submitted: "Submitted",
+  in_progress: "In progress",
+  not_started: "Not started",
+};
+
+const statusTone: Record<LecturerQuizRosterRow["status"], "success" | "brand" | "neutral"> = {
+  submitted: "success",
+  in_progress: "brand",
+  not_started: "neutral",
+};
+
+function csvDateTime(iso: string | null | undefined) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function csvSlug(value: string) {
+  return value.replace(/[^\w.-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 80) || "quiz";
+}
+
+function buildQuizResultsCsv(data: LecturerQuizExport, perQuestion: boolean): string {
+  const qCount = data.questions.length;
+  const headers = [
+    "Matric",
+    "Name",
+    "Department",
+    "Status",
+    "Score",
+    "Total",
+    "Percent",
+    "Submitted at",
+    ...(perQuestion
+      ? [
+          ...Array.from({ length: qCount }, (_, i) => `Q${i + 1}`),
+          ...Array.from({ length: qCount }, (_, i) => `Q${i + 1} correct`),
+        ]
+      : []),
+  ];
+  const body = data.rows.map((row) => {
+    const percent =
+      row.score != null && row.total > 0 ? String(Math.round((100 * row.score) / row.total)) : "";
+    const base: unknown[] = [
+      row.matric_number,
+      row.name,
+      row.department,
+      statusLabels[row.status] ?? row.status,
+      row.score ?? "",
+      row.total,
+      percent,
+      csvDateTime(row.submitted_at),
+    ];
+    if (!perQuestion) return base;
+    const answers = Array.from({ length: qCount }, (_, i) => {
+      const idx = row.answers[String(i)];
+      if (idx === undefined) return "";
+      return data.questions[i]?.options[idx] ?? String(idx);
+    });
+    const correct = Array.from({ length: qCount }, (_, i) => {
+      const idx = row.answers[String(i)];
+      if (idx === undefined || row.status !== "submitted") return "";
+      const expected = data.questions[i]?.correct;
+      if (expected == null) return "";
+      return idx === expected ? "Y" : "N";
+    });
+    return [...base, ...answers, ...correct];
+  });
+  return `\uFEFF${toCsv([headers, ...body])}`;
+}
 
 function studentListStale(data: LecturerQuizList | undefined) {
   return !data || data.items.length === 0;
@@ -123,12 +200,53 @@ const integrityLabels: Record<QuizIntegrityFlag["kind"], string> = {
   casting_shortcut: "Screen casting shortcut",
 };
 
+function RosterFlags({
+  flags,
+  loading,
+  unavailable,
+}: {
+  flags: QuizIntegrityFlag[];
+  loading: boolean;
+  unavailable: boolean;
+}) {
+  const total = flags.reduce((n, flag) => n + flag.count, 0);
+  if (total > 0) {
+    return (
+      <details className="min-w-0">
+        <summary className="cursor-pointer whitespace-nowrap text-xs font-semibold text-warning">{total}</summary>
+        <ul className="mt-1 space-y-0.5 text-[11px] leading-snug text-ink-muted">
+          {flags.map((flag) => (
+            <li key={`${flag.attempt_number}:${flag.kind}`}>
+              Attempt {flag.attempt_number} · {integrityLabels[flag.kind]} ×{flag.count}
+            </li>
+          ))}
+        </ul>
+      </details>
+    );
+  }
+  return (
+    <span className="text-xs text-ink-muted">
+      {unavailable ? "—" : loading ? "…" : "—"}
+    </span>
+  );
+}
+
+function RosterScore({ score, total }: { score: number | null; total: number }) {
+  if (score == null) return <span className="tabular-nums text-ink-muted">—</span>;
+  return <span className="tabular-nums">{score}/{total}</span>;
+}
+
 export function QuizRoster({ offering, quizId }: { offering: string; quizId: string }) {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
-  const roster = useQuery({ queryKey: ["lecturer-quiz-roster", offering, quizId, search, offset], queryFn: () => quizApi().roster(offering, quizId, search, offset) });
+  const [csvBusy, setCsvBusy] = useState(false);
+  const roster = useQuery({
+    queryKey: ["lecturer-quiz-roster", offering, quizId, search, offset],
+    queryFn: () => quizApi().roster(offering, quizId, search, offset),
+  });
 
   const students = roster.data?.items.map(({ user_id }) => user_id) ?? [];
+  const questionTotal = roster.data?.quiz.question_count ?? 0;
   const integrity = useQuery({
     queryKey: ["lecturer-quiz-integrity", quizId, students],
     queryFn: () => quizApi().integrity(quizId, students),
@@ -146,8 +264,8 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
 
   const stats = useMemo(() => {
     const items = roster.data?.items ?? [];
-    const submitted = items.filter(r => r.status === "submitted").length;
-    const inProgress = items.filter(r => r.status === "in_progress").length;
+    const submitted = items.filter((r) => r.status === "submitted").length;
+    const inProgress = items.filter((r) => r.status === "in_progress").length;
     return { submitted, inProgress, total: roster.data?.total ?? items.length };
   }, [roster.data]);
 
@@ -162,88 +280,139 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
   }, [roster.data]);
 
   async function downloadCsv(perQuestion: boolean) {
-    const data = await quizApi().exportResults(quizId);
-    const qCount = data.questions.length;
-    const headers = ["Matric", "Name", "Department", "Score", "Total", "Submitted", ...(perQuestion ? Array.from({ length: qCount }, (_, i) => `Q${i + 1}`) : [])];
-    const lines = [headers.join(",")];
-    for (const row of data.rows) {
-      const base = [row.matric_number, row.name, row.department, row.score ?? "", row.total, row.submitted_at ?? ""];
-      const answers = perQuestion
-        ? Array.from({ length: qCount }, (_, i) => {
-            const idx = row.answers[String(i)];
-            if (idx === undefined) return "";
-            const opt = data.questions[i]?.options[idx];
-            return opt ?? String(idx);
-          })
-        : [];
-      lines.push([...base, ...answers].map(v => `"${String(v).replace(/"/g, '""')}"`).join(","));
+    if (csvBusy) return;
+    setCsvBusy(true);
+    try {
+      const data = await quizApi().exportResults(quizId);
+      const titleSlug = csvSlug(data.quiz.title);
+      downloadText(
+        `${titleSlug}_results${perQuestion ? "_detailed" : ""}.csv`,
+        buildQuizResultsCsv(data, perQuestion),
+      );
+    } finally {
+      setCsvBusy(false);
     }
-    const blob = new Blob([lines.join("\n")], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${data.quiz.title.replace(/[^\w.-]+/g, "_")}-results${perQuestion ? "-detailed" : ""}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
   }
 
   return (
-    <section className="space-y-4" aria-label="Quiz results">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="text-lg font-bold">Results</h2>
-          <p className="text-sm text-ink-muted">
-            {stats.submitted} submitted · {stats.inProgress} in progress · {stats.total} enrolled on this page
+    <section className="space-y-3" aria-label="Quiz results">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div className="min-w-0">
+          <h2 className="text-base font-semibold tracking-tight">Results</h2>
+          <p className="text-xs text-ink-muted">
+            {stats.submitted} submitted · {stats.inProgress} live · {stats.total} enrolled
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <Button type="button" variant="ghost" size="sm" disabled={!students.length || integrity.isFetching} onClick={() => void integrity.refetch()}>Refresh flags</Button>
-          <Button type="button" variant="secondary" size="sm" onClick={() => void downloadCsv(false)}><Download className="size-4" aria-hidden /> Summary CSV</Button>
-          <Button type="button" variant="outline" size="sm" onClick={() => void downloadCsv(true)}>Detailed CSV</Button>
+        <div className="flex flex-wrap gap-1.5">
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            disabled={!students.length || integrity.isFetching}
+            onClick={() => void integrity.refetch()}
+          >
+            Flags
+          </Button>
+          <Button type="button" variant="secondary" size="sm" disabled={csvBusy} onClick={() => void downloadCsv(false)}>
+            <Download className="size-3.5" aria-hidden /> CSV
+          </Button>
+          <Button type="button" variant="outline" size="sm" disabled={csvBusy} onClick={() => void downloadCsv(true)}>
+            Detailed
+          </Button>
         </div>
       </div>
+
       {duplicateMatrics.length ? (
-        <p role="status" className="rounded-lg border border-warning bg-warning-bg px-3 py-2 text-sm text-warning">
-          Duplicate matric numbers on this page: {duplicateMatrics.map(([m]) => m).join(", ")}. Review before grading.
+        <p role="status" className="rounded-lg border border-warning bg-warning-bg px-2.5 py-1.5 text-xs text-warning">
+          Duplicate matric numbers on this page: {duplicateMatrics.map(([m]) => m).join(", ")}.
         </p>
       ) : null}
       <Failure error={roster.error} retry={() => void roster.refetch()} />
-      <p className="text-sm text-ink-muted">Activity flags are browser signals for review. They do not change scores.</p>
-      {integrity.isError ? <p className="text-sm text-danger" role="status">Activity flags are temporarily unavailable. <Button variant="link" onClick={() => void integrity.refetch()}>Retry</Button></p> : null}
-      <label className="block max-w-md">Search students<Input value={search} onChange={e => { setSearch(e.target.value); setOffset(0); }} placeholder="Name or matric" /></label>
-      <div className="overflow-x-auto rounded-card border border-line">
-        <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead className="border-b border-line bg-surface-page text-xs font-semibold text-ink-muted">
+
+      <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+        <label className="min-w-0 flex-1 text-xs font-medium text-ink-muted">
+          <span className="sr-only">Search students</span>
+          <Input
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setOffset(0);
+            }}
+            placeholder="Search name or matric"
+            className="h-9"
+          />
+        </label>
+        <p className="text-[11px] leading-snug text-ink-muted sm:max-w-[14rem]">
+          Flags are browser signals for review — they do not change scores.
+        </p>
+      </div>
+      {integrity.isError ? (
+        <p className="text-xs text-danger" role="status">
+          Flags unavailable.{" "}
+          <Button variant="link" onClick={() => void integrity.refetch()}>
+            Retry
+          </Button>
+        </p>
+      ) : null}
+
+      {/* Mobile: dense stacked rows */}
+      <ul className="divide-y divide-line border-y border-line md:hidden">
+        {roster.data?.items.map((r) => {
+          const flags = flagsByStudent.get(r.user_id) ?? [];
+          const meta = [r.matric_number, r.department].filter(Boolean).join(" · ");
+          return (
+            <li key={r.user_id} className="py-2">
+              <div className="flex items-start justify-between gap-2">
+                <p className="min-w-0 truncate text-sm font-medium">{r.name}</p>
+                <div className="flex shrink-0 items-center gap-2">
+                  <Badge tone={statusTone[r.status]} className="px-1.5 py-0">
+                    {statusLabels[r.status]}
+                  </Badge>
+                  <span className="text-sm">
+                    <RosterScore score={r.score} total={questionTotal} />
+                  </span>
+                </div>
+              </div>
+              <div className="mt-0.5 flex items-center justify-between gap-2 text-[11px] text-ink-muted">
+                <p className="min-w-0 truncate">{meta || "—"}</p>
+                <RosterFlags flags={flags} loading={integrity.isPending} unavailable={integrity.isError} />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* Desktop: slim table */}
+      <div className="hidden overflow-x-auto rounded-card border border-line md:block">
+        <table className="w-full min-w-[36rem] text-left text-sm">
+          <thead className="border-b border-line bg-surface-page text-[11px] font-semibold uppercase tracking-wide text-ink-muted">
             <tr>
-              <th className="px-3 py-2">Student</th>
-              <th className="px-3 py-2">Matric</th>
-              <th className="px-3 py-2">Department</th>
-              <th className="px-3 py-2">Status</th>
-              <th className="px-3 py-2 text-right">Score</th>
-              <th className="px-3 py-2">Activity flags</th>
+              <th className="px-2.5 py-1.5 font-semibold">Student</th>
+              <th className="px-2.5 py-1.5 font-semibold">Matric</th>
+              <th className="px-2.5 py-1.5 font-semibold">Dept</th>
+              <th className="px-2.5 py-1.5 font-semibold">Status</th>
+              <th className="px-2.5 py-1.5 text-right font-semibold">Score</th>
+              <th className="px-2.5 py-1.5 font-semibold">Flags</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line">
-            {roster.data?.items.map(r => {
+            {roster.data?.items.map((r) => {
               const flags = flagsByStudent.get(r.user_id) ?? [];
               return (
                 <tr key={r.user_id} className="hover:bg-surface-tint">
-                  <td className="px-3 py-2 font-medium">{r.name}</td>
-                  <td className="px-3 py-2 text-ink-muted">{r.matric_number ?? "—"}</td>
-                  <td className="px-3 py-2 text-ink-muted">{r.department ?? "—"}</td>
-                  <td className="px-3 py-2 capitalize">{r.status.replace("_", " ")}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{r.score != null ? r.score : "—"}</td>
-                  <td className="min-w-32 px-3 py-2">
-                    {flags.length ? (
-                      <details>
-                        <summary className="cursor-pointer font-semibold text-warning">{flags.reduce((total, flag) => total + flag.count, 0)} flagged</summary>
-                        <ul className="mt-2 space-y-1 text-xs text-ink-muted">
-                          {flags.map((flag) => (
-                            <li key={`${flag.attempt_number}:${flag.kind}`}>Attempt {flag.attempt_number} · {integrityLabels[flag.kind]} ×{flag.count}</li>
-                          ))}
-                        </ul>
-                      </details>
-                    ) : <span className="text-ink-muted">{integrity.isError ? "Unavailable" : integrity.isSuccess ? "None" : "—"}</span>}
+                  <td className="max-w-[12rem] truncate px-2.5 py-1.5 font-medium">{r.name}</td>
+                  <td className="whitespace-nowrap px-2.5 py-1.5 text-ink-muted">{r.matric_number ?? "—"}</td>
+                  <td className="max-w-[9rem] truncate px-2.5 py-1.5 text-ink-muted">{r.department ?? "—"}</td>
+                  <td className="whitespace-nowrap px-2.5 py-1.5">
+                    <Badge tone={statusTone[r.status]} className="px-1.5 py-0">
+                      {statusLabels[r.status]}
+                    </Badge>
+                  </td>
+                  <td className="whitespace-nowrap px-2.5 py-1.5 text-right">
+                    <RosterScore score={r.score} total={questionTotal} />
+                  </td>
+                  <td className="px-2.5 py-1.5">
+                    <RosterFlags flags={flags} loading={integrity.isPending} unavailable={integrity.isError} />
                   </td>
                 </tr>
               );
@@ -251,8 +420,37 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
           </tbody>
         </table>
       </div>
-      {!roster.data?.items.length && !roster.isPending ? <p className="text-sm text-ink-muted">No students match your search.</p> : null}
-      <Paging offset={offset} hasMore={roster.data?.items.length === 50} change={setOffset} />
+
+      {!roster.data?.items.length && !roster.isPending ? (
+        <p className="text-xs text-ink-muted">No students match your search.</p>
+      ) : null}
+      {roster.isPending ? <p className="text-xs text-ink-muted" role="status">Loading…</p> : null}
+
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          disabled={!offset}
+          onClick={() => setOffset(Math.max(0, offset - ROSTER_PAGE))}
+        >
+          Prev
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          disabled={roster.data?.items.length !== ROSTER_PAGE}
+          onClick={() => setOffset(offset + ROSTER_PAGE)}
+        >
+          Next
+        </Button>
+        {stats.total > 0 ? (
+          <span className="text-ink-muted">
+            {offset + 1}–{offset + (roster.data?.items.length ?? 0)} of {stats.total}
+          </span>
+        ) : null}
+      </div>
     </section>
   );
 }

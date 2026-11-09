@@ -1,15 +1,23 @@
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, WifiOff } from "lucide-react";
 import Link from "next/link";
 import { COPY } from "@scholau/core";
 import { Logo } from "./logo";
 
-export function ServiceUnavailable({ reference, message }: { reference: string; message?: string }) {
+export function ServiceUnavailable({ reference, message }: { reference?: string; message?: string }) {
+  if (reference) {
+    // Keep for support logs; never render in the UI.
+    console.warn("[scholau] service unavailable", reference);
+  }
   return (
-    <main id="main" className="mx-auto flex min-h-dvh max-w-lg flex-col items-center justify-center gap-4 px-4 text-center">
+    <main id="main" className="mx-auto flex min-h-dvh max-w-lg flex-col items-center justify-center gap-5 px-4 text-center">
       <Logo />
-      <h1 className="text-2xl font-bold">We can&apos;t reach ScholAu right now</h1>
-      <p className="text-ink-muted">{message ?? COPY.empty.serviceUnavailable}</p>
-      <p className="text-sm text-ink-muted">Reference: {reference}</p>
+      <span className="inline-flex size-14 items-center justify-center rounded-full border border-line bg-surface-card text-ink-muted" aria-hidden>
+        <WifiOff className="size-7" />
+      </span>
+      <div className="space-y-2">
+        <h1 className="text-2xl font-bold tracking-tight">We can&apos;t reach ScholAu right now</h1>
+        <p className="text-ink-muted">{message ?? COPY.empty.serviceUnavailable}</p>
+      </div>
       <div className="flex flex-wrap justify-center gap-2">
         <a
           href=""

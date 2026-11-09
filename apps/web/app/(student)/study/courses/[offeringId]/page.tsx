@@ -2,8 +2,8 @@
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { type CourseOverview, isApiError } from "@scholau/api";
 import { useCourseOverview, useEnrollCourse } from "@scholau/api/react";
 import { COPY, pluralize } from "@scholau/core";
@@ -26,8 +26,25 @@ function BackToHome() {
 
 export default function CourseOverviewPage() {
   const { offeringId } = useParams<{ offeringId: string }>();
+  const router = useRouter();
   const overview = useCourseOverview(offeringId);
   const enroll = useEnrollCourse();
+
+  useEffect(() => {
+    const resolved = overview.data?.offering_id;
+    if (resolved && resolved !== offeringId) {
+      router.replace(`/study/courses/${resolved}`);
+    }
+  }, [overview.data?.offering_id, offeringId, router]);
+
+  if (overview.data && overview.data.offering_id !== offeringId) {
+    return (
+      <>
+        <BackToHome />
+        <LoadingState variant="course" label="Opening your course…" />
+      </>
+    );
+  }
 
   if (overview.data) return <Overview data={overview.data} />;
 

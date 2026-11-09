@@ -55,6 +55,8 @@ export interface LecturerQuizProfileHint {
 export interface LecturerQuizDetail {
   quiz: LecturerQuiz;
   teacher: boolean;
+  /** Student's enrolled offering for navigation when the quiz lives on a sibling offering. */
+  viewer_offering_id?: string;
   questions: LecturerQuizQuestion[];
   attempts_used: number;
   profile: LecturerQuizProfileHint | null;
@@ -90,7 +92,8 @@ export interface LecturerQuizExportRow {
   matric_number: string;
   name: string;
   department: string;
-  attempt_number: number;
+  status: "not_started" | "in_progress" | "submitted";
+  attempt_number: number | null;
   score: number | null;
   total: number;
   submitted_at: string | null;
