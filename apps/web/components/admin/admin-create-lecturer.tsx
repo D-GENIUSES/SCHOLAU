@@ -78,9 +78,12 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
             : result.userCreated && result.coursesAssigned === false && (values.offeringIds?.length ?? 0) > 0
               ? ` ${result.message || "Assign courses from Manage in the directory."}`
               : "";
+        const welcomeNote = result.provisionWelcomeSent
+          ? " A welcome email with their sign-in email and initial password was sent."
+          : " Share the initial password privately if the welcome email did not arrive.";
         setMessage({
           error: false,
-          text: `${values.displayName} (${values.email}) has been added as a lecturer. Their email is already verified—no verification message will be sent. Share the initial password privately. On first sign-in they accept the terms in the app and then receive the professional welcome email.${courseNote}`,
+          text: `${values.displayName} (${values.email}) has been added as a lecturer. Their email is already verified—no verification message will be sent. On first sign-in they accept the terms in the app.${welcomeNote}${courseNote}`,
         });
         onCreated?.();
         form.reset({ displayName: "", email: "", password: "", role: "lecturer", requestKey: "", offeringIds: [] });

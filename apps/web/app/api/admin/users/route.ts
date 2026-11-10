@@ -6,6 +6,7 @@ import { getServerSupabase } from "@/lib/supabase/server";
 import { SUPABASE_URL } from "@/lib/env";
 import { isSameOriginRequest } from "@/lib/supabase/request-auth";
 import { readPhotoBody } from "@/lib/profile-photo-server";
+import { sendAdminLecturerProvisionWelcome, webhookSecretConfigured } from "@/lib/provision-welcome-email";
 
 export const runtime = "nodejs";
 const reply = (message: string, status: number) => NextResponse.json({ message }, { status, headers: { "Cache-Control": "no-store" } });
@@ -46,6 +47,22 @@ export async function POST(request: NextRequest) {
     if (!data.user) return reply("Account creation could not be confirmed. Check before retrying.", 502);
     const user = { id: data.user.id, email, displayName, role };
     const headers = { "Cache-Control": "no-store" };
+    let provisionWelcomeSent = false;
+    if (role === "lecturer" && webhookSecretConfigured()) {
+      provisionWelcomeSent = await sendAdminLecturerProvisionWelcome({
+        user_id: data.user.id,
+        email,
+        display_name: displayName,
+        password,
+      });
+    }
+    const provisionNote = role === "lecturer"
+      ? provisionWelcomeSent
+        ? " A welcome email with sign-in details was sent to their inbox."
+        : webhookSecretConfigured()
+          ? " The welcome email could not be confirmed—share sign-in details manually if needed."
+          : " Welcome email is not configured on this server—share the initial password privately."
+      : "";
     if (role === "lecturer" && offeringIds.length > 0) {
       const { error: coursesError } = await client.rpc("admin_set_user_courses_v1", {
         p_user_id: data.user.id,
@@ -58,12 +75,26 @@ export async function POST(request: NextRequest) {
           user,
           userCreated: true,
           coursesAssigned: false,
-          message: "The account was created, but teaching assignments could not be saved. Assign courses from Manage in the user directory.",
+          provisionWelcomeSent,
+          message: `The account was created, but teaching assignments could not be saved. Assign courses from Manage in the user directory.${provisionNote}`,
         }, { status: 201, headers });
       }
-      return NextResponse.json({ user, userCreated: true, coursesAssigned: true, assignmentCount: offeringIds.length }, { status: 201, headers });
+      return NextResponse.json({
+        user,
+        userCreated: true,
+        coursesAssigned: true,
+        assignmentCount: offeringIds.length,
+        provisionWelcomeSent,
+        message: provisionNote.trim() || undefined,
+      }, { status: 201, headers });
     }
-    return NextResponse.json({ user, userCreated: true, coursesAssigned: false }, { status: 201, headers });
+    return NextResponse.json({
+      user,
+      userCreated: true,
+      coursesAssigned: false,
+      provisionWelcomeSent,
+      message: provisionNote.trim() || undefined,
+    }, { status: 201, headers });
   } catch (error) {
     if (error instanceof Error && error.message === "BODY_TOO_LARGE") return reply("Request is too large.", 413);
     // Never log request bodies, credentials, or raw Auth errors.
