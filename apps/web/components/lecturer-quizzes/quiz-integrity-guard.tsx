@@ -1,17 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Alert } from "@/components/ui/alert";
 import { captureShortcut, observeAssessmentWindow, type CaptureShortcut, type WindowActivity } from "@/lib/assessment-activity";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
 type Signal = WindowActivity | CaptureShortcut;
 type Activity = { id: string; kind: Signal };
 const signals: Signal[] = ["app_hidden", "focus_lost", "possible_split_screen", "fullscreen_exit", "screenshot_shortcut", "recording_shortcut", "casting_shortcut"];
+export const QUIZ_FLAG_DISPLAY_MAX = 3;
 
-export function QuizIntegrityGuard({ attemptId, active }: { attemptId: string; active: boolean }) {
-  const [flagged, setFlagged] = useState(false);
+export function QuizIntegrityGuard({
+  attemptId,
+  active,
+  onFlagsChange,
+}: {
+  attemptId: string;
+  active: boolean;
+  onFlagsChange?: (flags: number, pendingUpload: boolean) => void;
+}) {
+  const [flags, setFlags] = useState(0);
   const [unsaved, setUnsaved] = useState(false);
+
+  useEffect(() => {
+    onFlagsChange?.(flags, unsaved);
+  }, [flags, unsaved, onFlagsChange]);
 
   useEffect(() => {
     if (!active) return;
@@ -44,6 +56,8 @@ export function QuizIntegrityGuard({ attemptId, active }: { attemptId: string; a
           });
           if (error) throw error;
           closed = data?.closed === true;
+          if (typeof data?.flags === "number") setFlags(data.flags);
+          else if (!closed) setFlags(current => Math.max(current, 1));
           if (closed) pending = [];
           else pending.shift();
           persist();
@@ -58,7 +72,7 @@ export function QuizIntegrityGuard({ attemptId, active }: { attemptId: string; a
       last.set(kind, Date.now());
       if (pending.length < 100) pending.push({ id: crypto.randomUUID(), kind });
       persist();
-      setFlagged(true);
+      setFlags(current => Math.min(QUIZ_FLAG_DISPLAY_MAX, Math.max(current + 1, pending.length)));
       void flush();
     }
     function onKey(event: KeyboardEvent) {
@@ -85,10 +99,12 @@ export function QuizIntegrityGuard({ attemptId, active }: { attemptId: string; a
     };
   }, [active, attemptId]);
 
-  return (
-    <>
-      {flagged && active ? <Alert tone="warning" role="status" title="Quiz activity flagged">Keep the quiz in focus and use a full window. Your lecturer can review activity flags.</Alert> : null}
-      {unsaved && active ? <Alert tone="warning" role="status" title="Activity flag awaiting upload">Keep the quiz open while we retry.</Alert> : null}
-    </>
-  );
+  return null;
+}
+
+export function formatQuizFlagLabel(flags: number, pendingUpload = false) {
+  if (flags <= 0 && !pendingUpload) return null;
+  const shown = Math.min(Math.max(flags, pendingUpload ? 1 : 0), QUIZ_FLAG_DISPLAY_MAX);
+  const base = `Flag ${shown}/${QUIZ_FLAG_DISPLAY_MAX}`;
+  return pendingUpload ? `${base} · pending` : base;
 }

@@ -46,6 +46,7 @@ export function QuizStudentStatus({
   maxAttempts,
   attemptsUsed,
   submitted,
+  attemptInProgress = false,
 }: {
   state: LecturerQuizState;
   opensAt: string | null;
@@ -55,11 +56,13 @@ export function QuizStudentStatus({
   maxAttempts: number;
   attemptsUsed: number;
   submitted: boolean;
+  /** Hide the open banner while the timed attempt chrome is showing. */
+  attemptInProgress?: boolean;
 }) {
   const windowLine = formatQuizWindow(opensAt, closesAt);
-  const meta = `${pluralize(questionCount, "question")} · ${durationMinutes} min per attempt · ${pluralize(maxAttempts, "attempt", "attempts")}`;
+  const meta = `${pluralize(questionCount, "question")} · ${durationMinutes} min · ${attemptsUsed}/${maxAttempts} attempts`;
 
-  if (submitted) return null;
+  if (submitted || attemptInProgress) return null;
 
   if (state === "closed") {
     return (
@@ -99,10 +102,9 @@ export function QuizStudentStatus({
 
   if (state === "open") {
     return (
-      <Alert tone="info" title="Open now" role="status">
-        <p>{meta}</p>
-        <p className="mt-2 text-ink-muted">Submit before {formatDateTime(closesAt)}.</p>
-      </Alert>
+      <p className="text-xs text-ink-muted" role="status">
+        {meta} · submit before {formatDateTime(closesAt)}
+      </p>
     );
   }
 
