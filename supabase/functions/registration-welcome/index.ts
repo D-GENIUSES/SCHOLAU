@@ -184,7 +184,7 @@ Deno.serve(async (request) => {
       return new Response("Provision welcome could not be sent", { status: outcome === "retry" ? 503 : 502 });
     }
 
-    const jobs = await rpc<Job[]>("claim_registration_welcome_emails_v1");
+    const jobs = (await rpc<Job[] | null>("claim_registration_welcome_emails_v1")) ?? [];
     const totals = { sent: 0, retry: 0, failed: 0 };
     for (let offset = 0; offset < jobs.length; offset += 10) {
       await Promise.all(jobs.slice(offset, offset + 10).map(async (job) => {
