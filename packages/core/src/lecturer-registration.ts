@@ -23,5 +23,16 @@ export interface LecturerApplication extends LecturerApplicationInput {
   history: { action: string; applicant_message: string; created_at: string; internal_note?: string; actor_id?: string | null }[];
 }
 export interface LecturerOffering {
-  id: string; code: string; title: string; university: string; department: string; semester: string; period: string;
+  id: string;
+  code: string;
+  title: string;
+  university: string;
+  faculty_id?: string;
+  faculty?: string;
+  department_id?: string;
+  department: string;
+  course_id?: string;
+  semester: string;
+  period: string;
+  shared_departments?: string[];
 }

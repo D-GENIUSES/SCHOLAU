@@ -31,7 +31,7 @@ await writeFile(resolve(dir,'supabase.ts'),`export const client={rpc:async(name,
 await writeFile(resolve(dir,'entry.tsx'),`import React from 'react';import{createRoot}from'react-dom/client';import{QueryClient,QueryClientProvider}from'@tanstack/react-query';import{createScholauApi}from'@scholau/api';import{ScholauApiProvider,useCourseOverview}from'@scholau/api/react';import{CourseAssessments}from'@/components/assessments/course-assessments';import{client}from'./supabase';const api=createScholauApi(client);const qc=new QueryClient({defaultOptions:{queries:{retry:false}}});function App(){const q=useCourseOverview(window.offering);return q.data?<CourseAssessments data={q.data}/>:<p>Loading course…</p>}createRoot(document.getElementById('root')).render(<QueryClientProvider client={qc}><ScholauApiProvider api={api}><App/></ScholauApiProvider></QueryClientProvider>);`);
 await new Promise((done,reject)=>webpack({mode:'development',devtool:false,entry:resolve(dir,'entry.tsx'),output:{path:dir,filename:'bundle.js'},resolve:{extensions:['.tsx','.ts','.js','.mjs'],modules:[resolve('apps/web/node_modules'),'node_modules'],alias:{'next/link':resolve(dir,'link.tsx'),'next/navigation':resolve(dir,'navigation.ts'),'@/lib/supabase/browser':resolve(dir,'supabase.ts'),'@':resolve('apps/web')}},module:{rules:[{test:/\.tsx?$/,use:[resolve(dir,'loader.cjs')]}]}},(error,stats)=>error?reject(error):stats.hasErrors()?reject(Error(stats.toString({all:false,errors:true}))):done()));
 const css=readdirSync('apps/web/.next/static',{recursive:true}).filter(n=>n.endsWith('.css')).map(n=>readFileSync(resolve('apps/web/.next/static',n),'utf8')).join('\n');
-const allowed=new Set(['get_course_overview_v1','get_topic_quiz_options_v1','start_topic_quiz_v1','start_configured_attempt_v1','list_course_challenges_v1']);
+const allowed=new Set(['get_course_overview_v1','get_topic_quiz_options_v2','start_topic_quiz_v2','start_configured_attempt_v1','list_course_challenges_v1']);
 const calls=[],errors=[];
 const server=http.createServer(async(req,res)=>{
  try{
@@ -55,6 +55,7 @@ try{
  await page.goto(`http://127.0.0.1:${server.address().port}`);
  await page.getByRole('heading',{name:'Assessments',exact:true}).waitFor();
  eq(await page.getByRole('button',{name:'Start quiz',exact:true}).isDisabled(),true);
+ await page.locator("summary").filter({ hasText: "Quiz topics" }).click();
  await page.getByLabel('Cells',{exact:false}).check();await page.getByLabel('Genetics',{exact:false}).check();
  eq(await page.getByLabel('Coming soon',{exact:false}).isDisabled(),true);
  await page.getByLabel('Questions',{exact:true}).fill('1');eq(await page.getByRole('button',{name:'Start quiz',exact:true}).isDisabled(),true);
@@ -72,8 +73,8 @@ try{
  await page.getByRole('button',{name:'Start quiz',exact:true}).click();
  await page.waitForFunction(()=>window.lastRoute?.startsWith('/attempts/'));
  const attempt=(await page.evaluate(()=>window.lastRoute)).split('/').at(-1);
- eq(calls.find(c=>c.name==='start_topic_quiz_v1').args.p_lesson_ids,[topics[0],topics[1]]);
- eq(calls.find(c=>c.name==='start_topic_quiz_v1').args.p_question_count,4);
+ eq(calls.find(c=>c.name==='start_topic_quiz_v2').args.p_lesson_ids,[topics[0],topics[1]]);
+ eq(calls.find(c=>c.name==='start_topic_quiz_v2').args.p_question_count,4);
  await page.getByRole('link',{name:'Resume your quiz',exact:true}).waitFor();checks++;
  await db.exec('reset role');eq((await query('select total_count from public.assessment_attempts where id=$1',[attempt]))[0].total_count,4);
  await page.getByRole('tab',{name:'Mock exam',exact:true}).click();

@@ -7,7 +7,7 @@ export const adminUserSchema = z.object({
   password: passwordSchema,
   role: z.enum(["student", "lecturer"]),
   requestKey: z.string().uuid(),
-  offeringIds: z.array(z.string().uuid()).max(100).optional().default([]),
+  offeringIds: z.array(z.string().uuid()).max(500).optional().default([]),
 }).strict().superRefine((data, ctx) => {
   if (data.role === "lecturer" && data.offeringIds.length === 0) {
     ctx.addIssue({ code: "custom", message: "Select at least one published course.", path: ["offeringIds"] });

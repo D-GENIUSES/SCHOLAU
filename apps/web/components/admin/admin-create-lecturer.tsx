@@ -7,6 +7,7 @@ import type { LecturerOffering } from "@scholau/core";
 import { adminUserSchema, type AdminUserInput } from "@/lib/admin-users-schema";
 import { lecturerApi } from "@/lib/lecturer-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
+import { AdminCourseAssignmentPicker } from "@/components/admin/admin-course-assignment-picker";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
@@ -20,7 +21,6 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
   const [offeringsLoading, setOfferingsLoading] = useState(true);
   const [offeringRefresh, setOfferingRefresh] = useState(0);
   const [welcomeConfirmed, setWelcomeConfirmed] = useState<boolean | null>(null);
-  const [courseSearch, setCourseSearch] = useState("");
   const [offeringIds, setOfferingIds] = useState<string[]>([]);
   const form = useForm<AdminUserInput>({
     resolver: zodResolver(adminUserSchema),
@@ -56,10 +56,6 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
     setOfferingRefresh(current => current + 1);
   }
 
-  const filtered = offerings.filter(o =>
-    `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()),
-  );
-
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (busy.current || !enabled) return;
@@ -91,7 +87,6 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
         onCreated?.();
         form.reset({ displayName: "", email: "", password: "", role: "lecturer", requestKey: "", offeringIds: [] });
         setOfferingIds([]);
-        setCourseSearch("");
       } catch {
         setMessage({ error: true, text: "Account creation could not be confirmed. Check whether the account exists before retrying." });
       } finally {
@@ -128,7 +123,9 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
           </Field>
           <div className="flex flex-col gap-3 border-t border-line pt-4">
             <h3 className="text-sm font-bold">Teaching assignments</h3>
-            <p className="text-sm text-ink-muted">Select at least one published course. You can change assignments later from Manage.</p>
+            <p className="text-sm text-ink-muted">
+              Choose the faculty first, then select each shared course once. Assignments apply to every programme that takes that course.
+            </p>
             {offeringError && (
               <Alert tone="warning">
                 Course offerings could not be loaded.{" "}
@@ -138,33 +135,13 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
             {errors.offeringIds?.message && <p role="alert" className="text-sm text-danger">{errors.offeringIds.message}</p>}
             {offeringsLoading ? <p className="text-sm text-ink-muted">Loading course offerings…</p> : null}
             {!offeringsLoading && !offeringError ? (
-              <>
-                <Field id="lecturer-course-search" label="Find a course">
-                  <Input value={courseSearch} onChange={e => setCourseSearch(e.target.value)} placeholder="Course code, title or department" />
-                </Field>
-                <p className="text-sm">{offeringIds.length} selected</p>
-                <div className="max-h-64 overflow-y-auto rounded-control border border-line">
-                  {filtered.map(o => (
-                    <label key={o.id} className="flex items-start gap-3 border-t border-line px-3 py-3 text-sm first:border-t-0">
-                      <input
-                        type="checkbox"
-                        className="mt-1 size-4 shrink-0"
-                        checked={offeringIds.includes(o.id)}
-                        onChange={e => setOfferingIds(current => (e.target.checked ? [...current, o.id] : current.filter(id => id !== o.id)))}
-                      />
-                      <span>
-                        <strong>
-                          {o.code} · {o.title}
-                        </strong>
-                        <span className="block text-xs text-ink-muted">
-                          {o.university} · {o.department} · {o.period} · {o.semester}
-                        </span>
-                      </span>
-                    </label>
-                  ))}
-                  {!filtered.length ? <p className="p-3 text-sm text-ink-muted">No course offerings match this search.</p> : null}
-                </div>
-              </>
+              <AdminCourseAssignmentPicker
+                offerings={offerings}
+                selectedIds={offeringIds}
+                onChange={setOfferingIds}
+                searchId="lecturer-course-search"
+                facultyId="lecturer-course-faculty"
+              />
             ) : null}
           </div>
           <p className="text-sm text-ink-muted">Confirm the email belongs to the intended lecturer before creating the account.</p>

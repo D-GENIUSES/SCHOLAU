@@ -293,7 +293,7 @@ export interface CourseAssessment {
 }
 
 export interface TopicQuizOptions extends Envelope {
-  topics: { lesson_id: Uuid; title: string; module_title: string; question_count: number }[];
+  topics: { lesson_id: Uuid; title: string; module_id?: Uuid; module_title: string; question_count: number }[];
   active_attempt_id: Uuid | null;
 }
 
@@ -470,9 +470,11 @@ export interface AttemptQuestion {
 
   options: AttemptOption[];
 
-  saved: { option_id: Uuid; answer_revision: number; locked: boolean } | null;
+  answer_format?: "standard" | "worked_solution" | "fill_in_gap";
 
-  feedback: { is_correct: boolean; correct_option_id: Uuid; explanation: string; steps?: string[] } | null;
+  saved: { option_id: Uuid | null; text_answer?: string | null; answer_revision: number; locked: boolean } | null;
+
+  feedback: { is_correct: boolean; correct_option_id: Uuid | null; correct_text_answer?: string | null; explanation: string; steps?: string[] } | null;
 
 }
 
@@ -542,15 +544,12 @@ export interface Attempt extends Envelope {
 
 
 
-export interface AnswerInput {
+export type AttemptAnswerValue = { option_id: Uuid; text_answer?: never } | { option_id?: never; text_answer: string };
 
+export type AnswerInput = AttemptAnswerValue & {
   question_version_id: Uuid;
-
-  option_id: Uuid;
-
   answer_revision: number;
-
-}
+};
 
 
 

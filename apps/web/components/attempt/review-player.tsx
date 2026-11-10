@@ -30,7 +30,7 @@ function omit<T>(record: Record<string, T>, key: string): Record<string, T> {
 interface QuestionView {
   locked: boolean;
   selected: string | null;
-  feedback: { is_correct: boolean; correct_option_id: string; explanation: string; steps?: string[] } | null;
+  feedback: { is_correct: boolean; correct_option_id: string | null; explanation: string; steps?: string[] } | null;
 }
 
 /** Review: one question at a time with immediate, server-checked feedback. The first checked answer is locked. */
@@ -136,7 +136,7 @@ export function ReviewPlayer({ attempt, onRefetch }: { attempt: Attempt; onRefet
             value={view.selected}
             onChange={choose}
             disabled={view.locked || expired || checking === qv}
-            reveal={view.feedback ? { correctOptionId: view.feedback.correct_option_id } : null}
+            reveal={view.feedback?.correct_option_id ? { correctOptionId: view.feedback.correct_option_id } : null}
           />
 
           {view.feedback ? (

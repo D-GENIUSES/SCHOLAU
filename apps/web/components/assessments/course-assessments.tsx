@@ -144,12 +144,40 @@ function TopicQuiz({ data, selected, setSelected, requested, setRequested }: {
   const router = useRouter();
   const analytics = useAnalytics();
   const topics = options.data?.topics ?? [];
+  const modules = new Map<string, typeof topics>();
+  for (const topic of topics) {
+    const key = topic.module_id ?? topic.module_title;
+    const group = modules.get(key) ?? [];
+    group.push(topic);
+    modules.set(key, group);
+  }
+  const courseTopics = topics.filter(topic => topic.question_count > 0).map(topic => topic.lesson_id);
   const available = topics.filter(t => selected.includes(t.lesson_id) && t.question_count > 0);
   const poolSize = available.reduce((sum, t) => sum + t.question_count, 0);
   const max = Math.min(100, poolSize);
   const count = Number(requested);
   const valid = selected.length > 0 && selected.length <= 30 && available.length === selected.length && Number.isInteger(count) && count >= selected.length && count <= max;
   const reviews = data.assessments.filter(a => a.kind === "review");
+
+  function updateSelection(next: string[]) {
+    setSelected(next);
+    const total = topics.filter(topic => next.includes(topic.lesson_id)).reduce((sum, topic) => sum + topic.question_count, 0);
+    setRequested(String(Math.min(Math.max(20, next.length), total, 100)));
+  }
+
+  function renderLesson(topic: (typeof topics)[number]) {
+    const checked = selected.includes(topic.lesson_id);
+    return (
+      <label key={topic.lesson_id} className="flex min-h-11 min-w-0 items-center gap-2.5 py-2 text-sm">
+        <input type="checkbox" className="size-4 shrink-0 accent-brand-primary" checked={checked}
+          disabled={topic.question_count === 0 || (selected.length >= 30 && !checked)}
+          onChange={event => updateSelection(event.target.checked ? [...selected, topic.lesson_id] : selected.filter(id => id !== topic.lesson_id))} />
+        <span className={`min-w-0 break-words ${topic.question_count === 0 ? "text-ink-muted" : ""}`}>{topic.title}</span>
+        <span className="ml-auto shrink-0 text-xs text-ink-muted">{topic.question_count ? pluralize(topic.question_count, "question") : "Coming soon"}</span>
+      </label>
+    );
+  }
+
   const begin = () => {
     if (!valid) return;
     start.mutate({ offeringId: data.offering_id, lessonIds: selected, questionCount: count }, {
@@ -161,23 +189,49 @@ function TopicQuiz({ data, selected, setSelected, requested, setRequested }: {
   };
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-2"><h2 className="text-sm font-semibold">Your topics</h2><span aria-live="polite" className="text-xs text-ink-muted">{selected.length} selected</span></div>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold">Your topics</h2>
+        <div className="flex items-center gap-3">
+          <span aria-live="polite" className="text-xs text-ink-muted">{selected.length} selected</span>
+          {courseTopics.length > 1 && courseTopics.length <= 30 ? (
+            <Button type="button" size="sm" variant="outline" disabled={start.isPending}
+              onClick={() => updateSelection(available.length === courseTopics.length ? [] : courseTopics)}>
+              {available.length === courseTopics.length ? "Clear selection" : "Select all available topics"}
+            </Button>
+          ) : null}
+        </div>
+      </div>
       {options.isPending ? <p role="status" className="text-sm text-ink-muted">Loading topics…</p> : options.isError ? <ErrorState error={options.error} onRetry={() => void options.refetch()} /> : topics.length === 0 ? <p className="text-sm text-ink-muted">Topics will appear here when your course content is ready.</p> : (
-        <fieldset disabled={start.isPending} className="grid min-w-0 gap-x-6 sm:grid-cols-2">
+        <fieldset disabled={start.isPending} className="grid min-w-0 items-start gap-x-6 gap-y-1 sm:grid-cols-2">
           <legend className="sr-only">Choose up to 30 topics to practise</legend>
-          {topics.map(topic => (
-            <label key={topic.lesson_id} className="flex min-h-11 min-w-0 items-center gap-2.5 py-2 text-sm">
-              <input type="checkbox" className="size-4 shrink-0 accent-brand-primary" checked={selected.includes(topic.lesson_id)} disabled={topic.question_count === 0 || (selected.length >= 30 && !selected.includes(topic.lesson_id))}
-                onChange={event => {
-                  const next = event.target.checked ? [...selected, topic.lesson_id] : selected.filter(id => id !== topic.lesson_id);
-                  setSelected(next);
-                  const total = topics.filter(t => next.includes(t.lesson_id)).reduce((sum, t) => sum + t.question_count, 0);
-                  setRequested(String(Math.min(Math.max(20, next.length), total, 100)));
-                }} />
-              <span className={`min-w-0 break-words ${topic.question_count === 0 ? "text-ink-muted" : ""}`}>{topic.title}</span>
-              <span className="ml-auto shrink-0 text-xs text-ink-muted">{topic.question_count ? pluralize(topic.question_count, "question") : "Coming soon"}</span>
-            </label>
-          ))}
+          {[...modules].map(([key, group]) => {
+            const first = group[0];
+            if (!first) return null;
+            if (group.length === 1) return renderLesson(first);
+            const ids = group.filter(topic => topic.question_count > 0).map(topic => topic.lesson_id);
+            const picked = ids.filter(id => selected.includes(id)).length;
+            const allPicked = ids.length > 0 && picked === ids.length;
+            const total = group.reduce((sum, topic) => sum + topic.question_count, 0);
+            return (
+              <details key={key} className="min-w-0 rounded-control border border-line px-3">
+                <summary className="min-h-11 cursor-pointer py-2.5 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-brand-primary">
+                  {first.module_title}
+                  <span className="ml-2 text-xs font-normal text-ink-muted">
+                    {total ? pluralize(total, "question") : "Coming soon"}{picked ? ` · ${picked} selected` : ""}
+                  </span>
+                </summary>
+                <div className="border-t border-line pb-2">
+                  {ids.length > 1 ? (
+                    <Button type="button" size="sm" variant="ghost" disabled={!allPicked && selected.length - picked + ids.length > 30}
+                      onClick={() => updateSelection(allPicked ? selected.filter(id => !ids.includes(id)) : [...new Set([...selected, ...ids])])}>
+                      {allPicked ? "Clear module selection" : "Select all in module"}
+                    </Button>
+                  ) : null}
+                  {group.map(renderLesson)}
+                </div>
+              </details>
+            );
+          })}
         </fieldset>
       )}
       {options.data?.active_attempt_id ? <Button asChild size="sm" variant="secondary"><Link href={`/attempts/${options.data.active_attempt_id}`}>Resume your quiz</Link></Button> : null}

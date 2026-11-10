@@ -14,9 +14,9 @@ function optionLabel(q: AttemptQuestion, optionId: string | null | undefined): s
 }
 
 export function ResultQuestion({ question, total, reteach, study }: { question: AttemptQuestion; total: number; study?: boolean; reteach?: { lesson_id: string; lesson_title: string } }) {
-  const yours = optionLabel(question, question.saved?.option_id);
+  const yours = question.saved?.text_answer ?? optionLabel(question, question.saved?.option_id);
   const fb = question.feedback;
-  const correct = optionLabel(question, fb?.correct_option_id);
+  const correct = fb?.correct_text_answer ?? optionLabel(question, fb?.correct_option_id);
   const isCorrect = Boolean(fb?.is_correct && question.saved);
   return (
     <article
@@ -52,7 +52,7 @@ export function ResultQuestion({ question, total, reteach, study }: { question: 
         !isCorrect ? (
           <details className="rounded-control bg-surface-page p-3" open>
             <summary className="cursor-pointer font-semibold">Explain this mistake</summary>
-            <p className="mt-2 text-sm text-ink-muted">You selected <MathText text={yours ?? "no answer"} />. Compare your choice with the correct answer and follow the explanation below.</p>
+            <p className="mt-2 text-sm text-ink-muted">Your answer was <MathText text={yours ?? "blank"} />. Compare it with the correct answer and follow the explanation below.</p>
             <div className="mt-3"><SolutionWalkthrough explanation={fb.explanation} steps={fb.steps} /></div>
           </details>
         ) : (

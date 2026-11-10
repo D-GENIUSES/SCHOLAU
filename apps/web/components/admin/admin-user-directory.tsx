@@ -9,6 +9,7 @@ import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { useOnlineUsers, useUserInsights } from "@/lib/admin-insights";
 import { AdminCreateUser } from "./admin-create-user";
 import { AdminCreateLecturer } from "./admin-create-lecturer";
+import { AdminCourseAssignmentPicker } from "./admin-course-assignment-picker";
 import { AdminAwardXp } from "./admin-award-xp";
 import { DataTable } from "./data-table";
 import { Avatar } from "@/components/ui/avatar";
@@ -54,7 +55,6 @@ export function AdminUserDirectory({ creationEnabled, initialManageId }: { creat
   const [selected, setSelected] = useState<ManagedUser | null>(null);
   const [offerings, setOfferings] = useState<LecturerOffering[]>([]);
   const [offeringError, setOfferingError] = useState(false);
-  const [courseSearch, setCourseSearch] = useState("");
   const [ids, setIds] = useState<string[]>([]);
   const [action, setAction] = useState<"freeze" | "reactivate" | "delete" | null>(null);
   const [reason, setReason] = useState("");
@@ -96,7 +96,7 @@ export function AdminUserDirectory({ creationEnabled, initialManageId }: { creat
   async function manage(id: string) {
     const gen = ++detailGeneration.current;
     setOpen(true); setDetailLoading(true); setSelected(null); setDetailError(null); setDetailNotice(null);
-    setAction(null); setReason(""); setConfirmation(""); setCourseSearch(""); setOfferingError(false);
+    setAction(null); setReason(""); setConfirmation(""); setOfferingError(false);
     requestKey.current = null;
     const results = await Promise.allSettled([
       adminUsersApi.detail(id), lecturerApi(getBrowserSupabase()).offerings(),
@@ -134,8 +134,20 @@ export function AdminUserDirectory({ creationEnabled, initialManageId }: { creat
   }
 
   const protectedAccount = selected?.roles.includes("admin") ?? false;
-  const available = [...offerings, ...(selected?.assignments ?? []).filter(a => !offerings.some(o => o.id === a.id)).map(a => ({ ...a, university: "Previously assigned", department: "Unavailable for new assignments", period: "", semester: "" }))];
-  const filtered = available.filter(o => `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()));
+  const available: LecturerOffering[] = [
+    ...offerings,
+    ...(selected?.assignments ?? [])
+      .filter(a => !offerings.some(o => o.id === a.id))
+      .map(a => ({
+        id: a.id,
+        code: a.code,
+        title: a.title,
+        university: "Previously assigned",
+        department: "Unavailable for new assignments",
+        period: "",
+        semester: "",
+      })),
+  ];
 
   return <>
     <div className="mb-2 grid grid-cols-2 gap-2">
@@ -230,13 +242,17 @@ export function AdminUserDirectory({ creationEnabled, initialManageId }: { creat
             </div>}
             {selected.roles.includes("lecturer") ? <form className="mt-2 flex flex-col gap-4 border-t border-line pt-4" onSubmit={event => { event.preventDefault(); void save("courses"); }}>
               <h3 className="font-bold">Teaching assignments</h3>
-              <p className="text-sm text-ink-muted">Select the published course offerings this lecturer teaches. Clear all selections to remove their assignments.</p>
+              <p className="text-sm text-ink-muted">Choose a faculty, then select each shared course once. Clearing all selections removes their assignments.</p>
               {selected.deactivated_at && <Alert tone="warning">Reactivate this account before changing its teaching assignments.</Alert>}
               {offeringError && <Alert tone="warning">Course offerings could not be loaded. Close this panel and reopen it to retry.</Alert>}
               <fieldset disabled={busy || Boolean(selected.deactivated_at) || offeringError} className="flex min-w-0 flex-col gap-3"><legend className="sr-only">Select lecturer courses</legend>
-                <Field id="user-course-search" label="Find a course"><Input value={courseSearch} onChange={e => setCourseSearch(e.target.value)} placeholder="Course code, title or department" /></Field>
-                <p className="text-sm">{ids.length} selected</p>
-                <div className="max-h-64 overflow-y-auto">{filtered.map(o => <label key={o.id} className="flex items-start gap-3 border-t border-line py-3 text-sm"><input type="checkbox" className="mt-1 size-4 shrink-0" checked={ids.includes(o.id)} onChange={e => { setIds(current => e.target.checked ? [...current, o.id] : current.filter(id => id !== o.id)); requestKey.current = null; }} /><span><strong>{o.code} · {o.title}</strong><span className="block text-xs text-ink-muted">{o.university} · {o.department} · {o.period} · {o.semester}</span></span></label>)}{!filtered.length && <p className="text-sm text-ink-muted">No course offerings match this search.</p>}</div>
+                <AdminCourseAssignmentPicker
+                  offerings={available}
+                  selectedIds={ids}
+                  onChange={next => { setIds(next); requestKey.current = null; }}
+                  searchId="user-course-search"
+                  facultyId="user-course-faculty"
+                />
                 <Button type="submit" loading={busy}>Save teaching assignments</Button>
               </fieldset>
             </form> : selected.category === "lecturer" ? <Alert>Approve this lecturer&apos;s application before assigning courses.</Alert> : null}

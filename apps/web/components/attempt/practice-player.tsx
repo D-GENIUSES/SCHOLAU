@@ -2,7 +2,7 @@
 
 import { ArrowLeft, ArrowRight, RefreshCw, Send } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { type Attempt, type AttemptQuestion, isApiError, newRequestKey } from "@scholau/api";
+import { type Attempt, type AttemptAnswerValue, type AttemptQuestion, isApiError, newRequestKey } from "@scholau/api";
 import { useSaveAttemptAnswers } from "@scholau/api/react";
 import { COPY, pluralize } from "@scholau/core";
 import { QuestionActions } from "@/components/question-actions";
@@ -11,6 +11,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ConfirmDialog } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { LiveRegion } from "@/components/ui/misc";
 import { EmptyState, InlineError } from "@/components/ui/states";
 import { useBeforeUnload, useOnline } from "@/lib/hooks";
@@ -25,7 +26,7 @@ import { QuestionOptions } from "./question-options";
 import { type RefetchAttempt, useAttemptLifecycle } from "./use-attempt-lifecycle";
 
 interface LocalAnswer {
-  optionId: string;
+  value: AttemptAnswerValue;
   revision: number;
   /** One key per save intent; manual retries reuse it. */
   requestKey: string;
@@ -51,6 +52,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
   const { submit, remaining, expired, onFinalized, markDeadlinePassed } = useAttemptLifecycle(attempt, onRefetch);
 
   const [local, setLocal] = useState<Record<string, LocalAnswer>>({});
+  const [writtenDrafts, setWrittenDrafts] = useState<Record<string, string>>({});
   const localRef = useRef(local);
   useEffect(() => {
     localRef.current = local;
@@ -74,7 +76,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
     function run(qv: string, position: number, entry: LocalAnswer) {
       saveAsync({
         attemptId,
-        answers: [{ question_version_id: qv, option_id: entry.optionId, answer_revision: entry.revision }],
+        answers: [{ question_version_id: qv, ...entry.value, answer_revision: entry.revision }],
         requestKey: entry.requestKey,
       })
         .then((res) => {
@@ -117,7 +119,13 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
     [attemptId, saveAsync, patch, markDeadlinePassed, onRefetch],
   );
 
-  useBeforeUnload(!expired && Object.values(local).some((l) => l.status !== "saved"));
+  function unsavedWriting(q: AttemptQuestion) {
+    const draft = writtenDrafts[q.question_version_id]?.trim();
+    const saved = local[q.question_version_id]?.value.text_answer ?? q.saved?.text_answer;
+    return draft && draft !== saved ? draft : null;
+  }
+
+  useBeforeUnload(!expired && (Object.values(local).some(l => l.status !== "saved") || questions.some(unsavedWriting)));
 
   if (questions.length === 0) {
     return <EmptyState title="This attempt has no questions" description={COPY.empty.contentRemoved} />;
@@ -127,15 +135,24 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
   const current = questions[safeIndex]!;
 
   const statusOf = (q: AttemptQuestion): AnswerStatus => {
+    if (unsavedWriting(q)) return "unsaved";
     const l = local[q.question_version_id];
     if (l) return l.status === "saved" ? "saved" : l.status === "failed" ? "unsaved" : "selected";
     return q.saved ? "saved" : "not_answered";
   };
   const statuses = questions.map(statusOf);
   const unanswered = statuses.filter((s) => s === "not_answered").length;
-  const pending = questions.flatMap((q) => {
+  const pending = questions.flatMap(q => {
     const l = local[q.question_version_id];
-    return l && l.status !== "saved" ? [{ q, l }] : [];
+    const draft = unsavedWriting(q);
+    if (draft) return [{
+      question_version_id: q.question_version_id,
+      text_answer: draft,
+      answer_revision: Math.max(l?.revision ?? 0, q.saved?.answer_revision ?? 0) + 1,
+    }];
+    return l && l.status !== "saved"
+      ? [{ question_version_id: q.question_version_id, ...l.value, answer_revision: l.revision }]
+      : [];
   });
 
   const goTo = (i: number) => {
@@ -143,11 +160,11 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
     requestAnimationFrame(() => headingRef.current?.focus());
   };
 
-  const choose = (q: AttemptQuestion, optionId: string) => {
+  const choose = (q: AttemptQuestion, value: AttemptAnswerValue) => {
     if (expired) return;
     const qv = q.question_version_id;
     const base = Math.max(local[qv]?.revision ?? 0, q.saved?.answer_revision ?? 0);
-    const entry: LocalAnswer = { optionId, revision: base + 1, requestKey: newRequestKey(), status: "saving" };
+    const entry: LocalAnswer = { value, revision: base + 1, requestKey: newRequestKey(), status: "saving" };
     setLocal((prev) => ({ ...prev, [qv]: entry }));
     runSave(qv, q.position, entry);
   };
@@ -164,7 +181,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
     submit.mutate(
       {
         attemptId,
-        answers: pending.map(({ q, l }) => ({ question_version_id: q.question_version_id, option_id: l.optionId, answer_revision: l.revision })),
+        answers: pending,
       },
       { onSuccess: onFinalized },
     );
@@ -202,14 +219,35 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
               />
             </div>
           ) : null}
-          <QuestionOptions
-            name={`q-${current.question_version_id}`}
-            legend={<QuestionLegend ref={headingRef} position={safeIndex + 1} total={questions.length} prompt={current.prompt} />}
-            options={current.options}
-            value={local[current.question_version_id]?.optionId ?? current.saved?.option_id ?? null}
-            onChange={(optionId) => choose(current, optionId)}
-            disabled={expired || submit.isPending}
-          />
+          {current.answer_format === "fill_in_gap" ? (
+            <div className="space-y-3">
+              <QuestionLegend ref={headingRef} position={safeIndex + 1} total={questions.length} prompt={current.prompt} />
+              <label htmlFor="written-answer" className="block text-sm font-semibold">Fill in the blank</label>
+              <div className="flex flex-wrap items-center gap-2">
+                <Input id="written-answer" maxLength={240} className="min-w-0 flex-1"
+                  value={writtenDrafts[current.question_version_id] ?? local[current.question_version_id]?.value.text_answer ?? current.saved?.text_answer ?? ""}
+                  onChange={event => {
+                    const value = event.target.value;
+                    setWrittenDrafts(previous => ({ ...previous, [current.question_version_id]: value }));
+                  }}
+                  disabled={expired || submit.isPending} />
+                <Button type="button" variant="outline" size="sm" disabled={expired || submit.isPending || !unsavedWriting(current)}
+                  onClick={() => {
+                    const text = unsavedWriting(current);
+                    if (text) choose(current, { text_answer: text });
+                  }}>Save answer</Button>
+              </div>
+            </div>
+          ) : (
+            <QuestionOptions
+              name={`q-${current.question_version_id}`}
+              legend={<QuestionLegend ref={headingRef} position={safeIndex + 1} total={questions.length} prompt={current.prompt} />}
+              options={current.options}
+              value={local[current.question_version_id]?.value.option_id ?? current.saved?.option_id ?? null}
+              onChange={(optionId) => choose(current, { option_id: optionId })}
+              disabled={expired || submit.isPending}
+            />
+          )}
           {attempt.kind === "practice" ? <PracticeHints key={current.question_version_id} attemptId={attemptId} questionVersionId={current.question_version_id} /> : null}
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-2">
@@ -217,7 +255,7 @@ export function PracticePlayer({ attempt, onRefetch }: { attempt: Attempt; onRef
                 status={statuses[safeIndex] ?? "not_answered"}
                 saving={local[current.question_version_id]?.status === "saving"}
               />
-              {statuses[safeIndex] === "unsaved" && !expired ? (
+              {statuses[safeIndex] === "unsaved" && !expired && !unsavedWriting(current) ? (
                 <Button variant="outline" size="sm" onClick={() => retry(current)}>
                   <RefreshCw className="size-4" aria-hidden /> Retry save
                 </Button>
