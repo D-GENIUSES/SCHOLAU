@@ -1,18 +1,49 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { COPY } from "@scholau/core";
 import "./battle-rules.css";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 export function BattleRulesCard({ title = "How battles work", headingLevel = "h2" }: { title?: string; headingLevel?: "h2" | "h3" }) {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const TitleTag = headingLevel;
+
+  useEffect(() => {
+    const details = detailsRef.current;
+    if (!details) return;
+    const mq = window.matchMedia("(min-width: 900px)");
+    const sync = () => {
+      details.open = mq.matches;
+    };
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   return (
-    <Card className="battle-rules-card">
-      <CardHeader className="battle-rules-heading">
-        <CardTitle as={headingLevel}>{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-3 text-sm text-ink-muted">Both players get the same questions and the same time.</p>
-        <div className="battle-rewards-panel"><div><span className="battle-rewards-label">XP</span><p className="text-sm font-semibold">{COPY.battle.rewards}</p></div></div>
-        <details className="battle-rules-details"><summary>Format and fair play</summary><div className="pt-3"><BattleRulesList /></div></details>
-      </CardContent>
+    <Card className="battle-rules-card shadow-none">
+      <details ref={detailsRef} className="battle-rules-disclosure">
+        <summary className="battle-rules-summary">
+          <TitleTag className="battle-rules-title">{title}</TitleTag>
+          <span className="battle-rules-chevron" aria-hidden />
+        </summary>
+        <div className="battle-rules-body">
+          <p className="battle-rules-lead">Both players get the same questions and the same time.</p>
+          <div className="battle-rewards-panel">
+            <div>
+              <span className="battle-rewards-label">XP</span>
+              <p className="battle-rewards-copy">{COPY.battle.rewards}</p>
+            </div>
+          </div>
+          <details className="battle-rules-details">
+            <summary>Format and fair play</summary>
+            <div className="pt-3">
+              <BattleRulesList />
+            </div>
+          </details>
+        </div>
+      </details>
     </Card>
   );
 }
@@ -27,9 +58,16 @@ const rules = [
 ];
 
 export function BattleRulesList() {
-  return <ul className="battle-rule-list">{rules.map(({ title, text, warning }) => (
-    <li key={title} className={warning ? "battle-rule-item battle-rule-warning" : "battle-rule-item"}>
-      <div><p className="battle-rule-title">{title}</p><p className="battle-rule-copy">{text}</p></div>
-    </li>
-  ))}</ul>;
+  return (
+    <ul className="battle-rule-list">
+      {rules.map(({ title, text, warning }) => (
+        <li key={title} className={warning ? "battle-rule-item battle-rule-warning" : "battle-rule-item"}>
+          <div>
+            <p className="battle-rule-title">{title}</p>
+            <p className="battle-rule-copy">{text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
 }

@@ -13,7 +13,7 @@ export function InvitationsPanel() {
   const router = useRouter();
   if (!invitations.data?.invitations.length) return <InlineError error={invitations.error} />;
   return (
-    <Card className="border-brand-primary/25">
+    <Card className="border-brand-primary/25 shadow-none">
       <CardHeader><CardTitle>Battle challenges</CardTitle></CardHeader>
       <CardContent className="flex flex-col gap-3">
         {invitations.data.invitations.map((invite) => <div key={invite.battle_id} className="grid min-w-0 grid-cols-2 items-center gap-3 rounded-xl border border-line p-3 sm:flex sm:flex-wrap">

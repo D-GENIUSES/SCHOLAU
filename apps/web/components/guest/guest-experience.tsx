@@ -1,6 +1,5 @@
 "use client";
 
-import { Settings } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode, useState } from "react";
@@ -11,7 +10,6 @@ import { LeaderboardChrome } from "@/components/leaderboard/leaderboard-chrome";
 import { LeaderboardList } from "@/components/leaderboard/leaderboard-list";
 import { ShellFrame } from "@/components/shell/shell-frame";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { GuestBattles } from "./guest-battles";
 import { guestCourseOptions, guestCourses, guestModules, guestRanking } from "./guest-content";
 
@@ -108,19 +106,9 @@ function GuestControls({ next }: { next: string }) {
   return (
     <>
       <span className="grid size-9 shrink-0 place-items-center" aria-hidden><StreakFlame active size={23} /></span>
-      <Button asChild size="sm" className="lg:hidden">
+      <Button asChild size="sm">
         <Link href={`/sign-in?next=${destination}`}>Sign in</Link>
       </Button>
-      <Dialog>
-        <DialogTrigger asChild>
-          <button type="button" className="notification-button hidden lg:inline-flex" aria-label="Guest settings"><Settings className="size-5" aria-hidden /></button>
-        </DialogTrigger>
-        <DialogContent className="max-w-sm">
-          <DialogTitle>Guest settings</DialogTitle>
-          <DialogDescription>Sign in or create an account to use ScholAu.</DialogDescription>
-          <AccountLinks next={next} />
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
