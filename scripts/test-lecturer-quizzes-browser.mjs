@@ -59,7 +59,27 @@ const allowed = new Set([
   "publish_lecturer_quiz_v1",
   "cancel_lecturer_quiz_draft_v1",
   "get_course_quiz_v1",
+  "get_lecturer_course_curriculum_v1",
 ]);
+const curriculum = {
+  offering_id: offering,
+  course: { id: offering, code: "TST 101", title: "Test course" },
+  modules: [
+    {
+      id: "11111111-1111-4111-8111-111111111111",
+      title: "Module one",
+      position: 1,
+      lessons: [
+        {
+          lesson_id: "22222222-2222-4222-8222-222222222222",
+          position: 1,
+          title: "Lesson one",
+          has_published: true,
+        },
+      ],
+    },
+  ],
+};
 const errors = [];
 let losePublishResponse = true;
 const server = http.createServer(async (req, res) => {
@@ -69,6 +89,11 @@ const server = http.createServer(async (req, res) => {
       for await (const chunk of req) body += chunk;
       const { name, args } = JSON.parse(body);
       if (!allowed.has(name)) throw Error(`RPC not allowed: ${name}`);
+      res.setHeader("Content-Type", "application/json");
+      if (name === "get_lecturer_course_curriculum_v1") {
+        res.end(JSON.stringify({ data: curriculum, error: null }));
+        return;
+      }
       const data = await db.transaction(async tx => {
         await tx.exec("reset role");
         await tx.query("select set_config('request.jwt.claim.sub',$1,true)", [req.headers["x-test-user"]]);
@@ -79,7 +104,6 @@ const server = http.createServer(async (req, res) => {
           entries.map(([, v]) => v),
         )).rows[0].value;
       });
-      res.setHeader("Content-Type", "application/json");
       if (name === "publish_lecturer_quiz_v1" && losePublishResponse) {
         losePublishResponse = false;
         res.statusCode = 503;
@@ -87,6 +111,23 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       res.end(JSON.stringify({ data, error: null, status: 200 }));
+      return;
+    }
+    if (req.url === "/api/lecturer-quiz-generate" && req.method === "POST") {
+      let body = "";
+      for await (const chunk of req) body += chunk;
+      const payload = JSON.parse(body || "{}");
+      assert.ok((payload.moduleIds?.length || 0) + (payload.lessonIds?.length || 0) >= 1);
+      assert.ok(Number.isInteger(payload.questionCount) && payload.questionCount >= 10 && payload.questionCount <= 30);
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({
+        questions: Array.from({ length: payload.questionCount }, (_, i) => ({
+          prompt: `Generated question ${i + 1}?`,
+          options: ["A", "B", "C", "D"],
+          correct: 0,
+          explanation: "From topics.",
+        })),
+      }));
       return;
     }
     if (req.url === "/bundle.js") {
@@ -128,6 +169,21 @@ await page.getByLabel("Title", { exact: true }).fill("Midterm practice");
 await page.getByLabel("Instructions", { exact: true }).fill("Answer every question.");
 await page.getByRole("button", { name: "Continue to questions", exact: true }).click();
 await page.getByRole("heading", { name: /Questions/, exact: true }).waitFor();
+await page.getByRole("button", { name: "Generate questions", exact: true }).waitFor();
+bump();
+
+await page.getByRole("button", { name: "Generate questions", exact: true }).click();
+await page.getByRole("heading", { name: "Generate questions", exact: true }).waitFor();
+await page.getByText("Lesson one", { exact: true }).waitFor();
+const generateSubmit = page.getByRole("button", { name: "Generate", exact: true });
+assert.equal(await generateSubmit.isDisabled(), true);
+await page.getByLabel("Select all lessons in Module one").check();
+await page.getByLabel("Questions", { exact: true }).fill("10");
+assert.equal(await generateSubmit.isDisabled(), false);
+await generateSubmit.click();
+await page.getByRole("heading", { name: "Review generated questions", exact: true }).waitFor();
+await page.getByRole("button", { name: /Add 10 questions/, exact: true }).click();
+await page.getByText(/Added 10 questions/).waitFor();
 bump();
 
 await page.getByRole("button", { name: "Add question", exact: true }).click();

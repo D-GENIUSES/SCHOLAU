@@ -188,7 +188,7 @@ export function CourseQuizzes({
             <div className="flex flex-wrap gap-2">
               <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : studentClassQuizCta(q.state)}</Link></Button>
               {lecturer && q.state !== "draft" ? (
-                <Button asChild variant="outline" size="sm"><Link href={`/course-quizzes/${q.id}`}>Student view</Link></Button>
+                <Button asChild variant="outline" size="sm"><Link href={`/course-quizzes/${q.id}?preview=1`}>Student view</Link></Button>
               ) : null}
             </div>
           </li>

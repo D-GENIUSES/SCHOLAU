@@ -296,13 +296,15 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
 
         {step === "Questions" ? (
           <>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 rounded-control border border-line bg-surface-page px-3 py-2.5">
+              <p className="mr-auto text-sm font-semibold text-ink">Add questions</p>
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 size="sm"
                 disabled={importBusy || generateBusy || draft.questions.length >= 100}
                 onClick={() => setGenerateOpen(true)}
+                aria-label="Generate questions from course topics"
               >
                 Generate questions
               </Button>
@@ -316,12 +318,12 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
                 />
               </label>
               {(importBusy || generateBusy) ? (
-                <span role="status" className="text-xs text-ink-muted">
+                <span role="status" className="basis-full text-xs text-ink-muted sm:basis-auto">
                   {generateBusy ? "Generating…" : "Importing…"}
                 </span>
               ) : null}
             </div>
-            <p className="text-xs text-ink-muted">Generated and imported rows open for review before they are added.</p>
+            <p className="text-xs text-ink-muted">Use Generate questions on this step (after Schedule). Suggested rows open for review before they are added.</p>
             <h2 className="text-xl font-bold">Questions ({draft.questions.length}/100)</h2>
             {incompleteCount > 0 ? (
               <p className="text-sm text-ink-muted">{readyCount} ready to save · {incompleteCount} incomplete (finish or remove before publishing).</p>
