@@ -118,7 +118,8 @@ export function AdminUserDirectory({ creationEnabled, initialManageId }: { creat
     requestKey.current ??= newRequestKey();
     try {
       if (kind === "delete") {
-        await adminUsersApi.remove(selected, confirmation, reason, requestKey.current);
+        const fresh = await adminUsersApi.detail(selected.id);
+        await adminUsersApi.remove(fresh.user, confirmation, reason, requestKey.current);
         setOpen(false); setSelected(null); setNotice("The account and its personal learning data have been deleted.");
       } else {
         const result = kind === "courses" ? await adminUsersApi.assign(selected, ids, requestKey.current) : await adminUsersApi.freeze(selected, kind === "freeze", reason, requestKey.current);

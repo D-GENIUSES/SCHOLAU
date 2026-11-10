@@ -1,4 +1,4 @@
-import { newRequestKey, parseRpcError } from "@scholau/api";
+import { isApiError, newRequestKey, parseRpcError, ScholauApiError } from "@scholau/api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 export type UserCategory = "student" | "lecturer" | "other";
 export type UserAssignment = { id: string; code: string; title: string; status: string };
@@ -25,7 +25,11 @@ export const adminUsersApi = {
  remove: (user: ManagedUser, email: string, reason: string, requestKey=newRequestKey()) => rpc<{deleted: boolean}>("admin_delete_user_v1",{p_user_id:user.id,p_confirm_email:email,p_expected_updated_at:user.updated_at,p_reason:reason,p_request_key:requestKey}),
 };
 export function userManagementError(error: unknown) {
- const code=(error as {code?: string})?.code;
+ if (isApiError(error, "UNKNOWN")) {
+   const ref = error.reference ? ` (${error.reference})` : "";
+   return `Account deletion failed on the server. Refresh the directory, close this panel, reopen the account, and try again${ref}.`;
+ }
+ const code = error instanceof ScholauApiError ? error.code : (error as { code?: string })?.code;
  if(code==="STALE_REVISION") return "This account or its assignments changed. Close this panel and reopen it before trying again.";
  if(code==="FORBIDDEN") return "This action is not allowed. Check your administrator access and the account's role.";
  if(code==="NOT_FOUND") return "This account no longer exists. Refresh the directory.";
