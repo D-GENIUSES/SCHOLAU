@@ -9,6 +9,9 @@ export const adminUserSchema = z.object({
   requestKey: z.string().uuid(),
   offeringIds: z.array(z.string().uuid()).max(100).optional().default([]),
 }).strict().superRefine((data, ctx) => {
+  if (data.role === "lecturer" && data.offeringIds.length === 0) {
+    ctx.addIssue({ code: "custom", message: "Select at least one published course.", path: ["offeringIds"] });
+  }
   if (data.offeringIds.length > 0 && data.role !== "lecturer") {
     ctx.addIssue({ code: "custom", message: "Only lecturer accounts can receive teaching assignments.", path: ["offeringIds"] });
   }

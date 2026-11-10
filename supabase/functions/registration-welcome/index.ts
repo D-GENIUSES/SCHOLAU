@@ -1,6 +1,7 @@
 const app = "https://scholau.com";
 
-type ProvisionPayload = { user_id: string; email: string; display_name: string; password: string };
+type ProvisionPayload = { user_id: string; email: string; password: string };
+type ProvisionRecipient = { email: string; display_name: string | null };
 
 const messages = {
   student: {
@@ -35,25 +36,38 @@ function escapeHtml(value: string) {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 }
 
+const changePassword = "You can change your password at any time in Account settings after signing in.";
+
 function emailHtml(title: string, body: string, destination: string, button: string, credentials?: { email: string; password: string }) {
+  const paragraphs = body.split("\n\n").map(paragraph => `<p style="font-size:16px;line-height:1.6">${escapeHtml(paragraph)}</p>`).join("");
   const credentialsBlock = credentials
-    ? `<div style="margin:20px 0;padding:16px;border-radius:12px;background:#f3f7fc;border:1px solid #d8e6f8"><p style="margin:0 0 8px;font-size:14px;font-weight:700;color:#172b49">Your sign-in details</p><p style="margin:0 0 6px;font-size:15px;line-height:1.5"><strong>Email:</strong> ${escapeHtml(credentials.email)}</p><p style="margin:0;font-size:15px;line-height:1.5"><strong>Password:</strong> ${escapeHtml(credentials.password)}</p><p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#536983">You can change this password later in your account settings after you sign in.</p></div>`
+    ? `<div style="margin:20px 0;padding:16px;border-radius:12px;background:#f3f7fc;border:1px solid #d8e6f8">
+      <p style="margin:0 0 12px;font-weight:700">Your sign-in details</p>
+      <p style="margin:0 0 12px;overflow-wrap:anywhere"><strong>Email</strong><br>${escapeHtml(credentials.email)}</p>
+      <p style="margin:0 0 12px;overflow-wrap:anywhere"><strong>Initial password</strong><br><code style="white-space:pre-wrap;font-size:16px">${escapeHtml(credentials.password)}</code></p>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:#536983">${changePassword}</p>
+    </div>`
     : "";
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><body style="margin:0;background:#f3f7fc;color:#172b49;font-family:Arial,sans-serif"><main style="max-width:480px;margin:32px auto;padding:28px;background:#fff;border-radius:16px"><p style="color:#0866e8;font-size:16px;font-weight:700">ScholAu</p><h1 style="font-size:24px;line-height:1.2">${escapeHtml(title)}</h1><p style="font-size:16px;line-height:1.6">${escapeHtml(body)}</p>${credentialsBlock}<p style="margin:24px 0"><a href="${destination}" style="display:inline-block;background:#0866e8;color:#fff;border-radius:8px;padding:12px 18px;text-decoration:none;font-weight:700">${escapeHtml(button)}</a></p></main></body></html>`;
+  const signoff = credentials ? '<p style="font-size:15px;line-height:1.5">See you in ScholAu,<br>The ScholAu team</p>' : "";
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><body style="margin:0;background:#f3f7fc;color:#172b49;font-family:Arial,sans-serif"><main style="max-width:480px;margin:32px auto;padding:28px;background:#fff;border-radius:16px"><p style="color:#0866e8;font-size:16px;font-weight:700">ScholAu</p><h1 style="font-size:24px;line-height:1.2">${escapeHtml(title)}</h1>${paragraphs}${credentialsBlock}<p style="margin:24px 0"><a href="${destination}" style="display:inline-block;background:#0866e8;color:#fff;border-radius:8px;padding:12px 18px;text-decoration:none;font-weight:700">${escapeHtml(button)}</a></p>${signoff}</main></body></html>`;
 }
 
 function provisionCopy(name: string, email: string, password: string) {
-  const title = "We’re glad you’re here";
-  const intro = `Hi ${name}, welcome to ScholAu—we’re delighted you’ve joined as a lecturer. Use the email address and password below to sign in for the first time, or choose Continue with Google on the sign-in page when your Google account uses this same email (${email}). You can change your password later in the app whenever you like.`;
+  const title = `Welcome to ScholAu, ${name}!`;
+  const intro = [
+    `Hi ${name},`,
+    "We’re glad to welcome you to ScholAu. Your lecturer account is ready, and you can sign in right away.",
+    "From your lecturer dashboard, you can manage your assigned courses, share materials and announcements, create quizzes, and review your students’ results.",
+  ].join("\n\n");
   const destination = `${app}/sign-in?next=${encodeURIComponent("/lecturer")}`;
-  const text = `${title}\n\n${intro}\n\nEmail: ${email}\nPassword: ${password}\n\nSign in: ${destination}`;
-  const html = emailHtml(title, intro, destination, "Sign in to ScholAu", { email, password });
-  return { subject: "Welcome to ScholAu — your lecturer sign-in details", text, html };
+  const text = `${intro}\n\nYour sign-in details\n\nEmail\n${email}\n\nInitial password\n${password}\n\n${changePassword}\n\nOpen ScholAu\n${destination}\n\nSee you in ScholAu,\nThe ScholAu team`;
+  const html = emailHtml(title, intro, destination, "Open ScholAu", { email, password });
+  return { subject: title, text, html };
 }
 
-async function sendProvisionedLecturer(payload: ProvisionPayload, apiKey: string, sender: string): Promise<Outcome> {
-  const name = payload.display_name.trim() || "there";
-  const { subject, text, html } = provisionCopy(name, payload.email, payload.password);
+async function sendProvisionedLecturer(payload: ProvisionPayload, recipient: ProvisionRecipient, apiKey: string, sender: string): Promise<Outcome> {
+  const name = recipient.display_name?.trim().split(/\s+/)[0] || "there";
+  const { subject, text, html } = provisionCopy(name, recipient.email, payload.password);
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -62,8 +76,8 @@ async function sendProvisionedLecturer(payload: ProvisionPayload, apiKey: string
         "Content-Type": "application/json",
         "Idempotency-Key": `scholau-provision-welcome/${payload.user_id}`,
       },
-      body: JSON.stringify({ from: sender, to: [payload.email], subject, text, html }),
-      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({ from: sender, to: [recipient.email], subject, text, html }),
+      signal: AbortSignal.timeout(5000),
     });
     const status = response.status;
     await response.body?.cancel();
@@ -110,15 +124,19 @@ Deno.serve(async (request) => {
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !serviceKey) return new Response("Worker configuration missing", { status: 503 });
 
-  async function rpc<T>(name: string, args: Record<string, unknown> = {}): Promise<T> {
+  async function rpc<T>(name: string, args: Record<string, unknown> = {}, key = serviceKey!): Promise<T> {
+    const headers: Record<string, string> = { apikey: key, "Content-Type": "application/json" };
+    if (!key.startsWith("sb_secret_")) headers.Authorization = `Bearer ${key}`;
     const response = await fetch(`${url}/rest/v1/rpc/${name}`, {
       method: "POST",
-      headers: { apikey: serviceKey!, Authorization: `Bearer ${serviceKey}`, "Content-Type": "application/json" },
+      headers,
+      redirect: "error",
       body: JSON.stringify(args),
       signal: AbortSignal.timeout(8000),
     });
     if (!response.ok) {
       await response.body?.cancel();
+      if (response.status === 401 || response.status === 403) throw new Error("Database authorization denied");
       throw new Error(`Database operation failed: ${name}`);
     }
     const body = await response.text();
@@ -126,17 +144,19 @@ Deno.serve(async (request) => {
   }
 
   try {
+    if (request.method !== "POST") return new Response("Unauthorized", { status: 401 });
+    const action = request.headers.get("x-welcome-action");
     const webhookSecret = Deno.env.get("WELCOME_WEBHOOK_SECRET");
-    if (request.method !== "POST" || !webhookSecret ||
-        !await matchesSecret(request.headers.get("x-welcome-webhook-secret") ?? "", webhookSecret)) {
-      return new Response("Unauthorized", { status: 401 });
-    }
+    const webhook = request.headers.get("x-welcome-webhook-secret");
+    const authorizedWebhook = webhookSecret && webhook && await matchesSecret(webhook, webhookSecret);
+    // The service-only recipient RPC validates this credential against the project.
+    const provisionKey = action === "provision" ? request.headers.get("x-provision-service-key") : null;
+    if (!authorizedWebhook && !provisionKey) return new Response("Unauthorized", { status: 401 });
 
     const apiKey = Deno.env.get("RESEND_API_KEY");
     const sender = Deno.env.get("WELCOME_EMAIL_FROM") || "ScholAu <welcome@scholau.com>";
     if (!apiKey) return new Response("Email provider configuration missing", { status: 503 });
 
-    const action = request.headers.get("x-welcome-action");
     if (action === "provision") {
       let payload: ProvisionPayload;
       try {
@@ -144,12 +164,22 @@ Deno.serve(async (request) => {
       } catch {
         return new Response("Invalid JSON", { status: 400 });
       }
-      if (!payload?.user_id || !payload.email || !payload.password) {
+      if (typeof payload?.user_id !== "string" || typeof payload.email !== "string" ||
+          typeof payload.password !== "string" || !payload.password) {
         return new Response("Incomplete provision payload", { status: 400 });
       }
-      const allowed = await rpc<boolean>("admin_provision_welcome_eligible_v1", { p_user_id: payload.user_id });
-      if (!allowed) return new Response("Not eligible for provision welcome", { status: 403 });
-      const outcome = await sendProvisionedLecturer(payload, apiKey, sender);
+      const recipient = await rpc<ProvisionRecipient | null>(
+        "admin_provision_welcome_recipient_v1",
+        { p_user_id: payload.user_id },
+        authorizedWebhook ? serviceKey : provisionKey!,
+      );
+      if (!recipient || recipient.email.toLowerCase() !== payload.email.toLowerCase()) {
+        return new Response("Not eligible for provision welcome", { status: 403 });
+      }
+      let outcome = await sendProvisionedLecturer(payload, recipient, apiKey, sender);
+      if (outcome === "retry") {
+        outcome = await sendProvisionedLecturer(payload, recipient, apiKey, sender);
+      }
       if (outcome === "sent") return Response.json({ sent: true });
       return new Response("Provision welcome could not be sent", { status: outcome === "retry" ? 503 : 502 });
     }
@@ -169,7 +199,10 @@ Deno.serve(async (request) => {
     }
     return Response.json(totals);
   } catch (error) {
-    console.error(error instanceof Error ? error.message : "Registration welcome worker failed");
+    if (error instanceof Error && error.message === "Database authorization denied") {
+      return new Response("Unauthorized", { status: 401 });
+    }
+    console.error("Registration welcome worker failed");
     return new Response("Registration welcome worker failed", { status: 503 });
   }
 });

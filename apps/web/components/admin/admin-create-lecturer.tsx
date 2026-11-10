@@ -18,6 +18,8 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
   const [offerings, setOfferings] = useState<LecturerOffering[]>([]);
   const [offeringError, setOfferingError] = useState(false);
   const [offeringsLoading, setOfferingsLoading] = useState(true);
+  const [offeringRefresh, setOfferingRefresh] = useState(0);
+  const [welcomeConfirmed, setWelcomeConfirmed] = useState<boolean | null>(null);
   const [courseSearch, setCourseSearch] = useState("");
   const [offeringIds, setOfferingIds] = useState<string[]>([]);
   const form = useForm<AdminUserInput>({
@@ -27,15 +29,15 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
   const { errors, isSubmitting } = form.formState;
 
   useEffect(() => {
-    if (!enabled) {
-      setOfferingsLoading(false);
-      return;
-    }
+    if (!enabled) return;
     let active = true;
     void lecturerApi(getBrowserSupabase())
       .offerings()
       .then(result => {
-        if (active) setOfferings(result.items);
+        if (!active) return;
+        setOfferings(result.items);
+        const published = new Set(result.items.map(course => course.id));
+        setOfferingIds(current => current.filter(id => published.has(id)));
       })
       .catch(() => {
         if (active) setOfferingError(true);
@@ -46,7 +48,13 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
     return () => {
       active = false;
     };
-  }, [enabled]);
+  }, [enabled, offeringRefresh]);
+
+  function refreshOfferings() {
+    setOfferingError(false);
+    setOfferingsLoading(true);
+    setOfferingRefresh(current => current + 1);
+  }
 
   const filtered = offerings.filter(o =>
     `${o.code} ${o.title} ${o.university} ${o.department}`.toLowerCase().includes(courseSearch.toLowerCase()),
@@ -58,9 +66,10 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
     if (!form.getValues("requestKey")) form.setValue("requestKey", crypto.randomUUID());
     form.setValue("role", "lecturer");
     form.setValue("offeringIds", offeringIds);
+    setMessage(null);
+    setWelcomeConfirmed(null);
     await form.handleSubmit(async values => {
       busy.current = true;
-      setMessage(null);
       try {
         const response = await fetch("/api/admin/users", {
           method: "POST",
@@ -70,21 +79,15 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
         const result = await response.json();
         if (!response.ok) {
           setMessage({ error: true, text: result.message || "The lecturer account could not be created." });
+          if (response.status === 422) refreshOfferings();
           return;
         }
-        const courseNote =
-          result.coursesAssigned && result.assignmentCount
-            ? ` ${result.assignmentCount} teaching ${result.assignmentCount === 1 ? "assignment" : "assignments"} saved.`
-            : result.userCreated && result.coursesAssigned === false && (values.offeringIds?.length ?? 0) > 0
-              ? ` ${result.message || "Assign courses from Manage in the directory."}`
-              : "";
-        const welcomeNote = result.provisionWelcomeSent
-          ? " A welcome email with their sign-in email and initial password was sent."
-          : " Share the initial password privately if the welcome email did not arrive.";
+        const count = result.assignmentCount ?? 0;
         setMessage({
           error: false,
-          text: `${values.displayName} (${values.email}) has been added as a lecturer. Their email is already verified—no verification message will be sent. On first sign-in they accept the terms in the app.${welcomeNote}${courseNote}`,
+          text: `${values.displayName} (${values.email}) was added and verified. ${count} teaching ${count === 1 ? "assignment" : "assignments"} saved.`,
         });
+        setWelcomeConfirmed(result.provisionWelcomeSent === true);
         onCreated?.();
         form.reset({ displayName: "", email: "", password: "", role: "lecturer", requestKey: "", offeringIds: [] });
         setOfferingIds([]);
@@ -102,6 +105,11 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
       {!enabled && <Alert tone="warning" role="alert">User creation is not configured on this server yet.</Alert>}
       <form onSubmit={submit} noValidate className="mt-4 flex flex-col gap-4">
         {message && <Alert tone={message.error ? "error" : "success"} role={message.error ? "alert" : "status"}>{message.text}</Alert>}
+        {welcomeConfirmed !== null && (
+          <Alert tone={welcomeConfirmed ? "success" : "warning"} role="status">
+            {welcomeConfirmed ? "Welcome email accepted for delivery." : "Welcome email could not be confirmed. The lecturer account is ready to use."}
+          </Alert>
+        )}
         <fieldset disabled={!enabled || isSubmitting} className="flex min-w-0 flex-col gap-4">
           <legend className="sr-only">New lecturer details</legend>
           <Field id="new-lecturer-name" label="Name" error={errors.displayName?.message}>
@@ -113,15 +121,21 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
           <Field
             id="new-lecturer-password"
             label="Initial password"
-            hint="Use 8–72 characters. Share this password privately with the lecturer."
+            hint="Use 8–72 characters. This initial password is included in the welcome email."
             error={errors.password?.message}
           >
             <PasswordInput autoComplete="new-password" maxLength={72} {...form.register("password")} />
           </Field>
           <div className="flex flex-col gap-3 border-t border-line pt-4">
-            <h3 className="text-sm font-bold">Teaching assignments (optional)</h3>
-            <p className="text-sm text-ink-muted">Select published course offerings this lecturer will teach. You can change these later from Manage.</p>
-            {offeringError && <Alert tone="warning">Course offerings could not be loaded. Refresh the page to retry.</Alert>}
+            <h3 className="text-sm font-bold">Teaching assignments</h3>
+            <p className="text-sm text-ink-muted">Select at least one published course. You can change assignments later from Manage.</p>
+            {offeringError && (
+              <Alert tone="warning">
+                Course offerings could not be loaded.{" "}
+                <button type="button" className="font-semibold underline" onClick={refreshOfferings}>Try again</button>
+              </Alert>
+            )}
+            {errors.offeringIds?.message && <p role="alert" className="text-sm text-danger">{errors.offeringIds.message}</p>}
             {offeringsLoading ? <p className="text-sm text-ink-muted">Loading course offerings…</p> : null}
             {!offeringsLoading && !offeringError ? (
               <>
@@ -154,7 +168,7 @@ export function AdminCreateLecturer({ enabled, onCreated }: { enabled: boolean; 
             ) : null}
           </div>
           <p className="text-sm text-ink-muted">Confirm the email belongs to the intended lecturer before creating the account.</p>
-          <Button type="submit" loading={isSubmitting}>
+          <Button type="submit" loading={isSubmitting} disabled={offeringsLoading || offeringError}>
             Add lecturer
           </Button>
         </fieldset>
