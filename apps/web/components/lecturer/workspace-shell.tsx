@@ -52,7 +52,7 @@ function AccountMenu({ name, avatar, mobile = false }: { name: string; avatar?: 
     <Dialog>
       <DialogTrigger asChild>
         <button type="button" aria-label="Account menu" className={cn(navLink, mobile ? "justify-center px-1" : "w-full justify-start")}>
-          {avatar ? <Avatar name={safeName} path={avatar} size={28} /> : (
+          {avatar ? <Avatar name={safeName} path={avatar} size={32} /> : (
             <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full bg-surface-tint text-[10px] font-bold text-brand-primary">{initials || "SA"}</span>
           )}
           {!mobile ? <><span className="min-w-0 flex-1 truncate text-left text-sm">{safeName}</span><ChevronDown className="size-3.5 shrink-0 text-ink-muted" aria-hidden /></> : null}
