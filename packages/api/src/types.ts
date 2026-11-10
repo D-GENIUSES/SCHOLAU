@@ -1559,6 +1559,8 @@ export interface LecturerQuizAttempt {
   id: string;
   attempt_number: number;
   answers: Record<string, number>;
+  question_order?: number[];
+  option_orders?: number[][];
   revision: number;
   started_at: string;
   expires_at: string;
