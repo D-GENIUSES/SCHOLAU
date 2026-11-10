@@ -1,0 +1,219 @@
+{
+  "title": "Introduction to Measurement and Dimensional Analysis",
+  "objective": "The student will learn to distinguish between fundamental and derived physical quantities and use dimensional analysis to verify physical equations and derive units.",
+  "module_title": "PHY 101: Measurement and Vectors",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Foundations and symbols"
+    },
+    {
+      "type": "text",
+      "text": "To study physics, we first define properties of matter through measurements. Every measurement consists of a numerical magnitude and a unit. We represent dimensions using standard capital letters: \\( [M] \\) for Mass, \\( [L] \\) for Length, and \\( [T] \\) for Time. These are the foundational building blocks for more complex physical expressions."
+    },
+    {
+      "type": "heading",
+      "text": "Understand the concept"
+    },
+    {
+      "type": "text",
+      "text": "Physical quantities are divided into fundamental and derived types. Fundamental quantities, such as mass (kg) and time (s), are independent and exist naturally. Derived quantities are formed by the multiplication or division of fundamental ones, such as Density, which is the ratio of mass to volume. Dimensional analysis is the study of these relationships to ensure equations are consistent. A physical equation is only valid if the dimensions on the left-hand side match the dimensions on the right-hand side."
+    },
+    {
+      "type": "text",
+      "text": "Commonly, students confuse units with dimensions. While a unit (like meters) is a specific standard, a dimension (like Length) describes the nature of the physical quantity regardless of the system used."
+    },
+    {
+      "type": "callout",
+      "icon": "warning",
+      "text": "A major misconception is that you can add or subtract different dimensions. In physics, you cannot add 5 kilograms to 2 meters; mathematical operations of addition and subtraction only apply to quantities with identical dimensions."
+    },
+    {
+      "type": "heading",
+      "text": "Worked example"
+    },
+    {
+      "type": "worked_example",
+      "title": "Deriving the Dimensions of Work",
+      "problem": "Determine the dimensions and SI units of Work, given that \\( Work = Force \\times Distance \\).",
+      "steps": [
+        {
+          "calculation": "Force = Mass \\times Acceleration",
+          "explanation": "Newton's second law defines force as the product of mass and the rate of change of velocity.",
+          "reading": "Force equals mass times acceleration"
+        },
+        {
+          "calculation": "[Force] = M \\times LT^{-2} = MLT^{-2}",
+          "explanation": "Substitute the dimensions of mass (M) and acceleration (length over time squared).",
+          "reading": "The dimension of force is mass times length times time to the power of negative two"
+        },
+        {
+          "calculation": "[Work] = [Force] \\times [Distance] = MLT^{-2} \\times L",
+          "explanation": "Multiply the dimension of force by the dimension of distance (L).",
+          "reading": "Work dimensions equal force dimensions multiplied by length"
+        },
+        {
+          "calculation": "[Work] = ML^2T^{-2}",
+          "explanation": "Combine the length terms by adding their exponents.",
+          "reading": "The final dimension for work is mass times length squared times time to the power of negative two"
+        }
+      ],
+      "answer": "ML^2T^{-2}",
+      "check": {
+        "calculation": "kg \\times m/s^2 \\times m = kg \\cdot m^2 \\cdot s^{-2}",
+        "explanation": "The unit Joule corresponds to the derived dimensions."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Guided practice"
+    },
+    {
+      "type": "equation",
+      "expression": "v^2 = u^2 + 2as",
+      "reading": "Final velocity squared equals initial velocity squared plus two times acceleration times displacement"
+    },
+    {
+      "type": "text",
+      "text": "To check the consistency of this kinematic equation, examine the dimensions of each term independently. The number 2 is a dimensionless constant and is ignored in dimensional analysis."
+    },
+    {
+      "type": "equation",
+      "expression": "[v^2] = (LT^{-1})^2 = L^2T^{-2}",
+      "reading": "The dimension of the left hand side term is length squared times time to the power of negative two"
+    },
+    {
+      "type": "equation",
+      "expression": "[2as] = (LT^{-2}) \\times (L) = L^2T^{-2}",
+      "reading": "The dimension of the final term on the right hand side is also length squared times time to the power of negative two"
+    },
+    {
+      "type": "heading",
+      "text": "Independent practice"
+    },
+    {
+      "type": "text",
+      "text": "Problem: Find the dimensions of Power. Recall that \\( Power = \\frac{Work}{Time} \\). Use the previously derived dimensions for Work."
+    },
+    {
+      "type": "heading",
+      "text": "Recap"
+    },
+    {
+      "type": "text",
+      "text": "We have covered that physics relies on standardized measurements. Fundamental units like the Meter (m), Kilogram (kg), and Second (s) form the base of the SI system. Dimensional analysis acts as a verification tool: for any physical relation to be correct, it must be dimensionally homogeneous, meaning every term in the sum must possess the same dimensional formula."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What are the seven basic SI quantities?",
+      "back": "Length, Mass, Time, Electric current, Temperature, Amount of substance, and Luminous intensity.",
+      "tag": "units"
+    },
+    {
+      "front": "What is a derived quantity?",
+      "back": "A quantity obtained by multiplying or dividing fundamental quantities, such as Area or Velocity.",
+      "tag": "definitions"
+    },
+    {
+      "front": "Define the Principle of Homogeneity.",
+      "back": "Every term in a physical equation must have the same dimensions for the equation to be valid.",
+      "tag": "dimensional analysis"
+    },
+    {
+      "front": "What are the dimensions of Force?",
+      "back": "\\( MLT^{-2} \\)",
+      "tag": "dimensions"
+    },
+    {
+      "front": "Give an example of a unitless physical quantity.",
+      "back": "Relative density, Refractive index, or Strain.",
+      "tag": "concepts"
+    }
+  ],
+  "learning_questions": [
+    {
+      "question": "Which of the following is a fundamental quantity in the SI system?",
+      "options": [
+        "Force",
+        "Velocity",
+        "Luminous Intensity",
+        "Work"
+      ],
+      "answer": "Luminous Intensity",
+      "explanation": "Luminous intensity is one of the seven base quantities (unit: candela). Force, velocity, and work are all derived from mass, length, and time."
+    },
+    {
+      "question": "What is the multiplier for the prefix 'Micro' (\\( \\mu \\))?",
+      "options": [
+        "\\( 10^{-3} \\)",
+        "\\( 10^{-6} \\)",
+        "\\( 10^{-9} \\)",
+        "\\( 10^6 \\)"
+      ],
+      "answer": "\\( 10^{-6} \\)",
+      "explanation": "The prefix 'Micro' represents one millionth of a unit, which is mathematically expressed as \\( 10^{-6} \\) or 0.000001."
+    }
+  ],
+  "battle_questions": [
+    {
+      "type": "standard",
+      "question": "Which set contains only derived quantities?",
+      "options": [
+        "Mass, Length, Time",
+        "Force, Momentum, Velocity",
+        "Temperature, Current, Mass",
+        "Time, Work, Energy"
+      ],
+      "answer": "Force, Momentum, Velocity"
+    },
+    {
+      "type": "worked_solution",
+      "question": "Calculate the magnitude of the resultant force of two perpendicular forces of 3 N and 4 N.",
+      "options": [
+        "5 N",
+        "7 N",
+        "1 N",
+        "12 N"
+      ],
+      "body": "5 N",
+      "steps": [
+        {
+          "calculation": "R = \\sqrt{F_1^2 + F_2^2}",
+          "explanation": "Use Pythagoras' theorem because the forces are at right angles."
+        },
+        {
+          "calculation": "R = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16}",
+          "explanation": "Substitute the given force magnitudes into the equation."
+        },
+        {
+          "calculation": "R = \\sqrt{25} = 5",
+          "explanation": "Find the square root of the sum to determine the resultant magnitude."
+        }
+      ]
+    },
+    {
+      "type": "fill_in_gap",
+      "question": "The SI unit for amount of substance is the {gap}.",
+      "gaps": [
+        {
+          "accepted_answers": [
+            "mole",
+            "mol"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "fill_in_gap",
+      "question": "A quantity that has both magnitude and direction is known as a {gap} quantity.",
+      "gaps": [
+        {
+          "accepted_answers": [
+            "vector"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 /**
- * Upload PHY 101 Chapters 1–4 PDF → R2 + ingestion job + production worker.
+ * Upload split PHY 101 Chapters 1–4 PDFs → R2 + ingestion jobs + production worker + publish.
+ * Source PDF is image-only (~31MB); parts under imports/phy-101/ are compressed page slices.
  * node --env-file=apps/web/.env.local apps/web/scripts/run-phy101-ingestion.mjs
  */
 import { createHash, randomUUID } from "node:crypto";
@@ -17,10 +18,30 @@ const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE
 const workerSecret = process.env.INGESTION_WORKER_SECRET;
 const site = process.env.INGESTION_SITE_URL ?? process.env.PROD_SITE_URL ?? "https://scholau.com";
 const courseCode = "PHY 101";
+const moduleTitlePrefix = "Physics — Chapters 1–4";
 
-const pdfPath = String.raw`c:\Users\DELL\Downloads\PHY 101 CH 1-4.pdf`;
-const moduleTitle = "Physics — Chapters 1–4";
-const modulePosition = 1;
+const files = [
+  {
+    path: join(root, "imports", "phy-101", "PHY101-CH-part1-p1-16.pdf"),
+    moduleTitle: `${moduleTitlePrefix} (pages 1–16)`,
+    position: 1,
+  },
+  {
+    path: join(root, "imports", "phy-101", "PHY101-CH-part2-p17-33.pdf"),
+    moduleTitle: `${moduleTitlePrefix} (pages 17–33)`,
+    position: 2,
+  },
+  {
+    path: join(root, "imports", "phy-101", "PHY101-CH-part3-p34-50.pdf"),
+    moduleTitle: `${moduleTitlePrefix} (pages 34–50)`,
+    position: 3,
+  },
+  {
+    path: join(root, "imports", "phy-101", "PHY101-CH-part4-p51-67.pdf"),
+    moduleTitle: `${moduleTitlePrefix} (pages 51–67)`,
+    position: 4,
+  },
+];
 
 function sqlQuote(s) {
   return `'${String(s).replace(/'/g, "''")}'`;
@@ -49,7 +70,7 @@ async function putPdf(path) {
   const objectKey = `course-materials/${sha256}.pdf`;
   const filename = path.split(/[/\\]/).pop() ?? "upload.pdf";
   const { client, bucket } = r2Client();
-  console.log(`R2 put ${filename} (${bytes.length} bytes, sha=${sha256.slice(0, 12)}…)…`);
+  console.log(`R2 put ${filename} (${bytes.length} bytes)…`);
   await client.send(
     new PutObjectCommand({
       Bucket: bucket,
@@ -70,6 +91,22 @@ function runSql(sql, label) {
     execSync(`npx supabase db query --linked -f "${sqlFile}"`, { cwd: root, stdio: "inherit" });
   } finally {
     unlinkSync(sqlFile);
+  }
+}
+
+function readJobStatus(jobId) {
+  const out = execSync(
+    `npx supabase db query --linked -o json "select status, error, stats from private.material_ingestion_jobs where id = '${jobId}'"`,
+    { cwd: root, encoding: "utf8" },
+  );
+  try {
+    const parsed = JSON.parse(out);
+    if (Array.isArray(parsed)) return parsed[0] ?? null;
+    if (parsed?.rows?.[0]) return parsed.rows[0];
+    return parsed;
+  } catch {
+    const m = out.match(/"status"\s*:\s*"([^"]+)"/);
+    return m ? { status: m[1], raw: out.slice(0, 800) } : { status: "unknown", raw: out.slice(0, 800) };
   }
 }
 
@@ -95,11 +132,13 @@ console.log(`Course: ${course.code} — ${course.title}`);
 console.log(`Offering: ${offering.id}`);
 console.log(`Worker site: ${site}\n`);
 
-const { bytes, sha256, objectKey, filename } = await putPdf(pdfPath);
-const jobId = randomUUID();
-
-runSql(
-  `
+const jobs = [];
+for (const spec of files) {
+  const { bytes, sha256, objectKey, filename } = await putPdf(spec.path);
+  const jobId = randomUUID();
+  jobs.push({ jobId, sha256, moduleTitle: spec.moduleTitle });
+  runSql(
+    `
 insert into private.course_materials (course_id, sha256, object_key, filename, bytes, published)
 values ('${course.id}', '${sha256}', '${objectKey}', ${sqlQuote(filename)}, ${bytes.length}, false)
 on conflict (course_id, sha256) do update set object_key = excluded.object_key, filename = excluded.filename, bytes = excluded.bytes, updated_at = now();
@@ -108,70 +147,72 @@ insert into private.material_ingestion_jobs (
   topic_mode, module_title, module_position, status, force_reprocess
 ) values (
   '${jobId}', '${offering.id}', '${course.id}', '${adminRow.user_id}', '${sha256}', ${sqlQuote(filename)}, '${objectKey}',
-  ${bytes.length}, 'application/pdf', 'new_module', ${sqlQuote(moduleTitle)}, ${modulePosition}, 'pending', true
+  ${bytes.length}, 'application/pdf', 'new_module', ${sqlQuote(spec.moduleTitle)}, ${spec.position}, 'pending', true
 );
 `,
-  `Queued job ${jobId}`,
-);
-
-function readJobStatus() {
-  const out = execSync(
-    `npx supabase db query --linked -o json "select status, error, stats from private.material_ingestion_jobs where id = '${jobId}'"`,
-    { cwd: root, encoding: "utf8" },
+    `Queued ${filename} → ${jobId}`,
   );
-  try {
-    const parsed = JSON.parse(out);
-    const row = Array.isArray(parsed) ? parsed[0] : parsed?.rows?.[0] ?? parsed?.[0] ?? parsed;
-    return row ?? null;
-  } catch {
-    // CLI sometimes wraps JSON; fall back to scanning
-    const m = out.match(/"status"\s*:\s*"([^"]+)"/);
-    return m ? { status: m[1], raw: out.slice(0, 500) } : { status: "unknown", raw: out.slice(0, 500) };
-  }
 }
 
-console.log("\nRunning worker until job finishes (PDF is large; Gemini may take several minutes)…");
-let finalStatus = null;
-for (let pass = 0; pass < 40; pass++) {
+console.log("\nProcessing jobs (scanned pages; each Gemini call may take a few minutes)…");
+const pending = new Set(jobs.map((j) => j.jobId));
+const finals = new Map();
+
+for (let pass = 0; pass < 80 && pending.size; pass++) {
   const res = await fetch(`${site}/api/material-ingestion/worker`, {
     method: "POST",
     headers: { "x-ingestion-worker-secret": workerSecret ?? "" },
   });
   const body = await res.json().catch(() => ({}));
-  console.log(`  worker pass ${pass + 1}: HTTP ${res.status}`, JSON.stringify(body).slice(0, 400));
+  console.log(`  worker pass ${pass + 1}: HTTP ${res.status}`, JSON.stringify(body).slice(0, 500));
 
-  let jobRow = null;
-  try {
-    jobRow = readJobStatus();
-  } catch (e) {
-    console.log(`  status query failed: ${e.message}`);
+  for (const jobId of [...pending]) {
+    let row = null;
+    try {
+      row = readJobStatus(jobId);
+    } catch (e) {
+      console.log(`  status query failed for ${jobId}: ${e.message}`);
+      continue;
+    }
+    const status = row?.status;
+    if (status === "succeeded" || status === "failed" || status === "awaiting_outline") {
+      finals.set(jobId, { status, stats: row?.stats, error: row?.error });
+      pending.delete(jobId);
+      console.log(`  job ${jobId} → ${status}${row?.error ? `: ${row.error}` : ""}`);
+    }
   }
-  const status = jobRow?.status;
-  if (status) console.log(`  job status: ${status}`);
-  if (status === "succeeded" || status === "failed" || status === "awaiting_outline") {
-    finalStatus = { status, stats: jobRow?.stats, error: jobRow?.error };
-    break;
-  }
-  await new Promise((r) => setTimeout(r, 15000));
+  if (pending.size) await new Promise((r) => setTimeout(r, 20000));
 }
 
-if (!finalStatus) {
-  console.error(`Timed out waiting for job ${jobId}`);
+if (pending.size) {
+  console.error("Timed out; still pending:", [...pending].join(", "));
   process.exit(1);
 }
 
-console.log("\nFinal:", JSON.stringify(finalStatus, null, 2));
-console.log(`Job id: ${jobId}`);
-console.log(`Review: ${site}/admin/review`);
+const failed = [...finals.entries()].filter(([, v]) => v.status === "failed");
+const awaiting = [...finals.entries()].filter(([, v]) => v.status === "awaiting_outline");
+console.log("\nResults:");
+for (const [id, v] of finals) console.log(`  ${id}: ${v.status}`, v.error ?? JSON.stringify(v.stats ?? {}));
 
-if (finalStatus.status === "failed") process.exit(1);
-if (finalStatus.status === "awaiting_outline") {
-  console.log("Job awaiting outline confirmation — confirm in UI or via confirm_material_ingestion_outline_v1");
+if (awaiting.length) {
+  console.log("Some jobs awaiting outline — confirm in UI.");
   process.exit(2);
 }
+if (failed.length === jobs.length) {
+  console.error("All jobs failed.");
+  process.exit(1);
+}
 
-// Publish draft lesson + question versions created for this course (newest drafts under the module title)
-console.log("\nPublishing PHY 101 draft lessons and questions…");
+const okJobs = jobs.filter((j) => finals.get(j.jobId)?.status === "succeeded");
+if (!okJobs.length) {
+  console.error("No succeeded jobs to publish.");
+  process.exit(1);
+}
+
+const titleList = okJobs.map((j) => sqlQuote(j.moduleTitle)).join(", ");
+const shaList = okJobs.map((j) => sqlQuote(j.sha256)).join(", ");
+
+console.log("\nPublishing succeeded PHY 101 drafts…");
 runSql(
   `
 do $body$
@@ -192,7 +233,7 @@ begin
 
   update private.course_materials
      set published = true, updated_at = now()
-   where course_id = v_course and sha256 = '${sha256}';
+   where course_id = v_course and sha256 in (${shaList});
 
   for v_id in
     select lv.id
@@ -201,7 +242,7 @@ begin
     join public.modules m on m.id = l.module_id
     where l.course_id = v_course
       and lv.status = 'draft'
-      and m.title = ${sqlQuote(moduleTitle)}
+      and m.title in (${titleList})
     order by m.position, l.position, lv.version
   loop
     perform public.admin_publish_v1('lesson_version', v_id, gen_random_uuid());
@@ -232,10 +273,15 @@ from public.lesson_versions lv
 join public.lessons l on l.id = lv.lesson_id
 join public.modules m on m.id = l.module_id
 join public.courses c on c.id = l.course_id
-where c.code = 'PHY 101' and lv.status = 'published' and m.title = ${sqlQuote(moduleTitle)}
+where c.code = 'PHY 101' and lv.status = 'published' and m.title in (${titleList})
 order by m.position, l.position;
 `,
   "Publish drafts",
 );
+
+if (failed.length) {
+  console.log(`\nPartial OK — published ${okJobs.length}/${jobs.length}; failed jobs: ${failed.map(([id]) => id).join(", ")}`);
+  process.exit(0);
+}
 
 console.log("\nOK — PHY 101 Chapters 1–4 ingested and published.");

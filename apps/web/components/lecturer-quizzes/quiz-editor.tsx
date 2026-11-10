@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input, NativeSelect, Textarea } from "@/components/ui/input";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle } from "@/components/ui/dialog";
 import { Failure } from "@/components/challenges/course-challenges";
+import { GenerateQuestionsDialog } from "./generate-questions-dialog";
 import { defaultQuizWindow, formatQuizWindow } from "./quiz-ui";
 import { lecturerQuizApi, lecturerQuizError } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
@@ -44,6 +45,9 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
   const [openQuestions, setOpenQuestions] = useState<Record<number, boolean>>({ 0: true });
   const [importReview, setImportReview] = useState<LecturerQuizQuestion[] | null>(null);
   const [importSession, setImportSession] = useState(0);
+  const [reviewTitle, setReviewTitle] = useState("Review imported questions");
+  const [generateOpen, setGenerateOpen] = useState(false);
+  const [generateBusy, setGenerateBusy] = useState(false);
   const [draft, setDraft] = useState<LecturerQuizDraft>(() =>
     initial
       ? {
@@ -201,6 +205,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       const json = await res.json() as { questions?: LecturerQuizQuestion[]; error?: string };
       if (!res.ok) throw new Error(json.error || "Import failed.");
       if (json.questions?.length) {
+        setReviewTitle("Review imported questions");
         setImportSession(session => session + 1);
         setImportReview(json.questions);
         goTo("Questions");
@@ -258,7 +263,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       {stepError ? <p role="alert" className="text-sm text-danger">{stepError}</p> : null}
       {message && <p role="status">{message}</p>}
 
-      <fieldset disabled={busy || importBusy} className="space-y-4 min-w-0">
+      <fieldset disabled={busy || importBusy || generateBusy} className="space-y-4 min-w-0">
         {step === "Schedule" ? (
           <>
             <label className="block">Title<Input required maxLength={160} value={draft.title} onChange={e => change({ title: e.target.value })} /></label>
@@ -291,11 +296,32 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
 
         {step === "Questions" ? (
           <>
-            <div className="rounded-xl border border-line p-4 space-y-2">
-              <p className="font-semibold">Import from PDF or Word</p>
-              <p className="text-sm text-ink-muted">Review the suggested questions and choose which rows to add.</p>
-              <Input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange={e => { const f = e.target.files?.[0]; if (f) void uploadImport(f); e.target.value = ""; }} />
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                disabled={importBusy || generateBusy || draft.questions.length >= 100}
+                onClick={() => setGenerateOpen(true)}
+              >
+                Generate questions
+              </Button>
+              <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-line bg-surface-card px-4 text-[13px] font-semibold text-ink hover:border-line-strong hover:bg-surface-page">
+                Import PDF/Word
+                <Input
+                  type="file"
+                  className="sr-only"
+                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  onChange={e => { const f = e.target.files?.[0]; if (f) void uploadImport(f); e.target.value = ""; }}
+                />
+              </label>
+              {(importBusy || generateBusy) ? (
+                <span role="status" className="text-xs text-ink-muted">
+                  {generateBusy ? "Generating…" : "Importing…"}
+                </span>
+              ) : null}
             </div>
+            <p className="text-xs text-ink-muted">Generated and imported rows open for review before they are added.</p>
             <h2 className="text-xl font-bold">Questions ({draft.questions.length}/100)</h2>
             {incompleteCount > 0 ? (
               <p className="text-sm text-ink-muted">{readyCount} ready to save · {incompleteCount} incomplete (finish or remove before publishing).</p>
@@ -388,16 +414,34 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       <ImportReviewDialog
         key={importSession}
         open={Boolean(importReview)}
+        title={reviewTitle}
         questions={importReview ?? []}
         onClose={() => setImportReview(null)}
         onMerge={mergeImport}
+      />
+      <GenerateQuestionsDialog
+        open={generateOpen}
+        offeringId={offering}
+        quizId={id}
+        currentQuestionCount={draft.questions.length}
+        busy={generateBusy}
+        onOpenChange={setGenerateOpen}
+        onBusyChange={setGenerateBusy}
+        onError={setError}
+        onGenerated={(questions) => {
+          setReviewTitle("Review generated questions");
+          setImportSession((session) => session + 1);
+          setImportReview(questions);
+          goTo("Questions");
+        }}
       />
     </form>
   );
 }
 
-function ImportReviewDialog({ open, questions, onClose, onMerge }: {
+function ImportReviewDialog({ open, title, questions, onClose, onMerge }: {
   open: boolean;
+  title: string;
   questions: LecturerQuizQuestion[];
   onClose: () => void;
   onMerge: (q: LecturerQuizQuestion[]) => void;
@@ -406,7 +450,7 @@ function ImportReviewDialog({ open, questions, onClose, onMerge }: {
   return (
     <Dialog open={open} onOpenChange={v => { if (!v) onClose(); }}>
       <DialogContent className="max-h-[85vh] max-w-lg overflow-y-auto">
-        <DialogTitle>Review imported questions</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogDescription>Select the rows to add to your quiz. Edit wording on the next screen.</DialogDescription>
         <ul className="space-y-3">{questions.map((q, i) => (
           <li key={i} className="rounded-lg border border-line p-3 text-sm">

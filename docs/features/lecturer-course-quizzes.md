@@ -2,7 +2,7 @@
 
 Approved lecturers open **My courses → Quizzes**. Enrolled students open **Study → Course → Assessments → Class quizzes** or notifications linking to `/course-quizzes/{id}`.
 
-Each quiz belongs to one assigned course offering. The editor supports manual multiple-choice questions (2–6 options) and optional PDF/Word import via Gemini. Students confirm matriculation number plus read-only name and department before starting.
+Each quiz belongs to one assigned course offering. The editor supports manual multiple-choice questions (2–6 options), optional PDF/Word import via Gemini, and **Generate questions** from published course topics/lessons (10–30 new MCQs, reviewed before merge). Students confirm matriculation number plus read-only name and department before starting.
 
 ## Scheduling
 
@@ -19,9 +19,9 @@ Each quiz belongs to one assigned course offering. The editor supports manual mu
 
 ## RPCs
 
-`list_course_quizzes_v1`, `save_lecturer_quiz_v1`, `publish_lecturer_quiz_v1`, `cancel_lecturer_quiz_draft_v1`, `get_course_quiz_v1`, `start_lecturer_quiz_attempt_v1`, `save_lecturer_quiz_answer_v1`, `submit_lecturer_quiz_attempt_v1`, `lecturer_quiz_roster_v1`, `export_lecturer_quiz_results_v1`, `start_lecturer_quiz_import_v1`, `get_lecturer_quiz_import_v1`.
+`list_course_quizzes_v1`, `save_lecturer_quiz_v1`, `publish_lecturer_quiz_v1`, `cancel_lecturer_quiz_draft_v1`, `get_course_quiz_v1`, `start_lecturer_quiz_attempt_v1`, `save_lecturer_quiz_answer_v1`, `submit_lecturer_quiz_attempt_v1`, `lecturer_quiz_roster_v1`, `export_lecturer_quiz_results_v1`, `start_lecturer_quiz_import_v1`, `get_lecturer_quiz_import_v1`, `get_lecturer_quiz_generation_sources_v1`.
 
-Apply migration `20261108000100_lecturer_course_quizzes.sql` before deploying the web app.
+Topic generation uses `POST /api/lecturer-quiz-generate` (Gemini over published lesson text). Apply `20261108000100_lecturer_course_quizzes.sql` and `20261110100000_lecturer_quiz_generation_sources.sql` before deploying the web app.
 
 ## Verification
 

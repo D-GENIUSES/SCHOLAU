@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { normalizeGeminiConceptRaw } from "./normalize-concept";
 
 const mathsString = z.string().trim().min(1).max(4000);
 const workedStepSchema = z.object({ calculation: mathsString, explanation: mathsString, reading: mathsString.optional() });
@@ -102,6 +103,6 @@ export const geminiConceptResultSchema = z.object({
 
 export type ParsedGeminiConceptResult = z.infer<typeof geminiConceptResultSchema>;
 
-export function parseGeminiConceptResult(raw: unknown): ParsedGeminiConceptResult {
-  return geminiConceptResultSchema.parse(raw);
+export function parseGeminiConceptResult(raw: unknown, options?: { courseCode?: string }): ParsedGeminiConceptResult {
+  return geminiConceptResultSchema.parse(normalizeGeminiConceptRaw(raw, options));
 }

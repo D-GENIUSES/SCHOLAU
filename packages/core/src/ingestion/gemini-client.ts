@@ -48,7 +48,7 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     });
     const text = response.text?.trim();
     if (!text) throw new Error("Empty Gemini response");
-    const parsed = parseGeminiConceptResult(JSON.parse(text));
+    const parsed = parseGeminiConceptResult(parseGeminiJsonText(text), { courseCode: input.courseCode });
     const errors = [
       ...validateTeachingLessonBlocks(parsed.blocks, { courseCode: input.courseCode }),
       ...validateIngestionBattleQuestions(parsed.battle_questions),
@@ -80,6 +80,20 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
   }
 }
 
+/** Gemini often emits TeX like `\mu` / `\vec` which is invalid JSON; escape those backslashes. */
+export function parseGeminiJsonText(text: string): unknown {
+  try {
+    return JSON.parse(text);
+  } catch (first) {
+    const repaired = text.replace(/\\(?!["\\/bfnrtu])/g, "\\\\");
+    try {
+      return JSON.parse(repaired);
+    } catch {
+      throw first;
+    }
+  }
+}
+
 export async function generateGeminiJson(
   parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }>,
 ): Promise<unknown> {
@@ -95,5 +109,5 @@ export async function generateGeminiJson(
   });
   const text = response.text?.trim();
   if (!text) throw new Error("Empty Gemini response");
-  return JSON.parse(text);
+  return parseGeminiJsonText(text);
 }

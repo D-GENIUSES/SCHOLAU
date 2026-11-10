@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "tsc --noEmit -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "node --import tsx --test src/ingestion/calibration.test.ts src/ingestion/flashcards.test.ts"
+    "test": "node --import tsx --test src/ingestion/calibration.test.ts src/ingestion/flashcards.test.ts src/ingestion/gemini-quiz-from-topics.test.ts src/ingestion/normalize-concept.test.ts"
   },
   "dependencies": {
     "@google/genai": "^2.31.0",

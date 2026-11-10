@@ -7,6 +7,8 @@ export * from "./validate-lesson";
 export * from "./schemas";
 export * from "./prompts";
 export * from "./normalize-gap";
+export * from "./normalize-concept";
 export * from "./flashcards";
 export * from "./gemini-outline";
 export * from "./gemini-quiz-extract";
+export * from "./gemini-quiz-from-topics";
