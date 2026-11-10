@@ -30,7 +30,7 @@ function roleLabel(user: ManagedUser) {
   return user.roles.includes("admin") ? "Administrator" : "Unassigned";
 }
 
-export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boolean }) {
+export function AdminUserDirectory({ creationEnabled, initialManageId }: { creationEnabled: boolean; initialManageId?: string }) {
   const [onlineOpen, setOnlineOpen] = useState(false);
   const [onlinePage, setOnlinePage] = useState(0);
   const onlineUsers = useOnlineUsers(onlinePage);
@@ -88,6 +88,10 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
     return () => window.clearInterval(timer);
   }, [load]);
   useEffect(() => () => { detailGeneration.current++; }, []);
+  useEffect(() => {
+    if (!initialManageId || !/^[\da-f-]{36}$/i.test(initialManageId)) return;
+    void manage(initialManageId);
+  }, [initialManageId]);
 
   async function manage(id: string) {
     const gen = ++detailGeneration.current;
@@ -207,7 +211,7 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
         {detailNotice && <Alert tone="success" role="status">{detailNotice}</Alert>}
         {selected && <>
           <dl className="grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-ink-muted">Registered</dt><dd>{date(selected.registered_at)}</dd></div><div><dt className="text-ink-muted">Last sign-in</dt><dd>{date(selected.last_sign_in_at)}</dd></div><div><dt className="text-ink-muted">Account type</dt><dd>{roleLabel(selected)}</dd></div><div><dt className="text-ink-muted">Email</dt><dd>{selected.email_verified ? "Verified" : "Unverified"}</dd></div><div><dt className="text-ink-muted">Access</dt><dd>{selected.deactivated_at ? `Frozen since ${date(selected.deactivated_at)}` : "Active"}</dd></div></dl>
-          {!selected.has_profile && <Alert tone="warning">This account has no application profile. Account actions are unavailable.</Alert>}
+          {!selected.has_profile && <Alert tone="warning">This account has no application profile yet. You can still permanently delete the sign-in account if needed.</Alert>}
           {protectedAccount && <Alert>Administrator accounts are protected from suspension and deletion.</Alert>}
           <AdminAwardXp key={selected.id} user={selected} disabled={busy} onBusyChange={value => { busyRef.current = value; setBusy(value); }} />
           {action ? <form className="flex flex-col gap-4 rounded-control border border-line p-4" onSubmit={event => { event.preventDefault(); void save(action); }} onChange={() => { requestKey.current = null; }}>
@@ -219,7 +223,10 @@ export function AdminUserDirectory({ creationEnabled }: { creationEnabled: boole
               <div className="flex flex-wrap gap-2"><Button type="submit" variant={action === "delete" ? "danger" : "primary"} loading={busy}>{action === "delete" ? "Permanently delete account" : action === "freeze" ? "Confirm freeze" : "Confirm reactivation"}</Button><Button variant="outline" onClick={() => { setAction(null); setDetailError(null); requestKey.current = null; }}>Cancel</Button></div>
             </fieldset>
           </form> : <>
-            {selected.has_profile && !protectedAccount && <div className="flex flex-wrap gap-2"><Button variant="outline" disabled={busy} onClick={() => { setAction(selected.deactivated_at ? "reactivate" : "freeze"); setReason(""); setDetailError(null); requestKey.current = null; }}>{selected.deactivated_at ? "Reactivate account" : "Freeze account"}</Button><Button variant="danger" disabled={busy || !selected.email} onClick={() => { setAction("delete"); setReason(""); setConfirmation(""); setDetailError(null); requestKey.current = null; }}>Delete account</Button></div>}
+            {!protectedAccount && <div className="flex flex-wrap gap-2">
+              {selected.has_profile ? <Button variant="outline" disabled={busy} onClick={() => { setAction(selected.deactivated_at ? "reactivate" : "freeze"); setReason(""); setDetailError(null); requestKey.current = null; }}>{selected.deactivated_at ? "Reactivate account" : "Freeze account"}</Button> : null}
+              <Button variant="danger" disabled={busy || !selected.email} onClick={() => { setAction("delete"); setReason(""); setConfirmation(""); setDetailError(null); requestKey.current = null; }}>Permanently delete account</Button>
+            </div>}
             {selected.roles.includes("lecturer") ? <form className="mt-2 flex flex-col gap-4 border-t border-line pt-4" onSubmit={event => { event.preventDefault(); void save("courses"); }}>
               <h3 className="font-bold">Teaching assignments</h3>
               <p className="text-sm text-ink-muted">Select the published course offerings this lecturer teaches. Clear all selections to remove their assignments.</p>

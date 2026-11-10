@@ -6,16 +6,17 @@ import { AdminPageHeader } from "@/components/admin/shared";
 import { ServiceUnavailable } from "@/components/service-unavailable";
 
 export const metadata: Metadata = { title: "Users" };
-export default async function AdminUsersPage() {
+export default async function AdminUsersPage({ searchParams }: { searchParams: Promise<{ manage?: string }> }) {
   const session = await requireSession("/admin/users");
   if (session.kind === "unavailable") return <ServiceUnavailable reference={session.reference} message={session.message} />;
   if (!session.profile.roles.includes("admin")) return null;
+  const { manage } = await searchParams;
   const { error } = await (await getServerSupabase()).rpc("admin_user_creation_access_v1");
   const enabled = !error && Boolean(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY);
   return (
     <>
-      <AdminPageHeader title="Users" description="Manage accounts, award XP, and assign teaching courses." />
-      <AdminUserDirectory creationEnabled={enabled} />
+      <AdminPageHeader title="Users" description="Search students and lecturers, freeze access, permanently delete accounts, award XP, and assign teaching courses." />
+      <AdminUserDirectory creationEnabled={enabled} initialManageId={manage} />
     </>
   );
 }
