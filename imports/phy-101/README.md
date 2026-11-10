@@ -11,8 +11,12 @@ Gemini inline ingestion rejects the full file, so pages were recompressed and sp
 | `PHY101-CH-part3-p34-50.pdf` | 34–50 |
 | `PHY101-CH-part4-p51-67.pdf` | 51–67 |
 
-Ingest + publish:
+Ingest + publish (local Gemini + import; preferred while prod worker lacks normalize fixes):
 
 ```
-node --env-file=apps/web/.env.local apps/web/scripts/run-phy101-ingestion.mjs
+cd packages/core
+$env:NODE_PATH = "..\..\apps\web\node_modules;..\..\node_modules"
+npx tsx --env-file=../../apps/web/.env.local ../../apps/web/scripts/run-phy101-local-ingest.mjs
 ```
+
+Retry selected parts only: `$env:PHY101_ONLY = "2,3"`.

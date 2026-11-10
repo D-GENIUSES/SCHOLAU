@@ -64,7 +64,7 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     if ([...parsed.learning_questions, ...parsed.battle_questions].some(q => placeholders.includes(q.prompt.trim()))) {
       throw new Error("Source generation returned placeholder questions.");
     }
-    const flashcards = dedupeFlashcardsByFront(
+    let flashcards = dedupeFlashcardsByFront(
       parsed.flashcards
         .map((card) => ({
           ...card,
@@ -73,6 +73,15 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
         }))
         .filter((card) => card.front.length > 0 && card.back.length > 0),
     );
+    if (!flashcards.length) {
+      flashcards = [
+        {
+          front: briefFlashcardFront(parsed.title),
+          back: briefFlashcardBack(parsed.objective ?? "Explain the main idea from this lesson."),
+          tag: "focus" as const,
+        },
+      ].filter((card) => card.front.length > 0 && card.back.length > 0);
+    }
     if (!flashcards.length) throw new Error("Source generation did not return usable flashcards.");
     return { ...parsed, flashcards } as GeminiConceptResult;
   } catch (cause) {
@@ -82,16 +91,24 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
 
 /** Gemini often emits TeX like `\mu` / `\vec` which is invalid JSON; escape those backslashes. */
 export function parseGeminiJsonText(text: string): unknown {
-  try {
-    return JSON.parse(text);
-  } catch (first) {
-    const repaired = text.replace(/\\(?!["\\/bfnrtu])/g, "\\\\");
+  const attempts = [
+    text,
+    // Escape backslashes that are not valid JSON escapes (common with TeX).
+    text.replace(/\\(?!["\\/bfnrtu])/g, "\\\\"),
+    // Also neutralize broken \uXXXX sequences Gemini sometimes emits mid-TeX.
+    text
+      .replace(/\\(?!["\\/bfnrtu])/g, "\\\\")
+      .replace(/\\u(?![0-9a-fA-F]{4})/g, "\\\\u"),
+  ];
+  let lastError: unknown;
+  for (const candidate of attempts) {
     try {
-      return JSON.parse(repaired);
-    } catch {
-      throw first;
+      return JSON.parse(candidate);
+    } catch (e) {
+      lastError = e;
     }
   }
+  throw lastError instanceof Error ? lastError : new Error("Invalid Gemini JSON");
 }
 
 export async function generateGeminiJson(
