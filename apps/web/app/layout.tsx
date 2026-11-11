@@ -8,6 +8,7 @@ import { LAUNCH_BOOTSTRAP } from "@/lib/launch-session.mjs";
 import { startupImages } from "@/lib/startup-images";
 import { Providers } from "./providers";
 import "./globals.css";
+import { adsensePublisher } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL(SITE_URL),
   verification: { google: "-pTEF3WmHVIBlSQ5aZ7fS2rEyPDtTjB1iO8KpiGIYjY" },
+  other: adsensePublisher ? { "google-adsense-account": adsensePublisher } : undefined,
   robots: { index: false, follow: true },
   openGraph: { type: "website", siteName: "ScholAu", title: "ScholAu" },
   twitter: { card: "summary_large_image" },

@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import type { HomeSummary, Profile } from "@scholau/api";
 import type { ReactNode } from "react";
 import { useHomeSummary, useProfile, useUserSignals } from "@scholau/api/react";
+import { StudentAd } from "./student-ad";
 import { ShellFrame } from "./shell-frame";
 import { BattleChallengeAlert } from "@/components/battle/battle-challenge-alert";
 
@@ -35,6 +36,7 @@ export function AppShell({
         streak={data?.streak}
       >
         {children}
+        <StudentAd pathname={pathname} />
       </ShellFrame>
     </>
   );
