@@ -110,7 +110,10 @@ export async function POST(request: Request) {
   try {
     const extracted = await generateQuizQuestionsFromTopics({
       courseCode,
-      sources,
+      sources: sources.map((source) => ({
+        ...source,
+        objective: source.objective ?? "",
+      })),
       questionCount,
     });
     return NextResponse.json({ questions: extracted.questions });
