@@ -2,7 +2,7 @@
 
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useQueries } from "@tanstack/react-query";
 import type { LecturerOffering, LecturerQuiz } from "@scholau/core";
 import { lecturerQuizApi } from "@/lib/lecturer-quiz-api";
@@ -11,6 +11,7 @@ import { QuizStateBadge } from "@/components/lecturer-quizzes/quiz-ui";
 
 const api = () => lecturerQuizApi(getBrowserSupabase());
 const row = "flex min-h-12 items-center gap-3 rounded-card border border-line bg-surface-card px-3.5 py-2.5 hover:bg-surface-tint focus-visible:outline-2 focus-visible:outline-brand-primary sm:px-4";
+const emptySubscribe = () => () => {};
 
 function pickAttention(items: LecturerQuiz[]) {
   const now = Date.now();
@@ -28,11 +29,9 @@ function isQuizRow(value: unknown): value is LecturerQuiz {
 }
 
 export function LecturerQuizAttention({ courses }: { courses: Pick<LecturerOffering, "id" | "code" | "title">[] }) {
-  const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
-
+  const isClient = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const slice = courses.slice(0, 12);
-  const active = ready && slice.length > 0;
+  const active = isClient && slice.length > 0;
   const queries = useQueries({
     queries: slice.map(c => ({
       queryKey: ["lecturer-quiz-attention", c.id],
