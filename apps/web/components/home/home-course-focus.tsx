@@ -78,19 +78,28 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         onOpenChange={setMenuOpen}
         onSelect={selectOffering}
       />
+
       <header className="home-course-heading">
-        <div>
-          <h1>{enrolled.title}</h1>
+        <div className="home-course-heading-copy">
           <p>{enrolled.code}</p>
+          <h1>{enrolled.title}</h1>
         </div>
         {overview && !isPreviewOffering ? (
-          <Button asChild variant="secondary" size="sm" className="w-full sm:w-auto">
-            <Link href={`/study/courses/${overview.offering_id}/assessments`}>
-              Open assessments <ChevronRight className="size-4" aria-hidden />
-            </Link>
-          </Button>
+          <div className="home-course-heading-actions">
+            {continueLessonId ? (
+              <Button asChild variant="outline" size="sm" className="w-full sm:w-auto">
+                <Link href={`/study/lessons/${continueLessonId}`}>Continue</Link>
+              </Button>
+            ) : null}
+            <Button asChild size="sm" className="w-full sm:w-auto">
+              <Link href={`/study/courses/${overview.offering_id}/assessments`}>
+                Open assessments <ChevronRight className="size-4" aria-hidden />
+              </Link>
+            </Button>
+          </div>
         ) : null}
       </header>
+
       {!isPreviewOffering && overviewQuery.isError ? (
         <ErrorState error={overviewQuery.error} onRetry={() => void overviewQuery.refetch()} />
       ) : (

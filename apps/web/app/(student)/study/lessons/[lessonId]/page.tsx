@@ -15,14 +15,14 @@ import { XpCapNotice } from "@/components/lesson/xp-cap-notice";
 import { ReportDialog } from "@/components/report-dialog";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge, PageHeader } from "@/components/ui/misc";
+import { Badge } from "@/components/ui/misc";
 import { EmptyState, ErrorState, InlineError, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
 import { buildExamFlashcards, lessonCardText } from "@/lib/lesson-exam-cards";
 import { playLessonCompleteSound } from "@/lib/feedback-sounds";
 import { celebrationPayload, emitStreakCelebration } from "@/lib/streak-celebration-bus";
 import { shouldCelebrateStreak } from "@/lib/streak-celebration";
+import { cn } from "@/lib/utils";
 
 export default function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -120,134 +120,173 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
     : null;
   const hasBlockContent = lesson.blocks.length > 0;
   const hasStructuredMaths = lesson.blocks.some(block => block.type === "worked_example" || block.type === "equation");
+  const needsDeck = Boolean(examCards.length) && !hasStructuredMaths && !alreadyCompleted;
   const canMarkComplete = isCompleted || deckFinished || alreadyCompleted || hasStructuredMaths;
+  const showUnlockHint = !isCompleted && hasBlockContent && needsDeck && !canMarkComplete;
 
   return (
-    <article className="mx-auto flex max-w-reading flex-col">
-      <nav aria-label="Breadcrumb" className="mb-4">
-        <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
-          <li>
-            <Link href="/home" className="font-semibold text-brand-primary hover:underline">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden>
-            <ChevronRight className="size-4" />
-          </li>
-          <li>
-            <Link href={`/study/courses/${lesson.offering_id}`} className="font-semibold text-brand-primary hover:underline">
-              {courseTitle}
-            </Link>
-          </li>
-          {lesson.module ? (
-            <>
-              <li aria-hidden>
-                <ChevronRight className="size-4" />
-              </li>
-              <li aria-current="page">{lesson.module.title}</li>
-            </>
+    <article className="lesson-study mx-auto flex max-w-reading flex-col pb-28 sm:pb-8">
+      <header className="lesson-study-header">
+        <nav aria-label="Breadcrumb" className="mb-3">
+          <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-muted">
+            <li>
+              <Link href="/home" className="font-semibold text-brand-primary hover:underline">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden>
+              <ChevronRight className="size-4" />
+            </li>
+            <li>
+              <Link href={`/study/courses/${lesson.offering_id}`} className="font-semibold text-brand-primary hover:underline">
+                {courseTitle}
+              </Link>
+            </li>
+            {lesson.module ? (
+              <>
+                <li aria-hidden>
+                  <ChevronRight className="size-4" />
+                </li>
+                <li aria-current="page" className="truncate">
+                  {lesson.module.title}
+                </li>
+              </>
+            ) : null}
+          </ol>
+        </nav>
+
+        <h1 className="text-balance text-2xl font-bold tracking-tight sm:text-[1.75rem]">{lesson.title}</h1>
+
+        <div className="mt-3 flex flex-col gap-2">
+          {lesson.objective ? (
+            <p className="flex items-start gap-2 text-sm text-ink-muted">
+              <Target className="mt-0.5 size-4 shrink-0 text-brand-primary" aria-hidden />
+              <span className="line-clamp-2">
+                <span className="font-semibold text-ink">Objective: </span>
+                {lesson.objective}
+              </span>
+            </p>
           ) : null}
-        </ol>
-      </nav>
-
-      <PageHeader title={lesson.title} />
-
-      <div className="mb-6 flex flex-col gap-2">
-        {lesson.objective ? (
-          <p className="flex items-start gap-2">
-            <Target className="mt-1 size-4 shrink-0 text-brand-primary" aria-hidden />
-            <span>
-              <span className="font-semibold">Objective: </span>
-              {lesson.objective}
+          <div className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
+            <span className="inline-flex items-center gap-1">
+              <Clock className="size-4" aria-hidden /> About {pluralize(lesson.estimated_minutes, "minute")}
             </span>
-          </p>
-        ) : null}
-        <div className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-          <span className="inline-flex items-center gap-1">
-            <Clock className="size-4" aria-hidden /> About {pluralize(lesson.estimated_minutes, "minute")}
-          </span>
-          {isCompleted ? (
-            <Badge tone="success">
-              <CheckCircle2 className="size-3.5" aria-hidden /> Completed{completedAt ? ` ${formatDate(completedAt)}` : ""}
-            </Badge>
-          ) : null}
+            {isCompleted ? (
+              <Badge tone="success">
+                <CheckCircle2 className="size-3.5" aria-hidden /> Completed
+                {completedAt ? ` ${formatDate(completedAt)}` : ""}
+              </Badge>
+            ) : null}
+          </div>
         </div>
-      </div>
-
-      <LessonClips lesson={lesson} />
+      </header>
 
       {hasBlockContent ? (
         <>
-          <LessonStepper key={lesson.lesson_version_id} blocks={lesson.blocks} lessonId={lesson.lesson_id} version={lesson.lesson_version_id} />
+          <section className="lesson-study-phase" aria-labelledby="lesson-read-heading">
+            <p id="lesson-read-heading" className="lesson-phase-label">
+              Read
+            </p>
+            <LessonStepper key={lesson.lesson_version_id} blocks={lesson.blocks} lessonId={lesson.lesson_id} version={lesson.lesson_version_id} />
+          </section>
+
+          <details className="lesson-study-videos">
+            <summary>Videos</summary>
+            <div className="lesson-study-videos-body">
+              <LessonClips lesson={lesson} embedded />
+            </div>
+          </details>
+
           {examCards.length ? (
-            <section className="mt-8" aria-labelledby="lesson-flashcards-heading">
-              <h2 id="lesson-flashcards-heading" className="text-lg font-bold">Quick check</h2>
-              <p className="mt-1 mb-3 text-sm text-ink-muted">Each card is one short point from this lesson.</p>
+            <section className="lesson-study-phase lesson-study-check" aria-labelledby="lesson-flashcards-heading">
+              <div className="mb-4">
+                <p className="lesson-phase-label">Quick check</p>
+                <h2 id="lesson-flashcards-heading" className="text-xl font-bold tracking-tight">
+                  Flip through the key points
+                </h2>
+              </div>
               <FlashcardDeck cards={examCards} onLastCardReached={hasStructuredMaths ? undefined : () => setDeckFinished(true)} />
+              {showUnlockHint ? (
+                <p className="mt-3 text-center text-sm text-ink-muted">Reach the last card to unlock Mark as complete.</p>
+              ) : null}
             </section>
           ) : null}
-          <p className="mt-4 text-sm text-ink-muted">Read each section, then flip the cards before you mark this lesson complete.</p>
         </>
       ) : (
         <EmptyState title="This lesson has no content yet" description={COPY.empty.contentRemoved} />
       )}
 
-      {!isCompleted && hasBlockContent && !canMarkComplete ? (
-        <p className="text-sm text-ink-muted">Flip through to the last flashcard to unlock Mark as complete.</p>
-      ) : null}
-
-      <Card className="mt-8">
-        <CardContent className="flex flex-col gap-4 pt-4 sm:pt-6">
-          <div role="status" aria-live="polite" className="flex flex-col gap-3">
-            {complete.data ? <CompletionFeedback result={complete.data} /> : null}
-          </div>
-          {complete.isError ? (
-            <div className="flex flex-col gap-2">
-              <InlineError error={complete.error} />
-              <div>
-                <Button variant="outline" onClick={() => markComplete(true)}>
-                  <RefreshCw className="size-4" aria-hidden /> Try again
-                </Button>
-              </div>
+      <section className="lesson-study-phase mt-8" aria-labelledby="lesson-done-heading">
+        <p id="lesson-done-heading" className="lesson-phase-label">
+          Done
+        </p>
+        <div role="status" aria-live="polite" className="mb-3 flex flex-col gap-3">
+          {complete.data ? <CompletionFeedback result={complete.data} /> : null}
+        </div>
+        {complete.isError ? (
+          <div className="mb-3 flex flex-col gap-2">
+            <InlineError error={complete.error} />
+            <div>
+              <Button variant="outline" onClick={() => markComplete(true)}>
+                <RefreshCw className="size-4" aria-hidden /> Try again
+              </Button>
             </div>
-          ) : null}
-          <div className="flex flex-wrap items-center gap-2">
-            {isCompleted ? (
-              reviewHref ? (
-                <Button asChild>
-                  <Link href={reviewHref}>Review this lesson</Link>
-                </Button>
-              ) : lesson.next_lesson_id ? (
-                <Button asChild>
-                  <Link href={`/study/lessons/${lesson.next_lesson_id}`}>
-                    Next lesson <ArrowRight className="size-4" aria-hidden />
-                  </Link>
-                </Button>
-              ) : null
-            ) : (
-              <>
-                <Button
-                  onClick={() => markComplete()}
-                  loading={complete.isPending}
-                  disabled={complete.isError || !canMarkComplete}
-                >
-                  <CheckCircle2 className="size-4" aria-hidden /> Mark as complete
-                </Button>
-                {reviewHref ? (
-                  <Button asChild variant="outline">
-                    <Link href={reviewHref}>Review this lesson</Link>
-                  </Button>
-                ) : null}
-              </>
-            )}
-            <ReportDialog targetType="lesson" targetId={lesson.lesson_id} triggerLabel="Report this lesson" />
           </div>
-        </CardContent>
-      </Card>
+        ) : null}
+      </section>
 
-      <nav aria-label="Lesson navigation" className="mt-6 flex flex-wrap justify-between gap-2">
+      <div
+        className={cn(
+          "lesson-complete-bar",
+          canMarkComplete && !isCompleted && "is-ready",
+          isCompleted && "is-done",
+        )}
+      >
+        <div className="lesson-complete-bar-inner">
+          {isCompleted ? (
+            reviewHref ? (
+              <Button asChild>
+                <Link href={reviewHref}>Review this lesson</Link>
+              </Button>
+            ) : lesson.next_lesson_id ? (
+              <Button asChild>
+                <Link href={`/study/lessons/${lesson.next_lesson_id}`}>
+                  Next lesson <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
+            ) : (
+              <Button asChild variant="outline">
+                <Link href={`/study/courses/${lesson.offering_id}`}>Back to course</Link>
+              </Button>
+            )
+          ) : (
+            <Button
+              onClick={() => markComplete()}
+              loading={complete.isPending}
+              disabled={complete.isError || !canMarkComplete}
+            >
+              <CheckCircle2 className="size-4" aria-hidden /> Mark as complete
+            </Button>
+          )}
+          {isCompleted && reviewHref && lesson.next_lesson_id ? (
+            <Button asChild variant="outline">
+              <Link href={`/study/lessons/${lesson.next_lesson_id}`}>
+                Next lesson <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </Button>
+          ) : null}
+          {!isCompleted && reviewHref ? (
+            <Button asChild variant="outline">
+              <Link href={reviewHref}>Review</Link>
+            </Button>
+          ) : null}
+          <ReportDialog targetType="lesson" targetId={lesson.lesson_id} triggerLabel="Report" />
+        </div>
+      </div>
+
+      <nav aria-label="Lesson navigation" className="mt-6 flex flex-wrap justify-between gap-2 text-sm">
         {lesson.previous_lesson_id ? (
-          <Button asChild variant="outline">
+          <Button asChild variant="ghost" size="sm">
             <Link href={`/study/lessons/${lesson.previous_lesson_id}`}>
               <ArrowLeft className="size-4" aria-hidden /> Previous lesson
             </Link>
@@ -256,13 +295,13 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
           <span />
         )}
         {lesson.next_lesson_id ? (
-          <Button asChild variant="outline">
+          <Button asChild variant="ghost" size="sm">
             <Link href={`/study/lessons/${lesson.next_lesson_id}`}>
               Next lesson <ArrowRight className="size-4" aria-hidden />
             </Link>
           </Button>
         ) : (
-          <Button asChild variant="outline">
+          <Button asChild variant="ghost" size="sm">
             <Link href={`/study/courses/${lesson.offering_id}`}>Back to course</Link>
           </Button>
         )}

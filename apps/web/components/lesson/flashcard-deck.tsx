@@ -35,19 +35,29 @@ function FlashcardBack({ text }: { text: string }) {
   );
 }
 
+function tagLabel(tag: ExamFlashcard["tag"]) {
+  if (!tag) return null;
+  return tag.charAt(0).toUpperCase() + tag.slice(1);
+}
+
 export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [visited, setVisited] = useState(() => new Set<number>([0]));
+  const [slideDir, setSlideDir] = useState<"next" | "prev" | null>(null);
   const liveId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
 
   const total = cards.length;
   const card = cards[index];
+  const isLast = index >= total - 1;
+  const deckDone = visited.size >= total && isLast;
 
   const goTo = useCallback(
     (next: number) => {
       const clamped = Math.max(0, Math.min(total - 1, next));
+      if (clamped === index) return;
+      setSlideDir(clamped > index ? "next" : "prev");
       setIndex(clamped);
       setFlipped(false);
       setVisited((prev) => {
@@ -55,12 +65,21 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         copy.add(clamped);
         return copy;
       });
-      if (clamped === total - 1) onLastCardReached?.();
     },
-    [onLastCardReached, total],
+    [index, total],
   );
 
   const flip = useCallback(() => setFlipped((v) => !v), []);
+
+  useEffect(() => {
+    if (total > 0 && index === total - 1) onLastCardReached?.();
+  }, [index, onLastCardReached, total]);
+
+  useEffect(() => {
+    if (!slideDir) return;
+    const timer = window.setTimeout(() => setSlideDir(null), 280);
+    return () => window.clearTimeout(timer);
+  }, [index, slideDir]);
 
   useEffect(() => {
     const node = rootRef.current;
@@ -88,9 +107,10 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
 
   if (!card) return null;
 
+  const tag = tagLabel(card.tag);
 
   return (
-    <div ref={rootRef} className="flashcard-deck" tabIndex={-1}>
+    <div ref={rootRef} className="flashcard-deck" tabIndex={0}>
       <div className="flashcard-deck-meta">
         <p className="flashcard-deck-count" aria-live="polite">
           {index + 1} / {total}
@@ -100,31 +120,37 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
             <li key={c.id} className={cn("flashcard-dot", i === index && "is-current", visited.has(i) && "is-seen")} />
           ))}
         </ul>
+        {deckDone ? <p className="flashcard-deck-done">Deck complete</p> : <span className="flashcard-deck-done-spacer" aria-hidden />}
       </div>
 
-      <button
-        type="button"
-        className={cn("flashcard-scene", flipped && "is-flipped")}
-        onClick={flip}
-        aria-pressed={flipped}
-        aria-label={flipped ? "Show question" : "Show answer"}
-        aria-describedby={liveId}
-      >
-        <div className="flashcard-inner">
-          <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
-            <div className="flashcard-content">
-              <p className="flashcard-text">
-                <MathText text={lessonCardText(card.front)} />
-              </p>
+      <div className={cn("flashcard-stage", slideDir === "next" && "is-slide-next", slideDir === "prev" && "is-slide-prev")}>
+        <button
+          type="button"
+          className={cn("flashcard-scene", flipped && "is-flipped")}
+          onClick={flip}
+          aria-pressed={flipped}
+          aria-label={flipped ? "Show question" : "Show answer"}
+          aria-describedby={liveId}
+        >
+          <div className="flashcard-inner">
+            <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
+              {tag ? <span className="flashcard-tag">{tag}</span> : null}
+              <div className="flashcard-content">
+                <p className="flashcard-text">
+                  <MathText text={lessonCardText(card.front)} />
+                </p>
+              </div>
+              <p className="flashcard-hint">Tap to flip · Space</p>
+            </div>
+            <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
+              {tag ? <span className="flashcard-tag">{tag}</span> : null}
+              <div className="flashcard-content">
+                <FlashcardBack text={card.back} />
+              </div>
             </div>
           </div>
-          <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-            <div className="flashcard-content">
-              <FlashcardBack text={card.back} />
-            </div>
-          </div>
-        </div>
-      </button>
+        </button>
+      </div>
 
       <p id={liveId} className="sr-only">
         {flipped ? "Answer side showing" : "Question side showing"}
@@ -134,12 +160,13 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index - 1)} disabled={index === 0}>
           <ArrowLeft className="size-4" aria-hidden /> Previous
         </Button>
-        <Button type="button" variant="ghost" size="sm" onClick={flip}>{flipped ? "Question" : "Reveal"}</Button>
+        <Button type="button" variant={flipped ? "ghost" : "default"} size="sm" onClick={flip}>
+          {flipped ? "Question" : "Reveal"}
+        </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
           Next <ArrowRight className="size-4" aria-hidden />
         </Button>
       </nav>
-
     </div>
   );
 }

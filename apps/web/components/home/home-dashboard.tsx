@@ -6,7 +6,7 @@ export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
 
   return (
     <div className="home-dashboard compact-home home-dashboard-course">
-      <header className="home-welcome home-welcome-compact">
+      <header className="home-welcome home-welcome-compact home-welcome-panel">
         <div>
           <h1>
             Hi, <span>{name}</span>
