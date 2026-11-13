@@ -41,8 +41,8 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
     if (summary.continue_learning?.offering_id === offeringId && summary.continue_learning.title) {
       return summary.continue_learning.title;
     }
-    for (const module of overview.modules) {
-      const lesson = module.lessons.find((item) => item.lesson_id === continueLessonId);
+    for (const courseModule of overview.modules) {
+      const lesson = courseModule.lessons.find((item) => item.lesson_id === continueLessonId);
       if (lesson) return lesson.title;
     }
     return null;

@@ -160,7 +160,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index - 1)} disabled={index === 0}>
           <ArrowLeft className="size-4" aria-hidden /> Previous
         </Button>
-        <Button type="button" variant={flipped ? "ghost" : "default"} size="sm" onClick={flip}>
+        <Button type="button" variant={flipped ? "ghost" : "primary"} size="sm" onClick={flip}>
           {flipped ? "Question" : "Reveal"}
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
