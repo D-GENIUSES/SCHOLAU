@@ -36,6 +36,8 @@ function FlashcardBack({ text }: { text: string }) {
 }
 
 function tagLabel(tag: ExamFlashcard["tag"]) {
+  if (tag === "tip") return "Exam tip";
+  if (tag === "section" || tag === "focus" || tag === "recap") return "Note";
   if (!tag) return null;
   return tag.charAt(0).toUpperCase() + tag.slice(1);
 }
@@ -129,18 +131,18 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
           className={cn("flashcard-scene", flipped && "is-flipped")}
           onClick={flip}
           aria-pressed={flipped}
-          aria-label={flipped ? "Show question" : "Show answer"}
+          aria-label={flipped ? "Show topic" : "Show notes"}
           aria-describedby={liveId}
         >
           <div className="flashcard-inner">
             <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
               {tag ? <span className="flashcard-tag">{tag}</span> : null}
               <div className="flashcard-content">
-                <p className="flashcard-text">
+                <p className="flashcard-text flashcard-front-label">
                   <MathText text={lessonCardText(card.front)} />
                 </p>
               </div>
-              <p className="flashcard-hint">Tap to flip · Space</p>
+              <p className="flashcard-hint">Tap for notes · Space</p>
             </div>
             <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
               {tag ? <span className="flashcard-tag">{tag}</span> : null}
@@ -153,7 +155,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       </div>
 
       <p id={liveId} className="sr-only">
-        {flipped ? "Answer side showing" : "Question side showing"}
+        {flipped ? "Notes showing" : "Topic showing"}
       </p>
 
       <nav className="flashcard-nav" aria-label="Card navigation">
@@ -161,7 +163,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
           <ArrowLeft className="size-4" aria-hidden /> Previous
         </Button>
         <Button type="button" variant={flipped ? "ghost" : "primary"} size="sm" onClick={flip}>
-          {flipped ? "Question" : "Reveal"}
+          {flipped ? "Topic" : "Notes"}
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
           Next <ArrowRight className="size-4" aria-hidden />

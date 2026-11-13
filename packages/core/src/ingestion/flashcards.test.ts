@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { briefFlashcardBack, briefFlashcardFront, solutionLines } from "./flashcards";
+import { briefFlashcardBack, briefFlashcardFront, briefFlashcardLabel, solutionLines } from "./flashcards";
+
+test("flashcard topic labels stay short without forcing a question", () => {
+  assert.equal(briefFlashcardLabel("Propositional logic"), "Propositional logic");
+  assert.equal(briefFlashcardLabel("Exam focus: Derivatives"), "Derivatives");
+  assert.ok(briefFlashcardLabel("A very long topic title that should truncate before it overwhelms a compact mobile study card on a lesson page").length <= 96);
+  assert.equal(/\?$/.test(briefFlashcardLabel("Rate of change")), false);
+});
 
 test("flashcard fronts stay short", () => {
   const long = "How would you explain the complete historical development of propositional logic from Aristotle through modern symbolic systems in examination answers?";

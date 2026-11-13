@@ -199,10 +199,10 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
 
           {examCards.length ? (
             <section className="lesson-study-phase lesson-study-check" aria-labelledby="lesson-flashcards-heading">
-              <div className="mb-4">
-                <p className="lesson-phase-label">Quick check</p>
-                <h2 id="lesson-flashcards-heading" className="text-xl font-bold tracking-tight">
-                  Flip through the key points
+              <div className="mb-3">
+                <p className="lesson-phase-label">Study notes</p>
+                <h2 id="lesson-flashcards-heading" className="text-lg font-bold tracking-tight sm:text-xl">
+                  Compact recap
                 </h2>
               </div>
               <FlashcardDeck cards={examCards} onLastCardReached={hasStructuredMaths ? undefined : () => setDeckFinished(true)} />

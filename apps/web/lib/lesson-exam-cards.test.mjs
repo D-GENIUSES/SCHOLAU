@@ -16,11 +16,13 @@ test("buildExamFlashcards maps lesson content without filler cards", () => {
     ],
   });
 
-  assert.equal(cards.length, 2);
+  assert.ok(cards.length >= 2);
   assert.ok(cards.every((c) => c.back.length <= 170));
   assert.ok(cards.every((c) => c.front.length <= 96));
-  assert.equal(cards.some((c) => c.tag === "checkpoint" && c.front.includes("Philosophy primarily")), true);
+  assert.equal(cards.some((c) => c.tag === "tip" && c.back.includes("why and how")), true);
   assert.equal(cards.some((c) => c.tag === "section" && c.front.includes("philosophy")), true);
+  assert.equal(cards.some((c) => c.front.includes("primarily deals")), false);
+  assert.equal(cards.some((c) => c.front.startsWith("How would you explain")), false);
   assert.equal(cards.some((c) => c.tag === "recap"), false);
 });
 

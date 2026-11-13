@@ -1,7 +1,7 @@
 import type { BattleMix, GeminiConceptResult } from "./types";
 import { parseGeminiConceptResult } from "./schemas";
 import { buildIngestionSystemPrompt } from "./prompts";
-import { briefFlashcardBack, briefFlashcardFront } from "./flashcards";
+import { briefFlashcardBack, briefFlashcardLabel } from "./flashcards";
 import { dedupeFlashcardsByFront } from "./normalize-gap";
 import { validateIngestionBattleQuestions, validateTeachingLessonBlocks } from "./validate-lesson";
 
@@ -68,7 +68,7 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
       parsed.flashcards
         .map((card) => ({
           ...card,
-          front: briefFlashcardFront(card.front),
+          front: briefFlashcardLabel(card.front),
           back: briefFlashcardBack(card.back),
         }))
         .filter((card) => card.front.length > 0 && card.back.length > 0),
@@ -76,7 +76,7 @@ export async function generateConceptFromSource(input: GeminiGenerateInput): Pro
     if (!flashcards.length) {
       flashcards = [
         {
-          front: briefFlashcardFront(parsed.title),
+          front: briefFlashcardLabel(parsed.title),
           back: briefFlashcardBack(parsed.objective ?? "Explain the main idea from this lesson."),
           tag: "focus" as const,
         },

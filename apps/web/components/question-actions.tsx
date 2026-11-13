@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { studyInvitation, studyShareErrorMessage, type StudyLink, type StudyReport, type StudyShareErrorCode, type StudySource } from "@/lib/shared-study";
+import { studyInvitation, studyShareErrorMessage, studyShareText, type StudyLink, type StudyReport, type StudyShareErrorCode, type StudySource } from "@/lib/shared-study";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
 export function QuestionActions({
@@ -151,26 +151,27 @@ function ShareDialog({
   }, [existingLink, source]);
 
   const invitation = link ? studyInvitation(link.topic) : "";
+  const shareText = link ? studyShareText(link.topic, link.url) : "";
 
   async function copy(instagram = false) {
     if (!link) return;
     try {
-      await navigator.clipboard.writeText(link.url);
-      setStatus(instagram ? "Link copied. Open Instagram and paste it into a direct message." : "Link copied.");
+      await navigator.clipboard.writeText(shareText);
+      setStatus(instagram ? "Invite copied. Open Instagram and paste it into a direct message." : "Invite copied.");
     } catch {
       setManualCopy(true);
-      setStatus(instagram ? "Copy the link below, then paste it into an Instagram direct message." : "Select and copy the link below.");
+      setStatus(instagram ? "Copy the invite below, then paste it into an Instagram direct message." : "Select and copy the invite below.");
     }
   }
 
   async function nativeShare() {
     if (!link) return;
     try {
-      await navigator.share({ text: invitation, url: link.url });
+      await navigator.share({ text: shareText });
     } catch (error) {
       if (!(error instanceof DOMException && error.name === "AbortError")) {
         setManualCopy(true);
-        setStatus("Sharing is unavailable. You can copy the link below.");
+        setStatus("Sharing is unavailable. You can copy the invite below.");
       }
     }
   }
@@ -184,14 +185,14 @@ function ShareDialog({
           <>
             <p className="rounded-control bg-surface-tint p-3 text-sm">{invitation}</p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              <Button asChild variant="outline"><a target="_blank" rel="noopener noreferrer" href={`https://wa.me/?text=${encodeURIComponent(`${invitation}\n${link.url}`)}`}>WhatsApp</a></Button>
+              <Button asChild variant="outline"><a target="_blank" rel="noopener noreferrer" href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}>WhatsApp</a></Button>
               <Button asChild variant="outline"><a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link.url)}`}>Facebook</a></Button>
               <Button type="button" variant="outline" onClick={() => void copy(true)}>Instagram</Button>
               {typeof navigator.share === "function" ? <Button type="button" variant="outline" onClick={() => void nativeShare()}>More options</Button> : null}
-              <Button type="button" variant="outline" onClick={() => void copy()}><Copy className="size-4" aria-hidden /> Copy link</Button>
+              <Button type="button" variant="outline" onClick={() => void copy()}><Copy className="size-4" aria-hidden /> Copy invite</Button>
             </div>
             <p role="status" className="empty:hidden text-sm text-ink-muted">{status}</p>
-            {manualCopy ? <input className="min-h-11 w-full rounded-control border border-line px-3 text-sm" aria-label="Share link" readOnly value={link.url} onFocus={(event) => event.currentTarget.select()} /> : null}
+            {manualCopy ? <textarea className="min-h-24 w-full rounded-control border border-line px-3 py-2 text-sm" aria-label="Share invite" readOnly value={shareText} onFocus={(event) => event.currentTarget.select()} /> : null}
           </>
         ) : <p role="status" className="text-sm text-ink-muted">Preparing your link…</p>}
       </DialogContent>

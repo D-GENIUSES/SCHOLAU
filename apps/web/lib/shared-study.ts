@@ -41,3 +41,7 @@ export function studyInvitation(topic: string) {
     ? `Think you can get this one right? Try this ${topic} question on ScholAu and challenge a friend.`
     : "Think you can get this one right? Try this question on ScholAu and challenge a friend.";
 }
+
+export function studyShareText(topic: string, url: string) {
+  return `${studyInvitation(topic)}\n${url}`;
+}
