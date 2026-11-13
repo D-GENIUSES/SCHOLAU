@@ -168,7 +168,7 @@ export function CourseQuizzes({
         lecturer ? (
           <EmptyState
             title="No class quizzes yet"
-            description="Create a quiz to replace Google Forms for this course. Set the open/close window, add questions, and publish to enrolled students."
+            description="Set the schedule, add questions, and publish to enrolled students."
             action={<Button asChild><Link href={`${base}/new`}>Create your first quiz</Link></Button>}
           />
         ) : <p className="text-sm text-ink-muted">Your lecturer has not published a quiz for this course yet.</p>

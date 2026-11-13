@@ -19,6 +19,14 @@ export function stripFlashcardPrefixes(text: string): string {
     .trim();
 }
 
+/** Topic label for note-style cards (no forced question mark). */
+export function briefFlashcardLabel(text: string): string {
+  const cleaned = stripFlashcardPrefixes(text).replace(/\s+/g, " ").trim();
+  if (!cleaned) return "";
+  if (cleaned.length <= FRONT_LIMIT) return cleaned;
+  return clipPoint(cleaned, FRONT_LIMIT);
+}
+
 /** Short question side — one line, fits the card. */
 export function briefFlashcardFront(text: string): string {
   const cleaned = stripFlashcardPrefixes(text).replace(/\s+/g, " ").trim();

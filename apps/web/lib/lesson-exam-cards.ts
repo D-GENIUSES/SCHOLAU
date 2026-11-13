@@ -1,4 +1,4 @@
-import { briefFlashcardBack, briefFlashcardFront, type LessonBlock } from "@scholau/core";
+import { briefFlashcardBack, briefFlashcardLabel, type LessonBlock } from "@scholau/core";
 
 export type ExamFlashcard = {
   id: string;
@@ -16,19 +16,24 @@ export type LessonFlashcardInput = {
   blocks: LessonBlock[];
 };
 
-function briefCard(front: string, back: string): { front: string; back: string } {
-  return { front: briefFlashcardFront(front), back: briefFlashcardBack(back) };
-}
-
 function isEditorialText(text: string): boolean {
-  return /handwritten key|prompts? the key|these prompts are visible|study prompts?|not scored|keyed (?:definition|answer)|answer key/i.test(text);
+  return /handwritten key|prompts? the key|these prompts are visible|study prompts?|not scored|keyed (?:definition|answer)|answer key|according to (?:the )?(?:textbook|reading|source)|(?:©|copyright)|all rights reserved|pp\.\s*\d|chapter \d+ (?:of|from)|as (?:shown|described) (?:in|on) (?:the )?(?:figure|diagram|slide)|outside (?:the )?(?:course|lesson)|source material|verbatim from/i.test(
+    text,
+  );
 }
 
-function questionForHeading(heading: string, lessonTitle: string): string {
+function isSkippedBodyLine(text: string): boolean {
+  const trimmed = text.trim();
+  if (!trimmed || isEditorialText(trimmed)) return true;
+  if (/^how would you explain\b/i.test(trimmed)) return true;
+  if (/^[^.!?]{8,}\?\s*$/.test(trimmed)) return true;
+  return false;
+}
+
+function sectionTopicLabel(heading: string, lessonTitle: string): string {
   const generic = /^(understand the idea|key points|recap|summary|overview|introduction)$/i;
   const topic = (generic.test(heading.trim()) ? lessonTitle : heading).trim().replace(/[.:?]+$/, "");
-  if (heading.trim().endsWith("?")) return heading.trim();
-  return `How would you explain ${topic}?`;
+  return briefFlashcardLabel(topic);
 }
 
 function isSectionBreak(block: LessonBlock): boolean {
@@ -46,19 +51,19 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
   while (i < blocks.length) {
     const block = blocks[i];
     if (!block || isSectionBreak(block)) break;
-    if (block.type === "paragraph" && block.text.trim() && !isEditorialText(block.text) && !/^[^?]+\?\s*$/.test(block.text)) {
+    if (block.type === "paragraph" && block.text.trim() && !isSkippedBodyLine(block.text)) {
       lines.push(block.text.trim());
     }
     if (block.type === "list") {
       block.items.forEach((item, idx) => {
-        if (!isEditorialText(item) && !item.trim().endsWith("?")) lines.push(block.ordered ? `${idx + 1}. ${item}` : `• ${item}`);
+        if (!isSkippedBodyLine(item)) lines.push(block.ordered ? `${idx + 1}. ${item}` : `• ${item}`);
       });
     }
-    if (block.type === "callout" && block.text.trim() && !isEditorialText(block.text)) {
+    if (block.type === "callout" && block.text.trim() && block.tone !== "tip" && block.tone !== "warning" && !isEditorialText(block.text)) {
       lines.push(block.text.trim());
     }
     if (block.type === "code" && block.code.trim()) {
-      lines.push(`Code (${block.language ?? "snippet"}): ${block.code.trim().slice(0, 120)}`);
+      lines.push(briefFlashcardBack(`Code: ${block.code.trim().slice(0, 100)}`));
     }
     i += 1;
   }
@@ -66,48 +71,81 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
   return { text: briefFlashcardBack(joined), nextIndex: i };
 }
 
+function pushUnique(cards: ExamFlashcard[], card: ExamFlashcard) {
+  if (!card.back.trim() || !card.front.trim()) return;
+  if (cards.some((other) => other.back === card.back && other.front === card.front)) return;
+  cards.push(card);
+}
+
 export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard[] {
   const cards: ExamFlashcard[] = [];
   const { blocks, title, lesson_id: lessonId } = lesson;
-
+  let sectionTopic = briefFlashcardLabel(title);
   let index = 0;
+
   while (index < blocks.length) {
     const block = blocks[index];
     if (!block) {
       index += 1;
       continue;
     }
-    if (block.type === "heading") {
+
+    if (block.type === "heading" && !isEditorialText(block.text)) {
+      sectionTopic = sectionTopicLabel(block.text, title);
       const { text, nextIndex } = collectSectionBody(blocks, index + 1);
-      if (text && !isEditorialText(block.text)) {
-        const card = briefCard(questionForHeading(block.text, title), text);
-        if (card.back) cards.push({ id: `${lessonId}-h-${index}`, ...card, tag: "section" });
+      if (text) {
+        pushUnique(cards, { id: `${lessonId}-h-${index}`, front: sectionTopic, back: text, tag: "section" });
       }
       index = nextIndex;
       continue;
     }
+
+    if (block.type === "callout" && (block.tone === "tip" || block.tone === "warning") && block.text.trim() && !isEditorialText(block.text)) {
+      pushUnique(cards, {
+        id: `${lessonId}-tip-${index}`,
+        front: sectionTopic || briefFlashcardLabel("Exam tip"),
+        back: briefFlashcardBack(block.text),
+        tag: "tip",
+      });
+      index += 1;
+      continue;
+    }
+
     if (block.type === "checkpoint") {
-      const answer = block.options[block.correct_index] ?? "";
-      if (answer.trim() && !isEditorialText(block.question)) {
-        const card = briefCard(block.question, answer.trim());
-        if (card.back) cards.push({ id: `${lessonId}-cp-${index}`, ...card, tag: "checkpoint" });
+      const note = (block.explanation?.trim() || block.options[block.correct_index]?.trim() || "").trim();
+      if (note && !isEditorialText(note)) {
+        pushUnique(cards, {
+          id: `${lessonId}-cp-${index}`,
+          front: sectionTopic || briefFlashcardLabel("Exam tip"),
+          back: briefFlashcardBack(note),
+          tag: "tip",
+        });
       }
       index += 1;
       continue;
     }
-    if (block.type === "paragraph" && !blocks.some((item) => item.type === "heading") && block.text.trim() && !isEditorialText(block.text) && !block.text.trim().endsWith("?")) {
-      {
-        const card = briefCard(questionForHeading(title, title), block.text);
-        if (card.back) cards.push({ id: `${lessonId}-p-${index}`, ...card, tag: "section" });
-      }
+
+    if (
+      block.type === "paragraph" &&
+      !blocks.some((item) => item.type === "heading") &&
+      block.text.trim() &&
+      !isSkippedBodyLine(block.text)
+    ) {
+      pushUnique(cards, {
+        id: `${lessonId}-p-${index}`,
+        front: briefFlashcardLabel(title),
+        back: briefFlashcardBack(block.text),
+        tag: "section",
+      });
     }
+
     index += 1;
   }
 
-  return cards.filter((card, index) => card.back.trim() && cards.findIndex((other) => other.back === card.back) === index);
+  return cards;
 }
 
 /** Keep older saved cards consistent with the lesson wording. */
 export function lessonCardText(text: string): string {
-  return briefFlashcardFront(text);
+  return briefFlashcardLabel(text);
 }
