@@ -202,12 +202,12 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
               <div className="mb-3">
                 <p className="lesson-phase-label">Study notes</p>
                 <h2 id="lesson-flashcards-heading" className="text-lg font-bold tracking-tight sm:text-xl">
-                  Compact recap
+                  Swipe through summarized notes
                 </h2>
               </div>
               <FlashcardDeck cards={examCards} onLastCardReached={hasStructuredMaths ? undefined : () => setDeckFinished(true)} />
               {showUnlockHint ? (
-                <p className="mt-3 text-center text-sm text-ink-muted">Reach the last card to unlock Mark as complete.</p>
+                <p className="mt-3 text-center text-sm text-ink-muted">Swipe to the last note to unlock Mark as complete.</p>
               ) : null}
             </section>
           ) : null}

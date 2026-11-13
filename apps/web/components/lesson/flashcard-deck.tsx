@@ -2,9 +2,8 @@
 
 import { MathText } from "@/components/math/math-text";
 import { briefFlashcardBack } from "@scholau/core";
-
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { lessonCardText, type ExamFlashcard } from "@/lib/lesson-exam-cards";
 import { cn } from "@/lib/utils";
@@ -14,18 +13,18 @@ type FlashcardDeckProps = {
   onLastCardReached?: () => void;
 };
 
-function FlashcardBack({ text }: { text: string }) {
+function NoteBody({ text }: { text: string }) {
   const brief = briefFlashcardBack(text);
   const lines = brief.split("\n").filter(Boolean);
   if (lines.length < 2) {
     return (
-      <p className="flashcard-text flashcard-answer">
+      <p className="flashcard-text flashcard-note-body">
         <MathText text={brief} />
       </p>
     );
   }
   return (
-    <ul className="flashcard-points flashcard-answer">
+    <ul className="flashcard-points flashcard-note-body">
       {lines.map((line, index) => (
         <li key={`${index}-${line}`}>
           <MathText text={line} />
@@ -44,10 +43,8 @@ function tagLabel(tag: ExamFlashcard["tag"]) {
 
 export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) {
   const [index, setIndex] = useState(0);
-  const [flipped, setFlipped] = useState(false);
   const [visited, setVisited] = useState(() => new Set<number>([0]));
   const [slideDir, setSlideDir] = useState<"next" | "prev" | null>(null);
-  const liveId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
 
   const total = cards.length;
@@ -61,7 +58,6 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
       if (clamped === index) return;
       setSlideDir(clamped > index ? "next" : "prev");
       setIndex(clamped);
-      setFlipped(false);
       setVisited((prev) => {
         const copy = new Set(prev);
         copy.add(clamped);
@@ -70,8 +66,6 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
     },
     [index, total],
   );
-
-  const flip = useCallback(() => setFlipped((v) => !v), []);
 
   useEffect(() => {
     if (total > 0 && index === total - 1) onLastCardReached?.();
@@ -89,27 +83,25 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
     const onKeyDown = (event: KeyboardEvent) => {
       const target = event.target;
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest("input, textarea, select, button, a"))) {
-        if (event.key !== " " && event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        return;
       }
-      if (event.key === " ") {
+      if (event.key === "ArrowRight" && index < total - 1) {
         event.preventDefault();
-        flip();
-      } else if (event.key === "ArrowRight") {
+        goTo(index + 1);
+      } else if (event.key === "ArrowLeft" && index > 0) {
         event.preventDefault();
-        if (flipped && index < total - 1) goTo(index + 1);
-        else if (!flipped) setFlipped(true);
-      } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        if (index > 0) goTo(index - 1);
+        goTo(index - 1);
       }
     };
     node.addEventListener("keydown", onKeyDown);
     return () => node.removeEventListener("keydown", onKeyDown);
-  }, [flip, flipped, goTo, index, total]);
+  }, [goTo, index, total]);
 
   if (!card) return null;
 
   const tag = tagLabel(card.tag);
+  const topic = lessonCardText(card.front);
+  const showTitle = topic && topic.replace(/\s+/g, " ").trim().toLowerCase() !== card.back.replace(/\s+/g, " ").trim().toLowerCase();
 
   return (
     <div ref={rootRef} className="flashcard-deck" tabIndex={0}>
@@ -122,48 +114,29 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
             <li key={c.id} className={cn("flashcard-dot", i === index && "is-current", visited.has(i) && "is-seen")} />
           ))}
         </ul>
-        {deckDone ? <p className="flashcard-deck-done">Deck complete</p> : <span className="flashcard-deck-done-spacer" aria-hidden />}
+        {deckDone ? <p className="flashcard-deck-done">All notes seen</p> : <span className="flashcard-deck-done-spacer" aria-hidden />}
       </div>
 
       <div className={cn("flashcard-stage", slideDir === "next" && "is-slide-next", slideDir === "prev" && "is-slide-prev")}>
-        <button
-          type="button"
-          className={cn("flashcard-scene", flipped && "is-flipped")}
-          onClick={flip}
-          aria-pressed={flipped}
-          aria-label={flipped ? "Show topic" : "Show notes"}
-          aria-describedby={liveId}
+        <article
+          className={cn("flashcard-note", card.tag === "tip" && "flashcard-note-tip")}
+          aria-label={topic ? `Study note: ${topic}` : "Study note"}
         >
-          <div className="flashcard-inner">
-            <div className="flashcard-face flashcard-front" aria-hidden={flipped}>
-              {tag ? <span className="flashcard-tag">{tag}</span> : null}
-              <div className="flashcard-content">
-                <p className="flashcard-text flashcard-front-label">
-                  <MathText text={lessonCardText(card.front)} />
-                </p>
-              </div>
-              <p className="flashcard-hint">Tap for notes · Space</p>
-            </div>
-            <div className="flashcard-face flashcard-back" aria-hidden={!flipped}>
-              {tag ? <span className="flashcard-tag">{tag}</span> : null}
-              <div className="flashcard-content">
-                <FlashcardBack text={card.back} />
-              </div>
-            </div>
+          {tag ? <span className="flashcard-tag">{tag}</span> : null}
+          {topic ? (
+            <h3 className="flashcard-note-title">
+              <MathText text={topic} />
+            </h3>
+          ) : null}
+          <div className="flashcard-note-content">
+            <NoteBody text={card.back} />
           </div>
-        </button>
+        </article>
       </div>
 
-      <p id={liveId} className="sr-only">
-        {flipped ? "Notes showing" : "Topic showing"}
-      </p>
-
-      <nav className="flashcard-nav" aria-label="Card navigation">
+      <nav className="flashcard-nav flashcard-nav-compact" aria-label="Note navigation">
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index - 1)} disabled={index === 0}>
-          <ArrowLeft className="size-4" aria-hidden /> Previous
-        </Button>
-        <Button type="button" variant={flipped ? "ghost" : "primary"} size="sm" onClick={flip}>
-          {flipped ? "Topic" : "Notes"}
+          <ArrowLeft className="size-4" aria-hidden /> Prev
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
           Next <ArrowRight className="size-4" aria-hidden />
