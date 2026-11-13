@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { type CompleteLessonResult, isApiError, type Lesson } from "@scholau/api";
-import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useStartLesson } from "@scholau/api/react";
+import { useCompleteLesson, useCourseOverview, useHomeSummary, useLesson, useProfile, useStartLesson } from "@scholau/api/react";
 import { briefFlashcardBack, COPY, formatDate, formatXpDelta, pluralize } from "@scholau/core";
 import { FIRST_LESSON_CELEBRATION_MS } from "@/components/lesson/first-lesson-celebration";
 import { LessonStepper } from "@/components/lesson/lesson-stepper";
@@ -70,6 +70,7 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
   const course = useCourseOverview(lesson.offering_id);
   const start = useStartLesson();
   const home = useHomeSummary();
+  const profile = useProfile();
   const [deckFinished, setDeckFinished] = useState(false);
   const complete = useCompleteLesson({ firstLessonCelebrationMs: FIRST_LESSON_CELEBRATION_MS });
   const examCards = useMemo(() => {
@@ -102,8 +103,8 @@ function LessonReader({ lesson }: { lesson: Lesson }) {
     void complete.mutateAsync(
       retry && complete.variables ? complete.variables : { lessonVersionId: lesson.lesson_version_id },
     ).then((r) => {
-      if (shouldCelebrateStreak(r)) {
-        emitStreakCelebration(celebrationPayload(previousStreak, r.streak));
+      if (shouldCelebrateStreak(r) && profile.data?.id) {
+        emitStreakCelebration(profile.data.id, celebrationPayload(previousStreak, r.streak));
       }
       if (!r.already_completed) {
         analytics.track({ name: "lesson_completed", lesson_id: r.lesson_id, xp_awarded: r.xp_awarded });

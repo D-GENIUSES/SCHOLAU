@@ -123,7 +123,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
           aria-label={topic ? `Study note: ${topic}` : "Study note"}
         >
           {tag ? <span className="flashcard-tag">{tag}</span> : null}
-          {topic ? (
+          {showTitle ? (
             <h3 className="flashcard-note-title">
               <MathText text={topic} />
             </h3>

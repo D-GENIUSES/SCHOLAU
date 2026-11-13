@@ -1,5 +1,7 @@
 import { briefFlashcardBack, briefFlashcardLabel, type LessonBlock } from "@scholau/core";
 
+export const MAX_LESSON_FLASHCARDS = 10;
+
 export type ExamFlashcard = {
   id: string;
   front: string;
@@ -45,7 +47,7 @@ function isSectionBreak(block: LessonBlock): boolean {
   );
 }
 
-function collectSectionBody(blocks: LessonBlock[], start: number): { text: string; nextIndex: number } {
+function collectSectionLines(blocks: LessonBlock[], start: number): { lines: string[]; nextIndex: number } {
   const lines: string[] = [];
   let i = start;
   while (i < blocks.length) {
@@ -55,35 +57,77 @@ function collectSectionBody(blocks: LessonBlock[], start: number): { text: strin
       lines.push(block.text.trim());
     }
     if (block.type === "list") {
-      block.items.forEach((item, idx) => {
-        if (!isSkippedBodyLine(item)) lines.push(block.ordered ? `${idx + 1}. ${item}` : `• ${item}`);
+      block.items.forEach((item) => {
+        if (!isSkippedBodyLine(item)) lines.push(item.trim());
       });
     }
     if (block.type === "callout" && block.text.trim() && block.tone !== "tip" && block.tone !== "warning" && !isEditorialText(block.text)) {
       lines.push(block.text.trim());
     }
     if (block.type === "code" && block.code.trim()) {
-      lines.push(briefFlashcardBack(`Code: ${block.code.trim().slice(0, 100)}`));
+      lines.push(`Code: ${block.code.trim().slice(0, 100)}`);
     }
     i += 1;
   }
-  const joined = lines.join("\n");
-  return { text: briefFlashcardBack(joined), nextIndex: i };
+  return { lines, nextIndex: i };
 }
 
-function pushUnique(cards: ExamFlashcard[], card: ExamFlashcard) {
-  if (!card.back.trim() || !card.front.trim()) return;
-  if (cards.some((other) => other.back === card.back && other.front === card.front)) return;
+function pushUnique(cards: ExamFlashcard[], card: ExamFlashcard, max = MAX_LESSON_FLASHCARDS): boolean {
+  if (cards.length >= max || !card.back.trim() || !card.front.trim()) return false;
+  if (cards.some((other) => other.back === card.back && other.front === card.front)) return false;
   cards.push(card);
+  return true;
+}
+
+function splitIntoNoteChunks(lines: string[]): string[] {
+  const chunks: string[] = [];
+  for (const line of lines) {
+    const brief = briefFlashcardBack(line);
+    if (brief) chunks.push(brief);
+    const pieces = brief.split("\n").filter(Boolean);
+    if (pieces.length > 1) {
+      chunks.pop();
+      chunks.push(...pieces);
+    }
+  }
+  return chunks.filter(Boolean);
+}
+
+function appendTopicNotes(
+  cards: ExamFlashcard[],
+  lessonId: string,
+  topic: string,
+  lines: string[],
+  tag: ExamFlashcard["tag"],
+  idPrefix: string,
+): void {
+  const chunks = splitIntoNoteChunks(lines);
+  chunks.forEach((back, chunkIndex) => {
+    pushUnique(cards, {
+      id: `${lessonId}-${idPrefix}-${chunkIndex}`,
+      front: topic,
+      back,
+      tag,
+    });
+  });
 }
 
 export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard[] {
   const cards: ExamFlashcard[] = [];
-  const { blocks, title, lesson_id: lessonId } = lesson;
+  const { blocks, title, lesson_id: lessonId, objective } = lesson;
   let sectionTopic = briefFlashcardLabel(title);
   let index = 0;
 
-  while (index < blocks.length) {
+  if (objective.trim() && !isEditorialText(objective)) {
+    pushUnique(cards, {
+      id: `${lessonId}-objective`,
+      front: briefFlashcardLabel(title),
+      back: briefFlashcardBack(objective),
+      tag: "focus",
+    });
+  }
+
+  while (index < blocks.length && cards.length < MAX_LESSON_FLASHCARDS) {
     const block = blocks[index];
     if (!block) {
       index += 1;
@@ -92,10 +136,8 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
 
     if (block.type === "heading" && !isEditorialText(block.text)) {
       sectionTopic = sectionTopicLabel(block.text, title);
-      const { text, nextIndex } = collectSectionBody(blocks, index + 1);
-      if (text) {
-        pushUnique(cards, { id: `${lessonId}-h-${index}`, front: sectionTopic, back: text, tag: "section" });
-      }
+      const { lines, nextIndex } = collectSectionLines(blocks, index + 1);
+      appendTopicNotes(cards, lessonId, sectionTopic, lines, "section", `h-${index}`);
       index = nextIndex;
       continue;
     }
@@ -131,18 +173,13 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
       block.text.trim() &&
       !isSkippedBodyLine(block.text)
     ) {
-      pushUnique(cards, {
-        id: `${lessonId}-p-${index}`,
-        front: briefFlashcardLabel(title),
-        back: briefFlashcardBack(block.text),
-        tag: "section",
-      });
+      appendTopicNotes(cards, lessonId, briefFlashcardLabel(title), [block.text.trim()], "section", `p-${index}`);
     }
 
     index += 1;
   }
 
-  return cards;
+  return cards.slice(0, MAX_LESSON_FLASHCARDS);
 }
 
 /** Keep older saved cards consistent with the lesson wording. */

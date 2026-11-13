@@ -1,4 +1,5 @@
 import type { Streak } from "@scholau/api";
+import { markStreakCelebrationShown, streakCelebrationAlreadyShown } from "./streak-celebration";
 
 export type StreakCelebrationPayload = {
   days: number;
@@ -14,7 +15,9 @@ export function subscribeStreakCelebration(listener: Listener): () => void {
   return () => listeners.delete(listener);
 }
 
-export function emitStreakCelebration(payload: StreakCelebrationPayload): void {
+export function emitStreakCelebration(owner: string, payload: StreakCelebrationPayload): void {
+  if (streakCelebrationAlreadyShown(owner, payload.localDate)) return;
+  markStreakCelebrationShown(owner, payload.localDate);
   listeners.forEach((listener) => listener(payload));
 }
 

@@ -40,7 +40,7 @@ function PreviewLesson() {
   const markComplete = () => {
     const previous = data?.streak;
     void complete.mutateAsync({ lessonVersionId: "preview-version" }).then(result => {
-      if (shouldCelebrateStreak(result)) emitStreakCelebration(celebrationPayload(previous, result.streak));
+      if (shouldCelebrateStreak(result)) emitStreakCelebration("preview-user", celebrationPayload(previous, result.streak));
     }).catch(() => undefined);
   };
   return <ShellFrame pathname="/home" displayName="New learner" streak={data?.streak}>
