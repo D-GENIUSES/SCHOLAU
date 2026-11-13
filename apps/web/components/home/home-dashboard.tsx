@@ -8,6 +8,7 @@ export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
     <div className="home-dashboard compact-home home-dashboard-course">
       <header className="home-welcome home-welcome-compact home-welcome-panel">
         <div>
+          <p className="home-welcome-eyebrow">Home</p>
           <h1>
             Hi, <span>{name}</span>
           </h1>

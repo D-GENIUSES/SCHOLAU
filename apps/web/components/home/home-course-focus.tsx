@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import type { HomeSummary } from "@scholau/api";
 import { useCourseOverview } from "@scholau/api/react";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import {
@@ -35,6 +35,18 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
     }
     return overview ? resolveContinueLessonId(overview.modules) : null;
   }, [summary.continue_learning, offeringId, overview]);
+
+  const continueTitle = useMemo(() => {
+    if (!continueLessonId || !overview) return null;
+    if (summary.continue_learning?.offering_id === offeringId && summary.continue_learning.title) {
+      return summary.continue_learning.title;
+    }
+    for (const module of overview.modules) {
+      const lesson = module.lessons.find((item) => item.lesson_id === continueLessonId);
+      if (lesson) return lesson.title;
+    }
+    return null;
+  }, [continueLessonId, offeringId, overview, summary.continue_learning]);
 
   const selectOffering = (id: string) => {
     setUserPick(id);
@@ -88,7 +100,9 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
           <div className="home-course-heading-actions">
             {continueLessonId ? (
               <Button asChild variant="outline" size="sm" className="w-full sm:w-auto">
-                <Link href={`/study/lessons/${continueLessonId}`}>Continue</Link>
+                <Link href={`/study/lessons/${continueLessonId}`}>
+                  <Play className="size-4" aria-hidden /> Continue
+                </Link>
               </Button>
             ) : null}
             <Button asChild size="sm" className="w-full sm:w-auto">
@@ -99,6 +113,20 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
           </div>
         ) : null}
       </header>
+
+      {continueLessonId && continueTitle && !isPreviewOffering ? (
+        <div className="home-continue-banner">
+          <div className="home-continue-banner-copy">
+            <p className="home-continue-banner-label">Pick up where you left off</p>
+            <p className="home-continue-banner-title">{continueTitle}</p>
+          </div>
+          <Button asChild size="sm">
+            <Link href={`/study/lessons/${continueLessonId}`}>
+              Continue <ChevronRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
+        </div>
+      ) : null}
 
       {!isPreviewOffering && overviewQuery.isError ? (
         <ErrorState error={overviewQuery.error} onRetry={() => void overviewQuery.refetch()} />
