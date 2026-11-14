@@ -22,7 +22,7 @@ test("buildExamFlashcards maps lesson content into multiple compact notes", () =
   assert.ok(cards.length <= MAX_LESSON_FLASHCARDS);
   assert.ok(cards.every((c) => c.back.length <= 170));
   assert.ok(cards.every((c) => c.front.length <= 96));
-  assert.equal(cards.some((c) => c.tag === "tip" && /exam tip|examiners/i.test(c.back)), true);
+  assert.equal(cards.some((c) => c.tag === "tip" && /examiners/i.test(c.back)), true);
   assert.equal(cards.some((c) => c.tag === "focus" && c.back.includes("Define philosophy")), true);
   assert.equal(cards.some((c) => c.tag === "section" && c.front.toLowerCase().includes("philosophy")), true);
   assert.equal(cards.some((c) => c.front.includes("primarily deals")), false);

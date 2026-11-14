@@ -91,7 +91,7 @@ function summarizeExamBack(lines: string[], role?: "definition" | "recap"): stri
   if (clean.length === 1) {
     const brief = briefFlashcardBack(clean[0]!);
     if (!brief) return "";
-    if (role === "recap" && !/^exam\b/i.test(brief)) return briefFlashcardBack(`Exam focus: ${brief}`);
+    if (role === "recap") return brief;
     return brief;
   }
 
@@ -135,9 +135,7 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
   let index = 0;
 
   if (objective.trim() && !isEditorialText(objective)) {
-    const objectiveBack = briefFlashcardBack(
-      isDefinitionLine(objective) ? objective : `Key point: ${objective}`,
-    );
+    const objectiveBack = briefFlashcardBack(objective);
     pushUnique(cards, {
       id: `${lessonId}-objective`,
       front: briefFlashcardLabel(title),
@@ -163,12 +161,11 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     }
 
     if (block.type === "callout" && (block.tone === "tip" || block.tone === "warning") && block.text.trim() && !isEditorialText(block.text)) {
-      const prefix = block.tone === "warning" ? "Common mistake: " : "Exam tip: ";
-      const body = block.text.trim().replace(/^(common mistake|exam tip)\s*:\s*/i, "");
+      const body = block.text.trim().replace(/^(common mistake|exam tip|watch out)\s*:\s*/i, "");
       pushUnique(cards, {
         id: `${lessonId}-${block.tone}-${index}`,
-        front: sectionTopic || briefFlashcardLabel(block.tone === "warning" ? "Common mistake" : "Exam tip"),
-        back: briefFlashcardBack(`${prefix}${body}`),
+        front: sectionTopic || briefFlashcardLabel(block.tone === "warning" ? "Easy to mix up" : "Tip"),
+        back: briefFlashcardBack(body),
         tag: "tip",
       });
       index += 1;
@@ -180,7 +177,7 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
       if (note && !isEditorialText(note)) {
         pushUnique(cards, {
           id: `${lessonId}-cp-${index}`,
-          front: sectionTopic || briefFlashcardLabel("Exam tip"),
+          front: sectionTopic || briefFlashcardLabel("Tip"),
           back: briefFlashcardBack(note),
           tag: "tip",
         });

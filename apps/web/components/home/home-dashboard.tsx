@@ -2,7 +2,7 @@ import type { HomeSummary } from "@scholau/api";
 import { HomeCourseFocus } from "./home-course-focus";
 
 export function HomeDashboard({ summary: s }: { summary: HomeSummary }) {
-  const name = s.display_name?.trim() || "Learner";
+  const name = s.display_name?.trim() || "there";
 
   return (
     <div className="home-dashboard compact-home home-dashboard-course">

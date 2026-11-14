@@ -28,18 +28,18 @@ export type StudyShareErrorCode = "unauthenticated" | "not_enrolled" | "not_shar
 export function studyShareErrorMessage(code: StudyShareErrorCode) {
   switch (code) {
     case "unauthenticated":
-      return "Sign in again to share this question.";
+      return "You're signed out — log in and try sharing again.";
     case "not_enrolled":
-      return "Enroll in this course to share questions from it.";
+      return "You need to be on this course before you can share its questions.";
     case "not_shareable":
-      return "This question can't be shared because it's tied to a protected assessment.";
+      return "This one's from a locked assessment, so it can't be shared.";
   }
 }
 
 export function studyInvitation(topic: string) {
   return topic
-    ? `Think you can get this one right? Try this ${topic} question on ScholAu and challenge a friend.`
-    : "Think you can get this one right? Try this question on ScholAu and challenge a friend.";
+    ? `Stuck on ${topic}? Try this question on ScholAu — bet your friend can't beat you.`
+    : "Try this question on ScholAu — bet your friend can't beat you.";
 }
 
 export function studyShareText(topic: string, url: string) {

@@ -38,7 +38,7 @@ export function ContinueLearningCard({ item, firstLesson, course, href, preview 
         ) : null}
         <Button asChild className="self-start">
           <Link href={href ?? (item ? `/study/lessons/${item.lesson_id}` : "/home")}>
-            {preview ? "Start learning" : !item ? "Go to Home" : firstLesson ? "Start lesson" : item.kind === "resume" ? "Continue lesson" : "Start next lesson"}
+            {preview ? "Start learning" : !item ? "Go to Home" : firstLesson ? "Start lesson" : item.kind === "resume" ? "Keep going" : "Next lesson"}
           </Link>
         </Button>
       </div>

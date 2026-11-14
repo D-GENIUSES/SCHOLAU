@@ -35,7 +35,7 @@ function NoteBody({ text }: { text: string }) {
 }
 
 function tagLabel(tag: ExamFlashcard["tag"]) {
-  if (tag === "tip") return "Exam tip";
+  if (tag === "tip") return "Tip";
   if (tag === "section" || tag === "focus" || tag === "recap") return "Note";
   if (!tag) return null;
   return tag.charAt(0).toUpperCase() + tag.slice(1);
@@ -114,7 +114,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
             <li key={c.id} className={cn("flashcard-dot", i === index && "is-current", visited.has(i) && "is-seen")} />
           ))}
         </ul>
-        {deckDone ? <p className="flashcard-deck-done">All notes seen</p> : <span className="flashcard-deck-done-spacer" aria-hidden />}
+        {deckDone ? <p className="flashcard-deck-done">You&apos;ve seen them all</p> : <span className="flashcard-deck-done-spacer" aria-hidden />}
       </div>
 
       <div className={cn("flashcard-stage", slideDir === "next" && "is-slide-next", slideDir === "prev" && "is-slide-prev")}>
@@ -136,7 +136,7 @@ export function FlashcardDeck({ cards, onLastCardReached }: FlashcardDeckProps) 
 
       <nav className="flashcard-nav flashcard-nav-compact" aria-label="Note navigation">
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index - 1)} disabled={index === 0}>
-          <ArrowLeft className="size-4" aria-hidden /> Prev
+          <ArrowLeft className="size-4" aria-hidden /> Back
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => goTo(index + 1)} disabled={index >= total - 1}>
           Next <ArrowRight className="size-4" aria-hidden />

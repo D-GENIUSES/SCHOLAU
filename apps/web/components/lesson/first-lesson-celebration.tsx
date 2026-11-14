@@ -54,9 +54,9 @@ export function FirstLessonCelebration({
           </li>;
         })}
       </ol>
-      <DialogTitle className="!p-0 !text-center"><span className="sr-only">{days} day streak</span><span aria-hidden="true" className="streak-big-count" key={stage >= 2 ? "new" : "old"}>{stage >= 2 ? days : previousDays}</span><span aria-hidden="true" className="streak-info-message block text-lg font-semibold text-brand-primary">{days === 1 ? "You’ve started a streak!" : `${days}-day streak!`}</span></DialogTitle>
-      <DialogDescription className="streak-info-message text-center">{days === 1 ? "Study again tomorrow to build your streak." : "You studied today. Keep it going tomorrow."}</DialogDescription>
-      <Button className="w-full" disabled={stage < 4} onClick={close}>Continue</Button>
+      <DialogTitle className="!p-0 !text-center"><span className="sr-only">{days} day streak</span><span aria-hidden="true" className="streak-big-count" key={stage >= 2 ? "new" : "old"}>{stage >= 2 ? days : previousDays}</span><span aria-hidden="true" className="streak-info-message block text-lg font-semibold text-brand-primary">{days === 1 ? "Day one — nice." : `${days} days in a row`}</span></DialogTitle>
+      <DialogDescription className="streak-info-message text-center">{days === 1 ? "Show up again tomorrow and it counts." : "You did something today. Same time tomorrow?"}</DialogDescription>
+      <Button className="w-full" disabled={stage < 4} onClick={close}>Got it</Button>
     </DialogContent>
   </Dialog>;
 }

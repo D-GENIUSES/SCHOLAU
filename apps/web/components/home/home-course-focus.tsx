@@ -57,10 +57,10 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
     return (
       <EmptyState
         title="Your courses"
-        description="Complete your academic profile to find your course assignments."
+        description="Set up your profile so we can show your course list."
         action={
           <Button asChild>
-            <Link href="/onboarding/courses">View assignments</Link>
+            <Link href="/onboarding/courses">Set up profile</Link>
           </Button>
         }
       />
@@ -71,7 +71,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
     return (
       <EmptyState
         title="Choose a course"
-        description="Select a course from your assignments to start learning."
+        description="Pick one of your courses to open it."
         action={
           <Button asChild variant="outline">
             <Link href="/home">Go to Home</Link>
@@ -100,7 +100,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
           <div className="home-course-heading-actions home-course-heading-actions--assessments">
             <Button asChild size="sm" className="w-full sm:w-auto">
               <Link href={`/study/courses/${overview.offering_id}/assessments`}>
-                Open assessments <ChevronRight className="size-4" aria-hidden />
+                Assessments <ChevronRight className="size-4" aria-hidden />
               </Link>
             </Button>
           </div>
@@ -109,11 +109,11 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
 
       {continueLessonId && continueTitle && !isPreviewOffering ? (
         <div className="home-next-action">
-          <p className="home-next-action-label">Do this next</p>
+          <p className="home-next-action-label">Pick up here</p>
           <p className="home-next-action-title">{continueTitle}</p>
           <Button asChild className="home-next-action-cta">
             <Link href={`/study/lessons/${continueLessonId}`}>
-              <Play className="size-4" aria-hidden /> Continue lesson
+              <Play className="size-4" aria-hidden /> Keep going
             </Link>
           </Button>
         </div>
