@@ -79,18 +79,34 @@ function pushUnique(cards: ExamFlashcard[], card: ExamFlashcard, max = MAX_LESSO
   return true;
 }
 
-function splitIntoNoteChunks(lines: string[]): string[] {
-  const chunks: string[] = [];
-  for (const line of lines) {
-    const brief = briefFlashcardBack(line);
-    if (brief) chunks.push(brief);
-    const pieces = brief.split("\n").filter(Boolean);
-    if (pieces.length > 1) {
-      chunks.pop();
-      chunks.push(...pieces);
-    }
+function isDefinitionLine(text: string): boolean {
+  return /\b(is|are|means|refers to|defined as)\b/i.test(text);
+}
+
+function summarizeExamBack(lines: string[], role?: "definition" | "recap"): string {
+  if (!lines.length) return "";
+  const clean = lines.map((line) => line.trim()).filter(Boolean);
+  if (!clean.length) return "";
+
+  if (clean.length === 1) {
+    const brief = briefFlashcardBack(clean[0]!);
+    if (!brief) return "";
+    if (role === "recap" && !/^exam\b/i.test(brief)) return briefFlashcardBack(`Exam focus: ${brief}`);
+    return brief;
   }
-  return chunks.filter(Boolean);
+
+  const listItems = clean.filter((line) => line.split(/\s+/).length <= 4);
+  const prose = clean.filter((line) => line.split(/\s+/).length > 4);
+  if (listItems.length >= 2) {
+    const lead = prose.find((line) => isDefinitionLine(line)) ?? prose[0];
+    const itemLine = briefFlashcardBack(listItems.join("; "));
+    if (!lead) return itemLine;
+    return briefFlashcardBack(`${briefFlashcardBack(lead)}\n${itemLine}`);
+  }
+
+  const definition = clean.find((line) => isDefinitionLine(line)) ?? clean[0]!;
+  const joined = briefFlashcardBack([definition, clean.find((line) => line !== definition)].filter(Boolean).join(" "));
+  return joined;
 }
 
 function appendTopicNotes(
@@ -100,15 +116,15 @@ function appendTopicNotes(
   lines: string[],
   tag: ExamFlashcard["tag"],
   idPrefix: string,
+  role?: "definition" | "recap",
 ): void {
-  const chunks = splitIntoNoteChunks(lines);
-  chunks.forEach((back, chunkIndex) => {
-    pushUnique(cards, {
-      id: `${lessonId}-${idPrefix}-${chunkIndex}`,
-      front: topic,
-      back,
-      tag,
-    });
+  const back = summarizeExamBack(lines, role);
+  if (!back) return;
+  pushUnique(cards, {
+    id: `${lessonId}-${idPrefix}`,
+    front: topic,
+    back,
+    tag,
   });
 }
 
@@ -119,10 +135,13 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
   let index = 0;
 
   if (objective.trim() && !isEditorialText(objective)) {
+    const objectiveBack = briefFlashcardBack(
+      isDefinitionLine(objective) ? objective : `Key point: ${objective}`,
+    );
     pushUnique(cards, {
       id: `${lessonId}-objective`,
       front: briefFlashcardLabel(title),
-      back: briefFlashcardBack(objective),
+      back: objectiveBack,
       tag: "focus",
     });
   }
@@ -137,16 +156,19 @@ export function buildExamFlashcards(lesson: LessonFlashcardInput): ExamFlashcard
     if (block.type === "heading" && !isEditorialText(block.text)) {
       sectionTopic = sectionTopicLabel(block.text, title);
       const { lines, nextIndex } = collectSectionLines(blocks, index + 1);
-      appendTopicNotes(cards, lessonId, sectionTopic, lines, "section", `h-${index}`);
+      const recap = /^(what to remember|recap|summary)$/i.test(block.text.trim());
+      appendTopicNotes(cards, lessonId, sectionTopic, lines, recap ? "recap" : "section", `h-${index}`, recap ? "recap" : "definition");
       index = nextIndex;
       continue;
     }
 
     if (block.type === "callout" && (block.tone === "tip" || block.tone === "warning") && block.text.trim() && !isEditorialText(block.text)) {
+      const prefix = block.tone === "warning" ? "Common mistake: " : "Exam tip: ";
+      const body = block.text.trim().replace(/^(common mistake|exam tip)\s*:\s*/i, "");
       pushUnique(cards, {
-        id: `${lessonId}-tip-${index}`,
-        front: sectionTopic || briefFlashcardLabel("Exam tip"),
-        back: briefFlashcardBack(block.text),
+        id: `${lessonId}-${block.tone}-${index}`,
+        front: sectionTopic || briefFlashcardLabel(block.tone === "warning" ? "Common mistake" : "Exam tip"),
+        back: briefFlashcardBack(`${prefix}${body}`),
         tag: "tip",
       });
       index += 1;

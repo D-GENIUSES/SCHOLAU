@@ -4,8 +4,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { isApiError, qk } from "@scholau/api";
-import { useBattleSignals, useBattleState, useForfeitBattle } from "@scholau/api/react";
+import { isApiError, qk, type Streak } from "@scholau/api";
+import { useBattleSignals, useBattleState, useForfeitBattle, useHomeSummary, useProfile } from "@scholau/api/react";
 import { isLiveBattleState } from "@scholau/core";
 import { BattleReactionBar } from "@/components/battle/battle-reaction-bar";
 import { BattleTopBar, LeaveBattleDialog, ReconnectBanner } from "@/components/battle/battle-chrome";
@@ -20,6 +20,7 @@ import { WaitingPanel } from "@/components/battle/waiting-panel";
 import { Button } from "@/components/ui/button";
 import { ErrorState, LoadingState } from "@/components/ui/states";
 import { useAnalytics } from "@/lib/analytics";
+import { emitStreakCelebrationIfAdvanced } from "@/lib/emit-streak-celebration";
 import { useOnline } from "@/lib/hooks";
 
 export default function BattlePage() {
@@ -34,6 +35,10 @@ export default function BattlePage() {
   const [leaveOpen, setLeaveOpen] = useState(false);
   const [celebratingBattle, setCelebratingBattle] = useState<string | null>(null);
   const seen = useRef({ live: false, activated: false, completed: false });
+  const streakBeforeBattle = useRef<Streak | undefined>(undefined);
+  const streakCelebrated = useRef(false);
+  const home = useHomeSummary();
+  const profile = useProfile();
 
   const battle = q.data;
   const live = battle ? isLiveBattleState(battle.state) : false;
@@ -60,6 +65,7 @@ export default function BattlePage() {
     }
     if (state === "active" && !seen.current.activated) {
       seen.current.activated = true;
+      streakBeforeBattle.current = home.data?.streak;
       analytics.track({ name: "battle_activated", battle_id: id });
     }
     if (state === "finished" && seen.current.live && !seen.current.completed) {
@@ -74,7 +80,18 @@ export default function BattlePage() {
         qc.invalidateQueries({ queryKey: qk.home() }),
       ]);
     }
-  }, [state, result, id, analytics, qc]);
+  }, [state, result, id, analytics, qc, home.data?.streak]);
+
+  useEffect(() => {
+    if (state !== "finished" || !seen.current.live || streakCelebrated.current) return;
+    streakCelebrated.current = true;
+    const previous = streakBeforeBattle.current ?? home.data?.streak;
+    const owner = profile.data?.id;
+    if (!owner) return;
+    void home.refetch().then((r) => {
+      emitStreakCelebrationIfAdvanced(owner, previous, r.data?.streak);
+    });
+  }, [state, home, profile.data?.id]);
 
   useEffect(() => {
     if (state !== "finished" || !seen.current.live) return;

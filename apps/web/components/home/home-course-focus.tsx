@@ -97,14 +97,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
           <h1>{enrolled.title}</h1>
         </div>
         {overview && !isPreviewOffering ? (
-          <div className="home-course-heading-actions">
-            {continueLessonId ? (
-              <Button asChild variant="outline" size="sm" className="w-full sm:w-auto">
-                <Link href={`/study/lessons/${continueLessonId}`}>
-                  <Play className="size-4" aria-hidden /> Continue
-                </Link>
-              </Button>
-            ) : null}
+          <div className="home-course-heading-actions home-course-heading-actions--assessments">
             <Button asChild size="sm" className="w-full sm:w-auto">
               <Link href={`/study/courses/${overview.offering_id}/assessments`}>
                 Open assessments <ChevronRight className="size-4" aria-hidden />
@@ -115,14 +108,12 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
       </header>
 
       {continueLessonId && continueTitle && !isPreviewOffering ? (
-        <div className="home-continue-banner">
-          <div className="home-continue-banner-copy">
-            <p className="home-continue-banner-label">Pick up where you left off</p>
-            <p className="home-continue-banner-title">{continueTitle}</p>
-          </div>
-          <Button asChild size="sm">
+        <div className="home-next-action">
+          <p className="home-next-action-label">Do this next</p>
+          <p className="home-next-action-title">{continueTitle}</p>
+          <Button asChild className="home-next-action-cta">
             <Link href={`/study/lessons/${continueLessonId}`}>
-              Continue <ChevronRight className="size-4" aria-hidden />
+              <Play className="size-4" aria-hidden /> Continue lesson
             </Link>
           </Button>
         </div>
