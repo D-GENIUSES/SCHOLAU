@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { parseRpcError } from "@scholau/api";
-import { generateQuizQuestionsFromTopics } from "@scholau/core/ingestion";
+import { assessQuizTopicSources, generateQuizQuestionsFromTopics } from "@scholau/core/ingestion";
 import type { LecturerQuizList } from "@scholau/core";
 import { getRequestSupabase } from "@/lib/supabase/request";
 
@@ -42,6 +42,7 @@ export async function POST(request: Request) {
   const quizId = String(payload.quizId ?? "");
   const moduleIds = asUuidList(payload.moduleIds);
   const lessonIds = asUuidList(payload.lessonIds);
+  const preview = payload.preview === true;
   const questionCount = Number(payload.questionCount);
 
   if (!offeringId || !UUID_RE.test(offeringId)) {
@@ -50,9 +51,14 @@ export async function POST(request: Request) {
   if (moduleIds.length + lessonIds.length < 1) {
     return NextResponse.json({ error: "Select at least one topic or lesson." }, { status: 400 });
   }
-  if (!Number.isInteger(questionCount) || questionCount < 10 || questionCount > 30) {
-    return NextResponse.json({ error: "Choose between 10 and 30 questions." }, { status: 400 });
+  const minQuestions = 10;
+  const maxQuestions = 30;
+  if (!preview && (!Number.isInteger(questionCount) || questionCount < minQuestions || questionCount > maxQuestions)) {
+    return NextResponse.json({ error: `Choose between ${minQuestions} and ${maxQuestions} questions.` }, { status: 400 });
   }
+  const previewCount = Number.isInteger(questionCount) && questionCount >= minQuestions && questionCount <= maxQuestions
+    ? questionCount
+    : 20;
 
   const { data: listRaw, error: listError, status: listStatus } = await client.rpc("list_course_quizzes_v1", {
     p_offering_id: offeringId,
@@ -107,15 +113,37 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "No published lesson content for the selected topics." }, { status: 400 });
   }
 
+  const mappedSources = sources.map((source) => ({
+    ...source,
+    objective: source.objective ?? "",
+  }));
+  const assessment = assessQuizTopicSources(mappedSources, preview ? previewCount : questionCount);
+
+  if (preview) {
+    return NextResponse.json({
+      preview: true,
+      totalChars: assessment.totalChars,
+      perLesson: assessment.perLesson,
+      warning: assessment.warning,
+    });
+  }
+
+  const singleLesson = sources.length === 1;
+  const effectiveMin = singleLesson ? 20 : minQuestions;
+  if (questionCount < effectiveMin) {
+    return NextResponse.json({
+      error: singleLesson
+        ? "One published lesson supports at least 20 questions. Choose 20–30."
+        : `Choose between ${minQuestions} and ${maxQuestions} questions.`,
+    }, { status: 400 });
+  }
+
   try {
     const extracted = await generateQuizQuestionsFromTopics({
       courseCode,
-      sources: sources.map((source) => ({
-        ...source,
-        objective: source.objective ?? "",
-      })),
+      sources: mappedSources,
       questionCount,
-    });
+    }, { maxAttempts: 2 });
     return NextResponse.json({ questions: extracted.questions });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Generation failed";

@@ -12,7 +12,14 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/misc";
 import { EmptyState } from "@/components/ui/states";
 import { Failure, Paging } from "@/components/challenges/course-challenges";
-import { downloadText, toCsv } from "@/components/admin/csv";
+import { downloadText } from "@/components/admin/csv";
+import {
+  buildQuizResultsCsv,
+  buildQuizResultsDocx,
+  buildQuizResultsWorkbook,
+  downloadBlob,
+  exportFileSlug,
+} from "@/lib/lecturer-quiz-results-export";
 import { lecturerQuizApi, type QuizIntegrityFlag } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { formatQuizWindow, QuizStateBadge, studentClassQuizCta } from "./quiz-ui";
@@ -31,67 +38,6 @@ const statusTone: Record<LecturerQuizRosterRow["status"], "success" | "brand" | 
   in_progress: "brand",
   not_started: "neutral",
 };
-
-function csvDateTime(iso: string | null | undefined) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
-function csvSlug(value: string) {
-  return value.replace(/[^\w.-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 80) || "quiz";
-}
-
-function buildQuizResultsCsv(data: LecturerQuizExport, perQuestion: boolean): string {
-  const qCount = data.questions.length;
-  const headers = [
-    "Matric",
-    "Name",
-    "Department",
-    "Status",
-    "Score",
-    "Total",
-    "Percent",
-    "Submitted at",
-    ...(perQuestion
-      ? [
-          ...Array.from({ length: qCount }, (_, i) => `Q${i + 1}`),
-          ...Array.from({ length: qCount }, (_, i) => `Q${i + 1} correct`),
-        ]
-      : []),
-  ];
-  const body = data.rows.map((row) => {
-    const percent =
-      row.score != null && row.total > 0 ? String(Math.round((100 * row.score) / row.total)) : "";
-    const base: unknown[] = [
-      row.matric_number,
-      row.name,
-      row.department,
-      statusLabels[row.status] ?? row.status,
-      row.score ?? "",
-      row.total,
-      percent,
-      csvDateTime(row.submitted_at),
-    ];
-    if (!perQuestion) return base;
-    const answers = Array.from({ length: qCount }, (_, i) => {
-      const idx = row.answers[String(i)];
-      if (idx === undefined) return "";
-      return data.questions[i]?.options[idx] ?? String(idx);
-    });
-    const correct = Array.from({ length: qCount }, (_, i) => {
-      const idx = row.answers[String(i)];
-      if (idx === undefined || row.status !== "submitted") return "";
-      const expected = data.questions[i]?.correct;
-      if (expected == null) return "";
-      return idx === expected ? "Y" : "N";
-    });
-    return [...base, ...answers, ...correct];
-  });
-  return `\uFEFF${toCsv([headers, ...body])}`;
-}
 
 function studentListStale(data: LecturerQuizList | undefined) {
   return !data || data.items.length === 0;
@@ -248,7 +194,8 @@ function RosterScore({ score, total }: { score: number | null; total: number }) 
 export function QuizRoster({ offering, quizId }: { offering: string; quizId: string }) {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
-  const [csvBusy, setCsvBusy] = useState(false);
+  const [exportBusy, setExportBusy] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
   const roster = useQuery({
     queryKey: ["lecturer-quiz-roster", offering, quizId, search, offset],
     queryFn: () => quizApi().roster(offering, quizId, search, offset),
@@ -288,18 +235,41 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
     return [...seen.entries()].filter(([, names]) => names.length > 1);
   }, [roster.data]);
 
-  async function downloadCsv(perQuestion: boolean) {
-    if (csvBusy) return;
-    setCsvBusy(true);
+  async function fetchExportPayload(): Promise<LecturerQuizExport> {
+    return quizApi().exportResults(quizId);
+  }
+
+  async function downloadExport(kind: "excel" | "word" | "csv" | "csv-detailed") {
+    if (exportBusy) return;
+    setExportBusy(true);
+    setExportError(null);
     try {
-      const data = await quizApi().exportResults(quizId);
-      const titleSlug = csvSlug(data.quiz.title);
-      downloadText(
-        `${titleSlug}_results${perQuestion ? "_detailed" : ""}.csv`,
-        buildQuizResultsCsv(data, perQuestion),
-      );
+      const data = await fetchExportPayload();
+      const slug = exportFileSlug(data.quiz.title);
+      if (kind === "excel") {
+        const buffer = await buildQuizResultsWorkbook(data);
+        downloadBlob(
+          `${slug}_results.xlsx`,
+          buffer,
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        );
+      } else if (kind === "word") {
+        const blob = await buildQuizResultsDocx(data);
+        downloadBlob(
+          `${slug}_results.docx`,
+          blob,
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        );
+      } else {
+        downloadText(
+          `${slug}_results${kind === "csv-detailed" ? "_detailed" : ""}.csv`,
+          buildQuizResultsCsv(data, kind === "csv-detailed"),
+        );
+      }
+    } catch (error) {
+      setExportError(error instanceof Error ? error.message : "Export failed.");
     } finally {
-      setCsvBusy(false);
+      setExportBusy(false);
     }
   }
 
@@ -322,14 +292,25 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
           >
             Flags
           </Button>
-          <Button type="button" variant="secondary" size="sm" disabled={csvBusy} onClick={() => void downloadCsv(false)}>
-            <Download className="size-3.5" aria-hidden /> CSV
+          <Button type="button" variant="secondary" size="sm" disabled={exportBusy} onClick={() => void downloadExport("excel")}>
+            <Download className="size-3.5" aria-hidden /> Excel (.xlsx)
           </Button>
-          <Button type="button" variant="outline" size="sm" disabled={csvBusy} onClick={() => void downloadCsv(true)}>
-            Detailed
+          <Button type="button" variant="outline" size="sm" disabled={exportBusy} onClick={() => void downloadExport("word")}>
+            Word (.docx)
+          </Button>
+          <Button type="button" variant="ghost" size="sm" disabled={exportBusy} onClick={() => void downloadExport("csv")}>
+            CSV
+          </Button>
+          <Button type="button" variant="ghost" size="sm" disabled={exportBusy} onClick={() => void downloadExport("csv-detailed")}>
+            CSV (detailed)
           </Button>
         </div>
       </div>
+
+      {exportError ? (
+        <p role="alert" className="text-xs text-danger">{exportError}</p>
+      ) : null}
+      {exportBusy ? <p role="status" className="text-xs text-ink-muted">Preparing export…</p> : null}
 
       {duplicateMatrics.length ? (
         <p role="status" className="rounded-lg border border-warning bg-warning-bg px-2.5 py-1.5 text-xs text-warning">

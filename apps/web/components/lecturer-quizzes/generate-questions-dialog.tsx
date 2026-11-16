@@ -63,10 +63,12 @@ export function GenerateQuestionsDialog({
   const [selectedLessons, setSelectedLessons] = useState<Set<string>>(() => new Set());
   const [count, setCount] = useState("10");
   const [fieldError, setFieldError] = useState<string | null>(null);
+  const [contentWarning, setContentWarning] = useState<string | null>(null);
+  const [previewChars, setPreviewChars] = useState<number | null>(null);
+  const [previewBusy, setPreviewBusy] = useState(false);
 
   const remaining = Math.max(0, 100 - currentQuestionCount);
   const maxCount = Math.min(30, remaining);
-  const minCount = remaining >= 10 ? 10 : 0;
 
   const publishedModules = useMemo(() => {
     if (!curriculum) return [];
@@ -89,6 +91,8 @@ export function GenerateQuestionsDialog({
       setFieldError(null);
       setCurriculum(null);
       setLoadError(null);
+      setContentWarning(null);
+      setPreviewChars(null);
       setLoading(true);
     }
   }
@@ -187,18 +191,109 @@ export function GenerateQuestionsDialog({
     return lessons.size;
   }, [publishedModules, selectedLessons, selectedModules]);
 
+  const singleLessonSelected = selectionCount === 1;
+  const minCount = singleLessonSelected
+    ? (remaining >= 20 ? 20 : remaining >= 10 ? 10 : 0)
+    : (remaining >= 10 ? 10 : 0);
+
+  useEffect(() => {
+    if (!open || selectionCount < 1) return;
+    const floor = selectionCount === 1
+      ? (remaining >= 20 ? 20 : 10)
+      : 10;
+    const suggested = Math.min(maxCount, Math.max(floor, floor));
+    setCount((prev) => {
+      const parsed = Number(prev);
+      if (!Number.isInteger(parsed) || parsed < floor || parsed > maxCount) return String(suggested);
+      return prev;
+    });
+  }, [open, selectionCount, remaining, maxCount]);
+
   const parsedCount = Number(count);
+  const requiresTwenty = singleLessonSelected && remaining >= 20;
   const countValid =
-    minCount >= 10 &&
+    minCount > 0 &&
     Number.isInteger(parsedCount) &&
     parsedCount >= minCount &&
     parsedCount <= maxCount;
-  const canSubmit = selectionCount > 0 && countValid && !busy && !loading && remaining >= 10;
+  const canSubmit = selectionCount > 0 && countValid && !busy && !loading && remaining >= (requiresTwenty ? 20 : 10);
+
+  useEffect(() => {
+    if (!open || selectionCount < 1) {
+      setContentWarning(null);
+      setPreviewChars(null);
+      return;
+    }
+    const moduleIds = [...selectedModules];
+    const lessonIds = [...selectedLessons].filter((lessonId) =>
+      !publishedModules.some(
+        (courseModule) => selectedModules.has(courseModule.id) && courseModule.lessons.some((lesson) => lesson.lesson_id === lessonId),
+      ),
+    );
+    const countForPreview = countValid ? parsedCount : (requiresTwenty ? 20 : 10);
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      void (async () => {
+        setPreviewBusy(true);
+        try {
+          const res = await fetch("/api/lecturer-quiz-generate", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              preview: true,
+              offeringId,
+              quizId: quizId || undefined,
+              moduleIds,
+              lessonIds,
+              questionCount: countForPreview,
+            }),
+          });
+          const json = (await res.json()) as {
+            warning?: string | null;
+            totalChars?: number;
+            error?: string;
+          };
+          if (cancelled) return;
+          if (!res.ok) {
+            setContentWarning(json.error ?? null);
+            setPreviewChars(null);
+            return;
+          }
+          setContentWarning(json.warning ?? null);
+          setPreviewChars(typeof json.totalChars === "number" ? json.totalChars : null);
+        } catch {
+          if (!cancelled) {
+            setContentWarning(null);
+            setPreviewChars(null);
+          }
+        } finally {
+          if (!cancelled) setPreviewBusy(false);
+        }
+      })();
+    }, 450);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [
+    countValid,
+    open,
+    offeringId,
+    parsedCount,
+    publishedModules,
+    quizId,
+    requiresTwenty,
+    selectedLessons,
+    selectedModules,
+    selectionCount,
+  ]);
 
   async function generate() {
     if (!canSubmit) {
       if (remaining < 10) setFieldError("Need room for at least 10 more questions (100 max).");
-      else if (selectionCount < 1) setFieldError("Select at least one topic or lesson.");
+      else if (requiresTwenty && remaining < 20) {
+        setFieldError("One lesson needs room for at least 20 new questions (100 max).");
+      } else if (selectionCount < 1) setFieldError("Select at least one topic or lesson.");
       else setFieldError(`Choose between ${minCount} and ${maxCount} questions.`);
       return;
     }
@@ -270,7 +365,16 @@ export function GenerateQuestionsDialog({
         {!loading && publishedModules.length > 0 ? (
           <fieldset disabled={busy} className="space-y-2">
             <legend className="text-sm font-semibold">Topics</legend>
-            <p className="text-xs text-ink-muted">{selectionCount} lesson{selectionCount === 1 ? "" : "s"} selected</p>
+            <p className="text-xs text-ink-muted">
+              {selectionCount} lesson{selectionCount === 1 ? "" : "s"} selected
+              {previewBusy ? " · checking content…" : null}
+              {!previewBusy && previewChars !== null ? ` · ~${previewChars.toLocaleString()} characters of teaching text` : null}
+            </p>
+            {contentWarning ? (
+              <p role="status" className="border border-warning bg-warning-bg px-2.5 py-1.5 text-xs text-warning">
+                {contentWarning}
+              </p>
+            ) : null}
             <ul className="max-h-64 space-y-2 overflow-y-auto pr-1">
               {publishedModules.map((courseModule) => {
                 const state = selectionState(courseModule);
@@ -339,7 +443,9 @@ export function GenerateQuestionsDialog({
         </label>
         <p id="generate-count-hint" className="text-xs text-ink-muted">
           {remaining >= 10
-            ? `Required. Choose ${minCount}–${maxCount} questions grounded in the selected published content.`
+            ? requiresTwenty
+              ? `One lesson selected — choose ${minCount}–${maxCount} questions grounded in that lesson.`
+              : `Required. Choose ${minCount}–${maxCount} questions grounded in the selected published content.`
             : "Clear space in the quiz before generating."}
         </p>
 

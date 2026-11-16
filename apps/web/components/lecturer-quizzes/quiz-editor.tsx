@@ -1,7 +1,7 @@
 "use client";
 
 import { MathText } from "@/components/math/math-text";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { qk } from "@scholau/api";
@@ -22,6 +22,13 @@ import { defaultQuizWindow, formatQuizWindow } from "./quiz-ui";
 import { lecturerQuizApi, lecturerQuizError } from "@/lib/lecturer-quiz-api";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { cn } from "@/lib/utils";
+import {
+  clearLocalQuizBackup,
+  readLocalQuizBackup,
+  writeLocalQuizBackup,
+} from "./quiz-editor-persistence";
+
+const AUTOSAVE_MS = 5 * 60 * 1000;
 
 const api = () => lecturerQuizApi(getBrowserSupabase());
 const subscribeZone = () => () => {};
@@ -70,8 +77,27 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>(null);
   const [message, setMessage] = useState("");
+  const [autosaveStatus, setAutosaveStatus] = useState<"idle" | "saving" | "saved" | "local">("idle");
   const [importBusy, setImportBusy] = useState(false);
+  const autosaveBusyRef = useRef(false);
+  const restoredLocalRef = useRef(false);
   const zone = useSyncExternalStore(subscribeZone, readZone, () => "");
+
+  useEffect(() => {
+    if (initial || restoredLocalRef.current) return;
+    restoredLocalRef.current = true;
+    const backup = readLocalQuizBackup(offering, id);
+    if (!backup) return;
+    setDraft(backup.draft);
+    if (backup.quizId) setId(backup.quizId);
+    if (backup.revision !== undefined) setRevision(backup.revision);
+    if (backup.step) setStep(backup.step);
+    if (backup.openQuestions) setOpenQuestions(backup.openQuestions);
+    setDirty(true);
+    setAutosaveStatus("local");
+    setMessage("Restored unsaved work from this browser.");
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- run once for new editor sessions
+  }, [offering, initial]);
 
   const scheduleIssue = useMemo(() => scheduleStepIssue(draft), [draft]);
   const readyCount = useMemo(() => completeQuizQuestions(draft.questions).length, [draft.questions]);
@@ -95,9 +121,101 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
     return () => window.removeEventListener("beforeunload", guard);
   }, [dirty]);
 
+  useEffect(() => {
+    if (!dirty) return;
+    const timer = window.setTimeout(() => {
+      writeLocalQuizBackup({
+        offeringId: offering,
+        quizId: id,
+        revision,
+        step,
+        draft,
+        openQuestions,
+        savedAt: new Date().toISOString(),
+      });
+      if (autosaveStatus !== "saving") setAutosaveStatus("local");
+    }, 800);
+    return () => window.clearTimeout(timer);
+  }, [autosaveStatus, dirty, draft, id, offering, openQuestions, revision, step]);
+
+  const persistDraft = useCallback(async (options: { publish?: boolean; silent?: boolean } = {}) => {
+    const publish = options.publish ?? false;
+    const silent = options.silent ?? false;
+    const blocker = publishBlockers(draft, publish);
+    if (blocker) {
+      if (!silent) {
+        setStepError(blocker);
+        setError(new Error(blocker));
+      }
+      return false;
+    }
+    if (autosaveBusyRef.current && silent) return false;
+    autosaveBusyRef.current = true;
+    if (silent) setAutosaveStatus("saving");
+    else {
+      setBusy(true);
+      setError(null);
+      setMessage("");
+      setStepError(null);
+    }
+    try {
+      const quizId = id || crypto.randomUUID();
+      setId(quizId);
+      const payload: LecturerQuizDraft = { ...draft, questions: completeQuizQuestions(draft.questions) };
+      if (!draft.opens_at || !draft.closes_at) throw new Error("Set when the quiz opens and closes.");
+      let savedRevision = revision;
+      if (!publish || dirty || savedRevision === null) {
+        const saved = await api().save(quizId, offering, revision ?? 0, payload);
+        savedRevision = saved.quiz.revision;
+        setRevision(savedRevision);
+        setDraft(d => ({ ...d, questions: saved.questions }));
+        setDirty(false);
+        clearLocalQuizBackup(offering, quizId);
+        if (!initial && typeof window !== "undefined" && window.location.pathname.endsWith("/quizzes/new")) {
+          router.replace(`/lecturer/courses/${offering}/quizzes/${quizId}`);
+        }
+      }
+      if (publish && savedRevision !== null) {
+        try {
+          await api().publish(quizId, savedRevision);
+        } catch (cause) {
+          throw new Error(`Draft saved. Publication could not be confirmed. ${lecturerQuizError(cause)}`, { cause });
+        }
+        void queryClient.invalidateQueries({ queryKey: [...qk.classQuizzes(), offering] });
+        void queryClient.invalidateQueries({ queryKey: qk.courseQuiz(quizId) });
+        if (!silent) {
+          setMessage("Published. Enrolled students were notified.");
+          router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
+          router.refresh();
+        }
+      } else if (!silent) {
+        setMessage("Draft saved. Students cannot see this quiz until you publish.");
+      } else {
+        setAutosaveStatus("saved");
+      }
+      return true;
+    } catch (e) {
+      if (!silent) setError(e);
+      else setAutosaveStatus("idle");
+      return false;
+    } finally {
+      autosaveBusyRef.current = false;
+      if (!silent) setBusy(false);
+    }
+  }, [dirty, draft, id, initial, offering, queryClient, revision, router]);
+
+  useEffect(() => {
+    if (!dirty || scheduleIssue || busy || importBusy || generateBusy) return;
+    const tick = window.setInterval(() => {
+      void persistDraft({ silent: true });
+    }, AUTOSAVE_MS);
+    return () => window.clearInterval(tick);
+  }, [busy, dirty, generateBusy, importBusy, persistDraft, scheduleIssue]);
+
   function change(next: Partial<LecturerQuizDraft>) {
     setDraft(d => ({ ...d, ...next }));
     setDirty(true);
+    setAutosaveStatus("idle");
     setMessage("");
     setStepError(null);
   }
@@ -117,50 +235,28 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       return;
     }
     setStepError(null);
+    if (next !== step && !scheduleIssue && dirty) {
+      void persistDraft({ silent: true });
+    }
     setStep(next);
   }
 
   async function save(publish: boolean) {
-    const blocker = publishBlockers(draft, publish);
-    if (blocker) {
-      setStepError(blocker);
-      setError(new Error(blocker));
-      return;
-    }
-    setBusy(true);
-    setError(null);
-    setMessage("");
-    setStepError(null);
-    try {
-      const quizId = id || crypto.randomUUID();
-      setId(quizId);
-      const payload: LecturerQuizDraft = { ...draft, questions: completeQuizQuestions(draft.questions) };
-      if (!draft.opens_at || !draft.closes_at) throw new Error("Set when the quiz opens and closes.");
-      let savedRevision = revision;
-      if (!publish || dirty || savedRevision === null) {
-        const saved = await api().save(quizId, offering, revision ?? 0, payload);
-        savedRevision = saved.quiz.revision;
-        setRevision(savedRevision);
-        setDraft(d => ({ ...d, questions: saved.questions }));
+    await persistDraft({ publish });
+  }
+
+  async function leaveToQuizList(e: MouseEvent<HTMLAnchorElement>) {
+    if (!dirty) return;
+    if (!scheduleIssue) {
+      e.preventDefault();
+      const ok = await persistDraft({ silent: true });
+      if (ok) {
         setDirty(false);
+        router.push(`/lecturer/courses/${offering}/quizzes`);
+        return;
       }
-      if (publish && savedRevision !== null) {
-        try {
-          await api().publish(quizId, savedRevision);
-        } catch (cause) {
-          throw new Error(`Draft saved. Publication could not be confirmed. ${lecturerQuizError(cause)}`, { cause });
-        }
-        void queryClient.invalidateQueries({ queryKey: [...qk.classQuizzes(), offering] });
-        void queryClient.invalidateQueries({ queryKey: qk.courseQuiz(quizId) });
-        setMessage("Published. Enrolled students were notified.");
-        router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
-        router.refresh();
-      } else setMessage("Draft saved. Students cannot see this quiz until you publish.");
-    } catch (e) {
-      setError(e);
-    } finally {
-      setBusy(false);
     }
+    if (!window.confirm("Leave without saving your changes?")) e.preventDefault();
   }
 
   async function recover() {
@@ -241,11 +337,22 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
         <Link
           className="inline-flex min-h-8 items-center text-sm font-medium text-brand-primary underline-offset-2 hover:underline"
           href={`/lecturer/courses/${offering}/quizzes`}
-          onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}
+          onClick={e => { void leaveToQuizList(e); }}
         >
           Back to quizzes
         </Link>
-        {message ? <p role="status" className="text-xs text-ink-muted">{message}</p> : null}
+        <div className="flex flex-col items-end gap-0.5 text-xs text-ink-muted">
+          {message ? <p role="status">{message}</p> : null}
+          {autosaveStatus === "saving" ? <p role="status">Saving draft…</p> : null}
+          {autosaveStatus === "saved" ? <p role="status">Draft saved automatically.</p> : null}
+          {autosaveStatus === "local" && dirty ? (
+            <p role="status">
+              {scheduleIssue
+                ? "Backed up in this browser until the schedule is complete."
+                : "Backed up in this browser; also auto-saves to the server every 5 minutes."}
+            </p>
+          ) : null}
+        </div>
       </div>
 
       <h1 className="text-base font-semibold tracking-tight text-ink">{initial ? "Edit quiz" : "Create quiz"}</h1>
@@ -369,7 +476,16 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
                 <option value="immediate">Score only — hide correct answers</option>
               </NativeSelect>
             </label>
-            <div className="flex justify-end border-t border-line pt-3">
+            <div className="flex flex-wrap items-center justify-end gap-2 border-t border-line pt-3">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                disabled={Boolean(scheduleIssue) || busy}
+                onClick={() => void persistDraft({ silent: false })}
+              >
+                Save draft
+              </Button>
               <Button type="button" size="sm" onClick={() => goTo("Questions")}>Continue to questions</Button>
             </div>
           </div>
@@ -562,9 +678,20 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
               </p>
             ) : null}
 
-            <div className="flex flex-wrap justify-between gap-2 border-t border-line pt-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
               <Button type="button" variant="outline" size="sm" onClick={() => setStep("Schedule")}>Back</Button>
-              <Button type="button" size="sm" onClick={() => goTo("Review")}>Review</Button>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={Boolean(scheduleIssue) || busy}
+                  onClick={() => void persistDraft({ silent: false })}
+                >
+                  Save draft
+                </Button>
+                <Button type="button" size="sm" onClick={() => goTo("Review")}>Review</Button>
+              </div>
             </div>
           </div>
         ) : null}

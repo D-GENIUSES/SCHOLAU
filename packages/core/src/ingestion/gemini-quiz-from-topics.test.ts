@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  assessQuizTopicSources,
   buildQuizFromTopicsPrompt,
   parseGeneratedTopicQuiz,
   quizGenerateFromTopicsInputSchema,
@@ -56,6 +57,29 @@ test("topic prompt asks for exact count and grounds in sources", () => {
   assert.match(prompt, /CSC 203/);
   assert.match(prompt, /Propositions/);
   assert.match(prompt, /Conjunction is true only when both parts are true/);
+});
+
+test("assessQuizTopicSources flags thin lessons before large batches", () => {
+  const short = assessQuizTopicSources(
+    [{ lesson_title: "Intro", text: "x".repeat(400), module_title: "M", objective: "" }],
+    20,
+  );
+  assert.ok(short.warning);
+  const healthy = assessQuizTopicSources(
+    [{ lesson_title: "Intro", text: "x".repeat(2000), module_title: "M", objective: "" }],
+    20,
+  );
+  assert.equal(healthy.warning, null);
+});
+
+test("single-lesson prompt encourages depth for larger sets", () => {
+  const prompt = buildQuizFromTopicsPrompt({
+    courseCode: "CSC 203",
+    sources: [sources[0]!],
+    questionCount: 20,
+  });
+  assert.match(prompt, /Vary stems, subtopics/);
+  assert.doesNotMatch(prompt, /Balance coverage across the listed sources/);
 });
 
 test("parseGeneratedTopicQuiz validates correct index and near-exact counts", () => {
