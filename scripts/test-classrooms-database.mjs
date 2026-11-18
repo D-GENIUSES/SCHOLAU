@@ -23,7 +23,7 @@ try {
     "20261110000300_quiz_results_export_roster.sql",
     "20261110000200_resolve_shared_course_enrollment.sql",
     "20261116201655_lecturer_quiz_audience.sql",
-    "20261117233757_lecturer_classrooms.sql",
+    "20261118001712_lecturer_classrooms.sql",
   ]) await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8"));
 
   const meta = (await query("select course_id, university_id, level_id, semester_id, department_id from public.course_offerings where id=$1", [offering]))[0];
