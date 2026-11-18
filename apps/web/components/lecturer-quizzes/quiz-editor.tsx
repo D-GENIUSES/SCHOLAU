@@ -41,11 +41,12 @@ function localDateTime(value?: string | null) {
   return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
 }
 const emptyQuestion = (): LecturerQuizQuestion => ({ prompt: "", options: ["", "", "", ""], correct: 0, explanation: "" });
+const EMPTY_AUDIENCE_IDS: string[] = [];
 const steps: QuizEditorStep[] = ["Schedule", "Questions", "Review"];
 
 const fieldLabel = "mb-1 block text-xs font-medium text-ink-muted";
 
-export function QuizEditor({ offering, initial }: { offering: string; initial?: LecturerQuizDetail }) {
+export function QuizEditor({ offering, initial, classroomId }: { offering: string; initial?: LecturerQuizDetail; classroomId?: string | null }) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [id, setId] = useState(initial?.quiz.id ?? "");
@@ -69,19 +70,55 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
           closes_at: initial.quiz.closes_at,
           max_attempts: initial.quiz.max_attempts,
           feedback_mode: initial.quiz.feedback_mode,
+          audience_mode: initial.quiz.audience_mode ?? "all_programmes",
+          audience_offering_ids: initial.quiz.audience_offering_ids ?? [],
           questions: initial.questions.length ? initial.questions : [],
         }
-      : { title: "", instructions: "", duration_minutes: 30, opens_at: defaults.opens_at, closes_at: defaults.closes_at, max_attempts: 1, feedback_mode: "after_submit", questions: [] },
+      : { title: "", instructions: "", duration_minutes: 30, opens_at: defaults.opens_at, closes_at: defaults.closes_at, max_attempts: 1, feedback_mode: "after_submit", audience_mode: "all_programmes", audience_offering_ids: [], questions: [] },
   );
   const [dirty, setDirty] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>(null);
   const [message, setMessage] = useState("");
+  const [audienceCatalog, setAudienceCatalog] = useState<{ offering: string; items: QuizAudienceOption[]; error: boolean } | null>(null);
+  const [audienceRetry, setAudienceRetry] = useState(0);
+  const [audiencePreviewState, setAudiencePreviewState] = useState<{ key: string; value: { recipient_count: number; programmes: Array<{ id: string; department_name: string; recipient_count: number }> } } | null>(null);
+  const [audiencePreviewErrorKey, setAudiencePreviewErrorKey] = useState<string | null>(null);
   const [autosaveStatus, setAutosaveStatus] = useState<"idle" | "saving" | "saved" | "local">("idle");
   const [importBusy, setImportBusy] = useState(false);
   const autosaveBusyRef = useRef(false);
   const restoredLocalRef = useRef(false);
   const zone = useSyncExternalStore(subscribeZone, readZone, () => "");
+  const audienceOptions = audienceCatalog?.offering === offering ? audienceCatalog.items : [];
+  const audienceLoading = audienceCatalog?.offering !== offering;
+  const audienceError = audienceCatalog?.offering === offering && audienceCatalog.error;
+  const audienceIds = draft.audience_offering_ids ?? EMPTY_AUDIENCE_IDS;
+  const audienceKey = JSON.stringify({ offering, mode: draft.audience_mode ?? "all_programmes", offering_ids: audienceIds });
+  const audiencePreview = audiencePreviewState?.key === audienceKey ? audiencePreviewState.value : null;
+  const audiencePreviewLoading = audiencePreview === null && audiencePreviewErrorKey !== audienceKey;
+
+  useEffect(() => {
+    if (classroomId) return;
+    let active = true;
+    void api().audienceOptions(offering).then(({ items }) => {
+      if (active) setAudienceCatalog({ offering, items, error: false });
+    }).catch(() => { if (active) setAudienceCatalog({ offering, items: [], error: true }); });
+    return () => { active = false; };
+  }, [offering, audienceRetry, classroomId]);
+
+  useEffect(() => {
+    if (classroomId) return;
+    let active = true;
+    void api().previewAudience(offering, JSON.parse(audienceKey) as { mode: "all_programmes" | "selected_programmes"; offering_ids: string[] })
+      .then(result => { if (active) { setAudiencePreviewState({ key: audienceKey, value: result }); setAudiencePreviewErrorKey(null); } })
+      .catch(() => { if (active) setAudiencePreviewErrorKey(audienceKey); });
+    return () => { active = false; };
+  }, [offering, audienceKey, classroomId]);
+
+  function retryAudienceOptions() {
+    setAudienceCatalog(null);
+    setAudienceRetry(value => value + 1);
+  }
 
   useEffect(() => {
     if (initial || restoredLocalRef.current) return;
@@ -185,6 +222,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
         }
         void queryClient.invalidateQueries({ queryKey: [...qk.classQuizzes(), offering] });
         void queryClient.invalidateQueries({ queryKey: qk.courseQuiz(quizId) });
+        if (classroomId) void queryClient.invalidateQueries({ queryKey: qk.classroom(classroomId) });
         if (!silent) {
           setMessage("Published. Enrolled students were notified.");
           router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
@@ -204,7 +242,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       autosaveBusyRef.current = false;
       if (!silent) setBusy(false);
     }
-  }, [dirty, draft, id, initial, offering, queryClient, revision, router]);
+  }, [classroomId, dirty, draft, id, initial, offering, queryClient, revision, router]);
 
   useEffect(() => {
     if (!dirty || scheduleIssue || busy || importBusy || generateBusy) return;
@@ -254,7 +292,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       const ok = await persistDraft({ silent: true });
       if (ok) {
         setDirty(false);
-        router.push(`/lecturer/courses/${offering}/quizzes`);
+        router.push(classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/quizzes`);
         return;
       }
     }
@@ -338,7 +376,7 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <Link
           className="inline-flex min-h-8 items-center text-sm font-medium text-brand-primary underline-offset-2 hover:underline"
-          href={`/lecturer/courses/${offering}/quizzes`}
+        href={classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/quizzes`}
           onClick={e => { void leaveToQuizList(e); }}
         >
           Back to quizzes
@@ -735,8 +773,52 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
               </div>
             </dl>
             {scheduleWarning ? <p className="text-xs text-warning">{scheduleWarning}</p> : null}
+            {classroomId ? (
+              <p className="rounded-card border border-line bg-surface-card p-3 text-sm">
+                Only students who have joined this classroom can take this quiz.
+              </p>
+            ) : audienceLoading || audienceError || audienceOptions.length > 1 ? (
+              <fieldset className="space-y-3 rounded-card border border-line bg-surface-card p-3">
+                <legend className="px-1 text-sm font-semibold">Who can take this quiz?</legend>
+                {audienceLoading ? <p role="status" className="text-sm text-ink-muted">Loading programmes…</p> : null}
+                {audienceError ? (
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-danger">
+                    <span>Couldn’t load programmes.</span>
+                    <Button type="button" size="sm" variant="outline" onClick={retryAudienceOptions}>Try again</Button>
+                  </div>
+                ) : null}
+                {!audienceLoading && !audienceError ? (
+                  <>
+                    <label className="flex min-h-11 items-center gap-2 text-sm">
+                      <input type="radio" name="quiz-audience" checked={(draft.audience_mode ?? "all_programmes") === "all_programmes"} onChange={() => change({ audience_mode: "all_programmes", audience_offering_ids: [] })} />
+                      All programmes
+                    </label>
+                    <label className="flex min-h-11 items-center gap-2 text-sm">
+                      <input type="radio" name="quiz-audience" checked={draft.audience_mode === "selected_programmes"} onChange={() => change({ audience_mode: "selected_programmes" })} />
+                      Selected programmes only
+                    </label>
+                    {draft.audience_mode === "selected_programmes" ? (
+                      <div className="space-y-1 pl-5">
+                        {audienceOptions.map(option => {
+                          const selected = draft.audience_offering_ids ?? [];
+                          return (
+                            <label key={option.id} className="flex min-h-11 items-center gap-2 text-sm">
+                              <input type="checkbox" checked={selected.includes(option.id)} onChange={event => change({ audience_offering_ids: event.target.checked ? [...selected, option.id] : selected.filter(id => id !== option.id) })} />
+                              {option.department_name}
+                            </label>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                    <p role="status" className="text-sm text-ink-muted">
+                      {audiencePreviewLoading ? "Updating recipient count…" : audiencePreview ? `${audiencePreview.recipient_count} enrolled student${audiencePreview.recipient_count === 1 ? "" : "s"} will be notified and can open this quiz.` : "Recipient count is temporarily unavailable."}
+                    </p>
+                  </>
+                ) : null}
+              </fieldset>
+            ) : null}
             <p className="text-xs text-ink-muted">
-              Publishing locks questions and schedule. Enrolled students are notified. Options shuffle per student.
+              Publishing locks questions, schedule and audience. Options shuffle per student.
             </p>
             <ReviewPreviewList questions={completeQuizQuestions(draft.questions)} />
             {publishIssue ? <p className="text-sm text-danger">{publishIssue}</p> : null}
