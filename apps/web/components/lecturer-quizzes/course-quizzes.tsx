@@ -130,6 +130,7 @@ export function CourseQuizzes({
                 <QuizStateBadge state={q.state} />
               </div>
               <p className="text-xs text-ink-muted">{q.question_count} questions · {q.duration_minutes} min · {q.max_attempts} attempt{q.max_attempts === 1 ? "" : "s"} · {formatQuizWindow(q.opens_at, q.closes_at)}</p>
+              {lecturer && q.audience_mode === "selected_programmes" ? <p className="text-xs text-ink-muted">Audience: {q.audience_programmes?.join(", ") || "Selected programmes"}</p> : null}
             </div>
             <div className="flex flex-wrap gap-2">
               <Button asChild variant="secondary" size="sm"><Link href={lecturer ? lecturerQuizHref(offering, q, base) : studentHref(q.id)}>{lecturer ? lecturerQuizCta(q) : studentClassQuizCta(q.state)}</Link></Button>
@@ -281,6 +282,7 @@ export function QuizRoster({ offering, quizId }: { offering: string; quizId: str
           <p className="text-xs text-ink-muted">
             {stats.submitted} submitted · {stats.inProgress} live · {stats.total} enrolled
           </p>
+          {roster.data?.quiz.audience_mode === "selected_programmes" ? <p className="text-xs text-ink-muted">Audience: {roster.data.quiz.audience_programmes?.join(", ") || "Selected programmes"}</p> : null}
         </div>
         <div className="flex flex-wrap gap-1.5">
           <Button

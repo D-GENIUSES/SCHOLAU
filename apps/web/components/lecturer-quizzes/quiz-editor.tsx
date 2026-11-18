@@ -12,7 +12,7 @@ import {
   scheduleStepIssue,
   type QuizEditorStep,
 } from "@scholau/core";
-import type { LecturerQuizDetail, LecturerQuizDraft, LecturerQuizQuestion } from "@scholau/core";
+import type { LecturerQuizDetail, LecturerQuizDraft, LecturerQuizQuestion, QuizAudienceOption } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import { Input, NativeSelect, Textarea } from "@/components/ui/input";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle } from "@/components/ui/dialog";
@@ -165,7 +165,9 @@ export function QuizEditor({ offering, initial }: { offering: string; initial?: 
       if (!draft.opens_at || !draft.closes_at) throw new Error("Set when the quiz opens and closes.");
       let savedRevision = revision;
       if (!publish || dirty || savedRevision === null) {
-        const saved = await api().save(quizId, offering, revision ?? 0, payload);
+        const saved = classroomId
+          ? await api().saveClassroom(quizId, classroomId, revision ?? 0, payload)
+          : await api().save(quizId, offering, revision ?? 0, payload);
         savedRevision = saved.quiz.revision;
         setRevision(savedRevision);
         setDraft(d => ({ ...d, questions: saved.questions }));

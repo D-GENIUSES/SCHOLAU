@@ -1,7 +1,7 @@
 export type ChallengeState = "draft" | "upcoming" | "active" | "finished" | "cancelled";
 export interface CourseChallenge {
   id: string; offering_id: string; title: string; instructions: string; duration_minutes: number;
-  state: ChallengeState; starts_at: string | null; ends_at: string | null; revision: number; question_count: number;
+  state: ChallengeState; starts_at: string | null; ends_at: string | null; revision: number; question_count: number; classroom_id?: string | null;
 }
 export interface ChallengeQuestion {
   source_version_id?: string | null; prompt: string; options: string[]; correct?: number; explanation?: string;

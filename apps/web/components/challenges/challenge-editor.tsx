@@ -13,7 +13,7 @@ const subscribeZone = () => () => {};
 const readZone = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
 function localDateTime(value?: string | null) { if (!value) return ""; const d = new Date(value); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16); }
 const emptyQuestion = (): ChallengeQuestion => ({ prompt: "", options: ["", "", "", ""], correct: 0, explanation: "" });
-export function ChallengeEditor({ offering, initial }: { offering: string; initial?: ChallengeDetail }) {
+export function ChallengeEditor({ offering, initial, classroomId }: { offering: string; initial?: ChallengeDetail; classroomId?: string | null }) {
   const router = useRouter();
   const queries = useQueryClient();
   const id = useRef(initial?.challenge.id ?? "");
@@ -31,7 +31,10 @@ export function ChallengeEditor({ offering, initial }: { offering: string; initi
     setBusy(true); setError(null); setMessage("");
     try {
       if (!id.current) id.current = crypto.randomUUID();
-      const saved = await api().save(id.current, offering, revision, { ...draft, starts_at: mode === "scheduled" && start ? new Date(start).toISOString() : null });
+      const payload = { ...draft, starts_at: mode === "scheduled" && start ? new Date(start).toISOString() : null };
+      const saved = classroomId
+        ? await api().saveClassroom(id.current, classroomId, revision, payload)
+        : await api().save(id.current, offering, revision, payload);
       setRevision(saved.challenge.revision); setDraft(d => ({ ...d, questions: saved.questions })); setDirty(false);
       if (publish) {
         if (mode === "scheduled" && (!start || new Date(start).getTime() <= Date.now())) throw Error("Choose a future start time.");
@@ -49,7 +52,7 @@ export function ChallengeEditor({ offering, initial }: { offering: string; initi
     try { const result = await api().detail(id.current); if (result.challenge.state !== "draft") { router.push(`/challenges/${id.current}`); router.refresh(); return; } setRevision(result.challenge.revision); setDraft({ ...result.challenge, questions: result.questions }); setMode(result.challenge.starts_at ? "scheduled" : "now"); setStart(localDateTime(result.challenge.starts_at)); setDirty(false); setError(null); } catch (e) { setError(e); } finally { setBusy(false); }
   }
   return <form className="space-y-5 min-w-0" onSubmit={e => { e.preventDefault(); void save(false); }}>
-    <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={`/lecturer/courses/${offering}/challenges`} onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}>Back to challenges</Link>
+    <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/challenges`} onClick={e => { if (dirty && !window.confirm("Leave without saving your changes?")) e.preventDefault(); }}>{classroomId ? "Back to classroom" : "Back to challenges"}</Link>
     <h1 className="text-lg font-bold tracking-tight sm:text-xl">{initial ? "Edit challenge" : "Create challenge"}</h1>
     <Failure error={error} retry={() => void recover()} />{message && <p role="status">{message}</p>}
     <fieldset disabled={busy} className="space-y-4 min-w-0">

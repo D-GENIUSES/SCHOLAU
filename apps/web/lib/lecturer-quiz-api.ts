@@ -1,6 +1,7 @@
 import { isApiError, parseRpcError, ScholauApiError, type AnySupabaseClient } from "@scholau/api";
 import type {
   LecturerQuiz,
+  QuizAudienceOption,
   LecturerQuizDetail,
   LecturerQuizDraft,
   LecturerQuizExport,
@@ -31,15 +32,29 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
     closes_at: data.closes_at ?? null,
     max_attempts: data.max_attempts ?? 1,
     feedback_mode: data.feedback_mode ?? "after_submit",
+    audience: { mode: data.audience_mode ?? "all_programmes", offering_ids: data.audience_offering_ids ?? [] },
     questions: data.questions,
   });
   return {
     list: (offering: string, offset = 0) =>
       rpc<LecturerQuizList>("list_course_quizzes_v1", { p_offering_id: offering, p_offset: offset }),
+    audienceOptions: (offering: string) =>
+      rpc<{ items: QuizAudienceOption[] }>("get_lecturer_quiz_audience_options_v1", { p_offering_id: offering }),
+    previewAudience: (offering: string, audience: { mode: string; offering_ids: string[] }) =>
+      rpc<{ recipient_count: number; programmes: Array<{ id: string; department_name: string; recipient_count: number }> }>(
+        "preview_lecturer_quiz_audience_v1", { p_offering_id: offering, p_audience: audience },
+      ),
     save: (id: string, offering: string, revision: number, data: LecturerQuizDraft) =>
       rpc<{ quiz: LecturerQuiz; questions: LecturerQuizQuestion[] }>("save_lecturer_quiz_v1", {
         p_id: id,
         p_offering_id: offering,
+        p_revision: revision,
+        p_data: toPayload(data),
+      }),
+    saveClassroom: (id: string, classroomId: string, revision: number, data: LecturerQuizDraft) =>
+      rpc<{ quiz: LecturerQuiz; questions: LecturerQuizQuestion[] }>("save_classroom_lecturer_quiz_v1", {
+        p_id: id,
+        p_classroom_id: classroomId,
         p_revision: revision,
         p_data: toPayload(data),
       }),

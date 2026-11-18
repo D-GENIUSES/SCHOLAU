@@ -13,11 +13,13 @@ export function ChallengeRoom({ id }: { id: string }) {
   async function act(action: () => Promise<unknown>) { setBusy(true); setActionError(null); try { await action(); await query.refetch(); } catch (e) { setActionError(e); } finally { setBusy(false); } }
   if (!query.data) return <><Failure error={query.error} retry={() => void query.refetch()} />{query.isPending && <p role="status">Loading challenge…</p>}</>;
   const d = query.data, c = d.challenge;
-  if (d.teacher && c.state === "draft") return <ChallengeEditor key={c.id} offering={c.offering_id} initial={d} />;
-  const challengesHref = d.teacher
+  if (d.teacher && c.state === "draft") return <ChallengeEditor key={c.id} offering={c.offering_id} initial={d} classroomId={c.classroom_id} />;
+  const challengesHref = c.classroom_id
+    ? `${d.teacher ? "/lecturer" : ""}/classrooms/${c.classroom_id}`
+    : d.teacher
     ? `/lecturer/courses/${c.offering_id}/challenges`
     : `/courses/${c.offering_id}/challenges`;
-  return <div className="space-y-4 min-w-0 break-words"><Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={challengesHref}>Back to challenges</Link><h1 className="text-lg font-bold tracking-tight sm:text-xl">{c.title}</h1><p className="whitespace-pre-wrap text-sm">{c.instructions}</p><p className="text-xs capitalize text-ink-muted">{c.state} · {c.question_count} questions · {c.duration_minutes} minutes</p><p className="text-xs text-ink-muted">{c.starts_at && new Date(c.starts_at).toLocaleString()} – {c.ends_at && new Date(c.ends_at).toLocaleString()} ({Intl.DateTimeFormat().resolvedOptions().timeZone})</p>
+  return <div className="space-y-4 min-w-0 break-words"><Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={challengesHref}>{c.classroom_id ? "Back to classroom" : "Back to challenges"}</Link><h1 className="text-lg font-bold tracking-tight sm:text-xl">{c.title}</h1><p className="whitespace-pre-wrap text-sm">{c.instructions}</p><p className="text-xs capitalize text-ink-muted">{c.state} · {c.question_count} questions · {c.duration_minutes} minutes</p><p className="text-xs text-ink-muted">{c.starts_at && new Date(c.starts_at).toLocaleString()} – {c.ends_at && new Date(c.ends_at).toLocaleString()} ({Intl.DateTimeFormat().resolvedOptions().timeZone})</p>
     <Failure error={actionError || query.error} retry={() => { setActionError(null); void query.refetch(); }} />
     {c.state === "cancelled" ? <p role="status">This challenge was cancelled. There is no ranking.</p> : <>
       {c.state === "upcoming" && <p role="status">The challenge will open automatically at the scheduled time.</p>}

@@ -65,6 +65,9 @@ export function publishBlockers(draft: LecturerQuizDraft, publish: boolean): str
   if (schedule) return schedule;
   const ready = completeQuizQuestions(draft.questions);
   if (publish) {
+    if (draft.audience_mode === "selected_programmes" && !draft.audience_offering_ids?.length) {
+      return "Select at least one programme for this quiz.";
+    }
     if (!ready.length) return "Add at least one complete question before publishing.";
     if (ready.length < draft.questions.length) return "Complete or remove incomplete questions before publishing.";
     if (!draft.closes_at || new Date(draft.closes_at).getTime() <= Date.now()) {

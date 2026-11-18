@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, ChevronDown, FileText, Inbox, Megaphone, Menu } from "lucide-react";
+import { BookOpen, ChevronDown, FileText, Inbox, Megaphone, Menu, PanelsTopLeft } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 const workspaceLinks = [
   { href: "/lecturer", label: "My courses", icon: BookOpen },
+  { href: "/lecturer/classrooms", label: "Classrooms", icon: PanelsTopLeft },
   { href: "/lecturer/materials", label: "Materials", icon: FileText },
   { href: "/lecturer/submissions", label: "Submissions", icon: Inbox },
   { href: "/lecturer/announcements", label: "Announcements", icon: Megaphone },
@@ -33,7 +34,7 @@ function WorkspaceNavigation({ canTeach, mobile = false }: { canTeach: boolean; 
   return (
     <nav aria-label="Lecturer navigation" className="flex flex-col gap-0.5">
       {links.map(({ href, label, icon: Icon }) => {
-        const current = path === href || (href === "/lecturer" && path.startsWith("/lecturer/courses/"));
+        const current = path === href || (href === "/lecturer" && path.startsWith("/lecturer/courses/")) || (href === "/lecturer/classrooms" && path.startsWith("/lecturer/classrooms/"));
         const link = (
           <Link href={href} aria-current={current ? "page" : undefined} className={cn(navLink, current && "bg-surface-tint text-brand-primary")}>
             <Icon className="size-4 shrink-0" aria-hidden /> {label}

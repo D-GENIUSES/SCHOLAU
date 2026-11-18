@@ -57,7 +57,7 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
   if (!query.data) return <><Failure error={query.error} retry={() => void query.refetch()} />{query.isPending && <p role="status">Loading quiz…</p>}</>;
   const d = query.data;
   const q = d.quiz;
-  if (d.teacher && q.state === "draft") return <QuizEditor offering={q.offering_id} initial={d} />;
+  if (d.teacher && q.state === "draft") return <QuizEditor offering={q.offering_id} initial={d} classroomId={q.classroom_id} />;
   const studentPreview = Boolean(d.teacher && preview);
   const asStudent = !d.teacher || studentPreview;
   const windowLine = formatQuizWindow(q.opens_at, q.closes_at);
@@ -65,7 +65,7 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
   const attemptInProgress = Boolean(d.attempt && !d.attempt.submitted_at && d.questions.length);
   return (
     <div className="space-y-4 min-w-0 break-words">
-      <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${d.viewer_offering_id ?? q.offering_id}/assessments?tab=class-quizzes`}>Back to quizzes</Link>
+      <Link className="inline-flex min-h-9 items-center text-sm font-semibold text-brand-primary underline-offset-2 hover:underline" href={q.classroom_id ? `${d.teacher ? "/lecturer" : ""}/classrooms/${q.classroom_id}` : d.teacher ? `/lecturer/courses/${q.offering_id}/quizzes` : `/study/courses/${d.viewer_offering_id ?? q.offering_id}/assessments?tab=class-quizzes`}>{q.classroom_id ? "Back to classroom" : "Back to quizzes"}</Link>
       <div className="flex flex-wrap items-center gap-2">
         <h1 className="text-lg font-bold tracking-tight sm:text-xl">{q.title}</h1>
         <QuizStateBadge state={q.state} />

@@ -8,6 +8,9 @@ export const qk = {
   onboarding: (u?: string | null, f?: string | null, p?: string | null) =>
     ["scholau", "onboarding", u ?? null, f ?? null, p ?? null] as const,
   classQuizzes: () => ["scholau", "class-quizzes"] as const,
+  classrooms: (archived = false) => ["scholau", "classrooms", archived] as const,
+  classroom: (classroomId: string) => ["scholau", "classroom", classroomId] as const,
+  classroomInvite: (classroomId: string) => ["scholau", "classroom-invite", classroomId] as const,
   courseQuiz: (quizId: string) => ["scholau", "course-quiz", quizId] as const,
   course: (offeringId: string) => ["scholau", "course", offeringId] as const,
   lesson: (lessonId: string) => ["scholau", "lesson", lessonId] as const,

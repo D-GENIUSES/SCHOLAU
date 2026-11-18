@@ -107,7 +107,10 @@ export async function POST(request: Request) {
   }
 
   const sourcesPayload = sourcesRaw as GenerationSources;
-  const sources = sourcesPayload?.sources ?? [];
+  const sources = (sourcesPayload?.sources ?? []).map((source) => ({
+    ...source,
+    objective: source.objective ?? source.lesson_title,
+  }));
   const courseCode = sourcesPayload?.course_code?.trim();
   if (!courseCode || !sources.length) {
     return NextResponse.json({ error: "No published lesson content for the selected topics." }, { status: 400 });

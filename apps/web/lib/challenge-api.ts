@@ -10,6 +10,7 @@ export function challengeApi(client: AnySupabaseClient) {
     list: (offering: string, offset = 0) => rpc<ChallengeList>("list_course_challenges_v1", { p_offering_id: offering, p_offset: offset }),
     bank: (offering: string, search = "", offset = 0) => rpc<{ items: ChallengeQuestion[] }>("challenge_question_bank_v1", { p_offering_id: offering, p_search: search, p_offset: offset }),
     save: (id: string, offering: string, revision: number, data: ChallengeDraft) => rpc<{ challenge: CourseChallenge; questions: ChallengeQuestion[] }>("save_course_challenge_v1", { p_id: id, p_offering_id: offering, p_revision: revision, p_data: data }),
+    saveClassroom: (id: string, classroomId: string, revision: number, data: ChallengeDraft) => rpc<{ challenge: CourseChallenge; questions: ChallengeQuestion[] }>("save_classroom_course_challenge_v1", { p_id: id, p_classroom_id: classroomId, p_revision: revision, p_data: data }),
     publish: (id: string, revision: number, startsAt: string | null) => rpc<{ challenge: CourseChallenge }>("publish_course_challenge_v1", { p_id: id, p_revision: revision, p_starts_at: startsAt }),
     cancel: (id: string) => rpc<{ cancelled: boolean }>("cancel_course_challenge_v1", { p_id: id }),
     detail: (id: string, userId: string | null = null) => rpc<ChallengeDetail>("get_course_challenge_v1", { p_id: id, p_user_id: userId }),

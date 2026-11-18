@@ -172,6 +172,33 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
 
     listCourseQuizzes: (offeringId: string, offset = 0) =>
       rpc<T.LecturerQuizList>("list_course_quizzes_v1", { p_offering_id: offeringId, p_offset: offset }),
+    listClassrooms: (archived = false) => rpc<T.ClassroomList>("list_classrooms_v1", { p_archived: archived }),
+    createClassroom: (a: { offeringId: string; title: string; offeringIds: string[] }) =>
+      rpc<{ classroom: T.Classroom }>("create_classroom_v1", {
+        p_offering_id: a.offeringId, p_title: a.title, p_offering_ids: a.offeringIds,
+      }),
+    getClassroomInvite: (id: string) => rpc<T.ClassroomInvite>("get_classroom_invite_v1", { p_id: id }),
+    joinClassroom: (id: string) => rpc<{ classroom: T.Classroom; already_member: boolean }>("join_classroom_v1", { p_id: id }),
+    getClassroom: (id: string) => rpc<T.ClassroomDetail>("get_classroom_v1", { p_id: id }),
+    setClassroomJoinOpen: (id: string, open: boolean) =>
+      rpc<{ classroom: T.Classroom }>("set_classroom_join_open_v1", { p_id: id, p_open: open }),
+    archiveClassroom: (id: string) => rpc<{ classroom: T.Classroom }>("archive_classroom_v1", { p_id: id }),
+    getClassroomMembers: (id: string, offset = 0) =>
+      rpc<T.ClassroomMembers>("classroom_members_v1", { p_id: id, p_offset: offset }),
+    saveClassroomQuiz: (a: { id: string; classroomId: string; revision: number; data: Record<string, unknown> }) =>
+      rpc<T.LecturerQuizSaveResult>("save_classroom_lecturer_quiz_v1", {
+        p_id: a.id, p_classroom_id: a.classroomId, p_revision: a.revision, p_data: a.data,
+      }),
+    saveClassroomChallenge: (a: { id: string; classroomId: string; revision: number; data: Record<string, unknown> }) =>
+      rpc<{ challenge: T.CourseChallenge; questions: T.ChallengeQuestion[] }>("save_classroom_course_challenge_v1", {
+        p_id: a.id, p_classroom_id: a.classroomId, p_revision: a.revision, p_data: a.data,
+      }),
+    getLecturerQuizAudienceOptions: (offeringId: string) =>
+      rpc<T.Envelope & { items: Array<{ id: string; department_name: string }> }>("get_lecturer_quiz_audience_options_v1", { p_offering_id: offeringId }),
+    previewLecturerQuizAudience: (offeringId: string, audience: { mode: "all_programmes" | "selected_programmes"; offering_ids: string[] }) =>
+      rpc<T.Envelope & { recipient_count: number; programmes: Array<{ id: string; department_name: string; recipient_count: number }> }>(
+        "preview_lecturer_quiz_audience_v1", { p_offering_id: offeringId, p_audience: audience },
+      ),
     saveLecturerQuiz: (a: { id: string; offeringId: string; revision: number; data: Record<string, unknown> }) =>
       rpc<T.LecturerQuizSaveResult>("save_lecturer_quiz_v1", {
         p_id: a.id,

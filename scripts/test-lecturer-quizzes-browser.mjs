@@ -7,9 +7,25 @@ import http from "node:http";
 import { createChallengeTestDatabase } from "./lib/course-challenge-test-db.mjs";
 
 const { db, lecturer, offering } = await createChallengeTestDatabase();
+await db.exec(`alter table public.notifications
+  add column if not exists title text not null default 'ScholAu',
+  add column if not exists category text not null default 'academic',
+  add column if not exists expires_at timestamptz not null default (now()+interval '24 hours'),
+  add column if not exists context jsonb not null default '{}'`);
+const offeringMeta = (await db.query("select course_id,semester_id,university_id,department_id,level_id from public.course_offerings where id=$1",[offering])).rows[0];
+const sibling = (await db.query("select id from public.course_offerings where course_id=$1 and semester_id=$2 and department_id<>$3 and status='published' limit 1",[offeringMeta.course_id,offeringMeta.semester_id,offeringMeta.department_id])).rows[0];
+if (!sibling) {
+  const department = (await db.query("select id from public.departments where university_id=$1 and id<>$2 limit 1",[offeringMeta.university_id,offeringMeta.department_id])).rows[0];
+  if (department) await db.query("insert into public.course_offerings(id,course_id,university_id,department_id,level_id,semester_id,status) values($1,$2,$3,$4,$5,$6,'published')",["86000000-0000-4000-8000-000000000520",offeringMeta.course_id,offeringMeta.university_id,department.id,offeringMeta.level_id,offeringMeta.semester_id]);
+}
 await db.exec(readFileSync("supabase/migrations/20261108000100_lecturer_course_quizzes.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261108000200_fix_quiz_option_orders.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261109203000_lecturer_quiz_feedback_mode.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261109300000_course_quiz_notifications.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000100_shared_course_class_quizzes.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000300_quiz_results_export_roster.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261110000200_resolve_shared_course_enrollment.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261116201655_lecturer_quiz_audience.sql", "utf8"));
 
 const runtime = createRequire(resolve(process.env.LECTURER_TEST_RUNTIME ?? "../.legal-test-runtime", "package.json"));
 const web = createRequire(resolve("apps/web/package.json"));
@@ -60,6 +76,8 @@ const allowed = new Set([
   "cancel_lecturer_quiz_draft_v1",
   "get_course_quiz_v1",
   "get_lecturer_course_curriculum_v1",
+  "get_lecturer_quiz_audience_options_v1",
+  "preview_lecturer_quiz_audience_v1",
 ]);
 const curriculum = {
   offering_id: offering,
@@ -169,10 +187,10 @@ await page.getByLabel("Title", { exact: true }).fill("Midterm practice");
 await page.getByLabel("Instructions", { exact: true }).fill("Answer every question.");
 await page.getByRole("button", { name: "Continue to questions", exact: true }).click();
 await page.getByRole("heading", { name: /Questions/, exact: true }).waitFor();
-await page.getByRole("button", { name: "Generate questions", exact: true }).waitFor();
+await page.getByRole("button", { name: "Generate questions from course topics", exact: true }).waitFor();
 bump();
 
-await page.getByRole("button", { name: "Generate questions", exact: true }).click();
+await page.getByRole("button", { name: "Generate questions from course topics", exact: true }).click();
 await page.getByRole("heading", { name: "Generate questions", exact: true }).waitFor();
 await page.getByText("Lesson one", { exact: true }).waitFor();
 const generateSubmit = page.getByRole("button", { name: "Generate", exact: true });
@@ -188,14 +206,23 @@ bump();
 
 await page.getByRole("button", { name: "Add question", exact: true }).click();
 await page.getByLabel("Question text", { exact: true }).fill("Pick four.");
-for (let i = 0; i < 4; i++) await page.getByLabel(`Option ${i + 1}`, { exact: true }).fill(String(i + 3));
+const manualQuestion = page.locator("details").filter({ hasText: "Pick four." });
+for (let i = 0; i < 4; i++) await manualQuestion.getByLabel(`Option ${i + 1}`, { exact: true }).fill(String(i + 3));
 await page.getByRole("button", { name: "Review", exact: true }).click();
 await page.getByRole("heading", { name: "Summary", exact: true }).waitFor();
 await page.getByText("Schedule: ready", { exact: true }).waitFor();
+await page.getByLabel("Selected programmes only", { exact: true }).check();
+const programme = page.locator("fieldset").filter({ has: page.getByText("Who can take this quiz?") }).locator("input[type=checkbox]").first();
+await programme.check();
+await page.getByText(/enrolled students? will be notified and can open this quiz/).waitFor();
 bump();
 
 await page.getByRole("button", { name: "Save draft", exact: true }).click();
-await page.getByText("Draft saved.", { exact: true }).waitFor();
+try { await page.getByText(/^Draft saved\./).waitFor(); }
+catch (error) { console.log("quiz editor save debug", await page.locator("body").innerText(), errors); throw error; }
+const storedAudience = (await db.query("select settings->'audience' as audience from private.lecturer_course_quizzes where title='Midterm practice'")).rows[0].audience;
+assert.equal(storedAudience.mode, "selected_programmes");
+assert.equal(storedAudience.offering_ids.length, 1);
 bump();
 
 const publish = page.getByRole("button", { name: "Publish quiz", exact: true });

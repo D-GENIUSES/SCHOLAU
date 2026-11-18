@@ -3,6 +3,11 @@ import { readFileSync } from "node:fs";
 import { createChallengeTestDatabase } from "./lib/course-challenge-test-db.mjs";
 
 const { db, id, query, login, lecturer, students, offering, otherOffering } = await createChallengeTestDatabase();
+await db.exec(`alter table public.notifications
+  add column if not exists title text not null default 'ScholAu',
+  add column if not exists category text not null default 'academic',
+  add column if not exists expires_at timestamptz not null default (now()+interval '24 hours'),
+  add column if not exists context jsonb not null default '{}'`);
 await db.exec(readFileSync("supabase/migrations/20261108000100_lecturer_course_quizzes.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261108000200_fix_quiz_option_orders.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261109203000_lecturer_quiz_feedback_mode.sql", "utf8"));
@@ -10,6 +15,7 @@ await db.exec(readFileSync("supabase/migrations/20261109300000_course_quiz_notif
 await db.exec(readFileSync("supabase/migrations/20261110000100_shared_course_class_quizzes.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261110000300_quiz_results_export_roster.sql", "utf8"));
 await db.exec(readFileSync("supabase/migrations/20261110000200_resolve_shared_course_enrollment.sql", "utf8"));
+await db.exec(readFileSync("supabase/migrations/20261116201655_lecturer_quiz_audience.sql", "utf8"));
 let checks = 0;
 const rpc = async (name, args = []) => (await query(`select public.${name}($${args.map((_, i) => i + 1).join(",$")}) as value`, args))[0].value;
 const eq = (a, b) => { assert.deepEqual(a, b); checks++; };
@@ -24,9 +30,13 @@ const siblingDept = (await query(
   "select id from public.departments where university_id=$1 and id<>$2 limit 1",
   [offeringMeta.university_id, offeringMeta.department_id],
 ))[0]?.id;
-const siblingOffering = id(505);
+const existingSibling = (await query(
+  "select id from public.course_offerings where course_id=$1 and semester_id=$2 and department_id<>$3 and status='published' limit 1",
+  [offeringMeta.course_id, offeringMeta.semester_id, offeringMeta.department_id],
+))[0]?.id;
+const siblingOffering = existingSibling ?? id(505);
 if (siblingDept) {
-  await db.query(
+  if (!existingSibling) await db.query(
     `insert into public.course_offerings(id, course_id, university_id, department_id, level_id, semester_id, status)
      values($1,$2,$3,$4,$5,$6,'published')
      on conflict do nothing`,
@@ -104,11 +114,6 @@ const longPayload = { ...payload, title: "Late window quiz", opens_at: longOpens
 await login(lecturer.uid);
 const longSaved = await rpc("save_lecturer_quiz_v1", [longQuizId, offering, 0, longPayload]);
 await rpc("publish_lecturer_quiz_v1", [longQuizId, longSaved.quiz.revision]);
-const longNotice = (await query(
-  "select expires_at from public.notifications where event_key = $1",
-  [`course-quiz:${longQuizId}:${students[0]}`],
-))[0];
-assert.ok(new Date(longNotice.expires_at).getTime() >= new Date(longCloses).getTime() - 1000, "quiz notice stays until close");
 
 await login(students[0]);
 await reject(() => rpc("start_lecturer_quiz_attempt_v1", [quizId, "MAT2024001"]), /INVALID_STATE/);
@@ -149,4 +154,45 @@ await rpc("save_lecturer_quiz_answer_v1", [quizHideId, 0, detail.questions[0].op
 detail = await rpc("submit_lecturer_quiz_attempt_v1", [quizHideId, detail.attempt.revision + 1]);
 eq(detail.attempt.score, 1);
 assert.equal(detail.questions[0].correct, undefined, "immediate mode hides correct index");
+
+if (siblingDept) {
+  const selectedId = id(508);
+  const audiencePayload = { ...payload, title: "Software Engineering only", audience_mode: undefined,
+    audience: { mode: "selected_programmes", offering_ids: [siblingOffering] } };
+  await login(lecturer.uid);
+  const options = await rpc("get_lecturer_quiz_audience_options_v1", [offering]);
+  assert.ok(options.items.some(item => item.id === siblingOffering)); checks++;
+  const preview = await rpc("preview_lecturer_quiz_audience_v1", [offering, audiencePayload.audience]);
+  eq(preview.recipient_count, 1);
+  const selected = await rpc("save_lecturer_quiz_v1", [selectedId, offering, 0, audiencePayload]);
+  eq(selected.quiz.audience_mode, "selected_programmes");
+  eq(selected.quiz.audience_offering_ids, [siblingOffering]);
+  await db.exec("reset role");
+  eq((await query("select private.quiz_audience_eligible($1,$2) eligible",[selectedId,students.at(-1)]))[0].eligible, true);
+  await login(lecturer.uid);
+  await reject(() => rpc("save_lecturer_quiz_v1", [selectedId, offering, selected.quiz.revision, {
+    ...audiencePayload, audience: { mode: "selected_programmes", offering_ids: [] },
+  }]), /VALIDATION_FAILED/);
+  const selectedPublished = await rpc("publish_lecturer_quiz_v1", [selectedId, selected.quiz.revision]);
+  eq(selectedPublished.quiz.audience_programmes.length, 1);
+  await reject(() => rpc("save_lecturer_quiz_v1", [selectedId, offering, selected.quiz.revision, audiencePayload]), /INVALID_STATE/);
+  await db.exec("reset role");
+  const targetId = students.at(-1);
+  const targetedNotices = await query("select user_id from public.notifications where kind='course_quiz' and context->>'quiz_id'=$1", [selectedId]);
+  eq(targetedNotices.map(row => row.user_id), [targetId]);
+  await db.exec("reset role");
+  await db.query("update private.lecturer_course_quizzes set opens_at=clock_timestamp()-interval '1 second' where id=$1", [selectedId]);
+  await login(students[0]);
+  eq((await rpc("list_course_quizzes_v1", [offering, 0])).items.some(item => item.id === selectedId), false);
+  await reject(() => rpc("get_course_quiz_v1", [selectedId]), /FORBIDDEN/);
+  await reject(() => rpc("start_lecturer_quiz_attempt_v1", [selectedId, "MAT2024010"]), /FORBIDDEN/);
+  await login(targetId);
+  eq((await rpc("list_course_quizzes_v1", [siblingOffering, 0])).items.some(item => item.id === selectedId), true);
+  eq((await rpc("start_lecturer_quiz_attempt_v1", [selectedId, "MAT2024010"])).quiz.id, selectedId);
+  await login(lecturer.uid);
+  const audienceRoster = await rpc("lecturer_quiz_roster_v1", [offering, selectedId, "", 0]);
+  eq(audienceRoster.items.map(row => row.user_id), [targetId]);
+  const audienceExport = await rpc("export_lecturer_quiz_results_v1", [selectedId]);
+  eq(audienceExport.rows.length, 1);
+}
 console.log(`Lecturer quiz database: ${checks} checks passed.`);

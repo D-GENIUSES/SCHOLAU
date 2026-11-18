@@ -1534,6 +1534,10 @@ export interface LecturerQuiz extends Envelope {
   question_count: number;
   max_attempts: number;
   feedback_mode: "after_submit" | "immediate";
+  audience_mode?: "all_programmes" | "selected_programmes";
+  audience_offering_ids?: Uuid[];
+  audience_programmes?: string[];
+  classroom_id?: Uuid | null;
 }
 
 export interface LecturerQuizQuestion {
@@ -1616,4 +1620,33 @@ export interface LecturerQuizImportJob extends Envelope {
   status: "pending" | "processing" | "completed" | "failed";
   proposed_questions: LecturerQuizQuestion[] | null;
   error_message: string | null;
+}
+
+export interface ClassroomCourse {
+  code: string; title: string; semester: string; period: string;
+}
+export interface Classroom extends Envelope {
+  id: Uuid; offering_id: Uuid; title: string; offering_ids: Uuid[]; programmes: string[];
+  join_open: boolean; archived_at: IsoDateTime | null; member_count: number; course: ClassroomCourse; created_at: IsoDateTime;
+}
+export interface ClassroomListItem { classroom: Classroom; teacher: boolean; member: boolean }
+export interface ClassroomList extends Envelope { items: ClassroomListItem[] }
+export interface ClassroomInvite extends Envelope {
+  classroom: Classroom; is_member: boolean; is_eligible: boolean; can_join: boolean;
+}
+export interface ChallengeQuestion {
+  source_version_id?: Uuid | null; prompt: string; options: string[]; correct?: number; explanation?: string;
+}
+export interface CourseChallenge extends Envelope {
+  id: Uuid; offering_id: Uuid; title: string; instructions: string; duration_minutes: number;
+  state: "draft" | "upcoming" | "active" | "finished" | "cancelled";
+  starts_at: IsoDateTime | null; ends_at: IsoDateTime | null; revision: number; question_count: number;
+  classroom_id?: Uuid | null;
+}
+export interface ClassroomDetail extends Envelope {
+  classroom: Classroom; teacher: boolean; quizzes: LecturerQuiz[]; challenges: CourseChallenge[];
+}
+export interface ClassroomMembers extends Envelope {
+  items: Array<{ user_id: Uuid; name: string; department: string; joined_at: IsoDateTime }>;
+  total: number;
 }

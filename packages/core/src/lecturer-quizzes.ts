@@ -1,4 +1,10 @@
 export type LecturerQuizState = "draft" | "upcoming" | "open" | "closed" | "cancelled";
+export type QuizAudienceMode = "all_programmes" | "selected_programmes";
+
+export interface QuizAudienceOption {
+  id: string;
+  department_name: string;
+}
 
 export interface LecturerQuiz {
   id: string;
@@ -13,6 +19,10 @@ export interface LecturerQuiz {
   question_count: number;
   max_attempts: number;
   feedback_mode: "after_submit" | "immediate";
+  audience_mode?: QuizAudienceMode;
+  audience_offering_ids?: string[];
+  audience_programmes?: string[];
+  classroom_id?: string | null;
 }
 
 export interface LecturerQuizQuestion {
@@ -30,6 +40,8 @@ export interface LecturerQuizDraft {
   closes_at?: string | null;
   max_attempts?: number;
   feedback_mode?: "after_submit" | "immediate";
+  audience_mode?: QuizAudienceMode;
+  audience_offering_ids?: string[];
   questions: LecturerQuizQuestion[];
 }
 
