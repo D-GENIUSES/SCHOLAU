@@ -138,11 +138,12 @@ function QuizIntake({
   preview = false,
 }: {
   detail: LecturerQuizDetail;
-  onStart: (matric: string) => void;
+  onStart: (matric: string, displayName: string) => void;
   busy: boolean;
   preview?: boolean;
 }) {
   const [matric, setMatric] = useState(detail.profile?.matric_number ?? "");
+  const [displayName, setDisplayName] = useState(detail.profile?.display_name ?? "");
   const q = detail.quiz;
   return (
     <section className="space-y-4 rounded-xl border border-line p-4">
@@ -150,7 +151,18 @@ function QuizIntake({
       <p className="text-xs text-ink-muted" role="status">
         {detail.attempts_used}/{q.max_attempts} attempts · keep the quiz in focus
       </p>
-      <label className="block text-sm">Full name<p className="mt-1 font-medium">{detail.profile?.display_name || (preview ? "Student name" : "")}</p></label>
+      <label className="block text-sm">Display name
+        <Input
+          required
+          minLength={2}
+          maxLength={60}
+          value={displayName}
+          onChange={e => setDisplayName(e.target.value)}
+          autoComplete="name"
+          disabled={preview}
+          placeholder={preview ? "Student display name" : "Enter your display name"}
+        />
+      </label>
       <label className="block text-sm">Department<p className="mt-1 font-medium">{detail.profile?.department ?? (preview ? "Student department" : "Not set")}</p></label>
       <label className="block">Matriculation number
         <Input
@@ -162,7 +174,7 @@ function QuizIntake({
           placeholder={preview ? "Student matriculation number" : undefined}
         />
       </label>
-      <Button disabled={preview || busy || !matric.trim()} onClick={() => onStart(matric.trim())}>
+      <Button disabled={preview || busy || matric.trim().length < 3 || displayName.trim().length < 2} onClick={() => onStart(matric.trim(), displayName.trim())}>
         {preview ? "Start quiz (students only)" : "Start quiz"}
       </Button>
     </section>
@@ -189,7 +201,7 @@ function StudentQuizFlow({
   if (q.state === "open" && !detail.attempt) {
     const used = detail.attempts_used >= q.max_attempts;
     if (used) return <p className="text-sm">You have used all {q.max_attempts} attempt(s).</p>;
-    return <QuizIntake detail={detail} busy={busy} onStart={matric => void act(() => quizApi().start(detail.quiz.id, matric))} />;
+    return <QuizIntake detail={detail} busy={busy} onStart={(matric, displayName) => void act(() => quizApi().start(detail.quiz.id, matric, displayName))} />;
   }
   if (detail.attempt && !detail.attempt.submitted_at && detail.questions.length) {
     const badShuffle = !isNestedOptionOrders(detail.attempt.option_orders, detail.questions.length);

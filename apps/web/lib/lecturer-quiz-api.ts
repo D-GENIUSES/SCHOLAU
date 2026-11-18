@@ -62,8 +62,8 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
       rpc<{ quiz: LecturerQuiz }>("publish_lecturer_quiz_v1", { p_id: id, p_revision: revision }),
     cancel: (id: string) => rpc<{ cancelled: boolean }>("cancel_lecturer_quiz_draft_v1", { p_id: id }),
     detail: (id: string) => rpc<LecturerQuizDetail>("get_course_quiz_v1", { p_id: id }),
-    start: (id: string, matric: string) =>
-      rpc<LecturerQuizDetail>("start_lecturer_quiz_attempt_v1", { p_quiz_id: id, p_matric_number: matric }),
+    start: (id: string, matric: string, displayName: string) =>
+      rpc<LecturerQuizDetail>("start_lecturer_quiz_attempt_v2", { p_quiz_id: id, p_matric_number: matric, p_display_name: displayName }),
     answer: (id: string, question: number, option: number, revision: number) =>
       rpc<LecturerQuizDetail>("save_lecturer_quiz_answer_v1", {
         p_quiz_id: id,

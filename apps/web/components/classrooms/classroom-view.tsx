@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Archive, Copy, DoorOpen, Plus, Users } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,19 @@ const readOrigin = () => window.location.origin;
 export function ClassroomView({ id }: { id: string }) {
   const queries = useQueryClient();
   const [message, setMessage] = useState("");
+  const [membersOpen, setMembersOpen] = useState(false);
   const query = useQuery({ queryKey: qk.classroom(id), queryFn: () => api().detail(id), refetchInterval: 20_000 });
+  const members = useInfiniteQuery({
+    queryKey: qk.classroomMembers(id),
+    queryFn: ({ pageParam }) => api().members(id, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => {
+      const loaded = pages.reduce((total, page) => total + page.items.length, 0);
+      return loaded < lastPage.total ? loaded : undefined;
+    },
+    enabled: Boolean(query.data?.teacher && membersOpen),
+    refetchInterval: membersOpen ? 20_000 : false,
+  });
   const setOpen = useMutation({
     mutationFn: (open: boolean) => api().setJoinOpen(id, open),
     onSuccess: () => queries.invalidateQueries({ queryKey: qk.classroom(id) }),
@@ -74,6 +86,30 @@ export function ClassroomView({ id }: { id: string }) {
         {message ? <p role="status" className="text-sm text-ink-muted">{message}</p> : null}
         <Failure error={setOpen.error || archive.error} retry={() => { setOpen.reset(); archive.reset(); }} />
       </section> : <p className="rounded-card border border-line bg-surface-card p-3 text-sm">You are a member of this classroom.</p>}
+
+      {isTeacher ? <section className="rounded-card border border-line bg-surface-card p-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="min-w-0"><h2 className="text-sm font-bold">Students joined</h2><p className="text-xs text-ink-muted">{classroom.member_count} {classroom.member_count === 1 ? "student" : "students"}</p></div>
+          <Button size="sm" variant="outline" aria-expanded={membersOpen} aria-controls="classroom-members" onClick={() => setMembersOpen(open => !open)}>
+            {membersOpen ? "Hide students" : "View students"}
+          </Button>
+        </div>
+        {membersOpen ? <div id="classroom-members" className="mt-2 space-y-2">
+          <Failure error={members.error} retry={() => void members.refetch()} />
+          {members.isPending ? <p role="status" className="text-xs text-ink-muted">Loading students…</p> : null}
+          {members.data ? <>
+            {members.data.pages.flatMap(page => page.items).length ? (
+              <ul className="max-h-64 divide-y divide-line overflow-y-auto rounded-control border border-line">
+                {members.data.pages.flatMap(page => page.items).map(student => <li key={student.user_id} className="flex min-w-0 items-center justify-between gap-3 px-2.5 py-2 text-xs">
+                  <div className="min-w-0"><p className="truncate font-semibold" title={student.name}>{student.name}</p><p className="truncate text-ink-muted">{student.department}</p></div>
+                  <time className="shrink-0 text-right text-ink-muted" dateTime={student.joined_at}>{new Date(student.joined_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</time>
+                </li>)}
+              </ul>
+            ) : <p className="rounded-control border border-dashed border-line px-3 py-2 text-xs text-ink-muted">No students have joined yet.</p>}
+            {members.hasNextPage ? <Button size="sm" variant="ghost" disabled={members.isFetchingNextPage} onClick={() => void members.fetchNextPage()}>{members.isFetchingNextPage ? "Loading…" : "Load more students"}</Button> : null}
+          </> : null}
+        </div> : null}
+      </section> : null}
 
       {isTeacher && !archived ? <section aria-label="Create classroom activity" className="flex flex-wrap gap-2">
         <Button asChild><Link href={`/lecturer/classrooms/${id}/quizzes/new`}><Plus className="size-4" aria-hidden />Create quiz</Link></Button>

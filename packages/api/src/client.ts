@@ -210,8 +210,8 @@ export function createScholauApi(supabase: AnySupabaseClient, options: ScholauAp
       rpc<{ quiz: T.LecturerQuiz }>("publish_lecturer_quiz_v1", { p_id: id, p_revision: revision }),
     cancelLecturerQuizDraft: (id: string) => rpc<{ cancelled: boolean }>("cancel_lecturer_quiz_draft_v1", { p_id: id }),
     getCourseQuiz: (id: string) => rpc<T.LecturerQuizDetail>("get_course_quiz_v1", { p_id: id }),
-    startLecturerQuizAttempt: (quizId: string, matricNumber: string) =>
-      rpc<T.LecturerQuizDetail>("start_lecturer_quiz_attempt_v1", { p_quiz_id: quizId, p_matric_number: matricNumber }),
+    startLecturerQuizAttempt: (quizId: string, matricNumber: string, displayName: string) =>
+      rpc<T.LecturerQuizDetail>("start_lecturer_quiz_attempt_v2", { p_quiz_id: quizId, p_matric_number: matricNumber, p_display_name: displayName }),
     saveLecturerQuizAnswer: (quizId: string, displayQuestion: number, displayOption: number, revision: number) =>
       rpc<T.LecturerQuizDetail>("save_lecturer_quiz_answer_v1", {
         p_quiz_id: quizId,

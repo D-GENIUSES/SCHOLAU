@@ -24,6 +24,7 @@ try {
     "20261110000200_resolve_shared_course_enrollment.sql",
     "20261116201655_lecturer_quiz_audience.sql",
     "20261118001712_lecturer_classrooms.sql",
+    "20261118010044_quiz_display_name_and_classroom_roster.sql",
   ]) await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8"));
 
   const meta = (await query("select course_id, university_id, level_id, semester_id, department_id from public.course_offerings where id=$1", [offering]))[0];
@@ -64,6 +65,10 @@ try {
   }
   await login(students[3]);
   await reject(() => rpc("join_classroom_v1", [classroomId]), /FORBIDDEN/);
+  await login(lecturer.uid);
+  const memberList = await rpc("classroom_members_v1", [classroomId, 0]);
+  eq(memberList.items.some(member => member.name === "Student 1"), true);
+  eq(memberList.total >= 1, true);
 
   const opens = new Date(Date.now() - 60_000).toISOString();
   const closes = new Date(Date.now() + 60 * 60_000).toISOString();
@@ -89,7 +94,10 @@ try {
   await reject(() => rpc("get_course_quiz_v1", [quizId]), /FORBIDDEN/);
   await reject(() => rpc("start_lecturer_quiz_attempt_v1", [quizId, "MAT2024002"]), /FORBIDDEN/);
   await login(students[0]);
-  await rpc("start_lecturer_quiz_attempt_v1", [quizId, "MAT2024001"]);
+  await rpc("start_lecturer_quiz_attempt_v2", [quizId, "MAT2024001", "Student One Quiz Name"]);
+  await db.exec("reset role");
+  eq((await query("select display_name_snapshot as name from private.lecturer_course_quiz_attempts where quiz_id=$1 and user_id=$2", [quizId, students[0]]))[0].name, "Student One Quiz Name");
+  await login(students[0]);
   eq((await rpc("get_course_quiz_v1", [quizId])).questions.length, 1);
 
   const challengeId = id(9120);

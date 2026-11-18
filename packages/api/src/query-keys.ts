@@ -10,6 +10,7 @@ export const qk = {
   classQuizzes: () => ["scholau", "class-quizzes"] as const,
   classrooms: (archived = false) => ["scholau", "classrooms", archived] as const,
   classroom: (classroomId: string) => ["scholau", "classroom", classroomId] as const,
+  classroomMembers: (classroomId: string) => ["scholau", "classroom-members", classroomId] as const,
   classroomInvite: (classroomId: string) => ["scholau", "classroom-invite", classroomId] as const,
   courseQuiz: (quizId: string) => ["scholau", "course-quiz", quizId] as const,
   course: (offeringId: string) => ["scholau", "course", offeringId] as const,
