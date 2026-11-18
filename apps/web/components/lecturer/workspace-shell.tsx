@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, ChevronDown, FileText, Inbox, Megaphone, Menu, PanelsTopLeft } from "lucide-react";
+import { BookOpen, ChevronDown, FileText, Megaphone, Menu, PanelsTopLeft } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -14,7 +14,6 @@ const workspaceLinks = [
   { href: "/lecturer", label: "My courses", icon: BookOpen },
   { href: "/lecturer/classrooms", label: "Classrooms", icon: PanelsTopLeft },
   { href: "/lecturer/materials", label: "Materials", icon: FileText },
-  { href: "/lecturer/submissions", label: "Submissions", icon: Inbox },
   { href: "/lecturer/announcements", label: "Announcements", icon: Megaphone },
 ];
 const application = { href: "/lecturer/application", label: "Application status", icon: FileText };

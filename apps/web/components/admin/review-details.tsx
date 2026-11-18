@@ -44,7 +44,7 @@ function SourceReference({ value, courseId }: { value: string | null; courseId?:
       <p className="text-sm">{value}</p>
       {shaPrefix ? (
         <span className="inline-flex w-fit items-center rounded-pill bg-brand-primary/10 px-2 py-0.5 text-xs font-semibold text-brand-primary">
-          Gemini ingestion
+            Material processing
         </span>
       ) : null}
       {courseId && sha256 ? (

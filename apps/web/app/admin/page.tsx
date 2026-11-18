@@ -58,7 +58,7 @@ function CountCard({
 const QUICK_LINKS = [
   { href: "/admin/review?tab=lessons&status=draft", label: "Review drafts", icon: ClipboardCheck },
   { href: "/admin/import", label: "Import content", icon: FileUp },
-  { href: "/admin/materials", label: "Upload PDFs (Gemini)", icon: FileUp },
+  { href: "/admin/materials", label: "Materials", icon: FileUp },
   { href: "/admin/users", label: "Manage users", icon: UserPlus },
   { href: "/admin/reports", label: "Open reports", icon: Flag },
   { href: "/admin/offerings", label: "Offerings", icon: GraduationCap },

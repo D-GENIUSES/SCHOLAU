@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import type { LecturerOffering } from "@scholau/core";
 import { LecturerDashboard } from "@/components/lecturer/dashboard";
 import { ServiceUnavailable } from "@/components/service-unavailable";
 import { lecturerApi } from "@/lib/lecturer-api";
@@ -11,17 +12,13 @@ export default async function LecturerPage() {
   if (!session.profile.roles.includes("lecturer")) redirect("/lecturer/application");
 
   const api = lecturerApi(await getServerSupabase());
-  const [courses, submissions] = await Promise.allSettled([api.courses(), api.studentSubmissions()]);
-  if (courses.status === "rejected") {
+  let courseItems: LecturerOffering[];
+  try {
+    const courses = await api.courses();
+    courseItems = Array.isArray(courses.items) ? courses.items : [];
+  } catch {
     return <ServiceUnavailable reference="SA-LECTURER-COURSES" message="Your teaching assignments could not be loaded. Please try again." />;
   }
 
-  const courseItems = Array.isArray(courses.value.items) ? courses.value.items : [];
-  const offeringIds = new Set(courseItems.map(({ id }) => id));
-  const submissionItems = submissions.status === "fulfilled" && Array.isArray(submissions.value.items)
-    ? submissions.value.items
-    : [];
-  const pending = submissionItems.filter((item) => item.status === "pending" && offeringIds.has(item.offering_id)).length;
-
-  return <LecturerDashboard courses={courseItems} pendingSubmissions={pending} />;
+  return <LecturerDashboard courses={courseItems} />;
 }

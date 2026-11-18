@@ -196,7 +196,6 @@ function Overview({ data }: { data: CourseOverview }) {
                   <Link href={`/courses/${data.offering_id}/challenges`}>Course challenges</Link>
                 </Button>
                 <Button asChild variant="outline" size="sm">
-                  <Link href={`/study/courses/${data.offering_id}/materials`}>Suggest material</Link>
                 </Button>
               </div>
             </div>

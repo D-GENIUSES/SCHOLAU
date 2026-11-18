@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { LecturerQuizQuestion } from "@scholau/core";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,6 +35,8 @@ type Curriculum = {
   modules: CurriculumModule[];
 };
 
+type UploadedMaterial = { id: string; filename: string; ready: boolean };
+
 export function GenerateQuestionsDialog({
   open,
   offeringId,
@@ -59,70 +61,29 @@ export function GenerateQuestionsDialog({
   const [curriculum, setCurriculum] = useState<Curriculum | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [materials, setMaterials] = useState<UploadedMaterial[]>([]);
+  const [materialsError, setMaterialsError] = useState(false);
   const [selectedModules, setSelectedModules] = useState<Set<string>>(() => new Set());
   const [selectedLessons, setSelectedLessons] = useState<Set<string>>(() => new Set());
+  const [selectedMaterials, setSelectedMaterials] = useState<Set<string>>(() => new Set());
   const [count, setCount] = useState("10");
   const [fieldError, setFieldError] = useState<string | null>(null);
-  const [contentWarning, setContentWarning] = useState<string | null>(null);
-  const [previewChars, setPreviewChars] = useState<number | null>(null);
-  const [previewBusy, setPreviewBusy] = useState(false);
 
   const remaining = Math.max(0, 100 - currentQuestionCount);
   const maxCount = Math.min(30, remaining);
+  const minCount = remaining >= 10 ? 10 : 0;
 
   const publishedModules = useMemo(() => {
     if (!curriculum) return [];
     return curriculum.modules
-      .map((courseModule) => ({
-        ...courseModule,
-        lessons: courseModule.lessons.filter((lesson) => lesson.has_published),
+      .map((module) => ({
+        ...module,
+        lessons: module.lessons.filter((lesson) => lesson.has_published),
       }))
-      .filter((courseModule) => courseModule.lessons.length > 0);
+      .filter((module) => module.lessons.length > 0);
   }, [curriculum]);
 
-  const [dialogOpen, setDialogOpen] = useState(false);
-  if (open !== dialogOpen) {
-    setDialogOpen(open);
-    if (open) {
-      setSelectedModules(new Set());
-      setSelectedLessons(new Set());
-      const initial = Math.min(10, Math.max(0, 100 - currentQuestionCount));
-      setCount(String(initial >= 10 ? initial : 10));
-      setFieldError(null);
-      setCurriculum(null);
-      setLoadError(null);
-      setContentWarning(null);
-      setPreviewChars(null);
-      setLoading(true);
-    }
-  }
-
-  useEffect(() => {
-    if (!open) return;
-    let cancelled = false;
-    void (async () => {
-      try {
-        const { data, error } = await getBrowserSupabase().rpc("get_lecturer_course_curriculum_v1", {
-          p_offering_id: offeringId,
-        });
-        if (cancelled) return;
-        if (error) throw error;
-        setCurriculum(data as Curriculum);
-        setLoadError(null);
-      } catch {
-        if (cancelled) return;
-        setCurriculum(null);
-        setLoadError("Could not load course topics.");
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [open, offeringId]);
-
-  async function reloadCurriculum() {
+  const load = useCallback(async () => {
     setLoading(true);
     setLoadError(null);
     try {
@@ -131,14 +92,45 @@ export function GenerateQuestionsDialog({
       });
       if (error) throw error;
       setCurriculum(data as Curriculum);
-      setLoadError(null);
     } catch {
       setCurriculum(null);
       setLoadError("Could not load course topics.");
+      setLoading(false);
+      return;
+    }
+    try {
+      const { data, error } = await getBrowserSupabase().rpc("get_lecturer_quiz_generation_materials_v1", {
+        p_offering_id: offeringId,
+        p_sha256s: [],
+      });
+      if (error) throw error;
+      setMaterials(Array.isArray(data?.items) ? data.items as UploadedMaterial[] : []);
+      setMaterialsError(false);
+    } catch {
+      setMaterials([]);
+      setMaterialsError(true);
     } finally {
       setLoading(false);
     }
+  }, [offeringId]);
+
+  function handleOpenChange(nextOpen: boolean) {
+    if (nextOpen) {
+      setSelectedModules(new Set());
+      setSelectedLessons(new Set());
+      setSelectedMaterials(new Set());
+      const initial = Math.min(10, Math.max(0, 100 - currentQuestionCount));
+      setCount(String(initial >= 10 ? initial : 10));
+      setFieldError(null);
+    }
+    onOpenChange(nextOpen);
   }
+
+  useEffect(() => {
+    if (!open) return;
+    const timer = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(timer);
+  }, [open, load]);
 
   function toggleLesson(moduleId: string, lessonId: string, checked: boolean) {
     setSelectedLessons((prev) => {
@@ -155,12 +147,12 @@ export function GenerateQuestionsDialog({
     setFieldError(null);
   }
 
-  function toggleModule(courseModule: CurriculumModule, checked: boolean) {
-    const lessonIds = courseModule.lessons.map((lesson) => lesson.lesson_id);
+  function toggleModule(module: CurriculumModule, checked: boolean) {
+    const lessonIds = module.lessons.map((lesson) => lesson.lesson_id);
     setSelectedModules((prev) => {
       const next = new Set(prev);
-      if (checked) next.add(courseModule.id);
-      else next.delete(courseModule.id);
+      if (checked) next.add(module.id);
+      else next.delete(module.id);
       return next;
     });
     setSelectedLessons((prev) => {
@@ -174,126 +166,38 @@ export function GenerateQuestionsDialog({
     setFieldError(null);
   }
 
-  function selectionState(courseModule: CurriculumModule): "all" | "some" | "none" {
-    const ids = courseModule.lessons.map((lesson) => lesson.lesson_id);
-    const picked = ids.filter((id) => selectedLessons.has(id) || selectedModules.has(courseModule.id)).length;
+  function moduleState(topicModule: CurriculumModule): "all" | "some" | "none" {
+    const ids = topicModule.lessons.map((lesson) => lesson.lesson_id);
+    const picked = ids.filter((id) => selectedLessons.has(id) || selectedModules.has(topicModule.id)).length;
     if (picked === 0) return "none";
     if (picked === ids.length) return "all";
     return "some";
   }
 
-  const selectionCount = useMemo(() => {
+  const selectedLessonCount = useMemo(() => {
     const lessons = new Set(selectedLessons);
-    for (const courseModule of publishedModules) {
-      if (!selectedModules.has(courseModule.id)) continue;
-      for (const lesson of courseModule.lessons) lessons.add(lesson.lesson_id);
+    for (const topicModule of publishedModules) {
+      if (!selectedModules.has(topicModule.id)) continue;
+      for (const lesson of topicModule.lessons) lessons.add(lesson.lesson_id);
     }
     return lessons.size;
   }, [publishedModules, selectedLessons, selectedModules]);
 
-  const singleLessonSelected = selectionCount === 1;
-  const minCount = singleLessonSelected
-    ? (remaining >= 20 ? 20 : remaining >= 10 ? 10 : 0)
-    : (remaining >= 10 ? 10 : 0);
-
-  useEffect(() => {
-    if (!open || selectionCount < 1) return;
-    const floor = selectionCount === 1
-      ? (remaining >= 20 ? 20 : 10)
-      : 10;
-    const suggested = Math.min(maxCount, Math.max(floor, floor));
-    setCount((prev) => {
-      const parsed = Number(prev);
-      if (!Number.isInteger(parsed) || parsed < floor || parsed > maxCount) return String(suggested);
-      return prev;
-    });
-  }, [open, selectionCount, remaining, maxCount]);
+  const selectionCount = selectedLessonCount + selectedMaterials.size;
 
   const parsedCount = Number(count);
-  const requiresTwenty = singleLessonSelected && remaining >= 20;
   const countValid =
-    minCount > 0 &&
+    minCount >= 10 &&
     Number.isInteger(parsedCount) &&
     parsedCount >= minCount &&
     parsedCount <= maxCount;
-  const canSubmit = selectionCount > 0 && countValid && !busy && !loading && remaining >= (requiresTwenty ? 20 : 10);
-
-  useEffect(() => {
-    if (!open || selectionCount < 1) {
-      setContentWarning(null);
-      setPreviewChars(null);
-      return;
-    }
-    const moduleIds = [...selectedModules];
-    const lessonIds = [...selectedLessons].filter((lessonId) =>
-      !publishedModules.some(
-        (courseModule) => selectedModules.has(courseModule.id) && courseModule.lessons.some((lesson) => lesson.lesson_id === lessonId),
-      ),
-    );
-    const countForPreview = countValid ? parsedCount : (requiresTwenty ? 20 : 10);
-    let cancelled = false;
-    const timer = window.setTimeout(() => {
-      void (async () => {
-        setPreviewBusy(true);
-        try {
-          const res = await fetch("/api/lecturer-quiz-generate", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              preview: true,
-              offeringId,
-              quizId: quizId || undefined,
-              moduleIds,
-              lessonIds,
-              questionCount: countForPreview,
-            }),
-          });
-          const json = (await res.json()) as {
-            warning?: string | null;
-            totalChars?: number;
-            error?: string;
-          };
-          if (cancelled) return;
-          if (!res.ok) {
-            setContentWarning(json.error ?? null);
-            setPreviewChars(null);
-            return;
-          }
-          setContentWarning(json.warning ?? null);
-          setPreviewChars(typeof json.totalChars === "number" ? json.totalChars : null);
-        } catch {
-          if (!cancelled) {
-            setContentWarning(null);
-            setPreviewChars(null);
-          }
-        } finally {
-          if (!cancelled) setPreviewBusy(false);
-        }
-      })();
-    }, 450);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-    };
-  }, [
-    countValid,
-    open,
-    offeringId,
-    parsedCount,
-    publishedModules,
-    quizId,
-    requiresTwenty,
-    selectedLessons,
-    selectedModules,
-    selectionCount,
-  ]);
+  const canSubmit = selectionCount > 0 && selectionCount <= 40 && countValid && !busy && !loading && remaining >= 10;
 
   async function generate() {
     if (!canSubmit) {
       if (remaining < 10) setFieldError("Need room for at least 10 more questions (100 max).");
-      else if (requiresTwenty && remaining < 20) {
-        setFieldError("One lesson needs room for at least 20 new questions (100 max).");
-      } else if (selectionCount < 1) setFieldError("Select at least one topic or lesson.");
+      else if (selectionCount < 1) setFieldError("Select at least one topic, lesson, or uploaded material.");
+      else if (selectionCount > 40) setFieldError("Select no more than 40 lessons and materials at a time.");
       else setFieldError(`Choose between ${minCount} and ${maxCount} questions.`);
       return;
     }
@@ -302,7 +206,7 @@ export function GenerateQuestionsDialog({
     const lessonIds = [...selectedLessons].filter((id) => {
       // Explicit lesson picks that are not already covered by a selected module.
       return !publishedModules.some(
-        (courseModule) => selectedModules.has(courseModule.id) && courseModule.lessons.some((lesson) => lesson.lesson_id === id),
+        (module) => selectedModules.has(module.id) && module.lessons.some((lesson) => lesson.lesson_id === id),
       );
     });
 
@@ -318,6 +222,7 @@ export function GenerateQuestionsDialog({
           quizId: quizId || undefined,
           moduleIds,
           lessonIds,
+          materialHashes: [...selectedMaterials],
           questionCount: parsedCount,
         }),
       });
@@ -334,11 +239,11 @@ export function GenerateQuestionsDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-h-[85vh] max-w-lg overflow-y-auto">
         <DialogTitle>Generate questions</DialogTitle>
         <DialogDescription>
-          Choose published topics or lessons, then how many questions to create. Review them before they join the quiz.
+          Choose published topics or lessons and processed uploaded materials, then how many questions to create. Review them before they join the quiz.
         </DialogDescription>
 
         {remaining < 10 ? (
@@ -352,34 +257,27 @@ export function GenerateQuestionsDialog({
         {loadError ? (
           <p role="alert" className="text-sm text-danger">
             {loadError}{" "}
-            <button type="button" className="font-semibold underline" onClick={() => void reloadCurriculum()}>
+            <button type="button" className="font-semibold underline" onClick={() => void load()}>
               Retry
             </button>
           </p>
         ) : null}
 
-        {!loading && !loadError && publishedModules.length === 0 ? (
-          <p className="text-sm text-ink-muted">Publish at least one lesson before generating questions from topics.</p>
+        {!loading && !loadError && publishedModules.length === 0 && materials.length === 0 ? (
+          <p className="text-sm text-ink-muted">Publish a lesson or upload and process a course material before generating questions.</p>
         ) : null}
+
+        {selectionCount > 40 ? <p role="status" className="text-sm text-danger">Select no more than 40 lessons and materials at a time.</p> : null}
 
         {!loading && publishedModules.length > 0 ? (
           <fieldset disabled={busy} className="space-y-2">
             <legend className="text-sm font-semibold">Topics</legend>
-            <p className="text-xs text-ink-muted">
-              {selectionCount} lesson{selectionCount === 1 ? "" : "s"} selected
-              {previewBusy ? " · checking content…" : null}
-              {!previewBusy && previewChars !== null ? ` · ~${previewChars.toLocaleString()} characters of teaching text` : null}
-            </p>
-            {contentWarning ? (
-              <p role="status" className="border border-warning bg-warning-bg px-2.5 py-1.5 text-xs text-warning">
-                {contentWarning}
-              </p>
-            ) : null}
+            <p className="text-xs text-ink-muted">{selectedLessonCount} lesson{selectedLessonCount === 1 ? "" : "s"} selected</p>
             <ul className="max-h-64 space-y-2 overflow-y-auto pr-1">
-              {publishedModules.map((courseModule) => {
-                const state = selectionState(courseModule);
+              {publishedModules.map((module) => {
+                const state = moduleState(module);
                 return (
-                  <li key={courseModule.id} className="rounded-control border border-line">
+                  <li key={module.id} className="rounded-control border border-line">
                     <details open={publishedModules.length <= 4}>
                       <summary className="flex min-h-10 cursor-pointer list-none items-center gap-2 px-3 py-2 text-sm font-semibold">
                         <input
@@ -390,15 +288,15 @@ export function GenerateQuestionsDialog({
                             if (el) el.indeterminate = state === "some";
                           }}
                           onClick={(event) => event.stopPropagation()}
-                          onChange={(event) => toggleModule(courseModule, event.target.checked)}
-                          aria-label={`Select all lessons in ${courseModule.title}`}
+                          onChange={(event) => toggleModule(module, event.target.checked)}
+                          aria-label={`Select all lessons in ${module.title}`}
                         />
-                        <span className="min-w-0 flex-1 wrap-break-word">{courseModule.title}</span>
-                        <span className="text-xs font-normal text-ink-muted">{courseModule.lessons.length}</span>
+                        <span className="min-w-0 flex-1 wrap-break-word">{module.title}</span>
+                        <span className="text-xs font-normal text-ink-muted">{module.lessons.length}</span>
                       </summary>
                       <ul className="border-t border-line px-3 py-1">
-                        {courseModule.lessons.map((lesson) => {
-                          const checked = selectedLessons.has(lesson.lesson_id) || selectedModules.has(courseModule.id);
+                        {module.lessons.map((lesson) => {
+                          const checked = selectedLessons.has(lesson.lesson_id) || selectedModules.has(module.id);
                           return (
                             <li key={lesson.lesson_id}>
                               <label className="flex min-h-10 items-center gap-2 py-1.5 text-sm">
@@ -406,7 +304,7 @@ export function GenerateQuestionsDialog({
                                   type="checkbox"
                                   className="size-4 shrink-0 accent-brand-primary"
                                   checked={checked}
-                                  onChange={(event) => toggleLesson(courseModule.id, lesson.lesson_id, event.target.checked)}
+                                  onChange={(event) => toggleLesson(module.id, lesson.lesson_id, event.target.checked)}
                                 />
                                 <span className="min-w-0 wrap-break-word">{lesson.title}</span>
                               </label>
@@ -421,6 +319,41 @@ export function GenerateQuestionsDialog({
             </ul>
           </fieldset>
         ) : null}
+
+        {!loading && !materialsError ? (
+          <fieldset disabled={busy} className="space-y-2">
+            <legend className="text-sm font-semibold">Uploaded course materials</legend>
+            <p className="text-xs text-ink-muted">Files become available after processing extracts their text.</p>
+            {materials.length ? (
+              <ul className="max-h-40 space-y-1 overflow-y-auto rounded-control border border-line p-2">
+                {materials.map((material) => (
+                  <li key={material.id}>
+                    <label className={`flex min-h-10 items-center gap-2 py-1 text-sm ${material.ready ? "" : "text-ink-muted"}`}>
+                      <input
+                        type="checkbox"
+                        className="size-4 shrink-0 accent-brand-primary"
+                        disabled={!material.ready}
+                        checked={selectedMaterials.has(material.id)}
+                        onChange={(event) => {
+                          setSelectedMaterials((current) => {
+                            const next = new Set(current);
+                            if (event.target.checked) next.add(material.id);
+                            else next.delete(material.id);
+                            return next;
+                          });
+                          setFieldError(null);
+                        }}
+                      />
+                      <span className="min-w-0 flex-1 break-words">{material.filename}</span>
+                      {!material.ready ? <span className="shrink-0 text-xs">Processing needed</span> : null}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            ) : <p className="text-sm text-ink-muted">No uploaded materials for this course.</p>}
+          </fieldset>
+        ) : null}
+        {!loading && materialsError ? <p role="status" className="text-sm text-ink-muted">Uploaded materials are unavailable right now. You can still generate from published lessons.</p> : null}
 
         <label className="block text-sm">
           Questions
@@ -443,9 +376,7 @@ export function GenerateQuestionsDialog({
         </label>
         <p id="generate-count-hint" className="text-xs text-ink-muted">
           {remaining >= 10
-            ? requiresTwenty
-              ? `One lesson selected — choose ${minCount}–${maxCount} questions grounded in that lesson.`
-              : `Required. Choose ${minCount}–${maxCount} questions grounded in the selected published content.`
+            ? `Required. Choose ${minCount}–${maxCount} questions grounded in the selected published content.`
             : "Clear space in the quiz before generating."}
         </p>
 

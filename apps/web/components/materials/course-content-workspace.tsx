@@ -41,6 +41,8 @@ type OutlineSegment = {
   confidence?: string;
 };
 
+type CourseMaterial = { id: string; filename: string; bytes: number };
+
 export function CourseContentWorkspace({
   offeringId,
 }: {
@@ -64,6 +66,24 @@ export function CourseContentWorkspace({
   const [jobStatus, setJobStatus] = useState<string | null>(null);
   const [proposedOutline, setProposedOutline] = useState<{ module_title: string; segments: OutlineSegment[] } | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [materials, setMaterials] = useState<CourseMaterial[]>([]);
+  const [materialsLoading, setMaterialsLoading] = useState(true);
+  const [materialsError, setMaterialsError] = useState(false);
+
+  const loadMaterials = useCallback(async () => {
+    setMaterialsLoading(true);
+    setMaterialsError(false);
+    try {
+      const response = await fetch(`/api/course-materials?offeringId=${encodeURIComponent(offeringId)}`, { credentials: "same-origin", cache: "no-store" });
+      const body = await response.json();
+      if (!response.ok || !Array.isArray(body.items)) throw new Error("Could not load materials");
+      setMaterials(body.items as CourseMaterial[]);
+    } catch {
+      setMaterialsError(true);
+    } finally {
+      setMaterialsLoading(false);
+    }
+  }, [offeringId]);
 
   const loadCurriculum = useCallback(async () => {
     setLoading(true);
@@ -84,6 +104,10 @@ export function CourseContentWorkspace({
     void loadCurriculum();
   }, [loadCurriculum]);
 
+  useEffect(() => {
+    void loadMaterials();
+  }, [loadMaterials]);
+
   const pollJob = useCallback(
     async function pollJob(id: string) {
       const res = await fetch(`/api/material-ingestion?jobId=${encodeURIComponent(id)}`, { credentials: "same-origin" });
@@ -100,13 +124,14 @@ export function CourseContentWorkspace({
         setFile(null);
         setProposedOutline(null);
         void loadCurriculum();
+        void loadMaterials();
       } else if (body.status === "failed") {
         setMessage(body.error ?? "Processing failed.");
       } else if (body.status === "processing" || body.status === "pending") {
         window.setTimeout(() => void pollJob(id), 3000);
       }
     },
-    [loadCurriculum],
+    [loadCurriculum, loadMaterials],
   );
 
   const upload = async () => {
@@ -189,6 +214,34 @@ export function CourseContentWorkspace({
     <div className="space-y-3">
       <p className="text-xs text-ink-muted">Upload sources to a lesson or split a file across a topic.</p>
       {message ? <Alert tone="info">{message}</Alert> : null}
+
+      <section aria-labelledby="course-materials-heading" className="rounded-card border border-line bg-surface-card p-3.5 sm:p-4">
+        <h2 id="course-materials-heading" className="text-sm font-semibold">Uploaded course materials</h2>
+        <p className="mt-0.5 text-xs text-ink-muted">Shared files uploaded for this course by any lecturer or administrator.</p>
+        {materialsLoading ? <p className="mt-2 text-sm text-ink-muted">Loading materials…</p> : null}
+        {materialsError ? (
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-danger">Materials could not be loaded.</span>
+            <Button type="button" size="sm" variant="outline" onClick={() => void loadMaterials()}>Retry</Button>
+          </div>
+        ) : null}
+        {!materialsLoading && !materialsError && materials.length === 0 ? <p className="mt-2 text-sm text-ink-muted">No files have been uploaded for this course yet.</p> : null}
+        {materials.length > 0 ? (
+          <ul className="mt-2 divide-y divide-line rounded-control border border-line">
+            {materials.map((material) => (
+              <li key={material.id} className="flex min-w-0 flex-wrap items-center justify-between gap-2 px-3 py-2">
+                <span className="min-w-0 flex-1 break-words text-sm font-medium">{material.filename}</span>
+                <a
+                  className="inline-flex min-h-9 shrink-0 items-center rounded-control px-2 text-sm font-semibold text-brand-primary underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-brand-primary"
+                  href={`/api/course-materials?offeringId=${encodeURIComponent(offeringId)}&material=${encodeURIComponent(material.id)}`}
+                >
+                  Download
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </section>
 
       {curriculum?.modules.length === 0 ? (
         <Alert tone="warning">No topics yet. Use legacy material upload to create the first module.</Alert>

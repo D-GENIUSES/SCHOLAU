@@ -72,13 +72,13 @@ export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): s
     `You write new multiple-choice quiz questions for the university course ${input.courseCode}.`,
     `Return JSON only: { "questions": [{ "prompt", "options" (2-6 strings), "correct" (0-based index), "explanation" }] }.`,
     `Create exactly ${input.questionCount} questions.`,
-    "Ground every question only in the supplied lesson text. Do not invent syllabus topics that are absent.",
+    "Ground every question only in the supplied source text. Do not invent syllabus topics that are absent.",
     coverageLine,
     "Prefer four options. Exactly one option must be correct. Explanations must be short and teaching-focused.",
     "Do not copy exam banks, checkpoints, or prior quiz wording verbatim. Write fresh stems and distractors.",
     "Avoid true/false-only stems and trick questions about metadata (page numbers, filenames).",
     "",
-    "Lesson sources:",
+    "Source materials:",
     catalogue,
   ].join("\n");
 }
