@@ -51,9 +51,16 @@ export async function POST(request: Request) {
   const materialHashes = asHashList(payload.materialHashes);
   const questionCount = Number(payload.questionCount);
   const allowedQuestionTypes = ["mcq", "fill_blank", "written", "oral"] as const;
-  const questionType = allowedQuestionTypes.includes(payload.questionType as typeof allowedQuestionTypes[number])
-    ? payload.questionType as typeof allowedQuestionTypes[number]
-    : "mcq";
+  const requestedQuestionTypes = Array.isArray(payload.questionTypes)
+    ? [...new Set(payload.questionTypes.filter((type): type is typeof allowedQuestionTypes[number] =>
+        allowedQuestionTypes.includes(type as typeof allowedQuestionTypes[number]),
+      ))]
+    : allowedQuestionTypes.includes(payload.questionType as typeof allowedQuestionTypes[number])
+      ? [payload.questionType as typeof allowedQuestionTypes[number]]
+      : ["mcq" as const];
+  if (Array.isArray(payload.questionTypes) && (!requestedQuestionTypes.length || requestedQuestionTypes.length !== payload.questionTypes.length)) {
+    return NextResponse.json({ error: "Choose one or more valid question types." }, { status: 400 });
+  }
 
   if (!offeringId || !UUID_RE.test(offeringId)) {
     return NextResponse.json({ error: "Missing course context." }, { status: 400 });
@@ -154,7 +161,7 @@ export async function POST(request: Request) {
       courseCode,
       sources: sourceList,
       questionCount,
-      questionType,
+      questionTypes: requestedQuestionTypes,
     });
     return NextResponse.json({ questions: extracted.questions });
   } catch (e) {

@@ -18,10 +18,11 @@ export const quizGenerateFromTopicsInputSchema = z.object({
   courseCode: z.string().min(1).max(64),
   sources: z.array(quizTopicSourceSchema).min(1).max(40),
   questionCount: z.number().int().min(10).max(30),
-  questionType: z.enum(["mcq", "written", "fill_blank", "oral"]).default("mcq"),
+  questionTypes: z.array(z.enum(["mcq", "written", "fill_blank", "oral"])).min(1).max(4).default(["mcq"]),
 });
 
-export type QuizGenerateFromTopicsInput = z.infer<typeof quizGenerateFromTopicsInputSchema>;
+export type QuizGenerateFromTopicsInput = z.input<typeof quizGenerateFromTopicsInputSchema>;
+type QuestionType = "mcq" | "written" | "fill_blank" | "oral";
 
 /** Heuristic: published teaching text below this may not support 20 distinct MCQs. */
 export const QUIZ_GEN_MIN_CHARS_FOR_20 = 1200;
@@ -78,17 +79,23 @@ export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): s
     ? "One published lesson is supplied — it should support many distinct questions. Vary stems, subtopics, definitions, applications, and difficulty while staying strictly inside that lesson text."
     : "Balance coverage across the listed sources when possible.";
 
+  const questionTypes = input.questionTypes ?? ["mcq"];
+  const typeInstructions: Record<QuestionType, string> = {
+    mcq: 'For "mcq", include 2–6 options and a zero-based "correct" index.',
+    fill_blank: 'For "fill_blank", provide a clear blank in the prompt and a concise "expected_answer".',
+    written: 'For "written", ask a theory question and provide a concise model "expected_answer".',
+    oral: 'For "oral", ask a prompt suitable for a spoken response and provide a concise model "expected_answer".',
+  };
+
   return [
-    input.questionType === "mcq"
-      ? `You write new multiple-choice quiz questions for the university course ${input.courseCode}.`
-      : `You write new ${input.questionType === "written" ? "written theory" : input.questionType === "oral" ? "oral response" : "fill in the blank"} questions for the university course ${input.courseCode}.`,
-    input.questionType === "mcq"
-      ? `Return JSON only: { "questions": [{ "type":"mcq", "prompt", "options" (2-6 strings), "correct" (0-based index), "explanation" }] }.`
-      : `Return JSON only: { "questions": [{ "type":"${input.questionType}", "prompt", "expected_answer", "explanation" }] }.`,
+    `You write new quiz questions for the university course ${input.courseCode}.`,
+    `Use only these question types: ${questionTypes.join(", ")}. Include a varied mix of the selected types across the requested questions. Return JSON only: { "questions": [{ "type", "prompt", "options" (MCQ only), "correct" (MCQ only, zero-based index), "expected_answer" (non-MCQ only), "explanation" }] }.`,
+    ...questionTypes.map((type) => typeInstructions[type]),
     `Create exactly ${input.questionCount} questions.`,
     "Ground every question only in the supplied source text. Do not invent syllabus topics that are absent.",
     coverageLine,
-    ...(input.questionType === "mcq" ? ["Prefer four options. Exactly one option must be correct."] : ["Give a concise model answer grounded in the source text. Written theory prompts require a complete written response; oral prompts are intended for spoken responses; fill-in-the-blank prompts must clearly show the blank."]),
+    ...(questionTypes.includes("mcq") ? ["Prefer four options for MCQs. Exactly one option must be correct."] : []),
+    "Give concise model answers for non-MCQ questions, grounded in the source text. Written theory prompts require a complete written response.",
     "Explanations must be short and teaching-focused.",
     "Do not copy exam banks, checkpoints, or prior quiz wording verbatim. Write fresh stems and distractors.",
     "Avoid true/false-only stems and trick questions about metadata (page numbers, filenames).",
@@ -98,10 +105,10 @@ export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): s
   ].join("\n");
 }
 
-export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number, questionType: QuizGenerateFromTopicsInput["questionType"] = "mcq"): GeneratedTopicQuiz {
+export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number, questionTypes: QuestionType[] = ["mcq"]): GeneratedTopicQuiz {
   const parsed = generatedQuizSchema.parse(raw);
   for (const q of parsed.questions) {
-    if (q.type !== questionType) throw new Error("VALIDATION_FAILED: generated question type did not match selection");
+    if (!questionTypes.includes(q.type)) throw new Error("VALIDATION_FAILED: generated question type did not match selection");
     if (q.type === "mcq" && q.correct >= q.options.length) {
       throw new Error("VALIDATION_FAILED: correct index out of range");
     }
@@ -133,7 +140,7 @@ export async function generateQuizQuestionsFromTopics(
         : "";
     try {
       const raw = await generateGeminiJson([{ text: buildQuizFromTopicsPrompt(validated) + retryNote }]);
-      return parseGeneratedTopicQuiz(raw, validated.questionCount, validated.questionType);
+      return parseGeneratedTopicQuiz(raw, validated.questionCount, validated.questionTypes);
     } catch (error) {
       lastError = error;
     }

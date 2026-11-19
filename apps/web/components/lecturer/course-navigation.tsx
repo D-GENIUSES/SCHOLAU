@@ -10,7 +10,6 @@ const coursePages = [
   { page: "challenges", label: "Challenges" },
   { page: "assignments", label: "Assignments" },
   { page: "students", label: "Students" },
-  { page: "heatmap", label: "Insights" },
 ];
 
 export function CourseNavigation({ offeringId }: { offeringId: string }) {

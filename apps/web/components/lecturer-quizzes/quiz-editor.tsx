@@ -549,8 +549,9 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
               </div>
               <Button
                 type="button"
-                variant="secondary"
-                size="sm"
+                variant="primary"
+                size="md"
+                className="min-h-11 px-5 font-bold shadow-sm"
                 disabled={importBusy || generateBusy || draft.questions.length >= 100}
                 onClick={() => setGenerateOpen(true)}
                 aria-label="Generate questions from course topics"

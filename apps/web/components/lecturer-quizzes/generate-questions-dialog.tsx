@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input, NativeSelect } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +36,13 @@ type Curriculum = {
 };
 
 type UploadedMaterial = { id: string; filename: string; ready: boolean };
+type QuestionType = "mcq" | "fill_blank" | "written" | "oral";
+const QUESTION_TYPES: Array<{ value: QuestionType; label: string }> = [
+  { value: "mcq", label: "Multiple choice (MCQ)" },
+  { value: "fill_blank", label: "Fill in the blank" },
+  { value: "written", label: "Written theory" },
+  { value: "oral", label: "Oral response (spoken or written)" },
+];
 
 export function GenerateQuestionsDialog({
   open,
@@ -67,7 +74,7 @@ export function GenerateQuestionsDialog({
   const [selectedLessons, setSelectedLessons] = useState<Set<string>>(() => new Set());
   const [selectedMaterials, setSelectedMaterials] = useState<Set<string>>(() => new Set());
   const [count, setCount] = useState("10");
-  const [questionType, setQuestionType] = useState<"mcq" | "fill_blank" | "written" | "oral">("mcq");
+  const [questionTypes, setQuestionTypes] = useState<Set<QuestionType>>(() => new Set(["mcq"]));
   const [fieldError, setFieldError] = useState<string | null>(null);
 
   const remaining = Math.max(0, 100 - currentQuestionCount);
@@ -120,7 +127,7 @@ export function GenerateQuestionsDialog({
       setSelectedModules(new Set());
       setSelectedLessons(new Set());
       setSelectedMaterials(new Set());
-      setQuestionType("mcq");
+      setQuestionTypes(new Set(["mcq"]));
       const initial = Math.min(10, Math.max(0, 100 - currentQuestionCount));
       setCount(String(initial >= 10 ? initial : 10));
       setFieldError(null);
@@ -187,6 +194,16 @@ export function GenerateQuestionsDialog({
 
   const selectionCount = selectedLessonCount + selectedMaterials.size;
 
+  function toggleQuestionType(type: QuestionType, checked: boolean) {
+    setQuestionTypes((current) => {
+      const next = new Set(current);
+      if (checked) next.add(type);
+      else if (next.size > 1) next.delete(type);
+      return next;
+    });
+    setFieldError(null);
+  }
+
   const parsedCount = Number(count);
   const countValid =
     minCount >= 10 &&
@@ -226,7 +243,7 @@ export function GenerateQuestionsDialog({
           lessonIds,
           materialHashes: [...selectedMaterials],
           questionCount: parsedCount,
-          questionType,
+          questionTypes: [...questionTypes],
         }),
       });
       const json = (await res.json()) as { questions?: LecturerQuizQuestion[]; error?: string };
@@ -358,15 +375,23 @@ export function GenerateQuestionsDialog({
         ) : null}
         {!loading && materialsError ? <p role="status" className="text-sm text-ink-muted">Uploaded materials are unavailable right now. You can still generate from published lessons.</p> : null}
 
-        <label className="block text-sm">
-          Question type
-          <NativeSelect className="mt-1" value={questionType} onChange={(event) => setQuestionType(event.target.value as typeof questionType)} disabled={busy}>
-            <option value="mcq">Multiple choice (MCQ)</option>
-            <option value="fill_blank">Fill in the blank</option>
-            <option value="written">Written theory</option>
-            <option value="oral">Oral response (spoken or written)</option>
-          </NativeSelect>
-        </label>
+        <fieldset disabled={busy} className="space-y-1.5">
+          <legend className="text-sm font-semibold">Question types <span className="font-normal text-ink-muted">(choose any)</span></legend>
+          <div className="grid gap-1.5 sm:grid-cols-2">
+            {QUESTION_TYPES.map(({ value, label }) => (
+              <label key={value} className="flex min-h-10 cursor-pointer items-center gap-2 rounded-control border border-line px-3 py-2 text-sm hover:border-brand-primary/60">
+                <input
+                  type="checkbox"
+                  className="size-4 shrink-0 accent-brand-primary"
+                  checked={questionTypes.has(value)}
+                  disabled={questionTypes.size === 1 && questionTypes.has(value)}
+                  onChange={(event) => toggleQuestionType(value, event.target.checked)}
+                />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <label className="block text-sm">
           Questions
           <Input
@@ -404,7 +429,7 @@ export function GenerateQuestionsDialog({
               Cancel
             </Button>
           </DialogClose>
-          <Button type="button" size="sm" loading={busy} disabled={!canSubmit} onClick={() => void generate()}>
+          <Button type="button" size="md" className="min-h-11 px-6 font-bold shadow-md ring-2 ring-brand-primary/20" loading={busy} disabled={!canSubmit} onClick={() => void generate()}>
             Generate
           </Button>
         </DialogFooter>
