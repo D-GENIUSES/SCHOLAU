@@ -29,7 +29,7 @@ $$;
 
 create or replace function private.quiz_validate_question(q jsonb) returns void
 language plpgsql set search_path = '' as $$
-declare v_type text := coalesce(q->>'type','mcq'); n integer; c integer;
+declare v_type text := coalesce(q->>'type','mcq'); n integer; max_answer_length integer;
 begin
   if coalesce(length(btrim(q->>'prompt')),0) not between 1 and 2000 then
     perform private.raise_error('VALIDATION_FAILED','Complete each question prompt.');
@@ -42,8 +42,9 @@ begin
     if exists(select 1 from jsonb_array_elements(q->'options') x where jsonb_typeof(x)<>'string' or length(btrim(x#>>'{}')) not between 1 and 1000) then perform private.raise_error('VALIDATION_FAILED','Option text is required.'); end if;
     if (select count(distinct lower(btrim(x))) from jsonb_array_elements_text(q->'options') x) <> n then perform private.raise_error('VALIDATION_FAILED','Options must be distinct.'); end if;
   elsif v_type in ('written','fill_blank','oral') then
+    max_answer_length := case when v_type='fill_blank' then 1000 else 4000 end;
     if jsonb_typeof(q->'expected_answer') is distinct from 'string'
-      or coalesce(length(btrim(q->>'expected_answer')),0) not between 1 and case when v_type='fill_blank' then 1000 else 4000 end then
+      or coalesce(length(btrim(q->>'expected_answer')),0) not between 1 and max_answer_length then
       perform private.raise_error('VALIDATION_FAILED','Add a model answer for each written, fill-in-the-blank, and oral question.');
     end if;
   else
