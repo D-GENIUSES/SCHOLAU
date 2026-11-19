@@ -85,7 +85,7 @@ export function LecturerWorkspaceShell({
   const home = canTeach ? "/lecturer" : "/lecturer/application";
   return (
     <div className="lecturer-shell min-h-dvh bg-surface-page md:grid md:grid-cols-[13rem_minmax(0,1fr)]">
-      <aside className="sticky top-0 hidden h-dvh flex-col overflow-y-auto border-r border-line bg-surface-page px-3 pb-3 pt-5 md:flex">
+      <aside className="fixed inset-y-0 left-0 z-20 hidden h-dvh w-52 flex-col overflow-y-auto border-r border-line bg-surface-page px-3 pb-3 pt-5 md:flex">
         <Link href={home} className="self-start rounded-control px-1.5 focus-visible:outline-2 focus-visible:outline-brand-primary"><Logo className="h-6" /></Link>
         <p className="mb-4 mt-1.5 px-1.5 text-xs font-medium text-ink-muted">Lecturer</p>
         <WorkspaceNavigation canTeach={canTeach} />
@@ -107,7 +107,7 @@ export function LecturerWorkspaceShell({
         <Link href={home} className="flex min-h-10 items-center justify-center rounded-control focus-visible:outline-2 focus-visible:outline-brand-primary"><Logo className="h-6" /></Link>
         <AccountMenu name={name} avatar={avatar} mobile />
       </header>
-      <main id="main" tabIndex={-1} className="lecturer-main mx-auto w-full min-w-0 max-w-5xl px-4 py-5 sm:px-5 md:px-6 md:py-6">
+      <main id="main" tabIndex={-1} className="lecturer-main mx-auto w-full min-w-0 max-w-5xl px-4 py-5 sm:px-5 md:col-start-2 md:px-6 md:py-6">
         {children}
       </main>
     </div>

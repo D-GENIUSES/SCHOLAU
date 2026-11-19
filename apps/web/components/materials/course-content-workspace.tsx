@@ -3,11 +3,12 @@
 import { Upload } from "lucide-react";
 import { type ChangeEvent, useCallback, useEffect, useState } from "react";
 import { newRequestKey } from "@scholau/api";
+import type { LessonBlock } from "@scholau/core";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
-import { Input, NativeSelect } from "@/components/ui/input";
+import { Input, NativeSelect, Textarea } from "@/components/ui/input";
 import { LoadingState } from "@/components/ui/states";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 
@@ -19,6 +20,17 @@ type CurriculumLesson = {
   version_status: string;
   ready: boolean;
   has_published: boolean;
+};
+
+type LessonEditorRecord = {
+  lesson_id: string;
+  version_id: string;
+  version_status: string;
+  title: string;
+  objective: string;
+  blocks: LessonBlock[];
+  estimated_minutes: number;
+  source_reference: string | null;
 };
 
 type CurriculumModule = {
@@ -40,8 +52,6 @@ type OutlineSegment = {
   source_hint: string;
   confidence?: string;
 };
-
-type CourseMaterial = { id: string; filename: string; bytes: number };
 
 export function CourseContentWorkspace({
   offeringId,
@@ -66,24 +76,8 @@ export function CourseContentWorkspace({
   const [jobStatus, setJobStatus] = useState<string | null>(null);
   const [proposedOutline, setProposedOutline] = useState<{ module_title: string; segments: OutlineSegment[] } | null>(null);
   const [uploading, setUploading] = useState(false);
-  const [materials, setMaterials] = useState<CourseMaterial[]>([]);
-  const [materialsLoading, setMaterialsLoading] = useState(true);
-  const [materialsError, setMaterialsError] = useState(false);
-
-  const loadMaterials = useCallback(async () => {
-    setMaterialsLoading(true);
-    setMaterialsError(false);
-    try {
-      const response = await fetch(`/api/course-materials?offeringId=${encodeURIComponent(offeringId)}`, { credentials: "same-origin", cache: "no-store" });
-      const body = await response.json();
-      if (!response.ok || !Array.isArray(body.items)) throw new Error("Could not load materials");
-      setMaterials(body.items as CourseMaterial[]);
-    } catch {
-      setMaterialsError(true);
-    } finally {
-      setMaterialsLoading(false);
-    }
-  }, [offeringId]);
+  const [editingLesson, setEditingLesson] = useState<LessonEditorRecord | null>(null);
+  const [lessonSaving, setLessonSaving] = useState(false);
 
   const loadCurriculum = useCallback(async () => {
     setLoading(true);
@@ -104,10 +98,6 @@ export function CourseContentWorkspace({
     void loadCurriculum();
   }, [loadCurriculum]);
 
-  useEffect(() => {
-    void loadMaterials();
-  }, [loadMaterials]);
-
   const pollJob = useCallback(
     async function pollJob(id: string) {
       const res = await fetch(`/api/material-ingestion?jobId=${encodeURIComponent(id)}`, { credentials: "same-origin" });
@@ -124,15 +114,52 @@ export function CourseContentWorkspace({
         setFile(null);
         setProposedOutline(null);
         void loadCurriculum();
-        void loadMaterials();
       } else if (body.status === "failed") {
         setMessage(body.error ?? "Processing failed.");
       } else if (body.status === "processing" || body.status === "pending") {
         window.setTimeout(() => void pollJob(id), 3000);
       }
     },
-    [loadCurriculum, loadMaterials],
+    [loadCurriculum],
   );
+
+  const openLessonEditor = async (lessonId: string) => {
+    setMessage(null);
+    const { data, error } = await getBrowserSupabase().rpc("get_lecturer_lesson_editor_v1", {
+      p_offering_id: offeringId,
+      p_lesson_id: lessonId,
+    });
+    if (error || !data) {
+      setMessage("Could not load lesson content for editing.");
+      return;
+    }
+    const record = data as LessonEditorRecord;
+    setEditingLesson({ ...record, blocks: Array.isArray(record.blocks) ? record.blocks : [] });
+  };
+
+  const saveLessonDraft = async () => {
+    if (!editingLesson) return;
+    setLessonSaving(true);
+    setMessage(null);
+    const { error } = await getBrowserSupabase().rpc("lecturer_save_lesson_draft_v1", {
+      p_offering_id: offeringId,
+      p_lesson_id: editingLesson.lesson_id,
+      p_title: editingLesson.title,
+      p_objective: editingLesson.objective,
+      p_blocks: editingLesson.blocks,
+      p_estimated_minutes: editingLesson.estimated_minutes,
+      p_source_reference: editingLesson.source_reference,
+      p_request_key: newRequestKey(),
+    });
+    setLessonSaving(false);
+    if (error) {
+      setMessage(error.message || "Could not save lesson draft.");
+      return;
+    }
+    setEditingLesson(null);
+    setMessage("Lesson draft saved. Publish it when it is ready for students.");
+    void loadCurriculum();
+  };
 
   const upload = async () => {
     if (!uploadTarget || !file) return;
@@ -215,34 +242,6 @@ export function CourseContentWorkspace({
       <p className="text-xs text-ink-muted">Upload sources to a lesson or split a file across a topic.</p>
       {message ? <Alert tone="info">{message}</Alert> : null}
 
-      <section aria-labelledby="course-materials-heading" className="rounded-card border border-line bg-surface-card p-3.5 sm:p-4">
-        <h2 id="course-materials-heading" className="text-sm font-semibold">Uploaded course materials</h2>
-        <p className="mt-0.5 text-xs text-ink-muted">Shared files uploaded for this course by any lecturer or administrator.</p>
-        {materialsLoading ? <p className="mt-2 text-sm text-ink-muted">Loading materials…</p> : null}
-        {materialsError ? (
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
-            <span className="text-danger">Materials could not be loaded.</span>
-            <Button type="button" size="sm" variant="outline" onClick={() => void loadMaterials()}>Retry</Button>
-          </div>
-        ) : null}
-        {!materialsLoading && !materialsError && materials.length === 0 ? <p className="mt-2 text-sm text-ink-muted">No files have been uploaded for this course yet.</p> : null}
-        {materials.length > 0 ? (
-          <ul className="mt-2 divide-y divide-line rounded-control border border-line">
-            {materials.map((material) => (
-              <li key={material.id} className="flex min-w-0 flex-wrap items-center justify-between gap-2 px-3 py-2">
-                <span className="min-w-0 flex-1 break-words text-sm font-medium">{material.filename}</span>
-                <a
-                  className="inline-flex min-h-9 shrink-0 items-center rounded-control px-2 text-sm font-semibold text-brand-primary underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-brand-primary"
-                  href={`/api/course-materials?offeringId=${encodeURIComponent(offeringId)}&material=${encodeURIComponent(material.id)}`}
-                >
-                  Download
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </section>
-
       {curriculum?.modules.length === 0 ? (
         <Alert tone="warning">No topics yet. Use legacy material upload to create the first module.</Alert>
       ) : null}
@@ -297,6 +296,9 @@ export function CourseContentWorkspace({
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
+                    <Button size="sm" variant="outline" onClick={() => void openLessonEditor(lesson.lesson_id)}>
+                      Edit lesson
+                    </Button>
                     <Button
                       size="sm"
                       variant="outline"
@@ -373,6 +375,69 @@ export function CourseContentWorkspace({
           </CardContent>
         </Card>
       ) : null}
+
+      {editingLesson ? (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">Edit lesson content</CardTitle>
+            <CardDescription>Save a draft first. Students continue to see the published lesson until you publish the update.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <Field id="lesson-title" label="Lesson title"><Input id="lesson-title" value={editingLesson.title} maxLength={200} onChange={(event) => setEditingLesson({ ...editingLesson, title: event.target.value })} /></Field>
+            <Field id="lesson-objective" label="Learning objective"><Textarea id="lesson-objective" value={editingLesson.objective} maxLength={1000} onChange={(event) => setEditingLesson({ ...editingLesson, objective: event.target.value })} /></Field>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field id="lesson-duration" label="Estimated minutes"><Input id="lesson-duration" type="number" min={1} max={240} value={editingLesson.estimated_minutes} onChange={(event) => setEditingLesson({ ...editingLesson, estimated_minutes: Number(event.target.value) })} /></Field>
+              <Field id="lesson-source" label="Content source"><Input id="lesson-source" value={editingLesson.source_reference ?? ""} maxLength={500} onChange={(event) => setEditingLesson({ ...editingLesson, source_reference: event.target.value })} /></Field>
+            </div>
+            <LessonBlocksEditor blocks={editingLesson.blocks} onChange={(blocks) => setEditingLesson({ ...editingLesson, blocks })} />
+            <div className="flex flex-wrap gap-2"><Button size="sm" onClick={() => void saveLessonDraft()} loading={lessonSaving}>Save draft</Button><Button size="sm" variant="ghost" onClick={() => setEditingLesson(null)} disabled={lessonSaving}>Cancel</Button></div>
+          </CardContent>
+        </Card>
+      ) : null}
     </div>
   );
+}
+
+const BLOCK_TYPES: LessonBlock["type"][] = ["heading", "paragraph", "equation", "list", "callout", "code", "worked_example", "checkpoint", "image"];
+
+function createBlock(type: LessonBlock["type"]): LessonBlock {
+  switch (type) {
+    case "heading": return { type, text: "", level: 2 };
+    case "paragraph": return { type, text: "" };
+    case "equation": return { type, expression: "" };
+    case "list": return { type, items: [""] };
+    case "callout": return { type, text: "", tone: "info" };
+    case "code": return { type, code: "" };
+    case "worked_example": return { type, title: "", problem: "", steps: [{ calculation: "", explanation: "" }], answer: "" };
+    case "checkpoint": return { type, question: "", options: ["", ""], correct_index: 0, explanation: "" };
+    case "image": return { type, path: "", alt: "" };
+  }
+}
+
+function LessonBlocksEditor({ blocks, onChange }: { blocks: LessonBlock[]; onChange: (blocks: LessonBlock[]) => void }) {
+  const update = (index: number, value: LessonBlock) => onChange(blocks.map((block, i) => i === index ? value : block));
+  return <section className="space-y-2" aria-label="Lesson content blocks">
+    <h3 className="text-sm font-semibold">Lesson content</h3>
+    {blocks.map((block, index) => <LessonBlockEditor key={`${index}-${block.type}`} block={block} index={index} onChange={(next) => update(index, next)} onRemove={() => onChange(blocks.filter((_, i) => i !== index))} />)}
+    <NativeSelect aria-label="Add content block" value="" onChange={(event) => { if (event.target.value) onChange([...blocks, createBlock(event.target.value as LessonBlock["type"])]); }}>
+      <option value="">Add content block…</option>{BLOCK_TYPES.map((type) => <option key={type} value={type}>{type.replaceAll("_", " ")}</option>)}
+    </NativeSelect>
+  </section>;
+}
+
+function LessonBlockEditor({ block, index, onChange, onRemove }: { block: LessonBlock; index: number; onChange: (block: LessonBlock) => void; onRemove: () => void }) {
+  const textField = (label: string, value: string, set: (value: string) => void) => <Field id={`block-${index}-${label.replaceAll(" ", "-")}`} label={label}><Textarea id={`block-${index}-${label.replaceAll(" ", "-")}`} value={value} onChange={(event) => set(event.target.value)} /></Field>;
+  let fields;
+  switch (block.type) {
+    case "heading": fields = <>{textField("Heading text", block.text, (text) => onChange({ ...block, text }))}<NativeSelect aria-label="Heading level" value={block.level ?? 2} onChange={(event) => onChange({ ...block, level: Number(event.target.value) as 2 | 3 | 4 })}><option value={2}>Heading 2</option><option value={3}>Heading 3</option><option value={4}>Heading 4</option></NativeSelect></>; break;
+    case "paragraph": fields = textField("Paragraph", block.text, (text) => onChange({ ...block, text })); break;
+    case "equation": fields = <>{textField("Equation", block.expression, (expression) => onChange({ ...block, expression }))}{textField("Reading (optional)", block.reading ?? "", (reading) => onChange({ ...block, reading: reading || undefined }))}</>; break;
+    case "list": fields = <>{textField("List items (one per line)", block.items.join("\n"), (value) => onChange({ ...block, items: value.split("\n") }))}<label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={block.ordered ?? false} onChange={(event) => onChange({ ...block, ordered: event.target.checked })} /> Numbered list</label></>; break;
+    case "callout": fields = <>{textField("Callout title (optional)", block.title ?? "", (title) => onChange({ ...block, title: title || undefined }))}{textField("Callout text", block.text, (text) => onChange({ ...block, text }))}<NativeSelect aria-label="Callout style" value={block.tone ?? "info"} onChange={(event) => onChange({ ...block, tone: event.target.value as NonNullable<typeof block.tone> })}><option value="info">Note</option><option value="tip">Tip</option><option value="warning">Warning</option><option value="example">Example</option></NativeSelect></>; break;
+    case "code": fields = <>{textField("Code", block.code, (code) => onChange({ ...block, code }))}{textField("Language (optional)", block.language ?? "", (language) => onChange({ ...block, language: language || undefined }))}</>; break;
+    case "worked_example": fields = <>{textField("Example title", block.title, (title) => onChange({ ...block, title }))}{textField("Problem", block.problem, (problem) => onChange({ ...block, problem }))}{textField("Steps (calculation | explanation, one per line)", block.steps.map((step) => `${step.calculation} | ${step.explanation}`).join("\n"), (value) => onChange({ ...block, steps: value.split("\n").map((line, stepIndex) => { const [calculation = "", ...explanation] = line.split("|"); return { ...(block.steps[stepIndex] ?? { calculation: "", explanation: "" }), calculation: calculation.trim(), explanation: explanation.join("|").trim() }; }) }))}{textField("Step narration (one per line)", block.steps.map((step) => step.reading ?? "").join("\n"), (value) => onChange({ ...block, steps: value.split("\n").map((reading, stepIndex) => ({ ...(block.steps[stepIndex] ?? { calculation: "", explanation: "" }), reading: reading.trim() || undefined })) }))}{textField("Answer", block.answer, (answer) => onChange({ ...block, answer }))}{textField("Answer narration (optional)", block.answer_reading ?? "", (answer_reading) => onChange({ ...block, answer_reading: answer_reading || undefined }))}<label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={Boolean(block.check)} onChange={(event) => onChange({ ...block, check: event.target.checked ? block.check ?? { calculation: "", explanation: "" } : undefined })} /> Include worked check</label>{block.check ? <>{textField("Check calculation", block.check.calculation, (calculation) => onChange({ ...block, check: { ...block.check!, calculation } }))}{textField("Check explanation", block.check.explanation, (explanation) => onChange({ ...block, check: { ...block.check!, explanation } }))}{textField("Check narration (optional)", block.check.reading ?? "", (reading) => onChange({ ...block, check: { ...block.check!, reading: reading || undefined } }))}</> : null}</>; break;
+    case "checkpoint": fields = <>{textField("Question", block.question, (question) => onChange({ ...block, question }))}{textField("Options (one per line)", block.options.join("\n"), (value) => { const options = value.split("\n"); onChange({ ...block, options, correct_index: Math.min(block.correct_index, Math.max(0, options.length - 1)) }); })}<NativeSelect aria-label="Correct option" value={block.correct_index} onChange={(event) => onChange({ ...block, correct_index: Number(event.target.value) })}>{block.options.map((option, i) => <option key={i} value={i}>{`Option ${i + 1}${option ? `: ${option.slice(0, 50)}` : ""}`}</option>)}</NativeSelect>{textField("Explanation", block.explanation, (explanation) => onChange({ ...block, explanation }))}</>; break;
+    case "image": fields = <>{textField("Image asset path", block.path, (path) => onChange({ ...block, path }))}{textField("Alt text", block.alt, (alt) => onChange({ ...block, alt }))}{textField("Caption (optional)", block.caption ?? "", (caption) => onChange({ ...block, caption: caption || undefined }))}</>; break;
+  }
+  return <div className="space-y-2 rounded-control border border-line bg-surface-page p-3"><div className="flex items-center justify-between gap-2"><p className="text-xs font-semibold capitalize">{block.type.replaceAll("_", " ")}</p><Button type="button" size="sm" variant="ghost" onClick={onRemove}>Remove</Button></div>{fields}</div>;
 }
