@@ -77,7 +77,14 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
       streamRef.current = stream; setCameraOpen(true);
-    } catch { setCameraError("Camera permission was blocked. Allow camera access or use Take photo / choose file below."); }
+    } catch (cause) {
+      const name = cause instanceof DOMException ? cause.name : "";
+      if (name === "NotAllowedError" || name === "PermissionDeniedError") setCameraError("Camera permission was denied. Allow camera access for ScholAu in your browser or device settings, then select Open camera again.");
+      else if (name === "NotFoundError" || name === "DevicesNotFoundError") setCameraError("No camera was found on this device. Use Take photo / choose file instead.");
+      else if (name === "NotReadableError" || name === "TrackStartError") setCameraError("The camera is being used by another app. Close that app and select Open camera again.");
+      else if (!window.isSecureContext) setCameraError("Camera access requires a secure connection. Open ScholAu using HTTPS or localhost.");
+      else setCameraError("The browser could not open the camera. Check camera permissions or use Take photo / choose file below.");
+    }
   }
 
   function startSession() {
