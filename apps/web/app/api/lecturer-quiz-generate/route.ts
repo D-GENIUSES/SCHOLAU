@@ -50,6 +50,10 @@ export async function POST(request: Request) {
   const lessonIds = asUuidList(payload.lessonIds);
   const materialHashes = asHashList(payload.materialHashes);
   const questionCount = Number(payload.questionCount);
+  const allowedQuestionTypes = ["mcq", "fill_blank", "written", "oral"] as const;
+  const questionType = allowedQuestionTypes.includes(payload.questionType as typeof allowedQuestionTypes[number])
+    ? payload.questionType as typeof allowedQuestionTypes[number]
+    : "mcq";
 
   if (!offeringId || !UUID_RE.test(offeringId)) {
     return NextResponse.json({ error: "Missing course context." }, { status: 400 });
@@ -150,6 +154,7 @@ export async function POST(request: Request) {
       courseCode,
       sources: sourceList,
       questionCount,
+      questionType,
     });
     return NextResponse.json({ questions: extracted.questions });
   } catch (e) {

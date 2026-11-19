@@ -2,8 +2,6 @@ import { z } from "zod";
 import { generateGeminiJson } from "./gemini-client";
 import {
   extractedQuizQuestionSchema,
-  parseExtractedQuiz,
-  type ExtractedQuiz,
 } from "./gemini-quiz-extract";
 
 export const quizTopicSourceSchema = z.object({
@@ -20,6 +18,7 @@ export const quizGenerateFromTopicsInputSchema = z.object({
   courseCode: z.string().min(1).max(64),
   sources: z.array(quizTopicSourceSchema).min(1).max(40),
   questionCount: z.number().int().min(10).max(30),
+  questionType: z.enum(["mcq", "written", "fill_blank", "oral"]).default("mcq"),
 });
 
 export type QuizGenerateFromTopicsInput = z.infer<typeof quizGenerateFromTopicsInputSchema>;
@@ -49,8 +48,19 @@ export function assessQuizTopicSources(
 }
 
 const generatedQuizSchema = z.object({
-  questions: z.array(extractedQuizQuestionSchema).min(1).max(30),
+  questions: z.array(z.preprocess((value) => {
+    if (value && typeof value === "object" && !Array.isArray(value) && !("type" in value)) return { ...value, type: "mcq" };
+    return value;
+  }, z.discriminatedUnion("type", [
+    extractedQuizQuestionSchema.extend({ type: z.literal("mcq") }),
+    z.object({ type: z.literal("written"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(4000), explanation: z.string().max(4000).optional() }),
+    z.object({ type: z.literal("fill_blank"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(1000), explanation: z.string().max(4000).optional() }),
+    z.object({ type: z.literal("oral"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(4000), explanation: z.string().max(4000).optional() }),
+  ]))).min(1).max(30),
 });
+
+export type GeneratedTopicQuestion = z.infer<typeof generatedQuizSchema>["questions"][number];
+export type GeneratedTopicQuiz = { questions: GeneratedTopicQuestion[] };
 
 export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): string {
   const catalogue = input.sources
@@ -69,12 +79,17 @@ export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): s
     : "Balance coverage across the listed sources when possible.";
 
   return [
-    `You write new multiple-choice quiz questions for the university course ${input.courseCode}.`,
-    `Return JSON only: { "questions": [{ "prompt", "options" (2-6 strings), "correct" (0-based index), "explanation" }] }.`,
+    input.questionType === "mcq"
+      ? `You write new multiple-choice quiz questions for the university course ${input.courseCode}.`
+      : `You write new ${input.questionType === "written" ? "written theory" : input.questionType === "oral" ? "oral response" : "fill in the blank"} questions for the university course ${input.courseCode}.`,
+    input.questionType === "mcq"
+      ? `Return JSON only: { "questions": [{ "type":"mcq", "prompt", "options" (2-6 strings), "correct" (0-based index), "explanation" }] }.`
+      : `Return JSON only: { "questions": [{ "type":"${input.questionType}", "prompt", "expected_answer", "explanation" }] }.`,
     `Create exactly ${input.questionCount} questions.`,
     "Ground every question only in the supplied source text. Do not invent syllabus topics that are absent.",
     coverageLine,
-    "Prefer four options. Exactly one option must be correct. Explanations must be short and teaching-focused.",
+    ...(input.questionType === "mcq" ? ["Prefer four options. Exactly one option must be correct."] : ["Give a concise model answer grounded in the source text. Written theory prompts require a complete written response; oral prompts are intended for spoken responses; fill-in-the-blank prompts must clearly show the blank."]),
+    "Explanations must be short and teaching-focused.",
     "Do not copy exam banks, checkpoints, or prior quiz wording verbatim. Write fresh stems and distractors.",
     "Avoid true/false-only stems and trick questions about metadata (page numbers, filenames).",
     "",
@@ -83,10 +98,11 @@ export function buildQuizFromTopicsPrompt(input: QuizGenerateFromTopicsInput): s
   ].join("\n");
 }
 
-export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number): ExtractedQuiz {
+export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number, questionType: QuizGenerateFromTopicsInput["questionType"] = "mcq"): GeneratedTopicQuiz {
   const parsed = generatedQuizSchema.parse(raw);
   for (const q of parsed.questions) {
-    if (q.correct >= q.options.length) {
+    if (q.type !== questionType) throw new Error("VALIDATION_FAILED: generated question type did not match selection");
+    if (q.type === "mcq" && q.correct >= q.options.length) {
       throw new Error("VALIDATION_FAILED: correct index out of range");
     }
   }
@@ -99,13 +115,13 @@ export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number): Ex
       );
     }
   }
-  return parseExtractedQuiz(parsed);
+  return { questions: parsed.questions };
 }
 
 export async function generateQuizQuestionsFromTopics(
   input: QuizGenerateFromTopicsInput,
   options: { maxAttempts?: number } = {},
-): Promise<ExtractedQuiz> {
+): Promise<GeneratedTopicQuiz> {
   const validated = quizGenerateFromTopicsInputSchema.parse(input);
   const maxAttempts = Math.max(1, Math.min(3, options.maxAttempts ?? 2));
   let lastError: unknown = new Error("GENERATION_FAILED");
@@ -117,7 +133,7 @@ export async function generateQuizQuestionsFromTopics(
         : "";
     try {
       const raw = await generateGeminiJson([{ text: buildQuizFromTopicsPrompt(validated) + retryNote }]);
-      return parseGeneratedTopicQuiz(raw, validated.questionCount);
+      return parseGeneratedTopicQuiz(raw, validated.questionCount, validated.questionType);
     } catch (error) {
       lastError = error;
     }

@@ -10,7 +10,13 @@ export function isNestedOptionOrders(orders: unknown, questionCount: number): bo
   if (questionCount === 0) return true;
   // Legacy broken shape: flat array of indices (jsonb concat bug).
   if (orders.every(entry => asOptionIndex(entry) !== null)) return false;
-  return orders.every(row => Array.isArray(row) && row.length >= 2 && row.every(cell => asOptionIndex(cell) !== null));
+  return orders.every(row => Array.isArray(row) && (row.length === 0 || (row.length >= 2 && row.every(cell => asOptionIndex(cell) !== null))));
+}
+
+/** Validates the exact option count for each displayed question (zero for text-response questions). */
+export function isNestedOptionOrdersForQuestions(orders: unknown, optionCounts: number[]): boolean {
+  if (!isNestedOptionOrders(orders, optionCounts.length) || !Array.isArray(orders)) return false;
+  return orders.every((row, index) => Array.isArray(row) && row.length === optionCounts[index]);
 }
 
 export function canonicalAnswerToDisplayIndex(perm: unknown[], canonical: number): number | undefined {

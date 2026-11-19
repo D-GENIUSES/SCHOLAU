@@ -71,6 +71,22 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
         p_display_option: option,
         p_revision: revision,
       }),
+    answerWritten: (id: string, question: number, answer: string, revision: number) =>
+      rpc<LecturerQuizDetail>("save_lecturer_quiz_response_v1", {
+        p_quiz_id: id,
+        p_display_question: question,
+        p_answer: answer,
+        p_revision: revision,
+      }),
+    writtenResponses: (id: string) => rpc<{ items: Array<{
+      attempt_id: string; student_name: string; matric_number: string; question_index: number;
+      question_type: "written" | "oral"; prompt: string; expected_answer: string; response: string;
+      score: 0 | 1 | null; feedback: string | null;
+    }> }>("get_lecturer_quiz_written_responses_v1", { p_quiz_id: id }),
+    gradeWrittenResponse: (id: string, attemptId: string, questionIndex: number, score: 0 | 1, feedback: string) =>
+      rpc<{ attempt_id: string; score: number }>("grade_lecturer_quiz_written_response_v1", {
+        p_quiz_id: id, p_attempt_id: attemptId, p_question_index: questionIndex, p_score: score, p_feedback: feedback,
+      }),
     submit: (id: string, revision: number) =>
       rpc<LecturerQuizDetail>("submit_lecturer_quiz_attempt_v1", { p_quiz_id: id, p_revision: revision }),
     roster: (offering: string, quizId: string, search = "", offset = 0) =>

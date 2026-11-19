@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { Input, NativeSelect } from "@/components/ui/input";
 import { getBrowserSupabase } from "@/lib/supabase/browser";
 import { cn } from "@/lib/utils";
 
@@ -67,6 +67,7 @@ export function GenerateQuestionsDialog({
   const [selectedLessons, setSelectedLessons] = useState<Set<string>>(() => new Set());
   const [selectedMaterials, setSelectedMaterials] = useState<Set<string>>(() => new Set());
   const [count, setCount] = useState("10");
+  const [questionType, setQuestionType] = useState<"mcq" | "fill_blank" | "written" | "oral">("mcq");
   const [fieldError, setFieldError] = useState<string | null>(null);
 
   const remaining = Math.max(0, 100 - currentQuestionCount);
@@ -119,6 +120,7 @@ export function GenerateQuestionsDialog({
       setSelectedModules(new Set());
       setSelectedLessons(new Set());
       setSelectedMaterials(new Set());
+      setQuestionType("mcq");
       const initial = Math.min(10, Math.max(0, 100 - currentQuestionCount));
       setCount(String(initial >= 10 ? initial : 10));
       setFieldError(null);
@@ -224,6 +226,7 @@ export function GenerateQuestionsDialog({
           lessonIds,
           materialHashes: [...selectedMaterials],
           questionCount: parsedCount,
+          questionType,
         }),
       });
       const json = (await res.json()) as { questions?: LecturerQuizQuestion[]; error?: string };
@@ -355,6 +358,15 @@ export function GenerateQuestionsDialog({
         ) : null}
         {!loading && materialsError ? <p role="status" className="text-sm text-ink-muted">Uploaded materials are unavailable right now. You can still generate from published lessons.</p> : null}
 
+        <label className="block text-sm">
+          Question type
+          <NativeSelect className="mt-1" value={questionType} onChange={(event) => setQuestionType(event.target.value as typeof questionType)} disabled={busy}>
+            <option value="mcq">Multiple choice (MCQ)</option>
+            <option value="fill_blank">Fill in the blank</option>
+            <option value="written">Written theory</option>
+            <option value="oral">Oral response (spoken or written)</option>
+          </NativeSelect>
+        </label>
         <label className="block text-sm">
           Questions
           <Input

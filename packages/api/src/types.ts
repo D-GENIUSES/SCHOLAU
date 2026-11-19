@@ -1541,9 +1541,11 @@ export interface LecturerQuiz extends Envelope {
 }
 
 export interface LecturerQuizQuestion {
+  type?: "mcq" | "written" | "fill_blank" | "oral";
   prompt: string;
-  options: string[];
+  options?: string[];
   correct?: number;
+  expected_answer?: string;
   explanation?: string;
 }
 
@@ -1561,7 +1563,7 @@ export interface LecturerQuizSaveResult extends Envelope {
 export interface LecturerQuizAttempt {
   id: string;
   attempt_number: number;
-  answers: Record<string, number>;
+  answers: Record<string, number | string | { response: string; score: number; feedback: string }>;
   question_order?: number[];
   option_orders?: number[][];
   revision: number;
@@ -1611,7 +1613,7 @@ export interface LecturerQuizExport extends Envelope {
     score: number | null;
     total: number;
     submitted_at: string | null;
-    answers: Record<string, number>;
+    answers: Record<string, number | string | { response: string; score: number; feedback: string }>;
   }>;
 }
 

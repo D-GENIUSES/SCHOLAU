@@ -83,7 +83,7 @@ export function questionAnalysis(data: LecturerQuizExport): QuestionAnalysisRow[
     return {
       index: index + 1,
       prompt: truncatePrompt(question.prompt),
-      correctOption: question.options[question.correct ?? 0] ?? "",
+      correctOption: question.options?.[question.correct ?? 0] ?? question.expected_answer ?? "",
       answered,
       correctCount,
       percentCorrect: answered > 0 ? Math.round((1000 * correctCount) / answered) / 10 : null,
@@ -103,7 +103,7 @@ function studentAnswerText(
 ): string {
   const pick = row.answers[String(index)];
   if (pick === undefined) return "";
-  return question.options[pick] ?? String(pick);
+  return typeof pick === "number" ? question.options?.[pick] ?? String(pick) : String(pick);
 }
 
 function studentCorrectMark(

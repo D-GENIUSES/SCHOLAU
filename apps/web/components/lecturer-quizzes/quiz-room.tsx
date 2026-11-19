@@ -8,10 +8,10 @@ import { isApiError } from "@scholau/api";
 import type { LecturerQuizDetail } from "@scholau/api";
 import { useCourseQuiz } from "@scholau/api/react";
 import type { LecturerQuizAttempt } from "@scholau/core";
-import { canonicalAnswerToDisplayIndex, isNestedOptionOrders } from "@scholau/core";
+import { canonicalAnswerToDisplayIndex, isNestedOptionOrdersForQuestions } from "@scholau/core";
 import { MathText } from "@/components/math/math-text";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Input, Textarea } from "@/components/ui/input";
 import { Failure, useChallengeClock } from "@/components/challenges/course-challenges";
 import { QuizIntegrityGuard, formatQuizFlagLabel } from "./quiz-integrity-guard";
 import { QuizQuestionReview } from "./quiz-editor";
@@ -27,11 +27,47 @@ const QuizEditor = dynamic(() => import("./quiz-editor").then((m) => ({ default:
 function displaySelection(attempt: LecturerQuizAttempt, displayIndex: number): number | undefined {
   const order = attempt.question_order;
   const perm = attempt.option_orders?.[displayIndex];
-  if (!order || !perm) return attempt.answers[String(displayIndex)];
+  if (!order || !perm) {
+    const answer = attempt.answers[String(displayIndex)];
+    return typeof answer === "number" ? answer : undefined;
+  }
   const cq = Number(order[displayIndex]);
   const canonical = attempt.answers[String(cq)] ?? attempt.answers[cq];
-  if (canonical === undefined) return undefined;
+  if (typeof canonical !== "number") return undefined;
   return canonicalAnswerToDisplayIndex(perm, Number(canonical));
+}
+
+function displayResponse(attempt: LecturerQuizAttempt, displayIndex: number): string {
+  const canonicalIndex = attempt.question_order?.[displayIndex] ?? displayIndex;
+  const value = attempt.answers[String(canonicalIndex)] ?? attempt.answers[canonicalIndex];
+  return typeof value === "string" ? value : typeof value === "object" && value ? value.response : "";
+}
+
+type SpeechRecognitionLike = {
+  lang: string;
+  interimResults: boolean;
+  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onend: (() => void) | null;
+  onerror: (() => void) | null;
+  start(): void;
+  stop(): void;
+};
+
+function beginSpeechInput(onText: (text: string) => void, onEnd: () => void): SpeechRecognitionLike | null {
+  const speechWindow = window as typeof window & { SpeechRecognition?: new () => SpeechRecognitionLike; webkitSpeechRecognition?: new () => SpeechRecognitionLike };
+  const Recognition = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
+  if (!Recognition) return null;
+  const recognition = new Recognition();
+  recognition.lang = navigator.language || "en-NG";
+  recognition.interimResults = false;
+  recognition.onresult = (event) => {
+    const transcript = Array.from(event.results).map((result) => result[0]?.transcript ?? "").join(" ").trim();
+    if (transcript) onText(transcript);
+  };
+  recognition.onend = onEnd;
+  recognition.onerror = onEnd;
+  recognition.start();
+  return recognition;
 }
 
 export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: LecturerQuizDetail }) {
@@ -124,6 +160,7 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
             <Button disabled={busy} variant="outline" size="sm" onClick={() => { if (window.confirm("Cancel this quiz?")) void act(() => quizApi().cancel(id)); }}>Cancel quiz</Button>
           ) : null}
           <QuizRoster offering={q.offering_id} quizId={id} />
+          {d.questions.some((question) => question.type === "written" || question.type === "oral") ? <WrittenResponseReview quizId={id} /> : null}
           {d.questions.length ? <QuizQuestionReview questions={d.questions} /> : null}
         </>
       )}
@@ -204,7 +241,7 @@ function StudentQuizFlow({
     return <QuizIntake detail={detail} busy={busy} onStart={(matric, displayName) => void act(() => quizApi().start(detail.quiz.id, matric, displayName))} />;
   }
   if (detail.attempt && !detail.attempt.submitted_at && detail.questions.length) {
-    const badShuffle = !isNestedOptionOrders(detail.attempt.option_orders, detail.questions.length);
+    const badShuffle = !isNestedOptionOrdersForQuestions(detail.attempt.option_orders, detail.questions.map((question) => question.type === "mcq" || !question.type ? question.options?.length ?? 0 : 0));
     if (badShuffle) {
       return (
         <p role="alert" className="rounded-lg border border-danger bg-danger-bg px-3 py-2 text-sm text-danger">
@@ -220,6 +257,14 @@ function StudentQuizFlow({
 function QuizResults({ detail }: { detail: LecturerQuizDetail }) {
   const a = detail.attempt!;
   const review = detail.questions.some((x) => x.correct != null);
+  const manualQuestions = detail.questions.filter((question) => question.type === "written" || question.type === "oral");
+  const manualPending = detail.questions.some((question, displayIndex) => {
+    if (question.type !== "written" && question.type !== "oral") return false;
+    const canonical = a.question_order?.[displayIndex] ?? displayIndex;
+    const response = a.answers[String(canonical)];
+    return typeof response !== "object" || response === null || response.score === undefined;
+  });
+  const autoQuestionCount = detail.questions.filter((question) => !["written", "oral"].includes(question.type ?? "mcq")).length;
   return (
     <Card>
       <CardHeader>
@@ -227,8 +272,9 @@ function QuizResults({ detail }: { detail: LecturerQuizDetail }) {
       </CardHeader>
       <CardContent className="space-y-3">
         <p role="status" className="text-lg font-semibold">
-          Score: {a.score ?? 0} / {detail.quiz.question_count}
+          {manualQuestions.length ? `Auto-score: ${a.score ?? 0} / ${autoQuestionCount}` : `Score: ${a.score ?? 0} / ${detail.quiz.question_count}`}
         </p>
+        {manualQuestions.length ? <p className="text-sm text-ink-muted">Written and oral responses are reviewed by your lecturer{manualPending ? "; your final score is pending." : "."}</p> : null}
         {review ? <QuizQuestionReview questions={detail.questions} /> : (
           <p className="text-sm text-ink-muted">Your lecturer chose not to show per-question review for this quiz.</p>
         )}
@@ -237,10 +283,76 @@ function QuizResults({ detail }: { detail: LecturerQuizDetail }) {
   );
 }
 
+type WrittenResponseRow = {
+  attempt_id: string;
+  student_name: string;
+  matric_number: string;
+  question_index: number;
+  question_type: "written" | "oral";
+  prompt: string;
+  expected_answer: string;
+  response: string;
+  score: 0 | 1 | null;
+  feedback: string | null;
+};
+
+function WrittenResponseReview({ quizId }: { quizId: string }) {
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState<WrittenResponseRow[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [savingKey, setSavingKey] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<Record<string, string>>({});
+  const [message, setMessage] = useState<string | null>(null);
+  async function load() {
+    setLoading(true);
+    try {
+      const result = await quizApi().writtenResponses(quizId);
+      setItems(result.items);
+      setOpen(true);
+      setMessage(null);
+    } catch (error) {
+      setMessage(lecturerQuizError(error));
+    } finally { setLoading(false); }
+  }
+  async function grade(item: WrittenResponseRow, score: 0 | 1) {
+    const key = `${item.attempt_id}:${item.question_index}`;
+    setSavingKey(key); setMessage(null);
+    try {
+      await quizApi().gradeWrittenResponse(quizId, item.attempt_id, item.question_index, score, feedback[key] ?? item.feedback ?? "");
+      setItems((current) => current.map((row) => row.attempt_id === item.attempt_id && row.question_index === item.question_index ? { ...row, score, feedback: feedback[key] ?? row.feedback } : row));
+    } catch (error) { setMessage(lecturerQuizError(error)); }
+    finally { setSavingKey(null); }
+  }
+  return <Card>
+    <CardHeader className="flex flex-row items-center justify-between gap-2">
+      <CardTitle className="text-base">Written and oral responses</CardTitle>
+      <Button size="sm" variant="outline" onClick={() => open ? setOpen(false) : void load()} loading={loading}>{open ? "Hide responses" : "Review responses"}</Button>
+    </CardHeader>
+    {open ? <CardContent className="space-y-3">
+      {message ? <p role="alert" className="text-sm text-danger">{message}</p> : null}
+      {!items.length && !loading ? <p className="text-sm text-ink-muted">No submitted written or oral responses yet.</p> : null}
+      {items.map((item) => {
+        const key = `${item.attempt_id}:${item.question_index}`;
+        return <article key={key} className="space-y-2 rounded-control border border-line p-3">
+          <p className="text-xs font-semibold text-ink-muted">{item.student_name} · {item.matric_number} · Question {item.question_index + 1} · {item.question_type === "oral" ? "Oral" : "Written"}</p>
+          <p className="text-sm font-medium"><MathText text={item.prompt} /></p>
+          <p className="whitespace-pre-wrap rounded-control bg-surface-page p-2 text-sm">{item.response || "No response"}</p>
+          <p className="text-xs text-ink-muted">Model answer: {item.expected_answer}</p>
+          <Textarea maxLength={2000} value={feedback[key] ?? item.feedback ?? ""} onChange={(event) => setFeedback((current) => ({ ...current, [key]: event.target.value }))} placeholder="Feedback for the student (optional)" aria-label="Feedback for student" />
+          <div className="flex flex-wrap items-center gap-2"><Button size="sm" variant={item.score === 1 ? "primary" : "outline"} disabled={savingKey === key} onClick={() => void grade(item, 1)}>Award 1 point</Button><Button size="sm" variant={item.score === 0 ? "primary" : "outline"} disabled={savingKey === key} onClick={() => void grade(item, 0)}>Award 0 points</Button>{item.score !== null ? <span className="text-xs text-ink-muted">Graded · {item.score}/1</span> : null}</div>
+        </article>;
+      })}
+    </CardContent> : null}
+  </Card>;
+}
+
 export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetail; refresh: () => void }) {
   const [attempt, setAttempt] = useState(detail.attempt!);
   const [index, setIndex] = useState(0);
   const [pending, setPending] = useState<{ question: number; option: number } | null>(null);
+  const [responseDraft, setResponseDraft] = useState("");
+  const [dictating, setDictating] = useState(false);
+  const speechRecognition = useRef<SpeechRecognitionLike | null>(null);
   const [error, setError] = useState<unknown>(null);
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -257,6 +369,8 @@ export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetai
   }, []);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   useEffect(() => { if (!active.current) setAttempt(c => detail.attempt!.revision >= c.revision ? detail.attempt! : c); }, [detail.attempt]);
+  useEffect(() => { setResponseDraft(displayResponse(attempt, index)); }, [attempt, index]);
+  useEffect(() => () => speechRecognition.current?.stop(), []);
   useEffect(() => { if (seconds === 0 && !seenEnd.current) { seenEnd.current = true; refresh(); } }, [seconds, refresh]);
   async function save(choice: { question: number; option: number }) {
     if (active.current || !seconds) return;
@@ -267,6 +381,22 @@ export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetai
     } catch (e) { if (mounted.current) setError(e); }
     finally { active.current = false; if (mounted.current) setSaving(false); }
   }
+  async function saveResponse() {
+    if (active.current || !seconds) return;
+    active.current = true; setSaving(true); setError(null);
+    try {
+      const result = await quizApi().answerWritten(detail.quiz.id, index, responseDraft, attempt.revision);
+      if (mounted.current) setAttempt(result.attempt!);
+    } catch (e) { if (mounted.current) setError(e); }
+    finally { active.current = false; if (mounted.current) setSaving(false); }
+  }
+  function toggleDictation() {
+    if (speechRecognition.current) { speechRecognition.current.stop(); speechRecognition.current = null; setDictating(false); return; }
+    const recognition = beginSpeechInput((text) => setResponseDraft((current) => `${current}${current.trim() ? " " : ""}${text}`), () => { speechRecognition.current = null; setDictating(false); });
+    if (!recognition) { setError(new Error("Voice input is not available in this browser. You can type your answer instead.")); return; }
+    speechRecognition.current = recognition;
+    setDictating(true);
+  }
   async function submit() {
     if (active.current || pending || !window.confirm("Submit your answers?")) return;
     active.current = true; setSubmitting(true);
@@ -276,7 +406,13 @@ export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetai
   const qu = detail.questions[index];
   if (!qu) return null;
   const disabled = saving || submitting || !seconds;
-  const answered = detail.questions.reduce((n, _, i) => (displaySelection(attempt, i) !== undefined ? n + 1 : n), 0);
+  const answered = detail.questions.reduce((n, question, i) => {
+    const answeredHere = ["written", "fill_blank", "oral"].includes(question.type ?? "mcq")
+      ? displayResponse(attempt, i).trim().length > 0
+      : displaySelection(attempt, i) !== undefined;
+    return n + (answeredHere ? 1 : 0);
+  }, 0);
+  const questionType = qu.type ?? "mcq";
   const flagLabel = formatQuizFlagLabel(flags, flagPending);
   return (
     <section className="space-y-4 min-w-0" aria-label="Quiz attempt">
@@ -294,19 +430,23 @@ export function QuizAttemptView({ detail, refresh }: { detail: LecturerQuizDetai
       {!seconds && <p role="alert">Time is up. Refresh to see your result.</p>}
       <fieldset disabled={disabled} className="space-y-3">
         <legend className="font-bold">Question {index + 1} of {detail.questions.length}: <MathText text={qu.prompt} /></legend>
-        {qu.options.map((option, n) => (
+        {questionType === "mcq" ? (qu.options ?? []).map((option, n) => (
           <label key={n} className="flex items-start gap-3 rounded-lg border border-line p-3 min-h-11 cursor-pointer">
             <input className="mt-1" type="radio" name={`q-${index}`} checked={displaySelection(attempt, index) === n} onChange={() => void save({ question: index, option: n })} />
             <span className="min-w-0 break-words"><MathText text={option} /></span>
           </label>
-        ))}
+        )) : <div className="space-y-2">
+          <textarea className="min-h-32 w-full rounded-control border border-line bg-surface-card p-3 text-base focus-visible:outline-2 focus-visible:outline-brand-primary" maxLength={12000} value={responseDraft} onChange={(event) => setResponseDraft(event.target.value)} placeholder={questionType === "fill_blank" ? "Type the missing answer" : "Write your response"} aria-label="Your response" />
+          {questionType === "oral" ? <div className="flex flex-wrap items-center gap-2"><Button type="button" variant="outline" size="sm" onClick={toggleDictation}>{dictating ? "Stop speaking" : "Speak answer"}</Button><span className="text-xs text-ink-muted">You can type or use voice input; spoken words are transcribed into this answer.</span></div> : null}
+          <Button type="button" variant="secondary" size="sm" disabled={disabled || responseDraft.length > 12000} loading={saving} onClick={() => void saveResponse()}>Save answer</Button>
+        </div>}
       </fieldset>
       <div className="flex flex-wrap gap-2">
         <Button variant="secondary" disabled={!index || disabled} onClick={() => setIndex(i => i - 1)}>Previous</Button>
         <Button variant="secondary" disabled={index === detail.questions.length - 1 || disabled} onClick={() => setIndex(i => i + 1)}>Next</Button>
       </div>
       <p className="text-xs text-ink-muted">{answered}/{detail.questions.length} answered</p>
-      <Button disabled={disabled || Boolean(pending)} loading={submitting} onClick={() => void submit()}>Submit</Button>
+      <Button disabled={disabled || Boolean(pending) || (questionType !== "mcq" && responseDraft !== displayResponse(attempt, index))} loading={submitting} onClick={() => void submit()}>Submit</Button>
     </section>
   );
 }

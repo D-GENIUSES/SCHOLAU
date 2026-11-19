@@ -3,22 +3,23 @@ import type { LecturerQuizDraft, LecturerQuizQuestion } from "./lecturer-quizzes
 
 const optionText = z.string().trim().min(1).max(1000);
 
-export const lecturerQuizQuestionSchema = z
-  .object({
-    prompt: z.string().trim().min(1).max(2000),
-    options: z.array(optionText).min(2).max(6),
-    correct: z.number().int().min(0),
-    explanation: z.string().max(4000).optional(),
-  })
-  .superRefine((q, ctx) => {
-    if (q.correct >= q.options.length) {
-      ctx.addIssue({ code: "custom", message: "Mark the correct option for each question." });
-    }
-    const distinct = new Set(q.options.map(o => o.toLowerCase()));
-    if (distinct.size !== q.options.length) {
-      ctx.addIssue({ code: "custom", message: "Options must be distinct." });
-    }
-  });
+const typedQuizQuestionSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("mcq"), prompt: z.string().trim().min(1).max(2000), options: z.array(optionText).min(2).max(6), correct: z.number().int().min(0), explanation: z.string().max(4000).optional() })
+    .superRefine((q, ctx) => {
+      if (q.correct >= q.options.length) ctx.addIssue({ code: "custom", message: "Mark the correct option for each question." });
+      if (new Set(q.options.map(o => o.toLowerCase())).size !== q.options.length) ctx.addIssue({ code: "custom", message: "Options must be distinct." });
+    }),
+  z.object({ type: z.literal("written"), prompt: z.string().trim().min(1).max(2000), expected_answer: z.string().trim().min(1).max(4000), explanation: z.string().max(4000).optional() }),
+  z.object({ type: z.literal("fill_blank"), prompt: z.string().trim().min(1).max(2000), expected_answer: z.string().trim().min(1).max(1000), explanation: z.string().max(4000).optional() }),
+  z.object({ type: z.literal("oral"), prompt: z.string().trim().min(1).max(2000), expected_answer: z.string().trim().min(1).max(4000), explanation: z.string().max(4000).optional() }),
+]);
+
+export const lecturerQuizQuestionSchema = z.preprocess((value) => {
+  if (value && typeof value === "object" && !Array.isArray(value) && !("type" in value)) {
+    return { ...value, type: "mcq" };
+  }
+  return value;
+}, typedQuizQuestionSchema);
 
 export function isCompleteQuizQuestion(q: LecturerQuizQuestion): boolean {
   return lecturerQuizQuestionSchema.safeParse(q).success;

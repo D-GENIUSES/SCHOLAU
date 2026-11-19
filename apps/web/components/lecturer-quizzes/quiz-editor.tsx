@@ -40,7 +40,10 @@ function localDateTime(value?: string | null) {
   const d = new Date(value);
   return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
 }
-const emptyQuestion = (): LecturerQuizQuestion => ({ prompt: "", options: ["", "", "", ""], correct: 0, explanation: "" });
+const emptyQuestion = (type: NonNullable<LecturerQuizQuestion["type"]> = "mcq"): LecturerQuizQuestion =>
+  type === "mcq"
+    ? { type, prompt: "", options: ["", "", "", ""], correct: 0, explanation: "" }
+    : { type, prompt: "", expected_answer: "", explanation: "" };
 const EMPTY_AUDIENCE_IDS: string[] = [];
 const steps: QuizEditorStep[] = ["Schedule", "Questions", "Review"];
 
@@ -363,8 +366,8 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
     setMessage(`Added ${selected.length} question${selected.length === 1 ? "" : "s"}. Review before publishing.`);
   }
 
-  function addQuestion() {
-    change({ questions: [...draft.questions, emptyQuestion()] });
+  function addQuestion(type: NonNullable<LecturerQuizQuestion["type"]>) {
+    change({ questions: [...draft.questions, emptyQuestion(type)] });
     setOpenQuestions(o => ({ ...o, [draft.questions.length]: true }));
   }
 
@@ -563,9 +566,15 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                   onChange={e => { const f = e.target.files?.[0]; if (f) void uploadImport(f); e.target.value = ""; }}
                 />
               </label>
-              <Button type="button" variant="secondary" size="sm" disabled={draft.questions.length >= 100} onClick={addQuestion}>
-                Add question
-              </Button>
+              <span className="text-xs font-semibold text-ink-muted">Add question:</span>
+              {([
+                ["mcq", "MCQ"],
+                ["fill_blank", "Fill in blank"],
+                ["written", "Written theory"],
+                ["oral", "Oral response"],
+              ] as const).map(([type, label]) => (
+                <Button key={type} type="button" variant="secondary" size="sm" disabled={draft.questions.length >= 100} onClick={() => addQuestion(type)}>{label}</Button>
+              ))}
               {(importBusy || generateBusy) ? (
                 <span role="status" className="basis-full text-xs text-ink-muted sm:basis-auto">
                   {generateBusy ? "Generating…" : "Importing…"}
@@ -623,9 +632,9 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                             className="min-h-16 py-2"
                           />
                         </label>
-                        <fieldset className="space-y-1.5">
+                        {(q.type ?? "mcq") === "mcq" ? <fieldset className="space-y-1.5">
                           <legend className={fieldLabel}>Options — select the correct answer</legend>
-                          {q.options.map((option, n) => {
+                          {(q.options ?? []).map((option, n) => {
                             const letter = OPTION_LETTERS[n] ?? String(n + 1);
                             const isCorrect = (q.correct ?? 0) === n;
                             return (
@@ -655,7 +664,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                                   maxLength={1000}
                                   aria-label={`Option ${n + 1}`}
                                   value={option}
-                                  onChange={e => question(i, { options: q.options.map((o, k) => (k === n ? e.target.value : o)) })}
+                                  onChange={e => question(i, { options: (q.options ?? []).map((o, k) => (k === n ? e.target.value : o)) })}
                                   className="min-h-9 border-0 bg-transparent px-1 shadow-none hover:border-0 focus-visible:border-0 focus-visible:outline-none"
                                 />
                                 <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-xs text-ink-muted">
@@ -676,8 +685,8 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                               type="button"
                               variant="link"
                               size="sm"
-                              disabled={q.options.length >= 6}
-                              onClick={() => question(i, { options: [...q.options, ""] })}
+                              disabled={(q.options?.length ?? 0) >= 6}
+                              onClick={() => question(i, { options: [...(q.options ?? []), ""] })}
                             >
                               Add option
                             </Button>
@@ -685,16 +694,19 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                               type="button"
                               variant="link"
                               size="sm"
-                              disabled={q.options.length <= 2}
+                              disabled={(q.options?.length ?? 0) <= 2}
                               onClick={() => question(i, {
-                                options: q.options.slice(0, -1),
-                                correct: Math.min(q.correct ?? 0, q.options.length - 2),
+                                options: (q.options ?? []).slice(0, -1),
+                                correct: Math.min(q.correct ?? 0, (q.options?.length ?? 0) - 2),
                               })}
                             >
                               Remove option
                             </Button>
                           </div>
-                        </fieldset>
+                        </fieldset> : <div className="space-y-2 rounded-control border border-line bg-surface-page p-3">
+                          <p className="text-xs font-semibold text-ink-muted">{q.type === "fill_blank" ? "Fill in the blank" : q.type === "written" ? "Written theory · lecturer reviewed" : "Oral response · speak or type · lecturer reviewed"}</p>
+                          <label className="block"><span className={fieldLabel}>Model answer (shown after quiz review)</span><Textarea required maxLength={4000} value={q.expected_answer ?? ""} onChange={event => question(i, { expected_answer: event.target.value })} className="min-h-16 py-2" /></label>
+                        </div>}
                         <label className="block">
                           <span className={fieldLabel}>Explanation (optional)</span>
                           <Textarea
@@ -949,9 +961,10 @@ export function QuizQuestionReview({ questions }: { questions: LecturerQuizQuest
     <ol className="space-y-2">
       {questions.map((q, i) => (
         <li key={i} className="break-words border border-line p-2.5 text-sm">
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-ink-muted">{q.type === "fill_blank" ? "Fill in the blank" : q.type === "written" ? "Written theory" : q.type === "oral" ? "Oral response" : "Multiple choice"}</p>
           <p className="font-medium"><MathText text={q.prompt} /></p>
-          <ul className="mt-1.5 space-y-0.5">
-            {q.options.map((o, n) => (
+          {(q.type ?? "mcq") === "mcq" ? <ul className="mt-1.5 space-y-0.5">
+            {(q.options ?? []).map((o, n) => (
               <li
                 key={n}
                 className={cn(
@@ -963,7 +976,7 @@ export function QuizQuestionReview({ questions }: { questions: LecturerQuizQuest
                 <MathText text={o} />
               </li>
             ))}
-          </ul>
+          </ul> : q.expected_answer ? <p className="mt-1.5 text-ink-muted">Model answer: <MathText text={q.expected_answer} /></p> : null}
           {q.explanation ? (
             <p className="mt-1.5 text-xs text-ink-muted"><MathText text={q.explanation} /></p>
           ) : null}
