@@ -43,6 +43,7 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
   const [hydrated, setHydrated] = useState(false);
   const [offeringId, setOfferingId] = useState(courses[0]?.id ?? "");
   const [cameraOpen, setCameraOpen] = useState(false);
+  const [holdingScan, setHoldingScan] = useState(false);
   const [cameraError, setCameraError] = useState("");
   const [scanError, setScanError] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -50,6 +51,7 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const scanLoopRef = useRef(false);
   const currentCourse = courses.find(course => course.id === (session?.offering_id ?? offeringId));
   const departments = useMemo(() => grouped(session?.records ?? []), [session?.records]);
 
@@ -60,6 +62,7 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
   }, [hydrated, session]);
   const stopCamera = useCallback(() => {
+    scanLoopRef.current = false; setHoldingScan(false);
     streamRef.current?.getTracks().forEach(track => track.stop()); streamRef.current = null;
     if (videoRef.current) videoRef.current.srcObject = null;
     setCameraOpen(false);
@@ -94,9 +97,9 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
     void openCamera();
   }
 
-  async function scanPhoto(file: File) {
-    if (!session || processing) return;
-    if (!file.type.startsWith("image/")) { setScanError("Choose an image from the camera or gallery."); return; }
+  async function scanPhoto(file: File): Promise<boolean> {
+    if (!session || processing) return false;
+    if (!file.type.startsWith("image/")) { setScanError("Choose an image from the camera or gallery."); return false; }
     setProcessing(true); setScanError("");
     const tempId = crypto.randomUUID();
     const placeholder: ScanRecord = { id: tempId, student_name: "", department: "", matric_number: "", score: "", confidence: 0, needs_review: true, created_at: new Date().toISOString() };
@@ -113,21 +116,48 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
       const data = await response.json() as { student_name?: string | null; department?: string | null; matric_number?: string | null; score?: string | null; confidence?: number; error?: string };
       if (!response.ok) throw new Error(data.error || "Could not read this exam header.");
       const record: ScanRecord = { ...placeholder, student_name: data.student_name ?? "", department: data.department ?? "", matric_number: data.matric_number ?? "", score: data.score ?? "", confidence: data.confidence ?? 0, needs_review: !data.student_name || !data.department || !data.matric_number || !data.score || (data.confidence ?? 0) < 0.7 };
-      setSession(current => current ? { ...current, records: current.records.map(item => item.id === tempId ? record : item) } : current);
+      setSession(current => {
+        if (!current) return current;
+        const matric = record.matric_number.replace(/\s+/g, "").toLowerCase();
+        const duplicate = matric ? current.records.find(item => item.id !== tempId && item.matric_number.replace(/\s+/g, "").toLowerCase() === matric) : undefined;
+        if (duplicate) return { ...current, records: current.records.filter(item => item.id !== tempId) };
+        return { ...current, records: current.records.map(item => item.id === tempId ? record : item) };
+      });
+      return true;
     } catch (error) {
       setSession(current => current ? { ...current, records: current.records.filter(item => item.id !== tempId) } : current);
       setScanError(error instanceof Error ? error.message : "Could not read this exam header. Try again or enter it manually.");
+      return false;
     } finally { setProcessing(false); }
   }
 
-  function capture() {
+  function captureFrame(): Promise<File | null> {
     const video = videoRef.current; const canvas = canvasRef.current;
-    if (!video || !canvas || !video.videoWidth) return;
+    if (!video || !canvas || !video.videoWidth) return Promise.resolve(null);
     const height = video.videoHeight; const scale = Math.min(1, 1500 / video.videoWidth);
     canvas.width = Math.round(video.videoWidth * scale); canvas.height = Math.round(height * scale);
-    const context = canvas.getContext("2d"); if (!context) return;
+    const context = canvas.getContext("2d"); if (!context) return Promise.resolve(null);
     context.drawImage(video, 0, 0, video.videoWidth, height, 0, 0, canvas.width, canvas.height);
-    canvas.toBlob(blob => { if (blob) void scanPhoto(new File([blob], "exam-header.jpg", { type: "image/jpeg" })); }, "image/jpeg", 0.82);
+    return new Promise(resolve => canvas.toBlob(blob => resolve(blob ? new File([blob], "exam-header.jpg", { type: "image/jpeg" }) : null), "image/jpeg", 0.82));
+  }
+
+  async function holdToScan() {
+    if (scanLoopRef.current || !session || session.status !== "scanning") return;
+    scanLoopRef.current = true; setHoldingScan(true); setScanError("");
+    try {
+      while (scanLoopRef.current) {
+        const frame = await captureFrame();
+        if (!frame || !scanLoopRef.current) break;
+        const readable = await scanPhoto(frame);
+        if (!readable) { scanLoopRef.current = false; break; }
+        await new Promise(resolve => window.setTimeout(resolve, 650));
+      }
+    } finally { scanLoopRef.current = false; setHoldingScan(false); }
+  }
+
+  function releaseScan() {
+    scanLoopRef.current = false;
+    setHoldingScan(false);
   }
 
   function updateRecord(id: string, field: "student_name" | "department" | "matric_number" | "score", value: string) {
@@ -171,15 +201,13 @@ export function LecturerScanWorkspace({ courses }: { courses: LecturerOffering[]
     finally { setExporting(false); }
   }
 
-  return <div className="mx-auto max-w-4xl space-y-5">
-    <header className="flex flex-wrap items-end justify-between gap-3"><div><h1 className="text-2xl font-bold tracking-tight">Scan exam papers</h1><p className="mt-1 text-sm text-ink-muted">Scan each paper header. Review extracted details, then export results by department.</p></div>{session ? <span className={`rounded-full px-3 py-1 text-xs font-semibold ${session.status === "scanning" ? "bg-success-bg text-success" : "bg-surface-tint text-ink-muted"}`}>{session.status === "scanning" ? "Session active" : "Paused · saved on this device"}</span> : null}</header>
-
-    {!session ? <section className="space-y-3 rounded-card border border-line bg-surface-card p-4"><h2 className="font-semibold">Start a scan session</h2><label className="block text-sm font-medium">Course<NativeSelect className="mt-1" value={offeringId} onChange={event => setOfferingId(event.target.value)}><option value="">Select a course</option>{courses.map(course => <option key={course.id} value={course.id}>{course.code} · {course.title} · {course.department}</option>)}</NativeSelect></label><Button disabled={!offeringId || !courses.length} onClick={startSession}><ScanLine className="size-4" aria-hidden />Start scanning</Button><p className="text-xs text-ink-muted">Sessions and extracted rows are saved in this browser. Photos are cropped to the top half and sent securely for reading; image files are not kept.</p></section> : <>
-      <section className="space-y-3 rounded-card border border-line bg-surface-card p-4"><div className="flex flex-wrap items-center justify-between gap-2"><div><p className="font-semibold">{currentCourse?.code} · {currentCourse?.title}</p><p className="text-xs text-ink-muted">{session.records.length} paper{session.records.length === 1 ? "" : "s"} scanned · started {new Date(session.created_at).toLocaleString()}</p></div><div className="flex flex-wrap gap-2">{session.status === "scanning" ? <Button variant="outline" onClick={() => { stopCamera(); setSession(current => current ? { ...current, status: "paused" } : current); }}><Pause className="size-4" aria-hidden />Pause</Button> : <Button onClick={() => { setSession(current => current ? { ...current, status: "scanning" } : current); void openCamera(); }}><Play className="size-4" aria-hidden />Continue</Button>}{session.records.length ? <><Button variant="outline" disabled={exporting} loading={exporting} onClick={() => void exportExcel()}><Download className="size-4" aria-hidden />Excel</Button><Button variant="outline" disabled={exporting} loading={exporting} onClick={() => void exportWord()}><Download className="size-4" aria-hidden />Word</Button></> : null}<Button variant="ghost" aria-label="Start a new scan session" onClick={() => { if (window.confirm("Start a new session? Export or finish reviewing this session first.")) { stopCamera(); setSession(null); } }}><RotateCcw className="size-4" aria-hidden />New session</Button></div></div>
-        {session.status === "scanning" ? <><p className="text-sm text-ink-muted">Frame the top of the paper so the name, department, matric number, and red mark are visible.</p>{cameraOpen ? <div className="space-y-2"><video ref={videoRef} className="max-h-[55vh] w-full rounded-control bg-black object-contain" playsInline muted aria-label="Exam paper camera preview"/><Button disabled={processing} loading={processing} onClick={capture}><Camera className="size-4" aria-hidden />Scan next paper</Button></div> : <div className="flex flex-wrap items-center gap-2"><Button variant="outline" onClick={() => void openCamera()}><Camera className="size-4" aria-hidden />Open camera</Button><label className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-line px-4 text-sm font-semibold hover:bg-surface-page">Take photo / choose file<input className="sr-only" type="file" accept="image/*" capture="environment" disabled={processing} onChange={event => { const file = event.target.files?.[0]; if (file) void scanPhoto(file); event.currentTarget.value = ""; }}/></label></div>}</> : null}
+  return <div className="mx-auto max-w-4xl space-y-4">
+    <header className="flex items-center justify-between gap-3"><h1 className="text-2xl font-bold tracking-tight">Scan</h1>{session ? <span role="status" className={`rounded-full px-3 py-1 text-xs font-semibold ${holdingScan ? "bg-brand-tint text-brand-primary" : session.status === "scanning" ? "bg-success-bg text-success" : "bg-surface-tint text-ink-muted"}`}>{holdingScan ? "Scanning" : session.status === "scanning" ? "Ready" : "Paused"}</span> : null}</header>
+    {!session ? <section className="flex flex-col gap-3 rounded-card border border-line bg-surface-card p-4 sm:flex-row sm:items-end"><label className="min-w-0 flex-1 text-sm font-medium">Course<NativeSelect className="mt-1" value={offeringId} onChange={event => setOfferingId(event.target.value)}><option value="">Select course</option>{courses.map(course => <option key={course.id} value={course.id}>{course.code} · {course.title} · {course.department}</option>)}</NativeSelect></label><Button disabled={!offeringId || !courses.length} onClick={startSession}><ScanLine className="size-4" aria-hidden />Start scanning</Button></section> : <>
+      <section className="space-y-3 rounded-card border border-line bg-surface-card p-3 sm:p-4"><div className="flex flex-wrap items-center justify-between gap-2"><div className="min-w-0"><p className="truncate font-semibold">{currentCourse?.code} · {currentCourse?.title}</p><p className="text-xs text-ink-muted">{session.records.length} scanned</p></div><div className="flex flex-wrap gap-1.5">{session.status === "scanning" ? <Button size="sm" variant="outline" onClick={() => { stopCamera(); setSession(current => current ? { ...current, status: "paused" } : current); }}><Pause className="size-4" aria-hidden />Pause</Button> : <Button size="sm" onClick={() => { setSession(current => current ? { ...current, status: "scanning" } : current); void openCamera(); }}><Play className="size-4" aria-hidden />Continue</Button>}{session.records.length ? <><Button size="sm" variant="outline" disabled={exporting} loading={exporting} aria-label="Export Excel" onClick={() => void exportExcel()}><Download className="size-4" aria-hidden />Excel</Button><Button size="sm" variant="outline" disabled={exporting} loading={exporting} aria-label="Export Word" onClick={() => void exportWord()}><Download className="size-4" aria-hidden />Word</Button></> : null}<Button size="sm" variant="ghost" aria-label="Start a new scan session" onClick={() => { if (window.confirm("Start a new session?")) { stopCamera(); setSession(null); } }}><RotateCcw className="size-4" aria-hidden />New</Button></div></div>
+        {session.status === "scanning" ? cameraOpen ? <div className="space-y-2"><video ref={videoRef} className="max-h-[55vh] w-full rounded-control bg-black object-contain" playsInline muted aria-label="Exam paper camera preview"/><Button block className="touch-none select-none" aria-pressed={holdingScan} onPointerDown={event => { event.currentTarget.setPointerCapture(event.pointerId); void holdToScan(); }} onPointerUp={releaseScan} onPointerCancel={releaseScan} onLostPointerCapture={releaseScan} onBlur={releaseScan} onKeyDown={event => { if ((event.key === " " || event.key === "Enter") && !event.repeat) { event.preventDefault(); void holdToScan(); } }} onKeyUp={event => { if (event.key === " " || event.key === "Enter") releaseScan(); }}><Camera className="size-4" aria-hidden />{holdingScan ? "Scanning · release to pause" : "Hold to scan"}</Button><p className="text-center text-xs text-ink-muted">{processing ? "Reading paper…" : `${session.records.length} scanned`}</p></div> : <div className="flex flex-wrap gap-2"><Button size="sm" variant="outline" onClick={() => void openCamera()}><Camera className="size-4" aria-hidden />Open camera</Button><label className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-full border border-line px-4 text-sm font-semibold hover:bg-surface-page">Choose photo<input className="sr-only" type="file" accept="image/*" capture="environment" disabled={processing} onChange={event => { const file = event.target.files?.[0]; if (file) void scanPhoto(file); event.currentTarget.value = ""; }}/></label></div> : null}
         {cameraError ? <p role="status" className="text-sm text-warning">{cameraError}</p> : null}{scanError ? <p role="alert" className="flex items-start gap-2 text-sm text-danger"><AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />{scanError}</p> : null}<canvas ref={canvasRef} className="hidden"/></section>
-
-      <section className="space-y-3"><div><h2 className="text-lg font-bold">Review scanned results</h2><p className="text-sm text-ink-muted">Check low-confidence reads and correct any details before exporting. Department names determine the export sheets.</p></div>{!session.records.length ? <p className="rounded-card border border-dashed border-line p-5 text-center text-sm text-ink-muted">Scanned papers will appear here.</p> : null}{departments.flatMap(([department, records]) => records.map(record => <article key={record.id} className="space-y-3 rounded-card border border-line bg-surface-card p-3 sm:p-4"><div className="flex flex-wrap items-center justify-between gap-2"><div className="flex items-center gap-2"><h3 className="font-semibold">{record.student_name || "Paper details"}</h3>{record.needs_review ? <span className="rounded-full bg-warning-bg px-2 py-0.5 text-xs font-medium text-warning">Review needed</span> : null}</div><Button variant="ghost" size="sm" aria-label="Remove scanned paper" onClick={() => removeRecord(record.id)}><Trash2 className="size-4" aria-hidden/>Remove</Button></div>{!record.id ? null : <div className="grid gap-2 sm:grid-cols-2"><label className="text-xs font-medium">Student name<Input className="mt-1" value={record.student_name} onChange={event => updateRecord(record.id, "student_name", event.target.value)} /></label><label className="text-xs font-medium">Department<Input className="mt-1" value={record.department} placeholder={department} onChange={event => updateRecord(record.id, "department", event.target.value)} /></label><label className="text-xs font-medium">Matriculation number<Input className="mt-1" value={record.matric_number} onChange={event => updateRecord(record.id, "matric_number", event.target.value)} /></label><label className="text-xs font-medium">Score exactly as marked<Input className="mt-1" value={record.score} onChange={event => updateRecord(record.id, "score", event.target.value)} /></label></div>}{record.confidence > 0 ? <p className="text-xs text-ink-muted">Reading confidence: {Math.round(record.confidence * 100)}%</p> : null}</article>))}</section>
+      <section className="space-y-2"><h2 className="text-lg font-bold">Results · {session.records.length}</h2>{departments.flatMap(([department, records]) => records.map(record => <article key={record.id} className="space-y-2 rounded-card border border-line bg-surface-card p-3"><div className="flex items-center justify-between gap-2"><div className="flex min-w-0 items-center gap-2"><h3 className="truncate font-semibold">{record.student_name || "Review paper"}</h3>{record.needs_review ? <span className="shrink-0 rounded-full bg-warning-bg px-2 py-0.5 text-xs font-medium text-warning">Check</span> : null}</div><Button variant="ghost" size="sm" aria-label="Remove scanned paper" onClick={() => removeRecord(record.id)}><Trash2 className="size-4" aria-hidden/></Button></div><div className="grid gap-2 sm:grid-cols-2"><label className="text-xs font-medium">Name<Input className="mt-1" value={record.student_name} onChange={event => updateRecord(record.id, "student_name", event.target.value)} /></label><label className="text-xs font-medium">Department<Input className="mt-1" value={record.department} placeholder={department} onChange={event => updateRecord(record.id, "department", event.target.value)} /></label><label className="text-xs font-medium">Matric no.<Input className="mt-1" value={record.matric_number} onChange={event => updateRecord(record.id, "matric_number", event.target.value)} /></label><label className="text-xs font-medium">Score<Input className="mt-1" value={record.score} onChange={event => updateRecord(record.id, "score", event.target.value)} /></label></div></article>))}</section>
     </>}
   </div>;
 }
