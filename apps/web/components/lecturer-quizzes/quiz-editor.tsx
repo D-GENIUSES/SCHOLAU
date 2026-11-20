@@ -538,7 +538,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-2 border border-line bg-surface-page px-2.5 py-2">
               <div className="mr-auto min-w-0">
-                <h2 className="text-sm font-semibold text-ink">Questions ({draft.questions.length}/100)</h2>
+                <h2 className="text-sm font-semibold text-ink">Questions ({draft.questions.length}/200)</h2>
                 <p className="text-xs text-ink-muted">
                   {incompleteCount > 0
                     ? `${readyCount} ready · ${incompleteCount} incomplete`
@@ -552,7 +552,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                 variant="primary"
                 size="md"
                 className="min-h-11 px-5 font-bold shadow-sm"
-                disabled={importBusy || generateBusy || draft.questions.length >= 100}
+                disabled={importBusy || generateBusy || draft.questions.length >= 200}
                 onClick={() => setGenerateOpen(true)}
                 aria-label="Generate questions from course topics"
               >
@@ -574,7 +574,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                 ["written", "Written theory"],
                 ["oral", "Oral response"],
               ] as const).map(([type, label]) => (
-                <Button key={type} type="button" variant="secondary" size="sm" disabled={draft.questions.length >= 100} onClick={() => addQuestion(type)}>{label}</Button>
+                <Button key={type} type="button" variant="secondary" size="sm" disabled={draft.questions.length >= 200} onClick={() => addQuestion(type)}>{label}</Button>
               ))}
               {(importBusy || generateBusy) ? (
                 <span role="status" className="basis-full text-xs text-ink-muted sm:basis-auto">

@@ -17,7 +17,7 @@ export type QuizTopicSource = z.infer<typeof quizTopicSourceSchema>;
 export const quizGenerateFromTopicsInputSchema = z.object({
   courseCode: z.string().min(1).max(64),
   sources: z.array(quizTopicSourceSchema).min(1).max(40),
-  questionCount: z.number().int().min(10).max(30),
+  questionCount: z.number().int().min(10).max(200),
   questionTypes: z.array(z.enum(["mcq", "written", "fill_blank", "oral"])).min(1).max(4).default(["mcq"]),
 });
 
@@ -57,7 +57,7 @@ const generatedQuizSchema = z.object({
     z.object({ type: z.literal("written"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(4000), explanation: z.string().max(4000).optional() }),
     z.object({ type: z.literal("fill_blank"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(1000), explanation: z.string().max(4000).optional() }),
     z.object({ type: z.literal("oral"), prompt: z.string().min(1).max(2000), expected_answer: z.string().min(1).max(4000), explanation: z.string().max(4000).optional() }),
-  ]))).min(1).max(30),
+  ]))).min(1).max(200),
 });
 
 export type GeneratedTopicQuestion = z.infer<typeof generatedQuizSchema>["questions"][number];
@@ -114,9 +114,9 @@ export function parseGeneratedTopicQuiz(raw: unknown, questionCount: number, que
     }
   }
   if (parsed.questions.length !== questionCount) {
-    // Accept a near miss only if Gemini returns a usable non-empty set within ±2 and within 10–30.
+    // Accept a near miss only if Gemini returns a usable non-empty set within ±2 and within 10–200.
     const delta = Math.abs(parsed.questions.length - questionCount);
-    if (delta > 2 || parsed.questions.length < 10 || parsed.questions.length > 30) {
+    if (delta > 2 || parsed.questions.length < 10 || parsed.questions.length > 200) {
       throw new Error(
         `VALIDATION_FAILED: expected ${questionCount} questions, received ${parsed.questions.length}`,
       );

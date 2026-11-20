@@ -98,7 +98,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         </div>
         {overview && !isPreviewOffering ? (
           <div className="home-course-heading-actions home-course-heading-actions--assessments">
-            <Button asChild size="sm" className="w-full sm:w-auto">
+            <Button asChild size="sm" className="w-auto px-3 text-xs font-semibold">
               <Link href={`/study/courses/${overview.offering_id}/assessments`}>
                 Assessments <ChevronRight className="size-4" aria-hidden />
               </Link>
@@ -111,7 +111,7 @@ export function HomeCourseFocus({ summary }: { summary: HomeSummary }) {
         <div className="home-next-action">
           <p className="home-next-action-label">Pick up here</p>
           <p className="home-next-action-title">{continueTitle}</p>
-          <Button asChild className="home-next-action-cta">
+          <Button asChild size="sm" className="home-next-action-cta h-10 min-h-10 text-sm">
             <Link href={`/study/lessons/${continueLessonId}`}>
               <Play className="size-4" aria-hidden /> Keep going
             </Link>

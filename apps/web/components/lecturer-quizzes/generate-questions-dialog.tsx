@@ -77,8 +77,8 @@ export function GenerateQuestionsDialog({
   const [questionTypes, setQuestionTypes] = useState<Set<QuestionType>>(() => new Set(["mcq"]));
   const [fieldError, setFieldError] = useState<string | null>(null);
 
-  const remaining = Math.max(0, 100 - currentQuestionCount);
-  const maxCount = Math.min(30, remaining);
+  const remaining = Math.max(0, 200 - currentQuestionCount);
+  const maxCount = Math.min(200, remaining);
   const minCount = remaining >= 10 ? 10 : 0;
 
   const publishedModules = useMemo(() => {
@@ -128,7 +128,7 @@ export function GenerateQuestionsDialog({
       setSelectedLessons(new Set());
       setSelectedMaterials(new Set());
       setQuestionTypes(new Set(["mcq"]));
-      const initial = Math.min(10, Math.max(0, 100 - currentQuestionCount));
+      const initial = Math.min(10, Math.max(0, 200 - currentQuestionCount));
       setCount(String(initial >= 10 ? initial : 10));
       setFieldError(null);
     }
@@ -214,7 +214,7 @@ export function GenerateQuestionsDialog({
 
   async function generate() {
     if (!canSubmit) {
-      if (remaining < 10) setFieldError("Need room for at least 10 more questions (100 max).");
+      if (remaining < 10) setFieldError("Need room for at least 10 more questions (200 max).");
       else if (selectionCount < 1) setFieldError("Select at least one topic, lesson, or uploaded material.");
       else if (selectionCount > 40) setFieldError("Select no more than 40 lessons and materials at a time.");
       else setFieldError(`Choose between ${minCount} and ${maxCount} questions.`);

@@ -71,8 +71,8 @@ export async function POST(request: Request) {
   if (materialHashes.length > 40) {
     return NextResponse.json({ error: "Select no more than 40 uploaded materials at a time." }, { status: 400 });
   }
-  if (!Number.isInteger(questionCount) || questionCount < 10 || questionCount > 30) {
-    return NextResponse.json({ error: "Choose between 10 and 30 questions." }, { status: 400 });
+  if (!Number.isInteger(questionCount) || questionCount < 10 || questionCount > 200) {
+    return NextResponse.json({ error: "Choose between 10 and 200 questions." }, { status: 400 });
   }
 
   const { data: listRaw, error: listError, status: listStatus } = await client.rpc("list_course_quizzes_v1", {
