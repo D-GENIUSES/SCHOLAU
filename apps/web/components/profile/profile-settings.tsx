@@ -3,7 +3,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowLeft, Bell, ChevronRight, CircleHelp, FileText, GraduationCap, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowLeft, Bell, ChevronRight, CircleHelp, FileText, GraduationCap, ShieldCheck, UserRound, BookOpen } from "lucide-react";
 import type { Profile } from "@scholau/api";
 import type { RegistrationAcademicInput } from "@scholau/core";
 import { Button } from "@/components/ui/button";
@@ -13,11 +13,13 @@ import { SignOutButton } from "@/components/auth/sign-out-button";
 import { ReportDialog } from "@/components/report-dialog";
 import { AcademicDetailsCard } from "./academic-details-card";
 import { AccountDeletionDialog } from "./account-deletion-dialog";
+import { CourseRequests } from "./course-requests";
 
 const NotificationSettings = dynamic(() => import("@/components/notifications/notification-settings").then(m => m.NotificationSettings));
 const sections = [
   { id: "account", label: "Account", icon: UserRound },
   { id: "academic", label: "Academic details", icon: GraduationCap },
+  { id: "courses", label: "Additional courses", icon: BookOpen },
   { id: "notifications", label: "Notifications", icon: Bell },
   { id: "security", label: "Security & privacy", icon: ShieldCheck },
   { id: "support", label: "Support", icon: CircleHelp },
@@ -37,6 +39,7 @@ export function ProfileSettings({ profile: p, registration, email, onClose, onEd
     </> : <section className="ps-settings-content" aria-label={heading}>
       {section === "account" ? <><dl className="ps-account-details"><div><dt>Username</dt><dd>{p.username || p.display_name}</dd></div><div><dt>Email</dt><dd>{email ?? "Not available"}</dd></div></dl><Button variant="outline" size="sm" onClick={onEdit}>Edit profile</Button></> : null}
       {section === "academic" ? <AcademicDetailsCard academic={p.academic} registration={registration} /> : null}
+      {section === "courses" ? <CourseRequests /> : null}
       {section === "notifications" ? <NotificationSettings owner={p.id} /> : null}
       {section === "security" ? <div className="space-y-5"><Link href="/change-password" className="ps-settings-row">Change password <ChevronRight aria-hidden /></Link><div><h2>Leaderboard visibility</h2><p className="ps-muted">{p.leaderboard_visible ? "Your profile appears on leaderboards." : "Your profile is hidden from leaderboards."}</p><Button variant="link" onClick={onEdit}>Manage visibility</Button></div><div className="border-t border-line pt-4"><AccountDeletionDialog /></div></div> : null}
       {section === "support" ? <div className="space-y-4"><ReportDialog targetType="technical" triggerLabel="Contact support" title="Contact support" />{p.roles.includes("admin") ? <Button asChild variant="outline"><Link href="/admin">Admin</Link></Button> : null}</div> : null}

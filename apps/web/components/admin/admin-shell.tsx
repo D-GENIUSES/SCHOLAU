@@ -53,6 +53,7 @@ export const adminNavGroups: readonly { label: string; items: readonly AdminNavI
       { href: "/admin/review", label: "Review", icon: ClipboardCheck },
       { href: "/admin/publish-readiness", label: "Publish readiness", shortLabel: "Readiness", icon: ListChecks },
       { href: "/admin/offerings", label: "Offerings", icon: GraduationCap },
+      { href: "/admin/course-requests", label: "Course requests", shortLabel: "Requests", icon: GraduationCap },
       { href: "/admin/content-sync", label: "Bundle sync (JSON)", shortLabel: "Bundles", icon: BookOpen },
     ],
   },
