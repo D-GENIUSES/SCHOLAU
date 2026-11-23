@@ -34,7 +34,10 @@ export function useScholauApi(): ScholauApi {
 
 /** Retry only transport failures and explicitly retryable codes (never STALE_REVISION blindly). */
 export function shouldRetry(failureCount: number, error: unknown): boolean {
-  if (failureCount >= 2) return false;
+  // Supabase/Vercel cold starts and short-lived transport drops can outlast
+  // the first two attempts. Keep retries bounded and only retry transient
+  // failures; auth, validation, and permission errors fail immediately.
+  if (failureCount >= 3) return false;
   if (error instanceof ScholauApiError) {
     return error.code === "NETWORK" || error.code === "RATE_LIMITED" || error.code === "MAINTENANCE" || (error.code === "UNKNOWN" && error.retryable);
   }

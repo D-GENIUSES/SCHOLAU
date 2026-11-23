@@ -51,7 +51,15 @@ export function Providers({ children, appVersion }: { children: ReactNode; appVe
           },
         }),
         defaultOptions: {
-          queries: { staleTime: 60_000, gcTime: 10 * 60_000 },
+          queries: {
+            staleTime: 2 * 60_000,
+            gcTime: 15 * 60_000,
+            // Focus refetches made navigation feel like a reload and could
+            // surface transient backend failures unnecessarily. Live flows
+            // opt back in explicitly where they need it.
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: true,
+          },
         },
       }),
   );

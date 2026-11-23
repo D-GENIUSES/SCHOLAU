@@ -52,7 +52,14 @@ export async function updateSession(request: NextRequest) {
 
   let userId: string | null = null;
   try {
-    const { data } = await supabase.auth.getClaims();
+    // Proxy runs before every protected page request. Bound the upstream auth
+    // check so a stalled Supabase connection cannot leave navigation hanging.
+    const { data } = await Promise.race([
+      supabase.auth.getClaims(),
+      new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error("Supabase session check timed out")), 2_500);
+      }),
+    ]);
     userId = (data?.claims?.sub as string | undefined) ?? null;
   } catch {
     userId = null;

@@ -89,7 +89,9 @@ export function parseRpcError(error: unknown, status?: number): ScholauApiError 
   if (http === 404 || e.code === "PGRST202") {
     return new ScholauApiError({ code: "NOT_FOUND", message: ERROR_COPY.NOT_FOUND, retryable: false, status: http });
   }
-  if (http !== undefined && http >= 500) {
+  // These responses are commonly transient (gateway/cold-start/rate-limit)
+  // and are safe to retry. Do not include 401/403/404 or validation errors.
+  if (http === 408 || http === 429 || http === 502 || http === 503 || http === 504 || (http !== undefined && http >= 500)) {
     return new ScholauApiError({ code: "UNKNOWN", message: ERROR_COPY.UNKNOWN, retryable: true, status: http });
   }
   return new ScholauApiError({ code: "UNKNOWN", message: ERROR_COPY.UNKNOWN, retryable: false, status: http });
