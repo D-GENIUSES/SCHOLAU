@@ -156,6 +156,9 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
         </>
       ) : (
         <>
+          {q.state !== "draft" ? (
+            <ExtendQuizClose quiz={q} busy={busy} act={act} />
+          ) : null}
           {q.state !== "closed" && q.state !== "draft" ? (
             <Button disabled={busy} variant="outline" size="sm" onClick={() => { if (window.confirm("Cancel this quiz?")) void act(() => quizApi().cancel(id)); }}>Cancel quiz</Button>
           ) : null}
@@ -165,6 +168,47 @@ export function QuizRoom({ id, initialDetail }: { id: string; initialDetail?: Le
         </>
       )}
     </div>
+  );
+}
+
+function ExtendQuizClose({
+  quiz,
+  busy,
+  act,
+}: {
+  quiz: LecturerQuizDetail["quiz"];
+  busy: boolean;
+  act: (fn: () => Promise<unknown>) => void;
+}) {
+  const [closesAt, setClosesAt] = useState(() => {
+    if (!quiz.closes_at) return "";
+    const date = new Date(quiz.closes_at);
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+  });
+  return (
+    <section className="flex flex-wrap items-end gap-2 rounded-card border border-line p-3">
+      <label className="block flex-1 min-w-48 text-sm">
+        Extend close time
+        <Input
+          type="datetime-local"
+          value={closesAt}
+          disabled={busy}
+          onChange={(event) => setClosesAt(event.target.value)}
+        />
+      </label>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        disabled={busy || !closesAt}
+        onClick={() => {
+          const iso = new Date(closesAt).toISOString();
+          void act(() => quizApi().extend(quiz.id, quiz.revision, iso));
+        }}
+      >
+        Extend quiz
+      </Button>
+    </section>
   );
 }
 

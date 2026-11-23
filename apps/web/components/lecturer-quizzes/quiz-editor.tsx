@@ -214,7 +214,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
         setDirty(false);
         clearLocalQuizBackup(offering, quizId);
         if (!initial && typeof window !== "undefined" && window.location.pathname.endsWith("/quizzes/new")) {
-          router.replace(classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/quizzes/${quizId}`);
+          router.replace(`/lecturer/courses/${offering}/quizzes/${quizId}`);
         }
       }
       if (publish && savedRevision !== null) {
@@ -228,7 +228,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
         if (classroomId) void queryClient.invalidateQueries({ queryKey: qk.classroom(classroomId) });
         if (!silent) {
           setMessage("Published. Enrolled students were notified.");
-          router.push(classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/quizzes/${quizId}`);
+          router.push(`/lecturer/courses/${offering}/quizzes/${quizId}`);
           router.refresh();
         }
       } else if (!silent) {
@@ -850,7 +850,7 @@ export function QuizEditor({ offering, initial, classroomId }: { offering: strin
                       try {
                         await api().cancel(id);
                         setDirty(false);
-                        router.push(classroomId ? `/lecturer/classrooms/${classroomId}` : `/lecturer/courses/${offering}/quizzes`);
+                        router.push(`/lecturer/courses/${offering}/quizzes`);
                         router.refresh();
                       } catch (e) {
                         setError(e);

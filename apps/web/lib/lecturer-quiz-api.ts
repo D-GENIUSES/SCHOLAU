@@ -60,6 +60,12 @@ export function lecturerQuizApi(client: AnySupabaseClient) {
       }),
     publish: (id: string, revision: number) =>
       rpc<{ quiz: LecturerQuiz }>("publish_lecturer_quiz_v1", { p_id: id, p_revision: revision }),
+    extend: (id: string, revision: number, closesAt: string) =>
+      rpc<{ quiz: LecturerQuiz }>("extend_lecturer_quiz_v1", {
+        p_id: id,
+        p_revision: revision,
+        p_closes_at: closesAt,
+      }),
     cancel: (id: string) => rpc<{ cancelled: boolean }>("cancel_lecturer_quiz_draft_v1", { p_id: id }),
     detail: (id: string) => rpc<LecturerQuizDetail>("get_course_quiz_v1", { p_id: id }),
     start: (id: string, matric: string, displayName: string) =>
